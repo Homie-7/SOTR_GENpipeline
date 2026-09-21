@@ -39,8 +39,15 @@ The system is in PIPELINE.md: card → room master → FRONT → LEFT → RIGHT 
 Sound is a separate designer; our timing leads. Projection-mapping software does the
 final fit, so there's no projector spec to wait for.
 
-Still open: final set dimensions (v0.2 draft), frame rate and codec for the mapping
-software, and the working folder for media.
+Still open: final set dimensions (v0.2 draft), codec for the mapping software, the
+working folder for media, and whether floor projection is still in the plan (the 2022
+concept had a projected carpet; the v0.2 drawing shows walls only).
+
+Frame rate is decided: native (24 is fine), higher when a model offers it, no forced
+interpolation. Post VFX is optional; generation comes first.
+
+Homie will ask about docs/HANDOVER-WINDOWS.md (setting up the Windows PC). Walk him
+through it when he does.
 
 ON WRAP: update REGISTER.md and LOG.md, update THIS file's "THE TASK, RIGHT NOW",
 commit, push.
