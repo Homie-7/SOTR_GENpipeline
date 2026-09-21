@@ -153,16 +153,32 @@ tried at Rochefort in 1817 by a **naval court martial** — a panel of naval off
 uniform. The robe and toque of the first version were civil-magistrate dress and the wrong
 institution entirely. See `LOG.md`, 2026-09-21 IMG.
 
-Strict side profile, facing right, full length. **A bicorne worn fore-and-aft**, reading as
-a wide pointed crescent above the head — one point forward over the brow, one point back.
-This is how navies wore it from about 1800, and in strict profile it is the most legible
-headgear available to us; worn athwart it would collapse to a small cap. High standing
-collar, a tailcoat cut away at the front with long tails to the back of the knee, a fringed
-epaulette proud on the shoulder line, a sword at the hip with its scabbard angling down and
-back below the tails. Gavel raised high in the right hand, an unrolled scroll held out in
-the left (he reads his findings "like a town crier"), chin raised, mouth open
-mid-proclamation. **Pure black, no interior detail, no face.** The profile's nose and open
-mouth are the only "face" there is.
+**FRONTAL, not profile (Homie, 2026-09-21).** He faces the audience square-on, full length,
+symmetrical, centred. The profile version read as Napoleon — bicorne plus tailcoat plus
+sword plus side-on is that icon almost exactly, and `BIBLE.md` bans Napoleonic motifs
+because this is the **Bourbon** state, not the Empire. Head-on breaks the quote. It also
+suits symmetrical walls: a profile figure has a direction and pushes the eye off CENTRE
+toward the next wall, where frontal puts the accusation on the audience, who sit exactly
+where the public gallery sits. He reads his findings "like a town crier" — a crier faces
+the crowd.
+
+**Mass over costume.** The court is abstract by design, and costume specificity is what
+caused the Napoleon collision. What carries the figure is **squared shoulders, fringed
+epaulettes and the raised gavel**, not tailoring. Bicorne worn fore-and-aft (correct for a
+navy after about 1800), seen end-on as a single point above the brow with the brim sweeping
+down each side. High collar, a long coat falling straight, planted stance. **No sword and
+no coat tails** — the two most Napoleonic elements after the hat, and neither earns its
+place. Gavel raised high in the right hand and held clear of the hat, an unrolled scroll
+out in the left, chin raised, mouth open mid-proclamation.
+
+**One unbroken mass of solid black. No white, no grey, no line anywhere inside the
+outline** — v2 returned white collars, white buttons and fringed epaulette detail in all
+four variants, so these are banned by name in the prompt. Every feature is carried by the
+silhouette's edge alone. **No face.**
+
+**Full length is kept deliberately.** The growth only works if he starts whole: contained
+at Q1, closing at Q2, outgrowing the frame at Q3, multiplying at Q4, and gone at Q5 with
+only the gavel left. Crop him early and Q3 has nowhere to go.
 
 **The gavel is deliberate licence, not an error.** No French court has ever used one — a
 president used a handbell or his voice. But the script writes "The gavel" (`BIBLE.md` beat
@@ -180,14 +196,15 @@ and the scroll.
 | 1 | Opening "Order!" and finding One | small, about 1.2 m tall, CENTRE only |
 | 2 | Finding Two | about 2.4 m, CENTRE |
 | 3 | Finding Three, "Get the TRAITORS out" | fills CENTRE, head cropped |
-| 4 | The judge loses control | **the tribunal of three:** two more judges appear, each whole on LEFT and RIGHT, facing inward to CENTRE. All three strike together |
+| 4 | The judge loses control | **the tribunal of three:** two more judges appear, each whole on LEFT and RIGHT. All three face the audience and strike together |
 | 5 | "…CAN NOT be held responsible." | **each wall fills with its own gavel**, huge, coming down from that wall's top edge. All three strike at once, then cut to black |
 
 **Whole-objects rule (2026-09-21).** No judge and no gavel is ever split across a seam. The
 court is overwhelming because three whole judges strike in unison, not because one breaks
 the frame. It's also closer to history: a court martial sat as a panel. One figure makes
-all three. LEFT uses it as generated (facing right, toward CENTRE), RIGHT uses it mirrored
-(facing left), and CENTRE uses it as generated.
+all three, used as generated on every wall — **the figure is frontal, so no mirroring is
+needed.** Three identical judges staring straight out is closer to a real court martial
+panel facing the accused than the earlier inward-facing arrangement.
 
 Each size is a **hard jump on the strike**, not a smooth grow. Every hit shakes the room.
 A short shudder or flash on the field sells the impact.
