@@ -68,6 +68,9 @@ The system is set up: `PIPELINE.md`. Resolution is settled (1080p work, 4K upsca
 out of scope (separate designer, our timing leads). **Next: go through each world with
 Homie, one at a time.** Lock the look, write the card, then IMG.
 
+**SALON is in discussion.** Research is done and the four open choices are in `LOOK.md` →
+World 1. The Windows PC handover is `docs/HANDOVER-WINDOWS.md`.
+
 ## Session close
 
 On `wrap`: append to `REGISTER.md` and `LOG.md`, save final prompts to `prompts/<ID>.txt`,

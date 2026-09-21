@@ -27,3 +27,12 @@ and our timing leads. Goal: one cohesive video across three screens. Adopted Hom
 (cards, then front, left, right) and added two things: a **room master** before the front
 camera, and a **wide-canvas master comp** (4680 × 1080) where every cross-screen event is
 built. Written up as `PIPELINE.md`.
+
+Frame rate: native is fine (24 OK), higher when a model offers it. No forced
+interpolation. Post VFX is an optional upgrade; generation comes first.
+
+Salon research: the Cooper Hewitt Restoration salon (buff and blue, restrained) against
+the script and references (old-regime gilt, Hôtel de Soubise). Recommended gilt. Four open
+choices logged in `LOOK.md`. Found Homie's 2022 studio concept (Slide 9), the only prior
+Scene 9 visual, and noted it as the studio's starting layout. Added
+`docs/HANDOVER-WINDOWS.md` for the PC.

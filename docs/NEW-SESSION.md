@@ -21,12 +21,18 @@ Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
 (LEFT 4800x3600, CENTRE 6000x3600, RIGHT 4800x3600). Cameras are locked. Each surface
 is a wall of the room, square-on, at true scale. No people in any plate.
 
-THE TASK, RIGHT NOW (2026-09-21): PREP. Lock the look, one world at a time.
-Scope: Court Martial, Salon, Géricault's studio. Deadline about one week.
-All three worlds in LOOK.md are PROPOSED, not locked. Walk through them with Homie in
-this order: SALON, STUDIO, COURT. For each one, settle the open choices, write the style
-prefix, and mark it LOCKED with the date. Don't write a generation prompt for a world
-until it's locked.
+THE TASK, RIGHT NOW (2026-09-21): PREP. Locking the SALON look.
+Scope: Court Martial, Salon, Géricault's studio. Deadline about one week (from 21/09).
+Order: SALON, then STUDIO, then COURT.
+
+SALON is IN DISCUSSION. Read LOOK.md → World 1: research done, recommendation is
+old-regime gilt (the Soubise model), and four open choices: palette, depth through the
+mirror, LIT/DARK plate states, true scale against the 3.6 m crop. Settle them with Homie,
+write the style prefix, mark LOCKED with the date, write the card in SHOTCARDS.md, then
+switch to IMG for the room master (PIPELINE.md step 2).
+Don't write a generation prompt for a world until it's locked.
+
+STUDIO has a starting layout already: Homie's 2022 concept, Slide 9 (see LOOK.md → World 2).
 
 The system is in PIPELINE.md: card → room master → FRONT → LEFT → RIGHT → seam check
 → loops → master comp (4680x1080 wide canvas) → approve at 1080p → upscale to 4K.

@@ -13,7 +13,7 @@ machine by hand (or the SSD), keeping the same layout.
 | `INSPO/Sc 9/` | 2 salon interiors, 17 photos from the 2022 dev showing, `Dev Showing.mp4` (7:15) | Salon refs; how Scene 9 was staged in 2022 |
 | `INSPO/Sc 7/` | Dev-showing photos and `Dev showing.mp4` (3:44) | Not ours (Sahaj). Shows how projection sat behind the actors |
 | `INSPO/Sc 1–6, 8, 10/` | Empty | — |
-| `2022 Presentation 2 ReAction CCC/` | 11 slides plus the .pptx. Includes 3D renders of the projection box | Staging intent (panels, splits) |
+| `2022 Presentation 2 ReAction CCC/` | 11 slides plus the .pptx. Includes 3D renders of the projection box. **Slide 9 = Homie's 2022 Géricault studio concept**, the only prior Scene 9 visual work | Staging intent; studio layout and fragment dissolve |
 | `vlcsnap-2026-09-21-*.png` (5) | UE5/Unity stills: alpine farmhouse (Scene 4), burning battlefield (Scenes 3/5/6) | Hyper-real benchmark only. **Not Scene 9** |
 
 Generated plates and loops go to a working folder outside the repo. Pick one location,

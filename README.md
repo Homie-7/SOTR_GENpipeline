@@ -35,6 +35,8 @@ week from 2026-09-21.
 
 ## Setting up on another machine
 
+**Windows PC:** follow `docs/HANDOVER-WINDOWS.md`. Mac or anything else:
+
 The production skills (`house-rules`, `banana-pro-director-30`, `cinema-director-v3`, etc.)
 live in the separate `Precision-Pipeline` repo. Install them once:
 

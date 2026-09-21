@@ -26,7 +26,50 @@ separating. Warm polish against cold patina.
 
 ---
 
-## World 1 — THE SALON · PROPOSED
+## World 1 — THE SALON · IN DISCUSSION (2026-09-21)
+
+### Research (2026-09-21)
+
+- **What a real Restoration salon looked like** is lighter and more restrained than most
+  people picture. Hilaire Thierry's *Salon in the Restoration Taste* (Cooper Hewitt, early
+  1820s, probably the Duchesse de Berry's apartment at Saint-Cloud) has **buff walls banded
+  in blue**, floor-to-ceiling windows with afternoon light, a gilded tea service, rock
+  crystal vases, a chandelier, and a chair and canapé in the new post-1814 style.
+- **What the script and references ask for** is older and louder. The script says "an
+  ornate Louis XIV Salon." The two `INSPO/Sc 9` references are a red-damask
+  Versailles-style room, and the white-and-gold **Salon de la Princesse, Hôtel de Soubise**
+  (Boffrand, 1735–40): oval, gilded boiserie, mirror glass set into the panelling, painted
+  overdoors. That room is where aristocratic Paris gathered before the Revolution.
+- **The fork.** Historical Restoration (pale, restrained, accurate) against old-regime gilt
+  (opulent, theatrical, reads as "aristocratic excess" instantly). A royalist in 1817
+  sitting in a surviving pre-Revolution Rococo room is historically plausible, since the
+  Restoration was nostalgic for exactly that. **Recommendation: old-regime gilt**, the
+  Soubise model. It's what the script and the brief ask for, and it's what the audience
+  reads at a glance.
+- **Fact check on the court.** The real verdict (Rochefort, 1817) convicted Chaumareys of
+  incompetent navigation and of abandoning the ship before everyone was off. He got three
+  years, and lost his rank and Légion d'honneur. He was acquitted of abandoning the raft.
+  The play's full acquittal is licence; `BIBLE.md` keeps the play's version.
+
+### Open choices for the salon
+
+1. **Palette:** white-and-gold boiserie with crimson silk accents (Soubise), or red damask
+   walls with gilt (Versailles)? The Soubise version keeps the base field light, which
+   separates it from the studio's dark umber without relying on the red.
+2. **Depth through the mirror.** Walls-as-walls means no chandelier in the middle of the
+   room, since each surface is a wall. **Proposal:** the centre wall is a tall mirror, and
+   the mirror reflects the chandelier and the rest of the room, which sit behind the
+   audience. It's the one legitimate window of depth, and it puts the candlelight and
+   crystal motion in the middle wall.
+3. **Two plate states: LIT and DARK.** The salon's arrival (candles lighting one by one)
+   needs a dark version of each wall to transition from. Generate both states from the
+   same approved plate, rather than faking darkness in the comp.
+4. **True scale against the 3.6 m crop.** A Rococo salon's glory is overhead (cornice,
+   ceiling paintings), and that gets cropped. Keep true scale, and put the richest
+   elements between 1 m and 3.6 m (mirror, sconces, gilt panels, overdoor paintings),
+   which is where they sit in real rooms anyway.
+
+### Proposal (unchanged until the choices above are made)
 
 **Where.** Marie-Louise's salon in a royalist château, 1817. An old grand interior in
 Baroque/Rococo taste: carved and gilded boiserie, tall mirrors, crystal, silk. It's what
@@ -78,6 +121,14 @@ and returns. A guttering candle stub. That's all.
 **References.** Géricault's own studies (*Severed Limbs*, 1818). Rembrandt-style studio
 light. *Layers of Fear*: a painter's studio that rebuilds itself around you, almost the
 same idea.
+
+**Homie's 2022 concept** (`2022 Presentation…/Slide9.JPG`) is this exact world, already
+laid out across the three walls. LEFT: a huge head study leaning against brick. CENTRE: a
+cluttered workbench, plaster busts, a tall studio window. RIGHT: the Raft painting
+**dissolving into black particles at its edge**. It also had a Persian carpet projected on
+the floor. Use it as the starting layout. The particle dissolve on the right wall is the
+fragment language already in his hands. Check whether floor projection is still in the
+v0.2 plan (the drawing shows walls only).
 
 **How it arrives.** It paints itself in: charcoal lines first, then colour, through
 brushstroke-shaped masks. The artist is the one who makes the invisible visible (Amina's
