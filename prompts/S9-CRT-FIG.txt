@@ -1,7 +1,8 @@
-# S9-CRT-FIG · v1 · NOT GENERATED
-# Soul Cinema or NBP (test both, same prompt) · 9:16 · 2k · no reference
+# S9-CRT-FIG · v2 · costume corrected to naval officer (v1 FAILED — wrong institution, see LOG.md)
+# Nano Banana Pro · 9:16 · 2k · no reference
 # Same frame and aspect as the S9-CRT-STRIKE video, which starts from this still.
+# ONE change from v1: the figure paragraph. Style prefix, pose, gavel, scroll and framing are verbatim.
 
 Flat graphic image: one solid pure black silhouette on a bone-white field, like a shadow cast on a lit paper screen. The black is flat and absolute with crisp clean edges. The white is a warm bone tone, softly brighter at the centre, as if a lamp glows behind the paper. Two tones only.
 
-A French judge of 1817 in strict side profile facing right, full length from the hat to the feet, standing tall: a long judicial robe with wide hanging sleeves, a tall cylindrical toque on his head, chin raised, mouth open mid-proclamation. His right arm is raised high above his head holding a wooden gavel. His left hand holds an unrolled scroll out in front of him. The whole figure stands centred with generous white space on every side.
+A French naval officer of 1817 in strict side profile facing right, full length from hat to feet, standing tall: a bicorne hat worn fore-and-aft, reading as one wide pointed crescent above his head with a point forward over the brow and a point behind. A high standing collar, a tailcoat cut away at the front with long tails hanging to the back of the knee, a fringed epaulette standing proud on his shoulder, and a sword at his hip whose scabbard angles down and back below the tails. Chin raised, mouth open mid-proclamation. His right arm is raised high above his head holding a wooden gavel. His left hand holds an unrolled scroll out in front of him. The whole figure stands centred with generous white space on every side.

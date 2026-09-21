@@ -25,7 +25,7 @@ is `L` / `C` / `R`. Loops add `-LOOP`, and composited cues add `-Q<n>`.
 | S9-STU-R | Studio, right wall (north window, studies) | Higgsfield (image) | S9-STU-C approved | prompt ready |
 | S9-STU-{L,C,R}-LOOP | Studio loops (dust, daylight) | Higgsfield (video) | each plate | not started |
 | S9-STU-C-PAINT1/2/3 | Raft painting in three stages on the canvas | compositing | S9-STU-C | not started |
-| S9-CRT-FIG | Judge silhouette, profile, robe and toque, gavel raised, scroll | Higgsfield (image) | LOOK court locked ✓ | prompt ready |
+| S9-CRT-FIG | Naval officer silhouette, profile, bicorne fore-and-aft, gavel raised, scroll | Higgsfield (image) | LOOK court locked ✓ | prompt ready |
 | S9-CRT-STRIKE | One gavel strike, black on white | Higgsfield (video, image-to-video) | S9-CRT-FIG approved | prompt in a VID session |
 | S9-CRT-Q1…Q5 | The five strike cues at growing scale | compositing | S9-CRT-STRIKE | not started |
 | Transitions | Salon candle-in/out, studio paint-in/bleach, court hard cut | compositing | all plates | not started |
@@ -119,7 +119,7 @@ built from this text.
 | | |
 |---|---|
 | **World** | Abstract. Pure black silhouette on a bone-white backlit field. `LOOK.md` → World 3 (LOCKED) |
-| **Figure** | A judge in strict profile facing right, full length. Robe with wide sleeves, tall toque, gavel raised in the right hand, scroll held out in the left, mouth open. No interior detail |
+| **Figure** | A **naval officer** of 1817 in strict profile facing right, full length. **Bicorne worn fore-and-aft** (a wide pointed crescent in profile), high standing collar, tailcoat with long tails, fringed epaulette, sword at the hip. Gavel raised in the right hand, scroll held out in the left, mouth open. No interior detail. *Corrected 2026-09-21 from a robed judge — Rochefort 1817 was a naval court martial, not a civil court. The gavel is deliberate licence (`LOOK.md`)* |
 | **Action** | S9-CRT-STRIKE: image-to-video from S9-CRT-FIG. Locked camera, one hard strike, then hold. **The prompt is written in a VID session.** Thresholded to pure black and white in the comp |
 | **Cues** | Q1 about 1.2 m, CENTRE → Q2 about 2.4 m → Q3 fills CENTRE → Q4 tribunal of three: whole judges on L and R (R mirrored), facing CENTRE, striking in unison → Q5 each wall filled by its own gavel coming down from its top edge, then cut to black. No figure or gavel ever crosses a seam. Each is a hard jump on the strike, with a shudder on the field |
 | **Q5 risk** | A gavel filling a whole wall is a 5–10× enlargement. Upscale the strike to 4K first. Fallback for Q5 only: a vector trace of the still, rotated by keyframes |

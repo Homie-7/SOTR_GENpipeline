@@ -148,11 +148,26 @@ canvas, the edges breaking into particles (from the 2022 concept).
 **The idea** (Homie's): a solid black silhouette of the judge. **With every gavel strike
 it gets bigger**, until the verdict fills the room.
 
-**The figure (decided 2026-09-21: a judge in a robe).** Strict side profile, facing right,
-full length. A long judicial robe with wide hanging sleeves and a tall cylindrical toque.
-Gavel raised high in the right hand, an unrolled scroll held out in the left (he reads his
-findings "like a town crier"), mouth open mid-proclamation. **Pure black, no interior detail,
-no face.** The profile's nose and open mouth are the only "face" there is.
+**The figure (CORRECTED 2026-09-21: a naval officer, not a robed judge).** Chaumareys was
+tried at Rochefort in 1817 by a **naval court martial** — a panel of naval officers in
+uniform. The robe and toque of the first version were civil-magistrate dress and the wrong
+institution entirely. See `LOG.md`, 2026-09-21 IMG.
+
+Strict side profile, facing right, full length. **A bicorne worn fore-and-aft**, reading as
+a wide pointed crescent above the head — one point forward over the brow, one point back.
+This is how navies wore it from about 1800, and in strict profile it is the most legible
+headgear available to us; worn athwart it would collapse to a small cap. High standing
+collar, a tailcoat cut away at the front with long tails to the back of the knee, a fringed
+epaulette proud on the shoulder line, a sword at the hip with its scabbard angling down and
+back below the tails. Gavel raised high in the right hand, an unrolled scroll held out in
+the left (he reads his findings "like a town crier"), chin raised, mouth open
+mid-proclamation. **Pure black, no interior detail, no face.** The profile's nose and open
+mouth are the only "face" there is.
+
+**The gavel is deliberate licence, not an error.** No French court has ever used one — a
+president used a handbell or his voice. But the script writes "The gavel" (`BIBLE.md` beat
+3), `BIBLE.md` makes the play's version canon, and all five cues are built on the strike.
+Recorded here so it is not re-opened as a mistake.
 
 **The field.** Bone-white, faintly lit from behind, like a lamp behind a scrim. That keeps
 continuity with the 2022 dev showing's shadow play. The white reads as the verdict's paper
