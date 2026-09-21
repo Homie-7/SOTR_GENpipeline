@@ -1,0 +1,17 @@
+# Markdown only. Media and source documents never go in git.
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.tif
+*.tiff
+*.psd
+*.mp4
+*.mov
+*.webm
+*.wav
+*.mp3
+*.pdf
+*.pptx
+*.exr
+.DS_Store
