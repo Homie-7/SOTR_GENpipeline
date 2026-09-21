@@ -20,4 +20,7 @@ is on Homie's Mac at **`/Users/homie/Documents/SOTR/`** and on the Windows PC at
 Generated plates and loops go to a working folder outside the repo. Pick one location,
 note it here, and log every file to `REGISTER.md`.
 
-**Working folder:** _not yet decided_
+**Working folder (decided 2026-09-21):** `C:\Users\Homie\Documents\SOTR_MEDIA\`
+on the Windows PC. Outside the repo, beside the source folder. Subfolders and the file
+naming rule are in its own `README.txt`; every file in it must have a row in `REGISTER.md`.
+It travels between machines by SSD or OneDrive, like the source folder — git carries only text.

@@ -23,7 +23,7 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 | S9-SAL-*-DARK | `prompts/S9-SAL-DARK.txt` (template) | `@loc_SOTR_salon_{C,L,R}_dark_s9_v1` | each approved LIT plate |
 | S9-STU-ROOM | `prompts/S9-STU-ROOM.txt` | `@loc_SOTR_studio_room_s9_v1` | — |
 | S9-STU-C / L / R | `prompts/S9-STU-{C,L,R}.txt` | `@loc_SOTR_studio_{C,L,R}_s9_v1` | ROOM, then C |
-| S9-CRT-FIG | `prompts/S9-CRT-FIG.txt` | `@fig_SOTR_judge_s9_v1` | — |
+| ~~S9-CRT-FIG~~ | `prompts/S9-CRT-FIG.txt` v4 | `@fig_SOTR_judge_s9_v1` | **generated 2026-09-21 — see Figures below** |
 
 ## Wall plates
 
@@ -41,7 +41,7 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 
 | Tag | What | Status | Notes |
 |---|---|---|---|
-| | | | |
+| `@fig_SOTR_judge_s9_v1` | Judge silhouette. Naval officer of 1817, frontal, bare featureless head, gavel raised, scroll. Black on bone-white, 9:16 | **testing** | **Asset v1, from prompt v4** — v1–v3 of the prompt failed (wrong institution, then Napoleon, then Napoleon again plus faces). NBP, 9:16, 2k, no reference. **Variant 3 of 4 selected by Homie** on head shape; the other three are in `rejected/`. **Two gates before `approved`:** (1) Homie checks it at full resolution — white inside the outline at the shoulders, clean head edge, gavel separated from the head by white; (2) the epaulette fringe returns as white hatching and is **fixed in the comp, not in generation** — banned by name across two versions and it survived, so it is an object prior (`house-rules` 5c) and the LGEL lanyard precedent applies: paint it, don't retry it. No stress test: that rule is written for characters that must survive motion, and this is a locked-camera two-tone silhouette with no face (project files over `house-rules`, per `CLAUDE.md`) |
 
 ## Composited cues
 

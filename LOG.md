@@ -5,6 +5,7 @@ change the plate, not the sentence.
 
 | Date | ID | v | Model | Changed | Verdict | Note |
 |---|---|---|---|---|---|---|
+| 2026-09-21 | S9-CRT-FIG | 4 | NBP | noun changed to a paper cut-out; hat cut; mouth cut | **PASS - variant 3 selected** | **Faces gone in all four.** The noun change is what did it: asking for "a shape cut from black paper" instead of a man rendered in black leaves no face to forbid. No hats, frontal, symmetrical, gavel clear of the head, scroll readable from outline alone, legs showing below the coat so it does not read as a robe. **One defect left:** epaulette fringe returns as white hatching. Banned by name in v3 and v4 and it survived both, so it is an object prior, not a wording fault - **fixed in the comp, not chased in generation** (LGEL lanyard precedent). Homie picked variant 3 over 1 on head shape. |
 | 2026-09-21 | S9-CRT-FIG | 3 | NBP | profile -> frontal, costume reduced, interior white banned | **FAIL — faces, and the hat went Napoleonic again** | Frontal and symmetry took. **Faces in all four**, variant 3 fully rendered with eyes and nose. **Root cause found: our own spec.** "No facial features" and "mouth open mid-proclamation" contradict each other; the model obeyed the mouth. In profile that was consistent (a mouth is a notch in the outline) — frontal it can only be interior detail, and it opens the door to eyes and nose. **A clause that was right under a condition that stopped being true.** Hat returned athwart = Napoleon, third version running. |
 | 2026-09-21 | S9-CRT-FIG | 2 | NBP | costume corrected to naval officer | **FAIL — reads as Napoleon** | Institution now right, icon now wrong. Bicorne + tailcoat + sword + side profile is the Napoleon silhouette, and `BIBLE.md` bans Napoleonic motifs — this is the Bourbon state, not the Empire. **The historically accurate costume produced a historically wrong reading.** Second defect, independent: white collar, white buttons and fringed epaulette detail inside the black in **all four** variants — no longer seed variance, a real prompt fault. |
 | 2026-09-21 | S9-CRT-FIG | 1 | NBP | first generation, 4 variants, 9:16 | **FAIL — wrong institution** | Prompt executed correctly; the *design* was wrong. See the finding below. Variants 1-2 closest to spec; v3 failed two-tone (tan field, grey in the figure), v4 carried interior detail and a face profile. Per LGEL, 1 bad in 4 is seed variance, not a prompt fault — not treated as defects. The toque rendered as a Victorian stovepipe in all four, which is moot now the toque is cut. |
@@ -12,6 +13,54 @@ change the plate, not the sentence.
 ---
 
 ## Sessions
+
+### 2026-09-21 — IMG session close · first asset generated
+
+**First generated asset in the production.** `@fig_SOTR_judge_s9_v1`, at `testing`.
+Four prompt versions, four batches, and three of the four failures were **design errors
+caught before they reached the expensive cues** — a robed judge would have been wrong on
+all five, and a Napoleon would have been wrong three times over on Q4's tribunal.
+
+**The pattern worth carrying forward, because it hit three times in one asset.** Each
+failure was *a clause that was correct under a condition that had stopped being true*:
+
+| | Clause | Condition that expired |
+|---|---|---|
+| v1 to v2 | robe and toque | never checked which court tried Chaumareys |
+| v2 to v3 | bicorne, tailcoat, sword | correct dress, but the icon it built was Napoleon, which `BIBLE.md` bans |
+| v3 to v4 | "mouth open mid-proclamation" | worked in profile as a notch in the outline; impossible frontal |
+
+**Standing check from here on: when the pose, reference structure or register changes,
+re-read the whole spec for clauses that silently depended on the old state.** Same shape as
+`house-rules` finding 15 — a spec is silent about conditions that were constant across
+every version that worked.
+
+**Second finding: accuracy and legibility are different axes.** v2 was historically correct
+and read as the wrong regime. Getting the history right is not the same as getting the
+reading right, and the audience only ever sees the second one. Both matter and they must be
+checked separately. This will apply to the salon and studio plates, which are full of
+period detail nobody will consciously read.
+
+**Third: change the noun, not the negation.** Three versions banned facial features by name
+and got faces. One version asked for a paper cut-out instead of a man and got none. When a
+defect survives being named, ask what the model thinks the object *is* (`house-rules` 5c).
+
+**Working folder decided (Homie):** `C:\Users\Homie\Documents\SOTR_MEDIA\`, outside the repo, with its own
+`README.txt` carrying the subfolder layout and the naming rule that matches `REGISTER.md`
+tags. Recorded in `docs/SOURCES.md`.
+
+**Windows PC set up this session:** git and Python 3.13 confirmed, `Precision-Pipeline`
+cloned and its seven skills copied into `~/.claude/skills` (the installer crashed on
+pre-existing symlinks pointing at an older unpacked copy — they were removed first), this
+repo cloned, the source folder audited against `docs/SOURCES.md` and the Windows path
+committed. Git identity set globally.
+
+**Still not logged: the aspect-ratio options each model offers.** Asked for three times and
+not yet captured. `PIPELINE.md` 3-5 wants it on first use.
+
+**Next session is IMG and starts on `S9-SAL-ROOM`** — the salon room master, the ground
+truth all three salon walls derive from, and the first real test of the locked Soul Cinema
+routing.
 
 ### 2026-09-21 — IMG, every facial hook removed
 
