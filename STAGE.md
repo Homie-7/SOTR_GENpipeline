@@ -111,8 +111,9 @@ done on top. The visual language for it is in `LOOK.md`.
 ## Still open
 
 - [ ] Final set dimensions. The drawing is a v0.2 draft; the proportions above follow it.
-- [x] Frame rate: **60 fps delivery.** Generate at the model's native rate, then interpolate
-      approved loops to 60 before the comp (`PIPELINE.md` → 7b).
+- [x] Frame rate: **the model's native rate.** 24 is fine; take a higher rate when a model
+      offers it. No forced interpolation. It's held open as an option (`PIPELINE.md` → 7b).
+- [x] VFX in post: optional upgrades for small elements. Generation comes first
+      (`PIPELINE.md` → 7c).
 - [ ] Codec/container for the mapping software (e.g. ProRes vs HAP). Decide at first
       delivery.
-- [ ] Interpolation tool: test Topaz first on one salon loop.

@@ -4,7 +4,8 @@ Every world (Salon, Studio, Court, and any added later) goes through the same st
 order. A step doesn't start until the one before it is approved.
 
 ```
- 0 FPS         60 fps delivery. Generate native, interpolate loops before the comp (7b)
+ 0 FPS         native rate (24 is fine), higher when a model offers it. No forced
+               interpolation (7b). Small VFX additions in post stay optional (7c)
  1 CARD        write the cue card (SHOTCARDS.md)
  2 ROOM        one wide design image of the whole room          ← the ground truth
  3 FRONT       CENTRE wall, square-on       ┐
@@ -75,12 +76,18 @@ Every loop has to cycle cleanly, since QLab may hold it for minutes. Test first 
 last frame where the model allows it; otherwise use a crossfade loop in the comp. Record
 which method worked for each plate in `REGISTER.md`.
 
-### 7b · Frame rate: generate at native, interpolate to 60
+### 7b · Frame rate: native is fine, higher when it's free
 
-**Delivery target is 60 fps.** Generate at whatever the model outputs natively. Seedance in
-Cinema Studio only outputs 24 fps (confirmed on *First Day on the Job*). For any other model,
-check and log its fps on the first generation. Then interpolate each approved loop to 60
-**before it goes into the comp**:
+**Decided 2026-09-21 (Homie): no forced interpolation.** If a model outputs 24 fps, we work
+at 24. When choosing between models of similar quality, **prefer the one with the higher
+native frame rate**. Seedance in Cinema Studio outputs 24 fps only (confirmed on *First Day
+on the Job*). For any other model, check and log its fps on the first generation.
+
+The whole master comp runs at one frame rate. If every loop is 24, the comp is 24.
+
+**Interpolation to 60 is an option held open, not a step in the pipeline.** Use it only if
+a specific loop clearly benefits and passes the checks below. If we do use it, the notes
+below apply:
 
 - **Why before the comp:** everything made in the comp (fades, fragment transitions, the
   court's scale jumps, light changes) then renders natively at 60 fps, with no
@@ -111,6 +118,19 @@ Don't use ffmpeg's `minterpolate` for finals. It tears on flame and fine detail.
 
 **Test before committing:** run one salon loop through the chosen tool, check the flames
 and the loop point, and log the result here. Then apply the same settings to every loop.
+
+### 7c · VFX in post: an option, not the default
+
+**Generation comes first. Get as much of the result as possible out of Higgsfield.**
+
+Anything that's easy to add or fix in post (a flame element, drifting dust, a light
+flicker or wash, a lens bloom on gilt) is available as an upgrade in the comp. Reach for
+it when a generated loop is nearly right but missing one small thing, or when a generated
+element can't be made to behave (flames that warble, dust that pops). Don't use it to
+replace work that generation could have done.
+
+Log every post addition against its plate in `REGISTER.md`, so the loop can be rebuilt if
+the plate changes.
 
 ## 8 · Master comp — where "one entity" happens
 
