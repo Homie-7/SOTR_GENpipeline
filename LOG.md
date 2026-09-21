@@ -38,6 +38,10 @@ to the room contents of every prompt. (2) The court's Q4/Q5 broke that rule, so 
 a **tribunal of three**: whole judges on L and R (R mirrored) striking in unison, and at Q5
 each wall gets its own gavel. (3) **Floor projection is parked, not ruled out.**
 
+**Client document:** `docs/SOTR-Scene9-Projection-Direction.pdf` (7 pages, plain language,
+no names, Scene 9 only), built by `tools/make_client_pdf.py`. It's gitignored and kept
+local; the builder is in git. Homie sends it himself.
+
 **Open:** The wall-by-beat map
 needs director sign-off. Aspect ratios per model still unlogged. Loop prompts and
 S9-CRT-STRIKE wait for a VID session.

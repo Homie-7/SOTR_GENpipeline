@@ -32,6 +32,7 @@ week from 2026-09-21.
 | `prompts/` | Final prompt text, by cue ID. |
 | `docs/NEW-SESSION.md` | Paste-in opener for a fresh Claude Code session. |
 | `docs/SOURCES.md` | Where the source material lives (not in git). |
+| `tools/make_client_pdf.py` | Builds the client direction PDF (the PDF itself stays out of git). |
 
 ## Setting up on another machine
 

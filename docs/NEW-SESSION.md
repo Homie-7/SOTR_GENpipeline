@@ -46,6 +46,9 @@ composition on its own. Only architecture lines, light and colour carry across. 
 every playtest for it: black out the other two walls and this one should still read.
 Floor projection is parked, not ruled out; it may come back after the walls.
 
+The client direction PDF exists (docs/SOTR-Scene9-Projection-Direction.pdf, local only,
+rebuilt by tools/make_client_pdf.py). If a look decision changes, update the PDF too.
+
 Still open: the wall-by-beat
 map (needs director sign-off), final set dimensions (v0.2 draft), codec for the
 mapping software, and the working folder for media. Loop prompts and S9-CRT-STRIKE

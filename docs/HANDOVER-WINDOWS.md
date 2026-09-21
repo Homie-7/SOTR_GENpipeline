@@ -53,7 +53,21 @@ schedule, the staging plan and the reference images.
 Then add the Windows path to `docs/SOURCES.md` and commit it, so both machines know where
 it lives.
 
-### 5. Higgsfield
+### 5. The client PDF (optional)
+
+`docs/SOTR-Scene9-Projection-Direction.pdf` is the direction document for the client. PDFs
+are gitignored, so it **doesn't come with the clone**. Either copy it across with the
+source folder, or rebuild it on the PC:
+
+```bash
+pip install reportlab
+python tools/make_client_pdf.py docs/SOTR-Scene9-Projection-Direction.pdf
+```
+
+To change the wording, edit `tools/make_client_pdf.py` and rebuild. Its rules: plain
+language, no dashes, no names, Scene 9 only.
+
+### 6. Higgsfield
 
 Higgsfield comes in through the claude.ai connector on your account. **Log into Claude Code
 with the same account** you use on the Mac, then in a session run `/mcp` to confirm
@@ -75,6 +89,15 @@ Claude updates the log and the handover, commits and pushes.
 
 **One machine at a time.** Push on the Mac before opening on the PC, and the other way
 round. Two sessions editing this repo at once silently overwrite each other.
+
+## What doesn't travel through git
+
+| Thing | How it gets to the PC |
+|---|---|
+| Source folder (script, plans, references) | Copy by hand, step 4 |
+| Generated plates and loops | SSD or OneDrive, see below |
+| The client PDF | Copy it, or rebuild it (step 5) |
+| Claude's memory from the Mac | Doesn't need to travel. The standing decisions are in `CLAUDE.md`, `STAGE.md` and `docs/NEW-SESSION.md` |
 
 ## Where generated media goes
 
