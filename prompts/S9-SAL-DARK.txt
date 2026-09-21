@@ -1,0 +1,19 @@
+# S9-SAL-{L,C,R}-DARK · v1 · NOT GENERATED
+# Nano Banana Pro edit · input: the APPROVED LIT plate for that wall · same aspect as the input
+# One template. Swap in the matching WALL LINE. house-rules CHANGE/PRESERVE edit template.
+
+Edit the image: the same salon wall at dusk with every candle unlit.
+
+CHANGE: every candle in the sconces and candelabra is unlit, white beeswax with a black wick. The only light is cold blue-grey dusk from the drawn curtains of the window on the right side of the room, dim and low. The ivory panelling falls into deep blue-grey shadow and the gilt catches faint cool highlights. [WALL LINE]
+
+PRESERVE EXACTLY:
+- every panel, moulding, rail, sconce, candelabrum, frame, mirror, curtain and fold, in the same position and size
+- the camera, framing and scale
+- surface textures and grain
+
+ONLY CHANGE: the candles unlit and the light fallen to dusk. 100% identical otherwise.
+
+WALL LINES
+C: The mirror's reflection darkens too, its chandelier unlit, the reflected room in blue-grey shadow.
+L: The portrait frame's gilt holds a faint cool edge of light from the right.
+R: The thin line of dusk along the curtain edges is the brightest thing in the frame.

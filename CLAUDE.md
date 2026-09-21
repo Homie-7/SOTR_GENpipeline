@@ -22,7 +22,7 @@ on a three-surface set. The whole pipeline follows from that.
 These outrank the `house-rules` skill. If one contradicts it, say so once, then follow the
 file.
 
-`house-rules` and the vendored skills come from `Precision-Pipeline` (see `README.md`).
+`house-rules` and the vendored skills come from `Precision-Pipeline` (see `README.md`). On the Mac it is cloned at `~/Documents/HF/Precision-Pipeline` but not installed; run its `bin/install.py` or read the skill from there.
 Some of `house-rules` was written for *First Day on the Job*, a character film. **Where it
 assumes characters, lipsync, or a moving camera, it doesn't apply here.** Its rules on
 references, negation, iteration and logging still do.
@@ -61,15 +61,14 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
-### 2026-09-21 — PREP. Repo scaffolded, Scene 9 understood, looks PROPOSED not locked.
+### 2026-09-21 — All three looks LOCKED. Cards and IMG prompts written. Nothing generated.
 
-Scope: **Court Martial, Salon, Géricault's studio** (Scene 9). Deadline is about one week.
-The system is set up: `PIPELINE.md`. Resolution is settled (1080p work, 4K upscale). Sound is
-out of scope (separate designer, our timing leads). **Next: go through each world with
-Homie, one at a time.** Lock the look, write the card, then IMG.
-
-**SALON is in discussion.** Research is done and the four open choices are in `LOOK.md` →
-World 1. The Windows PC handover is `docs/HANDOVER-WINDOWS.md`.
+Scope: **Court Martial, Salon, Géricault's studio** (Scene 9), deadline about a week from
+21/09. `LOOK.md` is locked for all three worlds, `SHOTCARDS.md` has the cards, and
+`prompts/` has every IMG prompt. **Next: IMG. Homie playtests the prompts and brings the
+results back to review, log and iterate.** Loops and the court strike come later, in a VID
+session. Homie's standing preference: the worlds are ours to shape, not literal copies.
+The Windows PC handover is `docs/HANDOVER-WINDOWS.md`.
 
 ## Session close
 

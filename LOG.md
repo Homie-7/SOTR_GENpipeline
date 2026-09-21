@@ -11,6 +11,30 @@ change the plate, not the sentence.
 
 ## Sessions
 
+### 2026-09-21 — PREP, all three looks locked, cards and IMG prompts written
+
+**Locked with Homie.** Salon: Soubise white-and-gold with crimson silk, a trumeau mirror on
+CENTRE, LIT plus a DARK state made as an NBP edit, true scale with a 3.2 m panel line.
+Louis XVIII's portrait on LEFT (the salon's solo wall), composited from Gérard. Studio: the
+whole Raft painting scaled to a 3.2 × 4.7 m canvas (liberty taken so the apex reads at beat
+9), window on RIGHT, limb studies only. Court: **a judge in a robe** (not the naval officer),
+and the **strike is generated** as image-to-video from the still, with a Q5 fallback.
+
+**house-rules conflicts, project files followed:** "three-quarter, never frontal" (STAGE
+wants square-on), "rule of thirds" (walls are symmetrical). Also fixed LOOK's model routing
+to Soul Cinema for plates and NBP for edits, and cut the prompts to the ~2,000-character cap.
+
+**Written:** 9 IMG prompts plus the DARK template in `prompts/`, built from the locked
+prefixes and room contents, and checked word for word against `LOOK.md` and
+`SHOTCARDS.md`. **Nothing generated.** Homie playtests next.
+
+**Standing preference (Homie):** the worlds are ours to shape, not literal copies of
+references or history.
+
+**Open:** floor projection (director's call; recommendation is no). The wall-by-beat map
+needs director sign-off. Aspect ratios per model still unlogged. Loop prompts and
+S9-CRT-STRIKE wait for a VID session.
+
 ### 2026-09-21 — PREP, setup
 
 Read the full source folder: the workshop script, work schedule, visual references, 2022

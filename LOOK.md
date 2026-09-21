@@ -1,6 +1,6 @@
 # LOOK — Scene 9
 
-**Status: PROPOSED, not locked.** Each world gets decided one at a time, with Homie. When a
+**Status: ALL THREE WORLDS LOCKED 2026-09-21.** Each world gets decided one at a time, with Homie. When a
 world is locked, change its heading to `LOCKED <date>` and paste its style prefix into every
 prompt for that world, word for word.
 
@@ -26,7 +26,20 @@ separating. Warm polish against cold patina.
 
 ---
 
-## World 1 — THE SALON · IN DISCUSSION (2026-09-21)
+## World 1 — THE SALON · LOCKED 2026-09-21
+
+### Decisions (Homie, 2026-09-21)
+
+| # | Choice | Decision | Why |
+|---|---|---|---|
+| 1 | Palette | **White-and-gold boiserie (the Soubise model)**, with crimson silk on curtains and upholstery only | A light base keeps it apart from the studio's dark umber. Red walls would compete with the studio's dried-blood red, and dark damask loses detail at projector black levels. Candlelit evening keeps the ivory at an amber mid-tone, so the walls don't throw white light onto the actors |
+| 2 | Centre wall | **A trumeau**: a tall gilt mirror over a white marble chimneypiece. It reflects the empty salon behind the viewer, including the chandelier | The room's one window of depth, and it puts the crystal and candle motion on CENTRE. **Risk:** a camera square-on to a mirror is looking at its own position. Describe the reflection positively (an empty room, the chandelier, far sconces). **Fallback after two failed generations:** mirror-glazed double doors |
+| 3 | Plate states | **LIT, plus a DARK state made as an NBP edit of the approved LIT plate** (CHANGE the light, PRESERVE everything else) | The geometry matches, so the comp can reveal LIT through DARK one candle at a time. Only LIT is looped. **Fallback if the edit drifts:** grade LIT down in the comp |
+| 4 | Scale | **True scale.** Dado rail 0.9 m, tops of the tall panels **3.2 m**, mantel 1.1 m, sconces 1.9 m, window head 3.2 m. Doors would be 2.8 m, but they sit on the audience wall and aren't seen | The 3.2 m panel line gives the seam check a second continuous line inside the 3.6 m crop. The richest elements (mirror, portrait, sconces, gilt) sit between 1 and 3.2 m |
+
+**The room is rectangular.** The real Salon de la Princesse is oval, so it's the reference for
+the finish, not the plan. Seams have to fall on square corners. Its name isn't used in any
+prompt, because the model would build the oval.
 
 ### Research (2026-09-21)
 
@@ -40,114 +53,106 @@ separating. Warm polish against cold patina.
   Versailles-style room, and the white-and-gold **Salon de la Princesse, Hôtel de Soubise**
   (Boffrand, 1735–40): oval, gilded boiserie, mirror glass set into the panelling, painted
   overdoors. That room is where aristocratic Paris gathered before the Revolution.
-- **The fork.** Historical Restoration (pale, restrained, accurate) against old-regime gilt
-  (opulent, theatrical, reads as "aristocratic excess" instantly). A royalist in 1817
-  sitting in a surviving pre-Revolution Rococo room is historically plausible, since the
-  Restoration was nostalgic for exactly that. **Recommendation: old-regime gilt**, the
-  Soubise model. It's what the script and the brief ask for, and it's what the audience
-  reads at a glance.
+- **The fork, resolved:** old-regime gilt. A royalist in 1817 sitting in a surviving
+  pre-Revolution Rococo room is historically plausible, since the Restoration was nostalgic
+  for exactly that. It's also what the script asks for and what the audience reads at a
+  glance.
 - **Fact check on the court.** The real verdict (Rochefort, 1817) convicted Chaumareys of
   incompetent navigation and of abandoning the ship before everyone was off. He got three
   years, and lost his rank and Légion d'honneur. He was acquitted of abandoning the raft.
   The play's full acquittal is licence; `BIBLE.md` keeps the play's version.
 
-### Open choices for the salon
+### The walls (true scale, 3.6 m crop)
 
-1. **Palette:** white-and-gold boiserie with crimson silk accents (Soubise), or red damask
-   walls with gilt (Versailles)? The Soubise version keeps the base field light, which
-   separates it from the studio's dark umber without relying on the red.
-2. **Depth through the mirror.** Walls-as-walls means no chandelier in the middle of the
-   room, since each surface is a wall. **Proposal:** the centre wall is a tall mirror, and
-   the mirror reflects the chandelier and the rest of the room, which sit behind the
-   audience. It's the one legitimate window of depth, and it puts the candlelight and
-   crystal motion in the middle wall.
-3. **Two plate states: LIT and DARK.** The salon's arrival (candles lighting one by one)
-   needs a dark version of each wall to transition from. Generate both states from the
-   same approved plate, rather than faking darkness in the comp.
-4. **True scale against the 3.6 m crop.** A Rococo salon's glory is overhead (cornice,
-   ceiling paintings), and that gets cropped. Keep true scale, and put the richest
-   elements between 1 m and 3.6 m (mirror, sconces, gilt panels, overdoor paintings),
-   which is where they sit in real rooms anyway.
+**Where.** Marie-Louise's salon in a royalist château, 1817, evening. An old 1730s Rococo
+room, kept immaculate.
 
-### Proposal (unchanged until the choices above are made)
+- **CENTRE**: the trumeau. A white marble chimneypiece (mantel 1.1 m, a pair of gilt
+  candelabra on it), with the mirror rising above it to 3.2 m. Two sconces at 1.9 m, one on
+  each side.
+- **LEFT**: a full-length **portrait of Louis XVIII** in coronation robes, in a heavy gilt
+  frame, with a sconce on each side. LEFT is the salon's solo wall (beats 2 and 8), so the
+  king who "loves his loyal subjects" is behind Marie-Louise when she reads the letter.
+  **The painting itself is composited, not generated:** François Gérard's coronation
+  portrait (c. 1814, public domain). A generator paints its own wrong king, which is the
+  same rule as the Raft. Confirm the source image before the comp.
+- **RIGHT**: a tall French window (head at 3.2 m), crimson silk curtains drawn, a thin line
+  of cold dusk at their edges, with a sconce on each side. That's the counter-note.
+- **Below the dado, and near every corner:** plain panelling. Nothing is painted at the
+  floor line, where it would collide with real props, and hard detail stays 300 mm clear
+  of the seams.
 
-**Where.** Marie-Louise's salon in a royalist château, 1817. An old grand interior in
-Baroque/Rococo taste: carved and gilded boiserie, tall mirrors, crystal, silk. It's what
-the Restoration aristocracy wanted back.
+**Motion for the loops (LIT only).** Candle flames, glints moving across crystal and gilt,
+the chandelier's candles in the mirror, a faint drift of warm air in the curtains. Nothing
+else.
 
-**The walls** (true scale, 3.6 m crop):
-- **CENTRE**: the showpiece wall. A tall gilt-framed mirror or a pair of doors, flanked by
-  pilasters and two candle sconces. Possibly a portrait of Louis XVIII: the king who
-  "loves his loyal subjects."
-- **LEFT / RIGHT**: panelled walls with gilded mouldings, one tall window each with crimson
-  silk curtains drawn against the dusk. A console table, a clock, candelabra.
-- The actor playing Marie-Louise sits on a real chair in front. **No furniture painted at
-  the floor line** where it would collide with the real props.
+**How it arrives.** "Slowly revealed," as the script says. The comp reveals LIT through
+DARK one candle at a time, and the gilt catches first. **How it leaves.** The candles snuff
+out, and it returns to DARK.
 
-**Motion for the loops.** Candle flames, glints moving across crystal and gilt, a faint
-drift of warm air in the curtains. Nothing else.
-
-**References.** `INSPO/Sc 9`: the red damask salon with the chandelier, and the white-and-gold
-oval salon (Hôtel de Soubise style). For hyper-real period Paris interiors, *Assassin's
-Creed Unity*.
-
-**How it arrives.** "Slowly revealed," as the script says. It rises out of darkness as
-candles light one by one, and the gilt catches first. **How it leaves.** The candles
-snuff out.
+**References.** `INSPO/Sc 9`: the white-and-gold oval salon (Hôtel de Soubise). For
+hyper-real period Paris interiors, *Assassin's Creed Unity*.
 
 ---
 
-## World 2 — GÉRICAULT'S STUDIO · PROPOSED
+## World 2 — GÉRICAULT'S STUDIO · LOCKED 2026-09-21
+
+### Decisions (Homie, 2026-09-21)
+
+| # | Choice | Decision | Why |
+|---|---|---|---|
+| 1 | The canvas | **The whole painting, scaled down.** The canvas is 3.2 × 4.7 m (the real one is 4.9 × 7.2 m), standing on blocks on CENTRE with plaster around it | At beat 9 Géricault and Sarah step back and look at it. They need the whole composition, including the figure waving at its apex. At true scale the wall would show only the bottom 3.6 m. **Liberty taken on purpose** |
+| 2 | The window | **On RIGHT.** The studio lives on CENTRE and RIGHT in the beat map | The light source sits beside the painting. Light falls from right to left across the room |
+| 3 | The morgue | **Studies only**: pencil and oil studies of limbs pinned around the window. There are no remains in any plate | The rotting head is a real prop in the actor's hands (beat 4). The plates set the obsession without competing with it. The audience is 13+ |
+
+**The painting is composited, never generated.** The CENTRE plate is a blank, flat, primed
+canvas, square-on, so the comp can corner-pin the real *Raft* (public domain, 1819) onto it
+in three stages: PAINT1 charcoal lines (beat 4), PAINT2 half painted (beat 6), PAINT3 almost
+finished (beat 9).
+
+### The walls (true scale apart from the canvas, 3.6 m crop)
 
 **Where.** Géricault's studio in the Faubourg-du-Roule, Paris, 1818–19. A big, bare,
-working room. It is part workshop and part morgue.
+working room.
 
-**The walls:**
-- **CENTRE**: **the half-finished *Raft of the Medusa***, at close to true scale and
-  cropped (the real canvas is about 4.9 × 7.2 m). **Proposal:** generate the wall with a
-  **primed blank canvas**, then composite the real painting (public domain, 1819) onto it
-  in post, in stages. It's charcoal lines at beat 4, half-painted at beat 6, and almost
-  finished at beat 9, when he and Sarah step back to look at it. The painting advancing
-  across the scene *is* the story. A generator asked for a "half-finished Raft of the
-  Medusa" will paint its own version, and it won't be right.
-- **LEFT**: a high north window, and cold grey daylight falling across the room.
-  Anatomical sketches and studies of limbs pinned to raw plaster.
-- **RIGHT**: plaster casts on shelves, stretched canvases leaning, the small scale model of
-  the raft, a table of jars, rags and a palette.
+- **CENTRE**: the blank primed canvas, 3.2 × 4.7 m, bottom edge 0.2 m up on blocks, with
+  bare plaster showing around it (at least 300 mm clear of each seam).
+- **RIGHT**: a tall north window of small panes (sill 1.2 m, running out past the crop), grey
+  sky. Studies of arms, legs and hands pinned around it. On the sill, a guttering candle
+  stub beside a red-stained rag, which is the warm note and the red.
+- **LEFT**: rough pine shelves at 1.4 and 2.2 m with plaster casts and the small scale model
+  of the raft, and canvases leaning face to the wall below. It's lit square-on by the
+  window opposite.
 
-**Motion.** Dust drifting in the window light. Cloud passing, so the daylight slowly dims
-and returns. A guttering candle stub. That's all.
+**Motion for the loops.** Dust drifting in the window light on RIGHT. Cloud passing, so the
+daylight dims and returns (on all three walls, so it's done as a light pass in the master
+comp, not generated per wall). The guttering candle stub. That's all.
 
 **References.** Géricault's own studies (*Severed Limbs*, 1818). Rembrandt-style studio
-light. *Layers of Fear*: a painter's studio that rebuilds itself around you, almost the
-same idea.
+light. *Layers of Fear*.
 
-**Homie's 2022 concept** (`2022 Presentation…/Slide9.JPG`) is this exact world, already
-laid out across the three walls. LEFT: a huge head study leaning against brick. CENTRE: a
-cluttered workbench, plaster busts, a tall studio window. RIGHT: the Raft painting
-**dissolving into black particles at its edge**. It also had a Persian carpet projected on
-the floor. Use it as the starting layout. The particle dissolve on the right wall is the
-fragment language already in his hands. Check whether floor projection is still in the
-v0.2 plan (the drawing shows walls only).
+**Homie's 2022 concept** (`2022 Presentation…/Slide9.JPG`) was the starting point. It
+put the window on CENTRE, a huge head study on LEFT, and the Raft dissolving into black
+particles on RIGHT. The locked version keeps its fragment language (particle dissolve →
+used for the bleach-out) and reorganises the walls around the beat map.
 
 **How it arrives.** It paints itself in: charcoal lines first, then colour, through
 brushstroke-shaped masks. The artist is the one who makes the invisible visible (Amina's
 line: "l'invisible devient visible"). **How it leaves.** It bleaches back to raw
-canvas.
+canvas, the edges breaking into particles (from the 2022 concept).
 
 ---
 
-## World 3 — THE COURT MARTIAL · PROPOSED (abstract)
+## World 3 — THE COURT MARTIAL · LOCKED 2026-09-21 (abstract)
 
 **The idea** (Homie's): a solid black silhouette of the judge. **With every gavel strike
 it gets bigger**, until the verdict fills the room.
 
-**The figure.** Side-on profile, so the gavel arm reads at any size. **Proposal: a naval
-officer, not a robed judge.** It was a naval court martial of a naval captain, so a
-bicorne hat and an officer's coat with epaulettes. It matches the Captain's bicorne in
-Scene 7: the navy acquitting its own. The alternative is a judicial robe and toque. Either
-way it's **pure black, no interior detail, no face**. That's also why this is the easiest
-of the three worlds to make with AI: nothing can drift.
+**The figure (decided 2026-09-21: a judge in a robe).** Strict side profile, facing right,
+full length. A long judicial robe with wide hanging sleeves and a tall cylindrical toque.
+Gavel raised high in the right hand, an unrolled scroll held out in the left (he reads his
+findings "like a town crier"), mouth open mid-proclamation. **Pure black, no interior detail,
+no face.** The profile's nose and open mouth are the only "face" there is.
 
 **The field.** Bone-white, faintly lit from behind, like a lamp behind a scrim. That keeps
 continuity with the 2022 dev showing's shadow play. The white reads as the verdict's paper
@@ -166,9 +171,16 @@ and the scroll.
 Each size is a **hard jump on the strike**, not a smooth grow. Every hit shakes the room.
 A short shudder or flash on the field sells the impact.
 
-**How it's made.** Generate the figure once, as clean black on white. Animate one gavel
-strike. **Do the scaling and the white field in compositing.** That's exact, repeatable,
-and each cue can be retimed.
+**How it's made (decided 2026-09-21: a generated strike).**
+1. **S9-CRT-FIG**: one still, black on bone-white, 9:16, gavel raised.
+2. **S9-CRT-STRIKE**: image-to-video from that still. Locked camera, one strike: the gavel
+   comes down hard, then holds. The prompt gets written in a **VID** session, not here.
+3. **In the comp:** threshold the clip to pure black and white (it kills edge boil), then
+   scale, place and retime it once per cue. The white field and the impact shudder are made
+   in the comp too.
+4. **The one risk is Q5.** The gavel arm across all three walls is an enlargement of about
+   5–10×, and 1080p video will soften at that size. Upscale the strike to 4K first. If it's
+   still soft, Q5 alone uses a vector trace of the still, rotated by keyframes.
 
 **How it arrives.** It slams in on the strike: a hard cut, no transition. Authority
 doesn't fade in.
@@ -200,8 +212,12 @@ studio makes things visible (paint). The court imposes (a cut, a strike).
 
 ## Plate recipe (all walls)
 
-- Model: **Nano Banana Pro** for plates (per `house-rules` routing). Still to confirm for
-  hyper-real interiors.
+- Model (per `house-rules` → `model-routing.md`): **Soul Cinema** for room masters and wall
+  plates (locations), and **Nano Banana Pro** for edits of an existing frame (the DARK
+  states, fixes). Confirm the aspect ratios each one offers on the first generation and log
+  them in `PIPELINE.md`.
+- **The style prefix leads every prompt.** The prompts are description-led, and the room is
+  carried in text (`house-rules` finding 15).
 - Room master first, then CENTRE, LEFT, RIGHT, per `PIPELINE.md`.
 - Every prompt carries: the world's style prefix, the era line, "camera square to the wall,
   eye level 1.6 m, locked, no floor visible, wall from floor to 3.6 m," and the true-scale
@@ -210,4 +226,42 @@ studio makes things visible (paint). The court imposes (a cut, a strike).
 
 ## Style prefixes
 
-Written when each world is locked. None are locked yet.
+Pasted word for word at the head of every prompt for that world.
+
+### SALON · LOCKED 2026-09-21 (tightened the same day, before any generation, to fit the 2,000-character cap)
+
+```
+Hyper-real photograph of a grand Parisian salon in 1817: a 1730s Rococo room kept immaculate
+by a royalist household. Carved boiserie painted ivory and cream, every moulding and
+rocaille scroll picked out in bright burnished gold leaf, crimson silk curtains. Evening,
+lit only by beeswax candles in gilt sconces and a crystal chandelier: warm amber light, soft
+and even, the gilt glowing wherever the flames catch it, cool blue-grey dusk at the curtain
+edges. Palette 60% ivory and cream, 30% burnished gold, 10% crimson silk. Hand-carved wood,
+real gold leaf, old grey-silvered mirror glass, heavy silk with a deep sheen. Everything of
+its period, before 1819. The room is empty and still.
+```
+
+### STUDIO · LOCKED 2026-09-21
+
+```
+Hyper-real photograph of a painter's working studio in Paris in 1818: a large bare rented
+room, used hard. Cold grey north daylight from one high window on the right, falling across
+the room with a hard fall-off into deep brown shadow. Palette 60% cool grey daylight and raw
+plaster, 30% raw umber and deep shadow, 10% dried-blood red on a rag and on the palette.
+Real surfaces: flaking lime plaster, charcoal smudges, oil paint crusted on wood, turpentine
+stains, dust on every ledge, scuffed pine. One stub of candle is the only warm note.
+Everything of its period, before 1819. The room is empty and still.
+```
+
+### COURT · LOCKED 2026-09-21
+
+```
+Flat graphic image: one solid pure black silhouette on a bone-white field, like a shadow
+cast on a lit paper screen. The black is flat and absolute with crisp clean edges. The white
+is a warm bone tone, softly brighter at the centre, as if a lamp glows behind the paper. Two
+tones only.
+```
+
+**Prompt length.** `house-rules` caps a prompt at about 1,500 to 2,000 characters. Prefix, camera
+and room contents together land at about 1,900. Any new element has to replace words, not add
+them.
