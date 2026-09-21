@@ -164,17 +164,36 @@ the crowd.
 
 **Mass over costume.** The court is abstract by design, and costume specificity is what
 caused the Napoleon collision. What carries the figure is **squared shoulders, fringed
-epaulettes and the raised gavel**, not tailoring. Bicorne worn fore-and-aft (correct for a
-navy after about 1800), seen end-on as a single point above the brow with the brim sweeping
-down each side. High collar, a long coat falling straight, planted stance. **No sword and
-no coat tails** — the two most Napoleonic elements after the hat, and neither earns its
-place. Gavel raised high in the right hand and held clear of the hat, an unrolled scroll
-out in the left, chin raised, mouth open mid-proclamation.
+epaulettes and the raised gavel**, not tailoring. High collar, a long coat falling straight,
+planted stance. **No sword and no coat tails.** Gavel raised high in the right hand and held
+clear of the head, an unrolled scroll out in the left.
+
+**NO HAT (Homie, 2026-09-21). A bare, completely featureless head.** The bicorne was cut
+after three versions of the same failure — top hat, then Napoleonic, then Napoleonic again
+worn athwart. A wide two-cornered hat is the frontal Napoleon image and is welded to it;
+that is an object prior, not a wording problem, and a fourth attempt at describing it would
+have failed the same way. The bare head is also the **most suggestive** option and the
+truest to the idea: the court is a faceless institution, so give it no face at all. The
+epaulettes and squared shoulders carry the military read on their own.
+
+**NO MOUTH. This was the real cause of the faces.** The spec said "no facial features" and
+"mouth open mid-proclamation" in the same breath, and the model obeyed the second. In
+profile that was consistent — an open mouth is a notch in the head's outline, which is why
+this worked before. **Frontal, a mouth can only exist as interior detail**, and once the
+model opens that door it adds eyes and a nose with it. The clause was correct under a
+condition that stopped being true when the figure turned frontal. `SHOTCARDS.md` already
+rules out lip sync and the Judge's voice is pre-recorded, so nothing needs his mouth: it
+costs the design nothing to cut it.
+
+**Ask for a cut-out, not a man.** The prompt's primary noun is now **a shape cut from black
+paper**, not a person rendered in black. `house-rules` finding 5c: a defect that survives a
+named instruction is usually what the model thinks the object *is*. A man has a face; a
+paper cut-out does not.
 
 **One unbroken mass of solid black. No white, no grey, no line anywhere inside the
-outline** — v2 returned white collars, white buttons and fringed epaulette detail in all
-four variants, so these are banned by name in the prompt. Every feature is carried by the
-silhouette's edge alone. **No face.**
+outline** — v2 and v3 returned white collars, white buttons and fringed epaulette detail
+across all variants, so these are banned by name in the prompt. Every feature is carried by
+the silhouette's edge alone. **No eyes, no nose, no mouth, no hair, no hat.**
 
 **Full length is kept deliberately.** The growth only works if he starts whole: contained
 at Q1, closing at Q2, outgrowing the frame at Q3, multiplying at Q4, and gone at Q5 with

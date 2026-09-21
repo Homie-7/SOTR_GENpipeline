@@ -5,12 +5,53 @@ change the plate, not the sentence.
 
 | Date | ID | v | Model | Changed | Verdict | Note |
 |---|---|---|---|---|---|---|
+| 2026-09-21 | S9-CRT-FIG | 3 | NBP | profile -> frontal, costume reduced, interior white banned | **FAIL — faces, and the hat went Napoleonic again** | Frontal and symmetry took. **Faces in all four**, variant 3 fully rendered with eyes and nose. **Root cause found: our own spec.** "No facial features" and "mouth open mid-proclamation" contradict each other; the model obeyed the mouth. In profile that was consistent (a mouth is a notch in the outline) — frontal it can only be interior detail, and it opens the door to eyes and nose. **A clause that was right under a condition that stopped being true.** Hat returned athwart = Napoleon, third version running. |
 | 2026-09-21 | S9-CRT-FIG | 2 | NBP | costume corrected to naval officer | **FAIL — reads as Napoleon** | Institution now right, icon now wrong. Bicorne + tailcoat + sword + side profile is the Napoleon silhouette, and `BIBLE.md` bans Napoleonic motifs — this is the Bourbon state, not the Empire. **The historically accurate costume produced a historically wrong reading.** Second defect, independent: white collar, white buttons and fringed epaulette detail inside the black in **all four** variants — no longer seed variance, a real prompt fault. |
 | 2026-09-21 | S9-CRT-FIG | 1 | NBP | first generation, 4 variants, 9:16 | **FAIL — wrong institution** | Prompt executed correctly; the *design* was wrong. See the finding below. Variants 1-2 closest to spec; v3 failed two-tone (tan field, grey in the figure), v4 carried interior detail and a face profile. Per LGEL, 1 bad in 4 is seed variance, not a prompt fault — not treated as defects. The toque rendered as a Victorian stovepipe in all four, which is moot now the toque is cut. |
 
 ---
 
 ## Sessions
+
+### 2026-09-21 — IMG, every facial hook removed
+
+**FINDING — the faces were specified, not hallucinated.** Three versions were spent asking
+for "no facial features" while the same paragraph asked for **"mouth open
+mid-proclamation."** The model obeyed the mouth, and having opened the head it filled in
+eyes and a nose too. The clause was never wrong in itself — **in profile an open mouth is a
+notch in the head's outline**, which is why it worked and why `LOOK.md` used to call the
+nose and mouth "the only face there is." Turning the figure frontal made it impossible to
+render in outline, and nobody went back to check which clauses depended on the old pose.
+
+**This is the same failure shape as the Napoleon one, for the third time: a decision that
+was correct under a condition, carried forward after the condition changed.** Worth
+treating as a standing check — when a pose, reference structure or register changes, re-read
+the whole spec for clauses that silently depended on the old state.
+
+**Cutting the mouth costs nothing.** `SHOTCARDS.md` already rules out lip sync and
+`BIBLE.md` requires the Judge's voice to be pre-recorded, since his actor is on stage as
+Sarah. Homie's own call: avoid the mouth if we can, and we can.
+
+**The hat is cut (Homie).** Top hat in v1, historically correct but Napoleonic in v2,
+Napoleonic again worn athwart in v3. Three versions, three failures, one element. Per
+`house-rules` finding 5c, a defect that survives a named instruction is usually what the
+model thinks the object *is* — a wide two-cornered hat **is** the frontal Napoleon image.
+A fourth wording attempt would have failed the same way. **A bare, featureless head is also
+the most suggestive option and the truest to the idea: a faceless institution.** Epaulettes
+and squared shoulders carry the military read without it.
+
+**The noun changed too, and this is the mechanism that should hold.** v4 asks for **"a
+single shape cut from black paper with scissors"** rather than a man rendered in black. We
+had been asking for a person and then forbidding what persons have. A cut-out has no face
+to begin with.
+
+**Plan confirmed with Homie**, with two corrections: the growth is a **hard jump on each
+strike, not a zoom** — cameras are locked and the scaling happens in the comp — and the
+escalation changes kind twice: one man, bigger, too big for the frame, three of him, then
+**no man at all, only the gavel** at Q5.
+
+**Changed:** `LOOK.md` World 3, `SHOTCARDS.md` S9-CRT figure row and deliverables line,
+`prompts/S9-CRT-FIG.txt` → v4. **One change, one mechanism:** remove every facial hook.
 
 ### 2026-09-21 — IMG, court figure turned frontal
 

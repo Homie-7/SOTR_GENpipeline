@@ -1,11 +1,12 @@
-# S9-CRT-FIG · v3 · FRONTAL, mass over costume (v1 wrong institution, v2 read as Napoleon — see LOG.md)
+# S9-CRT-FIG · v4 · cut-paper shape, bare featureless head, no mouth
 # Nano Banana Pro · 9:16 · 2k · no reference
 # Same frame and aspect as the S9-CRT-STRIKE video, which starts from this still.
-# Two changes from v2, on independent axes: (1) profile -> frontal, costume reduced to mass;
-# (2) interior white detail banned by name, after it appeared in all four v2 variants.
+# ONE change from v3, one mechanism: remove every facial hook. The noun is now a paper
+# cut-out rather than a man; the hat is cut (three versions of Napoleon drift); the open
+# mouth is cut (it was the clause forcing the face, and it only ever worked in profile).
 
 Flat graphic image: one solid pure black silhouette on a bone-white field, like a shadow cast on a lit paper screen. The black is flat and absolute with crisp clean edges. The white is a warm bone tone, softly brighter at the centre, as if a lamp glows behind the paper. Two tones only.
 
-A French naval officer of 1817 seen straight on, facing the viewer square-on, full length from hat to feet, standing centred and symmetrical with his feet planted apart: a bicorne hat worn front-to-back so that head-on it rises to a single point above his brow with the brim sweeping down to either side. Broad square shoulders, a fringed epaulette sitting proud on each shoulder, a high standing collar, and a long plain coat falling straight to below the knee. Chin raised, mouth open mid-proclamation. His right arm is raised high, holding a wooden gavel well above his hat and clear of it against open white. His left hand holds an unrolled scroll out to the side. The whole figure stands centred with generous white space on every side.
+A single shape cut from black paper with scissors: the outline of a naval officer of 1817 seen straight on, facing the viewer square-on, full length from head to feet, standing centred and symmetrical with his feet planted apart. His head is bare and perfectly smooth, a plain solid oval sitting on his neck, with nothing on it and nothing in it. Broad square shoulders, a fringed epaulette sitting proud on each shoulder, a high standing collar, and a long plain coat falling straight to below the knee. His right arm is raised high, holding a wooden gavel well above his head and clear of it against open white. His left hand holds an unrolled scroll out to the side. The whole shape stands centred with generous white space on every side.
 
-The figure is one single unbroken mass of solid black from hat to feet. Every feature is carried by the outline alone: solid black collar, solid black epaulettes, solid black scroll, solid black coat. No white and no grey anywhere inside the outline, no white collar, no white buttons, no white fringe, no drawn lines on the scroll, no facial features.
+The shape is one single unbroken mass of solid black, as flat as paper. Every feature is carried by its outer edge alone: solid black head, solid black collar, solid black epaulettes, solid black scroll, solid black coat. The head is empty black: no eyes, no nose, no mouth, no ears, no chin line, no hair, no hat, no helmet, no cap. No white and no grey anywhere inside the outline: no white collar, no white buttons, no white fringe, no drawn lines on the scroll.
