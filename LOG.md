@@ -31,7 +31,14 @@ prefixes and room contents, and checked word for word against `LOOK.md` and
 **Standing preference (Homie):** the worlds are ours to shape, not literal copies of
 references or history.
 
-**Open:** floor projection (director's call; recommendation is no). The wall-by-beat map
+**Same session, Homie's direction:** (1) **every object lives whole on one wall.** Nothing
+straddles a seam. Each wall is a complete composition, and only architecture, light and
+colour cross. Written into CLAUDE.md, STAGE.md and the seam check in PIPELINE.md, and added
+to the room contents of every prompt. (2) The court's Q4/Q5 broke that rule, so they became
+a **tribunal of three**: whole judges on L and R (R mirrored) striking in unison, and at Q5
+each wall gets its own gavel. (3) **Floor projection is parked, not ruled out.**
+
+**Open:** The wall-by-beat map
 needs director sign-off. Aspect ratios per model still unlogged. Loop prompts and
 S9-CRT-STRIKE wait for a VID session.
 

@@ -41,7 +41,12 @@ doors), prompt length (~2,000-character cap), and walls drifting from the room m
 Standing preference: the worlds are ours to shape. Adapt references to what works on
 stage and say what changed and why. The era law and STAGE.md still hold.
 
-Still open: floor projection (director's call, recommendation no), the wall-by-beat
+Whole-objects rule: no object or figure ever straddles a seam. Every wall is a complete
+composition on its own. Only architecture lines, light and colour carry across. Check
+every playtest for it: black out the other two walls and this one should still read.
+Floor projection is parked, not ruled out; it may come back after the walls.
+
+Still open: the wall-by-beat
 map (needs director sign-off), final set dimensions (v0.2 draft), codec for the
 mapping software, and the working folder for media. Loop prompts and S9-CRT-STRIKE
 wait for a VID session. Never mix IMG and VID in one session.

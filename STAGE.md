@@ -53,6 +53,16 @@ physical set supplies the room's depth. We don't paint a perspective view into i
 - **Seams fall on room corners.** The left edge of CENTRE and the right edge of LEFT are the
   same corner of the room. Keep hard detail (a picture frame, a window) about 300 mm clear
   of every seam edge.
+- **Every object lives whole on one wall (Homie, 2026-09-21).** No table, painting, figure
+  or piece of furniture is split between two surfaces. Each wall is its own complete
+  composition, so it can be rendered, looped, swapped or blacked out on its own without
+  leaving half an object behind. The three still read as a single image because they
+  share the architecture (the lines that carry across the corners), the light and the
+  palette, not because objects run across the seams. The physical set enforces the same
+  thing: each seam is a 25° fold with an 830 mm depth jump.
+  - **May cross a seam:** continuous architecture (dado, panel line, skirting), light,
+    colour, grade, done as comp passes.
+  - **Never crosses a seam:** any object, any figure, any motion.
 
 **Why not one wide panorama sliced into three.** A single panoramic view only reads
 correctly from the centre seats. The 830 mm gaps and the 25° flats would also need a full
@@ -109,6 +119,12 @@ done on top. The visual language for it is in `LOOK.md`.
   At 4K that's **9360 × 2160**. Full workflow in `PIPELINE.md`.
 
 ## Still open
+
+- [ ] **Floor projection: parked, not ruled out (Homie, 2026-09-21).** It's out of the
+      current build. The 2022 concept had a projected carpet, so it may come back once the
+      walls are done. If it does, it's a fourth surface with its own camera (top-down), the
+      same whole-objects rule applies at the wall–floor edge, and light will spill onto the
+      actors. For now, plates show no floor.
 
 - [ ] Final set dimensions. The drawing is a v0.2 draft; the proportions above follow it.
 - [x] Frame rate: **the model's native rate.** 24 is fine; take a higher rate when a model

@@ -63,7 +63,10 @@ generation, and log it here.
 
 Lay the three plates side by side in the wide comp at true proportion (4 : 5 : 4 widths).
 The cornice line, dado line, wall finish and light temperature have to carry across both
-seams. **Nothing is approved until this passes.**
+seams. **And no object touches a seam.** Every object sits whole on its own wall, 300 mm
+clear of the edge (`STAGE.md`). Test each wall alone as well: black out the other two,
+and the wall should still read as a complete picture. **Nothing is approved until this
+passes.**
 
 ## 7 · Loops
 
@@ -142,7 +145,7 @@ Higgsfield:
 
 - light changing across the whole room (dusk falling, a cloud crossing the studio)
 - fragment transitions (salon candles lighting in, studio painting itself in)
-- the court's silhouette growing across the walls
+- the court's strikes, a tribunal of three judges, each whole on its own wall
 - the Raft painting's three stages on the studio canvas
 
 Because it's one timeline, the three screens are in sync by construction. Generated clips

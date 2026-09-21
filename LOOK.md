@@ -165,8 +165,14 @@ and the scroll.
 | 1 | Opening "Order!" and finding One | small, about 1.2 m tall, CENTRE only |
 | 2 | Finding Two | about 2.4 m, CENTRE |
 | 3 | Finding Three, "Get the TRAITORS out" | fills CENTRE, head cropped |
-| 4 | The judge loses control | spills onto LEFT and RIGHT |
-| 5 | "…CAN NOT be held responsible." | only the gavel arm, black across all three walls, then cut to black |
+| 4 | The judge loses control | **the tribunal of three:** two more judges appear, each whole on LEFT and RIGHT, facing inward to CENTRE. All three strike together |
+| 5 | "…CAN NOT be held responsible." | **each wall fills with its own gavel**, huge, coming down from that wall's top edge. All three strike at once, then cut to black |
+
+**Whole-objects rule (2026-09-21).** No judge and no gavel is ever split across a seam. The
+court is overwhelming because three whole judges strike in unison, not because one breaks
+the frame. It's also closer to history: a court martial sat as a panel. One figure makes
+all three. LEFT uses it as generated (facing right, toward CENTRE), RIGHT uses it mirrored
+(facing left), and CENTRE uses it as generated.
 
 Each size is a **hard jump on the strike**, not a smooth grow. Every hit shakes the room.
 A short shudder or flash on the field sells the impact.
@@ -178,7 +184,7 @@ A short shudder or flash on the field sells the impact.
 3. **In the comp:** threshold the clip to pure black and white (it kills edge boil), then
    scale, place and retime it once per cue. The white field and the impact shudder are made
    in the comp too.
-4. **The one risk is Q5.** The gavel arm across all three walls is an enlargement of about
+4. **The one risk is Q5.** A gavel filling a whole wall is an enlargement of about
    5–10×, and 1080p video will soften at that size. Upscale the strike to 4K first. If it's
    still soft, Q5 alone uses a vector trace of the still, rotated by keyframes.
 

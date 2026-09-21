@@ -47,7 +47,7 @@ which wall they're playing against.
 | 4 | Studio: the head | — | **Studio** canvas (PAINT1) | **Studio** (paints in) |
 | 5 | Court: "Two!", "Three!" | — | **Court Q2 → Q3** | studio bleaches |
 | 6 | Studio: "Vingt!" | — | Studio (PAINT2) | Studio |
-| 7 | Court: the verdict | **Court Q4 → Q5** | **across all three** | → black |
+| 7 | Court: the verdict | **Court Q4 → Q5** (tribunal) | **Court Q4 → Q5** | **Court Q4 → Q5** (tribunal) |
 | 8 | Salon: "Mais bien sûr" | **Salon** | black | black |
 | 9 | Studio: "I will bring down…" | — | **Studio (PAINT3)** | **Studio** |
 
@@ -82,8 +82,8 @@ built from this text.
 > chandelier. Left wall: a full-length royal portrait of a king in coronation robes in a
 > heavy carved gilt frame. Right wall: a tall French window, head at 3.2 metres, crimson
 > silk curtains drawn closed, a thin line of blue-grey dusk along their edges. Each of these
-> is flanked by two-branch gilt sconces of lit candles at 1.9 metres. The panelling near
-> every corner is plain.
+> is flanked by two-branch gilt sconces of lit candles at 1.9 metres. Every feature sits
+> whole on its own wall, with plain panelling near every corner.
 
 ## S9-STU — Géricault's studio · LOCKED 2026-09-21
 
@@ -102,16 +102,17 @@ built from this text.
 **Room contents. Quote this word for word in every studio prompt.**
 
 > A large rectangular studio with flat walls meeting at square corners. Raw grey lime
-> plaster walls, stained and patched, above a plain worn wooden skirting. Back wall: a huge
+> plaster walls, stained and patched, above a worn wooden skirting. Back wall: a huge
 > stretched canvas, 3.2 metres high and 4.7 metres wide, its bottom edge 0.2 metres above
-> the floor on wooden blocks, primed a flat even warm off-white and entirely blank, square
-> to the wall, with plain plaster around it. Right wall: a tall north window of small square
-> panes, sill at 1.2 metres, rising past 3.6 metres, grey sky beyond; pencil and oil studies
-> of arms, legs and hands are pinned to the plaster around it between 1.2 and 2.4 metres; on
+> the floor on wooden blocks, primed a flat warm off-white, entirely blank, square to the
+> wall, with plain plaster around it. Right wall: a tall north window of small square panes,
+> sill at 1.2 metres, rising past 3.6 metres, grey sky beyond; pencil and oil studies of
+> arms, legs and hands are pinned to the plaster around it between 1.2 and 2.4 metres; on
 > the sill, a stub of candle burning in a tin holder beside a red-stained rag. Left wall:
 > rough pine shelves at 1.4 and 2.2 metres holding white plaster casts of antique heads and
 > a hand, and a small wooden scale model of a raft; three stretched canvases lean face to
-> the wall beneath. The plaster near every corner is bare.
+> the wall beneath. Every object sits whole on its own wall, with bare plaster near every
+> corner.
 
 ## S9-CRT — The Court Martial · LOCKED 2026-09-21
 
@@ -120,7 +121,7 @@ built from this text.
 | **World** | Abstract. Pure black silhouette on a bone-white backlit field. `LOOK.md` → World 3 (LOCKED) |
 | **Figure** | A judge in strict profile facing right, full length. Robe with wide sleeves, tall toque, gavel raised in the right hand, scroll held out in the left, mouth open. No interior detail |
 | **Action** | S9-CRT-STRIKE: image-to-video from S9-CRT-FIG. Locked camera, one hard strike, then hold. **The prompt is written in a VID session.** Thresholded to pure black and white in the comp |
-| **Cues** | Q1 about 1.2 m, CENTRE → Q2 about 2.4 m → Q3 fills CENTRE → Q4 spills onto L/R → Q5 gavel arm across all three, then cut to black. Each is a hard jump on the strike, with a shudder on the field |
-| **Q5 risk** | A 5–10× enlargement. Upscale the strike to 4K first. Fallback for Q5 only: a vector trace of the still, rotated by keyframes |
+| **Cues** | Q1 about 1.2 m, CENTRE → Q2 about 2.4 m → Q3 fills CENTRE → Q4 tribunal of three: whole judges on L and R (R mirrored), facing CENTRE, striking in unison → Q5 each wall filled by its own gavel coming down from its top edge, then cut to black. No figure or gavel ever crosses a seam. Each is a hard jump on the strike, with a shudder on the field |
+| **Q5 risk** | A gavel filling a whole wall is a 5–10× enlargement. Upscale the strike to 4K first. Fallback for Q5 only: a vector trace of the still, rotated by keyframes |
 | **Sound link** | Our timing leads. The scale jumps are timed to the drama, and the separate sound designer places the gavel hits on them. Mark each jump's timecode at handover |
 | **Voice** | Pre-recorded (the Judge's actor also plays Sarah, who is on stage). No lip sync: it's a silhouette |

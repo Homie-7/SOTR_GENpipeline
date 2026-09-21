@@ -47,7 +47,11 @@ video vocabularies poison each other, so one session never spans both.
   Generated loops carry ambient motion only.
 - **Work at 1080p, upscale approved results to 4K.** The mapping software does the final
   fit.
-- **Nothing moves across a seam.** Keep hard detail about 300 mm clear of every edge.
+- **Every object lives whole on one wall.** Nothing straddles a seam: no half table on
+  CENTRE and half on RIGHT. Each wall is composed to stand alone and render on its own,
+  while the three still read as one room. Keep hard detail about 300 mm clear of every
+  edge, and nothing moves across a seam. **Only light and colour may cross** (dusk
+  falling, a cloud passing), and that's done in the master comp (`STAGE.md`).
 - **No people in any plate.** The actors are real. The only figure is the court's
   silhouette.
 - **Transitions and fragments are made in compositing, never generated.** Higgsfield makes
