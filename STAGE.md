@@ -63,16 +63,17 @@ current worlds do.
 
 ## Cohesion across the three walls
 
-The three walls of one world are generated as a **set**, from one approved master:
+The three walls of one world are generated as a **set**, from one approved room:
 
-1. Build **CENTRE** first. It's the master and sets the palette, light direction, era and
-   materials.
-2. Build **LEFT** and **RIGHT** as the adjacent walls of the same room: same cornice line,
-   same dado height, same wall finish, same light source. Use the CENTRE plate as the
-   reference (see `LOOK.md` for the plate recipe).
-3. Check the joins by laying out all three side by side at true proportion
-   (4:5:4 widths) before any of them is approved. The cornice and dado lines have to meet
-   across both seams.
+1. Build the **room master** first: one wide design image showing all three walls at
+   once. It's the ground truth and is never projected.
+2. Build **CENTRE** (the front camera) from it. That sets the surface, light and palette.
+3. Build **LEFT**, then **RIGHT**, from the room master plus the approved CENTRE: same
+   cornice line, dado height, wall finish and light source.
+4. Check the joins by laying all three side by side at true proportion (4:5:4 widths)
+   before any is approved. The cornice and dado lines have to meet across both seams.
+
+Step by step in `PIPELINE.md`.
 
 ## Cameras and motion
 
@@ -97,12 +98,17 @@ clean plates can.
 Higgsfield's job is clean, fully lit, loopable wall plates. The fragmenting is design work
 done on top. The visual language for it is in `LOOK.md`.
 
-## Still open (blocks final render settings, not plate-building)
+## Resolution and delivery (decided 2026-09-21)
 
-- [ ] Projector count, native resolution, throw. This sets the delivery pixel size per
-      surface. Until then, work at 1920 × 1440 (4:3) and 2400 × 1440 (5:3), and upscale at
-      delivery.
-- [ ] Is the centre surface the full back wall section at 3600 high, or a screen?
-- [ ] Media server / mapping tool (QLab named in the schedule). Also the frame rate and
-      codec it wants.
-- [ ] Final set dimensions (the drawing is v0.2 draft).
+- **Work at 1080p. Upscale approved results to 4K. Nothing gets upscaled until it's
+  approved.**
+- There's no fixed projector spec. **Projection-mapping software stretches, squashes and
+  fits the final images** to the real surfaces, so exact pixel ratios don't matter. The
+  content has to sit inside 4:3 / 5:3 safe areas.
+- Master canvas: **4680 × 1080** (1440 + 1800 + 1440, the 4:5:4 proportion of the walls).
+  At 4K that's **9360 × 2160**. Full workflow in `PIPELINE.md`.
+
+## Still open
+
+- [ ] Final set dimensions. The drawing is a v0.2 draft; the proportions above follow it.
+- [ ] Frame rate and codec for the mapping software (decide before the first loop).

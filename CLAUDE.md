@@ -10,6 +10,7 @@ on a three-surface set. The whole pipeline follows from that.
 | File | Authority |
 |---|---|
 | `STAGE.md` | **The set and the render spec.** Three surfaces, true scale, locked cameras, seams. Read before building any plate. |
+| `PIPELINE.md` | **The 10 steps every world goes through**: card → room master → front/left/right → seam check → loops → master comp → approve → upscale. |
 | `BIBLE.md` | The play, the Scene 9 structure, the era. |
 | `LOOK.md` | Per-world look. Only sections marked `LOCKED` may go into a prompt. |
 | `SHOTCARDS.md` | Cue cards and the deliverables list. Cards are written before prompts. |
@@ -38,9 +39,14 @@ video vocabularies poison each other, so one session never spans both.
 - **Walls as walls.** Each surface is the matching wall of the room, square-on, at true
   scale. The image's bottom edge is the stage floor, and no floor is visible
   (`STAGE.md`).
-- **One world = three walls from one master.** CENTRE is built and approved first, then
-  LEFT and RIGHT are built to match it. Nothing gets approved until all three are laid out
-  side by side and the seams line up.
+- **One world = one room master, then three cameras.** The room master (never projected)
+  comes first, then FRONT (CENTRE), LEFT, RIGHT, all built from it. Nothing gets approved
+  until all three are laid out side by side and the seams line up.
+- **"One entity across three screens" is made in the master comp**, not in Higgsfield.
+  Anything that has to read as a single event across walls is built on the wide canvas.
+  Generated loops carry ambient motion only.
+- **Work at 1080p, upscale approved results to 4K.** The mapping software does the final
+  fit.
 - **Nothing moves across a seam.** Keep hard detail about 300 mm clear of every edge.
 - **No people in any plate.** The actors are real. The only figure is the court's
   silhouette.
@@ -58,8 +64,9 @@ video vocabularies poison each other, so one session never spans both.
 ### 2026-09-21 — PREP. Repo scaffolded, Scene 9 understood, looks PROPOSED not locked.
 
 Scope: **Court Martial, Salon, Géricault's studio** (Scene 9). Deadline is about one week.
-Next: lock each world's look with Homie, one at a time, then IMG. Open questions blocking
-final render settings are listed at the bottom of `STAGE.md`.
+The system is set up: `PIPELINE.md`. Resolution is settled (1080p work, 4K upscale). Sound is
+out of scope (separate designer, our timing leads). **Next: go through each world with
+Homie, one at a time.** Lock the look, write the card, then IMG.
 
 ## Session close
 

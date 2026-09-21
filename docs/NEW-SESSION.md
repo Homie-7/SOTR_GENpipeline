@@ -28,8 +28,13 @@ this order: SALON, STUDIO, COURT. For each one, settle the open choices, write t
 prefix, and mark it LOCKED with the date. Don't write a generation prompt for a world
 until it's locked.
 
-Open questions (STAGE.md, bottom): projector resolution, centre surface height,
-media server and codec, working folder for media.
+The system is in PIPELINE.md: card → room master → FRONT → LEFT → RIGHT → seam check
+→ loops → master comp (4680x1080 wide canvas) → approve at 1080p → upscale to 4K.
+Sound is a separate designer; our timing leads. Projection-mapping software does the
+final fit, so there's no projector spec to wait for.
+
+Still open: final set dimensions (v0.2 draft), frame rate and codec for the mapping
+software, and the working folder for media.
 
 ON WRAP: update REGISTER.md and LOG.md, update THIS file's "THE TASK, RIGHT NOW",
 commit, push.

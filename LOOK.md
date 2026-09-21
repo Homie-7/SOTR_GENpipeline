@@ -151,7 +151,7 @@ studio makes things visible (paint). The court imposes (a cut, a strike).
 
 - Model: **Nano Banana Pro** for plates (per `house-rules` routing). Still to confirm for
   hyper-real interiors.
-- One room, three walls, CENTRE first, per `STAGE.md` → "Cohesion across the three walls."
+- Room master first, then CENTRE, LEFT, RIGHT, per `PIPELINE.md`.
 - Every prompt carries: the world's style prefix, the era line, "camera square to the wall,
   eye level 1.6 m, locked, no floor visible, wall from floor to 3.6 m," and the true-scale
   anchors (door height, dado height).

@@ -23,6 +23,7 @@ week from 2026-09-21.
 |---|---|
 | `CLAUDE.md` | Loads automatically in Claude Code. Rules, authority order, current stage. |
 | `STAGE.md` | **The set and the render spec.** Three surfaces, locked cameras, true scale. Read first. |
+| `PIPELINE.md` | The 10 steps every world goes through, from card to 4K delivery. |
 | `BIBLE.md` | The play: story, characters, Scene 9 structure, era. |
 | `LOOK.md` | Per-world look, and the fragment-transition language. |
 | `SHOTCARDS.md` | Cue cards. Every plate and loop, by ID. |
