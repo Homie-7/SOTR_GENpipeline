@@ -23,7 +23,7 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 | S9-SAL-*-DARK | `prompts/S9-SAL-DARK.txt` (template) | `@loc_SOTR_salon_{C,L,R}_dark_s9_v1` | each approved LIT plate |
 | S9-STU-ROOM | `prompts/S9-STU-ROOM.txt` | `@loc_SOTR_studio_room_s9_v1` | — |
 | S9-STU-C / L / R | `prompts/S9-STU-{C,L,R}.txt` | `@loc_SOTR_studio_{C,L,R}_s9_v1` | ROOM, then C |
-| ~~S9-CRT-FIG~~ | `prompts/S9-CRT-FIG.txt` v4 | `@fig_SOTR_judge_s9_v1` | **generated 2026-09-21 — see Figures below** |
+| ~~S9-CRT-FIG~~ | `prompts/S9-CRT-FIG.txt` v4 | `@fig_SOTR_judge_s9_v1` | Judge silhouette. Naval officer of 1817, frontal, bare featureless head, gavel raised, scroll. Black on bone-white, 9:16, 1536x2752 | **approved** 2026-09-22 | Asset v1, from prompt v4 (v1-v3 failed: wrong institution, then Napoleon, then faces). NBP, no reference. Variant 3 of 4, picked by Homie on head shape; others in `rejected/`. **Full-resolution check (2026-09-22):** head edge clean, no features; gavel clear of the head; epaulettes solid black on this variant, so the predicted fringe fix is not needed. **COMP FIX REQUIRED: fill the white V at the throat black.** Black figure + long coat + bare head + white notch at the throat reads as a clerical collar; invisible at Q1, centre-wall at Q3. Fixed in the comp, not regenerated. No stress test: written for characters that must survive motion; this is a locked-camera two-tone silhouette (project files over `house-rules`, per `CLAUDE.md`). Next use: first frame of S9-CRT-STRIKE (VID) |
 
 ## Wall plates
 
