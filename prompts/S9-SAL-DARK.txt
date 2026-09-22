@@ -14,6 +14,6 @@ PRESERVE EXACTLY:
 ONLY CHANGE: the candles unlit and the light fallen to dusk. 100% identical otherwise.
 
 WALL LINES
-C: The mirror's reflection darkens too, its chandelier unlit, the reflected room in blue-grey shadow.
+C: The mirror's reflection darkens too, the reflected room in blue-grey shadow.
 L: The portrait frame's gilt holds a faint cool edge of light from the right.
 R: The thin line of dusk along the curtain edges is the brightest thing in the frame.

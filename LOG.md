@@ -15,6 +15,29 @@ change the plate, not the sentence.
 
 ## Sessions
 
+### 2026-09-22 — IMG, first room masters · chandelier cut · studio light changed
+
+| ID | Model | Verdict |
+|---|---|---|
+| S9-SAL-ROOM v1 | Soul Cinema 21:9 2k, batch 4 | **FAIL — design change, not a render fault.** All four read as one coherent room (Soul Cinema passes the LGEL fragment test for hyper-real rooms). Bourbon portrait fix held: no Napoleon. Best composition was var 3, but the chandelier is being cut. Open question for the re-run: walls read gold, not ivory |
+| S9-STU-ROOM v1 | Soul Cinema 21:9 2k, batch 4 | **FAIL — light.** All four blue-teal with near-black corners, no umber. Var 3 most complete; var 1 has a red streak reading as blood, vars 1 and 4 have hanging shapes reading as real limbs. **Canvas square in all four instead of 4.7 x 3.2** — fixed at the wall stage, not here (one change per re-run) |
+
+**Chandelier cut (Homie raised it, Claude agreed).** The script asks only for "an ornate
+Louis XIV Salon" — the script PDF has no chandelier, mirror or candle. The chandelier never
+lands on a projected wall; its only appearance would be as a reflection in the CENTRE
+mirror, the hardest element in the room to animate and loop. Mirror kept as old dim glass.
+Removed from the locked prefix, the room contents, the room master camera line, the loop
+motion and the DARK template.
+
+**Studio light line changed (Claude's call, Homie asked if the light was right).** Grey
+rather than cold blue, landing on the back wall and canvas, fading to warm umber toward the
+far corner. Projector black is grey, so near-black areas read as murky nothing on stage.
+STU-L and STU-R now sit over the cap (2,065 / 2,051); they get rewritten reference-led for
+NBP before they run, so they are not trimmed now.
+
+**Budget.** Balance 4,999 before these two batches, 4,500 after: about 250 credits per Soul
+Cinema batch of 4, to be confirmed from the Generate button. Walls will run in batches of 2.
+
 ### 2026-09-22 — IMG, Claude owns the technical calls; week plan set
 
 **Homie's direction:** Claude is the expert on the sources and makes the technical calls;

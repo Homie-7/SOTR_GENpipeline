@@ -37,6 +37,8 @@ separating. Warm polish against cold patina.
 | 3 | Plate states | **LIT, plus a DARK state made as an NBP edit of the approved LIT plate** (CHANGE the light, PRESERVE everything else) | The geometry matches, so the comp can reveal LIT through DARK one candle at a time. Only LIT is looped. **Fallback if the edit drifts:** grade LIT down in the comp |
 | 4 | Scale | **True scale.** Dado rail 0.9 m, tops of the tall panels **3.2 m**, mantel 1.1 m, sconces 1.9 m, window head 3.2 m. Doors would be 2.8 m, but they sit on the audience wall and aren't seen | The 3.2 m panel line gives the seam check a second continuous line inside the 3.6 m crop. The richest elements (mirror, portrait, sconces, gilt) sit between 1 and 3.2 m |
 
+**2026-09-22 (Homie + Claude, after the first room master): no chandelier.** The script asks only for "an ornate Louis XIV Salon"; the chandelier was ours. It hangs mid-room, so it never lands on a projected wall — its only appearance would be as a reflection in the CENTRE mirror, the hardest thing in the room to animate and loop (many small crystal highlights and flames, doubled). The mirror stays, as old dim glass with a soft reflection of the empty candlelit room. Candles stay: they are the "slowly revealed" mechanism. Decision 2 below is amended accordingly.
+
 **The room is rectangular.** The real Salon de la Princesse is oval, so it's the reference for
 the finish, not the plan. Seams have to fall on square corners. Its name isn't used in any
 prompt, because the model would build the oval.
@@ -83,7 +85,7 @@ room, kept immaculate.
   of the seams.
 
 **Motion for the loops (LIT only).** Candle flames, glints moving across crystal and gilt,
-the chandelier's candles in the mirror, a faint drift of warm air in the curtains. Nothing
+a soft stir of candlelight in the old mirror glass, a faint drift of warm air in the curtains. Nothing
 else.
 
 **How it arrives.** "Slowly revealed," as the script says. The comp reveals LIT through
@@ -104,6 +106,8 @@ hyper-real period Paris interiors, *Assassin's Creed Unity*.
 | 1 | The canvas | **The whole painting, scaled down.** The canvas is 3.2 × 4.7 m (the real one is 4.9 × 7.2 m), standing on blocks on CENTRE with plaster around it | At beat 9 Géricault and Sarah step back and look at it. They need the whole composition, including the figure waving at its apex. At true scale the wall would show only the bottom 3.6 m. **Liberty taken on purpose** |
 | 2 | The window | **On RIGHT.** The studio lives on CENTRE and RIGHT in the beat map | The light source sits beside the painting. Light falls from right to left across the room |
 | 3 | The morgue | **Studies only**: pencil and oil studies of limbs pinned around the window. There are no remains in any plate | The rotting head is a real prop in the actor's hands (beat 4). The plates set the obsession without competing with it. The audience is 13+ |
+
+**2026-09-22 — light line changed.** The first room master came back blue-teal with near-black corners and no umber at all. `LOOK.md` asks for grey daylight and raw umber, and projector black is grey, so large near-black areas read as murky nothing on stage. Still one window, still directional from the right; now grey rather than cold blue, landing clearly on the back wall and canvas, and fading to warm umber shade toward the far corner.
 
 **The painting is composited, never generated.** The CENTRE plate is a blank, flat, primed
 canvas, square-on, so the comp can corner-pin the real *Raft* (public domain, 1819) onto it
@@ -289,25 +293,24 @@ studio makes things visible (paint). The court imposes (a cut, a strike).
 
 Pasted word for word at the head of every prompt for that world.
 
-### SALON · LOCKED 2026-09-21 (tightened the same day, before any generation, to fit the 2,000-character cap)
+### SALON · LOCKED 2026-09-21 (tightened the same day to fit the cap; chandelier removed 2026-09-22)
 
 ```
 Hyper-real photograph of a grand Parisian salon in 1817: a 1730s Rococo room kept immaculate
 by a royalist household. Carved boiserie painted ivory and cream, every moulding and
 rocaille scroll picked out in bright burnished gold leaf, crimson silk curtains. Evening,
-lit only by beeswax candles in gilt sconces and a crystal chandelier: warm amber light, soft
+lit only by beeswax candles in gilt sconces and candelabra: warm amber light, soft
 and even, the gilt glowing wherever the flames catch it, cool blue-grey dusk at the curtain
 edges. Palette 60% ivory and cream, 30% burnished gold, 10% crimson silk. Hand-carved wood,
 real gold leaf, old grey-silvered mirror glass, heavy silk with a deep sheen. Everything of
 its period, before 1819. The room is empty and still.
 ```
 
-### STUDIO · LOCKED 2026-09-21
+### STUDIO · LOCKED 2026-09-21 (light line changed 2026-09-22)
 
 ```
 Hyper-real photograph of a painter's working studio in Paris in 1818: a large bare rented
-room, used hard. Cold grey north daylight from one high window on the right, falling across
-the room with a hard fall-off into deep brown shadow. Palette 60% cool grey daylight and raw
+room, used hard. Grey north daylight from one high window on the right falls across the room onto the canvas and fades into warm raw umber shade toward the far left corner. Palette 60% cool grey daylight and raw
 plaster, 30% raw umber and deep shadow, 10% dried-blood red on a rag and on the palette.
 Real surfaces: flaking lime plaster, charcoal smudges, oil paint crusted on wood, turpentine
 stains, dust on every ledge, scuffed pine. One stub of candle is the only warm note.

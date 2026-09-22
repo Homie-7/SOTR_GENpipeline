@@ -61,12 +61,12 @@ the court breaks through all three.
 | | |
 |---|---|
 | **World** | Rococo salon in a royalist château, 1817, evening. `LOOK.md` → World 1 (LOCKED) |
-| **Walls** | C: trumeau, a gilt mirror over a marble chimneypiece, reflecting the chandelier · L: portrait of Louis XVIII (composited), sconces · R: French window, crimson curtains drawn, dusk at the edges, sconces |
+| **Walls** | C: trumeau, a gilt mirror of old dim glass over a marble chimneypiece · L: portrait of Louis XVIII (composited), sconces · R: French window, crimson curtains drawn, dusk at the edges, sconces |
 | **In frame** | No people. The mirror reflects an empty room |
 | **Camera** | Locked. Square to the wall, eye level 1.6 m, floor to 3.6 m, no floor visible |
 | **Scale anchors** | Dado 0.9 m · mantel 1.1 m · sconce centres 1.9 m · panel tops and window head 3.2 m |
 | **States** | LIT (generated) · DARK (NBP edit of the approved LIT: candles unlit, dusk only) |
-| **Loop motion** | LIT only. Candle flames, glints on crystal and gilt, the chandelier in the mirror, a faint breath in the curtains. Keep 300 mm clear of each seam |
+| **Loop motion** | LIT only. Candle flames, glints on gilt, a soft stir of candlelight in the mirror, a faint breath in the curtains. Keep 300 mm clear of each seam |
 | **Enters / exits** | The comp reveals LIT through DARK one candle at a time, gilt first · candles snuff out, back to DARK |
 | **Model** | Soul Cinema (room master, plates) · NBP (DARK edits) |
 
@@ -78,8 +78,7 @@ built from this text.
 > mouldings, their tops at 3.2 metres, stand above a gilt dado rail at 0.9 metres with plain
 > panelling below. Back wall: a white marble chimneypiece, mantel at 1.1 metres with two
 > gilt candelabra of lit candles; above it a tall gilt-framed trumeau mirror rises to 3.2
-> metres, reflecting the empty salon, lit sconces and the lower tiers of a lit crystal
-> chandelier. Left wall: a full-length royal portrait of a Bourbon king in blue velvet
+> metres, its old glass giving back a soft, dim reflection of the empty candlelit salon. Left wall: a full-length royal portrait of a Bourbon king in blue velvet
 > coronation robes sown with gold fleurs-de-lis, in a heavy carved gilt frame. Right wall: a tall French window, head at 3.2 metres, crimson
 > silk curtains drawn closed, a thin line of blue-grey dusk along their edges. Each of these
 > is flanked by two-branch gilt sconces of lit candles at 1.9 metres. Every feature sits
