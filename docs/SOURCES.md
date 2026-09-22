@@ -1,9 +1,10 @@
 # SOURCES — where the source material lives
 
 None of this is in git. The script is copyrighted, and media is never committed. All of it
-is on Homie's Mac at **`/Users/homie/Documents/SOTR/`** and on the Windows PC at
-**`C:\Users\Homie\Documents\SOTR\`**. Copy the folder to the other machine by hand
-(or the SSD), keeping the same layout.
+is on Homie's Mac at **`/Users/homie/Documents/SOTR/`**, on the Windows PC at
+**`C:\Users\Homie\Documents\SOTR\`**, and mirrored on the external drive at
+**`G:\SOTR\HF\SOTR\`** (2026-09-22, 210 MB, verified identical file count). Copy the
+folder to the other machine by hand (or the drive), keeping the same layout.
 
 | File / folder | What it is | Used for |
 |---|---|---|
@@ -21,6 +22,28 @@ Generated plates and loops go to a working folder outside the repo. Pick one loc
 note it here, and log every file to `REGISTER.md`.
 
 **Working folder (decided 2026-09-21):** `C:\Users\Homie\Documents\SOTR_MEDIA\`
-on the Windows PC. Outside the repo, beside the source folder. Subfolders and the file
-naming rule are in its own `README.txt`; every file in it must have a row in `REGISTER.md`.
-It travels between machines by SSD or OneDrive, like the source folder — git carries only text.
+on the Windows PC, mirrored on the external drive at **`G:\SOTR\HF\SOTR_MEDIA\`**
+(2026-09-22, verified identical). Outside the repo, beside the source folder. Subfolders
+and the file naming rule are in its own `README.txt`; every file in it must have a row in
+`REGISTER.md`. It travels between machines by SSD or OneDrive, like the source folder —
+git carries only text.
+
+## External drive mirror (`G:\SOTR\HF\`) — set up 2026-09-22
+
+A full secondary copy for working from the MacBook, alongside Homie's other SOTR
+production folders already on that drive (`Final Show`, `Misc Assets`, `Unreal Engine
+Project files`, and an existing empty `HF work` folder — not the same as this `HF`).
+
+```
+G:\SOTR\HF\
+├── SOTR_GENpipeline\   a real `git clone` of the GitHub repo (not a file copy — pushes
+│                       and pulls normally, origin already set)
+├── SOTR_MEDIA\         full copy of the working folder, verified identical
+└── SOTR\               full copy of the source folder, verified identical file count
+```
+
+**This is a one-time snapshot, not a live sync.** `SOTR_GENpipeline` on the drive will
+drift from `git pull`/`push` like any other clone (that's normal and fine — it's git).
+`SOTR_MEDIA` and `SOTR`, though, do **not** auto-update — if either changes on this PC,
+the drive's copy goes stale until someone copies again by hand. Treat the drive as a
+snapshot to carry to the Mac, not a mirror that stays current on its own.
