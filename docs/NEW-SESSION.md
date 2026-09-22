@@ -23,21 +23,37 @@ Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
 is a wall of the room, square-on, at true scale. No people in any plate. Cross-screen
 events are built in the wide master comp (4680x1080), not generated.
 
-THE TASK, RIGHT NOW (from 2026-09-21): IMG. Start on S9-SAL-ROOM, the salon
-room master. All three looks are LOCKED (LOOK.md) and the cards are written
-(SHOTCARDS.md). The IMG prompts are in prompts/. Homie playtests them in Higgsfield
-and brings the results back; you never generate.
+THE TASK, RIGHT NOW (from 2026-09-22): IMG. Both room masters are APPROVED.
+Next: sort the portrait/Raft source images Homie just added to SOTR_MEDIA (see below),
+then write and run the wall prompts for whichever walls the signed-off beat map uses.
 
-ONE ASSET EXISTS: @fig_SOTR_judge_s9_v1, the judge silhouette, at testing. It took
-four prompt versions. Two gates before it goes to approved: Homie checks variant 3 at
-full resolution, and the white epaulette fringe gets filled in the comp (it survived
-being banned by name twice, so it is an object prior - paint it, do not retry it).
+THREE ASSETS EXIST, all approved: @fig_SOTR_judge_s9_v1 (judge silhouette),
+@loc_SOTR_salon_room_s9_v1 and @loc_SOTR_studio_room_s9_v1 (room masters, never
+projected - reference only). Full details and file paths in REGISTER.md.
 
-S9-SAL-ROOM is the expensive one. Every salon wall derives from it, and it is the
-first real test of the locked Soul Cinema routing for plates. WATCH FOR ONE THING:
-if the three walls come back looking assembled from fragments rather than one room,
-that is the exact failure that moved LGEL's plate lane off Soul Cinema. Do not
-iterate on wording - say so and move the lane to NBP.
+CLAUDE MAKES THE TECHNICAL CALLS, Homie directs (set 2026-09-22). Only look and
+story decisions go to Homie, always with a recommendation. docs/WEEK-PLAN.md is
+the schedule; Homie has 4,500 Higgsfield credits, confirm the balance early.
+
+BEAT MAP MUST BE SIGNED OFF BEFORE BUILDING MORE WALLS. The proposed map
+(SHOTCARDS.md) only ever shows the salon on LEFT and the studio on CENTRE and RIGHT
+- under it only 3 of 6 possible walls, 2 of 4 loops and 1 of 3 DARK edits ever get
+built. Get this from the director before spending on S9-SAL-C/R or S9-STU-L.
+
+WALL ROUTE DECIDED: Nano Banana Pro, reference-led (room master as reference), not
+Soul Cinema - Soul Cinema disables its prompt field when a reference is attached.
+Reasoning in PIPELINE.md 3-5.
+
+INTERRUPTED LAST SESSION, CHECK FIRST: a search for the Gerard portrait and Raft
+source images failed repeatedly and was stopped mid-way. Files landed loose in
+SOTR_MEDIA/ (not SOTR_MEDIA/comp/ where they belong), and most are the WRONG
+painting (Louis XVIII at his desk, not in coronation robes) or unverified. Homie
+has since added more images to SOTR_MEDIA - look at those FIRST before searching
+again. Full detail in LOG.md, 2026-09-22 "session paused" entry.
+
+Studio canvas proportion check needed before S9-STU-C: room master canvas reads
+~1.66:1, real Raft is 1.46:1 (716x491cm) - state the true proportion explicitly
+in that prompt, do not trust the reference for it.
 
 Run order (PIPELINE.md): S9-SAL-ROOM → S9-SAL-C → L → R → seam check → DARK edits.
 Then S9-STU-ROOM → C → L → R → seam check. S9-CRT-FIG any time.

@@ -6,6 +6,8 @@ change the plate, not the sentence.
 | Date | ID | v | Model | Changed | Verdict | Note |
 |---|---|---|---|---|---|---|
 | 2026-09-22 | S9-CRT-FIG | 4 | - | full-resolution check of variant 3 | **APPROVED** | 1536x2752. Head, gavel, epaulettes clean. One white V at the throat reads as a clerical collar at large sizes; comp fill, logged in REGISTER. |
+| 2026-09-22 | S9-SAL-ROOM | 2 | Soul Cinema | chandelier cut, mirror quiet, ivory/gold palette | **PASS** | Var 3 of 4 approved. 2528x1088. Full-res check clean: no chandelier, quiet mirror, true scale reads correctly against the 1.1m mantel. Saved. |
+| 2026-09-22 | S9-STU-ROOM | 2 | Soul Cinema | light grey not blue, umber shade not black | **PASS** | Var 3 of 4 approved. 2528x1088. Grey daylight confirmed, no blue, umber corners. Studies read as paper. Canvas measures ~1.66:1 against the real 1.46:1 - flagged for the CENTRE wall prompt, not a reason to regenerate the master. Saved. |
 | 2026-09-21 | S9-CRT-FIG | 4 | NBP | noun changed to a paper cut-out; hat cut; mouth cut | **PASS - variant 3 selected** | **Faces gone in all four.** The noun change is what did it: asking for "a shape cut from black paper" instead of a man rendered in black leaves no face to forbid. No hats, frontal, symmetrical, gavel clear of the head, scroll readable from outline alone, legs showing below the coat so it does not read as a robe. **One defect left:** epaulette fringe returns as white hatching. Banned by name in v3 and v4 and it survived both, so it is an object prior, not a wording fault - **fixed in the comp, not chased in generation** (LGEL lanyard precedent). Homie picked variant 3 over 1 on head shape. |
 | 2026-09-21 | S9-CRT-FIG | 3 | NBP | profile -> frontal, costume reduced, interior white banned | **FAIL — faces, and the hat went Napoleonic again** | Frontal and symmetry took. **Faces in all four**, variant 3 fully rendered with eyes and nose. **Root cause found: our own spec.** "No facial features" and "mouth open mid-proclamation" contradict each other; the model obeyed the mouth. In profile that was consistent (a mouth is a notch in the outline) — frontal it can only be interior detail, and it opens the door to eyes and nose. **A clause that was right under a condition that stopped being true.** Hat returned athwart = Napoleon, third version running. |
 | 2026-09-21 | S9-CRT-FIG | 2 | NBP | costume corrected to naval officer | **FAIL — reads as Napoleon** | Institution now right, icon now wrong. Bicorne + tailcoat + sword + side profile is the Napoleon silhouette, and `BIBLE.md` bans Napoleonic motifs — this is the Bourbon state, not the Empire. **The historically accurate costume produced a historically wrong reading.** Second defect, independent: white collar, white buttons and fringed epaulette detail inside the black in **all four** variants — no longer seed variance, a real prompt fault. |
@@ -14,6 +16,48 @@ change the plate, not the sentence.
 ---
 
 ## Sessions
+
+### 2026-09-22 — IMG session paused · both room masters approved
+
+**Both room masters approved and saved** (details and full-res checks in `REGISTER.md`):
+`@loc_SOTR_salon_room_s9_v1` and `@loc_SOTR_studio_room_s9_v1`, both from prompt v2 (v1
+had the chandelier and the wrong studio light, both now fixed). Files in `SOTR_MEDIA/plates/`.
+
+**Two facts needed before the wall prompts can be written, both correctly flagged before
+any generation was spent:**
+- The studio canvas in the room master measures roughly 1.66:1; the real Raft is 1.46:1
+  (716 x 491 cm). The CENTRE wall prompt has to state the true proportion — the model will
+  not infer it from the reference.
+- The salon portrait frame needs to match the proportions of Gerard's actual coronation
+  portrait, since that painting gets composited into it. The source image was needed before
+  writing that prompt.
+
+**SESSION INTERRUPTED — the source-image search failed repeatedly and was stopped by
+Homie before it produced a clean result.** What is on disk in `SOTR_MEDIA/` (not
+`SOTR_MEDIA/comp/`, where it belongs — misfiled by the failed attempts, not yet sorted):
+
+- `Louis_XVIII_of_France_in_Coronation_Robes,_by_François_Gérard.jpg` — 1500x2165,
+  **filename matches the correct painting**, but the source URL and licence were never
+  logged and the file has not been verified as the right image. Treat as unverified.
+- Four files titled *"Le roi Louis XVIII dans son cabinet de travail des Tuileries"* —
+  **a different painting** (Louis XVIII at his desk, not in coronation robes). Downloaded
+  by mistake during the retries. Not usable for this composite.
+- `François_Gérard_-_Louis_XVIII_(1824).jpg` — 918x1260, low resolution, wrong year in the
+  filename (the coronation portrait is c. 1814/1817). Not usable.
+- **No Raft of the Medusa source image was found before the session was stopped.**
+
+**Nothing lost.** The repo was clean and fully pushed at commit `e800a58` before this
+happened — the retry failures never touched git, only local downloads. **Next session:
+redo the source image search from scratch, cleanly**, verify each file against the real
+painting (dimensions, artist, date, Wikimedia Commons licence) before saving, sort into
+`SOTR_MEDIA/comp/`, delete the wrong-painting files, and only then write the two wall
+prompts that depend on them (S9-SAL-L for the portrait frame, S9-STU-C for the canvas
+proportion).
+
+**Everything else in this session stands:** both room masters approved, wall route decided
+(NBP, reference-led), week plan and beat-map-first scoping in place. Not blocked — the
+portrait and Raft sourcing only gates two of the six possible wall prompts, and both of
+those walls may turn out to be outside the signed-off beat map anyway.
 
 ### 2026-09-22 — IMG, first room masters · chandelier cut · studio light changed
 
