@@ -70,6 +70,8 @@ generation, and log it here.
 - **CENTRE**: NBP, 16:9, ref = approved room master. **LEFT / RIGHT**: NBP, 4:3, refs = room master + approved CENTRE.
 - Each prompt states what every reference carries and what it does not (`house-rules` finding 3), describes only this wall's contents and camera (finding 1: prose re-describing the room overrides the reference), and spells out which wall and where the corners fall (LIRA).
 
+**REFINED 2026-09-22: a wall references an approved sibling wall only if that sibling is ever live on stage beside it (per the beat map), not by default.** The original assumption was every world always shows all three walls together; the proposed map shows some worlds on only one or two walls at a time, so a solo wall (e.g. the salon's LEFT, if the map holds) has no sibling to seam-match and needs only the room master. Two walls that do appear together (e.g. studio CENTRE + RIGHT) still reference each other for exact finish-matching.
+
 ## 6 · Seam check
 
 Lay the three plates side by side in the wide comp at true proportion (4 : 5 : 4 widths).

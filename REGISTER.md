@@ -19,10 +19,12 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 | ID | Prompt | Tag it will get | Waits for |
 |---|---|---|---|
 | ~~S9-SAL-ROOM~~ | `prompts/S9-SAL-ROOM.txt` v2 | `@loc_SOTR_salon_room_s9_v1` | **approved 2026-09-22 — see Wall plates below** |
-| S9-SAL-C / L / R | `prompts/S9-SAL-{C,L,R}.txt` | `@loc_SOTR_salon_{C,L,R}_s9_v1` | ROOM, then C |
-| S9-SAL-*-DARK | `prompts/S9-SAL-DARK.txt` (template) | `@loc_SOTR_salon_{C,L,R}_dark_s9_v1` | each approved LIT plate |
-| ~~S9-STU-ROOM~~ | `prompts/S9-STU-ROOM.txt` v2 | `@loc_SOTR_studio_room_s9_v1` | **approved 2026-09-22 — see Wall plates below** |
-| S9-STU-C / L / R | `prompts/S9-STU-{C,L,R}.txt` | `@loc_SOTR_studio_{C,L,R}_s9_v1` | ROOM, then C |
+| S9-SAL-L | `prompts/S9-SAL-L.txt` v2, NBP reference-led | `@loc_SOTR_salon_L_s9_v1` | **beat map sign-off** (proposed map needs this wall) |
+| S9-SAL-C / R | `prompts/S9-SAL-{C,R}.txt` | `@loc_SOTR_salon_{C,R}_s9_v1` | **NOT rewritten — pending beat map** (proposed map never uses these) |
+| S9-SAL-*-DARK | `prompts/S9-SAL-DARK.txt` (template) | `@loc_SOTR_salon_{C,L,R}_dark_s9_v1` | each approved LIT plate + beat map |
+| S9-STU-C | `prompts/S9-STU-C.txt` v2, NBP reference-led | `@loc_SOTR_studio_C_s9_v1` | **beat map sign-off** (proposed map needs this wall) |
+| S9-STU-R | `prompts/S9-STU-R.txt` v2, NBP reference-led | `@loc_SOTR_studio_R_s9_v1` | **beat map sign-off** + approved S9-STU-C |
+| S9-STU-L | `prompts/S9-STU-L.txt` | `@loc_SOTR_studio_L_s9_v1` | **NOT rewritten — pending beat map** (proposed map never uses this) |
 | ~~S9-CRT-FIG~~ | `prompts/S9-CRT-FIG.txt` v4 | `@fig_SOTR_judge_s9_v1` | Judge silhouette. Naval officer of 1817, frontal, bare featureless head, gavel raised, scroll. Black on bone-white, 9:16, 1536x2752 | **approved** 2026-09-22 | Asset v1, from prompt v4 (v1-v3 failed: wrong institution, then Napoleon, then faces). NBP, no reference. Variant 3 of 4, picked by Homie on head shape; others in `rejected/`. **Full-resolution check (2026-09-22):** head edge clean, no features; gavel clear of the head; epaulettes solid black on this variant, so the predicted fringe fix is not needed. **COMP FIX DONE 2026-09-22 (Homie): white V at the throat filled black, checked clean at full resolution.** The file in `SOTR_MEDIA` is the fixed version; the raw generation is in Higgsfield history only. Why it mattered: Black figure + long coat + bare head + white notch at the throat reads as a clerical collar; invisible at Q1, centre-wall at Q3. Fixed in the comp, not regenerated. No stress test: written for characters that must survive motion; this is a locked-camera two-tone silhouette (project files over `house-rules`, per `CLAUDE.md`). Next use: first frame of S9-CRT-STRIKE (VID) |
 
 ## Wall plates

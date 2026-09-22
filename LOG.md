@@ -17,6 +17,34 @@ change the plate, not the sentence.
 
 ## Sessions
 
+### 2026-09-22 — IMG, folders confirmed clean; three wall prompts pre-written
+
+**Folder check (Homie asked for a clean-up):** nothing was actually out of place. The six
+loose files were the same six from the interrupted search, already sorted last entry.
+`SOTR_MEDIA` matches its own naming scheme exactly — no renaming or moving needed.
+
+**Best-course-of-action call: prep the three walls the proposed map implies, at zero
+credit cost, while sign-off is pending; do not prep or generate the other three until
+they're confirmed needed.** Rewrote `S9-SAL-L`, `S9-STU-C`, `S9-STU-R` reference-led for
+NBP (v2). `S9-SAL-C`, `S9-SAL-R`, `S9-STU-L` marked NOT REWRITTEN / PENDING, their old
+Soul-Cinema-style text flagged stale so nobody runs it by mistake.
+
+**Refinement while writing them:** a wall only references an approved sibling wall if that
+sibling is ever live on stage beside it. Under the proposed map the salon's LEFT is never
+shown next to another salon wall, so `S9-SAL-L` references only the room master — one
+reference, not two. The studio's CENTRE and RIGHT do appear together (beats 4, 6, 9), so
+`S9-STU-R` still references the approved `S9-STU-C` for exact finish-matching, and must
+run after it. Logged in `PIPELINE.md`.
+
+**Canvas proportion correction carried into the prompt itself:** `S9-STU-C` now states the
+canvas as "4.7 x 3.2 metres, a proportion close to 3:2, taller relative to its width than
+the reference shows" — an explicit, stated override of what the room master actually shows,
+not a drift. This is the one place prose is allowed to override a reference (`house-rules`
+finding 1 bans re-narrating what the reference already carries correctly; it does not ban
+correcting a stated, known error in it).
+
+**All three still gated on the beat map sign-off**, which has not happened yet. Not run.
+
 ### 2026-09-22 — IMG, source images resolved
 
 **Homie's files checked first, as the paused session asked.** The six files in
