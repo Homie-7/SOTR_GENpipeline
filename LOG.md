@@ -15,6 +15,27 @@ change the plate, not the sentence.
 
 ## Sessions
 
+### 2026-09-22 — IMG, pre-flight on S9-SAL-ROOM · portrait made Bourbon
+
+**Judge approved** at full resolution (1536 x 2752); Homie filled the white V at the throat,
+which read as a clerical collar. Details in `REGISTER.md`.
+
+**PRE-FLIGHT FINDING, before any salon credit was spent.** The locked room contents asked
+for *"a king in coronation robes."* The best-known full-length French coronation portrait
+is Gérard's *Napoleon in Coronation Robes* (1805) — the same painter as the Louis XVIII we
+composite. A model asked for a French king in 1817 has a real chance of painting Napoleon,
+and a Napoleon on a royalist salon wall is the judge's collision again, in the image the
+director signs off. The composite covers it on the final LEFT wall; nothing covers it in
+the room master.
+
+**Changed (Homie approved a LOCKED edit):** the portrait is now *"a Bourbon king in blue
+velvet coronation robes sown with gold fleurs-de-lis."* Fleurs-de-lis are the Bourbon mark;
+bees would be Napoleon's. Ermine was offered and dropped to save characters — fleurs-de-lis
+are the discriminator, and Napoleon wore ermine too. Updated word for word in
+`SHOTCARDS.md` and all four salon prompts. To pay for it: the room master's camera
+paragraph tightened (no meaning cut), and "perfectly" dropped from the C/L/R camera lines,
+kept parallel. All four now under 2,000 characters.
+
 ### 2026-09-21 — IMG session close · first asset generated
 
 **First generated asset in the production.** `@fig_SOTR_judge_s9_v1`, at `testing`.

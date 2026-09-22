@@ -79,8 +79,8 @@ built from this text.
 > panelling below. Back wall: a white marble chimneypiece, mantel at 1.1 metres with two
 > gilt candelabra of lit candles; above it a tall gilt-framed trumeau mirror rises to 3.2
 > metres, reflecting the empty salon, lit sconces and the lower tiers of a lit crystal
-> chandelier. Left wall: a full-length royal portrait of a king in coronation robes in a
-> heavy carved gilt frame. Right wall: a tall French window, head at 3.2 metres, crimson
+> chandelier. Left wall: a full-length royal portrait of a Bourbon king in blue velvet
+> coronation robes sown with gold fleurs-de-lis, in a heavy carved gilt frame. Right wall: a tall French window, head at 3.2 metres, crimson
 > silk curtains drawn closed, a thin line of blue-grey dusk along their edges. Each of these
 > is flanked by two-branch gilt sconces of lit candles at 1.9 metres. Every feature sits
 > whole on its own wall, with plain panelling near every corner.
