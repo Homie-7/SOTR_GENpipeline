@@ -15,6 +15,42 @@ change the plate, not the sentence.
 
 ## Sessions
 
+### 2026-09-22 — IMG, source check before the salon (Homie's direction)
+
+**Homie: stop experimenting where Joey, Cully and Higgsfield already answer.** Read before
+the salon runs: `banana-pro-director-30` Mode 3 (grepped for DEPRECATED first — only the two
+`house-rules` names), Cully's `LIRA SKILL.md` and project brief, and Higgsfield's Soul
+Cinema help page.
+
+**FINDING 1 — the wall plan was never checked against the platform.** Higgsfield: with a
+reference attached, Soul Cinema's prompt field is disabled. LIRA: one reference. Every
+C/L/R prompt was written as "Soul Cinema + room master reference" (L/R with two). Not
+executable. Same failure shape as LGEL's `plate-3a.txt`: written without opening the source.
+**Proven routes in the sources for other views of one room:** LIRA sends location view
+changes to **GPT Image 2** (default) or **NBP with the new object arrangement spelled out**;
+Cully's brief pulls angles from a **video walkthrough of the empty location, screenshotted,
+then refined in Seedream or NBP**; LGEL used a **360 spin for geometry, then NBP with two
+references**. Decide before S9-SAL-C. The room master is unaffected (no reference).
+
+**FINDING 2 — two source grammars for plates, and only one fits a projected wall.**
+`banana-pro-director-30` Mode 3 (cinema prose: anamorphic, handheld, oval bokeh, edge
+falloff) is written for film stills; `STAGE.md` needs square-on, straight verticals, no
+depth of field. LIRA's **Soul Cinema location template** is compatible: camera anchor first
+("the hardest part; anchor it hard"), real-world genre terms (24mm, real estate interior
+photo), optics/DOF kept off locations, one register line, emptiness stated positively.
+`house-rules` gives scene plates to banana; `CLAUDE.md` puts `STAGE.md` above both, so
+**LIRA's location template governs SOTR plates.** Flagged once, here.
+
+**FINDING 3 — `LOOK.md`'s reason for leading with the style prefix does not apply.** It
+cites `house-rules` finding 15, which is about a *stylised* register fighting photoreal text
+(LGEL). SOTR's prefix is itself photographic; there is no competing register. LIRA puts the
+camera anchor first. A condition that expired — yesterday's lesson.
+
+**Also from Cully's brief:** locations are generated three-quarter, never frontal, because
+a frontal wall is "flat wallpaper" the model can't read volume from. SOTR's walls must be
+frontal (`STAGE.md`), which is one more reason the room master — a wide with volume — has
+to exist and the walls should be derived from it rather than invented.
+
 ### 2026-09-22 — IMG, pre-flight on S9-SAL-ROOM · portrait made Bourbon
 
 **Judge approved** at full resolution (1536 x 2752); Homie filled the white V at the throat,

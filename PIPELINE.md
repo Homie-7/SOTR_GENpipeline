@@ -62,7 +62,9 @@ generation, and log it here.
 | Model | Aspect options offered | Setting used | Output size | Logged |
 |---|---|---|---|---|
 | Nano Banana Pro | *not yet captured* | 9:16, 2k | **1536 x 2752** | 2026-09-22, from S9-CRT-FIG |
-| Soul Cinema | *not yet captured* — confirm 21:9 before S9-SAL-ROOM | | | |
+| Soul Cinema | **21:9 available** (native), 1:1, 4:3, 3:4, 16:9, 9:16, 3:2, 2:3 — per LIRA; 21:9 native per Higgsfield | 21:9, 2k for room masters | 1.5k / 2k tiers; batch up to 4 | 2026-09-22, from sources, not a test |
+
+**Soul Cinema cannot take a reference AND a prompt.** Higgsfield's help centre: *"When a reference image is attached, the prompt field becomes unavailable."* LIRA: one reference image. So steps 3–5 as written (each wall built on Soul Cinema from the room master, L/R with two references) **cannot be executed.** The room master is unaffected: it has no reference. **The wall route is OPEN and must be decided before S9-SAL-C** — see `LOG.md` 2026-09-22.
 
 ## 6 · Seam check
 
