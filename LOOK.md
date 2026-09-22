@@ -18,7 +18,7 @@ the truth. They should be told apart instantly, even as fragments, by **light an
 | World | Light | Finish | Base field | Accent (with its real source) | Counter-note |
 |---|---|---|---|---|---|
 | **Salon** | warm candlelight, many sources, symmetrical | **polish**: gilt, mirror, silk, immaculate | ivory boiserie, cream and gold | crimson silk (upholstery, curtains) | the cold grey of dusk behind drawn curtains |
-| **Studio** | one cold north window, hard fall-off into dark | **patina**: dust, stains, raw plaster, chaos | grey daylight, raw umber, bone | dried-blood red (a rag, the palette) | one stub of warm candle |
+| **Studio** | one candle at 2am, hard fall-off into dark | **patina**: dust, stains, raw plaster, chaos | umber dark, candle-gold, bone | dried-blood red (a rag, the palette) | the candle IS the light, not an accent |
 | **Court** | a flat backlit field | none: graphic, no texture | bone-white | none | the silhouette itself, pure black |
 
 The salon and studio are both period Paris interiors, so light and finish have to do the
@@ -121,16 +121,18 @@ working room.
 
 - **CENTRE**: the blank primed canvas, 3.2 × 4.7 m, bottom edge 0.2 m up on blocks, with
   bare plaster showing around it (at least 300 mm clear of each seam).
-- **RIGHT**: a tall north window of small panes (sill 1.2 m, running out past the crop), grey
-  sky. Studies of arms, legs and hands pinned around it. On the sill, a guttering candle
-  stub beside a red-stained rag, which is the warm note and the red.
+- **RIGHT**: a tall north window of small panes (sill 1.2 m, running out past the crop), a
+  dark night sky and a thin moon beyond the glass. Studies of arms, legs and hands pinned
+  around it, just visible. On the sill, a guttering candle in a tin holder beside a
+  red-stained rag — **this candle is the room's only light source**, not an accent.
 - **LEFT**: rough pine shelves at 1.4 and 2.2 m with plaster casts and the small scale model
-  of the raft, and canvases leaning face to the wall below. It's lit square-on by the
-  window opposite.
+  of the raft, and canvases leaning face to the wall below, nearly lost in the dark — the
+  candlelight barely reaches this far.
 
-**Motion for the loops.** Dust drifting in the window light on RIGHT. Cloud passing, so the
-daylight dims and returns (on all three walls, so it's done as a light pass in the master
-comp, not generated per wall). The guttering candle stub. That's all.
+**Motion for the loops.** Dust drifting in the candlelight on RIGHT. The candle gutters in a
+draft, so the light dims and swells across the room (on all three walls, so it's done as a
+light pass in the master comp, not generated per wall — same mechanism as the cloud it
+replaces, 2026-09-22). That's all.
 
 **References.** Géricault's own studies (*Severed Limbs*, 1818). Rembrandt-style studio
 light. *Layers of Fear*.
@@ -310,11 +312,7 @@ its period, before 1819. The room is empty and still.
 
 ```
 Hyper-real photograph of a painter's working studio in Paris in 1818: a large bare rented
-room, used hard. Grey north daylight from one high window on the right falls across the room onto the canvas and fades into warm raw umber shade toward the far left corner. Palette 60% cool grey daylight and raw
-plaster, 30% raw umber and deep shadow, 10% dried-blood red on a rag and on the palette.
-Real surfaces: flaking lime plaster, charcoal smudges, oil paint crusted on wood, turpentine
-stains, dust on every ledge, scuffed pine. One stub of candle is the only warm note.
-Everything of its period, before 1819. The room is empty and still.
+room, used hard, seen at two in the morning. Through the tall window on the right, a dark night sky and a thin moon; the room's only light is a single candle burning on the sill beside it, its warm glow falling hard across the canvas and dying into raw umber shadow toward the far left corner, the rest of the room barely visible. Palette 60% deep umber shadow and raw plaster, 30% warm candlelight on the canvas and sill, 10% dried-blood red on a rag and on the palette. Real surfaces: flaking lime plaster, charcoal smudges, oil paint crusted on wood, turpentine stains, dust on every ledge, scuffed pine. Everything of its period, before 1819. The room is empty and still.
 ```
 
 ### COURT · LOCKED 2026-09-21

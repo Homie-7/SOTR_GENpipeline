@@ -88,29 +88,30 @@ built from this text.
 
 | | |
 |---|---|
-| **World** | Faubourg-du-Roule studio, 1818–19, grey north daylight. `LOOK.md` → World 2 (LOCKED) |
+| **World** | Faubourg-du-Roule studio, 1818–19, two in the morning, candlelit. `LOOK.md` → World 2 (LOCKED) |
 | **Walls** | C: blank primed canvas 3.2 × 4.7 m, the painting composited in three stages · R: north window, pinned limb studies, candle stub and red rag on the sill · L: shelves of casts, raft model, canvases leaning face to the wall |
 | **In frame** | No people. No remains, only studies on paper |
 | **Camera** | Locked. Square to the wall, eye level 1.6 m, floor to 3.6 m, no floor visible |
 | **Scale anchors** | Canvas 0.2–3.4 m high · window sill 1.2 m · shelves 1.4 and 2.2 m · studies 1.2–2.4 m |
-| **Light** | One source: the window on RIGHT. Light falls right to left |
-| **Loop motion** | R: dust in the window light, the guttering candle stub. All walls: the cloud passing is a light pass in the master comp. Keep 300 mm clear of each seam |
+| **Light** | One source: a candle on the RIGHT windowsill, 2am, night outside. Light falls right to left, hard fall-off into dark. *Changed 2026-09-22 from daylight — see LOOK.md and LOG.md* |
+| **Loop motion** | R: dust in the candlelight, the candle guttering. All walls: the candle dimming and swelling is a light pass in the master comp (replaces the cloud, 2026-09-22). Keep 300 mm clear of each seam |
 | **Enters / exits** | Paints itself in, charcoal to colour, through brushstroke masks · bleaches back to raw canvas, the edges breaking into particles |
 | **Model** | Soul Cinema. The painting is composited (PAINT1/2/3) |
 
 **Room contents. Quote this word for word in every studio prompt.**
 
-> A large rectangular studio with flat walls meeting at square corners. Raw grey lime
-> plaster walls, stained and patched, above a worn wooden skirting. Back wall: a huge
-> stretched canvas, 3.2 metres high and 4.7 metres wide, its bottom edge 0.2 metres above
-> the floor on wooden blocks, primed a flat warm off-white, entirely blank, square to the
-> wall, with plain plaster around it. Right wall: a tall north window of small square panes,
-> sill at 1.2 metres, rising past 3.6 metres, grey sky beyond; pencil and oil studies of
-> arms, legs and hands are pinned to the plaster around it between 1.2 and 2.4 metres; on
-> the sill, a stub of candle burning in a tin holder beside a red-stained rag. Left wall:
-> rough pine shelves at 1.4 and 2.2 metres holding white plaster casts of antique heads and
-> a hand, and a small wooden scale model of a raft; three stretched canvases lean face to
-> the wall beneath. Every object sits whole on its own wall, with bare plaster near every
+> A large rectangular studio with flat walls meeting at square corners, at two in the
+> morning. Raw grey lime plaster walls, stained and patched, above a worn wooden skirting.
+> Back wall: a huge stretched canvas, 3.2 metres high and 4.7 metres wide, its bottom edge
+> 0.2 metres up on wooden blocks, primed flat warm off-white, entirely blank, square to the
+> wall, with plain plaster around it. Right wall: a tall north window of small square
+> panes, sill at 1.2 metres, rising past 3.6 metres, a dark night sky and a thin moon
+> beyond the glass; pencil and oil studies of arms, legs and hands pinned to the plaster
+> between 1.2 and 2.4 metres, just visible; on the sill, a candle burning in a tin holder
+> beside a red-stained rag — the room's only light. Left wall: rough pine shelves at 1.4
+> and 2.2 metres holding white plaster casts of antique heads and a hand, and a small
+> wooden scale model of a raft; three canvases lean face to the wall beneath, nearly lost
+> in the dark. Every object sits whole on its own wall, with bare plaster near every
 > corner.
 
 ## S9-CRT — The Court Martial · LOCKED 2026-09-21

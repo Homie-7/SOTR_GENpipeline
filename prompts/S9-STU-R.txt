@@ -1,13 +1,14 @@
-# S9-STU-R · v2 · NOT GENERATED · rewritten reference-led for NBP (2026-09-22)
-# Nano Banana Pro · 4:3 · 2k · refs: approved @loc_SOTR_studio_room_s9_v1 + approved S9-STU-C
+# S9-STU-R · v3 · NOT GENERATED · light changed to night/candlelit (2026-09-22)
+# Nano Banana Pro · 4:3 · 2k · refs: approved @loc_SOTR_studio_room_s9_v1 v3 (night) + approved S9-STU-C
 # (two references — CENTRE and RIGHT are live together on stage under the proposed map,
 # so RIGHT must match CENTRE's finish exactly)
-# AWAITING S9-STU-C APPROVAL and BEAT MAP SIGN-OFF before this runs
+# WAITING ON: the room master must be regenerated under the v3 night/candlelight prompt and
+# re-approved, then S9-STU-C approved, before this reference exists. Also awaiting beat map sign-off.
 
-@room — the approved studio room master. It carries the room's overall geometry and the window's position and content: a tall north window of small square panes, sill at 1.2 metres, pencil and oil studies of arms, legs and hands pinned around it, and a stub of candle beside a red-stained rag on the sill. It does NOT carry this photograph's framing.
+@room — the approved studio room master (night version). It carries the room's overall geometry and the window's position and content: a tall north window of small square panes, sill at 1.2 metres, a dark night sky and a thin moon beyond the glass, pencil and oil studies of arms, legs and hands pinned around it (just visible), and a candle burning in a tin holder beside a red-stained rag on the sill — the room's only light. It does NOT carry this photograph's framing.
 
-@centre — the approved studio centre wall. It carries the exact plaster finish, grey daylight colour and umber shade this photograph must match precisely, since both walls stand side by side on stage. It does NOT carry framing or the window's content — take those from @room.
+@centre — the approved studio centre wall. It carries the exact plaster finish and candlelight colour this photograph must match precisely, since both walls stand side by side on stage. It does NOT carry framing or the window's content — take those from @room.
 
-A straight-on architectural elevation photograph of the right wall of the same studio, camera square to the wall, level at eye height 1.6 metres, verticals and horizontals dead straight, a 45mm lens. The frame spans the wall corner to corner: the corner with the back wall falls at the left edge of the frame. Bottom edge on the skirting, top edge cropping the wall at 3.6 metres. The window stands centred, bright against the dim plaster, its sill and the studies pinned around it exactly as @room shows them.
+A straight-on architectural elevation photograph of the right wall of the same studio, camera square to the wall, level at eye height 1.6 metres, verticals and horizontals dead straight, a 45mm lens. The frame spans the wall corner to corner: the corner with the back wall falls at the left edge of the frame. Bottom edge on the skirting, top edge cropping the wall at 3.6 metres. The window and its candle stand centred, the only light in the frame; the studies pinned around it exactly as @room shows them, just visible in the candle's reach.
 
-Same plaster finish and grey daylight as @centre, fading to warm umber shade toward the room's far corner. Everything of its period, before 1819. No people, no floor visible below the skirting, the wall complete and self-contained with bare plaster clear of both corners.
+Same plaster finish and candlelight as @centre, the light dying into deep umber shadow toward the room's far corner. Everything of its period, before 1819. No people, no floor visible below the skirting, the wall complete and self-contained with bare plaster clear of both corners.

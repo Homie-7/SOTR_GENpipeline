@@ -65,10 +65,19 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
-### 2026-09-22 — First asset approved (the judge). Next: S9-SAL-ROOM.
+### 2026-09-22 — Judge approved. Both room masters generated; salon approved, studio superseded. Blocked on two confirmations.
 
-`@fig_SOTR_judge_s9_v1` is approved and its comp fix is done (see `REGISTER.md`). The rest of the
-paragraph below is the 2026-09-21 state and still holds.
+`@fig_SOTR_judge_s9_v1` is approved, comp fix done. `@loc_SOTR_salon_room_s9_v1` approved.
+`@loc_SOTR_studio_room_s9_v1` v2 is **superseded** — the studio's light changed from
+daylight to night/candlelight (see `LOG.md`) and it must be regenerated from
+`prompts/S9-STU-ROOM.txt` v3 before any wall references it.
+
+**Two things need confirming before more walls get built, both in `LOG.md` 2026-09-22:**
+(1) the client gave a wall assignment (salon/studio/court to specific physical walls) that
+contradicts the proposed beat map, but has an unconfirmed left/right convention and an
+unconfirmed single-wall-vs-primary-wall reading — get the client's own exact words before
+writing it into `SHOTCARDS.md`; (2) the studio room master needs regenerating under the new
+light. The rest of this paragraph is the 2026-09-21 state and still holds.
 
 ### 2026-09-21 — All three looks LOCKED. Cards and IMG prompts written.
 

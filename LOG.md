@@ -17,6 +17,72 @@ change the plate, not the sentence.
 
 ## Sessions
 
+### 2026-09-22 — IMG, studio light changed to night; client wall assignment received — NOT yet applied
+
+**FINDING — the studio's approved daylight may be wrong, from two independent production
+sources neither of which is the script.** Homie added the production Gantt/dependency
+spreadsheet to `SOTR_MEDIA`. Checked against the script directly first: Scene 9's studio
+section has zero time-of-day text anywhere. But two other sources, independently:
+
+- **Row M18, the MULTIMEDIAPROJECTION workstream — our own workstream — owner "Homie":**
+  *"Scene 9: Géricault studio / painting / **moonlit window**."*
+- **Row S22, the sound brief, owner Darrin:** *"Two in the morning. Horse and cart on
+  cobblestones... Owls hooting."*
+
+Both say night; `LOOK.md` (locked yesterday) said daylight. Real research point in
+daylight's favour: painters historically work by daylight, not moonlight — north light is
+prized because it's even and colour-true, not paintable-by. **Decided (Homie, via the
+recommended option): combine both rather than pick one.** Night sky and a thin moon through
+the window; the room lit by the single candle already on that sill in the locked card,
+Géricault working obsessively at 2am. Uses an asset already in the design, satisfies both
+sources, no source discarded.
+
+**Changed:** `LOOK.md` (tying-together table, style prefix, room contents, loop motion — the
+cloud-passing light-pass mechanism now runs on the candle guttering instead, same
+mechanism, coherent motivation), `SHOTCARDS.md` (world header, Light row, room contents
+quote, loop motion row), `prompts/S9-STU-ROOM.txt` → v3, `prompts/S9-STU-C.txt` and
+`S9-STU-R.txt` → v3. All three re-measured under the 2,000-character cap after trimming.
+
+**Cost: the approved studio room master is superseded, not usable as a reference anymore.**
+Marked so in `REGISTER.md`. It must be regenerated from v3 and re-approved before either
+wall prompt can actually run — nothing was wasted, since neither wall has been generated
+yet, but the room master batch itself will need repeating.
+
+**Honest trade noted:** `LOOK.md`'s tying-together table originally used light (warm/many
+vs cold/one) to help separate the salon from the studio at a glance. Both are now
+warm-toned. Contrast still holds on source count (many soft candles vs one hard candle),
+and on finish (polished gilt vs raw patina) — but it's one fewer axis of separation than
+before, worth watching for when the two plates sit side by side in review.
+
+---
+
+**SEPARATELY, and NOT yet acted on:** the client gave Homie a wall assignment directly —
+*"the performance palace [salon] on the right, Géricault's studio on the left, the judge on
+the back screen, and the raft — the woman on the raft — in the middle of the space."* This
+is the first time ANY source has stated which physical wall each world uses, after this
+session checked the script, the staging plan, the 2022 presentation and this Gantt file and
+found nothing. Two real ambiguities before this can be written into `SHOTCARDS.md`:
+
+1. **Left/right convention unconfirmed.** `STAGE.md`'s own diagram has never stated
+   explicitly whether its LEFT/RIGHT are audience-perspective or performer's stage-left/
+   right (mirrored) — this was never written down as a rule, only implied by an ASCII
+   diagram. The client's phrasing ("if I'm facing it... on the right") reads as
+   audience-perspective, matching the diagram's likely intent, but this is inference, not
+   confirmation, and getting it backward would put the salon and studio on the wrong
+   physical walls.
+2. **Single wall vs primary wall unconfirmed.** Does "studio on the left" mean the studio
+   ONLY ever uses the LEFT physical wall (which would orphan the canvas — currently CENTRE
+   content, and the dramatic centrepiece of the whole world) and the window (currently
+   RIGHT content)? Or does it mean LEFT is the studio's anchor/primary wall while it may
+   still spread onto CENTRE as needed, closer to what the proposed map already assumed for
+   other worlds? The proposed map already has the court doing exactly this (CENTRE
+   primary, spreading to all three at the climax) without contradiction.
+
+**Not applied to any file pending clarification.** Recommended to Homie: get the client's
+own exact words or a marked-up diagram rather than a third-hand paraphrase, since this
+determines physical wall content for two already-approved assets and is expensive to
+reverse if misread.
+
 ### 2026-09-22 — IMG, folders confirmed clean; three wall prompts pre-written
 
 **Folder check (Homie asked for a clean-up):** nothing was actually out of place. The six
