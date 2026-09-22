@@ -39,4 +39,9 @@ the cloud is a light pass in the comp across all three walls. They ship as still
 - Director: room-master sign-off (Mon/Tue), beat-by-wall map (by Fri).
 - Gérard's *Louis XVIII in Coronation Robes* and Géricault's *Raft*: public-domain source
   images at the highest resolution available, before Fri.
-- Codec for the mapping software (ProRes vs HAP): ask the venue before Sat.
+- **Delivery spec from whoever runs the projection, before Sat:** codec (ProRes vs HAP), and the
+  file container — one wide 9360 x 2160 file or three slices, and whether they want 16:9 files.
+  A 16:9 container is an export setting (wall at its true shape inside, the rest black); it never
+  changes generation. Walls are generated at their own shape: L/R 4:3, C 16:9 trimmed to 5:3
+  (Homie asked 2026-09-22; generating at 16:9 would squash the 4:3 flats or waste a quarter of
+  every frame).
