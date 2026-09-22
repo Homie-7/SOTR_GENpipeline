@@ -22,21 +22,33 @@ S9-STU-R (dust in the window light, the candle stub). `LOOK.md` gives the studio
 and LEFT no motion of their own: CENTRE is the canvas the painting is composited onto, and
 the cloud is a light pass in the comp across all three walls. They ship as stills.
 
+## Scope depends on the beat map — get it signed off TODAY, not Friday
+
+The proposed beat-by-wall map (`SHOTCARDS.md`) only ever puts the **salon on LEFT** and the
+**studio on CENTRE and RIGHT**. Under it, only **three wall plates reach the stage**:
+S9-SAL-L, S9-STU-C, S9-STU-R. S9-SAL-C, S9-SAL-R and S9-STU-L are never shown — nor is the
+salon mirror. That cuts 6 walls to 3, loops to 2 (SAL-L, STU-R), DARK edits to 1 (SAL-L):
+roughly 1,500-2,000 credits and a day.
+
+**Rule: build only the walls the signed-off map uses.** Room masters still run for every
+world — they are the director's look sign-off and the reference for whichever walls are
+built, and they keep other walls buildable if the map changes later.
+
 ## Days
 
 | Day | Mode | Work | Who |
 |---|---|---|---|
-| **Mon 22** | IMG | S9-SAL-ROOM and S9-STU-ROOM (independent, run both). Claude writes the six NBP wall prompts against the approved masters. **Both masters to the director for design sign-off** | Homie generates · Claude reviews |
+| **Mon 22** | IMG | S9-SAL-ROOM and S9-STU-ROOM (independent, run both). **Both masters AND the beat-by-wall map to the director today.** Claude writes NBP prompts only for the walls the map uses | Homie generates · Claude reviews |
 | **Tue 23** | IMG | Salon C → L → R, seam check. Studio C → L → R, seam check | both |
 | **Wed 24** | IMG | Fixes. Salon DARK × 3 (NBP edits; fallback: grade LIT down in the comp). All plates approved | both |
 | **Thu 25** | VID | New session. S9-CRT-STRIKE + 4 loops, loop method per plate | both |
-| **Fri 26** | VID + comp | Loop retries. Comp starts: Gérard portrait, Raft PAINT1–3, court Q1–Q5. **Beat-by-wall map signed off by the director by today** — it drives the comp | Homie comp · Claude cue sheet |
+| **Fri 26** | VID + comp | Loop retries. Comp starts: Gérard portrait, Raft PAINT1–3, court Q1–Q5. Beat map already signed off (moved to Mon — it sets the scope) | Homie comp · Claude cue sheet |
 | **Sat 27** | comp | Transitions, light passes, cue timecodes for sound. Topaz 4K upscale of approved material | Homie |
 | **Sun 28** | — | Delivery to the mapping software. Buffer | Homie |
 
 ## Dependencies outside this repo
 
-- Director: room-master sign-off (Mon/Tue), beat-by-wall map (by Fri).
+- Director: room-master sign-off and the beat-by-wall map, **both Mon/Tue** — the map decides how many walls get built.
 - Gérard's *Louis XVIII in Coronation Robes* and Géricault's *Raft*: public-domain source
   images at the highest resolution available, before Fri.
 - **Delivery spec from whoever runs the projection, before Sat:** codec (ProRes vs HAP), and the
