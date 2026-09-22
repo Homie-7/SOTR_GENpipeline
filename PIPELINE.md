@@ -70,7 +70,7 @@ generation, and log it here.
 - **CENTRE**: NBP, 16:9, ref = approved room master. **LEFT / RIGHT**: NBP, 4:3, refs = room master + approved CENTRE.
 - Each prompt states what every reference carries and what it does not (`house-rules` finding 3), describes only this wall's contents and camera (finding 1: prose re-describing the room overrides the reference), and spells out which wall and where the corners fall (LIRA).
 
-**REFINED 2026-09-22: a wall references an approved sibling wall only if that sibling is ever live on stage beside it (per the beat map), not by default.** The original assumption was every world always shows all three walls together; the proposed map shows some worlds on only one or two walls at a time, so a solo wall (e.g. the salon's LEFT, if the map holds) has no sibling to seam-match and needs only the room master. Two walls that do appear together (e.g. studio CENTRE + RIGHT) still reference each other for exact finish-matching.
+**REFINED 2026-09-22, CONFIRMED same day: a wall references an approved sibling wall only if that sibling is ever live on stage beside it, not by default.** The original assumption was every world always shows all three walls together; the client's confirmed mapping has salon and studio each holding exactly one wall for their whole run (salon RIGHT, studio LEFT), so neither `S9-SAL-R` nor `S9-STU-L` has a sibling to seam-match — each references only its own room master. The one place two walls of the same world are genuinely live together is the court's own climax (Q4→Q5, all three walls at once), which is where this rule still bites.
 
 ## 6 · Seam check
 

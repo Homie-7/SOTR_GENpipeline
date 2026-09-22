@@ -1,6 +1,7 @@
 # WEEK PLAN — Scene 9, 22 to 28 September 2026
 
-Set 2026-09-22. Every session follows this; update it on wrap.
+Set 2026-09-22, revised 2026-09-22 (wall mapping confirmed — see below). Every session
+follows this; update it on wrap.
 
 ## Division of labour
 
@@ -15,45 +16,40 @@ Set 2026-09-22. Every session follows this; update it on wrap.
 - **Three batches on a plate without a keeper = change the route, not the words.**
 - **A defect the comp can fix in minutes is fixed in the comp**, never regenerated.
 
-## Scope, trimmed to what LOOK.md actually animates
+## Scope — CONFIRMED 2026-09-22, cut from 6 wall plates to 2
 
-Loops: **4, not 6** — S9-SAL-C, S9-SAL-L, S9-SAL-R (candle flames, glints, curtains) and
-S9-STU-R (dust in the window light, the candle stub). `LOOK.md` gives the studio's CENTRE
-and LEFT no motion of their own: CENTRE is the canvas the painting is composited onto, and
-the cloud is a light pass in the comp across all three walls. They ship as stills.
+The client confirmed (audience-perspective) the salon plays on RIGHT, the studio on LEFT,
+the judge on CENTRE ("the back screen"), and the raft is a physical floor riser — out of
+scope. Combined with `LOOK.md`'s existing "solo wall" design for the salon, **each world
+holds exactly one wall for its whole run**, the court's own climax excepted (Q4→Q5, all
+three at once — already designed, not a new exception). Full reasoning in `LOG.md`
+2026-09-22.
 
-## Scope depends on the beat map — get it signed off TODAY, not Friday
-
-The proposed beat-by-wall map (`SHOTCARDS.md`) only ever puts the **salon on LEFT** and the
-**studio on CENTRE and RIGHT**. Under it, only **three wall plates reach the stage**:
-S9-SAL-L, S9-STU-C, S9-STU-R. S9-SAL-C, S9-SAL-R and S9-STU-L are never shown — nor is the
-salon mirror. That cuts 6 walls to 3, loops to 2 (SAL-L, STU-R), DARK edits to 1 (SAL-L):
-roughly 1,500-2,000 credits and a day.
-
-**Rule: build only the walls the signed-off map uses.** Room masters still run for every
-world — they are the director's look sign-off and the reference for whichever walls are
-built, and they keep other walls buildable if the map changes later.
+That means the build is now: **2 room masters** (design reference only, never projected),
+**2 wall plates** (`S9-SAL-R`, `S9-STU-L`), **2 loops**, **1 DARK edit**, plus the court
+figure and strike already in progress. Down from up to 6 wall plates, 6 loops, 3 DARK
+edits — roughly a day and 1,500–2,000 credits recovered.
 
 ## Days
 
 | Day | Mode | Work | Who |
 |---|---|---|---|
-| **Mon 22** | IMG | S9-SAL-ROOM and S9-STU-ROOM (independent, run both). **Both masters AND the beat-by-wall map to the director today.** Claude writes NBP prompts only for the walls the map uses | Homie generates · Claude reviews |
-| **Tue 23** | IMG | Salon C → L → R, seam check. Studio C → L → R, seam check | both |
-| **Wed 24** | IMG | Fixes. Salon DARK × 3 (NBP edits; fallback: grade LIT down in the comp). All plates approved | both |
-| **Thu 25** | VID | New session. S9-CRT-STRIKE + 4 loops, loop method per plate | both |
-| **Fri 26** | VID + comp | Loop retries. Comp starts: Gérard portrait, Raft PAINT1–3, court Q1–Q5. Beat map already signed off (moved to Mon — it sets the scope) | Homie comp · Claude cue sheet |
+| **Mon 22** | IMG | Room masters run, wall mapping confirmed by the client, both salon and studio simplified to one wall each. Studio room master needs one more regeneration (light changed to night — see `LOG.md`); salon's `S9-SAL-R` is ready to run now | Homie generates · Claude reviews |
+| **Tue 23** | IMG | `S9-STU-ROOM` regenerated and approved. `S9-SAL-R` and `S9-STU-L` generated and approved. No seam check needed — each world holds one wall alone | both |
+| **Wed 24** | IMG | Fixes. `S9-SAL-R-DARK` (NBP edit; fallback: grade LIT down in the comp). Both plates approved | both |
+| **Thu 25** | VID | New session. `S9-CRT-STRIKE` + 2 loops (`S9-SAL-R-LOOP`, `S9-STU-L-LOOP`) | both |
+| **Fri 26** | VID + comp | Loop retries. Comp starts: Gérard portrait onto `S9-SAL-R`, Raft PAINT1–3 onto `S9-STU-L`, court Q1–Q5 (the one moment all three walls carry one world) | Homie comp · Claude cue sheet |
 | **Sat 27** | comp | Transitions, light passes, cue timecodes for sound. Topaz 4K upscale of approved material | Homie |
-| **Sun 28** | — | Delivery to the mapping software. Buffer | Homie |
+| **Sun 28** | — | Delivery to the mapping software. Buffer — larger now that scope has shrunk | Homie |
 
 ## Dependencies outside this repo
 
-- Director: room-master sign-off and the beat-by-wall map, **both Mon/Tue** — the map decides how many walls get built.
-- Gérard's *Louis XVIII in Coronation Robes* and Géricault's *Raft*: public-domain source
-  images at the highest resolution available, before Fri.
-- **Delivery spec from whoever runs the projection, before Sat:** codec (ProRes vs HAP), and the
-  file container — one wide 9360 x 2160 file or three slices, and whether they want 16:9 files.
-  A 16:9 container is an export setting (wall at its true shape inside, the rest black); it never
-  changes generation. Walls are generated at their own shape: L/R 4:3, C 16:9 trimmed to 5:3
-  (Homie asked 2026-09-22; generating at 16:9 would squash the 4:3 flats or waste a quarter of
-  every frame).
+- **Source images — DONE.** Gérard's *Louis XVIII in Coronation Robes* and Géricault's
+  *Raft*, both verified public domain, high resolution, in `SOTR_MEDIA/comp/`.
+- **Delivery spec from whoever runs the projection, before Sat:** codec (ProRes vs HAP), and
+  the file container — one wide 9360 x 2160 file or three slices, and whether they want
+  16:9 files. A 16:9 container is an export setting (wall at its true shape inside, the
+  rest black); it never changes generation. Walls are generated at their own shape: L/R
+  4:3, C 16:9 trimmed to 5:3.
+- Worth raising with the set team, not urgent: does the physical floor already plan for a
+  riser/plinth for the raft (out of scope for us, but relevant to the set as a whole)?

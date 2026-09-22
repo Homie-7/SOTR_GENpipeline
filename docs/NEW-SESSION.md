@@ -23,78 +23,79 @@ Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
 is a wall of the room, square-on, at true scale. No people in any plate. Cross-screen
 events are built in the wide master comp (4680x1080), not generated.
 
-THE TASK, RIGHT NOW (from 2026-09-22): IMG. Both room masters are APPROVED.
-Next: sort the portrait/Raft source images Homie just added to SOTR_MEDIA (see below),
-then write and run the wall prompts for whichever walls the signed-off beat map uses.
+THE TASK, RIGHT NOW (from 2026-09-22): IMG.
 
-THREE ASSETS EXIST, all approved: @fig_SOTR_judge_s9_v1 (judge silhouette),
-@loc_SOTR_salon_room_s9_v1 and @loc_SOTR_studio_room_s9_v1 (room masters, never
-projected - reference only). Full details and file paths in REGISTER.md.
+WALL MAPPING IS CONFIRMED, not proposed. The client (audience-perspective, confirmed by
+Homie): salon on RIGHT, Gericault's studio on LEFT, the judge on CENTRE ("the back
+screen"), the raft a physical floor riser (out of scope, BIBLE.md). Combined with
+LOOK.md's existing "solo wall" design for the salon, each world holds ONE wall for its
+whole run - the court's own climax excepted (Q4->Q5, all three at once, already designed).
+Full reasoning: LOG.md 2026-09-22 "major simplification" entry.
 
-CLAUDE MAKES THE TECHNICAL CALLS, Homie directs (set 2026-09-22). Only look and
-story decisions go to Homie, always with a recommendation. docs/WEEK-PLAN.md is
-the schedule; Homie has 4,500 Higgsfield credits, confirm the balance early.
+SCOPE IS NOW: 2 wall plates (S9-SAL-R, S9-STU-L), not 6. 2 loops, not 6. 1 DARK edit, not
+3. docs/WEEK-PLAN.md has the revised day-by-day schedule.
 
-BEAT MAP MUST BE SIGNED OFF BEFORE BUILDING MORE WALLS. The proposed map
-(SHOTCARDS.md) only ever shows the salon on LEFT and the studio on CENTRE and RIGHT
-- under it only 3 of 6 possible walls, 2 of 4 loops and 1 of 3 DARK edits ever get
-built. Get this from the director before spending on S9-SAL-C/R or S9-STU-L.
+FOUR ASSETS EXIST: @fig_SOTR_judge_s9_v1 (approved) and @loc_SOTR_salon_room_s9_v1
+(approved) are done. @loc_SOTR_studio_room_s9_v1 is SUPERSEDED - the light changed from
+daylight to night/candlelight (Gantt + sound brief both said "two in the morning" /
+"moonlit window", neither is in the script) - it must be regenerated from
+prompts/S9-STU-ROOM.txt v3 and re-approved before S9-STU-L can run. Full details:
+REGISTER.md.
 
-WALL ROUTE DECIDED: Nano Banana Pro, reference-led (room master as reference), not
-Soul Cinema - Soul Cinema disables its prompt field when a reference is attached.
-Reasoning in PIPELINE.md 3-5.
+NEXT ACTIONS, IN ORDER:
+1. Regenerate S9-STU-ROOM (v3, night/candlelight), review at full resolution, approve.
+2. Run S9-SAL-R.txt (ready now, no dependency) and S9-STU-L.txt (once its room master is
+   approved). Both are Nano Banana Pro, reference-led off the approved room master.
+3. Review each at full resolution against its card in SHOTCARDS.md.
+4. S9-SAL-R-DARK once S9-SAL-R is approved (NBP edit template, prompts/S9-SAL-DARK.txt).
 
-INTERRUPTED LAST SESSION, CHECK FIRST: a search for the Gerard portrait and Raft
-source images failed repeatedly and was stopped mid-way. Files landed loose in
-SOTR_MEDIA/ (not SOTR_MEDIA/comp/ where they belong), and most are the WRONG
-painting (Louis XVIII at his desk, not in coronation robes) or unverified. Homie
-has since added more images to SOTR_MEDIA - look at those FIRST before searching
-again. Full detail in LOG.md, 2026-09-22 "session paused" entry.
+CLAUDE MAKES THE TECHNICAL CALLS, Homie directs (set 2026-09-22). Only look and story
+decisions go to Homie, always with a recommendation. Confirm the Higgsfield credit
+balance early - it was last logged around 4,500 on 2026-09-22, likely lower now.
 
-Studio canvas proportion check needed before S9-STU-C: room master canvas reads
-~1.66:1, real Raft is 1.46:1 (716x491cm) - state the true proportion explicitly
-in that prompt, do not trust the reference for it.
-
-Run order (PIPELINE.md): S9-SAL-ROOM → S9-SAL-C → L → R → seam check → DARK edits.
-Then S9-STU-ROOM → C → L → R → seam check. S9-CRT-FIG any time.
+RETIRED FILES - do not run, headers explain why: prompts/S9-SAL-L.txt, S9-SAL-C.txt,
+S9-STU-C.txt, S9-STU-R.txt. Each points to its replacement.
 
 For each result Homie brings: judge it against the card, log one row in LOG.md, change
 one thing at a time, and version the prompt file (v2, v3; never overwrite what produced
-an approved asset). Log each model's aspect options in PIPELINE.md on first use.
-Watch the known risks: the salon's CENTRE mirror (fallback after two fails: mirror-glazed
-doors), prompt length (~2,000-character cap), and walls drifting from the room master.
+an approved asset). Log each model's aspect options in PIPELINE.md on first use (Soul
+Cinema's is still uncaptured - NBP's is logged: 9:16 2k -> 1536x2752).
+
+Watch the known risks: prompt length (~2,000-character cap), walls drifting from the
+room master. The salon mirror risk (camera square-on to a mirror) is now MOOT - the
+mirror wall is retired, never built.
 
 Standing preference: the worlds are ours to shape. Adapt references to what works on
 stage and say what changed and why. The era law and STAGE.md still hold.
 
 Whole-objects rule: no object or figure ever straddles a seam. Every wall is a complete
-composition on its own. Only architecture lines, light and colour carry across. Check
-every playtest for it: black out the other two walls and this one should still read.
-Floor projection is parked, not ruled out; it may come back after the walls.
+composition on its own. Only architecture lines, light and colour carry across. Seam
+checks are now needed only where two walls of the SAME world are genuinely live together
+- currently only the court's own climax (Q4->Q5). Floor projection is parked, not ruled
+out; it may come back after the walls.
 
 The client direction PDF exists (docs/SOTR-Scene9-Projection-Direction.pdf, local only,
 rebuilt by tools/make_client_pdf.py). If a look decision changes, update the PDF too.
 
-Still open: the wall-by-beat map (needs director sign-off), final set
-dimensions (v0.2 draft), codec for the mapping software, and the aspect-ratio options
-each model offers, which PIPELINE.md wants logged on first use and which is still not
-captured after three asks. Working folder is now decided: C:\Users\Homie\Documents\SOTR_MEDIA\ Loop prompts and S9-CRT-STRIKE
-wait for a VID session. Never mix IMG and VID in one session.
+Still open: final set dimensions (v0.2 draft), codec and file-container spec for the
+mapping software (docs/WEEK-PLAN.md has the questions to ask), Soul Cinema's aspect-ratio
+options (still uncaptured). Loop prompts and S9-CRT-STRIKE wait for a VID session. Never
+mix IMG and VID in one session.
 
-The Windows PC is set up (2026-09-21): skills installed, both repos cloned, source
-folder audited, working folder created. docs/HANDOVER-WINDOWS.md is history now, not
-a to-do. Homie works from the prompt FILES - give him a path and the settings, never
-paste a long prompt into chat.
+The Windows PC is set up (2026-09-21): skills installed, both repos cloned, source folder
+audited, working folder created. docs/HANDOVER-WINDOWS.md is history now, not a to-do.
+Homie works from the prompt FILES - give him a path and the settings, never paste a long
+prompt into chat.
 
-THREE LESSONS FROM THE JUDGE, they will repeat on the plates:
+LESSONS THAT WILL KEEP REPEATING:
 (1) When the pose, reference structure or register changes, re-read the WHOLE spec for
-clauses that silently depended on the old state. Three of four failures were exactly
-that.
-(2) Accuracy and legibility are different axes. A historically correct costume read as
-Napoleon, which BIBLE.md bans. Check both, separately.
+clauses that silently depended on the old state.
+(2) Accuracy and legibility are different axes - check both, separately (the judge's
+naval costume read as Napoleon; check new content the same way).
 (3) When a defect survives being banned by name, change the NOUN, not the negation.
-Three versions forbade facial features and got faces; asking for "a shape cut from
-black paper" instead of a man got none.
+(4) A locked design can already contain the answer to a question that seems open - the
+salon's "solo wall" was written before the wall-mapping question was even asked, and
+turned out to already be the answer.
 
 ON WRAP: update REGISTER.md and LOG.md, update THIS file's "THE TASK, RIGHT NOW",
 commit, push.

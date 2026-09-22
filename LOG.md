@@ -17,6 +17,84 @@ change the plate, not the sentence.
 
 ## Sessions
 
+### 2026-09-22 — IMG, major simplification: each world confirmed to one wall
+
+**Left/right convention confirmed by Homie: audience-perspective.** Facing the stage:
+salon on the RIGHT, Géricault's studio on the LEFT, the judge on the back screen (CENTRE).
+The raft is a physical riser in the middle of the floor, not a wall — stays out of scope
+per `BIBLE.md`.
+
+**Four reference images reviewed** (Homie's screenshot: a 2022 courtroom-engraving concept,
+the wreck/raft concept already known from `Slide7.JPG`, a mountain panorama likely from a
+different scene, and the Géricault studio concept already known from the 2022 deck).
+Findings:
+
+- **The raft concept image is the confirmation of "the raft... in the middle of the
+  space":** a wraparound wreck/sea image across all three walls with a physical plinth on
+  the floor, two figures standing on it. Matches the client's note exactly. Out of scope,
+  but useful for when Raft is built.
+- **The courtroom engraving is a real tension with the locked, approved judge design, and
+  was NOT followed.** It's a literal historical courtroom; `LOOK.md`'s whole premise is
+  that the court reads apart from the salon and studio by being abstract — *"none: graphic,
+  no texture."* Following the engraving would discard four rounds of approved work to undo
+  the one thing that makes Court legible as a different world. **Decision: judge design
+  unchanged.** The one thing kept from it: a lone performer on a floor riser facing the
+  projection — a staging idea, not a visual one, worth passing to the director for
+  blocking, outside our own deliverable.
+
+**MAJOR FINDING, before any of this: `LOOK.md` already called the portrait wall the
+salon's "solo wall"** for beats 2 and 8 — the salon was never going to use more than one
+wall at a time, under any version of the map. The client's correction was only ever about
+*which* physical wall (RIGHT, not LEFT), not whether the salon needed one wall or three.
+
+**DECIDED (Claude's recommendation, Homie: "go"): collapse each world to one wall,
+confirmed, not proposed.**
+
+| World | Wall | Reasoning |
+|---|---|---|
+| Salon | RIGHT | Already a solo-wall design; only the physical side changes |
+| Studio | LEFT | The canvas (4.7 m) nearly fills a 4.8 m flat on its own — the canvas becomes the room, not a corner of it. Window and shelves were never load-bearing to the story |
+| Court | CENTRE, expanding to all three at Q4→Q5 | Unchanged — already matches "judge on the back screen" as the default, with the climax as a designed exception, not a new contradiction |
+| Raft | floor, out of scope | Confirmed physical, not projected |
+
+**Cost/benefit:** the remaining build drops from up to six wall plates and six loops to
+**two wall plates and two loops**, plus what's already done for Court. On a week-long
+sprint starting its second day, this recovers a large share of the schedule.
+
+**Files changed:**
+
+- `CLAUDE.md` — the "one world = three cameras" standing rule amended: now "one room
+  master, then as many cameras as that world actually uses," most worlds one.
+- `STAGE.md` — "Cohesion across the three walls" section amended the same way; the seam
+  check is scoped to walls that are genuinely live together (currently only Court's climax).
+- `SHOTCARDS.md` — beat-by-wall table rewritten and marked CONFIRMED (was PROPOSED); the
+  deliverables table cut from 6 wall plates/6 loops to 2/2; the salon and studio world
+  cards' Walls rows point at the one confirmed wall each; the studio's Scale
+  anchors/Light/Loop-motion rows resynced to the new single-wall composition; both room
+  contents quotes' intro lines corrected (they're the room master's text now, not quoted
+  into multiple wall prompts, since there is only one wall prompt each).
+- `prompts/S9-SAL-R.txt` — **new active file.** Same content as the old `S9-SAL-L.txt` (the
+  portrait wall) — v1 to v3 of *that* content is preserved, this is a retag, not a redesign.
+  **One line changed:** the corner-with-back-wall direction is mirrored, because
+  `STAGE.md`'s RIGHT flat is a mirror of LEFT — a photograph composed for physical LEFT
+  would join the wrong side if played on physical RIGHT unmirrored.
+- `prompts/S9-SAL-L.txt`, `S9-SAL-C.txt` — retired, point to `S9-SAL-R.txt`.
+- `prompts/S9-STU-L.txt` — **new composition**, not a retag. Re-stages the canvas (was the
+  room's own back-wall content) as a dedicated 4:3 side-wall elevation for the physical
+  LEFT flat. Canvas proportion (4.7 × 3.2 m, ~1.46:1) stated explicitly, per the earlier
+  finding that the room master's own canvas reads ~1.66:1 and can't be trusted for this.
+  Light is the room's one candle, shown motivating the frame from off-frame, since the
+  window itself no longer has room in a composition where the canvas dominates.
+- `prompts/S9-STU-C.txt`, `S9-STU-R.txt` — retired, point to `S9-STU-L.txt`.
+- `prompts/S9-SAL-DARK.txt` — simplified to the one active wall line; the mirror and
+  window-wall DARK lines retired alongside their plates.
+- `REGISTER.md` — pending-prompts table and composited-cue IDs (`S9-SAL-R-PORTRAIT`,
+  `S9-STU-L-PAINT1/2/3`) updated to match.
+
+**Still open, unchanged by this:** the studio room master itself still needs regenerating
+under the night-light prompt (v3) and re-approving before `S9-STU-L` can run — that was
+already true before this session and isn't resolved by the wall-mapping confirmation.
+
 ### 2026-09-22 — IMG, studio light changed to night; client wall assignment received — NOT yet applied
 
 **FINDING — the studio's approved daylight may be wrong, from two independent production

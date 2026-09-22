@@ -1,12 +1,5 @@
-# S9-STU-C · v3 · NOT GENERATED · light changed to night/candlelit (2026-09-22)
-# Nano Banana Pro · 16:9 (keep content inside 5:3) · 2k · ref: approved @loc_SOTR_studio_room_s9_v1 v3 (night)
-# CANVAS PROPORTION CORRECTED: room master reads ~1.66:1; the real Raft is 1.46:1 (716x491cm).
-# Stated explicitly below — this is a deliberate override of the reference, not a drift.
-# WAITING ON: the room master must be regenerated under the v3 night/candlelight prompt and
-# re-approved before this reference exists. Also awaiting beat map sign-off.
-
-@room — the approved studio room master (night version). It carries the room's geometry, materials, the plaster-and-pine finish, and the single candle's warm light falling from the right. It does NOT carry this photograph's framing (the reference shows all three walls in one wide oblique view; this photograph shows ONLY the back wall, straight on), and it does NOT carry the canvas's exact proportion, corrected below.
-
-A straight-on architectural elevation photograph of the back wall of the same studio shown in the reference, camera square to the wall, level at eye height 1.6 metres, verticals and horizontals dead straight, a 45mm lens. The frame spans the wall corner to corner, bottom edge on the skirting, top edge cropping the wall at 3.6 metres. The huge stretched canvas stands centred on wooden blocks, its bottom edge 0.2 metres up: it is 4.7 metres wide and 3.2 metres high, a proportion close to 3:2, taller relative to its width than the reference shows. It is entirely blank, primed a flat warm off-white, square to the wall, with bare plaster showing at least 300mm clear on every side.
-
-Same single candle's warm light as the reference, falling hard across the canvas from the right and dying into deep umber shadow toward the far edge — most of the wall barely visible. Everything of its period, before 1819. No people, no floor visible below the skirting, the wall complete and self-contained with bare plaster clear of both corners.
+# S9-STU-C · RETIRED 2026-09-22 — not needed
+# The client confirmed the studio plays on ONE physical wall only (LEFT). The canvas — this
+# file's subject — is now the whole of that single wall. See S9-STU-L.txt for the active
+# prompt. This file (the canvas alone, framed for a CENTRE/16:9 surface) is not needed
+# because the studio is not on CENTRE at all. Kept only so the ID isn't reused by mistake.

@@ -12,47 +12,58 @@ is `L` / `C` / `R`. Loops add `-LOOP`, and composited cues add `-Q<n>`.
 
 | ID | What | Made in | Depends on | Status |
 |---|---|---|---|---|
-| S9-SAL-ROOM | Salon room master, all three walls in one wide design image (never projected) | Higgsfield (image) | LOOK salon locked | prompt ready |
-| S9-SAL-C | Salon, centre wall plate | Higgsfield (image) | S9-SAL-ROOM approved | prompt ready |
-| S9-SAL-L | Salon, left wall plate | Higgsfield (image) | S9-SAL-C approved | prompt ready |
-| S9-SAL-R | Salon, right wall plate | Higgsfield (image) | S9-SAL-C approved | prompt ready |
-| S9-SAL-{L,C,R}-LOOP | Salon loops (candles, glints) | Higgsfield (video) | each plate | not started |
-| S9-SAL-{L,C,R}-DARK | Salon, candles unlit, dusk only. NBP edit of each approved LIT plate | Higgsfield (image edit) | each LIT plate approved | prompt ready (template) |
-| S9-SAL-L-PORTRAIT | Gérard's Louis XVIII (public domain) composited into the LEFT frame | compositing | S9-SAL-L | not started |
-| S9-STU-ROOM | Studio room master (never projected) | Higgsfield (image) | LOOK studio locked | prompt ready |
-| S9-STU-C | Studio, centre wall (blank primed canvas, 3.2 × 4.7 m) | Higgsfield (image) | S9-STU-ROOM approved | prompt ready |
-| S9-STU-L | Studio, left wall (casts, raft model) | Higgsfield (image) | S9-STU-C approved | prompt ready |
-| S9-STU-R | Studio, right wall (north window, studies) | Higgsfield (image) | S9-STU-C approved | prompt ready |
-| S9-STU-{L,C,R}-LOOP | Studio loops (dust, daylight) | Higgsfield (video) | each plate | not started |
-| S9-STU-C-PAINT1/2/3 | Raft painting in three stages on the canvas | compositing | S9-STU-C | not started |
-| S9-CRT-FIG | Naval officer silhouette, frontal, bare featureless head, gavel raised, scroll | Higgsfield (image) | LOOK court locked ✓ | prompt ready |
+| S9-SAL-ROOM | Salon room master, all three of the room's own walls in one wide design image (never projected) | Higgsfield (image) | LOOK salon locked | **approved** |
+| S9-SAL-R | Salon's one active wall (the portrait), plays on the physical RIGHT flat | Higgsfield (image) | S9-SAL-ROOM approved | prompt ready |
+| S9-SAL-R-LOOP | Salon loop (candles, glints) | Higgsfield (video) | S9-SAL-R | not started |
+| S9-SAL-R-DARK | Salon, candles unlit, dusk only. NBP edit of the approved LIT plate | Higgsfield (image edit) | S9-SAL-R approved | prompt ready (template) |
+| S9-SAL-R-PORTRAIT | Gérard's Louis XVIII (public domain) composited into the frame | compositing | S9-SAL-R | source verified |
+| ~~S9-SAL-C, S9-SAL-L~~ | The room's other two walls (mirror, window) — **not needed**, the salon never shows more than one wall | — | — | retired 2026-09-22 |
+| S9-STU-ROOM | Studio room master, all three of the room's own walls (never projected) | Higgsfield (image) | LOOK studio locked | regenerating (light changed to night) |
+| S9-STU-L | Studio's one active wall (the canvas, re-staged as a side-wall elevation), plays on the physical LEFT flat | Higgsfield (image) | S9-STU-ROOM approved | prompt ready |
+| S9-STU-L-LOOP | Studio loop (dust, candlelight, canvas edge) | Higgsfield (video) | S9-STU-L | not started |
+| S9-STU-L-PAINT1/2/3 | Raft painting in three stages on the canvas | compositing | S9-STU-L | not started |
+| ~~S9-STU-C, S9-STU-R~~ | The room's other two walls (window, shelves) — **not needed**, the studio never shows more than one wall | — | — | retired 2026-09-22 |
+| S9-CRT-FIG | Naval officer silhouette, frontal, bare featureless head, gavel raised, scroll | Higgsfield (image) | LOOK court locked ✓ | **approved** |
 | S9-CRT-STRIKE | One gavel strike, black on white | Higgsfield (video, image-to-video) | S9-CRT-FIG approved | prompt in a VID session |
-| S9-CRT-Q1…Q5 | The five strike cues at growing scale | compositing | S9-CRT-STRIKE | not started |
+| S9-CRT-Q1…Q5 | The five strike cues at growing scale (Q4/Q5 the only moment all three walls carry one world) | compositing | S9-CRT-STRIKE | not started |
 | Transitions | Salon candle-in/out, studio paint-in/bleach, court hard cut | compositing | all plates | not started |
 
-Two rooms × (1 master + 3 walls), plus the court. That's **2 room masters, 6 wall plates
-(+3 salon DARK edits), 6 loops, 1 figure and 1 strike**, then the master comp. Workflow in `PIPELINE.md`.
+**Simplified 2026-09-22, after the client's wall assignment.** Each world holds one wall for
+its whole run (the court's climax excepted), so the build is now **2 room masters (design
+reference only, never projected), 2 wall plates, 2 loops, 1 figure and 1 strike** — down
+from the 6 wall plates and 6 loops this table listed yesterday, since three walls per room
+were never going to be shown in performance. Workflow in `PIPELINE.md`.
 
 ---
 
-## Which world goes on which wall, beat by beat — PROPOSED
+## Which world goes on which wall, beat by beat — CONFIRMED 2026-09-22
 
-Proposal only. This is the director's call and needs sign-off. Performers need to know
-which wall they're playing against.
+**From the client, via Homie, audience-perspective confirmed:** salon on the audience's
+RIGHT, Géricault's studio on the LEFT, the judge on the back screen (CENTRE). The raft is
+physical — a riser in the middle of the floor, not a wall — and stays out of scope
+(`BIBLE.md`).
 
-| Beat | Fragment | LEFT | CENTRE | RIGHT |
+**Each world holds exactly one wall for its whole run, no exceptions except the court's own
+climax.** `LOOK.md` already called the portrait wall the salon's "solo wall" before this
+was confirmed — beats 2 and 8 never used more than one wall in the first place. The change
+is which physical wall: RIGHT, not LEFT. The studio simplifies the same way: one wall,
+carrying the canvas — its dramatic centre, and at 4.7 m on a 4.8 m flat, close to true
+scale filling it — rather than splitting canvas/window/shelves across three.
+
+| Beat | Fragment | LEFT (studio) | CENTRE (court) | RIGHT (salon) |
 |---|---|---|---|---|
-| 2 | Salon: the letter | **Salon** (candles in) | black | black |
-| 3 | Court: "One!" | salon dims | **Court Q1** | — |
-| 4 | Studio: the head | — | **Studio** canvas (PAINT1) | **Studio** (paints in) |
-| 5 | Court: "Two!", "Three!" | — | **Court Q2 → Q3** | studio bleaches |
-| 6 | Studio: "Vingt!" | — | Studio (PAINT2) | Studio |
+| 2 | Salon: the letter | black | black | **Salon** (candles in) |
+| 3 | Court: "One!" | black | **Court Q1** | salon dims |
+| 4 | Studio: the head | **Studio** (paints in, PAINT1) | black | black |
+| 5 | Court: "Two!", "Three!" | studio bleaches | **Court Q2 → Q3** | black |
+| 6 | Studio: "Vingt!" | Studio (PAINT2) | black | black |
 | 7 | Court: the verdict | **Court Q4 → Q5** (tribunal) | **Court Q4 → Q5** | **Court Q4 → Q5** (tribunal) |
-| 8 | Salon: "Mais bien sûr" | **Salon** | black | black |
-| 9 | Studio: "I will bring down…" | — | **Studio (PAINT3)** | **Studio** |
+| 8 | Salon: "Mais bien sûr" | black | black | **Salon** |
+| 9 | Studio: "I will bring down…" | **Studio (PAINT3)** | black | black |
 
-The salon lives stage-left and the studio lives stage-right. They only meet at CENTRE, and
-the court breaks through all three.
+No two worlds ever share a wall. Salon and studio never appear together; the court alone
+breaks the rule, spreading to all three only at its own climax (Q4→Q5), which is a
+deliberate exception already designed into `LOOK.md` World 3, not a new contradiction.
 
 ---
 
@@ -61,7 +72,7 @@ the court breaks through all three.
 | | |
 |---|---|
 | **World** | Rococo salon in a royalist château, 1817, evening. `LOOK.md` → World 1 (LOCKED) |
-| **Walls** | C: trumeau, a gilt mirror of old dim glass over a marble chimneypiece · L: portrait of Louis XVIII (composited), sconces · R: French window, crimson curtains drawn, dusk at the edges, sconces |
+| **Wall** | **One active wall — the portrait — plays on physical RIGHT** (confirmed 2026-09-22). The room's own mirror and window walls are part of the room master for reference and design sign-off only; they are never projected |
 | **In frame** | No people. The mirror reflects an empty room |
 | **Camera** | Locked. Square to the wall, eye level 1.6 m, floor to 3.6 m, no floor visible |
 | **Scale anchors** | Dado 0.9 m · mantel 1.1 m · sconce centres 1.9 m · panel tops and window head 3.2 m |
@@ -70,9 +81,10 @@ the court breaks through all three.
 | **Enters / exits** | The comp reveals LIT through DARK one candle at a time, gilt first · candles snuff out, back to DARK |
 | **Model** | Soul Cinema (room master, plates) · NBP (DARK edits) |
 
-**Room contents. Quote this word for word in every salon prompt.** Only the camera paragraph
-changes between prompts (the clone rule, `PIPELINE.md` 3–5). The prompts in `prompts/` are
-built from this text.
+**Room contents. Quote this word for word in the room master prompt.** Since the salon
+plays on a single confirmed wall (`S9-SAL-R.txt`), that prompt is reference-led off the
+approved room master instead (`PIPELINE.md` 3–5) rather than quoting this text directly —
+this quote's job now is the room master and the design sign-off.
 
 > A rectangular salon with flat walls meeting at square corners. Ivory panels framed in gilt
 > mouldings, their tops at 3.2 metres, stand above a gilt dado rail at 0.9 metres with plain
@@ -89,16 +101,19 @@ built from this text.
 | | |
 |---|---|
 | **World** | Faubourg-du-Roule studio, 1818–19, two in the morning, candlelit. `LOOK.md` → World 2 (LOCKED) |
-| **Walls** | C: blank primed canvas 3.2 × 4.7 m, the painting composited in three stages · R: north window, pinned limb studies, candle stub and red rag on the sill · L: shelves of casts, raft model, canvases leaning face to the wall |
+| **Wall** | **One active wall — the canvas, re-staged as a side-wall elevation — plays on physical LEFT** (confirmed 2026-09-22). At 4.7 m wide on a 4.8 m flat it nearly fills it: the canvas becomes the room. The window and shelves are part of the room master for reference only; they are never projected |
 | **In frame** | No people. No remains, only studies on paper |
 | **Camera** | Locked. Square to the wall, eye level 1.6 m, floor to 3.6 m, no floor visible |
-| **Scale anchors** | Canvas 0.2–3.4 m high · window sill 1.2 m · shelves 1.4 and 2.2 m · studies 1.2–2.4 m |
-| **Light** | One source: a candle on the RIGHT windowsill, 2am, night outside. Light falls right to left, hard fall-off into dark. *Changed 2026-09-22 from daylight — see LOOK.md and LOG.md* |
-| **Loop motion** | R: dust in the candlelight, the candle guttering. All walls: the candle dimming and swelling is a light pass in the master comp (replaces the cloud, 2026-09-22). Keep 300 mm clear of each seam |
+| **Scale anchors** | Canvas 0.2–3.4 m high, 4.7 m wide (~3:2), close to true scale on the 4.8 m flat |
+| **Light** | One source, motivated by the room's own candle (on the window's sill, per the room master) but shown off-frame on the active wall: warm light falling hard across the canvas, dying to deep umber at the wall's far edge. 2am, candlelit. *Changed 2026-09-22 from daylight — see LOOK.md and LOG.md* |
+| **Loop motion** | Dust in the candlelight, the canvas's raw edge catching a flicker. The candle (off-frame) dimming and swelling is a light pass in the master comp (replaces the cloud, 2026-09-22, and the room's own guttering-candle motion, which lived on the now-retired window wall). Keep 300 mm clear of each seam |
 | **Enters / exits** | Paints itself in, charcoal to colour, through brushstroke masks · bleaches back to raw canvas, the edges breaking into particles |
 | **Model** | Soul Cinema. The painting is composited (PAINT1/2/3) |
 
-**Room contents. Quote this word for word in every studio prompt.**
+**Room contents. Quote this word for word in the room master prompt only.** Since the
+studio plays on a single re-staged wall (`S9-STU-L.txt`), that prompt does not quote this
+text — it composes a new elevation of the canvas alone. This quote's job now is the room
+master: the design sign-off and the materials/light reference every wall is checked against.
 
 > A large rectangular studio with flat walls meeting at square corners, at two in the
 > morning. Raw grey lime plaster walls, stained and patched, above a worn wooden skirting.

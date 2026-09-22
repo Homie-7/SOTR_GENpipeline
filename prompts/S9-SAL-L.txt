@@ -1,11 +1,4 @@
-# S9-SAL-L · v2 · NOT GENERATED · rewritten reference-led for NBP (2026-09-22)
-# Nano Banana Pro · 4:3 · 2k · ref: approved @loc_SOTR_salon_room_s9_v1 (single reference —
-# this wall is never live beside another salon wall under the proposed beat map, so no
-# approved sibling wall to match)
-# AWAITING BEAT MAP SIGN-OFF before this runs — see docs/WEEK-PLAN.md
-
-@room — the approved salon room master. It carries the room's geometry, materials, the ivory-and-gilt finish, candlelight colour and every period detail. It does NOT carry this photograph's framing: the reference shows all three walls in one wide oblique view; this photograph shows ONLY the left wall, straight on.
-
-A straight-on architectural elevation photograph of the left wall of the same salon shown in the reference, camera square to the wall, level at eye height 1.6 metres, verticals and horizontals dead straight, a 45mm lens. The frame spans the wall corner to corner: the corner with the back wall falls at the right edge of the frame. The bottom edge sits on the skirting at floor level, the top edge crops the wall at 3.6 metres. The full-length royal portrait in its heavy gilt frame stands centred on the wall, flanked by a gilt candle sconce on each side at 1.9 metres, exactly as the reference shows them on this wall. Below it, the gilt dado rail at 0.9 metres and plain panelling beneath; above it, ivory panels framed in gilt mouldings, their tops at 3.2 metres.
-
-Same warm amber candlelight as the reference, soft and even, the gilt catching the flame. Everything of its period, before 1819. No people, no floor visible below the skirting, the wall complete and self-contained with plain panelling clear of both corners.
+# S9-SAL-L · RETIRED 2026-09-22 — superseded by S9-SAL-R.txt
+# The client confirmed (audience-perspective) that the salon plays on the physical RIGHT
+# flat, not LEFT. Same content (the portrait wall) — see S9-SAL-R.txt for the active prompt.
+# Kept here only so the ID isn't reused by mistake. Do not run this file.

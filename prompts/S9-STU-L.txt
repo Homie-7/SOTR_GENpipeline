@@ -1,11 +1,14 @@
-# S9-STU-L · v1 · NOT GENERATED · NOT REWRITTEN
-# PENDING BEAT MAP SIGN-OFF: the proposed map (SHOTCARDS.md) never puts this wall on stage.
-# Old Soul-Cinema-style text below is STALE (Soul Cinema can't take a reference+prompt together —
-# see PIPELINE.md 3-5). Do not run as-is. Claude rewrites this reference-led for NBP only if the
-# director's sign-off confirms this wall is actually needed.
+# S9-STU-L · v1 · NOT GENERATED · new composition (2026-09-22)
+# Nano Banana Pro · 4:3 · 2k · ref: the studio room master (regenerate S9-STU-ROOM.txt v3
+# first — this wall cannot be built until that reference exists and is approved)
+# REPLACES the old split C (canvas)/R (window) plan. The studio is confirmed to play on
+# ONE physical wall only (LEFT), so this re-stages the canvas — the room's dramatic centre
+# — as a single side-wall elevation, rather than splitting it from the window and shelves.
+# CANVAS PROPORTION: 4.7 x 3.2 m (~1.46:1), matching the real Raft — state explicitly,
+# do not trust an oblique reference for it.
 
-Straight-on architectural elevation photograph of the left wall, camera square to the wall and level at eye height 1.6 metres, 45mm lens, verticals and horizontals perfectly straight. The frame spans the left wall from corner to corner, its bottom edge on the skirting at floor level and its top edge at 3.6 metres. The shelves of casts stand centred, lit square-on by the window opposite. The corner with the back wall is at the right edge of the frame.
+@room — the approved studio room master (night version). It carries the room's materials, the plaster finish, the canvas's identity, scale and blank primed state, and the single-candle night mood. It does NOT carry this photograph's framing: the reference shows the canvas on the room's own back wall in one wide oblique view; this photograph re-stages it as a dedicated side-wall elevation, the studio's one wall used on stage.
 
-Hyper-real photograph of a painter's working studio in Paris in 1818: a large bare rented room, used hard. Grey north daylight from one high window on the right falls across the room onto the canvas and fades into warm raw umber shade toward the far left corner. Palette 60% cool grey daylight and raw plaster, 30% raw umber and deep shadow, 10% dried-blood red on a rag and on the palette. Real surfaces: flaking lime plaster, charcoal smudges, oil paint crusted on wood, turpentine stains, dust on every ledge, scuffed pine. One stub of candle is the only warm note. Everything of its period, before 1819. The room is empty and still.
+A straight-on architectural elevation photograph of the wall in Géricault's studio where the canvas stands, camera square to the wall, level at eye height 1.6 metres, verticals and horizontals dead straight, a 45mm lens. The frame spans the wall corner to corner, bottom edge on the skirting, top edge cropping the wall at 3.6 metres, raw grey lime plaster showing at least 300mm clear on every side. The huge stretched canvas stands centred on wooden blocks, its bottom edge 0.2 metres up: 4.7 metres wide and 3.2 metres high, close to a 3:2 proportion, dominating the wall. It is entirely blank, primed a flat warm off-white, square to the wall.
 
-A large rectangular studio with flat walls meeting at square corners. Raw grey lime plaster walls, stained and patched, above a worn wooden skirting. Back wall: a huge stretched canvas, 3.2 metres high and 4.7 metres wide, its bottom edge 0.2 metres above the floor on wooden blocks, primed a flat warm off-white, entirely blank, square to the wall, with plain plaster around it. Right wall: a tall north window of small square panes, sill at 1.2 metres, rising past 3.6 metres, grey sky beyond; pencil and oil studies of arms, legs and hands are pinned to the plaster around it between 1.2 and 2.4 metres; on the sill, a stub of candle burning in a tin holder beside a red-stained rag. Left wall: rough pine shelves at 1.4 and 2.2 metres holding white plaster casts of antique heads and a hand, and a small wooden scale model of a raft; three stretched canvases lean face to the wall beneath. Every object sits whole on its own wall, with bare plaster near every corner.
+Warm candlelight falls across the canvas from just outside the frame, hardest on the canvas itself and dying into deep umber shadow toward the plaster at the wall's far edge, which is barely visible. Everything of its period, before 1819. No people, no floor visible below the skirting, the wall complete and self-contained.

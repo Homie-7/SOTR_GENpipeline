@@ -73,15 +73,23 @@ current worlds do.
 
 ## Cohesion across the three walls
 
-The three walls of one world are generated as a **set**, from one approved room:
+**Amended 2026-09-22.** The client confirmed each world holds exactly one physical wall for
+its whole run — salon on RIGHT, studio on LEFT, the court's default on CENTRE — so most
+worlds only ever build one wall, not three. The steps below still govern: step 1 always
+happens (the room master is the design sign-off and the light/materials reference
+regardless of how many walls get built from it); steps 2–4 only apply to a world that
+genuinely shows more than one wall at once, which today means only the court's own climax
+(Q4→Q5, all three at once — see `LOOK.md` World 3).
 
-1. Build the **room master** first: one wide design image showing all three walls at
-   once. It's the ground truth and is never projected.
-2. Build **CENTRE** (the front camera) from it. That sets the surface, light and palette.
-3. Build **LEFT**, then **RIGHT**, from the room master plus the approved CENTRE: same
-   cornice line, dado height, wall finish and light source.
-4. Check the joins by laying all three side by side at true proportion (4:5:4 widths)
-   before any is approved. The cornice and dado lines have to meet across both seams.
+1. Build the **room master** first: one wide design image showing all three of the room's
+   own walls at once. It's the ground truth and is never projected.
+2. Build the world's **one confirmed wall** from it (or, for a world that genuinely shares
+   the stage across walls, **CENTRE** first, then LEFT/RIGHT from the master plus the
+   approved CENTRE — same cornice line, dado height, wall finish and light source).
+3. Where two walls of the *same* world are live together, check the joins by laying them
+   side by side at true proportion before either is approved. The cornice and dado lines
+   have to meet across the seam. Skip this where a world holds only one wall — there is no
+   neighbour to match.
 
 Step by step in `PIPELINE.md`.
 

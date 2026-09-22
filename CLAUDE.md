@@ -39,9 +39,14 @@ video vocabularies poison each other, so one session never spans both.
 - **Walls as walls.** Each surface is the matching wall of the room, square-on, at true
   scale. The image's bottom edge is the stage floor, and no floor is visible
   (`STAGE.md`).
-- **One world = one room master, then three cameras.** The room master (never projected)
-  comes first, then FRONT (CENTRE), LEFT, RIGHT, all built from it. Nothing gets approved
-  until all three are laid out side by side and the seams line up.
+- **One world = one room master, then as many cameras as that world actually uses on
+  stage.** The room master (never projected) comes first — a design sign-off and a
+  materials/light reference, always built with all three of the room's own walls in view.
+  **Amended 2026-09-22:** most worlds hold exactly one physical wall for their whole run
+  (confirmed by the client — salon on RIGHT, studio on LEFT, court's default on CENTRE), so
+  only that one wall gets built from the master. Seam-check only where two walls of the
+  *same* world are genuinely live together — currently only the court's own climax (Q4→Q5,
+  all three walls at once).
 - **"One entity across three screens" is made in the master comp**, not in Higgsfield.
   Anything that has to read as a single event across walls is built on the wide canvas.
   Generated loops carry ambient motion only.
@@ -65,19 +70,23 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
-### 2026-09-22 — Judge approved. Both room masters generated; salon approved, studio superseded. Blocked on two confirmations.
+### 2026-09-22 — Wall assignment CONFIRMED. Scope cut from 6 wall plates to 2. Judge and salon room master approved; studio room master needs regenerating.
 
-`@fig_SOTR_judge_s9_v1` is approved, comp fix done. `@loc_SOTR_salon_room_s9_v1` approved.
-`@loc_SOTR_studio_room_s9_v1` v2 is **superseded** — the studio's light changed from
-daylight to night/candlelight (see `LOG.md`) and it must be regenerated from
-`prompts/S9-STU-ROOM.txt` v3 before any wall references it.
+**The client confirmed the beat map** (audience-perspective): salon on RIGHT, studio on
+LEFT, the judge on CENTRE ("the back screen"), the raft a physical floor riser (out of
+scope, `BIBLE.md`). Combined with `LOOK.md`'s pre-existing "solo wall" design for the
+salon, this collapsed each world to **one confirmed wall** instead of three — see
+`SHOTCARDS.md`'s beat table and `LOG.md` 2026-09-22 for the full reasoning.
 
-**Two things need confirming before more walls get built, both in `LOG.md` 2026-09-22:**
-(1) the client gave a wall assignment (salon/studio/court to specific physical walls) that
-contradicts the proposed beat map, but has an unconfirmed left/right convention and an
-unconfirmed single-wall-vs-primary-wall reading — get the client's own exact words before
-writing it into `SHOTCARDS.md`; (2) the studio room master needs regenerating under the new
-light. The rest of this paragraph is the 2026-09-21 state and still holds.
+`@fig_SOTR_judge_s9_v1` approved, comp fix done. `@loc_SOTR_salon_room_s9_v1` approved.
+**Active wall prompts are now `prompts/S9-SAL-R.txt` and `prompts/S9-STU-L.txt`** — the
+old L/C/R-per-world set is retired (files kept, headers point to the replacements).
+
+**One thing still blocks the studio:** `@loc_SOTR_studio_room_s9_v1` is **superseded** —
+the light changed from daylight to night/candlelight (see `LOG.md`) — and must be
+regenerated from `prompts/S9-STU-ROOM.txt` v3 and re-approved before `S9-STU-L` can run.
+The salon has no equivalent block; `S9-SAL-R` is ready now. The rest of this paragraph is
+the 2026-09-21 state and still holds.
 
 ### 2026-09-21 — All three looks LOCKED. Cards and IMG prompts written.
 
