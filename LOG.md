@@ -17,6 +17,24 @@ change the plate, not the sentence.
 
 ## Sessions
 
+### 2026-09-22 — IMG, source images resolved
+
+**Homie's files checked first, as the paused session asked.** The six files in
+`SOTR_MEDIA/` from the interrupted search were the same six, not new ones.
+`Louis_XVIII_of_France_in_Coronation_Robes,_by_François_Gérard.jpg` (1500x2165) verified
+by visual match against the known painting — composition, robes, throne, crown and sceptre
+all correct. Moved to `SOTR_MEDIA/comp/Louis_XVIII_coronation_robes_Gerard.jpg`. The four
+"cabinet de travail" files (wrong painting) and the low-res 1824 file deleted.
+
+**Raft of the Medusa found clean, one search.** WGA08630 on Wikimedia Commons, the Web
+Gallery of Art scan: 5907x4014, public domain (pre-1931), aspect 1.472:1 against the real
+canvas's 1.458:1 — a clean uncropped scan. Downloaded to
+`SOTR_MEDIA/comp/Raft_of_the_Medusa_Gericault_WGA08630.jpg`.
+
+**Both composite sources now verified and in place** (`REGISTER.md`, Composited cues).
+Unblocks S9-SAL-L (portrait frame proportion 1.443:1) and S9-STU-C (canvas proportion
+1.46:1, not the room master's ~1.66:1) once the beat map confirms those walls are needed.
+
 ### 2026-09-22 — IMG session paused · both room masters approved
 
 **Both room masters approved and saved** (details and full-res checks in `REGISTER.md`):

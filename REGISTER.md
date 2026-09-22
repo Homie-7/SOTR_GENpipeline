@@ -48,4 +48,5 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 
 | ID | Built from | Status | Notes |
 |---|---|---|---|
-| | | | |
+| S9-SAL-L-PORTRAIT | `SOTR_MEDIA/comp/Louis_XVIII_coronation_robes_Gerard.jpg` | **source verified, not yet composited** | Gerard's *Louis XVIII in Coronation Robes*, seated, ermine and fleurs-de-lis robes, gilt throne. 1500x2165, aspect 1.443:1 (h:w). Verified 2026-09-22 by visual match against the known painting (composition, robes, throne, crown and sceptre on the cushion all correct). Public domain (pre-1931). **The portrait frame in S9-SAL-L must be built to this proportion.** He is seated, not standing - card says "full-length," which this satisfies, but flag to the director since it is more static than a standing pose. Resolution is modest for a large composite; revisit if the frame reads large on the final wall |
+| S9-STU-C-PAINT1/2/3 | `SOTR_MEDIA/comp/Raft_of_the_Medusa_Gericault_WGA08630.jpg` | **source verified, not yet composited** | Web Gallery of Art scan via Wikimedia Commons, 5907x4014, aspect 1.472:1 (w:h), matching the real canvas's 1.458:1 (716x491cm) to within 1% - a clean uncropped scan. Public domain (pre-1931). **The S9-STU-C wall prompt must state the canvas as 1.46:1**, not the ~1.66:1 the room master returned |
