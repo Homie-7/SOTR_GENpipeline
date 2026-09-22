@@ -67,7 +67,7 @@ video vocabularies poison each other, so one session never spans both.
 
 ### 2026-09-22 — First asset approved (the judge). Next: S9-SAL-ROOM.
 
-`@fig_SOTR_judge_s9_v1` is approved (see `REGISTER.md`, comp fix pending). The rest of the
+`@fig_SOTR_judge_s9_v1` is approved and its comp fix is done (see `REGISTER.md`). The rest of the
 paragraph below is the 2026-09-21 state and still holds.
 
 ### 2026-09-21 — All three looks LOCKED. Cards and IMG prompts written.
