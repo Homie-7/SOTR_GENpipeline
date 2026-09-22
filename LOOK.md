@@ -273,8 +273,12 @@ studio makes things visible (paint). The court imposes (a cut, a strike).
   plates (locations), and **Nano Banana Pro** for edits of an existing frame (the DARK
   states, fixes). Confirm the aspect ratios each one offers on the first generation and log
   them in `PIPELINE.md`.
-- **The style prefix leads every prompt.** The prompts are description-led, and the room is
-  carried in text (`house-rules` finding 15).
+- **The camera anchor leads every plate prompt, then the style prefix, then the room contents**
+  (changed 2026-09-22, Homie). This is Cully's LIRA Soul Cinema location template: the camera
+  anchor is "the hardest part; anchor it hard." The earlier rule (prefix first) cited
+  `house-rules` finding 15, which is about a stylised register fighting photoreal text; SOTR's
+  prefix is itself photographic, so that condition never applied. Salon prompts reordered;
+  studio prompts follow the same order when the studio is prepped.
 - Room master first, then CENTRE, LEFT, RIGHT, per `PIPELINE.md`.
 - Every prompt carries: the world's style prefix, the era line, "camera square to the wall,
   eye level 1.6 m, locked, no floor visible, wall from floor to 3.6 m," and the true-scale

@@ -22,6 +22,8 @@ the salon runs: `banana-pro-director-30` Mode 3 (grepped for DEPRECATED first â€
 `house-rules` names), Cully's `LIRA SKILL.md` and project brief, and Higgsfield's Soul
 Cinema help page.
 
+**Decided (Homie): camera anchor first.** All four salon prompts reordered, no words changed, character counts identical. `LOOK.md` plate recipe updated. C/L/R headers now carry a ROUTE OPEN warning. Studio prompts to be reordered the same way when the studio is prepped.
+
 **FINDING 1 â€” the wall plan was never checked against the platform.** Higgsfield: with a
 reference attached, Soul Cinema's prompt field is disabled. LIRA: one reference. Every
 C/L/R prompt was written as "Soul Cinema + room master reference" (L/R with two). Not
