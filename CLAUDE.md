@@ -65,7 +65,12 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
-### 2026-09-21 — All three looks LOCKED. Cards and IMG prompts written. Nothing generated.
+### 2026-09-22 — First asset approved (the judge). Next: S9-SAL-ROOM.
+
+`@fig_SOTR_judge_s9_v1` is approved (see `REGISTER.md`, comp fix pending). The rest of the
+paragraph below is the 2026-09-21 state and still holds.
+
+### 2026-09-21 — All three looks LOCKED. Cards and IMG prompts written.
 
 Scope: **Court Martial, Salon, Géricault's studio** (Scene 9), deadline about a week from
 21/09. `LOOK.md` is locked for all three worlds, `SHOTCARDS.md` has the cards, and

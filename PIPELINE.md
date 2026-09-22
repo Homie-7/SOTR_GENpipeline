@@ -59,6 +59,11 @@ content does.** Keep everything important inside a 4:3 or 5:3 safe area, whateve
 the model offers. Check which aspects each Higgsfield model supports before the first
 generation, and log it here.
 
+| Model | Aspect options offered | Setting used | Output size | Logged |
+|---|---|---|---|---|
+| Nano Banana Pro | *not yet captured* | 9:16, 2k | **1536 x 2752** | 2026-09-22, from S9-CRT-FIG |
+| Soul Cinema | *not yet captured* — confirm 21:9 before S9-SAL-ROOM | | | |
+
 ## 6 · Seam check
 
 Lay the three plates side by side in the wide comp at true proportion (4 : 5 : 4 widths).
