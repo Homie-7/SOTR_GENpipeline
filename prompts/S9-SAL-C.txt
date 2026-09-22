@@ -1,6 +1,6 @@
 # S9-SAL-C · v1 · NOT GENERATED
 # Soul Cinema · 16:9 (keep content inside 5:3) · 2k · ref: S9-SAL-ROOM
-# ROUTE OPEN: Soul Cinema disables the prompt when a reference is attached. This wall's model and references get decided before it runs (PIPELINE.md 3-5).
+# ROUTE DECIDED 2026-09-22: walls run on Nano Banana Pro with the approved room master as reference. This text gets rewritten reference-led before it runs (PIPELINE.md 3-5).
 # Order (LIRA Soul Cinema location template, 2026-09-22): camera anchor (the only paragraph that changes) → style prefix (LOOK.md, LOCKED) → room contents (SHOTCARDS.md, verbatim)
 
 Straight-on architectural elevation photograph of the back wall, camera square to the wall and level at eye height 1.6 metres, 45mm lens, verticals and horizontals straight. The frame spans the back wall from corner to corner, its bottom edge on the skirting at floor level and its top edge at 3.6 metres. The chimneypiece and mirror stand centred.

@@ -15,6 +15,15 @@ change the plate, not the sentence.
 
 ## Sessions
 
+### 2026-09-22 — IMG, Claude owns the technical calls; week plan set
+
+**Homie's direction:** Claude is the expert on the sources and makes the technical calls;
+Homie directs. Only look and story decisions go to Homie, always with a recommendation.
+
+**Decided:** walls on **Nano Banana Pro, reference-led** (reasoning in `PIPELINE.md` 3-5).
+Studio prompts reordered camera-first to match the salon. **Loops cut from 6 to 4** —
+`LOOK.md` gives STU-C and STU-L no motion of their own. `docs/WEEK-PLAN.md` written.
+
 ### 2026-09-22 — IMG, source check before the salon (Homie's direction)
 
 **Homie: stop experimenting where Joey, Cully and Higgsfield already answer.** Read before

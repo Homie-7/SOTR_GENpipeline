@@ -64,7 +64,11 @@ generation, and log it here.
 | Nano Banana Pro | *not yet captured* | 9:16, 2k | **1536 x 2752** | 2026-09-22, from S9-CRT-FIG |
 | Soul Cinema | **21:9 available** (native), 1:1, 4:3, 3:4, 16:9, 9:16, 3:2, 2:3 — per LIRA; 21:9 native per Higgsfield | 21:9, 2k for room masters | 1.5k / 2k tiers; batch up to 4 | 2026-09-22, from sources, not a test |
 
-**Soul Cinema cannot take a reference AND a prompt.** Higgsfield's help centre: *"When a reference image is attached, the prompt field becomes unavailable."* LIRA: one reference image. So steps 3–5 as written (each wall built on Soul Cinema from the room master, L/R with two references) **cannot be executed.** The room master is unaffected: it has no reference. **The wall route is OPEN and must be decided before S9-SAL-C** — see `LOG.md` 2026-09-22.
+**Soul Cinema cannot take a reference AND a prompt.** Higgsfield's help centre: *"When a reference image is attached, the prompt field becomes unavailable."* LIRA: one reference image. So steps 3–5 as written (each wall built on Soul Cinema from the room master, L/R with two references) **cannot be executed.** The room master is unaffected: it has no reference.
+
+**WALL ROUTE — DECIDED 2026-09-22: Nano Banana Pro, reference-led.** NBP takes a prompt *with* references (up to 14), offers 4:3 and 16:9, and renders to 4K. LIRA sends location view changes to NBP with the new arrangement spelled out, and every approved LGEL plate was built on NBP with two references. GPT Image 2 was rejected: LIRA calls it "very dirty across the frame as a whole", which is the worst trait for a full projected wall, and it costs more. The video-walkthrough route (Cully) was rejected for this week: it is VID work, and LGEL found screenshots of a moving camera soft on every frame.
+- **CENTRE**: NBP, 16:9, ref = approved room master. **LEFT / RIGHT**: NBP, 4:3, refs = room master + approved CENTRE.
+- Each prompt states what every reference carries and what it does not (`house-rules` finding 3), describes only this wall's contents and camera (finding 1: prose re-describing the room overrides the reference), and spells out which wall and where the corners fall (LIRA).
 
 ## 6 · Seam check
 
