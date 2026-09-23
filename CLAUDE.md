@@ -148,5 +148,21 @@ The Windows PC handover is `docs/HANDOVER-WINDOWS.md`.
 ## Session close
 
 On `wrap`: append to `REGISTER.md` and `LOG.md`, save final prompts to `prompts/<ID>.txt`,
-**update `docs/NEW-SESSION.md` → "THE TASK, RIGHT NOW,"** commit, push, and report what
-changed.
+**update `docs/NEW-SESSION.md` → "THE TASK, RIGHT NOW,"** commit, push, **back up to the
+T9**, and report what changed.
+
+### Backing up to the T9 (documented 2026-09-23)
+
+Homie's Samsung T9 SSD, **drive `G:`**, mirrors both folders at `G:\SOTR\HF\`. It is the
+**only** protection for generated media, since `.gitignore` keeps every image and video out
+of git. The repo is backed up twice over (GitHub *and* the T9); the media is backed up once.
+
+| What | How |
+|---|---|
+| `SOTR_GENpipeline` | It's a **real clone of the same origin**, not a file copy. `git push` here, then `git pull` inside `G:\SOTR\HF\SOTR_GENpipeline`. Never copy files over its `.git`. |
+| `SOTR_MEDIA` | Plain copy of anything new, into the matching subfolder. **Verify with a checksum**, not a file listing. |
+
+**Copy, never mirror-delete.** The T9 already holds at least one file that no longer exists
+locally (`plates/studio/loc_SOTR_studio_room_s9_v1.png`, the superseded daylight master that
+`LOG.md` says to keep). A destructive sync would take it out. That asymmetry is the backup
+working, not drift to be tidied away.

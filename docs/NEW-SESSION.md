@@ -155,6 +155,14 @@ wrong take - the failed v2 - and the opening pose is identical in both, so still
 right. Sampling frames across the whole clip caught it. Probe and frame-sample every
 delivered clip before registering it.
 
+BACKUP: Homie's Samsung T9 SSD is drive G:, and both folders mirror at G:\SOTR\HF\. It is
+the ONLY backup of generated media, since .gitignore keeps images and video out of git.
+The repo copy there is a real clone of the same origin - push locally, then git pull inside
+G:\SOTR\HF\SOTR_GENpipeline. Never copy files over its .git. Media is a plain copy into the
+matching subfolder, verified by checksum. COPY, NEVER MIRROR-DELETE: the T9 holds at least
+one file that no longer exists locally (the superseded daylight studio master, which LOG.md
+says to keep), and a destructive sync would remove it. Full note in CLAUDE.md.
+
 ON WRAP: update REGISTER.md and LOG.md, update THIS file's "THE TASK, RIGHT NOW",
-commit, push.
+commit, push, back up to the T9.
 ```
