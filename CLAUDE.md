@@ -70,6 +70,23 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
+### 2026-09-23 — All six IMG assets for this scope approved. Next: compositing, then a VID session for loops and the court strike.
+
+**Studio room master regenerated under night/candlelight and approved** (var 1 of 4),
+superseding the 2026-09-22 daylight approval. Both wall plates then ran and are approved:
+`@loc_SOTR_salon_R_s9_v1` and `@loc_SOTR_studio_L_s9_v1` (the latter needed a crop fix —
+floor was visible below the canvas's support blocks in every generated variant; fixed by
+trimming the frame to the skirting line, not regenerating). `@loc_SOTR_salon_R_dark_s9_v1`
+(the NBP edit for the salon's unlit state) is also approved, with one flagged non-blocking
+deviation: the dusk light reads slightly brighter on the wrong edge, treated as
+comp-correctable rather than a blocker. Full checklist each asset was judged against, and
+what's flagged as known-but-accepted, is in `REGISTER.md`'s 2026-09-23 entries.
+
+**IMG generation work for the confirmed scope is done.** What's left is compositing
+(the Gérard portrait onto the salon frame, the Raft painting's three stages onto the
+studio canvas — see `REGISTER.md`'s Composited cues) and a separate VID session for the
+two loops and `S9-CRT-STRIKE`.
+
 ### 2026-09-22 — Wall assignment CONFIRMED. Scope cut from 6 wall plates to 2. Judge and salon room master approved; studio room master needs regenerating.
 
 **The client confirmed the beat map** (audience-perspective): salon on RIGHT, studio on

@@ -35,19 +35,24 @@ Full reasoning: LOG.md 2026-09-22 "major simplification" entry.
 SCOPE IS NOW: 2 wall plates (S9-SAL-R, S9-STU-L), not 6. 2 loops, not 6. 1 DARK edit, not
 3. docs/WEEK-PLAN.md has the revised day-by-day schedule.
 
-FOUR ASSETS EXIST: @fig_SOTR_judge_s9_v1 (approved) and @loc_SOTR_salon_room_s9_v1
-(approved) are done. @loc_SOTR_studio_room_s9_v1 is SUPERSEDED - the light changed from
-daylight to night/candlelight (Gantt + sound brief both said "two in the morning" /
-"moonlit window", neither is in the script) - it must be regenerated from
-prompts/S9-STU-ROOM.txt v3 and re-approved before S9-STU-L can run. Full details:
-REGISTER.md.
+ALL SIX IMG ASSETS FOR THIS SCOPE ARE NOW APPROVED (2026-09-23):
+@fig_SOTR_judge_s9_v1, @loc_SOTR_salon_room_s9_v1, @loc_SOTR_studio_room_s9_v1
+(regenerated under night/candlelight, supersedes the daylight version),
+@loc_SOTR_salon_R_s9_v1, @loc_SOTR_salon_R_dark_s9_v1, @loc_SOTR_studio_L_s9_v1.
+Full details and known non-blocking deviations (canvas proportion, DARK light direction):
+REGISTER.md and LOG.md, 2026-09-23 entries.
 
 NEXT ACTIONS, IN ORDER:
-1. Regenerate S9-STU-ROOM (v3, night/candlelight), review at full resolution, approve.
-2. Run S9-SAL-R.txt (ready now, no dependency) and S9-STU-L.txt (once its room master is
-   approved). Both are Nano Banana Pro, reference-led off the approved room master.
-3. Review each at full resolution against its card in SHOTCARDS.md.
-4. S9-SAL-R-DARK once S9-SAL-R is approved (NBP edit template, prompts/S9-SAL-DARK.txt).
+1. IMG scope for Scene 9 is done pending Homie's final sign-off pass on the two wall
+   plates and the DARK edit (REGISTER.md has the full checklist each one was judged
+   against).
+2. Compositing (not Higgsfield generation): S9-SAL-R-PORTRAIT (Gerard's Louis XVIII onto
+   the portrait frame) and S9-STU-L-PAINT1/2/3 (the Raft painting's three stages onto the
+   canvas). Both source images are verified in REGISTER.md, not yet composited.
+3. Loops (S9-SAL-R-LOOP, S9-STU-L-LOOP) and S9-CRT-STRIKE are VID work - start a fresh
+   VID session for these, never mixed into an IMG session.
+4. Still open: final set dimensions (v0.2 draft), codec/container spec, Soul Cinema's
+   aspect-ratio options (uncaptured) - see docs/WEEK-PLAN.md.
 
 CLAUDE MAKES THE TECHNICAL CALLS, Homie directs (set 2026-09-22). Only look and story
 decisions go to Homie, always with a recommendation. Confirm the Higgsfield credit

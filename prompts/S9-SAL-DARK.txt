@@ -2,10 +2,13 @@
 # Nano Banana Pro edit · input: the APPROVED LIT S9-SAL-R plate · same aspect as the input
 # Simplified 2026-09-22: only the portrait wall (R) is active now, so only its WALL LINE is
 # kept below. house-rules CHANGE/PRESERVE edit template.
+# FIXED 2026-09-23: light direction was "from the right", left over from the old 3-wall
+# layout. The approved S9-SAL-R plate has the corner-with-back-wall (mirror/window side)
+# at the LEFT edge of frame, confirmed on the corner crops during review. Flipped to left.
 
 Edit the image: the same salon wall at dusk with every candle unlit.
 
-CHANGE: every candle in the sconces and candelabra is unlit, white beeswax with a black wick. The only light is cold blue-grey dusk from the drawn curtains of the window on the right side of the room, dim and low. The ivory panelling falls into deep blue-grey shadow and the gilt catches faint cool highlights. [WALL LINE]
+CHANGE: every candle in the sconces and candelabra is unlit, white beeswax with a black wick. The only light is cold blue-grey dusk from the drawn curtains of the window elsewhere in the room, entering from off-frame at the LEFT edge (the corner with the back wall), dim and low. The ivory panelling falls into deep blue-grey shadow and the gilt catches faint cool highlights, strongest toward the left. [WALL LINE]
 
 PRESERVE EXACTLY:
 - every panel, moulding, rail, sconce, candelabrum, frame, mirror, curtain and fold, in the same position and size
@@ -15,7 +18,7 @@ PRESERVE EXACTLY:
 ONLY CHANGE: the candles unlit and the light fallen to dusk. 100% identical otherwise.
 
 WALL LINE (R — the portrait wall, the only active wall)
-The portrait frame's gilt holds a faint cool edge of light from the right.
+The portrait frame's gilt holds a faint cool edge of light from the left, toward the corner with the back wall.
 
 Retired 2026-09-22 (not needed, salon is never on C or L on stage):
 C: The mirror's reflection darkens too, the reflected room in blue-grey shadow.
