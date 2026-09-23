@@ -214,15 +214,24 @@ Recorded here so it is not re-opened as a mistake.
 continuity with the 2022 dev showing's shadow play. The white reads as the verdict's paper
 and the scroll.
 
-**The growth.**
+**The growth — REVISED 2026-09-23, built from `BIBLE.md`'s actual beat structure, not
+five isolated hits.** The script never gives the court five separate moments to appear —
+it gives him **three appearances**, because Scene 9 is a four-way split and the studio
+takes the CENTRE wall to black twice in between (beats 4 and 6). The growth rides on that
+existing structure instead of inventing a new one:
 
-| Strike | Script moment | Silhouette size |
-|---|---|---|
-| 1 | Opening "Order!" and finding One | small, about 1.2 m tall, CENTRE only |
-| 2 | Finding Two | about 2.4 m, CENTRE |
-| 3 | Finding Three, "Get the TRAITORS out" | fills CENTRE, head cropped |
-| 4 | The judge loses control | tighter still: a push-in crop on the same figure, chest and head filling CENTRE, gavel huge in frame |
-| 5 | "…CAN NOT be held responsible." | **the gavel alone fills the whole wall**, coming down from CENTRE's top edge, then cut to black |
+| Appearance | Script beat | Moment(s) | Silhouette |
+|---|---|---|---|
+| **1** | Beat 3 | "Order! Order!" The gavel. Finding **One!** | small, about 1.2 m, CENTRE. One hard strike. |
+| — | Beat 4 | Studio has the wall (the head, the hessian bag) | **CENTRE black** |
+| **2** | Beat 5 | Gavel, Finding **Two!** ... Gavel, Finding **Three!**, a scuffle, "Get the TRAITORS out" — the judge loses control | reappears at **about 2.4 m** on "Two!", then **fills CENTRE, head cropped** on "Three!" — two hard jumps in the same continuous appearance, no black between them. The lack of a breath between the two is what sells "loses control" |
+| — | Beat 6 | Studio has the wall again ("I will show it all!") | **CENTRE black** |
+| **3** | Beat 7 | "An Act of God… CAN NOT be held responsible." | reappears biggest: a push-in crop on the same figure, chest and head filling CENTRE, gavel huge |
+| **capper — INVENTED, not scripted** | after beat 7's line, before beat 8 (salon) | one more hard hit, no dialogue | **the gavel alone fills the whole wall**, coming down from CENTRE's top edge, then cut to black |
+
+The capper is flagged because it isn't in the script — it's a visual beat added for impact
+before the scene cuts to the salon's smug reply. Everything else above follows `BIBLE.md`
+directly. Confirm the capper with Homie before it's treated as locked.
 
 **CORRECTED 2026-09-23: one judge, not three.** `BIBLE.md` states plainly — "Only the
 Judge is animated" — singular, and the script never mentions a panel. A prior session's

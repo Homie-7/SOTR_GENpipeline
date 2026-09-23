@@ -21,6 +21,41 @@ change the plate, not the sentence.
 
 ## Sessions
 
+### 2026-09-23 — IMG, the court's growth restructured around the script's actual beats
+
+**Homie's idea:** each gavel strike, the judge appears, hits, fades away, then comes back
+bigger — building dread through repeated absence and return. Asked whether this needed a
+new mechanism or whether the script called for something else.
+
+**Checked `BIBLE.md` directly rather than answering from the existing Q1-Q5 table.** The
+script doesn't give five separate court moments — it gives **three appearances**, because
+Scene 9 is a four-way split scene and the studio takes the CENTRE wall to black twice in
+between (beats 4 and 6, Géricault's head reveal and his rage speech). Homie's "gone, then
+back bigger" instinct is already exactly what that structure produces, once connected to
+the court's actual place in the beat order — it didn't need inventing.
+
+**One nuance inside that:** beat 5 has two findings back-to-back with no scene-cut between
+them ("Two!" ... "Three!", a scuffle, losing control). Those two stay in one continuous
+appearance with two hard size-jumps, not two separate returns — spacing them apart with a
+black gap would undercut "losing control," which reads as chaos precisely because there's
+no breath between the two hits.
+
+**One clearly invented addition, flagged as such rather than presented as scripted:** the
+existing Q5 (gavel alone filling the whole wall) isn't in `BIBLE.md` — there's no stage
+direction or line after the verdict. Kept as a capper for impact before the cut to the
+salon's beat 8 reply, but marked as unconfirmed with Homie rather than folded in quietly.
+
+**Confirmed separately: no fade, hard cut, both ways.** Homie's "fades away" was offered
+loosely, not as a firm preference; hard cuts match the existing "authority doesn't fade in"
+note and there was no reason to soften it.
+
+**Corrected:** `LOOK.md` World 3 (growth table rebuilt around the three appearances),
+`SHOTCARDS.md` (S9-CRT cues row, deliverables table). No asset or prompt work needed — this
+is a comp/structure decision, resolved before `S9-CRT-STRIKE` gets written in a VID
+session, not after.
+
+---
+
 ### 2026-09-23 — IMG, correction: the court's "tribunal of three" reverted to one judge
 
 **Homie asked where the three-judges idea came from, since his own understanding was
