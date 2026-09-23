@@ -63,6 +63,17 @@ generation, and log it here.
 |---|---|---|---|---|
 | Nano Banana Pro | *not yet captured* | 9:16, 2k | **1536 x 2752** | 2026-09-22, from S9-CRT-FIG |
 | Soul Cinema | **21:9 available** (native), 1:1, 4:3, 3:4, 16:9, 9:16, 3:2, 2:3 — per LIRA; 21:9 native per Higgsfield | 21:9, 2k for room masters | 1.5k / 2k tiers; batch up to 4 | 2026-09-22, from sources, not a test |
+| **Seedance 2.5** (video, image-to-video) | *menu not yet captured — ask Homie* | 9:16 | **1080 x 1920 · 24 fps · 4.04 s (97 frames)** · HEVC Main 10, `yuv420p10le`, ~5.4 Mb/s, AAC 32 kHz stereo | 2026-09-23, measured off `S9-CRT-STRIKE` v3, the project's first video generation |
+
+**Seedance 2.5 notes, from the first run (2026-09-23).**
+- **10-bit out of the box** (`yuv420p10le`), which is better than the 8-bit assumed. Worth
+  keeping through the comp rather than flattening on import.
+- **24 fps native**, so the whole master comp is 24 (`PIPELINE.md` 7b). No interpolation.
+- **4:2:0 chroma** is a non-issue here: the court plate is effectively monochrome, the
+  detail is carried in luma, and the comp thresholds it anyway.
+- **Audio comes back populated, and that is deliberate (Homie, 2026-09-23):** he leaves
+  generation audio ON so the sound designer has a scratch reference of the model's own
+  timing. It is never used in the comp. Don't "fix" this by switching audio off.
 
 **Soul Cinema cannot take a reference AND a prompt.** Higgsfield's help centre: *"When a reference image is attached, the prompt field becomes unavailable."* LIRA: one reference image. So steps 3–5 as written (each wall built on Soul Cinema from the room master, L/R with two references) **cannot be executed.** The room master is unaffected: it has no reference.
 

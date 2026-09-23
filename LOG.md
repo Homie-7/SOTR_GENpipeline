@@ -5,6 +5,9 @@ change the plate, not the sentence.
 
 | Date | ID | v | Model | Changed | Verdict | Note |
 |---|---|---|---|---|---|---|
+| 2026-09-23 | S9-CRT-STRIKE | 3 | **Seedance 2.5**, image-to-video from `@fig_SOTR_judge_s9_v1` | strike direction changed from downward to **toward camera**; `GAVEL PATH` and `FIELD` prohibition blocks deleted; coat movement and forward weight asked for positively | **PASS, with one flagged deviation** | 1080x1920, 24 fps, 4.04 s, 97 frames, HEVC 10-bit. **Verified frame by frame, not on stills.** Structure: hold to ~f47 (coat alive), the blow f48-f53, held large f54-f96. The gavel *rotates* as it comes, so the striking face arrives end-on at the viewer — not specified, and better than what was: it is the business end pointed at the audience. Cloth life is back and is the best in any version (skirts fly, lag, settle) — deleting v2's prohibition blocks is what did it, and **restoring the word "coat" to the physics clause** (v2 had narrowed it to "sleeve", which is what killed it). **Threshold test run on frames 48-59, including the heavily motion-blurred ones:** all resolve to clean hard-edged black/white, so the comp's step-3 threshold handles both the depth-of-field blur and the motion blur. Shape is near-identical thresholded at 110/128/150, so no frame-to-frame edge chatter. **White keyline around the gavel: KEPT, Homie's decision** — it appears only where the gavel overlaps the figure, absent in the raised opening, and it arrives progressively through the motion blur rather than popping. **Carve-out written into `LOOK.md` World 3.** NOT reproducible from the v3 string, which bans it — see the trap warning in `prompts/S9-CRT-STRIKE.txt`. **FLAGGED DEVIATION: epaulette fringe returns as white hatching on both shoulders**, visible once thresholded — the same object prior logged against S9-CRT-FIG v3/v4, which the chosen still variant happened to dodge. It is the banned incidental white, not the sanctioned keyline. Invisible at Q1, prominent at Q3/Q4. Comp fix (tracked patch), same call as the still's throat-V. **Audio track is populated on purpose (Homie): a scratch timing reference for the sound designer, never used in the comp.** Saved `SOTR_MEDIA/loops/fig_SOTR_judge_strike_s9_v1.mp4`. *First download was the wrong take (the v2 ear-height arc); caught by sampling the frames rather than trusting the filename.* |
+| 2026-09-23 | S9-CRT-STRIKE | 2 | as v1 (model still uncaptured) | arc constrained above the shoulder line, stopping at ear height in open white; added `GAVEL PATH` and `FIELD` prohibition blocks | **FAIL — twice over, both faults ours** | (1) **The target height was geometrically impossible.** A lowering arm folds at the elbow, so "ear height, out to the side" puts the hand at neck level and the gavel head — which extends past the hand — onto the shoulder. The spec named a stop position that sits on the body, then forbade the body. Same class of error as the v3 S9-CRT-FIG "no facial features + mouth open" contradiction: **a clause that is impossible to satisfy, not a clause the model disobeyed.** (2) **The animation went robotic and lost v1's cloth life** — Homie's note, and v1's coat movement was the best thing about it. Cause is the volume of prohibition added in v2: a long forbidden-regions list plus a ten-object furniture ban, on top of the existing no-sway/no-foot-shift physics. The model spent its budget on compliance and defaulted to the minimum safe motion; the shorter, shallower arc gave it less to do to begin with. **house-rules finding 19 exactly — a corrective clause promoted into a default flattens a case that didn't have the defect.** **Structural finding, the real one, logged separately below: a frontal one-tone silhouette with no bench cannot perform a legible downward strike at all.** Fix is not another wording pass — taken back to Homie as a design fork. |
+| 2026-09-23 | S9-CRT-STRIKE | 1 | image-to-video from `@fig_SOTR_judge_s9_v1` — **exact model and settings not captured, confirm with Homie** | first video generation, one gavel strike, 9:16 | **FAIL — the strike destroys itself** | Motion, two-tone field and locked camera all correct; the arc is the fault. **Three defects, one cause: the gavel travels down past the shoulder line and across the body.** (1) **Black-on-black erasure** — beside the thigh the gavel is solid black against a solid black coat, so it merges into the silhouette and stops existing. This is structural to a single-tone design: anything crossing the body disappears, and no wording about the gavel fixes it. (2) **Reads as self-injury** — an empty bone-white field has no surface to strike, so a full downward arc terminates on his own leg. Homie's note. (3) **Caught late, not in the returned frames: the arc leaves the Q4 crop.** Q4 is chest and head filling CENTRE, so a strike landing at hip height happens entirely off-screen — one clip cannot serve five cues if the action exits the frame at the tight end. **Fix in v2: constrain the whole arc high and clear of the body** (raised above the head down to ear height, stopping dead in open white, no contact, no furniture). Chosen over adding a bench (a second object that must scale coherently across five cues, and breaks the two-tone shadow-play register) and over cropping the strike off-frame (loses the full-length figure `LOOK.md` needs at Q1). Toward-camera strike kept, but reassigned to a **separate Q5 clip** where it also removes the flagged 5-10x blow-up risk. |
 | 2026-09-23 | S9-STU-L | 1 | NBP | first wall plate off the approved night-light room master, 4:3 | **PASS (crop fix applied)** | Light falloff correct in all four variants on measurement (candle side brighter, dying to umber toward the far edge). All four failed "no floor visible below the skirting" — floor showing beneath the canvas's support blocks. First re-crop (Homie) fixed it centrally but left a sliver in the bottom corners; final crop trims to the base of the blocks, verified floor-free at full res including the corners. Comp-cropped, not regenerated — static locked-camera plate, nothing to lose by trimming. Canvas ~1.28:1 vs the 1.46:1 target, same known non-blocking drift as the room master. Original uncropped generation kept at `SOTR_MEDIA/plates/studio/Original generation.jpeg` per Homie, not deleted. Saved `SOTR_MEDIA/plates/studio/@loc_SOTR_studio_L_s9_v1.jpg`. |
 | 2026-09-23 | S9-SAL-R-DARK | 2 | NBP edit | candles unlit, light fallen to dusk, direction clause fixed (was "right", corrected to "left" to match the approved LIT plate's corner position) | **PASS, with a flagged deviation** | Batch of 4, "16" picked. Candles correctly unlit in all four (white wax, dark wick, no flame). Dado stayed plain, matching the approved LIT plate — no reversion. Corner position preserved. Light-direction fix did not fully land: measured brightness came back brighter on the RIGHT in all four, opposite of the corrected clause — subtle (2-14/255) and "16" is the most balanced. Treated as comp-correctable per `PIPELINE.md`'s own room-wide-light-is-a-comp-pass philosophy, not blocking. Saved `SOTR_MEDIA/plates/salon/@loc_SOTR_salon_R_dark_s9_v1.jpg`. |
 | 2026-09-23 | S9-SAL-R | 3 | NBP | first wall plate off the approved room master, 4:3 | **PASS (two-pass review)** | Var "four" of 4 picked at full res: only variant with no floor visible AND ornate dado (vars "one"/"two" showed floor below the skirting, var "three" had no ornament anywhere on the dado). **First review pass wrongly approved the file** — missed that 3 of 4 below-dado panels came back ornate against the room master's plain treatment; Homie's own touch-up initially went the wrong direction (matched the ornate ones instead of the plain one). Caught on a second, deliberate pass checking the dado against the room master directly, not just against the prompt text. Corrected to plain, matching reference. Corner pilaster garland checked against the room master's own corner — matches; it's continuous trim so the 300mm seam-clearance rule (`STAGE.md`) doesn't apply to it. Portrait frame ~1.52:1 vs the real Gérard's 1.443:1, acceptable — it's a placeholder, composited later. 2400x1792. Saved `SOTR_MEDIA/plates/salon/@loc_SOTR_salon_R_s9_v1.jpg`. |
@@ -20,6 +23,53 @@ change the plate, not the sentence.
 ---
 
 ## Sessions
+
+### 2026-09-23 — VID, the court strike built, failed twice, and turned toward camera
+
+**First VID session of the production.** One asset approved:
+`@fig_SOTR_judge_strike_s9_v1`, from `prompts/S9-CRT-STRIKE.txt` v3 on **Seedance 2.5**
+(9:16 → 1080x1920, 24 fps, 4.04 s, HEVC 10-bit). The model's row in `PIPELINE.md` was
+blank before today; it is the project's first video generation.
+
+**Two failures, one structural cause.** v1 struck to the hip, v2 to the shoulder. Both
+erased the gavel: a second solid-black shape crossing a one-tone silhouette stops existing.
+The real finding took two rounds to name — **a gavel strike is a movement in depth onto a
+bench, and this design has neither bench nor depth**, so "down" could only ever mean down
+across the body. That is a design impossibility, not a prompt fault, and it was taken back
+to Homie as a fork rather than resolved unilaterally (`CLAUDE.md` lesson 5). He chose the
+toward-camera strike — his own instinct from the first review.
+
+**v2 also taught the opposite lesson to the one it was written for.** Adding a
+forbidden-regions list and a ten-object furniture ban made the animation robotic. And a
+single narrowed word — v1's *"only the **coat** and shoulder fabric respond"* became v2's
+*"only the shoulder and **sleeve** fabric"* — is what removed the cloth movement Homie
+valued. v3 deleted both prohibition blocks and asked for the coat and the forward weight
+positively. The result has the best cloth performance of any version.
+
+**The white keyline was a gift from the model, against the prompt.** v3's `SILHOUETTE LOCK`
+explicitly bans white inside any outline; the model produced a clean separation keyline
+around the gavel anyway, and only where the gavel overlaps the figure. Homie chose to keep
+it, so `LOOK.md` World 3 carries a **narrow carve-out** distinguishing a deliberate
+separation gap from the banned incidental white (collars, buttons, fringe). **That string
+is not reproducible on this point** — a trap warning sits at the top of the prompt file,
+because a regeneration would silently lose the keyline.
+
+**Compositing de-risked with evidence rather than assertion.** Homie's concern was that the
+figure goes soft during the strike. Thresholding — already step 3 of the comp — was tested
+on the real frames, including the heavily motion-blurred ones: all resolve to clean hard
+edges, and the shape holds across threshold points 110–150, so no edge chatter. **Q5's
+5–10x blow-up risk is gone entirely**, since the toward-camera travel means Q5 is just more
+of the same clip.
+
+**Process notes.** The first download was the *wrong take* — the failed v2 — and was caught
+only by sampling frames across the whole clip, because both versions share an identical
+opening pose. `REGISTER.md` also had `@fig_SOTR_judge_s9_v1` stale at `testing` when every
+other file said approved; corrected. New standing rule from Homie: **every prompt ships
+with model, aspect, resolution, duration and sound**, now in `CLAUDE.md`. He deliberately
+leaves generation audio on as a scratch timing reference for the sound designer.
+
+**Left to generate:** the two loops, `S9-SAL-R-LOOP` and `S9-STU-L-LOOP`. Neither prompt is
+written.
 
 ### 2026-09-23 — IMG, the court's growth restructured around the script's actual beats
 

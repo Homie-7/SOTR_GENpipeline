@@ -1,0 +1,104 @@
+# S9-CRT-STRIKE · v3 · the strike comes TOWARD CAMERA
+# DECIDED WITH HOMIE 2026-09-23. v1 (arc to the hip) and v2 (arc to the shoulder) both
+#   failed for one structural reason, not a wording one: a real gavel strike is a movement
+#   in DEPTH, down onto a bench in front of the body. This design has no bench and no
+#   depth, so "down" can only mean down ACROSS the body — and in one solid tone anything
+#   over the body stops existing. Toward camera is the only direction a frontal silhouette
+#   can strike legibly, because the gavel GROWS instead of crossing him.
+#
+# TWO faults in v2 are deliberately undone here, not carried forward:
+#   1. The `GAVEL PATH` prohibition block is GONE. It is moot now (the gavel is meant to be
+#      in front of him) and its volume of negation is what made the animation robotic —
+#      the model spent its budget on compliance and defaulted to minimum safe motion.
+#   2. **v1 read "only the COAT and shoulder fabric respond"; v2 narrowed it to "only the
+#      shoulder and SLEEVE fabric" — that single word swap is what killed the cloth life
+#      Homie liked.** v3 asks for the coat movement positively and adds the forward drive
+#      of the body, which gives it more to move, not less.
+#   The `FIELD` furniture ban is also cut: v1 invented no furniture, so it was never a
+#   demonstrated prior, and unearned bans cost animation. If a bench appears, add it back.
+#
+# BONUS OF THIS ROUTE: Q5 no longer needs its own generation or the vector-trace fallback.
+#   The toward-camera move IS the capper — the comp simply uses more of the travel for Q5
+#   than for Q1. That removes the 5-10x blow-up risk SHOTCARDS.md flags.
+#
+# SETTINGS
+#   Model:      whatever v1 and v2 were run on — keep it identical so this reads as one
+#               change. Still uncaptured; CONFIRM and log it, with the aspect menu offered,
+#               the real output size and the fps (PIPELINE.md wants these on first use).
+#   Mode:       image-to-video, seed = @fig_SOTR_judge_s9_v1
+#   Aspect:     9:16
+#   Resolution: 1080p tier, NOT 4K — nothing upscales until approved
+#   Duration:   ~4s (take the shortest tier offered if fixed; the held ending just runs on)
+#   Sound:      OFF at generation — the clip comes back silent, sound is placed by the
+#               sound designer against our timecodes
+#
+#   The plate is never projected: the comp keys the black figure out, builds the bone-white
+#   field natively at CENTRE's 5:3, and places the keyed figure on it per cue. Vertical
+#   keeps ~1.8x the linear resolution on the figure versus a landscape frame of this tier.
+#
+# GENERATED AND APPROVED 2026-09-23 -> @fig_SOTR_judge_strike_s9_v1
+#   Seedance 2.5, image-to-video, 9:16 -> 1080x1920, 24 fps, 4.04 s (97 frames), HEVC 10-bit.
+#   Animation, weight and cloth life all correct; the toward-camera blow reads. Verified
+#   frame by frame: hold to f47, blow f48-f53, held large f54-f96.
+#   Blur is NOT a problem — thresholding (the comp's own step 3) removes both the
+#   depth-of-field softness and the motion blur, and the shape is near-identical thresholded
+#   at 110, 128 and 150, so the edge will not chatter frame to frame.
+#   ONE FLAGGED DEVIATION: epaulette fringe returns as white hatching on both shoulders —
+#   the S9-CRT-FIG object prior, banned incidental white, NOT the sanctioned keyline.
+#   Comp fix with a tracked patch, not a regeneration. See REGISTER.md.
+#   Audio comes back populated on purpose (Homie): a scratch timing reference for the sound
+#   designer. Never used in the comp. Do not switch generation audio off.
+#
+# *** TRAP — READ BEFORE EVER REGENERATING FROM THIS STRING ***
+#   The clip carries a clean WHITE KEYLINE around the gavel wherever it crosses the body,
+#   absent in the raised opening pose where the gavel is already clear against white.
+#   **Homie decided 2026-09-23 to KEEP it** (LOOK.md World 3 now carries the carve-out).
+#   It solves black-on-black erasure permanently and reads as cut paper lifting off paper.
+#   BUT IT WAS NOT ASKED FOR. The `SILHOUETTE LOCK` block below explicitly forbids it —
+#   "No grey, no white, no line ever appears inside any outline". The model produced it
+#   ANYWAY, against the prompt. So this string is NOT reproducible on that point: rerun it
+#   and the keyline may well vanish, and nobody would know why.
+#   **If a regeneration is ever needed, v4 must REWRITE `SILHOUETTE LOCK` to ask for the
+#   keyline positively and conditionally** — a white separation line where the gavel
+#   overlaps the figure, none where it stands clear — instead of banning it.
+#   The string below is preserved verbatim per CLAUDE.md (never overwrite what produced a
+#   keeper). Do not edit it. A new idea becomes v4.
+
+SCENE: One naval-officer silhouette, solid black on a bone-white field, drives a raised gavel forward at the viewer in one hard blow, and holds it there, huge and close.
+
+REFERENCE: @fig_SOTR_judge_s9_v1 — the approved court figure still. This is the seed frame: pose, silhouette shape, gavel and scroll position, and the bone-white backlit field come from it exactly. Controls the first frame only, not any new content.
+
+FIRST FRAME: The first visible frame matches the reference exactly — full length, frontal, symmetrical, centred, feet planted apart, gavel raised high and clear above the head in the right hand, scroll held out in the left. No empty establishing frame, no delayed reveal: the pose is already fully formed at 0:00.
+
+FORMAT: Single continuous take, real-time, one shot, no internal cuts.
+
+CAMERA: Dead-on, frontal, static, locked off. No push, no pan, no tilt, no drift, no handheld sway at any point. The camera never moves — the gavel is what comes closer.
+
+ACTION TIMING:
+0:00-0:01.2 — he holds, gavel raised high, scroll out. Alive: the long coat breathes and settles, the skirts of it stir, the raised arm holds its tension.
+0:01.2-0:01.7 — the blow. He drives the gavel forward out of the frame's depth straight at the viewer, punching it down and out from above his head toward the lens. His shoulder and upper body drive into it, his weight goes forward, and the coat swings hard and follows the movement.
+0:01.7-0:04 — he holds it there: the gavel now huge and close, filling much of the frame in front of him, dead still. Behind it the coat swings once more and settles. The scroll stays out in the left hand throughout.
+
+THE GAVEL'S TRAVEL: As it comes at the viewer the gavel simply gets bigger — a flat black shape growing larger and larger against the white, staying perfectly crisp and perfectly solid the whole way, with the same hard clean edges at its largest as at its smallest. It grows well past the width of his body, so bone-white field is visible on both sides of it, and it reads clearly as a gavel the entire time. It never blurs, never softens, never goes out of focus, never turns three-dimensional, never picks up shading or roundness.
+
+PHYSICS: The gavel has real weight. The arm and shoulder accelerate hard into the blow and stop dead at the end of it, no rubbery overshoot and no drifting back. The long coat is heavy wool: it swings with the lunge, lags behind the body, and settles a beat after he stops. His feet stay planted where they are while his weight shifts forward into the blow.
+
+LIGHTING: The field stays the flat, warm bone-white of the reference, softly brighter at its centre — no new light source, no change in direction, no flicker, across the whole take.
+
+SILHOUETTE LOCK: Every black shape in frame — figure, coat, scroll, gavel — stays one unbroken mass of solid, flat black with crisp clean edges throughout, including in motion. No grey, no white, no line ever appears inside any outline. No eyes, nose, mouth, hair or hat at any frame.
+
+ACTING (motion only — no face): The blow reads as controlled, absolute authority landing on the viewer, not anger or panic. One committed movement, no hesitation, no wind-up beyond the drive itself.
+
+AUDIO: Silent. No dialogue, no ad-libs, no narration, no music, no SFX — the strike sound and the field shudder are added later in the edit.
+
+STYLE (verbatim, LOOK.md Court prefix): Flat graphic image: one solid pure black silhouette on a bone-white field, like a shadow cast on a lit paper screen. The black is flat and absolute with crisp clean edges. The white is a warm bone tone, softly brighter at the centre, as if a lamp glows behind the paper. Two tones only.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no film emulation, no ghosting, no flickering, no frame interpolation.
+
+LOCKS:
+NO ON-SCREEN TEXT.
+EXACTLY 1 figure in frame, nobody else — no other silhouettes, no crowd, no reflections of anyone.
+OBJECT COUNT: exactly one gavel and one scroll, in the right and left hand, from first frame to last — never duplicated, never dropped, never swapped hands.
+LOCKED CAMERA — no push, pan, tilt or drift, ever.
+ONE BLOW ONLY — the gavel drives forward once and holds; no second strike, no pulling back, no repeated motion.
+Nothing in frame newer than 1819.

@@ -201,6 +201,22 @@ outline** — v2 and v3 returned white collars, white buttons and fringed epaule
 across all variants, so these are banned by name in the prompt. Every feature is carried by
 the silhouette's edge alone. **No eyes, no nose, no mouth, no hair, no hat.**
 
+**ONE CARVE-OUT, ADDED 2026-09-23 (Homie): a white separation keyline where the gavel
+crosses the body.** In `S9-CRT-STRIKE` the gavel drives toward camera and passes in front
+of the figure, where black-on-black would erase it. The approved clip carries a clean white
+cut-line around the gavel **only while it overlaps the figure** — it is absent in the
+raised opening pose, where the gavel is already clear against open white. Keep that
+conditional behaviour: the line exists to separate two black shapes, so it appears only
+where two black shapes overlap.
+
+**This does not loosen the rule above, and the distinction is the point.** The banned white
+is *incidental rendered detail* — collars, buttons, fringe — which makes the shape read as
+a man rather than as cut paper. A deliberate separation gap does the opposite: keyed onto
+the bone-white field it reads as field showing through, the gavel lifting off the figure as
+a separate piece of paper. That is the shadow-play language this world is built on.
+**Nothing else gets a keyline.** If white appears anywhere other than between the gavel and
+the body, it is the old defect and it is still banned.
+
 **Full length is kept deliberately.** The growth only works if he starts whole: contained
 at Q1, closing at Q2, outgrowing the frame at Q3, cropped tighter still at Q4, and gone at
 Q5 with only the gavel left. Crop him early and Q3 has nowhere to go.
@@ -253,14 +269,25 @@ A short shudder or flash on the field sells the impact.
 
 **How it's made (decided 2026-09-21: a generated strike).**
 1. **S9-CRT-FIG**: one still, black on bone-white, 9:16, gavel raised.
-2. **S9-CRT-STRIKE**: image-to-video from that still. Locked camera, one strike: the gavel
-   comes down hard, then holds. The prompt gets written in a **VID** session, not here.
+2. **S9-CRT-STRIKE**: image-to-video from that still. Locked camera, one strike. **CHANGED
+   2026-09-23 (Homie): the strike comes TOWARD CAMERA, not downward.** The gavel drives
+   forward out of the frame at the viewer, growing as it comes, and holds huge and close.
+   A downward swing was tried twice and fails structurally, not for want of wording: a
+   gavel strike is a movement in depth onto a bench, and this design has neither bench nor
+   depth, so "down" can only mean down across the body — where a second black shape on a
+   one-tone silhouette stops existing. Toward camera is the only direction that reads, and
+   it puts the blow on the audience, which is what the frontal decision was already for.
+   See `LOG.md` 2026-09-23 for both failures.
 3. **In the comp:** threshold the clip to pure black and white (it kills edge boil), then
    scale, place and retime it once per cue. The white field and the impact shudder are made
    in the comp too.
-4. **The one risk is Q5.** A gavel filling a whole wall is an enlargement of about
-   5–10×, and 1080p video will soften at that size. Upscale the strike to 4K first. If it's
-   still soft, Q5 alone uses a vector trace of the still, rotated by keyframes.
+4. **The Q5 risk is RESOLVED by the toward-camera change (2026-09-23).** It used to be the
+   sequence's worst problem: a gavel filling a whole wall meant enlarging a small gavel
+   5–10×, which 1080p video softens, with a keyframed vector trace as the fallback. Now
+   the gavel travels toward the lens and grows within the generated frame, so Q5 is simply
+   **more of the same clip's travel** than Q1 uses — full native resolution, no blow-up, no
+   separate generation, no vector trace. Still upscale the approved clip to 4K before Q5's
+   use, per the normal step 10.
 
 **How it arrives.** It slams in on the strike: a hard cut, no transition. Authority
 doesn't fade in.

@@ -23,8 +23,9 @@ Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
 is a wall of the room, square-on, at true scale. No people in any plate. Cross-screen
 events are built in the wide master comp (4680x1080), not generated.
 
-THE TASK, RIGHT NOW (from 2026-09-23): IMG scope for Scene 9 is DONE. Next session should
-be VID, in a fresh chat - see NEXT ACTIONS.
+THE TASK, RIGHT NOW (from 2026-09-23, VID session): IMG scope is DONE and S9-CRT-STRIKE is
+DONE and APPROVED. What is left in VID is the TWO LOOPS: S9-SAL-R-LOOP and S9-STU-L-LOOP.
+Neither prompt is written yet. Stay in VID for them; start a fresh chat.
 
 WALL MAPPING IS CONFIRMED, not proposed. The client (audience-perspective, confirmed by
 Homie): salon on RIGHT, Gericault's studio on LEFT, the judge on CENTRE ("the back
@@ -51,18 +52,30 @@ the studio takes CENTRE to black twice in between (beats 4 and 6). Full structur
 LOOK.md World 3, SHOTCARDS.md S9-CRT Cues row, LOG.md 2026-09-23 (two entries - the
 tribunal correction, and the growth restructure that followed it).
 
+S9-CRT-STRIKE IS APPROVED (2026-09-23) -> @fig_SOTR_judge_strike_s9_v1, saved at
+SOTR_MEDIA/loops/fig_SOTR_judge_strike_s9_v1.mp4. Seedance 2.5, image-to-video from the
+approved still, 9:16 -> 1080x1920, 24 fps, 4.04s, HEVC 10-bit. THE STRIKE COMES TOWARD
+CAMERA, not downward - changed with Homie after two downward versions failed structurally
+(see LESSON 6). It carries a SANCTIONED WHITE KEYLINE around the gavel where it overlaps
+the body, which is a deliberate carve-out in LOOK.md World 3 - do not "fix" it. One flagged
+deviation: epaulette fringe returns as white hatching, needs a tracked comp patch.
+Q5 no longer needs its own clip or the vector trace - it is further along the same travel.
+
 NEXT ACTIONS, IN ORDER:
-1. Compositing (not Higgsfield generation, do this in either mode or a separate session):
-   S9-SAL-R-PORTRAIT (Gerard's Louis XVIII onto the portrait frame) and S9-STU-L-PAINT1/2/3
-   (the Raft painting's three stages onto the canvas). Both source images are verified in
-   REGISTER.md, not yet composited.
-2. VID session (fresh chat, never mixed with IMG): loops (S9-SAL-R-LOOP, S9-STU-L-LOOP) and
-   S9-CRT-STRIKE. The strike prompt should build from the corrected three-appearance growth
-   above - one generated clip, locked camera, one strike, reused via comp scale/crop for all
-   five cues. Q5 (gavel fills the whole wall) is an invented capper, not scripted - confirm
-   with Homie it's still wanted before building it in.
+1. VID, THIS IS THE ONLY GENERATION WORK LEFT: S9-SAL-R-LOOP and S9-STU-L-LOOP. Both
+   prompts still need writing, off the approved wall plates. Ambient motion only, locked
+   camera, and they must cycle cleanly because QLab may hold them for minutes
+   (PIPELINE.md 7). Salon: candle flames, glints on gilt, a breath in the curtains. Studio:
+   dust in candlelight, the canvas edge catching a flicker - the candle's dim-and-swell is
+   a comp light pass, NOT generated. Seedance 2.5, and ask Homie for its aspect menu, which
+   is still the one uncaptured field in PIPELINE.md.
+2. Compositing (either mode, or its own session): S9-SAL-R-PORTRAIT (Gerard's Louis XVIII
+   onto the portrait frame), S9-STU-L-PAINT1/2/3 (the Raft's three stages onto the canvas),
+   the epaulette patch on the strike, and the court cues Q1-Q5. Sources verified in
+   REGISTER.md, nothing composited yet.
 3. Still open: final set dimensions (v0.2 draft), codec/container spec, Soul Cinema's
-   aspect-ratio options (uncaptured) - see docs/WEEK-PLAN.md.
+   aspect-ratio options (uncaptured) - see docs/WEEK-PLAN.md. Q5's capper is STILL
+   unconfirmed with Homie - it is not in the script.
 
 CLAUDE MAKES THE TECHNICAL CALLS, Homie directs (set 2026-09-22). Only look and story
 decisions go to Homie, always with a recommendation. Confirm the Higgsfield credit
@@ -73,8 +86,15 @@ S9-STU-C.txt, S9-STU-R.txt. Each points to its replacement.
 
 For each result Homie brings: judge it against the card, log one row in LOG.md, change
 one thing at a time, and version the prompt file (v2, v3; never overwrite what produced
-an approved asset). Log each model's aspect options in PIPELINE.md on first use (Soul
-Cinema's is still uncaptured - NBP's is logged: 9:16 2k -> 1536x2752).
+an approved asset). Log each model's aspect options in PIPELINE.md on first use (NBP: 9:16
+2k -> 1536x2752. Seedance 2.5: 9:16 -> 1080x1920, 24fps, HEVC 10-bit. Soul Cinema's and
+Seedance's MENUS are both still uncaptured - ask Homie).
+
+ALWAYS HAND OVER THE SETTINGS (Homie, 2026-09-23, now a standing rule in CLAUDE.md): every
+prompt ships with MODEL, ASPECT RATIO, RESOLUTION, DURATION and SOUND, in the chat message
+and in the file header. He is the one typing them into Higgsfield. Mark anything unconfirmed
+as unconfirmed rather than guessing. Note he deliberately leaves generation AUDIO ON as a
+scratch timing reference for the sound designer - do not switch it off.
 
 Watch the known risks: prompt length (~2,000-character cap), walls drifting from the
 room master. The salon mirror risk (camera square-on to a mirror) is now MOOT - the
@@ -93,9 +113,10 @@ The client direction PDF exists (docs/SOTR-Scene9-Projection-Direction.pdf, loca
 rebuilt by tools/make_client_pdf.py). If a look decision changes, update the PDF too.
 
 Still open: final set dimensions (v0.2 draft), codec and file-container spec for the
-mapping software (docs/WEEK-PLAN.md has the questions to ask), Soul Cinema's aspect-ratio
-options (still uncaptured). Loop prompts and S9-CRT-STRIKE wait for a VID session. Never
-mix IMG and VID in one session.
+mapping software (docs/WEEK-PLAN.md has the questions to ask - note Seedance hands back
+HEVC 10-bit, which is a real input to that decision), Soul Cinema's and Seedance's
+aspect-ratio menus. The two loop prompts are the only generation work left. Never mix IMG
+and VID in one session.
 
 The Windows PC is set up (2026-09-21): skills installed, both repos cloned, source folder
 audited, working folder created. docs/HANDOVER-WINDOWS.md is history now, not a to-do.
@@ -118,6 +139,21 @@ whole-objects rule, dressed up with historical justification, never actually dec
 Homie) and stood for two days before he questioned it himself. Traced and reverted
 2026-09-23 - see LOG.md. "Nothing gets invented about the look" (CLAUDE.md) applies even
 when the invention is a reasonable-sounding technical fix.
+(6) Some defects are STRUCTURAL, not wording faults, and no number of prompt passes will
+shift them. The judge could not strike downward because a gavel strike is a movement in
+DEPTH onto a bench, and this design has neither bench nor depth - so "down" could only mean
+down ACROSS the body, where a second black shape on a one-tone silhouette stops existing.
+Two versions failed before that was named. When a fix fails twice for different-looking
+reasons, stop rewording and ask what the design makes impossible.
+(7) PROHIBITION KILLS PERFORMANCE. v2 of the strike added a long forbidden-regions list and
+a ten-object furniture ban, and the animation went robotic - the model spent its budget on
+compliance and defaulted to minimum safe motion. Worse, narrowing one word ("only the COAT
+and shoulder fabric respond" -> "only the shoulder and SLEEVE fabric") is what removed the
+cloth life Homie liked. Ask for movement positively; only ban what has actually appeared.
+(8) VERIFY THE FILE, NOT THE FILENAME. The first download of the approved strike was the
+wrong take - the failed v2 - and the opening pose is identical in both, so stills looked
+right. Sampling frames across the whole clip caught it. Probe and frame-sample every
+delivered clip before registering it.
 
 ON WRAP: update REGISTER.md and LOG.md, update THIS file's "THE TASK, RIGHT NOW",
 commit, push.

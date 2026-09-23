@@ -69,8 +69,37 @@ video vocabularies poison each other, so one session never spans both.
   paint their own wrong version.
 - **Nothing gets invented about the look.** `LOOK.md` is decided one world at a time with
   Homie, and only locked sections are used.
+- **Every prompt is handed over with its settings block (Homie, 2026-09-23).** Homie
+  generates from the prompt files, so a path alone is not a handover. State **model ·
+  aspect ratio · resolution · duration · sound** every time, in the chat message *and* in
+  the file header. Anything not yet confirmed is written as unconfirmed, never guessed —
+  these are the settings he types into Higgsfield, so a wrong one costs a generation.
+  Duration and sound are omitted for IMG prompts; the other three always apply.
 
 ## Current stage
+
+### 2026-09-23 (VID) — The court strike is approved. Only the two loops are left to generate.
+
+`@fig_SOTR_judge_strike_s9_v1` approved from `prompts/S9-CRT-STRIKE.txt` v3, on **Seedance
+2.5** (image-to-video from the approved still, 9:16 → 1080x1920, 24 fps, 4.04 s, HEVC
+10-bit). **The strike comes TOWARD CAMERA, not downward** — decided with Homie after two
+downward versions failed for one structural reason: a gavel strike is a movement in depth
+onto a bench, and this design has neither, so "down" could only mean down across the body,
+where a second black shape on a one-tone silhouette stops existing.
+
+Two things about this asset that a later session will otherwise get wrong. **It carries a
+sanctioned white keyline** around the gavel where it overlaps the figure — a deliberate
+carve-out in `LOOK.md` World 3, not the banned incidental white, and **it is not
+reproducible from the v3 prompt string, which bans it** (trap warning at the top of the
+prompt file). And **the epaulette fringe comes back as white hatching** — that one *is* the
+old banned defect, flagged for a tracked comp patch, not a regeneration.
+
+**Q5's blow-up risk is gone:** the capper is simply further along the same travel, so it
+needs no separate generation and no vector trace. The capper itself is still unconfirmed
+with Homie — it isn't in the script.
+
+**What's left to generate: `S9-SAL-R-LOOP` and `S9-STU-L-LOOP`.** Neither prompt is
+written. Everything else outstanding is compositing.
 
 ### 2026-09-23 — All six IMG assets for this scope approved. Next: compositing, then a VID session for loops and the court strike.
 
