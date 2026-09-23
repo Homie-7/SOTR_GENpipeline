@@ -44,9 +44,11 @@ video vocabularies poison each other, so one session never spans both.
   materials/light reference, always built with all three of the room's own walls in view.
   **Amended 2026-09-22:** most worlds hold exactly one physical wall for their whole run
   (confirmed by the client — salon on RIGHT, studio on LEFT, court's default on CENTRE), so
-  only that one wall gets built from the master. Seam-check only where two walls of the
-  *same* world are genuinely live together — currently only the court's own climax (Q4→Q5,
-  all three walls at once).
+  only that one wall gets built from the master. **Corrected 2026-09-23:** the court's
+  climax was written as spreading to all three walls at Q4→Q5, but that was never a real
+  decision (`BIBLE.md` specifies one judge; see `LOOK.md` World 3 and `LOG.md`). No world
+  in this production currently shows more than one wall at once, so the seam-check step has
+  no live case right now.
 - **"One entity across three screens" is made in the master comp**, not in Higgsfield.
   Anything that has to read as a single event across walls is built on the wide canvas.
   Generated loops carry ambient motion only.

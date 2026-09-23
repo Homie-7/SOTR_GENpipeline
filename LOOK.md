@@ -202,8 +202,8 @@ across all variants, so these are banned by name in the prompt. Every feature is
 the silhouette's edge alone. **No eyes, no nose, no mouth, no hair, no hat.**
 
 **Full length is kept deliberately.** The growth only works if he starts whole: contained
-at Q1, closing at Q2, outgrowing the frame at Q3, multiplying at Q4, and gone at Q5 with
-only the gavel left. Crop him early and Q3 has nowhere to go.
+at Q1, closing at Q2, outgrowing the frame at Q3, cropped tighter still at Q4, and gone at
+Q5 with only the gavel left. Crop him early and Q3 has nowhere to go.
 
 **The gavel is deliberate licence, not an error.** No French court has ever used one — a
 president used a handbell or his voice. But the script writes "The gavel" (`BIBLE.md` beat
@@ -221,15 +221,23 @@ and the scroll.
 | 1 | Opening "Order!" and finding One | small, about 1.2 m tall, CENTRE only |
 | 2 | Finding Two | about 2.4 m, CENTRE |
 | 3 | Finding Three, "Get the TRAITORS out" | fills CENTRE, head cropped |
-| 4 | The judge loses control | **the tribunal of three:** two more judges appear, each whole on LEFT and RIGHT. All three face the audience and strike together |
-| 5 | "…CAN NOT be held responsible." | **each wall fills with its own gavel**, huge, coming down from that wall's top edge. All three strike at once, then cut to black |
+| 4 | The judge loses control | tighter still: a push-in crop on the same figure, chest and head filling CENTRE, gavel huge in frame |
+| 5 | "…CAN NOT be held responsible." | **the gavel alone fills the whole wall**, coming down from CENTRE's top edge, then cut to black |
 
-**Whole-objects rule (2026-09-21).** No judge and no gavel is ever split across a seam. The
-court is overwhelming because three whole judges strike in unison, not because one breaks
-the frame. It's also closer to history: a court martial sat as a panel. One figure makes
-all three, used as generated on every wall — **the figure is frontal, so no mirroring is
-needed.** Three identical judges staring straight out is closer to a real court martial
-panel facing the accused than the earlier inward-facing arrangement.
+**CORRECTED 2026-09-23: one judge, not three.** `BIBLE.md` states plainly — "Only the
+Judge is animated" — singular, and the script never mentions a panel. A prior session's
+"tribunal of three" was never a decision Homie made: it was invented to solve the
+whole-objects rule (below) for a version of Q4/Q5 that grew the figure past what CENTRE
+could hold, then written into this file as if locked. It wasn't, and it's reverted. See
+`LOG.md` 2026-09-23.
+
+**Whole-objects rule (2026-09-21, Homie's direction) still holds, and is why the fix above
+works without a workaround: the judge only ever occupies CENTRE, never spreading onto LEFT
+or RIGHT, so he never approaches a seam to begin with.** "Bigger" past Q3 is achieved by
+cropping tighter on the same figure (a push-in in the comp), not by making him wider than
+one wall. LEFT and RIGHT can carry a light/colour flash at Q4–Q5 to sell the room-wide
+impact — that's within the rule (only light and colour may cross a seam) — but that's a
+comp suggestion, not locked; confirm with Homie before building it.
 
 Each size is a **hard jump on the strike**, not a smooth grow. Every hit shakes the room.
 A short shudder or flash on the field sells the impact.

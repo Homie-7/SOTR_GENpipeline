@@ -57,13 +57,18 @@ scale filling it — rather than splitting canvas/window/shelves across three.
 | 4 | Studio: the head | **Studio** (paints in, PAINT1) | black | black |
 | 5 | Court: "Two!", "Three!" | studio bleaches | **Court Q2 → Q3** | black |
 | 6 | Studio: "Vingt!" | Studio (PAINT2) | black | black |
-| 7 | Court: the verdict | **Court Q4 → Q5** (tribunal) | **Court Q4 → Q5** | **Court Q4 → Q5** (tribunal) |
+| 7 | Court: the verdict | black (optional light flash, see below) | **Court Q4 → Q5** | black (optional light flash, see below) |
 | 8 | Salon: "Mais bien sûr" | black | black | **Salon** |
 | 9 | Studio: "I will bring down…" | **Studio (PAINT3)** | black | black |
 
-No two worlds ever share a wall. Salon and studio never appear together; the court alone
-breaks the rule, spreading to all three only at its own climax (Q4→Q5), which is a
-deliberate exception already designed into `LOOK.md` World 3, not a new contradiction.
+**CORRECTED 2026-09-23:** the court's climax is one judge on CENTRE only, growing then
+cropped tighter with each strike, never spreading to LEFT or RIGHT — see `LOOK.md` World 3
+and `LOG.md` 2026-09-23. A prior version had the climax spread across all three walls as a
+"tribunal of three"; that was never a real decision and is reverted. No two worlds ever
+share a wall, and the court no longer breaks that rule either — every beat, including the
+climax, plays on one wall. LEFT and RIGHT may optionally carry a light/colour flash at Q4→Q5
+to sell the room-wide impact (within the seam rule: only light and colour may cross), but
+that's an open comp suggestion, not locked — confirm with Homie before building it.
 
 ---
 
@@ -136,7 +141,7 @@ master: the design sign-off and the materials/light reference every wall is chec
 | **World** | Abstract. Pure black silhouette on a bone-white backlit field. `LOOK.md` → World 3 (LOCKED) |
 | **Figure** | A **naval officer** of 1817, **facing the audience square-on**, full length, symmetrical. **Bare, completely featureless head — no hat.** High collar, squared shoulders with fringed epaulettes, long coat falling straight, planted stance. **No sword, no tails, no mouth.** Gavel raised clear of the head in the right hand, scroll held out in the left. **One unbroken mass of solid black — no white or grey inside the outline, no eyes, nose, mouth, hair or hat.** *v1 robed judge: wrong institution. v2 profile: Napoleon. v3 hat: Napoleon again. All corrected 2026-09-21 — see `LOOK.md` and `LOG.md`. The gavel is deliberate licence* |
 | **Action** | S9-CRT-STRIKE: image-to-video from S9-CRT-FIG. Locked camera, one hard strike, then hold. **The prompt is written in a VID session.** Thresholded to pure black and white in the comp |
-| **Cues** | Q1 about 1.2 m, CENTRE → Q2 about 2.4 m → Q3 fills CENTRE → Q4 tribunal of three: whole judges on L and R, all three facing the audience, striking in unison (frontal figure, no mirroring) → Q5 each wall filled by its own gavel coming down from its top edge, then cut to black. No figure or gavel ever crosses a seam. Each is a hard jump on the strike, with a shudder on the field |
+| **Cues** | Q1 about 1.2 m, CENTRE → Q2 about 2.4 m → Q3 fills CENTRE, head cropped → Q4 push-in crop on the same figure, chest and head filling CENTRE, gavel huge → Q5 the gavel alone fills CENTRE, coming down from its top edge, then cut to black. **One judge throughout (corrected 2026-09-23 — `BIBLE.md` says "only the Judge is animated"; a prior "tribunal of three" was never a real decision, see `LOG.md`).** He never leaves CENTRE, so he never approaches a seam. Each size is a hard jump on the strike, with a shudder on the field |
 | **Q5 risk** | A gavel filling a whole wall is a 5–10× enlargement. Upscale the strike to 4K first. Fallback for Q5 only: a vector trace of the still, rotated by keyframes |
 | **Sound link** | Our timing leads. The scale jumps are timed to the drama, and the separate sound designer places the gavel hits on them. Mark each jump's timecode at handover |
 | **Voice** | Pre-recorded (the Judge's actor also plays Sarah, who is on stage). No lip sync: it's a silhouette |

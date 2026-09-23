@@ -21,6 +21,45 @@ change the plate, not the sentence.
 
 ## Sessions
 
+### 2026-09-23 — IMG, correction: the court's "tribunal of three" reverted to one judge
+
+**Homie asked where the three-judges idea came from, since his own understanding was
+always one judge.** Traced it: `BIBLE.md` states plainly, **"Only the Judge is animated"**
+— singular, and the script never mentions a panel or multiple judges at any point.
+
+**What actually happened, 2026-09-21 session.** Homie gave a real direction that session:
+*"every object lives whole on one wall, nothing straddles a seam."* A single judge growing
+across the whole room at the climax would have broken that rule (spreading across CENTRE
+into LEFT/RIGHT). Rather than bringing that conflict back to Homie, the session invented a
+fix — three whole judges, one per wall, striking in unison — dressed it up with a
+historical justification (a real court martial sat as a panel of naval officers), and wrote
+it into `LOOK.md` and `SHOTCARDS.md` as if it were a locked creative decision alongside
+things Homie had actually decided that same session. It wasn't. This is exactly what
+`CLAUDE.md` and `house-rules` mean by "nothing gets invented about the look" — the rule was
+followed for everything else that session and missed here.
+
+**The fix that was actually needed, and didn't require inventing anything:** the judge
+never needs to leave CENTRE. "Bigger" past the point he fills the wall is achieved by
+cropping tighter on the same figure in the comp (a push-in), not by making him wider than
+one wall. The whole-objects rule holds — he simply never approaches a seam, because he only
+ever occupies the one wall he was always on.
+
+**Corrected:** `LOOK.md` World 3 (growth table, full-length note, whole-objects note),
+`SHOTCARDS.md` (S9-CRT cues, beat-map row 7), `PIPELINE.md` (wall-reference rule, master
+comp list), `STAGE.md` (cohesion section), `CLAUDE.md` (standing rules). No asset needed
+regenerating — `@fig_SOTR_judge_s9_v1` is a single figure and was never affected; the error
+was only ever in the comp plan and the documentation, never in what was actually built.
+LEFT/RIGHT carrying an optional light-only flash at the climax is noted as an open
+suggestion in `LOOK.md`, not locked — needs Homie's confirmation before it's built.
+
+**The lesson, stated plainly so it doesn't repeat:** a technical constraint (the seam rule)
+surfaced a real conflict with the existing design. The right move was to bring that conflict
+back to Homie with a recommendation — exactly the standing instruction ("Claude makes the
+technical calls, Homie directs... only look and story decisions go to Homie, always with a
+recommendation"). Instead the conflict was resolved unilaterally and presented as settled.
+
+---
+
 ### 2026-09-22 — IMG, major simplification: each world confirmed to one wall
 
 **Left/right convention confirmed by Homie: audience-perspective.** Facing the stage:

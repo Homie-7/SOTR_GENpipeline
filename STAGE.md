@@ -78,8 +78,10 @@ its whole run — salon on RIGHT, studio on LEFT, the court's default on CENTRE 
 worlds only ever build one wall, not three. The steps below still govern: step 1 always
 happens (the room master is the design sign-off and the light/materials reference
 regardless of how many walls get built from it); steps 2–4 only apply to a world that
-genuinely shows more than one wall at once, which today means only the court's own climax
-(Q4→Q5, all three at once — see `LOOK.md` World 3).
+genuinely shows more than one wall at once. **CORRECTED 2026-09-23: no world currently does
+this.** The court's climax (Q4→Q5) was written as spreading across all three walls, but
+that was never a real decision — `BIBLE.md` specifies one judge, and it stays on CENTRE
+throughout. See `LOOK.md` World 3 and `LOG.md` 2026-09-23.
 
 1. Build the **room master** first: one wide design image showing all three of the room's
    own walls at once. It's the ground truth and is never projected.

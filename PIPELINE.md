@@ -70,7 +70,7 @@ generation, and log it here.
 - **CENTRE**: NBP, 16:9, ref = approved room master. **LEFT / RIGHT**: NBP, 4:3, refs = room master + approved CENTRE.
 - Each prompt states what every reference carries and what it does not (`house-rules` finding 3), describes only this wall's contents and camera (finding 1: prose re-describing the room overrides the reference), and spells out which wall and where the corners fall (LIRA).
 
-**REFINED 2026-09-22, CONFIRMED same day: a wall references an approved sibling wall only if that sibling is ever live on stage beside it, not by default.** The original assumption was every world always shows all three walls together; the client's confirmed mapping has salon and studio each holding exactly one wall for their whole run (salon RIGHT, studio LEFT), so neither `S9-SAL-R` nor `S9-STU-L` has a sibling to seam-match — each references only its own room master. The one place two walls of the same world are genuinely live together is the court's own climax (Q4→Q5, all three walls at once), which is where this rule still bites.
+**REFINED 2026-09-22, CONFIRMED same day: a wall references an approved sibling wall only if that sibling is ever live on stage beside it, not by default.** The original assumption was every world always shows all three walls together; the client's confirmed mapping has salon and studio each holding exactly one wall for their whole run (salon RIGHT, studio LEFT), so neither `S9-SAL-R` nor `S9-STU-L` has a sibling to seam-match — each references only its own room master. **CORRECTED 2026-09-23:** the court's climax (Q4→Q5) does not spread across all three walls either — the judge stays on CENTRE only throughout, per `LOOK.md` World 3 and `LOG.md` 2026-09-23 (a prior "tribunal of three" across all three walls was never a real decision). So no world in this production currently has two walls genuinely live together, and this rule has no live case yet.
 
 ## 6 · Seam check
 
@@ -158,7 +158,7 @@ Higgsfield:
 
 - light changing across the whole room (dusk falling, a cloud crossing the studio)
 - fragment transitions (salon candles lighting in, studio painting itself in)
-- the court's strikes, a tribunal of three judges, each whole on its own wall
+- the court's strikes, one judge growing then cropped tighter, CENTRE only (optional light flash on LEFT/RIGHT at the climax — see `LOOK.md` World 3)
 - the Raft painting's three stages on the studio canvas
 
 Because it's one timeline, the three screens are in sync by construction. Generated clips
