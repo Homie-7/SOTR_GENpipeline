@@ -23,7 +23,7 @@ Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
 is a wall of the room, square-on, at true scale. No people in any plate. Cross-screen
 events are built in the wide master comp (4680x1080), not generated.
 
-THE TASK, RIGHT NOW (from 2026-09-22): IMG.
+THE TASK, RIGHT NOW (from 2026-09-23, one day behind schedule but scope halved so it's absorbable — docs/WEEK-PLAN.md): IMG.
 
 WALL MAPPING IS CONFIRMED, not proposed. The client (audience-perspective, confirmed by
 Homie): salon on RIGHT, Gericault's studio on LEFT, the judge on CENTRE ("the back

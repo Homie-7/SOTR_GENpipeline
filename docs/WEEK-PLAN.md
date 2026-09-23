@@ -34,8 +34,8 @@ edits — roughly a day and 1,500–2,000 credits recovered.
 
 | Day | Mode | Work | Who |
 |---|---|---|---|
-| **Mon 22** | IMG | Room masters run, wall mapping confirmed by the client, both salon and studio simplified to one wall each. Studio room master needs one more regeneration (light changed to night — see `LOG.md`); salon's `S9-SAL-R` is ready to run now | Homie generates · Claude reviews |
-| **Tue 23** | IMG | `S9-STU-ROOM` regenerated and approved. `S9-SAL-R` and `S9-STU-L` generated and approved. No seam check needed — each world holds one wall alone | both |
+| ~~Mon 22~~ | IMG | Done: room masters run, wall mapping confirmed, salon and studio simplified to one wall each | Homie generates · Claude reviews |
+| **Tue 23 (today)** | IMG | Absorbs Monday's remaining work now that scope is halved: regenerate `S9-STU-ROOM` and approve it, then generate and approve both `S9-SAL-R` and `S9-STU-L`. No seam check needed — each world holds one wall alone | both |
 | **Wed 24** | IMG | Fixes. `S9-SAL-R-DARK` (NBP edit; fallback: grade LIT down in the comp). Both plates approved | both |
 | **Thu 25** | VID | New session. `S9-CRT-STRIKE` + 2 loops (`S9-SAL-R-LOOP`, `S9-STU-L-LOOP`) | both |
 | **Fri 26** | VID + comp | Loop retries. Comp starts: Gérard portrait onto `S9-SAL-R`, Raft PAINT1–3 onto `S9-STU-L`, court Q1–Q5 (the one moment all three walls carry one world) | Homie comp · Claude cue sheet |
