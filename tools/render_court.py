@@ -23,6 +23,7 @@ cut back to the raised pose. Every impact shudders the field (~6 frames).
 
   python tools/render_court.py OUT.mov --beat 3|5|7        (timed appearance, D1 lengths)
   python tools/render_court.py OUT.mov --strike Q1|Q2|Q3|Q4 (one strike, for a live operator)
+  add --scrim for the v2 look (the lit-scrim field, Q1 ~2.0 m); the strike and timing stay v1
 
 Output: CENTRE 5:3 at working resolution, 1800x1080, 24 fps. Finished clean renders go to
 SOTR_MEDIA/01_FINAL_FOR_SHOW/CENTRE_wall_COURT/ and are never overwritten. Needs ffmpeg, numpy, OpenCV.
@@ -166,7 +167,17 @@ def main():
     ap.add_argument('--beat', type=int, choices=[3, 5, 7])
     ap.add_argument('--strike', choices=['Q1', 'Q2', 'Q3', 'Q4'])
     ap.add_argument('--overwrite', action='store_true')
+    ap.add_argument('--scrim', action='store_true',
+                    help='v2 look (Homie 2026-09-25): the lit-scrim field from render_court_v2.py and the bigger '
+                         'Q1-Q3 ramp; the approved strike and the v1 timing unchanged')
+    ap.add_argument('--edges', action='store_true', help='with --scrim: the torn-paper edges (D7), an effect version')
     a = ap.parse_args()
+    if a.scrim:
+        from render_court_v2 import field_static, lamp_gain, SIZES as V2, TornEdges, with_edges
+        edges = TornEdges() if a.edges else None
+        for q in ('Q1', 'Q2', 'Q3'):
+            SIZES[q] = V2[q]
+        base, lamp = field_static()
     if os.path.exists(a.out) and not a.overwrite:
         raise SystemExit(f'refusing: {a.out} exists. Clean renders are never replaced; give the new one a new version')
     src = load_source()
@@ -180,6 +191,7 @@ def main():
     rng = np.random.default_rng(1817)
     shake = 0
     cache = {}
+    written = []
     for idx, size, impact in seq:
         if idx is None:
             img = np.zeros((OH, OW, 3), np.float32)
@@ -189,7 +201,12 @@ def main():
                 cache = {k: v for k, v in cache.items() if k[0] == RAISED} if len(cache) > 8 else cache
                 cache[key] = place(src[idx], size, gbox)
             m = cache[key]
-            img = fld * m[..., None]
+            if a.scrim:
+                li = lamp * lamp_gain(len(written))
+                bg = with_edges(base, li, edges, len(written)) if edges else base * li[..., None]
+            else:
+                bg = fld
+            img = bg * m[..., None]
             if impact:
                 shake = 6
             if shake:
@@ -199,6 +216,7 @@ def main():
                 shake -= 1
             img = img + rng.normal(0, 0.004, (OH, OW, 1)).astype(np.float32) * (m[..., None] > 0.5)
         w_.stdin.write((np.clip(img, 0, 1) * 65535).astype('<u2').tobytes())
+        written.append(1)
     w_.stdin.close()
     w_.wait()
     print(f'{len(seq)} frames -> {a.out}')

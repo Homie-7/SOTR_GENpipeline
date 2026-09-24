@@ -143,6 +143,19 @@ World 3: down across the body doesn't read). Every strike keeps the sanctioned k
   he still reads first. Prototype frame: session scratchpad `field_q1b.png`. The torn-paper
   edges (D7) come on top of this field.
 
+**D15 · The edge is ALWAYS ON, and how deep it goes (Homie 2026-09-25: "these realities have the
+fragmented edges throughout the whole time… you decide how much… we obviously cannot have elements
+that are animated and important breaking away").** The show plays the `with_edge_effect` files.
+- **Salon (left edge):** ~12-14% of the width, cracks running into the panelling to the left
+  sconce. The sconce is never taken from the break: it comes from the clean file, so it still
+  lights (reveal) and snuffs.
+- **Studio (right edge):** the plaster margin right of the canvas, plus the plaster above the
+  canvas's right corner. **The canvas rectangle is protected by script** (`--protect`), so the Raft
+  (and its apex figure, painted last) never breaks.
+- **Court (both edges):** ~8% of torn paper each side, scraps drifting in the dark. The judge is
+  laid over it and never breaks.
+- **Sound** rides with every file (`tools/build_audio.py`).
+
 **D14 · How the salon break is made (2026-09-25, measured).** Not a Sequel: a Sequel starts on
 the unbroken wall, so the break has to happen on camera, which the model plays as a collapse
 (blocks fall, rubble). It's an **Edit-video pass on the salon's own clips**: the break exists

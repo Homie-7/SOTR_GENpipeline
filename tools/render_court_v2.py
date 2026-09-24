@@ -153,6 +153,70 @@ def field_static():
     return paper_rgb[None, None] * (paper * scenery)[..., None], lamp
 
 
+class TornEdges:
+    """D7 (revised 2026-09-24) + Homie 2026-09-25 ("these realities have the fragmented edges throughout
+    the whole time"): the lit paper tears at BOTH sides into the dark, and scraps of it float there,
+    drifting slowly. Depth ~8% per side. Behind the judge, who never breaks (at every cue he stays
+    inside the torn line: the widest, Q4's scroll arm, reaches ~84% of the width)."""
+
+    def __init__(self, depth=0.08, n=16, seed=1819):
+        rng = np.random.default_rng(seed)
+        y = np.arange(OH, dtype=np.float32)
+        self.mask = np.ones((OH, OW), np.float32)
+        rim = np.zeros((OH, OW), np.float32)
+        for side in (0, 1):
+            # a ragged torn line: slow wander + tear detail
+            wav = sum(rng.normal(0, 1) * np.sin(2 * np.pi * (y / OH) * f + rng.uniform(0, 6.3)) / f
+                      for f in (1, 2, 3, 5, 8, 13))
+            det = np.cumsum(rng.normal(0, 1, OH)); det = det - np.convolve(det, np.ones(41) / 41, 'same')
+            edge = OW * depth * (1 + 0.25 * wav / 2) + 1.2 * det
+            xs = np.arange(OW, dtype=np.float32)[None, :]
+            d = (xs - edge[:, None]) if side == 0 else ((OW - 1 - xs) - edge[:, None])
+            self.mask *= np.clip(d / 1.5, 0, 1)
+            rim = np.maximum(rim, np.exp(-np.clip(d, 0, None) / 2.0) * (d > 0))
+        self.rim = rim
+        # floating scraps: torn polygons of paper, lit dimmer than the sheet, drifting in place
+        self.scraps = []
+        for side in (0, 1):
+            for _ in range(n):
+                r = rng.uniform(8, 34)
+                k = rng.integers(5, 9)
+                ang = np.sort(rng.uniform(0, 2 * np.pi, k))
+                rad = r * rng.uniform(0.55, 1.0, k)
+                poly = np.stack([rad * np.cos(ang), rad * np.sin(ang)], 1)
+                x0 = rng.uniform(0.004, depth * 0.9) * OW
+                cx = x0 if side == 0 else OW - x0
+                self.scraps.append(dict(poly=poly, cx=cx, cy=rng.uniform(0.04, 0.96) * OH,
+                                        amp=rng.uniform(3, 10), f=rng.uniform(0.03, 0.08), ph=rng.uniform(0, 6.3),
+                                        rot=rng.uniform(-0.15, 0.15), shade=0.35 + 0.45 * (1 - x0 / (depth * OW))))
+
+    def frame(self, i):
+        """(field mask, scrap alpha, scrap shade) for output frame i."""
+        t = i / FPS
+        alpha = np.zeros((OH, OW), np.float32)
+        shade = np.zeros((OH, OW), np.float32)
+        for s in self.scraps:
+            a = s['rot'] * np.sin(2 * np.pi * s['f'] * 0.7 * t + s['ph'])
+            R = np.array([[np.cos(a), -np.sin(a)], [np.sin(a), np.cos(a)]], np.float32)
+            dx = s['amp'] * np.sin(2 * np.pi * s['f'] * t + s['ph'])
+            dy = s['amp'] * 0.6 * np.sin(2 * np.pi * s['f'] * 1.3 * t + s['ph'] * 1.7)
+            pts = (s['poly'] @ R.T + [s['cx'] + dx, s['cy'] + dy]).astype(np.int32)
+            m = np.zeros((OH, OW), np.uint8)
+            cv2.fillPoly(m, [pts], 1, lineType=cv2.LINE_AA)
+            alpha = np.maximum(alpha, m.astype(np.float32))
+            shade = np.where(m > 0, s['shade'], shade)
+        return self.mask, alpha, shade
+
+
+def with_edges(base, lamp_i, edges, i):
+    """The lit field with its torn edges and floating scraps (before the figure is laid on)."""
+    fmask, alpha, shade = edges.frame(i)
+    lit = base * lamp_i[..., None]
+    sheet = lit * (fmask * (1 + 0.12 * edges.rim))[..., None]
+    scraps = lit * (shade * alpha)[..., None]
+    return sheet * (1 - alpha[..., None]) + scraps
+
+
 def lamp_gain(i):
     """The lamp behind the paper breathes: slow swell plus a small quick flicker (like the candles)."""
     t = i / FPS

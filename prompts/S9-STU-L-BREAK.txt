@@ -1,0 +1,34 @@
+# S9-STU-L-BREAK · v1 · the studio's fragment edge (RIGHT side) · 2026-09-25 (VID, Claude, connector)
+# Tag on approval: loc_SOTR_studio_L_break_s9_v1 (header only).
+#
+# WHY (Homie 2026-09-25): every wall carries its fragment edge the whole time; Claude decides how
+#   deep, and nothing animated or important may break. The studio is on the LEFT wall, so it breaks
+#   on its RIGHT edge (LOOK D10). DEPTH DECISION: the plaster margin right of the canvas only (the
+#   canvas runs 14-91% of the width; the Raft grows on it and its apex figure sits at ~70%).
+#   break_strip.py takes pixels from the rightmost 9.5% only, so the painting can never be touched
+#   whatever the model does.
+# MECHANISM: the salon's proven one (S9-SAL-R-WITHER v5 B, LOOK D14): EDIT VIDEO on 4 s of the
+#   approved loop. Body = v5's body with only the wall-specific words changed: left -> right, the
+#   salon's panel/gilt/sconce -> the studio's plaster/canvas, "no floor, no rubble" kept.
+# SETTINGS · Seedance 2.5 · Edit video (video_edit) · input = SOTR_MEDIA/05_REFERENCE_UPLOADS/
+#   STU-L-LOOP_comp_upload_4s.mp4 (first 96 frames of the approved studio comp loop, H.264 crf 10,
+#   sha256 bad9545d…) · follows the input (4:3, 4 s) · 1080p · bitrate_mode high · batch 1 ·
+#   sound ON · 48 credits. ONE TAKE; if it fails, stop and report (Homie, 2026-09-25).
+# PREDICT: plaster blocks floating in the dark right of the canvas, from frame 0, the canvas whole.
+#   Risk: the break eats into the canvas (harmless: break_strip only takes the margin).
+
+Edit the video: the right edge of this studio wall has come apart into floating blocks, from the first frame to the last.
+
+CHANGE: Down the whole height of the right edge of the frame, beyond the right edge of the canvas, the plaster wall is in pieces: rectangular blocks of raw lime plaster, cut clean like masonry, a few large, most smaller, each with real thickness. They hang weightless in the dark beside the wall like objects in deep space, each slowly turning and drifting a little back and forth around its own place. The band is even from top to bottom: nearest the whole wall the fragments sit close together; toward the frame's right edge they grow smaller and sparser and fade softly into nothingness. Below them, dark space runs to the frame's bottom edge: no floor, no rubble. The broken edge is already there in the first frame and looks the same in the last. Warm candlelight catches the nearest fragments; the outer ones dim into the dark.
+
+PRESERVE EXACTLY:
+- The camera: locked, square to the wall, the same framing in every frame.
+- The whole canvas, every edge of it, and the plaster to its left and above it, as they are.
+- The flicker of the candlelight on the canvas and the plaster, as in the input.
+- Colour grade, palette, contrast.
+
+ONLY CHANGE: the plaster right of the canvas, broken into floating blocks for the whole clip. 100% identical otherwise.
+
+AUDIO: Quiet room tone and a faint low hum. No music, no voices.
+
+NO ON-SCREEN TEXT. The room is empty: nobody in frame. Nothing in frame newer than 1819.

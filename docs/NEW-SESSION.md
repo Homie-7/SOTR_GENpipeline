@@ -23,35 +23,31 @@ Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
 is a wall of the room, square-on, at true scale. No people in any plate. Cross-screen
 events are built in the wide master comp (4680x1080), not generated.
 
-THE TASK, RIGHT NOW (from 2026-09-25, end of the third VID session; 1,032 credits spent, 32 over
-the cap because the connector DUPLICATED one parallel submission; balance 3,250):
-Stay in VID. Nothing new has gone into 01_FINAL_FOR_SHOW this session; every new thing is a
-CANDIDATE in 03_TESTS_IN_PROGRESS waiting for Homie. Start by getting his verdicts:
+THE TASK, RIGHT NOW (from 2026-09-25, end of VID session 3; 1,080 credits spent that day,
+balance ~3,200. Homie: ~660 of it bought nothing, "absolutely unacceptable". Read the CREDITS
+rule in CLAUDE.md before any generation):
 
-1. SALON BREAK -> 03_TESTS_IN_PROGRESS/salon_break_previews/salon_R_b2-3_break_v1_PREVIEW.mp4 and
-   _b8_. The Control-block break (wither v5 B, an EDIT-VIDEO pass on the lit loop, LOOK D14),
-   carried onto the approved clean files by tools/break_strip.py: the pixels the edit changed,
-   ping-ponged (7.4 s, no crossfade), lit per frame by the base, floor strip faded out. The left
-   sconce and Gerard come from the clean file, so the reveal and the snuff still work. On
-   approval: render as ProRes .mov into 01_FINAL_FOR_SHOW/RIGHT_wall_SALON/with_edge_effect/ (a
-   separate effect file; the clean masters are never touched), then the same for b8.
-   Don't re-run the 30 s edit (it failed: band too wide, snuff lost, LOG 2026-09-25).
-2. THE JUDGE -> 03_TESTS_IN_PROGRESS/court_v2_previews/court_C_b3/b5/b7_v2_PREVIEW.mp4, from
-   tools/render_court_v2.py (LOOK D12-D13): the reading loop between strikes; beat 3 the measured
-   blow (B3 v2, gavel side-on across the chest); beat 5 measured on "Two!", the approved strike on
-   "Three!", the FRANTIC DOUBLE (B5 v1) at 85 s; beat 7 the approved strike at the push-in, then
-   the capper. Q1 is now ~2.0 m (Homie: "too small"). New field: a lit paper scrim with
-   shadow-theatre courtroom shadows (balustrade near, two arched windows far), the lamp breathing.
-   ASK HOMIE: (a) one judge, not three (D13: the script has one Judge and one voice; the variety
-   comes from performance and framing instead); (b) the reading loop's profile nose/chin at the
-   OUTLINE when he turns to the scroll (new for this figure); (c) the scrim field. On approval:
-   rename S9-CRT-READ_v1_loop -> fig_SOTR_judge_read_s9_v1, B3 v2 -> fig_SOTR_judge_strike_b3_s9_v1,
-   B5 v1 -> _b5_, move to 02_APPROVED_BUILDING_BLOCKS/clips/, point render_court_v2.py at them, and
-   render the ProRes v2 files into 01_FINAL_FOR_SHOW/CENTRE_wall_COURT/ (v1 files stay).
-3. Then (credits): the court's torn-paper edges on BOTH sides (D7, script, on top of the scrim);
-   the studio's break on its RIGHT edge (the D14 method: a 4 s Edit-video probe on the studio loop,
-   then break_strip.py); the studio candle arc (D6, ~240); the studio b6 apex oval polish.
-4. Still open: set dimensions, codec/container, the physical fit. The client PDF is STALE.
+SCENE 9 IS DELIVERED as v2 in SOTR_MEDIA/01_FINAL_FOR_SHOW/ (00_READ_ME_FIRST.txt is current):
+- Every show file carries its SOUND (the generated clips' own audio, cut with the picture by
+  tools/build_audio.py, verified at correlation 1.000 against the sources).
+- THE FILES THAT PLAY are each wall's with_edge_effect/*_v2_edge.mov: the fragment edge ON the
+  whole time (LOOK D15). Salon: Control blocks on the left (wither v5 B, an Edit-video pass,
+  laid on by tools/break_strip.py). Studio: plaster blocks right of the canvas (S9-STU-L-BREAK
+  v1, the canvas protected so the painting never breaks). Court: torn paper both sides
+  (render_court.py --scrim --edges), the judge always whole.
+- The COURT is the APPROVED strike and the v1 timing on the new lit-scrim field (Q1 ~2.0 m).
+  Homie rejected the new strikes (B3/B5) and "one judge" is confirmed. Don't regenerate the
+  judge's animation.
+- Clean masters (no edge) sit beside them; every older/silent file is in
+  03_TESTS_IN_PROGRESS/superseded/ (NOTHING was deleted; Homie: "keep everything").
+
+NEXT (ask Homie first; nothing here is urgent):
+1. His verdict on the with_edge_effect files (edge depths are Claude's call, D15).
+2. The studio candle arc (D6): beat 6 flaring, beat 9 steady and bright. Generation, so ask before
+   spending; one 4 s probe first.
+3. Still open: set dimensions, codec/container, the physical fit (pre-warp or playback?), beat
+   timings from rehearsal. The client PDF is STALE.
+4. Homie has MANY OTHER SCENES after this one. Credits are for them.
 
 CONNECTOR RULES LEARNED THIS SESSION (full list: PIPELINE.md):
 - SUBMIT ONE GENERATION AT A TIME and check `transactions` after each. Two parallel calls were
@@ -215,6 +211,11 @@ and lost v1's snuff. Patch the failing phrase, keep every other word, diff befor
 (12) A PROBE PROVES ONLY WHAT IT CONTAINS. The 4 s break probe was a steady loop; the 30 s run
 over reveal + hold + snuff failed on exactly the events the probe didn't have (360 credits).
 Probe the hardest 4 s of the real input before going long.
+(14) WHEN HOMIE SAYS SOMETHING WORKS, BUILD ON IT; DON'T REGENERATE IT. He called the approved
+strike "spot on" and only disliked the repetition; new strike styles were generated anyway (an
+older plan, D12) and rejected. Fix with script/comp on the praised asset first.
+(15) EVERY PICTURE TOOL MUST CARRY THE SOUND. The first show files were all silent because the
+tools read frames only. build_audio.py rebuilds it; check any new tool's output has audio.
 (13) MAKE AN EFFECT EXIST FROM FRAME 0 WITH AN EDIT, NOT A SEQUEL. A Sequel starts on the
 unbroken wall, so the break had to happen on camera, and the model plays that as a collapse with
 gravity (rubble in 4 takes). Edit video put the break on the loop's own frames and it floated.

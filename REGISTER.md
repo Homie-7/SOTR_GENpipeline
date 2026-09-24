@@ -66,6 +66,18 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 | `01_FINAL_FOR_SHOW/CENTRE_wall_COURT/fig_SOTR_judge_C_b3_s9_v1.mov` / `_b5_` / `_b7_` | **Court beats 3 / 5 / 7 on CENTRE** (LOOK World 3, D7-D9) via `render_court.py`, 1800x1080 (5:3), 24 fps: Q1 strike (b3, 40 s, 960 f) · Q2 strike, jump to Q3 on "Three!", Q3 strike on "Order!" (b5, 101 s, 2,424 f) · Q4 push-in strike, then the Q5 capper (the gavel alone fills the wall) and black (b7, 20 s, 480 f). Two-tone, epaulette fringe patched, the keyline kept, field falls to dark at L/R. sha256 b9d9ba09… / aedefdb2… / 4f90824d… | **v1, clean. Cue times estimated from the script (D1)** |
 | `01_FINAL_FOR_SHOW/CENTRE_wall_COURT/backup_pieces/fig_SOTR_judge_C_strikeQ1_s9_v1.mov` … `strikeQ4` | One strike per size (raised · blow · held at the lens 1 s · back to raised), 117 frames each, for a live operator. sha256 d863b5cf… / c1cc8f71… / 8a56f7ed… / 201cb571… | **v1, clean** |
 
+**SHOW FILES v2, 2026-09-25 (supersede every v1 row above; v1 files moved, checksummed, to
+`03_TESTS_IN_PROGRESS/superseded/show_v1_silent/`, nothing deleted):**
+
+| Files in `01_FINAL_FOR_SHOW/` | What changed from v1 | Status |
+|---|---|---|
+| `RIGHT_wall_SALON/loc_SOTR_salon_R_b2-3_s9_v2.mov`, `_b8_`, `backup_pieces/_IN_/_HOLD_/_OUT_` | **sound embedded** (`build_audio.py`); picture stream-copied, MD5 identical to v1 | **clean masters, v2** |
+| `LEFT_wall_STUDIO/loc_SOTR_studio_L_b4/b6/b9_s9_v2.mov` | sound embedded; picture identical | **clean masters, v2** |
+| `CENTRE_wall_COURT/fig_SOTR_judge_C_b3/b5/b7_s9_v2.mov`, `backup_pieces/…strikeQ1-Q4_s9_v2.mov` | **the approved strike and v1 timing, on the lit-scrim field** (D13), Q1 ~2.0 m, sound embedded (`render_court.py --scrim`). The silent scrim render is in `superseded/court_v2_silent/` | **clean masters, v2** (Homie: "just composite the new court background… and be done") |
+| every wall's `with_edge_effect/…_v2_edge.mov` (15 files) | **THE FILES THAT PLAY** (LOOK D15): the fragment edge on, with sound. Salon: v5 B via `break_strip.py`; studio: `S9-STU-L-BREAK` v1 via `break_strip.py --protect` (canvas never touched); court: torn paper (`render_court.py --scrim --edges`) | **v2 edge, for Homie's review** |
+
+**Tools added 2026-09-25:** `build_audio.py` (soundtracks), `break_strip.py` (generated break over a finished file; `--side --protect --period --offset --layer-gain`), `render_court.py --scrim --edges`, `render_court_v2.py` (the rejected reading/strike experiment; kept).
+
 **Court tool:** `tools/render_court.py` (beats and single strikes from the approved strike clip).
 
 **Studio tool:** `tools/render_studio.py` puts the Raft on the canvas at a stage (D4), lit by the canvas's own light, growing over `--grow` seconds. Beat cut-offs 0.45 / 0.80 / 1.06.
@@ -85,9 +97,9 @@ Nothing below is approved. Nothing new went into `01_FINAL_FOR_SHOW/`. Paths are
 | `edge_break_tests/S9-SAL-R-WITHER_v5_B.mp4` (4194fc2b…) | **The salon break**: an Edit-video pass on 4 s of the comp loop. Control blocks floating in place from frame 0, full height, band 12-14%, framing <1 px, left sconce whole (LOOK D14) | `loc_SOTR_salon_R_break_s9_v1` | **candidate**. Its faint floor strip is faded out by script |
 | `salon_break_previews/salon_R_b8_break_v1_PREVIEW.mp4` (5c8f1edf…) / `_b2-3_` | v5 B carried onto the clean b8 / b2-3 files by `tools/break_strip.py` (ping-pong 7.4 s, lit per frame by the base, left sconce and Gérard from the base). H.264 previews | ProRes into `01_FINAL_FOR_SHOW/RIGHT_wall_SALON/with_edge_effect/` | **preview**. The snuff checked on b8: the blocks dim to dusk with the room |
 | `judge_tests/S9-CRT-READ_v1_loop.mov` (3e036850…), from `_long.mp4` (006409c2…) | **The judge's reading loop** (D12): frames 9-358 of a 15 s References take from the approved still, 350 f, loops with no crossfade (IoU 0.998) | `fig_SOTR_judge_read_s9_v1` | **candidate**. Flag: profile nose/chin at the OUTLINE when he turns to the scroll (nothing inside the outline) |
-| `judge_tests/S9-CRT-STRIKE-B3_v2.mp4` (6eee7caf…) | **The measured strike** (beat 3), a Sequel of the reading loop: formal raise, blow at f43, the gavel head side-on across the chest, head above, pure two-tone, no bar | `fig_SOTR_judge_strike_b3_s9_v1` | **candidate** (v1 and its duplicate take2 rejected-in-waiting: the gavel swallowed him, white bar) |
-| `judge_tests/S9-CRT-STRIKE-B5_v1.mp4` (f491cfeb…) | **The frantic double** (beat 5), a Sequel of the reading loop: blows at f24 and f64, the held gavel end-on and huge | `fig_SOTR_judge_strike_b5_s9_v1` | **candidate**. The incidental white bar is closed by `render_court_v2.py` (this clip only; never the approved strike's sanctioned keyline) |
-| `court_v2_previews/court_C_b3_v2_PREVIEW.mp4` (cfa447f1…) / `_b5_` (1e32c83d…) / `_b7_` (c1e8c224…) | **Court beats 3/5/7, v2** via `tools/render_court_v2.py` (D12-D13): reading between strikes, one strike style per beat, Q1 ~2.0 m, the lit-scrim field with shadow-theatre courtroom shadows | ProRes v2 in `01_FINAL_FOR_SHOW/CENTRE_wall_COURT/` (v1 kept) | **preview** |
+| `judge_tests/S9-CRT-STRIKE-B3_v2.mp4` (6eee7caf…) | **The measured strike** (beat 3), a Sequel of the reading loop: formal raise, blow at f43, the gavel head side-on across the chest, head above, pure two-tone, no bar | `fig_SOTR_judge_strike_b3_s9_v1` | **REJECTED by Homie 2026-09-25** ("the whole animation of the gavel is wrong") |
+| `judge_tests/S9-CRT-STRIKE-B5_v1.mp4` (f491cfeb…) | **The frantic double** (beat 5), a Sequel of the reading loop: blows at f24 and f64, the held gavel end-on and huge | `fig_SOTR_judge_strike_b5_s9_v1` | **REJECTED by Homie 2026-09-25**. The incidental white bar is closed by `render_court_v2.py` (this clip only; never the approved strike's sanctioned keyline) |
+| `court_v2_previews/court_C_b3_v2_PREVIEW.mp4` (cfa447f1…) / `_b5_` (1e32c83d…) / `_b7_` (c1e8c224…) | **Court beats 3/5/7, v2** via `tools/render_court_v2.py` (D12-D13): reading between strikes, one strike style per beat, Q1 ~2.0 m, the lit-scrim field with shadow-theatre courtroom shadows | — | **REJECTED (the strikes); the scrim field went into the show files instead** |
 
 **New tools:** `tools/render_court_v2.py` (v1 `render_court.py` kept so the v1 renders can be
 rebuilt); `tools/break_strip.py` (a generated break laid over a finished wall file).

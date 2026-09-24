@@ -45,9 +45,12 @@ video vocabularies poison each other, so one session never spans both.
   the fades at a file's very START and END are the show operator's**, so files start and end
   at full picture, with no fade-in or fade-out. **And each wall is a FRAGMENT of reality, not a
   hard rectangle:** whole on its outer side, breaking up toward the CENTRE of the stage (the
-  2022 Slide 9 concept). It's built into the file by `tools/render_wall.py --fragment-edge`
-  (see `LOOK.md` Fragments). **The dissolve style is NOT approved: Homie didn't like the
-  preview and is sending examples. Don't tune it further until they arrive.** **Open with Homie:** (1) how a
+  2022 Slide 9 concept). **The edge is ON the whole time a wall is lit, on every wall**
+  (Homie, 2026-09-25), and **the show plays the `with_edge_effect` files**. Depths are `LOOK.md`
+  D15: nothing animated or important ever breaks. Built by script: `tools/break_strip.py` lays a
+  generated Control-block break (an Edit-video pass, D14) over the finished files (salon, studio);
+  `tools/render_court.py --scrim --edges` tears the court's paper. (The old `render_wall.py
+  --fragment-edge` dissolve was not liked and is retired.) **Open with Homie:** (1) how a
   beat's length is set now that nothing holds a loop live, i.e. fixed-length files per
   beat, which need beat timings; (2) whether the physical fit onto the angled flats
   (keystone/warp) still happens in playback, or the files must be pre-warped.
@@ -63,6 +66,13 @@ video vocabularies poison each other, so one session never spans both.
   edge, any effect) is a SEPARATE file in `01_FINAL_FOR_SHOW/<wall>/with_edge_effect/`, rebuilt from clean. Homie can do the
   fragments in post himself, so the clean render is the deliverable that matters. Generated
   sources in `02_APPROVED_BUILDING_BLOCKS/` are never modified. `tools/render_wall.py` enforces this.
+- **Sound rides in every show file (Homie, 2026-09-25).** *"Embed it within the file, don't get
+  rid of any of the audio."* The generated clips' own sound, cut with the picture by
+  `tools/build_audio.py` (verify with a correlation against the source). A scratch reference for
+  the sound designer, not the sound design. Any new picture tool must carry it through.
+- **Credits (Homie, 2026-09-25).** *"I trust you to generate things and try things out, but not
+  at the cost of a thousand credits spent within an hour."* The 1,000 cap is a ceiling, not a
+  target. Build on what he has praised before generating anything new; submit one job at a time.
 - **Reference tokens in prompts (Homie, 2026-09-24).** Higgsfield resolves only `@Image 1`,
   `@Video 1`… (numbered by upload order). A register tag like `@loc_SOTR_salon_R_s9_v1` in a
   prompt body is NOT resolved; it's dead text. So register tags live in file HEADERS only.
@@ -131,18 +141,16 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
-### 2026-09-25, third session (VID): the salon break works; the judge performs. All candidates, none approved.
+### 2026-09-25, third session (VID): Scene 9 delivered as v2, with sound and the edge on every wall.
 
-- **Salon break = an Edit-video pass, not a Sequel** (`LOOK.md` D14). A Sequel starts on the
-  unbroken wall, so the break collapses with rubble; Edit video (wither v5 B) floats in place from
-  frame 0. A 30 s edit over the whole chain failed (360 credits: band too wide, snuff lost), so
-  `tools/break_strip.py` lays v5 B over the clean files instead. Previews in `03_TESTS_IN_PROGRESS/`.
-- **The judge** (`LOOK.md` D12-D13, Homie's notes): a reading loop between strikes, one strike
-  style per beat (B3 measured, B5 frantic double, the approved strike at beat 7), Q1 bigger, and a
-  lit-scrim field with shadow-theatre courtroom shadows. **One judge, not three** (the script has
-  one Judge and one voice). `tools/render_court_v2.py`, previews only.
-- **Credits: 1,032** (32 over: the connector duplicated a parallel submission). New connector
-  rules in `PIPELINE.md`: one submission at a time; check `transactions` after errors.
+- **Show files v2** in `SOTR_MEDIA/01_FINAL_FOR_SHOW/`: every file carries its generated **sound**
+  (`build_audio.py`); **the files that play are `with_edge_effect/`**, the fragment edge on the
+  whole time (`LOOK.md` D15). The court = the approved strike on the new **lit-scrim field**.
+- **Salon break = an Edit-video pass (v5 B)**, laid on by `break_strip.py` (D14). **Studio break =
+  S9-STU-L-BREAK v1**, the canvas protected. **Court** = torn paper by script.
+- **Rejected by Homie:** the new strikes (B3/B5) and the reading loop's use; one judge confirmed.
+- **Credits: 1,080 in the day; ~660 bought nothing.** Homie: unacceptable. New standing rule
+  (Credits, above). Nothing deleted: old/silent files are in `03_TESTS_IN_PROGRESS/superseded/`.
 
 ### 2026-09-24, second session (VID): every wall has finished clean files; the fragment edge is found.
 

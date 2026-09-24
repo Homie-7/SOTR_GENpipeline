@@ -50,9 +50,17 @@ def main():
     ap.add_argument('brk')
     ap.add_argument('edited_from')
     ap.add_argument('out')
-    ap.add_argument('--max-x', type=float, default=0.24, help='the footprint stops here (fraction of width)')
+    ap.add_argument('--max-x', type=float, default=0.24, help='how far in from the breaking edge the footprint may reach (fraction of width)')
+    ap.add_argument('--side', choices=['left', 'right'], default='left', help='the edge that breaks (salon left, studio right)')
     ap.add_argument('--thresh', type=float, default=18, help='difference (0-255) that counts as changed')
     ap.add_argument('--floor-frac', type=float, default=0.05)
+    ap.add_argument('--protect', help='x0,y0,x1,y1 (fractions): a rectangle never taken from the break, e.g. the '
+                    'studio canvas, so the painting can never be touched')
+    ap.add_argument('--layer-gain', type=float, default=1.0, help='scale the break layer (the model may light its blocks '
+                    'brighter than the room)')
+    ap.add_argument('--period', type=int, help='fit the float to exactly this many frames (193 = one loop cycle, so a '
+                    'HOLD piece loops and IN/HOLD/OUT join)')
+    ap.add_argument('--offset', type=int, default=0, help='start the float this many frames into its period')
     ap.add_argument('--lit-ref', help='clip whose mean frame is the light the break was made under '
                                       '(default: edited_from)')
     a = ap.parse_args()
@@ -70,8 +78,14 @@ def main():
         d = np.abs(cv2.GaussianBlur(cv2.cvtColor(brk[k], cv2.COLOR_RGB2GRAY), (0, 0), 3).astype(np.int16) -
                    cv2.GaussianBlur(cv2.cvtColor(src[j], cv2.COLOR_RGB2GRAY), (0, 0), 3).astype(np.int16))
         foot |= (d > a.thresh).astype(np.uint8)
-    foot[:, int(a.max_x * W):] = 0
+    if a.side == 'left':
+        foot[:, int(a.max_x * W):] = 0
+    else:
+        foot[:, :int((1 - a.max_x) * W)] = 0
     foot = cv2.dilate(foot, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7)))
+    if a.protect:
+        x0, y0, x1, y1 = [float(v) for v in a.protect.split(',')]
+        foot[int(y0 * H):int(y1 * H), int(x0 * W):int(x1 * W)] = 0
     mask = cv2.GaussianBlur(foot.astype(np.float32), (0, 0), 4)[..., None]
 
     # 4. floor fade inside the footprint (applied to the break layer)
@@ -87,6 +101,8 @@ def main():
 
     # 2. ping-pong order
     order = list(range(n)) + list(range(n - 2, 0, -1))
+    if a.period:  # resample the ping-pong to exactly --period frames (a 7.3 s float becomes 8.04 s)
+        order = [order[int(k * len(order) / a.period)] for k in range(a.period)]
 
     enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-pix_fmt', 'yuv422p10le'] if a.out.lower().endswith('.mov') \
         else ['-c:v', 'libx264', '-crf', '16', '-pix_fmt', 'yuv420p']
@@ -103,7 +119,7 @@ def main():
             break
         base = np.frombuffer(buf, '<u2').reshape(H, W, 3).astype(np.float32) / 257.0
         gain = (cv2.GaussianBlur(base, (0, 0), sig) + 2.0) / ref
-        layer = brk[order[i % len(order)]].astype(np.float32) * np.clip(gain, 0, 1.5) * ramp
+        layer = brk[order[(i + a.offset) % len(order)]].astype(np.float32) * np.clip(gain, 0, 1.5) * ramp * a.layer_gain
         out = base * (1 - mask) + layer * mask
         wr.stdin.write((np.clip(out, 0, 255) * 257).astype('<u2').tobytes())
         i += 1
