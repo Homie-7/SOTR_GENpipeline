@@ -38,21 +38,20 @@ operator's start/end fades); clean renders never overwritten, effects always sep
 reference tokens (@Image 1 only resolves).
 Stay in VID.
 
-NEXT, IN ORDER:
-1. THE FRAGMENT EDGE (Homie's top priority, art-directed today). Target look = wither v3 A:
-   CONTROL (Remedy)-style clean rectangular BLOCKS floating weightless along the WHOLE inner
-   side, cornice to floor, with an UNEVEN break line, STEADY (not an event, not falling).
-   v3 A nailed the look but painted Gérard out and drifted the framing. FIX: run v3's body as
-   a SEQUEL (video_extension forward) from the comp loop (holds the framing and the
-   placeholder portrait), then Gérard via render_wall.py. Then EXTEND toward ~30 s (Homie:
-   loops will run long). Effect renders go to renders/fx/ ONLY. Then the studio's edge (its
-   RIGHT side). The court never fragments (D7). Secondary reference: the *Your Friends and
-   Neighbors* title sequence. Primary: Control.
-2. STUDIO candle arc (D6): beat 6 flares, beat 9 steady and brightest, one line changed each
-   from the approved loop prompt (~240 credits); then re-render b6/b9 as v2.
-3. Known polish: the unpainted apex in studio b6 reads as a too-regular oval.
-4. Still open: set dimensions, codec/container, the physical fit on the angled flats. The
-   client PDF is STALE.
+NEXT, IN ORDER (Homie reviewed the previews and asked for these; decisions are LOOK.md D7, D10-D12):
+1. SALON BREAK, properly (~450 credits): run wither v3's body as a SEQUEL (video_extension
+   forward) from the comp loop, which keeps the framing and the placeholder portrait (v3 A
+   painted Gerard out and drifted the framing when run from a still). Probe 4 s batch 2, then
+   ~10 s, crossfade-loop it (loop_halo.py); then regenerate the reveal (Prequel INTO the break
+   loop) and the snuff (Sequel FROM it), so the break persists through the candle events.
+   Gerard on top via render_wall.py. All to renders/fx/. Homie's favourite frame so far: v2 A
+   (~2.7 s): the full-height, uneven plaster band.
+2. THE JUDGE (~400 credits, D12): a reading loop plus three escalating strikes (measured /
+   frantic double / slow verdict), image-to-video from fig_SOTR_judge_s9_v1. Then re-render the
+   court beats as v2.
+3. Later: the studio's break (its RIGHT edge), the court's torn-paper edges (BOTH sides, D7), the
+   studio candle arc (D6, ~240), and the studio b6 apex oval polish.
+4. Still open: set dimensions, codec/container, the physical fit. The client PDF is STALE.
 
 STATE OF THE LOOPS (2026-09-24):
 - S9-SAL-R-LOOP: APPROVED -> @loc_SOTR_salon_R_loop_s9_v1. Halo flicker boosted 3x by

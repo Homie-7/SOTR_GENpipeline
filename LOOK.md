@@ -80,11 +80,13 @@ steady and at its brightest (9).** Beat 4 uses the approved loop (already restle
 are generated, one line changed each from the approved loop prompt: next session's budget,
 ~240 credits.
 
-**D7 · The court does not disintegrate.** The two worlds of the wronged and the witnesses
-(salon, studio) fray at their edges; the institution that writes the lie holds its shape,
-razor-sharp. So the court gets no fragment edge. Its bone-white field is lamplight on a scrim
-that **falls off into darkness at the left and right**, so it's still not a hard rectangle,
-and the silhouette stays two-tone and exact.
+**D7 · REVISED 2026-09-24 (Homie asked; Claude agreed): the court breaks at BOTH edges, the judge never
+does.** CENTRE is flanked by both walls, and a solid centre between two cracking walls reads as
+a mistake. The idea from the first D7 survives in a sharper form: **the silhouette stays
+razor-sharp and whole (the lie holds its shape) while his paper world tears away around him.**
+The bone-white field breaks at the left and right edges into floating pieces of torn paper,
+two-tone, drifting in the black: the same Control language as the walls, in the court's flat
+graphic register. (The original D7, no fragment edge and just a falloff to dark, is replaced.)
 
 **D8 · The court's Q5 capper is IN.** After "CAN NOT be held responsible", one more strike:
 the gavel alone fills the wall, then black. The verdict needs a physical full stop before the
@@ -95,10 +97,28 @@ strike clip (no new generation).
 scale jumps timed to D1, the impact shudder, the epaulette patch), under the final-product
 rule, as clean renders.
 
-**D10 · The fragment edge** stays an EFFECT (renders/fx/, never on the clean masters). Its
-form, Control-style: the room itself coming apart into slow, weightless slabs, withering into
-the dark. It's decided between a Higgsfield-generated edge and the script 3D fracture from the
-2026-09-24 probe (`prompts/S9-SAL-R-WITHER.txt`).
+**D10 · The fragment edge (art-directed by Homie, 2026-09-24).** The target is wither v2 A / v3 A:
+Control (Remedy)-style blocks of the room itself floating weightless along the WHOLE inner
+side, cornice to floor, with an uneven break line. It is steady, not an event, and not falling.
+Every wall has it, on the side facing the others: studio RIGHT edge, salon LEFT edge, court
+BOTH edges (D7). Effects live in `renders/fx/`; clean masters are never touched.
+
+**D11 · The break runs for the whole time a wall is lit** (salon ~117 s at b2-3, studio up to
+~72 s, court up to ~101 s). A steady break LOOPS like the candle loops (generated ~10 s,
+crossfade-looped), and the salon's reveal and snuff are regenerated as its entry and exit
+(Prequel / Sequel of the break loop), so the break persists through the candle events and
+the lighting on the fragments is the model's own.
+
+**D12 · The judge gets real performance, not one reused strike** (Homie: "it looks like the same
+repeated animation"). All image-to-video from the approved still, so he stays the same figure:
+- a READING LOOP between strikes (scroll up, the life of someone declaiming), replacing the
+  frozen raised pose;
+- beat 3: a MEASURED, formal single strike ("Order!"): the court in control;
+- beat 5: sharper strikes on "Two!" and "Three!", then a FRANTIC double blow as he loses control;
+- beat 7: the VERDICT, a slow wind-up and the final blow toward the lens, flowing into the Q5
+  capper (the gavel fills the wall).
+The approved toward-camera strike stays the template for the direction of the blow (LOOK
+World 3: down across the body doesn't read). Every strike keeps the sanctioned keyline rule.
 
 ---
 
