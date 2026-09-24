@@ -348,6 +348,17 @@ assembles on RIGHT and CENTRE drops to black: three realities side by side. It's
 legible version, and the cheapest one to build in a week. Breaking single walls into
 shards is a refinement for later, if there's time.
 
+**THE FRAGMENT EDGE (Homie, 2026-09-24).** No wall is a hard rectangle. Each world stays
+whole on its OUTER side and breaks up toward the CENTRE of the stage, like the Raft
+dissolving on Slide 9 of the 2022 concept. The salon (RIGHT wall) breaks on its image's LEFT
+edge; the studio (LEFT wall) on its RIGHT edge. Only one side. It's built into every file by
+script (`tools/render_wall.py`), not generated, so it's identical across a wall's clips and
+tunable without credits. **Proposed by Claude, pending Homie's eye:** style `dissolve` (an
+organic, blotchy breakup to black with fine particles, drifting slowly upward); the
+alternative `shatter` (hard shards) read as cut paper and wasn't chosen. The salon width is
+14% of the frame, clear of the left sconce, which carries the reveal and the snuff (25% ate
+it). The court on CENTRE is not decided (both sides? none?): ask Homie.
+
 Video-game references for the language:
 
 - ***The Medium*** (2021): two realities on screen at once, side by side. That's the

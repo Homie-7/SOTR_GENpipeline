@@ -26,12 +26,17 @@ events are built in the wide master comp (4680x1080), not generated.
 THE TASK, RIGHT NOW (from 2026-09-24, second VID session, wrapped): the SALON IS BUILT END TO
 END as one finished file, per Homie's new rule (CLAUDE.md: FINAL PRODUCT, NO PLAYBACK FIXES).
 Reveal (Prequel into the loop) -> lit comp loop -> snuff (Sequel out of the loop), with every
-join generated, Gérard composited throughout by tools/comp_portrait.py, and fades built in.
+join generated, Gérard composited throughout by tools/render_wall.py, and fragment edge built in (no start/end fades).
 Homie delegated the salon picks to Claude ("I'll let you make the decision"): snuff = v7 B,
 reveal = B. Preview sent to him.
 The connector works; 672 credits were spent that session. Budget: 1,000 per session, hard stop,
 "be as efficient as possible".
 Stay in VID.
+
+HOMIE, 2026-09-24 (later): NO fades at a file's start/end (the operator does them). Every wall
+gets a FRAGMENT EDGE: whole outside, dissolving to black toward CENTRE (render_wall.py
+--fragment-edge; salon: left, 14%, dissolve). Salon preview with it has been sent. Court's
+fragment treatment is not decided.
 
 NEXT, IN ORDER:
 1. BEAT TIMINGS are the one thing blocking FINAL salon files: how long beat 2 and beat 8 hold
@@ -42,7 +47,7 @@ NEXT, IN ORDER:
    Claude may decide). On approval: rename to loc_SOTR_studio_L_loop_s9_v1.mp4 and render
    _comp.mov (loop_halo.py --boost 1 --skip 12 --xfade 36). Then the studio needs its own
    ENTRY/EXIT under the final-product rule (paints in / bleaches out): same Prequel/Sequel
-   method as the salon, plus the Raft painting composited on the canvas (comp_portrait.py
+   method as the salon, plus the Raft painting composited on the canvas (render_wall.py
    generalises: new --rect and --painting). Beat variants (4/6/9 candle arc) are part of it.
 3. COURT: the strike's comp (threshold, key onto a 5:3 bone-white field, Q1-Q5 scale jumps,
    epaulette patch) also falls under the final-product rule now. Ask Homie whether Claude

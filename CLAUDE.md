@@ -41,7 +41,12 @@ video vocabularies poison each other, so one session never spans both.
   or composited into the file. Never close a problem with "QLab / the media server / the
   mapping software will handle it." This overrides every older line in `STAGE.md`,
   `PIPELINE.md`, `LOOK.md` and `SHOTCARDS.md` that hands content work to playback (loops
-  "held by QLab", "QLab cuts to it", a playback crossfade). **Open with Homie:** (1) how a
+  "held by QLab", "QLab cuts to it", a playback crossfade). **Refined the same day (Homie):
+  the fades at a file's very START and END are the show operator's**, so files start and end
+  at full picture, with no fade-in or fade-out. **And each wall is a FRAGMENT of reality, not a
+  hard rectangle:** whole on its outer side, breaking up toward the CENTRE of the stage (the
+  2022 Slide 9 concept). It's built into the file by `tools/render_wall.py --fragment-edge`
+  (see `LOOK.md` Fragments). **Open with Homie:** (1) how a
   beat's length is set now that nothing holds a loop live, i.e. fixed-length files per
   beat, which need beat timings; (2) whether the physical fit onto the angled flats
   (keystone/warp) still happens in playback, or the files must be pre-warped.
@@ -122,7 +127,7 @@ video vocabularies poison each other, so one session never spans both.
   join is native: `@loc_SOTR_salon_R_reveal_s9_v1` (Prequel, candles lit one at a time) and
   `@loc_SOTR_salon_R_snuff_s9_v1` (Sequel, v7 B). Both picked by Claude on Homie's
   delegation. `start_image` can't pin frames on this connector; extension can.
-- **`tools/comp_portrait.py`** renders a wall's finished file: the sequence, Gérard lit by the
+- **`tools/render_wall.py`** renders a wall's finished file: the sequence, Gérard lit by the
   clip's own light, exposure-matched joins, fades. Salon preview sent to Homie.
 - **Blocking final files: beat timings** (how long each hold runs). Studio and court still
   need the same end-to-end treatment. See `docs/NEW-SESSION.md`.
