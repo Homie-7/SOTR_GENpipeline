@@ -17,6 +17,11 @@
 # Prompt names the reference in words (no @tag, CLAUDE.md reference-token rule).
 
 # ======== v3 (2026-09-24) ========
+# v3 RESULT: A = THE LOOK (Control blocks, full height, steady: band 192/191/192 px) but it
+#   DROPPED GERARD (blank panel in the frame) and the FRAMING DRIFTED. B kept both but is an
+#   event (fissures widening 78->131 px). NEXT: this v3 body as a SEQUEL (video_extension
+#   forward) from the comp loop, which holds the framing and the portrait, then Gerard via
+#   render_wall.py. Then extend toward ~30 s (Homie).
 # ONE CHANGE against v2 (lesson 3, change the noun): the pieces. v2 A came back as SHARDS;
 #   Homie's top reference is Control, where architecture breaks into CLEAN RECTANGULAR BLOCKS.
 #   v2: "fragments of ivory panel, gilt moulding and plaster, a few larger, most small, each with real thickness."

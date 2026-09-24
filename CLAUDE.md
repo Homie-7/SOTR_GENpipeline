@@ -126,18 +126,18 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
-### 2026-09-24, second session (VID): the salon is built end to end as one finished file.
+### 2026-09-24, second session (VID): every wall has finished clean files; the fragment edge is found.
 
-- **Connector works** (gate passed, parity matched; `PIPELINE.md`). 672 credits spent.
-- **New standing rules:** final product, no playback fixes; reference tokens (`@Image 1` only).
-- **The salon's entry and exit are generated as extensions of the approved loop**, so every
-  join is native: `@loc_SOTR_salon_R_reveal_s9_v1` (Prequel, candles lit one at a time) and
-  `@loc_SOTR_salon_R_snuff_s9_v1` (Sequel, v7 B). Both picked by Claude on Homie's
-  delegation. `start_image` can't pin frames on this connector; extension can.
-- **`tools/render_wall.py`** renders a wall's finished file: the sequence, Gérard lit by the
-  clip's own light, exposure-matched joins, fades. Salon preview sent to Homie.
-- **Blocking final files: beat timings** (how long each hold runs). Studio and court still
-  need the same end-to-end treatment. See `docs/NEW-SESSION.md`.
+- **Homie delegated all remaining decisions** ("just make decisions"): `LOOK.md` D1-D10 (beat
+  lengths from the script, delivery format, the studio's painting stages per the script, the
+  court never fragments, the Q5 capper is in, Claude builds the composites).
+- **Finished clean files for all three walls** in `SOTR_MEDIA/renders/clean/`: salon b2-3,
+  b8 and IN/HOLD/OUT; studio b4/b6/b9 with the Raft growing; court b3/b5/b7 and strikes.
+  Tools: `render_wall.py`, `render_studio.py`, `render_court.py`.
+- **Fragment edge = Control-style floating blocks along the whole inner side** (Homie's art
+  direction). Higgsfield can do it: wither v3 A has the look but dropped Gérard and drifted
+  the framing; next is the same wording as a Sequel from the loop. Effects only in `renders/fx/`.
+- **960 of 1,000 credits spent.** The connector works; `PIPELINE.md` has its map and traps.
 
 ### 2026-09-24 (VID) — Salon loop approved. Studio loop works. Snuff on v3. Higgsfield connected for Claude.
 

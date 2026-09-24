@@ -23,42 +23,36 @@ Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
 is a wall of the room, square-on, at true scale. No people in any plate. Cross-screen
 events are built in the wide master comp (4680x1080), not generated.
 
-THE TASK, RIGHT NOW (from 2026-09-24, second VID session, wrapped): the SALON IS BUILT END TO
-END as one finished file, per Homie's new rule (CLAUDE.md: FINAL PRODUCT, NO PLAYBACK FIXES).
-Reveal (Prequel into the loop) -> lit comp loop -> snuff (Sequel out of the loop), with every
-join generated, Gérard composited throughout by tools/render_wall.py, and fragment edge built in (no start/end fades).
-Homie delegated the salon picks to Claude ("I'll let you make the decision"): snuff = v7 B,
-reveal = B. Preview sent to him.
-The connector works; 672 credits were spent that session. Budget: 1,000 per session, hard stop,
-"be as efficient as possible".
+THE TASK, RIGHT NOW (from 2026-09-24, end of the second VID session; 960 of 1,000 credits spent):
+ALL THREE WALLS HAVE FINISHED CLEAN FILES in SOTR_MEDIA/renders/clean/ (REGISTER "Renders"),
+built from LOOK.md's DECISIONS D1-D10, which Homie delegated fully ("just make decisions"):
+- SALON (RIGHT): b2-3 (reveal, lit hold ~77 s, snuff, dusk 35 s), b8 (lit, snuff), plus IN /
+  HOLD / OUT pieces. Gérard composited throughout.
+- STUDIO (LEFT): b4 / b6 / b9, the Raft on the canvas growing half -> most -> complete, the
+  waving apex figure painted last (the script says "half-completed" at beat 4).
+- COURT (CENTRE): b3 / b5 / b7 (Q1; Q2 -> Q3; Q4 -> the Q5 gavel capper -> black) + strike files.
+Timings are ESTIMATES from script word counts (D1). Re-version from rehearsal timings.
+Tools: render_wall.py (salon + fragment edge), render_studio.py (the Raft), render_court.py.
+Homie's rules today (CLAUDE.md standing rules): final product, no playback fixes (except the
+operator's start/end fades); clean renders never overwritten, effects always separate files;
+reference tokens (@Image 1 only resolves).
 Stay in VID.
 
-HOMIE, 2026-09-24 (later): NO fades at a file's start/end (the operator does them). Every wall
-gets a FRAGMENT EDGE toward CENTRE, but he DIDN'T LIKE the dissolve preview and is sending
-example references. Wait for them; he may do fragments in post himself.
-FILE MANAGEMENT: clean renders -> SOTR_MEDIA/renders/clean/ (never overwritten); effects ->
-renders/fx/ as separate files. render_wall.py enforces it. The salon clean master is saved.
-
 NEXT, IN ORDER:
-1. BEAT TIMINGS are the one thing blocking FINAL salon files: how long beat 2 and beat 8 hold
-   the lit loop, and how long the dusk holds after each exit. Until they exist, the sequence
-   is rendered with placeholder holds. Re-render is one command (see REGISTER, Composite tool).
-   Get them from Homie / the director; offer an estimate from the script if he has none.
-2. STUDIO: the loop is APPROVED (loc_SOTR_studio_L_loop_s9_v1 + _comp.mov, Claude, delegated).
-   Fragment edge on its RIGHT works (preview made). STILL TO DESIGN, a look call, so PROPOSE to
-   Homie, don't lock: (a) the Raft on the canvas per beat (PAINT1 charcoal / PAINT2 half /
-   PAINT3 near-finished, from the public-domain 1819 painting via render_wall.py --painting
-   with the canvas rect); how PAINT1's charcoal look is derived is an invention and needs his
-   eye; "painting grows while he paints" waits on the director; (b) the studio's entry/exit
-   (LOOK: paints itself in, bleaches out): generated Prequel/Sequel like the salon, or script;
-   (c) the beat 4/6/9 candle arc (low / flares / steady-bright), which needs generation
-   (~240 credits).
-3. COURT: the strike's comp (threshold, key onto a 5:3 bone-white field, Q1-Q5 scale jumps,
-   epaulette patch) also falls under the final-product rule now. Ask Homie whether Claude
-   builds it or he does (it was his AE work).
-4. Still open: physical fit onto the flats (Claude's call: deliver square-on at the wall's
-   aspect; the venue aligns projectors, which isn't content), codec/container, set dimensions.
-   Q5 capper unconfirmed. The client PDF is STALE.
+1. THE FRAGMENT EDGE (Homie's top priority, art-directed today). Target look = wither v3 A:
+   CONTROL (Remedy)-style clean rectangular BLOCKS floating weightless along the WHOLE inner
+   side, cornice to floor, with an UNEVEN break line, STEADY (not an event, not falling).
+   v3 A nailed the look but painted Gérard out and drifted the framing. FIX: run v3's body as
+   a SEQUEL (video_extension forward) from the comp loop (holds the framing and the
+   placeholder portrait), then Gérard via render_wall.py. Then EXTEND toward ~30 s (Homie:
+   loops will run long). Effect renders go to renders/fx/ ONLY. Then the studio's edge (its
+   RIGHT side). The court never fragments (D7). Secondary reference: the *Your Friends and
+   Neighbors* title sequence. Primary: Control.
+2. STUDIO candle arc (D6): beat 6 flares, beat 9 steady and brightest, one line changed each
+   from the approved loop prompt (~240 credits); then re-render b6/b9 as v2.
+3. Known polish: the unpainted apex in studio b6 reads as a too-regular oval.
+4. Still open: set dimensions, codec/container, the physical fit on the angled flats. The
+   client PDF is STALE.
 
 STATE OF THE LOOPS (2026-09-24):
 - S9-SAL-R-LOOP: APPROVED -> @loc_SOTR_salon_R_loop_s9_v1. Halo flicker boosted 3x by
