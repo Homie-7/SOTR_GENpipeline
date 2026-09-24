@@ -24,7 +24,7 @@ is a wall of the room, square-on, at true scale. No people in any plate. Cross-s
 events are built in the wide master comp (4680x1080), not generated.
 
 THE TASK, RIGHT NOW (from 2026-09-24, end of the second VID session; 960 of 1,000 credits spent):
-ALL THREE WALLS HAVE FINISHED CLEAN FILES in SOTR_MEDIA/renders/clean/ (REGISTER "Renders"),
+ALL THREE WALLS HAVE FINISHED CLEAN FILES in SOTR_MEDIA/01_FINAL_FOR_SHOW/<wall>/ (REGISTER "Renders"),
 built from LOOK.md's DECISIONS D1-D10, which Homie delegated fully ("just make decisions"):
 - SALON (RIGHT): b2-3 (reveal, lit hold ~77 s, snuff, dusk 35 s), b8 (lit, snuff), plus IN /
   HOLD / OUT pieces. Gérard composited throughout.
@@ -38,14 +38,21 @@ operator's start/end fades); clean renders never overwritten, effects always sep
 reference tokens (@Image 1 only resolves).
 Stay in VID.
 
+FOLDERS (reorganised 2026-09-24, Homie): SOTR_MEDIA/01_FINAL_FOR_SHOW/ = the show files only
+(per wall + 00_READ_ME_FIRST.txt for the client; keep it current). 02_APPROVED_BUILDING_BLOCKS/
+(stills, clips), 03_TESTS_IN_PROGRESS/, 04_REJECTED/, 05_REFERENCE_UPLOADS/. Effect versions go
+in 01_FINAL_FOR_SHOW/<wall>/with_edge_effect/. README.txt there has the old -> new path table.
+
 NEXT, IN ORDER (Homie reviewed the previews and asked for these; decisions are LOOK.md D7, D10-D12):
 1. SALON BREAK, properly (~450 credits): run wither v3's body as a SEQUEL (video_extension
    forward) from the comp loop, which keeps the framing and the placeholder portrait (v3 A
    painted Gerard out and drifted the framing when run from a still). Probe 4 s batch 2, then
    ~10 s, crossfade-loop it (loop_halo.py); then regenerate the reveal (Prequel INTO the break
    loop) and the snuff (Sequel FROM it), so the break persists through the candle events.
-   Gerard on top via render_wall.py. All to renders/fx/. Homie's favourite frame so far: v2 A
-   (~2.7 s): the full-height, uneven plaster band.
+   Gerard on top via render_wall.py. All to 01_FINAL_FOR_SHOW/<wall>/with_edge_effect/. Homie's favourites: v3 B (his screenshot) and
+   v2 A, the full-height uneven band. BOTH SHOW A STRIP OF FLOOR WITH RUBBLE at the bottom: the
+   next version keeps the look with the frame's bottom edge as the floor line (no floor, no
+   rubble, STAGE.md).
 2. THE JUDGE (~400 credits, D12): a reading loop plus three escalating strikes (measured /
    frantic double / slow verdict), image-to-video from fig_SOTR_judge_s9_v1. Then re-render the
    court beats as v2.
@@ -55,7 +62,7 @@ NEXT, IN ORDER (Homie reviewed the previews and asked for these; decisions are L
 
 STATE OF THE LOOPS (2026-09-24):
 - S9-SAL-R-LOOP: APPROVED -> @loc_SOTR_salon_R_loop_s9_v1. Halo flicker boosted 3x by
-  script (Homie picked preview "B"). Comp file: loops/loc_SOTR_salon_R_loop_s9_v1_comp.mov
+  script (Homie picked preview "B"). Comp file: 02_APPROVED_BUILDING_BLOCKS/clips/loc_SOTR_salon_R_loop_s9_v1_comp.mov
   (ProRes 422 HQ 10-bit, 8.04 s cycle). Rebuild: tools/loop_halo.py --boost 3 --skip 12
   --xfade 36. A parity re-run through the connector sits beside it
   (S9-SAL-R-LOOP_v1_parity.mp4, a test, not for use).
@@ -63,7 +70,7 @@ STATE OF THE LOOPS (2026-09-24):
 - S9-SAL-R-SNUFF: APPROVED -> loc_SOTR_salon_R_snuff_s9_v1.mp4 (v7 B, Sequel of the comp loop).
 - S9-SAL-R-REVEAL: APPROVED -> loc_SOTR_salon_R_reveal_s9_v1.mp4 (B, Prequel into the loop,
   candles lit one at a time).
-- Old question 1 and 2 above are CLOSED (v4_web5s and v4_probeA are runners-up in loops/).
+- Old question 1 and 2 above are CLOSED (v4_web5s and v4_probeA are runners-up in 03_TESTS_IN_PROGRESS/runner_up_takes/).
 
 CONNECTOR NOTES THAT WILL BITE (full list: PIPELINE.md):
 - The server may answer with a preset suggestion instead of a job ("IN THE DARK"): resubmit
@@ -105,7 +112,7 @@ LOOK.md World 3, SHOTCARDS.md S9-CRT Cues row, LOG.md 2026-09-23 (two entries - 
 tribunal correction, and the growth restructure that followed it).
 
 S9-CRT-STRIKE IS APPROVED (2026-09-23) -> @fig_SOTR_judge_strike_s9_v1, saved at
-SOTR_MEDIA/loops/fig_SOTR_judge_strike_s9_v1.mp4. Seedance 2.5, image-to-video from the
+SOTR_MEDIA/02_APPROVED_BUILDING_BLOCKS/clips/fig_SOTR_judge_strike_s9_v1.mp4. Seedance 2.5, image-to-video from the
 approved still, 9:16 -> 1080x1920, 24 fps, 4.04s, HEVC 10-bit. THE STRIKE COMES TOWARD
 CAMERA, not downward - changed with Homie after two downward versions failed structurally
 (see LESSON 6). It carries a SANCTIONED WHITE KEYLINE around the gavel where it overlaps
@@ -157,7 +164,7 @@ regeneration." Don't route fixes into his After Effects work. This overrides WEE
 "fix it in the comp" budget rule.
 
 RENAME ON APPROVAL (Homie, 2026-09-24): the moment something is approved or finished,
-rename it to its tag WITHOUT the @ and file it. Pending takes: loops/<PROMPT-ID>_v<N>.mp4.
+rename it to its tag WITHOUT the @ and file it. Pending takes: 03_TESTS_IN_PROGRESS/<PROMPT-ID>_v<N>.mp4.
 Rejects: rejected/. Checksum every move. Rules in SOTR_MEDIA/README.txt. He is the one typing them into Higgsfield. Mark anything unconfirmed
 as unconfirmed rather than guessing. Note he deliberately leaves generation AUDIO ON as a
 scratch timing reference for the sound designer - do not switch it off.

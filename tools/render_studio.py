@@ -21,7 +21,7 @@ Within a beat the painting grows from --stage-from to --stage-to over --grow sec
   python tools/render_studio.py OUT.mov LOOP [LOOP ...] --stage-from 0.36 --stage-to 0.45
          [--grow 20] [--tail-hold 0]
 
-Clean renders go to SOTR_MEDIA/renders/clean/ and are never overwritten (same rules as
+Finished clean renders go to SOTR_MEDIA/01_FINAL_FOR_SHOW/LEFT_wall_STUDIO/ and are never overwritten (same rules as
 render_wall.py). Needs ffmpeg, numpy, Pillow, OpenCV.
 """
 import argparse

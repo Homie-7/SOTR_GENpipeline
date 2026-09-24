@@ -2,7 +2,7 @@
 
 Built 2026-09-24 from LOOK.md World 3 and D1/D7/D8/D9 (Claude, delegated by Homie).
 
-SOURCE: SOTR_MEDIA/loops/fig_SOTR_judge_strike_s9_v1.mp4 (1080x1920, 97 frames): raised pose to
+SOURCE: SOTR_MEDIA/02_APPROVED_BUILDING_BLOCKS/clips/fig_SOTR_judge_strike_s9_v1.mp4 (1080x1920, 97 frames): raised pose to
 f47, the blow f48-53, the gavel held huge toward the lens f54-96 with its SANCTIONED white
 keyline (LOOK World 3 carve-out, kept).
 
@@ -24,8 +24,8 @@ cut back to the raised pose. Every impact shudders the field (~6 frames).
   python tools/render_court.py OUT.mov --beat 3|5|7        (timed appearance, D1 lengths)
   python tools/render_court.py OUT.mov --strike Q1|Q2|Q3|Q4 (one strike, for a live operator)
 
-Output: CENTRE 5:3 at working resolution, 1800x1080, 24 fps. Clean renders go to
-SOTR_MEDIA/renders/clean/ and are never overwritten. Needs ffmpeg, numpy, OpenCV.
+Output: CENTRE 5:3 at working resolution, 1800x1080, 24 fps. Finished clean renders go to
+SOTR_MEDIA/01_FINAL_FOR_SHOW/CENTRE_wall_COURT/ and are never overwritten. Needs ffmpeg, numpy, OpenCV.
 """
 import argparse
 import os
@@ -35,7 +35,7 @@ import cv2
 import numpy as np
 
 HERE = os.path.dirname(__file__)
-SRC = os.path.join(HERE, '..', '..', 'SOTR_MEDIA', 'loops', 'fig_SOTR_judge_strike_s9_v1.mp4')
+SRC = os.path.join(HERE, '..', '..', 'SOTR_MEDIA', '02_APPROVED_BUILDING_BLOCKS', 'clips', 'fig_SOTR_judge_strike_s9_v1.mp4')
 OW, OH, FPS = 1800, 1080, 24
 SW, SH = 1080, 1920
 BONE = np.array([0.93, 0.89, 0.80], np.float32)

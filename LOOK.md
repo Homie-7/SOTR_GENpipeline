@@ -101,7 +101,7 @@ rule, as clean renders.
 Control (Remedy)-style blocks of the room itself floating weightless along the WHOLE inner
 side, cornice to floor, with an uneven break line. It is steady, not an event, and not falling.
 Every wall has it, on the side facing the others: studio RIGHT edge, salon LEFT edge, court
-BOTH edges (D7). Effects live in `renders/fx/`; clean masters are never touched.
+BOTH edges (D7). Effects live in `01_FINAL_FOR_SHOW/<wall>/with_edge_effect/`; clean masters are never touched.
 
 **D11 · The break runs for the whole time a wall is lit** (salon ~117 s at b2-3, studio up to
 ~72 s, court up to ~101 s). A steady break LOOPS like the candle loops (generated ~10 s,

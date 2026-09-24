@@ -19,7 +19,7 @@ This file is the system. Read it before the first Higgsfield call of any session
    - It returns the **full file** (1664x1248, HEVC 10-bit), not a preview
    - It reports the **cost** per run, or the balance before and after
 3. **Parity test (~120 credits).** Re-run `prompts/S9-SAL-R-LOOP.txt` exactly as it was
-   approved. Compare it with `loops/loc_SOTR_salon_R_loop_s9_v1.mp4`: same size, fps and
+   approved. Compare it with `02_APPROVED_BUILDING_BLOCKS/clips/loc_SOTR_salon_R_loop_s9_v1.mp4`: same size, fps and
    bit depth, the same camera lock, flame count, and halo-motion level within the normal
    variation between runs. Pass = the MCP is the same tool as the web app. Log it.
 
@@ -77,8 +77,8 @@ passes the numbers goes to Homie as a preview; it's never approved by Claude.
 
 ## 5 · Filing (standing rule, Homie 2026-09-24)
 
-- An untested or pending take goes in `loops/<PROMPT-ID>_v<N>.mp4`.
-- A rejected take moves to `rejected/<PROMPT-ID>_v<N>.mp4`.
+- An untested or pending take goes in `03_TESTS_IN_PROGRESS/<PROMPT-ID>_v<N>.mp4`.
+- A rejected take moves to `04_REJECTED/<PROMPT-ID>_v<N>.mp4`.
 - **Approved by Homie:** rename it to the tag without the `@`
   (`loc_SOTR_<world>_<wall>_loop_s9_v<N>.mp4`), render `<tag>_comp.mov` with
   `loop_halo.py` if it's a loop, and add it to REGISTER.

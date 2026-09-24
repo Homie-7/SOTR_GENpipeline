@@ -52,12 +52,17 @@ video vocabularies poison each other, so one session never spans both.
   beat, which need beat timings; (2) whether the physical fit onto the angled flats
   (keystone/warp) still happens in playback, or the files must be pre-warped.
 
+- **Folders (Homie, 2026-09-24): `SOTR_MEDIA/01_FINAL_FOR_SHOW/` holds ONLY the files for the
+  show**, per wall, with a client-facing `00_READ_ME_FIRST.txt` (keep it current). Then
+  `02_APPROVED_BUILDING_BLOCKS/`, `03_TESTS_IN_PROGRESS/`, `04_REJECTED/`,
+  `05_REFERENCE_UPLOADS/`. `comp/` is Homie's After Effects area; never reorganise it. Map and
+  old-to-new paths are in `SOTR_MEDIA/README.txt`.
 - **Clean first, effects separate (Homie, 2026-09-24).** *"File management 101."* Every
-  finished render is saved CLEAN (no effects) in `SOTR_MEDIA/renders/clean/` and is never
+  finished render is saved CLEAN (no effects) in `SOTR_MEDIA/01_FINAL_FOR_SHOW/<wall>/` and is never
   overwritten or deleted; a change is a new version. Anything added on top (the fragment
-  edge, any effect) is a SEPARATE file in `renders/fx/`, rebuilt from clean. Homie can do the
+  edge, any effect) is a SEPARATE file in `01_FINAL_FOR_SHOW/<wall>/with_edge_effect/`, rebuilt from clean. Homie can do the
   fragments in post himself, so the clean render is the deliverable that matters. Generated
-  sources in `loops/` and `plates/` are never modified. `tools/render_wall.py` enforces this.
+  sources in `02_APPROVED_BUILDING_BLOCKS/` are never modified. `tools/render_wall.py` enforces this.
 - **Reference tokens in prompts (Homie, 2026-09-24).** Higgsfield resolves only `@Image 1`,
   `@Video 1`… (numbered by upload order). A register tag like `@loc_SOTR_salon_R_s9_v1` in a
   prompt body is NOT resolved; it's dead text. So register tags live in file HEADERS only.
@@ -131,19 +136,19 @@ video vocabularies poison each other, so one session never spans both.
 - **Homie delegated all remaining decisions** ("just make decisions"): `LOOK.md` D1-D10 (beat
   lengths from the script, delivery format, the studio's painting stages per the script, the
   court never fragments, the Q5 capper is in, Claude builds the composites).
-- **Finished clean files for all three walls** in `SOTR_MEDIA/renders/clean/`: salon b2-3,
+- **Finished clean files for all three walls** in `SOTR_MEDIA/01_FINAL_FOR_SHOW/<wall>/`: salon b2-3,
   b8 and IN/HOLD/OUT; studio b4/b6/b9 with the Raft growing; court b3/b5/b7 and strikes.
   Tools: `render_wall.py`, `render_studio.py`, `render_court.py`.
 - **Fragment edge = Control-style floating blocks along the whole inner side** (Homie's art
   direction). Higgsfield can do it: wither v3 A has the look but dropped Gérard and drifted
-  the framing; next is the same wording as a Sequel from the loop. Effects only in `renders/fx/`.
+  the framing; next is the same wording as a Sequel from the loop. Effects only in `01_FINAL_FOR_SHOW/<wall>/with_edge_effect/`.
 - **960 of 1,000 credits spent.** The connector works; `PIPELINE.md` has its map and traps.
 
 ### 2026-09-24 (VID) — Salon loop approved. Studio loop works. Snuff on v3. Higgsfield connected for Claude.
 
 - **`@loc_SOTR_salon_R_loop_s9_v1` approved.** Its halo flicker is boosted 3x by script
   (the generated halos breathed ~2-3%, too little to read from the seats). The comp file
-  is `loops/loc_SOTR_salon_R_loop_s9_v1_comp.mov`.
+  is `02_APPROVED_BUILDING_BLOCKS/clips/loc_SOTR_salon_R_loop_s9_v1_comp.mov`.
 - **Studio loop v2 works but isn't approved yet** (`loops/S9-STU-L-LOOP_v2.mp4`). v1 came back
   still, because its prompt was full of calming words. v2 asks for a candle guttering in a
   draught, and the light swing went from 4% to 17%.
@@ -156,7 +161,7 @@ video vocabularies poison each other, so one session never spans both.
   painting grows while Géricault paints (pending the director).
 - **Seedance 2.5 menu captured** (`PIPELINE.md`): there's no end-frame slot, so loops close with
   a crossfade (`tools/loop_halo.py`). 4:3 at 1080p gives 1664x1248.
-- **Media renamed and filed**: no `@` in filenames, rejects in `rejected/`. The studio room
+- **Media renamed and filed**: no `@` in filenames, rejects in `04_REJECTED/`. The studio room
   master is **retagged v2** (the daylight one is the real v1); the rename map is in `LOG.md`.
 - **The Higgsfield connector** was added by Homie. It loads in the next session, which starts with the
   connector gate in `docs/AUTONOMOUS-GEN.md`.
