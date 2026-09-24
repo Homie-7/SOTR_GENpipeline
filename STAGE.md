@@ -103,7 +103,9 @@ Step by step in `PIPELINE.md`.
   light, light slowly changing, a curtain breathing.
 - **Keep motion away from the seams.** Each wall is animated as its own clip, so anything
   moving across a seam would tear.
-- Each plate becomes a **seamless loop** that QLab holds for as long as the scene needs.
+- Each plate becomes a **seamless loop**. **Amended 2026-09-24 (Homie): nothing in playback holds,
+  joins or fixes anything; every delivered file is the finished picture** (`CLAUDE.md`, standing
+  rules). How a beat's length is set without a live-held loop is open with Homie.
   The method (first frame = last frame, crossfade loop, or a still with a light overlay) is
   decided per plate. See `SHOTCARDS.md`.
 

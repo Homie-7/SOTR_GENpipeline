@@ -34,6 +34,18 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Standing rules
 
+- **FINAL PRODUCT, NO PLAYBACK FIXES (Homie, 2026-09-24).** *"We are not going to rely on
+  QLab or any projection software whatsoever. We are generating everything as a final
+  product."* Every delivered file already plays correctly: joins, transitions, holds, fades
+  and matching are built INTO the file. Ideally generated; if generation can't do it, mixed
+  or composited into the file. Never close a problem with "QLab / the media server / the
+  mapping software will handle it." This overrides every older line in `STAGE.md`,
+  `PIPELINE.md`, `LOOK.md` and `SHOTCARDS.md` that hands content work to playback (loops
+  "held by QLab", "QLab cuts to it", a playback crossfade). **Open with Homie:** (1) how a
+  beat's length is set now that nothing holds a loop live, i.e. fixed-length files per
+  beat, which need beat timings; (2) whether the physical fit onto the angled flats
+  (keystone/warp) still happens in playback, or the files must be pre-warped.
+
 - **Locked cameras, always.** No push, pan, tilt or drift in any generation. Motion only
   happens inside the image.
 - **Walls as walls.** Each surface is the matching wall of the room, square-on, at true
@@ -63,10 +75,10 @@ video vocabularies poison each other, so one session never spans both.
   silhouette.
 - **Transitions and fragments are made in compositing, never generated.** Higgsfield makes
   clean, lit, loopable plates. **One exception (Homie, 2026-09-24): the salon's exit**
-  (`S9-SAL-R-SNUFF` v4) is a generated clip that starts on the lit plate and ends in dusk.
-  In all three runs the model insisted on staging the snuff itself, and a fixed clip
-  triggered in QLab still hits its cue and plays the same every time. Anything else
-  still goes through the comp.
+  (`S9-SAL-R-SNUFF`) is a generated clip that ends in dusk. In all three early runs the model
+  insisted on staging the snuff itself. Since v7 it is generated as a **Sequel continuation
+  of the lit loop**, so the delivered file is loop + snuff in one seamless render (no
+  playback involved, per the final-product rule). Anything else still goes through the comp.
 - **Negative prompts are not used.** Write what should be there. Put constraints in the
   positive body.
 - **The Raft painting is composited, not generated.** It's public domain (1819). Generators
@@ -96,7 +108,7 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
-### 2026-09-24, second session (VID): the connector works. Snuff v4 staging works; the cut doesn't match yet.
+### 2026-09-24, second session (VID): connector works; final-product rule; snuff join solved by Sequel.
 
 - **Higgsfield connector gate PASSED.** All four gaps passed, and a parity re-run of the
   approved salon loop matches it (same file spec, 0 px lock, framing within 0.6%). The
@@ -104,14 +116,14 @@ video vocabularies poison each other, so one session never spans both.
 - **Snuff v4 (the restructure) stages the exit right in 4 of 4 takes**: left sconce out,
   then right, and no smoke while lit. The smoke is luck: 2 takes came back as dark threads,
   2 as the old puffs. The best take, `loops/S9-SAL-R-SNUFF_v4_probeA.mp4`, waits on Homie's eye.
-- **Lead snuff take is Homie's own 5 s web run** (`loops/S9-SAL-R-SNUFF_v4_web5s.mp4`, "I
-  don't mind it"). It's complete at 5 s, so no 10 s run is needed. It awaits his approval.
-- **The cut match moves downstream.** This connector can't pin a first frame: `start_image`
-  is only accepted in `omni_reference`, where it acts as a loose reference (v5, v6). And the
-  snuff carries the placeholder portrait, so **it needs the Gérard comp like the loop does.**
-  v4's "no comp step" was wrong. Hard-cut and crossfade previews went to Homie.
-- **Spent 312 of 1,000 credits.** All generation now waits on Homie (snuff approval, studio
-  v2, beat variants).
+- **New standing rule (Homie): final product, no playback fixes** (see Standing rules).
+- **The snuff join is solved by SEQUEL** (v7): the snuff is generated as a continuation of the
+  approved comp loop, 0 px and within 2% at the join, invisible in one file. Its smoke came
+  out pale and lingering, so Homie picks between v7 B and his dark-threaded web take (which
+  can't join cleanly). `start_image` can't pin frames on this connector (v5, v6). The snuff
+  needs the Gérard comp like the loop.
+- **Spent 432 of 1,000 credits.** Generation waits on Homie (snuff smoke, studio v2, beat
+  variants, beat lengths).
 
 ### 2026-09-24 (VID) — Salon loop approved. Studio loop works. Snuff on v3. Higgsfield connected for Claude.
 

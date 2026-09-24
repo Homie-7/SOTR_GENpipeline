@@ -93,13 +93,12 @@ Claude drives Seedance 2.5 directly. What the web menu calls things, the API cal
 
 - **Two roles the web menu doesn't show: `start_image` and `end_image`.** The web had "no
   end-frame slot"; the API lists one. **Tested 2026-09-24 in `omni_reference` mode: it does
-  NOT pin frame 0.** The server silently coerced `start_image` to a plain reference (its
-  echo says `reference_images`), and the result was a fresh render of the room (snuff v5,
-  `LOG.md`). **And they're refused everywhere else** (422: *"start_image and end_image are
+  NOT pin frame 0.** It behaved as a loose reference: the result was a fresh render of the
+  room (snuff v5, `LOG.md`). **And they're refused everywhere else** (422: *"start_image and end_image are
   only allowed for mode 'omni_reference'"*, tested at no cost 2026-09-24). So **this
   connector cannot pin a first or last frame.** Loops keep the `loop_halo.py` crossfade, and
-  a cut between two generated clips gets matched in the comp or QLab. **Read the echoed `params` after every submit:** if it says
-  `reference_images`, the image is a loose reference, whatever role was sent.
+  a join between two clips is made INSIDE the delivered file: by Sequel (`video_extension` forward from the earlier clip, tried first on the snuff v7) or in the comp. Never in playback. (The echoed `params` list every input under `reference_images`, even a video in Sequel
+  mode. It's a generic label, not proof of coercion. Judge by the frames.)
 - **Every run re-frames the wall by up to ~1%** (measured: the parity loop 4 px, the snuff
   takes 8-10 px at 832 wide, i.e. 16-20 px at full size, against the approved loop). That's
   harmless inside a loop, but visible on a **hard cut** between two generated clips.
@@ -144,7 +143,7 @@ locked camera. **Ambient motion only:** candle flame, glints, dust, a curtain br
 These don't need to sync across walls, because nobody can tell two candles are out of
 phase.
 
-Every loop has to cycle cleanly, since QLab may hold it for minutes. Test first frame =
+Every loop has to cycle cleanly, and any hold is rendered INTO the delivered file (Homie 2026-09-24: no playback fixes, `CLAUDE.md`). Test first frame =
 last frame where the model allows it; otherwise use a crossfade loop in the comp. Record
 which method worked for each plate in `REGISTER.md`.
 

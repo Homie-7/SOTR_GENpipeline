@@ -1,4 +1,33 @@
-# S9-SAL-R-SNUFF · v6 TEST RUNNING · 2026-09-24 (Claude, connector, Homie said continue)
+# S9-SAL-R-SNUFF · v7 · JOIN SOLVED (Sequel) · smoke awaiting Homie · 2026-09-24 (Claude, connector)
+#
+# v7 RESULT: the snuff continues the loop natively. 0 px, every region within 2% at the join,
+#   invisible in a single loop+snuff file. Staging right in both takes. Smoke came out PALE
+#   against a darker dusk and still rising at 5 s (A puffy, B thin threads); Homie's web take
+#   had dark threads that cleared by 4 s. THIS IS THE ACTIVE ROUTE for any further snuff run.
+#
+# WHY v7: Homie, 2026-09-24: "We are not going to rely on QLab or any projection software
+#   whatsoever." The join from the lit loop into the snuff must be correct INSIDE the file.
+#   v5/v6 proved this connector can't pin a first frame. SEQUEL MODE CAN CONTINUE A VIDEO:
+#   `video_extension` forward, from the approved comp loop, so the snuff starts where the loop
+#   ends by construction.
+# CHANGES vs v4 (one design move): the reference mechanism, and the two lines that described
+#   the old one. Every other word is v4.
+#   REFERENCE  v4: "@loc_SOTR_salon_R_s9_v1 is the seed frame and controls the whole picture: ..."
+#              v7: "This shot continues the attached clip of the same salon wall directly from
+#                   its last frame, and keeps the whole picture: ..."
+#   FIRST FRAME v4: "Identical to the reference: ..."
+#              v7: "Continues seamlessly from the last frame of the attached clip: ..."
+# SETTINGS · Seedance 2.5 · mode video_extension, extension_mode forward · video reference =
+#   SOTR_MEDIA/refs/SAL-R-LOOP_comp_upload.mp4 (H.264 crf 10 of loc_SOTR_salon_R_loop_s9_v1_comp.mov,
+#   sha256 0ab33cc4…, media 4afb0ccd-af6f-4d79-9255-f099561f1c5e) · aspect follows the input (4:3) ·
+#   1080p · 5 s (Homie's 5 s web take was complete) · bitrate_mode high · batch 2 · sound ON ·
+#   60 credits per take, 120 total
+# PASS = the new footage starts on the loop's last frame (<=1 px, a few levels), and the exit
+#   stages as before (left, then right, no smoke while lit, threads not puffs).
+#
+# ---- v6 header below ----
+#
+# S9-SAL-R-SNUFF · v6 REFUSED BY THE SERVER (422, no charge) · 2026-09-24
 #
 # v6 = v4's body WORD FOR WORD. ONE CHANGE against v5: the mode. v5 sent `start_image` in
 #   mode omni_reference and the server coerced it to a reference. v6 leaves `mode` unset
@@ -102,9 +131,9 @@
 
 SCENE: The approved salon wall at evening, all six candles burning, as they are put out one sconce after the other and the room sinks into dusk. One locked, continuous shot.
 
-REFERENCE: @loc_SOTR_salon_R_s9_v1 is the seed frame and controls the whole picture: every panel, moulding, sconce, the portrait and its frame, the colour and the light, exactly as shown.
+REFERENCE: This shot continues the attached clip of the same salon wall directly from its last frame, and keeps the whole picture: every panel, moulding, sconce, the portrait and its frame, the colour and the light, exactly as shown.
 
-FIRST FRAME: Identical to the reference: all six candles burning, warm amber light.
+FIRST FRAME: Continues seamlessly from the last frame of the attached clip: all six candles burning, warm amber light.
 
 FORMAT: Single continuous take, real-time, no cuts.
 

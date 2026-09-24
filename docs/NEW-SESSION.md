@@ -35,19 +35,18 @@ do it without asking.
 Stay in VID.
 
 FIRST, ASK HOMIE THESE (all generation is waiting on him; nothing is blocked on Claude):
-1. SNUFF: APPROVE loops/S9-SAL-R-SNUFF_v4_web5s.mp4? It's his own 5 s web run ("Snuff not
-   bad"; he said "I don't mind it"). The best of 5 takes: left out, then right, thin dark
-   threads gone by ~4 s, ending on a still dusk wall. Complete at 5 s, NO 10 s run needed.
-   Confirm with him which prompt and settings he ran (presumed v4, unconfirmed), and save
-   them to the prompt file. On approval: rename to loc_SOTR_salon_R_snuff_s9_v1.mp4,
-   checksum, REGISTER.
-2. SNUFF CUT (his comp and QLab, not generation). Seedance can't pin a first frame
-   through this connector (LOG v5/v6), so the cut from the lit loop is matched downstream.
-   Frame 0 is 4 px off; halos match; dado -22%, far-left panel -16%. Previews were sent to
-   him: a hard cut vs a 6-frame QLab crossfade. Recommendation: the crossfade (free, and the
-   candles are still lit during it). He also has to put GERARD on the snuff (it carries the
-   placeholder king, like every generated clip), darkening as the sconces go out. That's
-   part of S9-SAL-R-PORTRAIT. v4's "no comp step" was wrong.
+1. SNUFF: the JOIN IS SOLVED by Sequel (v7): the snuff is generated as a continuation of the
+   approved comp loop (video_extension forward), so loop + snuff is one seamless file. Homie
+   has single-file previews. His call is the SMOKE: v7 takes are PALE and still rising at
+   5 s (B thinner, better); his own web take (loops/S9-SAL-R-SNUFF_v4_web5s.mp4) had dark
+   threads gone by 4 s but can't join cleanly. Recommendation: pick v7 B, or re-run v7 at
+   batch 2 hoping for dark threads (120 credits; the smoke is luck). Once picked: rename to
+   loc_SOTR_salon_R_snuff_s9_v1.mp4, checksum, REGISTER.
+2. OPEN FROM THE NEW RULE (Homie 2026-09-24: "not rely on QLab or any projection software
+   whatsoever... generating everything as a final product"): (a) how long each beat's file
+   runs, now that nothing holds a loop live: fixed-length files need beat timings; (b)
+   whether the physical fit onto the angled flats still happens in playback. Gérard must be
+   composited over the placeholder king in every salon file (loop and snuff).
 3. STUDIO v2 (unchanged): loops/S9-STU-L-LOOP_v2.mp4 works, not yet approved. On approval:
    rename to loc_SOTR_studio_L_loop_s9_v1.mp4 and render _comp.mov (loop_halo.py --boost 1
    --skip 12 --xfade 36, which also cancels v2's +7% drift). Then OFFER the two beat
@@ -70,9 +69,11 @@ CONNECTOR NOTES THAT WILL BITE (full list: PIPELINE.md):
 - The server may answer with a preset suggestion instead of a job ("IN THE DARK"): resubmit
   with declined_preset_id. Never run the preset.
 - get_cost with count 2 reports ONE take's price. The debit is per take.
-- Read the echoed params after submit: if an image shows as reference_images, it's a loose
-  reference, whatever role you sent.
-- The lit plate is already uploaded: media c24b3532-2041-4b9d-aeb3-f4b938ff4e0f.
+- The echoed params label every input reference_images (even a Sequel video). Judge by frames.
+- start_image/end_image don't pin frames on this connector. Joins go through Sequel
+  (video_extension forward) or the comp, INSIDE the file.
+- Uploaded: lit plate c24b3532-2041-4b9d-aeb3-f4b938ff4e0f; salon comp loop (video)
+  4afb0ccd-af6f-4d79-9255-f099561f1c5e.
 - Renders take ~6-10 min. Pace with a background `sleep`, not a poll loop.
 
 WALL MAPPING IS CONFIRMED, not proposed. The client (audience-perspective, confirmed by
@@ -118,7 +119,7 @@ in frame. Details in LOOK.md World 3 step 3.
 
 NEXT ACTIONS, IN ORDER:
 1. Ask Homie the three questions at the top (snuff cut match, snuff smoke, studio v2).
-2. Snuff: file it on approval. No more snuff generation is planned.
+2. Snuff: file the picked take; build the single delivered file (loop cycles + snuff).
 3. Studio v2: file it on approval; offer the beat variants.
 4. Homie's comp work (not Claude's): S9-SAL-R-PORTRAIT, S9-STU-L-PAINT1/2/3, the epaulette
    patch, the court cues Q1-Q5, and the studio's beat-driven candle arc if it isn't generated.
