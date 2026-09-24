@@ -17,6 +17,10 @@
 # Prompt names the reference in words (no @tag, CLAUDE.md reference-token rule).
 
 # ======== v2 (2026-09-24) ========
+# v2 RESULT: A = CANDIDATE (full height from frame 0, uneven, cracks + floating pieces, band
+#   11->12% over 4 s, Gérard steady). B = too much (a 24% shatter web isolating the sconce).
+#   Homie's later notes for any v3: the break line UNEVEN (A already is); Control-style BLOCKS
+#   over shards; secondary reference: the *Your Friends and Neighbors* opening titles.
 # HOMIE CLARIFIED (while v2 rendered): keep v1's LOOK ("cracks and blocks breaking off, just
 #   like how Remedy does it in Control"), NOT simpler, NOT fading. What was wrong was COVERAGE:
 #   "the whole scene is breaking on that side", not a patch in the middle. So if v2 comes back
