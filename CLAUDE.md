@@ -62,7 +62,11 @@ video vocabularies poison each other, so one session never spans both.
 - **No people in any plate.** The actors are real. The only figure is the court's
   silhouette.
 - **Transitions and fragments are made in compositing, never generated.** Higgsfield makes
-  clean, lit, loopable plates.
+  clean, lit, loopable plates. **One exception (Homie, 2026-09-24): the salon's exit**
+  (`S9-SAL-R-SNUFF` v4) is a generated clip that starts on the lit plate and ends in dusk.
+  In all three runs the model insisted on staging the snuff itself, and a fixed clip
+  triggered in QLab still hits its cue and plays the same every time. Anything else
+  still goes through the comp.
 - **Negative prompts are not used.** Write what should be there. Put constraints in the
   positive body.
 - **The Raft painting is composited, not generated.** It's public domain (1819). Generators
@@ -102,7 +106,8 @@ video vocabularies poison each other, so one session never spans both.
   draught, and the light swing went from 4% to 17%.
 - **`S9-SAL-R-SNUFF` added** (Homie): smoke from the snuffed wicks, for both salon exits.
   v1's snuff was good but its smoke became cartoon clouds. v2 rewrote too much and lost the
-  snuff. **v3 is v1's text with only the smoke reduced**, and was generating at session close.
+  snuff. v3 still made puff-headed smoke. **Restructured to v4 with Homie**: the clip is the
+  exit itself, from the lit plate (see the transitions exception in Standing rules). Written, not run.
 - **Look decisions** (LOOK.md Worlds 1 and 2): on the salon wall the halos breathe, and the
   mirror and curtains are gone; the studio's light follows the drama across beats 4/6/9; the
   painting grows while Géricault paints (pending the director).

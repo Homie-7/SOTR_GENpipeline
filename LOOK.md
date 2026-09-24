@@ -99,7 +99,10 @@ many candles are composed. It's the same light source behaving in opposite ways.
 
 **How it arrives.** "Slowly revealed," as the script says. The comp reveals LIT through
 DARK one candle at a time, and the gilt catches first. **How it leaves.** The candles snuff
-out, and it returns to DARK. **Added 2026-09-24 (Homie): smoke from the snuffed wicks.**
+out, and it returns to DARK. **REVISED 2026-09-24 after three takes (Homie): the snuff clip IS the exit.** It starts on
+the lit plate, the left sconce goes out and then the right, a beat apart, the room settles into
+dusk, and an incense-thin wisp trails from each wick. QLab cuts to it from the lit loop.
+The paragraph below records the first plan. **Added 2026-09-24 (Homie): smoke from the snuffed wicks.**
 A short generated clip from the approved DARK plate (`S9-SAL-R-SNUFF`) with pale smoke
 rising from the six wicks, thinning and gone. It's material, not a generated transition:
 the comp times the snuff and cuts into the clip. Serves both exits (beat 3, and after beat 8).

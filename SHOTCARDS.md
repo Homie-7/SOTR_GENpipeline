@@ -15,7 +15,7 @@ is `L` / `C` / `R`. Loops add `-LOOP`, and composited cues add `-Q<n>`.
 | S9-SAL-ROOM | Salon room master, all three of the room's own walls in one wide design image (never projected) | Higgsfield (image) | LOOK salon locked | **approved** |
 | S9-SAL-R | Salon's one active wall (the portrait), plays on the physical RIGHT flat | Higgsfield (image) | S9-SAL-ROOM approved | prompt ready |
 | S9-SAL-R-LOOP | Salon loop (six candle flames, glints on gilt; the mirror and curtains are on retired walls) | Higgsfield (video) | S9-SAL-R | **approved** 2026-09-24, `@loc_SOTR_salon_R_loop_s9_v1`, halo boosted 3x in post |
-| S9-SAL-R-SNUFF | Salon exit material: smoke rising from the six just-snuffed wicks, thinning to nothing (added 2026-09-24, Homie). The comp times the snuff and cuts into it | Higgsfield (video) | S9-SAL-R-DARK approved ✓ | prompt written 2026-09-24 |
+| S9-SAL-R-SNUFF | **The salon's exit, generated** (restructured 2026-09-24, Homie): from the lit plate, the left sconce then the right go out, dusk falls, incense-thin wisps. QLab cuts to it from the lit loop | Higgsfield (video) | S9-SAL-R approved ✓ | **v4 written**, probe 4 s batch 2 next. v1-v3 rejected |
 | S9-SAL-R-DARK | Salon, candles unlit, dusk only. NBP edit of the approved LIT plate | Higgsfield (image edit) | S9-SAL-R approved | prompt ready (template) |
 | S9-SAL-R-PORTRAIT | Gérard's Louis XVIII (public domain) composited into the frame | compositing | S9-SAL-R | source verified |
 | ~~S9-SAL-C, S9-SAL-L~~ | The room's other two walls (mirror, window) — **not needed**, the salon never shows more than one wall | — | — | retired 2026-09-22 |

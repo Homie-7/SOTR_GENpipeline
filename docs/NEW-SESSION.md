@@ -47,10 +47,13 @@ STATE OF THE LOOPS (2026-09-24):
   render _comp.mov (loop_halo.py --boost 1 --skip 12 --xfade 36, which also cancels
   v2's +7% drift). Then OFFER the two beat variants (beat 6 wilder, beat 9 steady and
   bright; one line changed each, ~240 credits), which Homie hasn't decided yet.
-- S9-SAL-R-SNUFF: v3 was GENERATING IN THE WEB APP when the session closed. It's v1's
-  text with only the smoke amount reduced (read the v3 header: v2 rewrote too much and
-  lost v1's snuff). Find the download in SOTR_MEDIA/loops/ (Homie names files freely),
-  verify it IS the snuff, then review. Rejected v1 and v2 are in rejected/.
+- S9-SAL-R-SNUFF: v1-v3 REJECTED (in rejected/). The smoke always came out puff-headed, it
+  streamed off lit candles, and all three STARTED LIT from a DARK reference. RESTRUCTURED
+  with Homie: v4 uses the LIT plate as reference, and the clip IS the salon's exit (left sconce
+  out, then right, dusk falls, incense-thin wisps). QLab cuts to it from the lit loop. This
+  bends CLAUDE.md's no-generated-transitions rule for this one exit (recorded there). v4 is
+  written, NOT RUN. Its first run is the first real job through the connector: PROBE at
+  4 s, batch 2 (~96 credits), judged on the checklist in the v4 header.
 
 WALL MAPPING IS CONFIRMED, not proposed. The client (audience-perspective, confirmed by
 Homie): salon on RIGHT, Gericault's studio on LEFT, the judge on CENTRE ("the back
@@ -96,8 +99,8 @@ in frame. Details in LOOK.md World 3 step 3.
 NEXT ACTIONS, IN ORDER:
 1. Connector gate + parity run (AUTONOMOUS-GEN step 0). Log the tool list and settings in
    PIPELINE.md.
-2. Review snuff v3 (see above). Iterate within budget if it fails on smoke only. It's a
-   taste call, so Homie approves.
+2. Snuff v4 probe (4 s, batch 2) through the connector. If it passes, run the 10 s
+   candidate. It's a taste call, so Homie approves the result.
 3. Ask Homie to approve studio v2; file it; offer the beat variants.
 4. Homie's comp work (not Claude's): S9-SAL-R-PORTRAIT, S9-STU-L-PAINT1/2/3, the epaulette
    patch, the court cues Q1-Q5, and the studio's beat-driven candle arc if it isn't generated.

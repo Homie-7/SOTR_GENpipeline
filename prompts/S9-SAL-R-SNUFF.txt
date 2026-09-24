@@ -1,104 +1,75 @@
-# S9-SAL-R-SNUFF · v3 · NOT GENERATED · 2026-09-24 (VID) · added by Homie 2026-09-24
+# S9-SAL-R-SNUFF · v4 · NOT GENERATED · 2026-09-24 (VID) · RESTRUCTURED, decided with Homie
 #
-# BUILT FROM v1's TEXT, WORD FOR WORD, NOT FROM v2.
-#   v1 (rejected/S9-SAL-R-SNUFF_v1.mp4): Homie liked the animation. The flames went out
-#     crisply in the first ~0.5 s and the room fell to dusk. The only fault was the smoke:
-#     cartoon clouds about 1 m above the sconces, detached from the wicks, far too much.
-#   v2 (rejected/S9-SAL-R-SNUFF_v2.mp4), Homie: "completely horrible... the previous
-#     animation was so much better." On the frame sheet: the flames kept burning for ~1.5 s
-#     WITH SMOKE ALREADY RISING FROM LIT CANDLES (impossible), then dimmed away slowly like a
-#     dissolve. It never read as a snuff. The v2 smoke threads were close to right.
-#   MY ERROR IN v2: I called it "one change" but rewrote SCENE, FIRST FRAME, the whole ACTION
-#     TIMING and PHYSICS, changing the timeline and joining the smoke to the wick from 0:00.
-#     That's the full rewrite house-rules warns about: it threw away the part that worked
-#     (v1's snuff) to fix the part that didn't (the smoke).
-#   ALSO: every run so far is batch 1, one sample. We can't tell how much of v1's good snuff
-#     was the wording and how much was luck. Batch 2 costs double but shows which it was.
+# WHY v4 IS A RESTRUCTURE, NOT A REWORDING (lesson 6)
+#   v1-v3 used the DARK plate as the reference and asked for "a moment after" the snuff.
+#   All three STARTED LIT anyway, and the model staged the snuff itself. v2 and v3 then
+#   streamed smoke off candles that were still burning. The smoke formed a puff-headed plume
+#   every time: big clouds in v1, puff-balls in v3; v2's threads were close but it lost the
+#   snuff. Two rewordings failed on the smoke, and the model rejected the premise three times.
+#   The design was fighting what the model wants to show, so v4 gives it the event.
+#   v1-v3 prompt text: git history (commit 3a6cd0b and earlier). Their clips are in rejected/.
 #
-# THE ONE CHANGE IN v3, AGAINST v1: the amount of smoke, and nothing else.
-#   "a full, clearly visible ribbon"  ->  "a thin ribbon"
-#   "lift higher over the ivory panels, curling, spreading and thinning as they rise"
-#       ->  "curl and thin as they rise, fading out a short way above the sconces"
-#   PHYSICS  + "It never gathers into a cloud or a puff." (demonstrated in v1)
-#   Every other word is v1's, including the first frame and the timeline that produced the snuff.
+# WHAT CHANGED (Homie, 2026-09-24)
+#   1. REFERENCE = THE LIT PLATE. The clip IS the salon's exit: flames out, the room falls
+#      to dusk, wisps. Its first frame matches the approved lit loop, so QLab cuts from the
+#      loop straight into this clip on cue. No comp step. This bends CLAUDE.md's
+#      "transitions are never generated" for this one in-world exit; the rule's reasons
+#      (triggered on a cue, identical every time) still hold for a fixed clip.
+#   2. ONE SCONCE AFTER THE OTHER: left, then right, a beat apart. Six flames out in the same
+#      instant looked artificial in all three takes.
+#   3. THE SMOKE NOUN CHANGED (lesson 3: when banning a defect by name doesn't hold, change
+#      the noun). "Smoke rises" produced a plume with a head. "An incense-thin wisp" is a
+#      continuous thread, with a visible landmark for where it ends: the top of the sconce's
+#      carved back.
+#   This is three changes, knowingly. A restructure after two failures is one design move,
+#   and the probe below tells us whether it works.
 #
-# v2 text, kept for the record:
-#   SCENE: The approved salon wall in the dusk, a moment after its six candles have been snuffed: a thin thread of smoke rises from each wick and fades. One locked, continuous shot.
-#   REFERENCE: @loc_SOTR_salon_R_dark_s9_v1 is the seed frame and controls the whole picture: every panel, moulding, sconce, the portrait and its frame, the cool dusk colour and the light, exactly as shown.
-#   FIRST FRAME: Identical to the reference, except that each of the six wicks glows a faint orange and a thin thread of smoke is already rising from it.
-#   FORMAT: Single continuous take, real-time, no cuts.
-#   CAMERA: Locked off, square to the wall. No push, no pan, no tilt, no drift, no zoom.
-#   ACTION TIMING:
-#   0:00-0:01 — from each of the six wicks a single thin thread of grey smoke rises straight up, joined to the wick. The orange glow at each wick tip fades to black.
-#   0:01-0:04 — the threads waver and curl lazily as they climb, thinning, each fading out a short way above its candle, less than the sconce's own height.
-#   0:04-end — the threads grow fainter and stop. The last faint wisps vanish, and the wall is left exactly as in the reference, still and quiet.
-#   PHYSICS: Real smoke from a just-snuffed candle in still indoor air: one thin thread per wick, pencil-thin where it leaves the wick, drifting and curling a little as it rises, then breaking up and fading into the air. It never gathers into a cloud or a puff. Each thread weakens second by second as its wick cools.
-#   LIGHTING: The cool blue-grey dusk of the reference, unchanged throughout. The smoke catches it softly. No flame anywhere.
-#   AUDIO: The soft hiss of snuffed wicks, then quiet room tone. No music, no voices.
-#   QUALITY: Stable, clean picture, real-time, no slow motion, no frame interpolation, no ghosting.
-#   LOCKS:
-#   NO ON-SCREEN TEXT.
-#   The room is empty: nobody in frame.
-#   All six candles stay unlit from first frame to last.
-#   LOCKED CAMERA.
-#   Nothing in frame newer than 1819.
-#
-# SETTINGS (type these into Higgsfield)
+# SETTINGS
 #   Model:      Seedance 2.5
-#   Mode:       References. Reference = @loc_SOTR_salon_R_dark_s9_v1
-#               (SOTR_MEDIA/plates/salon/loc_SOTR_salon_R_dark_s9_v1.jpg).
-#               NO end-frame slot on Seedance 2.5. If any smoke is left at the end, the
-#               comp crossfades the tail to the DARK still.
-#   Aspect:     4:3, the same as S9-SAL-R-LOOP, so the two clips cut together.
-#   Resolution: 1080p. Nothing gets upscaled until it's approved.
-#   Duration:   10 s, the same as v1 and v2.
-#   Sound:      ON (scratch reference; a snuff and wick hiss is useful to the sound designer).
-#   Also:       quality High · batch 2 RECOMMENDED (see above); batch 1 if credits are tight
+#   Mode:       References. Reference = @loc_SOTR_salon_R_s9_v1, the LIT plate
+#               (SOTR_MEDIA/plates/salon/loc_SOTR_salon_R_s9_v1.jpg). Just this one.
+#   Aspect:     4:3 (it must cut against the lit loop, which is 4:3)
+#   Resolution: 1080p
+#   Duration:   PROBE 4 s first. The whole snuff and the start of the wisps land inside 4 s,
+#               which is where every earlier fault showed. CANDIDATE 10 s only once a probe
+#               passes.
+#   Quality:    High
+#   Batch:      2 for the probe (is it the wording, or luck?), 1 for the candidate
+#   Sound:      ON (a snuff hiss is a useful scratch for the sound designer)
+#   Cost:       probe about 96 credits; candidate about 120
 #
-# WHAT THIS IS: material, not a transition. CLAUDE.md bans generated transitions because
-#   they can't be timed to a cue. This clip has no timing of its own. The comp does the
-#   snuff (LIT loop to DARK, per candle), and cuts into this clip at that point.
-#   The two sconces are about 1.3 m apart, so their plumes never overlap. The comp can
-#   mask left and right separately and offset them in time, so the sconces go out one
-#   after the other. Per-candle staggering inside one sconce isn't possible (the three
-#   plumes overlap); that's fine at stage scale.
-#
-# SCALE (revised for v2): v1's "theatrical exaggeration" is what produced the clouds.
-#   A real thread is about 3-4 px wide in this 1664 px frame, thin but visible against
-#   the panels, especially as it curls. Realism comes first; if v2 is too faint, the
-#   next change is density ("a dense thread"), never volume.
-#
-# KNOWN: the DARK plate's dusk reads slightly brighter on the wrong edge (REGISTER.md,
-#   comp-correctable). Irrelevant to this clip.
-#
-# No style prefix, same reasoning as S9-SAL-R-LOOP: it describes walls that aren't in frame.
+# JUDGE THE PROBE ON: the first frame matching the lit loop (a clean cut); left before right;
+#   no smoke while any flame burns; wisps as unbroken threads with no puff head or cloud,
+#   ending near the top of the sconce; the room settling to dusk; the portrait still.
 
-SCENE: The approved salon wall in the dusk, a moment after its six candles have been snuffed: pale smoke rises from the wicks and clears. One locked, continuous shot.
+SCENE: The approved salon wall at evening, all six candles burning, as they are put out one sconce after the other and the room sinks into dusk. One locked, continuous shot.
 
-REFERENCE: @loc_SOTR_salon_R_dark_s9_v1 is the seed frame and controls the whole picture: every panel, moulding, sconce, the portrait and its frame, the cool dusk colour and the light, exactly as shown.
+REFERENCE: @loc_SOTR_salon_R_s9_v1 is the seed frame and controls the whole picture: every panel, moulding, sconce, the portrait and its frame, the colour and the light, exactly as shown.
 
-FIRST FRAME: Identical to the reference, except that each of the six wicks glows a faint orange and a ribbon of smoke is already rising from it.
+FIRST FRAME: Identical to the reference: all six candles burning, warm amber light.
 
 FORMAT: Single continuous take, real-time, no cuts.
 
 CAMERA: Locked off, square to the wall. No push, no pan, no tilt, no drift, no zoom.
 
 ACTION TIMING:
-0:00-0:02 — from each of the six wicks a thin ribbon of pale grey smoke rises straight up, then begins to curl and waver. The orange glow of each wick fades to black.
-0:02-0:05 — the six ribbons curl and thin as they rise, fading out a short way above the sconces.
-0:05-end — the last wisps dissolve. The wall is left exactly as in the reference, still and quiet.
+0:00-0:01 — all six flames burn calmly.
+0:01 — the three flames of the LEFT sconce go out together, snuffed; their warm glow on the panels falls away at once.
+0:02 — the three flames of the RIGHT sconce go out the same way. With no flame left, the wall settles into the cool blue-grey dusk of an unlit room.
+0:02-0:05 — from each dark wick a single incense-thin wisp of grey trails upward, one unbroken thread like the smoke from a stick of incense, wavering and curling, fading out around the top of the sconce's carved back.
+0:05-end — the wisps thin and vanish. The wall stays in quiet dusk, the candles pale and unlit.
 
-PHYSICS: Real candle smoke in still indoor air: a thin steady column at first, breaking into slow curls as it rises and cools, drawn gently upward, never blown sideways. It never gathers into a cloud or a puff.
+PHYSICS: Each wisp is continuous from the wick to where it fades, as thin at its top as at its start. It never gathers into a cloud or a puff.
 
-LIGHTING: The cool blue-grey dusk of the reference, unchanged throughout. The smoke catches it softly. No flame anywhere.
+LIGHTING: Warm candlelight until each sconce goes out, then only the cool blue-grey dusk of an unlit room.
 
-AUDIO: The soft hiss of snuffed wicks, then quiet room tone. No music, no voices.
+AUDIO: The soft hiss of each snuffed wick, then quiet room tone. No music, no voices.
 
 QUALITY: Stable, clean picture, real-time, no slow motion, no frame interpolation, no ghosting.
 
 LOCKS:
 NO ON-SCREEN TEXT.
 The room is empty: nobody in frame.
-All six candles stay unlit from first frame to last.
+Six flames at the start, none after 0:02; no smoke while any flame still burns.
 LOCKED CAMERA.
 Nothing in frame newer than 1819.
