@@ -16,23 +16,72 @@
 #   floaty? Does the rest of the wall hold (lock, sconce, candles)? Is Gerard faithful?
 # Prompt names the reference in words (no @tag, CLAUDE.md reference-token rule).
 
-SCENE: The salon wall at evening, lit by its six candles, where the left edge of the room is quietly coming apart and floating away into darkness. One locked, continuous shot.
+# ======== v2 (2026-09-24) ========
+# HOMIE CLARIFIED (while v2 rendered): keep v1's LOOK ("cracks and blocks breaking off, just
+#   like how Remedy does it in Control"), NOT simpler, NOT fading. What was wrong was COVERAGE:
+#   "the whole scene is breaking on that side", not a patch in the middle. So if v2 comes back
+#   soft/faded, v3 = v1's body word for word with ONE change: the break covers the full height
+#   of the left side (cornice to floor) and the pieces stay aloft.
+# v1 RESULT (batch 2, 4 s, 96 credits): Higgsfield CAN do it. Both takes break the wall itself
+#   (cracks run into the panelling, slabs with real thickness, drifting into black); lock 0 px;
+#   GERARD HELD in both (portrait step 0.24). But both are an EVENT (progressive cracking), and
+#   pieces FALL: A drops rubble to the floor; B's break is mid-height and eats the left sconce.
+# HOMIE, after seeing the direction: the break runs "across the ENTIRE edge", "fading into
+#   nothingness", and it's "very simple and floaty, like ethereal", not "disintegrating and
+#   dispersing". "It just has to be there." Loops will run long (~30 s; extend later).
+# v2 CHANGES (one design move, his brief): full height, steady state from the first frame,
+#   weightless drift in place (no falling). SCENE, FIRST FRAME, THE WALL, THE EDGE, MOTION and
+#   LIGHTING rewritten to it; the rest is kept.
+# v2 SETTINGS · as v1 (Seedance 2.5 · References · refs/SAL-R-clean-gerard-f300.png · 4:3 ·
+#   1080p · 4 s probe · high · batch 2 · sound ON · 96 credits). Running total 768 -> 864.
+# ---- v1 body, for the record ----
+# SCENE: The salon wall at evening, lit by its six candles, where the left edge of the room is quietly coming apart and floating away into darkness. One locked, continuous shot.
+# 
+# REFERENCE: The attached image is the first frame and controls the whole picture: every panel, moulding, sconce, the portrait and its frame, the colour and the light, exactly as shown.
+# 
+# FIRST FRAME: Identical to the attached image.
+# 
+# FORMAT: Single continuous take, real-time, no cuts.
+# 
+# CAMERA: Locked off, square to the wall. No push, no pan, no tilt, no drift, no zoom.
+# 
+# THE WALL: From the right edge of the frame to just past the left sconce, the wall stays whole and solid. The candles burn with their usual soft flicker, and the portrait stays exactly as it is.
+# 
+# THE BREAK: Along the left edge of the frame, the wall has come apart into slabs of itself: pieces of ivory panelling, gilt moulding and plaster, a few as large as a panel, most smaller, each a solid block with real thickness. They hang weightless in dark empty space beside the wall, as if in zero gravity, and drift slowly, each turning a little on its own axis. Nearest the whole wall the pieces have only just cracked away and barely shift; toward the left edge they are smaller, further apart and further back, withering into the darkness. Now and then a small piece loosens from the broken edge and floats off. Every piece stays aloft and drifts gently for the whole shot.
+# 
+# LIGHTING: Warm candlelight on the whole wall and on the nearest floating pieces; the pieces further out sink into darkness.
+# 
+# SPACE: Beyond the broken edge there is no room, only deep dark space.
+# 
+# AUDIO: Quiet room tone and a faint low hum. No music, no voices.
+# 
+# QUALITY: Stable, clean picture, real-time, no frame interpolation, no ghosting.
+# 
+# LOCKS:
+# NO ON-SCREEN TEXT.
+# The room is empty: nobody in frame.
+# Six flames, all burning, first frame to last.
+# LOCKED CAMERA.
+# Nothing in frame newer than 1819.
+#
 
-REFERENCE: The attached image is the first frame and controls the whole picture: every panel, moulding, sconce, the portrait and its frame, the colour and the light, exactly as shown.
+SCENE: The salon wall at evening, lit by its six candles. Its left edge frays away into dark space along its whole height, as if the room were a fragment of memory floating in the void. One locked, continuous shot.
 
-FIRST FRAME: Identical to the attached image.
+REFERENCE: The attached image controls the whole picture: every panel, moulding, sconce, the portrait and its frame, the colour and the light, exactly as shown.
+
+FIRST FRAME: The wall as in the attached image, with its left edge already frayed into floating fragments from the cornice to the floor.
 
 FORMAT: Single continuous take, real-time, no cuts.
 
 CAMERA: Locked off, square to the wall. No push, no pan, no tilt, no drift, no zoom.
 
-THE WALL: From the right edge of the frame to just past the left sconce, the wall stays whole and solid. The candles burn with their usual soft flicker, and the portrait stays exactly as it is.
+THE WALL: From just left of the left sconce to the right edge of the frame, the wall is whole and solid. The candles burn with their usual soft flicker, and the portrait stays exactly as it is.
 
-THE BREAK: Along the left edge of the frame, the wall has come apart into slabs of itself: pieces of ivory panelling, gilt moulding and plaster, a few as large as a panel, most smaller, each a solid block with real thickness. They hang weightless in dark empty space beside the wall, as if in zero gravity, and drift slowly, each turning a little on its own axis. Nearest the whole wall the pieces have only just cracked away and barely shift; toward the left edge they are smaller, further apart and further back, withering into the darkness. Now and then a small piece loosens from the broken edge and floats off. Every piece stays aloft and drifts gently for the whole shot.
+THE EDGE: Down the whole height of the left edge of the frame, the wall is in pieces: fragments of ivory panel, gilt moulding and plaster, a few larger, most small, each with real thickness. They hang weightless in the dark beside the wall like objects in deep space, each slowly turning and drifting a little back and forth around its own place. The band is even from top to bottom: nearest the whole wall the fragments sit close together; toward the frame's left edge they grow smaller and sparser and fade softly into nothingness.
 
-LIGHTING: Warm candlelight on the whole wall and on the nearest floating pieces; the pieces further out sink into darkness.
+MOTION: Ethereal, weightless floating for the whole shot. The fragments stay suspended around their places; the frayed edge looks the same at the last second as at the first.
 
-SPACE: Beyond the broken edge there is no room, only deep dark space.
+LIGHTING: Warm candlelight on the whole wall and on the nearest fragments; the outer fragments dim into the dark.
 
 AUDIO: Quiet room tone and a faint low hum. No music, no voices.
 

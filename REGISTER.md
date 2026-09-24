@@ -59,6 +59,11 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 | File | What | Status |
 |---|---|---|
 | `renders/clean/loc_SOTR_salon_R_seq_s9_v1_clean_HOLDS-TBD.mov` | The salon wall, clean: reveal · comp loop x2 · snuff, Gérard composited throughout, no effects, no fades. ProRes 422 HQ 10-bit, 1664x1248, 626 frames (26.1 s), sha256 eb78a97e… | **structure master. Hold lengths are PLACEHOLDERS** until the beat timings exist; the final gets a new version, and this one is kept |
+| `renders/clean/loc_SOTR_salon_R_b2-3_s9_v1.mov` | **Salon, beats 2→3, the finished file** (LOOK D1-D3): reveal · lit hold (9 loop cycles, beat 2 ≈ 75 s) · snuff at the start of beat 3 · dusk held 35 s (beat 3's "salon dims"). Gérard throughout. 2,817 frames, 117.4 s, ProRes 422 HQ 10-bit, sha256 fb9d233c… | **v1, clean. Timing from script word counts; re-version if rehearsal differs** |
+| `renders/clean/loc_SOTR_salon_R_b8_s9_v1.mov` | **Salon, beat 8**: already lit (no reveal, D3), 1 loop cycle (~8 s, beat 8 ≈ 9 s) · snuff · 3 s dusk. 385 frames, 16.0 s, sha256 48645f69… | **v1, clean** |
+| `renders/clean/loc_SOTR_salon_R_IN_s9_v1.mov` / `_HOLD_` / `_OUT_` | The safety set (D2), with Gérard: IN = reveal (120 f), HOLD = one seamless loop cycle (193 f, loops end to end), OUT = snuff (120 f). sha256 1eb7dd79… / 26b8282f… / e49867bd… | **v1, clean** (for a live operator if the actors run long or short) |
+
+**Studio tool:** `tools/render_studio.py` puts the Raft on the canvas at a stage (D4), lit by the canvas's own light, growing over `--grow` seconds. Beat cut-offs 0.45 / 0.80 / 1.06.
 
 **Composite tool:** `tools/render_wall.py` builds a wall's finished file: any sequence of clips, Gérard (or any real painting) lit by the clip's own light, exposure-matched joins, fades and holds built in. Salon canvas opening: `--rect 586,154,468,720`.
 
