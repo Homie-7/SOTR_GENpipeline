@@ -46,6 +46,12 @@ video vocabularies poison each other, so one session never spans both.
   beat, which need beat timings; (2) whether the physical fit onto the angled flats
   (keystone/warp) still happens in playback, or the files must be pre-warped.
 
+- **Reference tokens in prompts (Homie, 2026-09-24).** Higgsfield resolves only `@Image 1`,
+  `@Video 1`… (numbered by upload order). A register tag like `@loc_SOTR_salon_R_s9_v1` in a
+  prompt body is NOT resolved; it's dead text. So register tags live in file HEADERS only.
+  Prompt bodies say `@Image 1` / `@Video 1` for web runs, and plain words ("the attached
+  clip") for connector runs until the API's token syntax is verified. This overrides
+  `house-rules`' one-string-everywhere naming rule for prompt bodies.
 - **Locked cameras, always.** No push, pan, tilt or drift in any generation. Motion only
   happens inside the image.
 - **Walls as walls.** Each surface is the matching wall of the room, square-on, at true
@@ -108,22 +114,18 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
-### 2026-09-24, second session (VID): connector works; final-product rule; snuff join solved by Sequel.
+### 2026-09-24, second session (VID): the salon is built end to end as one finished file.
 
-- **Higgsfield connector gate PASSED.** All four gaps passed, and a parity re-run of the
-  approved salon loop matches it (same file spec, 0 px lock, framing within 0.6%). The
-  web-to-API map and its traps are in `PIPELINE.md`. Measurement is `tools/measure_clip.py`.
-- **Snuff v4 (the restructure) stages the exit right in 4 of 4 takes**: left sconce out,
-  then right, and no smoke while lit. The smoke is luck: 2 takes came back as dark threads,
-  2 as the old puffs. The best take, `loops/S9-SAL-R-SNUFF_v4_probeA.mp4`, waits on Homie's eye.
-- **New standing rule (Homie): final product, no playback fixes** (see Standing rules).
-- **The snuff join is solved by SEQUEL** (v7): the snuff is generated as a continuation of the
-  approved comp loop, 0 px and within 2% at the join, invisible in one file. Its smoke came
-  out pale and lingering, so Homie picks between v7 B and his dark-threaded web take (which
-  can't join cleanly). `start_image` can't pin frames on this connector (v5, v6). The snuff
-  needs the Gérard comp like the loop.
-- **Spent 432 of 1,000 credits.** Generation waits on Homie (snuff smoke, studio v2, beat
-  variants, beat lengths).
+- **Connector works** (gate passed, parity matched; `PIPELINE.md`). 672 credits spent.
+- **New standing rules:** final product, no playback fixes; reference tokens (`@Image 1` only).
+- **The salon's entry and exit are generated as extensions of the approved loop**, so every
+  join is native: `@loc_SOTR_salon_R_reveal_s9_v1` (Prequel, candles lit one at a time) and
+  `@loc_SOTR_salon_R_snuff_s9_v1` (Sequel, v7 B). Both picked by Claude on Homie's
+  delegation. `start_image` can't pin frames on this connector; extension can.
+- **`tools/comp_portrait.py`** renders a wall's finished file: the sequence, Gérard lit by the
+  clip's own light, exposure-matched joins, fades. Salon preview sent to Homie.
+- **Blocking final files: beat timings** (how long each hold runs). Studio and court still
+  need the same end-to-end treatment. See `docs/NEW-SESSION.md`.
 
 ### 2026-09-24 (VID) — Salon loop approved. Studio loop works. Snuff on v3. Higgsfield connected for Claude.
 

@@ -1,0 +1,54 @@
+# S9-SAL-R-REVEAL · v1 · APPROVED (take B) -> loc_SOTR_salon_R_reveal_s9_v1 · 2026-09-24 (VID, Claude, connector)
+# RESULT: both takes join the loop at 0 px; B lights the candles one at a time (the LOOK), A per
+#   sconce (rejected/). Batch 2, 120 credits.
+#
+# WHAT: the salon's ENTRY ("slowly revealed", BIBLE beat 2), generated so it joins the lit loop
+#   natively. Mirror of the snuff (S9-SAL-R-SNUFF v7, a Sequel): this is a PREQUEL that ends on
+#   the approved comp loop's first frame. Delivered file = reveal + loop cycles + snuff.
+# WHY GENERATED: Homie 2026-09-24, final-product rule ("generating everything as a final
+#   product", "ideally generate everything"). LOOK.md World 1 had the reveal as a comp pass
+#   (LIT through DARK, one candle at a time, gilt first). The LOOK is kept (candle by candle,
+#   gilt first); only the method changes.
+# BUILT FROM snuff v7's structure and wording (the one that worked), reversed. The order is
+#   left sconce first, as in the exit.
+# SETTINGS · Seedance 2.5 · Prequel: video_extension, extension_mode BACKWARD · video
+#   reference = SOTR_MEDIA/refs/SAL-R-LOOP_comp_upload.mp4 (media
+#   4afb0ccd-af6f-4d79-9255-f099561f1c5e) · aspect follows the input (4:3) · 1080p · 5 s ·
+#   bitrate_mode high · batch 2 · sound ON · 120 credits
+# PASS = its LAST frame joins the loop's first (0 px, a few levels); unlit at the start; the
+#   left sconce lights, then the right; no smoke or sparks; the portrait still.
+# The dusk it starts from does not need to match the DARK plate: the delivered file opens from
+#   black into this clip (built into the file).
+
+SCENE: The approved salon wall at evening, first unlit in cool blue-grey dusk, as its six candles are lit one sconce after the other and the room warms into candlelight. One locked, continuous shot.
+
+REFERENCE: This shot leads directly into the attached clip of the same salon wall and ends on its first frame, keeping the whole picture: every panel, moulding, sconce, the portrait and its frame, the colour and the light, exactly as shown.
+
+FIRST FRAME: The same wall in cool blue-grey dusk, all six candles pale and unlit.
+
+LAST FRAME: Identical to the first frame of the attached clip: all six candles burning, warm amber light.
+
+FORMAT: Single continuous take, real-time, no cuts.
+
+CAMERA: Locked off, square to the wall. No push, no pan, no tilt, no drift, no zoom.
+
+ACTION TIMING:
+0:00-0:01 — the wall rests in quiet dusk, the candles unlit.
+0:01 — the three candles of the LEFT sconce catch, one after another; a warm glow spreads over the panels around them, and the carved gilt nearby catches the light first.
+0:02 — the three candles of the RIGHT sconce catch the same way.
+0:02-0:05 — the six flames grow to full height and settle, and the warm amber light fills the wall exactly as in the attached clip.
+
+PHYSICS: Each flame catches on its wick as a small bead of light and grows into a steady flame. No smoke, no sparks.
+
+LIGHTING: Cool blue-grey dusk until each sconce lights, then warm candlelight growing to exactly the light of the attached clip.
+
+AUDIO: The soft catch of each wick, then quiet room tone. No music, no voices.
+
+QUALITY: Stable, clean picture, real-time, no slow motion, no frame interpolation, no ghosting.
+
+LOCKS:
+NO ON-SCREEN TEXT.
+The room is empty: nobody in frame.
+No flame at the start; all six burning from 0:02 to the end.
+LOCKED CAMERA.
+Nothing in frame newer than 1819.

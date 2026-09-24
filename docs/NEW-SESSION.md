@@ -23,34 +23,33 @@ Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
 is a wall of the room, square-on, at true scale. No people in any plate. Cross-screen
 events are built in the wide master comp (4680x1080), not generated.
 
-THE TASK, RIGHT NOW (from 2026-09-24, second VID session): the Higgsfield connector WORKS.
-The gate passed (tool map, four gaps, parity run: PIPELINE.md "Higgsfield connector").
-Claude drives Seedance 2.5 directly under docs/AUTONOMOUS-GEN.md: pre-flight every run,
-measure every run with tools/measure_clip.py, Homie approves taste. 312 credits were spent
-last session (Claude's runs; Homie's own 60-credit web snuff was before it). Balance was 5,242 at its start, about 4,930 after. The budget stays 1,000
-per session, hard stop, "be as efficient as possible" (Homie).
-SCOPE FOR CLAUDE: GENERATION ONLY. Compositing stays Homie's (After Effects). Script prep
-of loops with tools/loop_halo.py (detrend, trim, crossfade, amplitude) is not comp work;
-do it without asking.
+THE TASK, RIGHT NOW (from 2026-09-24, second VID session, wrapped): the SALON IS BUILT END TO
+END as one finished file, per Homie's new rule (CLAUDE.md: FINAL PRODUCT, NO PLAYBACK FIXES).
+Reveal (Prequel into the loop) -> lit comp loop -> snuff (Sequel out of the loop), with every
+join generated, Gérard composited throughout by tools/comp_portrait.py, and fades built in.
+Homie delegated the salon picks to Claude ("I'll let you make the decision"): snuff = v7 B,
+reveal = B. Preview sent to him.
+The connector works; 672 credits were spent that session. Budget: 1,000 per session, hard stop,
+"be as efficient as possible".
 Stay in VID.
 
-FIRST, ASK HOMIE THESE (all generation is waiting on him; nothing is blocked on Claude):
-1. SNUFF: the JOIN IS SOLVED by Sequel (v7): the snuff is generated as a continuation of the
-   approved comp loop (video_extension forward), so loop + snuff is one seamless file. Homie
-   has single-file previews. His call is the SMOKE: v7 takes are PALE and still rising at
-   5 s (B thinner, better); his own web take (loops/S9-SAL-R-SNUFF_v4_web5s.mp4) had dark
-   threads gone by 4 s but can't join cleanly. Recommendation: pick v7 B, or re-run v7 at
-   batch 2 hoping for dark threads (120 credits; the smoke is luck). Once picked: rename to
-   loc_SOTR_salon_R_snuff_s9_v1.mp4, checksum, REGISTER.
-2. OPEN FROM THE NEW RULE (Homie 2026-09-24: "not rely on QLab or any projection software
-   whatsoever... generating everything as a final product"): (a) how long each beat's file
-   runs, now that nothing holds a loop live: fixed-length files need beat timings; (b)
-   whether the physical fit onto the angled flats still happens in playback. Gérard must be
-   composited over the placeholder king in every salon file (loop and snuff).
-3. STUDIO v2 (unchanged): loops/S9-STU-L-LOOP_v2.mp4 works, not yet approved. On approval:
-   rename to loc_SOTR_studio_L_loop_s9_v1.mp4 and render _comp.mov (loop_halo.py --boost 1
-   --skip 12 --xfade 36, which also cancels v2's +7% drift). Then OFFER the two beat
-   variants (beat 6 wilder, beat 9 steady and bright; one line changed each, ~240 credits).
+NEXT, IN ORDER:
+1. BEAT TIMINGS are the one thing blocking FINAL salon files: how long beat 2 and beat 8 hold
+   the lit loop, and how long the dusk holds after each exit. Until they exist, the sequence
+   is rendered with placeholder holds. Re-render is one command (see REGISTER, Composite tool).
+   Get them from Homie / the director; offer an estimate from the script if he has none.
+2. STUDIO v2: loops/S9-STU-L-LOOP_v2.mp4, not yet approved (Homie delegated taste calls, so
+   Claude may decide). On approval: rename to loc_SOTR_studio_L_loop_s9_v1.mp4 and render
+   _comp.mov (loop_halo.py --boost 1 --skip 12 --xfade 36). Then the studio needs its own
+   ENTRY/EXIT under the final-product rule (paints in / bleaches out): same Prequel/Sequel
+   method as the salon, plus the Raft painting composited on the canvas (comp_portrait.py
+   generalises: new --rect and --painting). Beat variants (4/6/9 candle arc) are part of it.
+3. COURT: the strike's comp (threshold, key onto a 5:3 bone-white field, Q1-Q5 scale jumps,
+   epaulette patch) also falls under the final-product rule now. Ask Homie whether Claude
+   builds it or he does (it was his AE work).
+4. Still open: physical fit onto the flats (Claude's call: deliver square-on at the wall's
+   aspect; the venue aligns projectors, which isn't content), codec/container, set dimensions.
+   Q5 capper unconfirmed. The client PDF is STALE.
 
 STATE OF THE LOOPS (2026-09-24):
 - S9-SAL-R-LOOP: APPROVED -> @loc_SOTR_salon_R_loop_s9_v1. Halo flicker boosted 3x by
@@ -59,11 +58,10 @@ STATE OF THE LOOPS (2026-09-24):
   --xfade 36. A parity re-run through the connector sits beside it
   (S9-SAL-R-LOOP_v1_parity.mp4, a test, not for use).
 - S9-STU-L-LOOP: v2 works, awaiting Homie (above).
-- S9-SAL-R-SNUFF: v1-v3 rejected (DARK reference, puff smoke). v4 = the restructure (LIT
-  reference, the clip IS the exit): staging passed in all 5 takes; the smoke is a coin toss.
-  LEAD: Homie's web take loops/S9-SAL-R-SNUFF_v4_web5s.mp4, awaiting approval (question 1).
-  Claude's v4 probe A is in loops/ as the runner-up; v4 B, v5 A and v5 B are in rejected/.
-  v5/v6 proved the connector can't pin a first frame. Details: the prompt file header, LOG.md.
+- S9-SAL-R-SNUFF: APPROVED -> loc_SOTR_salon_R_snuff_s9_v1.mp4 (v7 B, Sequel of the comp loop).
+- S9-SAL-R-REVEAL: APPROVED -> loc_SOTR_salon_R_reveal_s9_v1.mp4 (B, Prequel into the loop,
+  candles lit one at a time).
+- Old question 1 and 2 above are CLOSED (v4_web5s and v4_probeA are runners-up in loops/).
 
 CONNECTOR NOTES THAT WILL BITE (full list: PIPELINE.md):
 - The server may answer with a preset suggestion instead of a job ("IN THE DARK"): resubmit
@@ -75,6 +73,9 @@ CONNECTOR NOTES THAT WILL BITE (full list: PIPELINE.md):
 - Uploaded: lit plate c24b3532-2041-4b9d-aeb3-f4b938ff4e0f; salon comp loop (video)
   4afb0ccd-af6f-4d79-9255-f099561f1c5e.
 - Renders take ~6-10 min. Pace with a background `sleep`, not a poll loop.
+- REFERENCE TOKENS: only @Image 1 / @Video 1 resolve; @loc_… tags are dead text. Tags go in
+  headers; bodies use words (connector) or @Image 1 (web).
+- A deadline in the timeline INFLATES the event (snuff v8). Don't use one to shorten smoke.
 
 WALL MAPPING IS CONFIRMED, not proposed. The client (audience-perspective, confirmed by
 Homie): salon on RIGHT, Gericault's studio on LEFT, the judge on CENTRE ("the back

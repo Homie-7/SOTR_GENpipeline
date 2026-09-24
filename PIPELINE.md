@@ -99,6 +99,10 @@ Claude drives Seedance 2.5 directly. What the web menu calls things, the API cal
   connector cannot pin a first or last frame.** Loops keep the `loop_halo.py` crossfade, and
   a join between two clips is made INSIDE the delivered file: by Sequel (`video_extension` forward from the earlier clip, tried first on the snuff v7) or in the comp. Never in playback. (The echoed `params` list every input under `reference_images`, even a video in Sequel
   mode. It's a generic label, not proof of coercion. Judge by the frames.)
+- **Reference tokens:** the web app resolves `@Image 1` / `@Video 1` only; custom `@tags`
+  stay as plain text (Homie, 2026-09-24, with screenshots). Through the connector, prompts
+  that name the reference in words ("the attached clip") demonstrably used it (snuff v7/v8
+  and the reveal: joins at 0 px). Whether the API resolves `@Image 1` is unverified.
 - **Every run re-frames the wall by up to ~1%** (measured: the parity loop 4 px, the snuff
   takes 8-10 px at 832 wide, i.e. 16-20 px at full size, against the approved loop). That's
   harmless inside a loop, but visible on a **hard cut** between two generated clips.

@@ -1,3 +1,9 @@
+# REFERENCE TOKEN NOTE (Homie, 2026-09-24): Higgsfield's web app resolves only `@Image 1` /
+#   `@Video 1` (numbered by upload order). The `@loc_SOTR_studio_L_s9_v1` in the REFERENCE line below is NOT
+#   resolved: it shows red in the web prompt and reaches the model as plain text. The reference
+#   was still attached, so the result stands. For any re-run, type `@Image 1` in place
+#   of the tag (web), or plain words like "the attached image" (connector).
+#
 # S9-STU-L-LOOP · v2 · NOT GENERATED · 2026-09-24 (VID)
 #
 # v1 RESULT (LOG.md 2026-09-24): camera locked, no floor, framing right, but it reads as a

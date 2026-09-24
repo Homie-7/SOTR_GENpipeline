@@ -1,3 +1,9 @@
+# REFERENCE TOKEN NOTE (Homie, 2026-09-24): Higgsfield's web app resolves only `@Image 1` /
+#   `@Video 1` (numbered by upload order). The `@loc_SOTR_salon_R_s9_v1` in the REFERENCE line below is NOT
+#   resolved: it shows red in the web prompt and reaches the model as plain text. The reference
+#   was still attached, so the result stands. The approved loop was made with the dead tag. For any re-run, type `@Image 1` in place
+#   of the tag (web), or plain words like "the attached image" (connector).
+#
 # S9-SAL-R-LOOP · v1 · NOT GENERATED · written 2026-09-24 (VID), motion revised the same day
 #   before any run (scale fix, below)
 #
