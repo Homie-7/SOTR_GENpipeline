@@ -46,11 +46,18 @@ video vocabularies poison each other, so one session never spans both.
   at full picture, with no fade-in or fade-out. **And each wall is a FRAGMENT of reality, not a
   hard rectangle:** whole on its outer side, breaking up toward the CENTRE of the stage (the
   2022 Slide 9 concept). It's built into the file by `tools/render_wall.py --fragment-edge`
-  (see `LOOK.md` Fragments). **Open with Homie:** (1) how a
+  (see `LOOK.md` Fragments). **The dissolve style is NOT approved: Homie didn't like the
+  preview and is sending examples. Don't tune it further until they arrive.** **Open with Homie:** (1) how a
   beat's length is set now that nothing holds a loop live, i.e. fixed-length files per
   beat, which need beat timings; (2) whether the physical fit onto the angled flats
   (keystone/warp) still happens in playback, or the files must be pre-warped.
 
+- **Clean first, effects separate (Homie, 2026-09-24).** *"File management 101."* Every
+  finished render is saved CLEAN (no effects) in `SOTR_MEDIA/renders/clean/` and is never
+  overwritten or deleted; a change is a new version. Anything added on top (the fragment
+  edge, any effect) is a SEPARATE file in `renders/fx/`, rebuilt from clean. Homie can do the
+  fragments in post himself, so the clean render is the deliverable that matters. Generated
+  sources in `loops/` and `plates/` are never modified. `tools/render_wall.py` enforces this.
 - **Reference tokens in prompts (Homie, 2026-09-24).** Higgsfield resolves only `@Image 1`,
   `@Video 1`… (numbered by upload order). A register tag like `@loc_SOTR_salon_R_s9_v1` in a
   prompt body is NOT resolved; it's dead text. So register tags live in file HEADERS only.

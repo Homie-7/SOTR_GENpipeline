@@ -353,7 +353,7 @@ whole on its OUTER side and breaks up toward the CENTRE of the stage, like the R
 dissolving on Slide 9 of the 2022 concept. The salon (RIGHT wall) breaks on its image's LEFT
 edge; the studio (LEFT wall) on its RIGHT edge. Only one side. It's built into every file by
 script (`tools/render_wall.py`), not generated, so it's identical across a wall's clips and
-tunable without credits. **Proposed by Claude, pending Homie's eye:** style `dissolve` (an
+tunable without credits. **Proposed by Claude, NOT LIKED by Homie (2026-09-24), who is finding examples. On hold:** style `dissolve` (an
 organic, blotchy breakup to black with fine particles, drifting slowly upward); the
 alternative `shatter` (hard shards) read as cut paper and wasn't chosen. The salon width is
 14% of the frame, clear of the left sconce, which carries the reveal and the snuff (25% ate

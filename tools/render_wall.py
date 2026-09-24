@@ -32,6 +32,9 @@ JOINS. Each clip after the first eases from the previous clip's exposure to its 
 Inputs play in order as ONE file. Same size, 24 fps. The grade reference is frame 0 of --ref
 (default: the first input). .mov = ProRes 422 HQ 10-bit; anything else = H.264 preview.
 --fade-in / --tail-hold / --fade-out exist but default to 0 (the operator's job).
+FILES: clean renders go to SOTR_MEDIA/renders/clean/ and are never replaced; effect versions
+(--fragment-edge) go to renders/fx/ as separate files. The tool refuses to mix them up or to
+overwrite an existing file (unless --overwrite).
 Needs ffmpeg on PATH, numpy, Pillow.
 """
 import argparse
@@ -207,7 +210,19 @@ def main():
     ap.add_argument('--fade-in', type=float, default=0, help='seconds up from black (default off: operator)')
     ap.add_argument('--tail-hold', type=float, default=0, help='seconds holding the last frame (default off)')
     ap.add_argument('--fade-out', type=float, default=0, help='seconds down to black (default off: operator)')
+    ap.add_argument('--overwrite', action='store_true', help='allow replacing an existing output file')
     a = ap.parse_args()
+
+    # File management (Homie, 2026-09-24): clean renders are masters and are never replaced;
+    # effect versions (fragment edge) are always separate files, in renders/fx/.
+    import os
+    out_norm = os.path.abspath(a.out).replace(os.sep, '/')
+    if a.fragment_edge and '/clean/' in out_norm:
+        raise SystemExit('refusing: a fragment/effect render cannot go in renders/clean/ (use renders/fx/)')
+    if not a.fragment_edge and '/fx/' in out_norm:
+        raise SystemExit('refusing: a render without effects belongs in renders/clean/, not renders/fx/')
+    if os.path.exists(a.out) and not a.overwrite:
+        raise SystemExit(f'refusing: {a.out} exists. Clean renders are never replaced; give the new one a new version')
 
     W, H = size(a.inputs[0])
     for p in a.inputs[1:]:

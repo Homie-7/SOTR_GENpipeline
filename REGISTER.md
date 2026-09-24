@@ -54,6 +54,12 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 | *(pending)* `S9-SAL-R-SNUFF_v4_probeA` | `@loc_SOTR_salon_R_s9_v1` (lit) | none. A one-shot exit clip, played once from a QLab cue, not looped | 4.05 s **probe**, not the 10 s candidate | **testing, awaiting Homie (taste). Blocked on the cut match** | `SOTR_MEDIA/loops/S9-SAL-R-SNUFF_v4_probeA.mp4` (sha256 b4195799…). Run by Claude through the connector, 2026-09-24. Left sconce out at 1.00 s, right at 2.00 s, no smoke while lit, dark curling incense-like threads rising ~1 m. **Known fault:** frame 0 sits 16 px low and ~11% darker than the lit loop, so a hard QLab cut would jump. The fix is undecided (`docs/NEW-SESSION.md`). Siblings: v4 B, v5 A and v5 B in `rejected/` |
 | *(test, not an asset)* `S9-SAL-R-LOOP_v1_parity` | `@loc_SOTR_salon_R_s9_v1` | — | 10.05 s | **connector parity test, passed.** Not for use | `SOTR_MEDIA/loops/S9-SAL-R-LOOP_v1_parity.mp4` (sha256 88222b60…). The approved prompt re-run through the connector to prove it matches the web app (`LOG.md`, `PIPELINE.md`). Keep it as the run-to-run variation sample for this prompt (about 5% darker than the approved take). A spare second take of the approved loop if Homie ever wants one |
 
+**Renders (Homie, 2026-09-24: clean first, effects separate):**
+
+| File | What | Status |
+|---|---|---|
+| `renders/clean/loc_SOTR_salon_R_seq_s9_v1_clean_HOLDS-TBD.mov` | The salon wall, clean: reveal · comp loop x2 · snuff, Gérard composited throughout, no effects, no fades. ProRes 422 HQ 10-bit, 1664x1248, 626 frames (26.1 s), sha256 eb78a97e… | **structure master. Hold lengths are PLACEHOLDERS** until the beat timings exist; the final gets a new version, and this one is kept |
+
 **Composite tool:** `tools/render_wall.py` builds a wall's finished file: any sequence of clips, Gérard (or any real painting) lit by the clip's own light, exposure-matched joins, fades and holds built in. Salon canvas opening: `--rect 586,154,468,720`.
 
 **Reference files (not assets), `SOTR_MEDIA/refs/`, added 2026-09-24:** `SAL-R-LOOP_comp_f0.png`, frame 0 of the approved salon comp loop, 1664x1248 (sha256 831918…). Uploaded as Higgsfield media `af61efa9-…` for snuff v5. The lit plate is Higgsfield media `c24b3532-2041-4b9d-aeb3-f4b938ff4e0f`.

@@ -34,9 +34,10 @@ The connector works; 672 credits were spent that session. Budget: 1,000 per sess
 Stay in VID.
 
 HOMIE, 2026-09-24 (later): NO fades at a file's start/end (the operator does them). Every wall
-gets a FRAGMENT EDGE: whole outside, dissolving to black toward CENTRE (render_wall.py
---fragment-edge; salon: left, 14%, dissolve). Salon preview with it has been sent. Court's
-fragment treatment is not decided.
+gets a FRAGMENT EDGE toward CENTRE, but he DIDN'T LIKE the dissolve preview and is sending
+example references. Wait for them; he may do fragments in post himself.
+FILE MANAGEMENT: clean renders -> SOTR_MEDIA/renders/clean/ (never overwritten); effects ->
+renders/fx/ as separate files. render_wall.py enforces it. The salon clean master is saved.
 
 NEXT, IN ORDER:
 1. BEAT TIMINGS are the one thing blocking FINAL salon files: how long beat 2 and beat 8 hold
