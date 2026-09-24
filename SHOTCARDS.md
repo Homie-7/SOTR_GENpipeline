@@ -22,7 +22,7 @@ is `L` / `C` / `R`. Loops add `-LOOP`, and composited cues add `-Q<n>`.
 | ~~S9-SAL-C, S9-SAL-L~~ | The room's other two walls (mirror, window) — **not needed**, the salon never shows more than one wall | — | — | retired 2026-09-22 |
 | S9-STU-ROOM | Studio room master, all three of the room's own walls (never projected) | Higgsfield (image) | LOOK studio locked | regenerating (light changed to night) |
 | S9-STU-L | Studio's one active wall (the canvas, re-staged as a side-wall elevation), plays on the physical LEFT flat | Higgsfield (image) | S9-STU-ROOM approved | prompt ready |
-| S9-STU-L-LOOP | Studio loop (fast light shimmer and dust generated; slow cue-timed dim-and-swell in the comp) | Higgsfield (video) | S9-STU-L | prompt written 2026-09-24 |
+| S9-STU-L-LOOP | Studio loop (fast light shimmer and dust generated; slow cue-timed dim-and-swell in the comp) | Higgsfield (video) | S9-STU-L | **approved 2026-09-24** -> `@loc_SOTR_studio_L_loop_s9_v1` |
 | S9-STU-L-PAINT1/2/3 | Raft painting in three stages on the canvas | compositing | S9-STU-L | not started |
 | ~~S9-STU-C, S9-STU-R~~ | The room's other two walls (window, shelves) — **not needed**, the studio never shows more than one wall | — | — | retired 2026-09-22 |
 | S9-CRT-FIG | Naval officer silhouette, frontal, bare featureless head, gavel raised, scroll | Higgsfield (image) | LOOK court locked ✓ | **approved** |

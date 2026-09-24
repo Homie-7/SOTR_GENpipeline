@@ -43,12 +43,15 @@ NEXT, IN ORDER:
    the lit loop, and how long the dusk holds after each exit. Until they exist, the sequence
    is rendered with placeholder holds. Re-render is one command (see REGISTER, Composite tool).
    Get them from Homie / the director; offer an estimate from the script if he has none.
-2. STUDIO v2: loops/S9-STU-L-LOOP_v2.mp4, not yet approved (Homie delegated taste calls, so
-   Claude may decide). On approval: rename to loc_SOTR_studio_L_loop_s9_v1.mp4 and render
-   _comp.mov (loop_halo.py --boost 1 --skip 12 --xfade 36). Then the studio needs its own
-   ENTRY/EXIT under the final-product rule (paints in / bleaches out): same Prequel/Sequel
-   method as the salon, plus the Raft painting composited on the canvas (render_wall.py
-   generalises: new --rect and --painting). Beat variants (4/6/9 candle arc) are part of it.
+2. STUDIO: the loop is APPROVED (loc_SOTR_studio_L_loop_s9_v1 + _comp.mov, Claude, delegated).
+   Fragment edge on its RIGHT works (preview made). STILL TO DESIGN, a look call, so PROPOSE to
+   Homie, don't lock: (a) the Raft on the canvas per beat (PAINT1 charcoal / PAINT2 half /
+   PAINT3 near-finished, from the public-domain 1819 painting via render_wall.py --painting
+   with the canvas rect); how PAINT1's charcoal look is derived is an invention and needs his
+   eye; "painting grows while he paints" waits on the director; (b) the studio's entry/exit
+   (LOOK: paints itself in, bleaches out): generated Prequel/Sequel like the salon, or script;
+   (c) the beat 4/6/9 candle arc (low / flares / steady-bright), which needs generation
+   (~240 credits).
 3. COURT: the strike's comp (threshold, key onto a 5:3 bone-white field, Q1-Q5 scale jumps,
    epaulette patch) also falls under the final-product rule now. Ask Homie whether Claude
    builds it or he does (it was his AE work).
