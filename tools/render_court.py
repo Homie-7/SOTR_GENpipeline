@@ -80,17 +80,13 @@ def load_source():
 
 
 def gavel_box(g):
-    """Bounding box of the white keyline ring (white enclosed by black) in a held frame."""
+    """The gavel's box in a held frame. The sanctioned keyline cuts the gavel's black off from the
+    body's, so it is its own black component: the second largest (the body is the largest, the
+    head the third). Measured 2026-09-24 at f96: x 295-691, y 344-1051."""
     black = (g < 0.5).astype(np.uint8)
-    n, lab, st, _ = cv2.connectedComponentsWithStats(1 - black, 8)
-    best = None
-    for i in range(1, n):
-        x, y, w, h, area = st[i]
-        if x == 0 or y == 0 or x + w >= SW or y + h >= SH:
-            continue
-        if best is None or area > best[4]:
-            best = st[i]
-    x, y, w, h, _ = best
+    n, lab, st, _ = cv2.connectedComponentsWithStats(black, 8)
+    comps = sorted((st[i] for i in range(1, n)), key=lambda c: -c[4])
+    x, y, w, h, _ = comps[1]
     return x, y, w, h
 
 
@@ -148,7 +144,7 @@ def timeline(beat=None, strike=None):
                     seq[k] = (i, 'Q5', i == 53); k += 1
             for _ in range(36):
                 if k < n:
-                    seq[k] = (59, 'Q5', False); k += 1
+                    seq[k] = (HELD, 'Q5', False); k += 1
             for i in range(k, n):
                 seq[i] = (None, None, False)  # black
             break
@@ -174,7 +170,7 @@ def main():
     if os.path.exists(a.out) and not a.overwrite:
         raise SystemExit(f'refusing: {a.out} exists. Clean renders are never replaced; give the new one a new version')
     src = load_source()
-    gbox = gavel_box(src[59])
+    gbox = gavel_box(src[HELD])
     fld = field()
     seq = timeline(a.beat, a.strike)
     enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-pix_fmt', 'yuv422p10le'] if a.out.lower().endswith('.mov') \

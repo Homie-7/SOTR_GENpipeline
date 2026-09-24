@@ -16,6 +16,13 @@
 #   floaty? Does the rest of the wall hold (lock, sconce, candles)? Is Gerard faithful?
 # Prompt names the reference in words (no @tag, CLAUDE.md reference-token rule).
 
+# ======== v3 (2026-09-24) ========
+# ONE CHANGE against v2 (lesson 3, change the noun): the pieces. v2 A came back as SHARDS;
+#   Homie's top reference is Control, where architecture breaks into CLEAN RECTANGULAR BLOCKS.
+#   v2: "fragments of ivory panel, gilt moulding and plaster, a few larger, most small, each with real thickness."
+#   v3: "rectangular blocks of panel, gilt and plaster, cut clean like masonry, a few large, most
+#        smaller, each with real thickness." (tightened to stay under the 2,000-character cap)
+# SETTINGS · as v2 · 96 credits · running total 864 -> 960 (the session's last run).
 # ======== v2 (2026-09-24) ========
 # v2 RESULT: A = CANDIDATE (full height from frame 0, uneven, cracks + floating pieces, band
 #   11->12% over 4 s, Gérard steady). B = too much (a 24% shatter web isolating the sconce).
@@ -81,7 +88,7 @@ CAMERA: Locked off, square to the wall. No push, no pan, no tilt, no drift, no z
 
 THE WALL: From just left of the left sconce to the right edge of the frame, the wall is whole and solid. The candles burn with their usual soft flicker, and the portrait stays exactly as it is.
 
-THE EDGE: Down the whole height of the left edge of the frame, the wall is in pieces: fragments of ivory panel, gilt moulding and plaster, a few larger, most small, each with real thickness. They hang weightless in the dark beside the wall like objects in deep space, each slowly turning and drifting a little back and forth around its own place. The band is even from top to bottom: nearest the whole wall the fragments sit close together; toward the frame's left edge they grow smaller and sparser and fade softly into nothingness.
+THE EDGE: Down the whole height of the left edge of the frame, the wall is in pieces: rectangular blocks of panel, gilt and plaster, cut clean like masonry, a few large, most smaller, each with real thickness. They hang weightless in the dark beside the wall like objects in deep space, each slowly turning and drifting a little back and forth around its own place. The band is even from top to bottom: nearest the whole wall the fragments sit close together; toward the frame's left edge they grow smaller and sparser and fade softly into nothingness.
 
 MOTION: Ethereal, weightless floating for the whole shot. The fragments stay suspended around their places; the frayed edge looks the same at the last second as at the first.
 
