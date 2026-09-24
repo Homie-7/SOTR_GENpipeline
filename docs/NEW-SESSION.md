@@ -59,7 +59,14 @@ CAMERA, not downward - changed with Homie after two downward versions failed str
 (see LESSON 6). It carries a SANCTIONED WHITE KEYLINE around the gavel where it overlaps
 the body, which is a deliberate carve-out in LOOK.md World 3 - do not "fix" it. One flagged
 deviation: epaulette fringe returns as white hatching, needs a tracked comp patch.
-Q5 no longer needs its own clip or the vector trace - it is further along the same travel.
+Q5 no longer needs its own clip - it is further along the same travel. Its enlargement is
+REDUCED, NOT GONE (corrected 2026-09-24): 3.2x working / 6.4x at 4K to fill the wall.
+Upscale smoothly then threshold; the vector trace stays as the fallback.
+THE 9:16 SOURCE IS STAYING VERTICAL (settled 2026-09-24 by measuring all 97 frames): the
+figure leaves the frame only at the TOP and BOTTOM, never sideways, because a lunge toward
+camera grows him vertically. Horizontal would make that worse and cost resolution. Comp
+rule: the generated frame's bottom edge sits on the wall's floor line whenever his legs are
+in frame. Details in LOOK.md World 3 step 3.
 
 NEXT ACTIONS, IN ORDER:
 1. VID, THIS IS THE ONLY GENERATION WORK LEFT: S9-SAL-R-LOOP and S9-STU-L-LOOP. Both

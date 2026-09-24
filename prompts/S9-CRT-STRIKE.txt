@@ -17,6 +17,9 @@
 #   The `FIELD` furniture ban is also cut: v1 invented no furniture, so it was never a
 #   demonstrated prior, and unearned bans cost animation. If a bench appears, add it back.
 #
+# CORRECTED 2026-09-24: the two lines below overstate it. Q5 no longer needs its own
+#   generation, but it still needs 3.2x (working) / 6.4x (4K) to fill the wall, and the
+#   vector trace stays as the fallback. See LOOK.md World 3 step 4.
 # BONUS OF THIS ROUTE: Q5 no longer needs its own generation or the vector-trace fallback.
 #   The toward-camera move IS the capper — the comp simply uses more of the travel for Q5
 #   than for Q1. That removes the 5-10x blow-up risk SHOTCARDS.md flags.

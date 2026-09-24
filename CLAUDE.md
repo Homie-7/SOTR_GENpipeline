@@ -94,9 +94,20 @@ reproducible from the v3 prompt string, which bans it** (trap warning at the top
 prompt file). And **the epaulette fringe comes back as white hatching** — that one *is* the
 old banned defect, flagged for a tracked comp patch, not a regeneration.
 
-**Q5's blow-up risk is gone:** the capper is simply further along the same travel, so it
-needs no separate generation and no vector trace. The capper itself is still unconfirmed
-with Homie — it isn't in the script.
+**Q5 needs no separate generation** — the capper is further along the same travel. Its
+enlargement is **reduced, not gone** (corrected 2026-09-24): measured at 3.2× working and
+6.4× at 4K for the gavel to fill the wall, a fraction of enlarging the raised-pose gavel,
+and a thresholded two-tone shape survives it far better than video. The vector trace stays
+as the fallback. The capper itself is still unconfirmed with Homie — it isn't in the script.
+
+**Vertical vs horizontal, settled 2026-09-24 by measurement, not argument.** Homie asked
+whether the 9:16 source would run out of frame as the comp zooms in. Every one of the 97
+frames was measured. The figure never touches the left edge and only briefly the right;
+where it does leave the frame is **top and bottom** — because a man lunging toward camera
+grows up and down, not sideways. A horizontal frame would add room where none is needed,
+remove it where it is, and cost ~44% of the linear resolution on the figure exactly at the
+zoom cues. See `LOOK.md` World 3 step 3 for the floor-line placement rule that hides the
+leg, and `REGISTER.md` for the two small paint jobs.
 
 **What's left to generate: `S9-SAL-R-LOOP` and `S9-STU-L-LOOP`.** Neither prompt is
 written. Everything else outstanding is compositing.

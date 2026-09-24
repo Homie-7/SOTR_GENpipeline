@@ -24,6 +24,36 @@ change the plate, not the sentence.
 
 ## Sessions
 
+### 2026-09-24 — vertical vs horizontal for the court, settled by measurement; a correction
+
+**Homie's question:** as the comp zooms in on the judge, won't the figure run out of the
+9:16 frame, since the wall is horizontal? Should we switch to horizontal?
+
+**Answered by measuring, not arguing.** Every one of the 97 frames of
+`@fig_SOTR_judge_strike_s9_v1` was thresholded and its figure bounds recorded; the frame
+corners were checked (luminance ~230) to rule out the vignette as a false hit. Then the keyed
+figure was composited onto a 5:3 CENTRE canvas at Q1, Q3, Q4 and Q5 with the generated
+frame's edge drawn in, so the answer was a picture rather than a claim.
+
+**Result:** the figure never touches the left edge and only touches the right for 7 frames
+(scroll tip in the wind-up). Where it really leaves the frame is **top and bottom** — the
+gavel apex for 3 frames, and the front leg for the whole back half — because a lunge toward
+camera grows a figure vertically. As the comp zooms in, the generated frame's side edges
+move *outside* the wall (Q5) or into empty field that the comp rebuilds anyway (Q3/Q4), so
+nothing of him is lost sideways. **Horizontal would have added room where none is needed,
+taken it away where it is, cost ~44% of the linear resolution on the figure at exactly the
+zoom cues, and meant regenerating an approved clip whose keyline is not reproducible.**
+Stays vertical. New comp placement rule written into `LOOK.md` World 3 step 3; the two small
+paint jobs are on the asset's `REGISTER.md` row.
+
+**Correction of the 2026-09-23 session.** It recorded in five files that Q5's enlargement
+risk was "gone". Measured on the approved clip, **Q5 still needs 3.2x at working resolution
+and 6.4x at 4K** for the gavel to fill the wall. The toward-camera change genuinely cut the
+enlargement and removed the need for a separate Q5 generation, but "gone" was an
+overstatement made without measuring. Corrected in `LOOK.md`, `CLAUDE.md`, `SHOTCARDS.md`,
+`REGISTER.md`, `docs/NEW-SESSION.md` and the prompt header; the 2026-09-23 entries below
+are left as written, since this log records what was believed at the time.
+
 ### 2026-09-23 — VID, the court strike built, failed twice, and turned toward camera
 
 **First VID session of the production.** One asset approved:

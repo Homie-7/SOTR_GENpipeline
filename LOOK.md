@@ -279,15 +279,24 @@ A short shudder or flash on the field sells the impact.
    it puts the blow on the audience, which is what the frontal decision was already for.
    See `LOG.md` 2026-09-23 for both failures.
 3. **In the comp:** threshold the clip to pure black and white (it kills edge boil), then
-   scale, place and retime it once per cue. The white field and the impact shudder are made
-   in the comp too.
-4. **The Q5 risk is RESOLVED by the toward-camera change (2026-09-23).** It used to be the
-   sequence's worst problem: a gavel filling a whole wall meant enlarging a small gavel
-   5–10×, which 1080p video softens, with a keyframed vector trace as the fallback. Now
-   the gavel travels toward the lens and grows within the generated frame, so Q5 is simply
-   **more of the same clip's travel** than Q1 uses — full native resolution, no blow-up, no
-   separate generation, no vector trace. Still upscale the approved clip to 4K before Q5's
-   use, per the normal step 10.
+   **key the figure out and place it on a bone-white field built natively at CENTRE's 5:3.**
+   The generated 9:16 frame is never shown; only the keyed figure is. Scale, place and
+   retime once per cue. The white field and the impact shudder are made in the comp too.
+   **Placement rule (measured 2026-09-24): at every cue where his legs are in frame (Q1–Q3),
+   the generated frame's bottom edge sits exactly on the wall's bottom edge** — the stage
+   floor (`STAGE.md`). From the lunge onward (frames 47–96) his front leg runs off the bottom
+   of the generated frame, and this is what makes that cut invisible: the leg meets the
+   floor. Placed anywhere higher, it reads as a leg sliced flat in mid-air.
+4. **Q5's enlargement is REDUCED, not removed — corrected 2026-09-24.** On 2026-09-23 this
+   step claimed the toward-camera change meant "no blow-up." Measured on the approved clip,
+   that was wrong: for the gavel to fill CENTRE it still needs **3.2× at working resolution
+   and 6.4× at 4K.** What *did* change is real: the gavel reaches the lens at several times
+   the size it has in the raised pose, so the enlargement is a fraction of what it was, and
+   **Q5 no longer needs a separate generation** — it is the same clip, further along its
+   travel. And because the plate is thresholded to two tones, enlarge it smoothly *then*
+   threshold, which yields clean curves at any size; that survives far better than
+   continuous-tone video would. **The vector trace stays as the fallback** if the curves
+   still step at 4K.
 
 **How it arrives.** It slams in on the strike: a hard cut, no transition. Authority
 doesn't fade in.
