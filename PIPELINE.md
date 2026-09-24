@@ -95,8 +95,10 @@ Claude drives Seedance 2.5 directly. What the web menu calls things, the API cal
   end-frame slot"; the API lists one. **Tested 2026-09-24 in `omni_reference` mode: it does
   NOT pin frame 0.** The server silently coerced `start_image` to a plain reference (its
   echo says `reference_images`), and the result was a fresh render of the room (snuff v5,
-  `LOG.md`). Untested: the roles in the default `t2v` mode, which is where a first/last-frame
-  pair would normally live. **Read the echoed `params` after every submit:** if it says
+  `LOG.md`). **And they're refused everywhere else** (422: *"start_image and end_image are
+  only allowed for mode 'omni_reference'"*, tested at no cost 2026-09-24). So **this
+  connector cannot pin a first or last frame.** Loops keep the `loop_halo.py` crossfade, and
+  a cut between two generated clips gets matched in the comp or QLab. **Read the echoed `params` after every submit:** if it says
   `reference_images`, the image is a loose reference, whatever role was sent.
 - **Every run re-frames the wall by up to ~1%** (measured: the parity loop 4 px, the snuff
   takes 8-10 px at 832 wide, i.e. 16-20 px at full size, against the approved loop). That's

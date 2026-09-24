@@ -1,3 +1,27 @@
+# S9-SAL-R-SNUFF · v6 TEST RUNNING · 2026-09-24 (Claude, connector, Homie said continue)
+#
+# v6 = v4's body WORD FOR WORD. ONE CHANGE against v5: the mode. v5 sent `start_image` in
+#   mode omni_reference and the server coerced it to a reference. v6 leaves `mode` unset
+#   (server default, t2v), which is where a first-frame role normally lives. The same start
+#   image: SOTR_MEDIA/refs/SAL-R-LOOP_comp_f0.png (media af61efa9-…).
+#   SETTINGS · Seedance 2.5 · mode default · start_image as above · 4:3 · 1080p · 4 s ·
+#   bitrate_mode high · batch 1 · sound ON · 48 credits.
+#   PASS = frame 0 within ~1 px and a few levels of the comp loop, and the echo does not say
+#   reference_images.
+#
+# HOMIE'S WEB TAKE (found 2026-09-24): SOTR_MEDIA/loops/S9-SAL-R-SNUFF_v4_web5s.mp4 (his "Snuff not
+#   bad", sha256 4a63d26b…). 5.05 s, 121 frames: his own web run just before this session
+#   (-60 credits, 03:03 UTC), prompt presumed v4 (UNCONFIRMED). The best take so far: left out
+#   0.79 s, right 1.71 s, thin dark threads, frame 0 only 4 px off the loop, halos within 5%,
+#   but the dado -22%, far-left panel -16% and portrait -27% darker.
+#
+# FOUND 2026-09-24: v4's "no comp step" is WRONG. Every generated clip carries the model's
+#   placeholder king, and Gerard's portrait is composited over the lit loop (LOOK.md World 1).
+#   A raw cut from the loop to this clip would swap the painting. The snuff needs the
+#   S9-SAL-R-PORTRAIT comp too, with Gerard darkening as the sconces go out. Flagged for Homie.
+#
+# ---- v5 header below ----
+#
 # S9-SAL-R-SNUFF · v5 FAILED (connector coerced the role) · ACTIVE SETTINGS = v4's · 2026-09-24
 #
 # RESULT: v5 FAILED ON THE MECHANISM, not the prompt. In mode omni_reference the server

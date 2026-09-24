@@ -104,11 +104,14 @@ video vocabularies poison each other, so one session never spans both.
 - **Snuff v4 (the restructure) stages the exit right in 4 of 4 takes**: left sconce out,
   then right, and no smoke while lit. The smoke is luck: 2 takes came back as dark threads,
   2 as the old puffs. The best take, `loops/S9-SAL-R-SNUFF_v4_probeA.mp4`, waits on Homie's eye.
-- **Blocker: the cut match.** Every run re-frames the wall by ~1%, so the snuff's first
-  frame jumps against the lit loop on a hard cut. v5 tried `start_image` and the server
-  silently coerced it to a loose reference. Generation stopped on the stop rule; the options
-  are queued for Homie in `docs/NEW-SESSION.md`.
-- **Spent 312 of 1,000 credits.** Studio v2 still awaits approval.
+- **Lead snuff take is Homie's own 5 s web run** (`loops/S9-SAL-R-SNUFF_v4_web5s.mp4`, "I
+  don't mind it"). It's complete at 5 s, so no 10 s run is needed. It awaits his approval.
+- **The cut match moves downstream.** This connector can't pin a first frame: `start_image`
+  is only accepted in `omni_reference`, where it acts as a loose reference (v5, v6). And the
+  snuff carries the placeholder portrait, so **it needs the Gérard comp like the loop does.**
+  v4's "no comp step" was wrong. Hard-cut and crossfade previews went to Homie.
+- **Spent 312 of 1,000 credits.** All generation now waits on Homie (snuff approval, studio
+  v2, beat variants).
 
 ### 2026-09-24 (VID) — Salon loop approved. Studio loop works. Snuff on v3. Higgsfield connected for Claude.
 
