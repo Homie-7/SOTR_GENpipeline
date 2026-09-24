@@ -1,4 +1,38 @@
-# S9-SAL-R-SNUFF · v4 · NOT GENERATED · 2026-09-24 (VID) · RESTRUCTURED, decided with Homie
+# S9-SAL-R-SNUFF · v5 FAILED (connector coerced the role) · ACTIVE SETTINGS = v4's · 2026-09-24
+#
+# RESULT: v5 FAILED ON THE MECHANISM, not the prompt. In mode omni_reference the server
+#   silently turned `start_image` into an ordinary reference (its echo says reference_images).
+#   Frame 0 came back as a NEW render: 25 levels darker than the loop, shifted 9-10 px, the
+#   room pulled back. Worse than v4. Both takes are in rejected/.
+#   The body is identical in v4 and v5, so all four takes sample the same wording: smoke came
+#   back 2 x dark curling threads (v4 A, v5 A) and 2 x pale puffs and haze (v4 B, v5 B).
+#   The smoke is a coin toss. Staging: 4 of 4 left-then-right, no smoke while lit.
+#   NEXT is Homie's call (see docs/NEW-SESSION.md): how to make frame 0 match the loop.
+#   Until then the active settings are v4's (lit plate as image_references).
+#
+# v5 = v4's body WORD FOR WORD. ONE CHANGE, in the reference only:
+#   v4: the lit PLATE as a loose reference (`image_references`, the web's References mode).
+#   v5: frame 0 of the approved COMP LOOP as the clip's FIRST FRAME (`start_image`, an API
+#       role the web menu doesn't show). File: SOTR_MEDIA/refs/SAL-R-LOOP_comp_f0.png
+#       (sha256 831918…, Higgsfield media af61efa9-ca18-4539-860e-93c7d4b705f8).
+#   WHY: v4 probe A staged the exit exactly right (left out at 1.00 s, right at 2.00 s) but its
+#   frame 0 sat 16 px lower and ~11% darker than the lit loop, since every Seedance run
+#   re-frames the wall by ~1%. On a hard QLab cut that's a visible jump of the whole wall. A
+#   start image makes frame 0 the loop itself, so the cut matches by construction.
+#   The @tag in the REFERENCE line is unchanged text (one change only).
+#
+# v5 SETTINGS (connector) · Seedance 2.5 · mode omni_reference · start_image =
+#   SAL-R-LOOP_comp_f0.png · 4:3 · 1080p · PROBE 4 s · bitrate_mode high (= "High") ·
+#   batch 2 · sound ON · 96 credits (48 per take)
+#
+# v4 PROBE RESULT (batch 2, 4 s, 96 credits): A = exit staged as written, thin dark curling
+#   threads, each leading with a small curl; rises ~1 m (to the panel cartouche, higher than
+#   asked). B = puff-headed pale plumes spreading to haze by 3.3 s, the v1-v3 defect (rejected).
+#   Smoke: 1 of 2. Both: no smoke while lit, left before right, lock 0 px.
+#
+# ---- v4 header below, kept as written ----
+#
+# S9-SAL-R-SNUFF · v4 · 2026-09-24 (VID) · RESTRUCTURED, decided with Homie
 #
 # WHY v4 IS A RESTRUCTURE, NOT A REWORDING (lesson 6)
 #   v1-v3 used the DARK plate as the reference and asked for "a moment after" the snuff.

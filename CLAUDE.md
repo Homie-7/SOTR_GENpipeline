@@ -96,6 +96,20 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
+### 2026-09-24, second session (VID): the connector works. Snuff v4 staging works; the cut doesn't match yet.
+
+- **Higgsfield connector gate PASSED.** All four gaps passed, and a parity re-run of the
+  approved salon loop matches it (same file spec, 0 px lock, framing within 0.6%). The
+  web-to-API map and its traps are in `PIPELINE.md`. Measurement is `tools/measure_clip.py`.
+- **Snuff v4 (the restructure) stages the exit right in 4 of 4 takes**: left sconce out,
+  then right, and no smoke while lit. The smoke is luck: 2 takes came back as dark threads,
+  2 as the old puffs. The best take, `loops/S9-SAL-R-SNUFF_v4_probeA.mp4`, waits on Homie's eye.
+- **Blocker: the cut match.** Every run re-frames the wall by ~1%, so the snuff's first
+  frame jumps against the lit loop on a hard cut. v5 tried `start_image` and the server
+  silently coerced it to a loose reference. Generation stopped on the stop rule; the options
+  are queued for Homie in `docs/NEW-SESSION.md`.
+- **Spent 312 of 1,000 credits.** Studio v2 still awaits approval.
+
 ### 2026-09-24 (VID) — Salon loop approved. Studio loop works. Snuff on v3. Higgsfield connected for Claude.
 
 - **`@loc_SOTR_salon_R_loop_s9_v1` approved.** Its halo flicker is boosted 3x by script

@@ -23,37 +23,61 @@ Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
 is a wall of the room, square-on, at true scale. No people in any plate. Cross-screen
 events are built in the wide master comp (4680x1080), not generated.
 
-THE TASK, RIGHT NOW (from 2026-09-24, VID session): Claude now drives Higgsfield directly.
-Homie added it as a claude.ai connector (https://mcp.higgsfield.ai/mcp). It could not load
-in the session that added it, so THIS session is its first. Before any generation, run
-docs/AUTONOMOUS-GEN.md step 0: list the connector's tools, check the four gaps (local
-reference image / every setting incl. 4:3 10 s High batch sound / full 10-bit file back /
-cost reported), then ONE parity run of the approved salon loop prompt. If the connector
-isn't listed, check session_connectors_status and enable it; if it needs sign-in, Homie
-types /mcp.
-BUDGET: 1,000 credits per session, hard stop, and "be as efficient as possible" (Homie).
+THE TASK, RIGHT NOW (from 2026-09-24, second VID session): the Higgsfield connector WORKS.
+The gate passed (tool map, four gaps, parity run: PIPELINE.md "Higgsfield connector").
+Claude drives Seedance 2.5 directly under docs/AUTONOMOUS-GEN.md: pre-flight every run,
+measure every run with tools/measure_clip.py, Homie approves taste. 312 credits were spent
+last session. Balance was 5,242 at its start, about 4,930 after. The budget stays 1,000
+per session, hard stop, "be as efficient as possible" (Homie).
 SCOPE FOR CLAUDE: GENERATION ONLY. Compositing stays Homie's (After Effects). Script prep
 of loops with tools/loop_halo.py (detrend, trim, crossfade, amplitude) is not comp work;
 do it without asking.
 Stay in VID.
 
+FIRST, ASK HOMIE THESE (generation stopped on the stop rule, waiting on him):
+1. SNUFF CUT MATCH (the blocker). The v4 exit works: in all 4 takes the left sconce goes
+   out, then the right, with no smoke while lit. BUT every Seedance run re-frames the wall
+   by ~1%, so the snuff's frame 0 sits 16 px low and ~11% darker than the lit loop, a
+   visible jump on a hard QLab cut. Trying `start_image` (v5) failed: in omni_reference
+   mode the server coerced it to a loose reference. Options, recommendation first:
+   (a) ONE 4 s take (48 credits) with start_image in the default t2v mode, which is where a
+       first-frame role normally lives. If frame 0 then equals the loop, the cut is solved
+       by regeneration, his standing preference. Needs his OK: the connector behaved
+       unexpectedly, and that's a stop.
+   (b) Script-align the clip to the loop (scale ~1.3% + gain ramp on the head) with no
+       credits. It's close to comp work, so it's his call.
+   (c) A 6-8 frame crossfade in QLab instead of a hard cut, which hides both steps.
+2. SNUFF SMOKE (taste). Four takes of the identical v4 body came back 2 x dark curling
+   threads (v4 A, v5 A) and 2 x pale puffs and haze (v4 B, v5 B). So it's luck, and any
+   final run should be batch 2 at 10 s (240 credits) with the best take picked. Ask him to
+   watch loops/S9-SAL-R-SNUFF_v4_probeA.mp4: are dark threads that curl at the tip and rise
+   ~1 m (to the cartouche, higher than written) right, or too much?
+3. STUDIO v2 (unchanged): loops/S9-STU-L-LOOP_v2.mp4 works, not yet approved. On approval:
+   rename to loc_SOTR_studio_L_loop_s9_v1.mp4 and render _comp.mov (loop_halo.py --boost 1
+   --skip 12 --xfade 36, which also cancels v2's +7% drift). Then OFFER the two beat
+   variants (beat 6 wilder, beat 9 steady and bright; one line changed each, ~240 credits).
+
 STATE OF THE LOOPS (2026-09-24):
 - S9-SAL-R-LOOP: APPROVED -> @loc_SOTR_salon_R_loop_s9_v1. Halo flicker boosted 3x by
   script (Homie picked preview "B"). Comp file: loops/loc_SOTR_salon_R_loop_s9_v1_comp.mov
   (ProRes 422 HQ 10-bit, 8.04 s cycle). Rebuild: tools/loop_halo.py --boost 3 --skip 12
-  --xfade 36.
-- S9-STU-L-LOOP: v2 WORKS, NOT YET APPROVED -> loops/S9-STU-L-LOOP_v2.mp4. Homie has the
-  looped preview; ask him. On approval: rename to loc_SOTR_studio_L_loop_s9_v1.mp4 and
-  render _comp.mov (loop_halo.py --boost 1 --skip 12 --xfade 36, which also cancels
-  v2's +7% drift). Then OFFER the two beat variants (beat 6 wilder, beat 9 steady and
-  bright; one line changed each, ~240 credits), which Homie hasn't decided yet.
-- S9-SAL-R-SNUFF: v1-v3 REJECTED (in rejected/). The smoke always came out puff-headed, it
-  streamed off lit candles, and all three STARTED LIT from a DARK reference. RESTRUCTURED
-  with Homie: v4 uses the LIT plate as reference, and the clip IS the salon's exit (left sconce
-  out, then right, dusk falls, incense-thin wisps). QLab cuts to it from the lit loop. This
-  bends CLAUDE.md's no-generated-transitions rule for this one exit (recorded there). v4 is
-  written, NOT RUN. Its first run is the first real job through the connector: PROBE at
-  4 s, batch 2 (~96 credits), judged on the checklist in the v4 header.
+  --xfade 36. A parity re-run through the connector sits beside it
+  (S9-SAL-R-LOOP_v1_parity.mp4, a test, not for use).
+- S9-STU-L-LOOP: v2 works, awaiting Homie (above).
+- S9-SAL-R-SNUFF: v1-v3 rejected (DARK reference, puff smoke). v4 = the restructure (LIT
+  reference, the clip IS the exit): staging PASSES; smoke is a coin toss; frame 0 doesn't
+  match the loop. v4 probe A is in loops/ for Homie; v4 B, v5 A and v5 B are in rejected/.
+  v5 (start_image) failed on the mechanism. The ACTIVE settings are v4's. Details in the
+  prompts/S9-SAL-R-SNUFF.txt header and LOG.md.
+
+CONNECTOR NOTES THAT WILL BITE (full list: PIPELINE.md):
+- The server may answer with a preset suggestion instead of a job ("IN THE DARK"): resubmit
+  with declined_preset_id. Never run the preset.
+- get_cost with count 2 reports ONE take's price. The debit is per take.
+- Read the echoed params after submit: if an image shows as reference_images, it's a loose
+  reference, whatever role you sent.
+- The lit plate is already uploaded: media c24b3532-2041-4b9d-aeb3-f4b938ff4e0f.
+- Renders take ~6-10 min. Pace with a background `sleep`, not a poll loop.
 
 WALL MAPPING IS CONFIRMED, not proposed. The client (audience-perspective, confirmed by
 Homie): salon on RIGHT, Gericault's studio on LEFT, the judge on CENTRE ("the back
@@ -97,11 +121,10 @@ rule: the generated frame's bottom edge sits on the wall's floor line whenever h
 in frame. Details in LOOK.md World 3 step 3.
 
 NEXT ACTIONS, IN ORDER:
-1. Connector gate + parity run (AUTONOMOUS-GEN step 0). Log the tool list and settings in
-   PIPELINE.md.
-2. Snuff v4 probe (4 s, batch 2) through the connector. If it passes, run the 10 s
-   candidate. It's a taste call, so Homie approves the result.
-3. Ask Homie to approve studio v2; file it; offer the beat variants.
+1. Ask Homie the three questions at the top (snuff cut match, snuff smoke, studio v2).
+2. Snuff: act on his cut-match choice, then the 10 s candidate at batch 2 (240 credits),
+   and he picks the take.
+3. Studio v2: file it on approval; offer the beat variants.
 4. Homie's comp work (not Claude's): S9-SAL-R-PORTRAIT, S9-STU-L-PAINT1/2/3, the epaulette
    patch, the court cues Q1-Q5, and the studio's beat-driven candle arc if it isn't generated.
 5. Still open: final set dimensions (v0.2 draft), codec/container spec, Soul Cinema's
@@ -158,8 +181,8 @@ rebuilt by tools/make_client_pdf.py). If a look decision changes, update the PDF
 
 Still open: final set dimensions (v0.2 draft), codec and file-container spec for the
 mapping software (docs/WEEK-PLAN.md has the questions to ask - note Seedance hands back
-HEVC 10-bit, which is a real input to that decision), Soul Cinema's and Seedance's
-aspect-ratio menus. The two loop prompts are the only generation work left. Never mix IMG
+HEVC 10-bit, which is a real input to that decision), Soul Cinema's aspect-ratio menu
+(Seedance's is captured). The snuff and the studio beat variants are the only generation work left. Never mix IMG
 and VID in one session.
 
 The Windows PC is set up (2026-09-21): skills installed, both repos cloned, source folder

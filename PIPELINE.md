@@ -75,6 +75,49 @@ generation, and log it here.
   generation audio ON so the sound designer has a scratch reference of the model's own
   timing. It is never used in the comp. Don't "fix" this by switching audio off.
 
+**Higgsfield connector (MCP), gate PASSED 2026-09-24** (`docs/AUTONOMOUS-GEN.md` step 0).
+Claude drives Seedance 2.5 directly. What the web menu calls things, the API calls this:
+
+| Web app | Connector (`generate_video`, model `seedance_2_5`) |
+|---|---|
+| References mode | `mode: "omni_reference"`, plate passed as `medias: [{role: "image_references", value: <media_id>}]` |
+| Sequel / Prequel | `mode: "video_extension"` + `extension_mode: forward / backward` |
+| Edit video | `mode: "video_edit"` (billed by the input video's length) |
+| Aspect | `aspect_ratio`: auto, 21:9, 16:9, 4:3, 1:1, 3:4, 9:16 |
+| Duration | `duration`: 4–30 s |
+| Resolution | `resolution`: 480p / 720p / 1080p |
+| Quality High | **probably** `bitrate_mode: "high"` (vs `standard`): same cost either way; `high` returned 7.15 Mb/s against the web's 7.17. Unproven, `standard` not tested |
+| Batch | `count` 1–4 (or `generate_video_batch` for different prompts) |
+| Sound | `generate_audio: true` |
+| Unlimited | `use_unlim` (not available on this plan; always pass `false`) |
+
+- **Two roles the web menu doesn't show: `start_image` and `end_image`.** The web had "no
+  end-frame slot"; the API lists one. **Tested 2026-09-24 in `omni_reference` mode: it does
+  NOT pin frame 0.** The server silently coerced `start_image` to a plain reference (its
+  echo says `reference_images`), and the result was a fresh render of the room (snuff v5,
+  `LOG.md`). Untested: the roles in the default `t2v` mode, which is where a first/last-frame
+  pair would normally live. **Read the echoed `params` after every submit:** if it says
+  `reference_images`, the image is a loose reference, whatever role was sent.
+- **Every run re-frames the wall by up to ~1%** (measured: the parity loop 4 px, the snuff
+  takes 8-10 px at 832 wide, i.e. 16-20 px at full size, against the approved loop). That's
+  harmless inside a loop, but visible on a **hard cut** between two generated clips.
+- **Local reference:** `media_upload` returns a presigned URL, `curl -X PUT` the file,
+  then `media_confirm`. The salon lit plate is media `c24b3532-2041-4b9d-aeb3-f4b938ff4e0f`
+  (sha256 `e7d3e379…`), valid for reuse.
+- **Cost:** `get_cost: true` preflights exactly (10 s 1080p = 120, 4 s = 48), and
+  `transactions` shows the debit at submission. **Trap: with `count: 2` it still reports
+  the price of ONE take** (48). The debit is one row per take (2 × 48). Multiply it
+  yourself when budgeting.
+- **The server may answer with a preset recommendation instead of a job** (the salon loop
+  got "IN THE DARK"). Resubmit with `declined_preset_id` set to the id it names. Never
+  run the preset.
+- Poll with `jobs_wait`. A 10 s 1080p render took about 6 minutes. Download `result_url`
+  with curl; it's the full file, not a preview.
+- **Parity run** (`S9-SAL-R-LOOP` v1, word for word): same size, fps, frames, bit depth,
+  bitrate and audio as the approved loop, 0 px lock, framing within 0.6%, six flames,
+  portrait equally still, halo flicker 3.8% vs 3.6%. About 5% darker overall, which may be
+  ordinary variation between runs. Numbers from `tools/measure_clip.py`.
+
 **Soul Cinema cannot take a reference AND a prompt.** Higgsfield's help centre: *"When a reference image is attached, the prompt field becomes unavailable."* LIRA: one reference image. So steps 3–5 as written (each wall built on Soul Cinema from the room master, L/R with two references) **cannot be executed.** The room master is unaffected: it has no reference.
 
 **WALL ROUTE — DECIDED 2026-09-22: Nano Banana Pro, reference-led.** NBP takes a prompt *with* references (up to 14), offers 4:3 and 16:9, and renders to 4K. LIRA sends location view changes to NBP with the new arrangement spelled out, and every approved LGEL plate was built on NBP with two references. GPT Image 2 was rejected: LIRA calls it "very dirty across the frame as a whole", which is the worst trait for a full projected wall, and it costs more. The video-walkthrough route (Cully) was rejected for this week: it is VID work, and LGEL found screenshots of a moving camera soft on every frame.
