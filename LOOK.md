@@ -120,6 +120,39 @@ repeated animation"). All image-to-video from the approved still, so he stays th
 The approved toward-camera strike stays the template for the direction of the blow (LOOK
 World 3: down across the body doesn't read). Every strike keeps the sanctioned keyline rule.
 
+**D13 · The court, after Homie's notes (2026-09-25, delegated: "I'll let you decide").**
+- **One judge, not three.** Homie hoped for three different judges, "if the script doesn't call
+  for [it] or it feels contradictory, then we don't need to". It does contradict: `BIBLE.md` has
+  one Judge ("Only the Judge is animated"), voiced by one pre-recorded actor, so three bodies
+  with one voice reads as a mistake, not an idea. (Three new figures would also need new IMG
+  stills, a separate session.) His real complaint, "the same silhouette scaled one by one", is
+  answered inside the script instead: **every appearance has its own performance and its own
+  framing.** Beat 3 = the reading loop + the MEASURED strike (`S9-CRT-STRIKE-B3`), full length;
+  beat 5 = reading + the FRANTIC DOUBLE (`S9-CRT-STRIKE-B5`), closer; beat 7 = the approved
+  strike (Homie likes it: "the animation is quite spot on") at the push-in, into the capper.
+- **Beat 3's judge is bigger** (Homie: "too small"): about 2.0 m on the 3.6 m wall, up from
+  1.2 m. The ramp becomes ~2.0 m / ~2.7 m / fills (head just cropped) / push-in / the gavel.
+- **The field is no longer flat beige** (Homie: "too bright… very flat 2D compared to the other
+  two"). Mechanism: the generated white is never shown; `render_court.py` keys the figure onto a
+  field it builds, so this changes no generation. The field becomes a **lit paper scrim in the
+  shadow-theatre tradition** (the 19th-century Chat Noir plays, which layer grey scenery behind a
+  black lead): dimmer, warmer paper with grain and fibre; the lamp behind it glowing through the
+  middle and breathing slowly like the candles on the other walls; and soft grey shadows of a
+  courtroom cast on the paper, the bar's **balustrade** near (mid grey, softly blurred) and two
+  **tall arched windows** far back (pale, very soft). Only the judge is crisp, absolute black, so
+  he still reads first. Prototype frame: session scratchpad `field_q1b.png`. The torn-paper
+  edges (D7) come on top of this field.
+
+**D14 · How the salon break is made (2026-09-25, measured).** Not a Sequel: a Sequel starts on
+the unbroken wall, so the break has to happen on camera, which the model plays as a collapse
+(blocks fall, rubble). It's an **Edit-video pass on the salon's own clips**: the break exists
+from frame 0 and floats in place, and the framing, candles and portrait are the input's (<1 px).
+One pass over the whole beat-2/3 chain (reveal + lit loop + snuff + dusk, 30 s) gives ONE
+consistent break through every candle event, joins included. **The floor strip under the break
+is structural** (6 takes, 5 wordings: a wall that has broken away reveals a space, and to the
+model a space has a floor), so it's faded to black by Claude's script over the bottom ~5% of the
+void only, never the wall.
+
 ---
 
 ## World 1 — THE SALON · LOCKED 2026-09-21

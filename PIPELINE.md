@@ -116,6 +116,23 @@ Claude drives Seedance 2.5 directly. What the web menu calls things, the API cal
 - **The server may answer with a preset recommendation instead of a job** (the salon loop
   got "IN THE DARK"). Resubmit with `declined_preset_id` set to the id it names. Never
   run the preset.
+- **Learned 2026-09-25 (VID session 3):**
+  - **Edit video (`video_edit`) works and keeps the input's framing (<1 px).** Billed by the
+    input's length (4 s = 48, 30 s = 360). The output runs ~7 frames short of the input (96 -> 89,
+    720 -> 713). It's the route for an effect that must exist from frame 0 (the salon break,
+    D14), where a Sequel would have to make it happen on camera. **But over a long input with
+    several events it drifts** (the 30 s salon chain lost its snuff and darkened): probe the
+    hardest 4 s of the real input, not an easy stand-in.
+  - **Sequel / Edit media role:** pass `video_references` (the server rewrites `video` to it).
+    A Sequel of a 9:16 clip comes back 1080x1920 even though the history says 16:9.
+  - **TRAP: parallel submissions can be DUPLICATED and double-charged.** Two `generate_video`
+    calls sent together created one of them twice (2026-09-25, +48). **Submit one generation at a
+    time and check `transactions` after each.**
+  - **TRAP: a transport error doesn't mean it wasn't submitted.** `ERR_NAME_NOT_RESOLVED` came back
+    for a job that ran and was charged. Check `transactions` / `show_generations` before resubmitting.
+  - Seedance runs up to 30 s. Once a prompt is PROVEN on a probe, generate the long version rather
+    than looping a short one (Homie, 2026-09-25), but only when the probe contained what the long
+    run contains.
 - Poll with `jobs_wait`. A 10 s 1080p render took about 6 minutes. Download `result_url`
   with curl; it's the full file, not a preview.
 - **Parity run** (`S9-SAL-R-LOOP` v1, word for word): same size, fps, frames, bit depth,

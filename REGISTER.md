@@ -74,6 +74,24 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 
 **Reference files (not assets), `SOTR_MEDIA/05_REFERENCE_UPLOADS/`, added 2026-09-24:** `SAL-R-LOOP_comp_f0.png`, frame 0 of the approved salon comp loop, 1664x1248 (sha256 831918…). Uploaded as Higgsfield media `af61efa9-…` for snuff v5. The lit plate is Higgsfield media `c24b3532-2041-4b9d-aeb3-f4b938ff4e0f`.
 
+## Candidates from 2026-09-25 (VID session 3), awaiting Homie
+
+Nothing below is approved. Nothing new went into `01_FINAL_FOR_SHOW/`. Paths are under
+`SOTR_MEDIA/03_TESTS_IN_PROGRESS/`. On approval: rename to the tag (no `@`), move to
+`02_APPROVED_BUILDING_BLOCKS/clips/`, then render the ProRes finals.
+
+| File | What | Would become | Status |
+|---|---|---|---|
+| `edge_break_tests/S9-SAL-R-WITHER_v5_B.mp4` (4194fc2b…) | **The salon break**: an Edit-video pass on 4 s of the comp loop. Control blocks floating in place from frame 0, full height, band 12-14%, framing <1 px, left sconce whole (LOOK D14) | `loc_SOTR_salon_R_break_s9_v1` | **candidate**. Its faint floor strip is faded out by script |
+| `salon_break_previews/salon_R_b8_break_v1_PREVIEW.mp4` (5c8f1edf…) / `_b2-3_` | v5 B carried onto the clean b8 / b2-3 files by `tools/break_strip.py` (ping-pong 7.4 s, lit per frame by the base, left sconce and Gérard from the base). H.264 previews | ProRes into `01_FINAL_FOR_SHOW/RIGHT_wall_SALON/with_edge_effect/` | **preview**. The snuff checked on b8: the blocks dim to dusk with the room |
+| `judge_tests/S9-CRT-READ_v1_loop.mov` (3e036850…), from `_long.mp4` (006409c2…) | **The judge's reading loop** (D12): frames 9-358 of a 15 s References take from the approved still, 350 f, loops with no crossfade (IoU 0.998) | `fig_SOTR_judge_read_s9_v1` | **candidate**. Flag: profile nose/chin at the OUTLINE when he turns to the scroll (nothing inside the outline) |
+| `judge_tests/S9-CRT-STRIKE-B3_v2.mp4` (6eee7caf…) | **The measured strike** (beat 3), a Sequel of the reading loop: formal raise, blow at f43, the gavel head side-on across the chest, head above, pure two-tone, no bar | `fig_SOTR_judge_strike_b3_s9_v1` | **candidate** (v1 and its duplicate take2 rejected-in-waiting: the gavel swallowed him, white bar) |
+| `judge_tests/S9-CRT-STRIKE-B5_v1.mp4` (f491cfeb…) | **The frantic double** (beat 5), a Sequel of the reading loop: blows at f24 and f64, the held gavel end-on and huge | `fig_SOTR_judge_strike_b5_s9_v1` | **candidate**. The incidental white bar is closed by `render_court_v2.py` (this clip only; never the approved strike's sanctioned keyline) |
+| `court_v2_previews/court_C_b3_v2_PREVIEW.mp4` (cfa447f1…) / `_b5_` (1e32c83d…) / `_b7_` (c1e8c224…) | **Court beats 3/5/7, v2** via `tools/render_court_v2.py` (D12-D13): reading between strikes, one strike style per beat, Q1 ~2.0 m, the lit-scrim field with shadow-theatre courtroom shadows | ProRes v2 in `01_FINAL_FOR_SHOW/CENTRE_wall_COURT/` (v1 kept) | **preview** |
+
+**New tools:** `tools/render_court_v2.py` (v1 `render_court.py` kept so the v1 renders can be
+rebuilt); `tools/break_strip.py` (a generated break laid over a finished wall file).
+
 ## Figures
 
 | Tag | What | Status | Notes |

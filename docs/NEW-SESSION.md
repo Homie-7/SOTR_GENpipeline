@@ -23,68 +23,51 @@ Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
 is a wall of the room, square-on, at true scale. No people in any plate. Cross-screen
 events are built in the wide master comp (4680x1080), not generated.
 
-THE TASK, RIGHT NOW (from 2026-09-24, end of the second VID session; 960 of 1,000 credits spent):
-ALL THREE WALLS HAVE FINISHED CLEAN FILES in SOTR_MEDIA/01_FINAL_FOR_SHOW/<wall>/ (REGISTER "Renders"),
-built from LOOK.md's DECISIONS D1-D10, which Homie delegated fully ("just make decisions"):
-- SALON (RIGHT): b2-3 (reveal, lit hold ~77 s, snuff, dusk 35 s), b8 (lit, snuff), plus IN /
-  HOLD / OUT pieces. Gérard composited throughout.
-- STUDIO (LEFT): b4 / b6 / b9, the Raft on the canvas growing half -> most -> complete, the
-  waving apex figure painted last (the script says "half-completed" at beat 4).
-- COURT (CENTRE): b3 / b5 / b7 (Q1; Q2 -> Q3; Q4 -> the Q5 gavel capper -> black) + strike files.
-Timings are ESTIMATES from script word counts (D1). Re-version from rehearsal timings.
-Tools: render_wall.py (salon + fragment edge), render_studio.py (the Raft), render_court.py.
-Homie's rules today (CLAUDE.md standing rules): final product, no playback fixes (except the
-operator's start/end fades); clean renders never overwritten, effects always separate files;
-reference tokens (@Image 1 only resolves).
-Stay in VID.
+THE TASK, RIGHT NOW (from 2026-09-25, end of the third VID session; 1,032 credits spent, 32 over
+the cap because the connector DUPLICATED one parallel submission; balance 3,250):
+Stay in VID. Nothing new has gone into 01_FINAL_FOR_SHOW this session; every new thing is a
+CANDIDATE in 03_TESTS_IN_PROGRESS waiting for Homie. Start by getting his verdicts:
 
-FOLDERS (reorganised 2026-09-24, Homie): SOTR_MEDIA/01_FINAL_FOR_SHOW/ = the show files only
-(per wall + 00_READ_ME_FIRST.txt for the client; keep it current). 02_APPROVED_BUILDING_BLOCKS/
-(stills, clips), 03_TESTS_IN_PROGRESS/, 04_REJECTED/, 05_REFERENCE_UPLOADS/. Effect versions go
-in 01_FINAL_FOR_SHOW/<wall>/with_edge_effect/. README.txt there has the old -> new path table.
-
-NEXT, IN ORDER (Homie reviewed the previews and asked for these; decisions are LOOK.md D7, D10-D12):
-1. SALON BREAK, properly (~450 credits): run wither v3's body as a SEQUEL (video_extension
-   forward) from the comp loop, which keeps the framing and the placeholder portrait (v3 A
-   painted Gerard out and drifted the framing when run from a still). Probe 4 s batch 2, then
-   ~10 s, crossfade-loop it (loop_halo.py); then regenerate the reveal (Prequel INTO the break
-   loop) and the snuff (Sequel FROM it), so the break persists through the candle events.
-   Gerard on top via render_wall.py. All to 01_FINAL_FOR_SHOW/<wall>/with_edge_effect/. Homie's favourites: v3 B (his screenshot) and
-   v2 A, the full-height uneven band. BOTH SHOW A STRIP OF FLOOR WITH RUBBLE at the bottom: the
-   next version keeps the look with the frame's bottom edge as the floor line (no floor, no
-   rubble, STAGE.md).
-2. THE JUDGE (~400 credits, D12): a reading loop plus three escalating strikes (measured /
-   frantic double / slow verdict), image-to-video from fig_SOTR_judge_s9_v1. Then re-render the
-   court beats as v2.
-3. Later: the studio's break (its RIGHT edge), the court's torn-paper edges (BOTH sides, D7), the
-   studio candle arc (D6, ~240), and the studio b6 apex oval polish.
+1. SALON BREAK -> 03_TESTS_IN_PROGRESS/salon_break_previews/salon_R_b2-3_break_v1_PREVIEW.mp4 and
+   _b8_. The Control-block break (wither v5 B, an EDIT-VIDEO pass on the lit loop, LOOK D14),
+   carried onto the approved clean files by tools/break_strip.py: the pixels the edit changed,
+   ping-ponged (7.4 s, no crossfade), lit per frame by the base, floor strip faded out. The left
+   sconce and Gerard come from the clean file, so the reveal and the snuff still work. On
+   approval: render as ProRes .mov into 01_FINAL_FOR_SHOW/RIGHT_wall_SALON/with_edge_effect/ (a
+   separate effect file; the clean masters are never touched), then the same for b8.
+   Don't re-run the 30 s edit (it failed: band too wide, snuff lost, LOG 2026-09-25).
+2. THE JUDGE -> 03_TESTS_IN_PROGRESS/court_v2_previews/court_C_b3/b5/b7_v2_PREVIEW.mp4, from
+   tools/render_court_v2.py (LOOK D12-D13): the reading loop between strikes; beat 3 the measured
+   blow (B3 v2, gavel side-on across the chest); beat 5 measured on "Two!", the approved strike on
+   "Three!", the FRANTIC DOUBLE (B5 v1) at 85 s; beat 7 the approved strike at the push-in, then
+   the capper. Q1 is now ~2.0 m (Homie: "too small"). New field: a lit paper scrim with
+   shadow-theatre courtroom shadows (balustrade near, two arched windows far), the lamp breathing.
+   ASK HOMIE: (a) one judge, not three (D13: the script has one Judge and one voice; the variety
+   comes from performance and framing instead); (b) the reading loop's profile nose/chin at the
+   OUTLINE when he turns to the scroll (new for this figure); (c) the scrim field. On approval:
+   rename S9-CRT-READ_v1_loop -> fig_SOTR_judge_read_s9_v1, B3 v2 -> fig_SOTR_judge_strike_b3_s9_v1,
+   B5 v1 -> _b5_, move to 02_APPROVED_BUILDING_BLOCKS/clips/, point render_court_v2.py at them, and
+   render the ProRes v2 files into 01_FINAL_FOR_SHOW/CENTRE_wall_COURT/ (v1 files stay).
+3. Then (credits): the court's torn-paper edges on BOTH sides (D7, script, on top of the scrim);
+   the studio's break on its RIGHT edge (the D14 method: a 4 s Edit-video probe on the studio loop,
+   then break_strip.py); the studio candle arc (D6, ~240); the studio b6 apex oval polish.
 4. Still open: set dimensions, codec/container, the physical fit. The client PDF is STALE.
 
-STATE OF THE LOOPS (2026-09-24):
-- S9-SAL-R-LOOP: APPROVED -> @loc_SOTR_salon_R_loop_s9_v1. Halo flicker boosted 3x by
-  script (Homie picked preview "B"). Comp file: 02_APPROVED_BUILDING_BLOCKS/clips/loc_SOTR_salon_R_loop_s9_v1_comp.mov
-  (ProRes 422 HQ 10-bit, 8.04 s cycle). Rebuild: tools/loop_halo.py --boost 3 --skip 12
-  --xfade 36. A parity re-run through the connector sits beside it
-  (S9-SAL-R-LOOP_v1_parity.mp4, a test, not for use).
-- S9-STU-L-LOOP: v2 works, awaiting Homie (above).
-- S9-SAL-R-SNUFF: APPROVED -> loc_SOTR_salon_R_snuff_s9_v1.mp4 (v7 B, Sequel of the comp loop).
-- S9-SAL-R-REVEAL: APPROVED -> loc_SOTR_salon_R_reveal_s9_v1.mp4 (B, Prequel into the loop,
-  candles lit one at a time).
-- Old question 1 and 2 above are CLOSED (v4_web5s and v4_probeA are runners-up in 03_TESTS_IN_PROGRESS/runner_up_takes/).
-
-CONNECTOR NOTES THAT WILL BITE (full list: PIPELINE.md):
-- The server may answer with a preset suggestion instead of a job ("IN THE DARK"): resubmit
-  with declined_preset_id. Never run the preset.
-- get_cost with count 2 reports ONE take's price. The debit is per take.
-- The echoed params label every input reference_images (even a Sequel video). Judge by frames.
-- start_image/end_image don't pin frames on this connector. Joins go through Sequel
-  (video_extension forward) or the comp, INSIDE the file.
-- Uploaded: lit plate c24b3532-2041-4b9d-aeb3-f4b938ff4e0f; salon comp loop (video)
-  4afb0ccd-af6f-4d79-9255-f099561f1c5e.
-- Renders take ~6-10 min. Pace with a background `sleep`, not a poll loop.
-- REFERENCE TOKENS: only @Image 1 / @Video 1 resolve; @loc_… tags are dead text. Tags go in
-  headers; bodies use words (connector) or @Image 1 (web).
-- A deadline in the timeline INFLATES the event (snuff v8). Don't use one to shorten smoke.
+CONNECTOR RULES LEARNED THIS SESSION (full list: PIPELINE.md):
+- SUBMIT ONE GENERATION AT A TIME and check `transactions` after each. Two parallel calls were
+  duplicated and double-charged (2026-09-25).
+- A transport error (ERR_NAME_NOT_RESOLVED) came back for a job that ran and was charged. Check
+  `transactions` / `show_generations` before any resubmit.
+- Edit video (`video_edit`) keeps framing <1 px and is billed by the INPUT length; Sequel/Edit
+  media role is `video_references`.
+- The server still offers the "IN THE DARK" preset: resubmit with declined_preset_id
+  24bae836-2c4a-48e0-89b6-49fcc0b21612. Never run the preset.
+- get_cost with count 2 reports ONE take's price.
+- Uploaded media (reuse): salon comp loop 4afb0ccd-af6f-4d79-9255-f099561f1c5e; its first 4 s
+  f912dd7c-18f6-4abb-bb24-196ab221af34; judge still 8e4f677b-0da7-4263-b4f9-46cf3b65a111; the judge
+  reading loop af453982-3c99-4a13-8644-3b373a737ebe; lit plate c24b3532-2041-4b9d-aeb3-f4b938ff4e0f.
+- Renders take ~6-10 min (30 s ~15 min). Wait with a background timer, not a poll loop.
+- REFERENCE TOKENS: only @Image 1 / @Video 1 resolve; tags live in headers only.
 
 WALL MAPPING IS CONFIRMED, not proposed. The client (audience-perspective, confirmed by
 Homie): salon on RIGHT, Gericault's studio on LEFT, the judge on CENTRE ("the back
@@ -229,6 +212,12 @@ small, constant, as still as stone") came back a still image. v2 with vivid word
 (10) A REWRITE LOSES WHAT WORKED. Snuff v2 was called "one change" but rewrote 4 blocks
 and lost v1's snuff. Patch the failing phrase, keep every other word, diff before running.
 (11) ONE TAKE CAN'T SEPARATE WORDING FROM LUCK. Use batch 2 at 4 s when that's the question.
+(12) A PROBE PROVES ONLY WHAT IT CONTAINS. The 4 s break probe was a steady loop; the 30 s run
+over reveal + hold + snuff failed on exactly the events the probe didn't have (360 credits).
+Probe the hardest 4 s of the real input before going long.
+(13) MAKE AN EFFECT EXIST FROM FRAME 0 WITH AN EDIT, NOT A SEQUEL. A Sequel starts on the
+unbroken wall, so the break had to happen on camera, and the model plays that as a collapse with
+gravity (rubble in 4 takes). Edit video put the break on the loop's own frames and it floated.
 (8) VERIFY THE FILE, NOT THE FILENAME. The first download of the approved strike was the
 wrong take - the failed v2 - and the opening pose is identical in both, so stills looked
 right. Sampling frames across the whole clip caught it. Probe and frame-sample every

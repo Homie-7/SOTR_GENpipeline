@@ -1,0 +1,56 @@
+# S9-CRT-READ · v1 · the judge's READING LOOP · 2026-09-25 (VID, Claude, connector)
+# RESULT 2026-09-25: PASS. 4 s batch 2 (A lively, B calm), then 15 s batch 1 = the CANDIDATE loop
+#   (frames 9-358, IoU 0.998 at the wrap, no crossfade): judge_tests/S9-CRT-READ_v1_loop.mov.
+#   Flag for Homie: a profile nose/chin at the OUTLINE when he turns to the scroll.
+# Tag on approval: fig_SOTR_judge_read_s9_v1 (header only; the body names the reference in words).
+#
+# WHY (LOOK.md D12, Homie 2026-09-24: "it looks like the same repeated animation"): between
+#   strikes the judge was a frozen raised pose, and every appearance was the same clip scaled.
+#   This is the life of someone declaiming findings "like a town crier" (BIBLE.md), so each
+#   appearance has a moving outline of its own. The new strikes are SEQUELS of this loop
+#   (video_extension forward), so reading -> strike joins natively inside the file.
+# SILHOUETTE RULE THAT SHAPES THE ACTION: anything black in front of the black body disappears.
+#   So all the reading life happens AT THE OUTLINE: the head tilting between scroll and gallery,
+#   the scroll arm lifting and dipping out to the side, the raised gavel arm bobbing, shoulders,
+#   the coat's hem. The scroll never comes in front of the chest.
+# Lesson 9: ask for the motion vividly (calming words froze studio v1). Lesson 7: no ban lists.
+# SETTINGS · Seedance 2.5 · References (omni_reference, image_references) · reference =
+#   SOTR_MEDIA/02_APPROVED_BUILDING_BLOCKS/stills/fig_SOTR_judge_s9_v1.png (sha256 f29e6ae9…,
+#   media 8e4f677b-0da7-4263-b4f9-46cf3b65a111) · 9:16 · 1080p · 4 s probe · bitrate_mode high ·
+#   batch 2 · sound ON · 96 credits
+# PREDICT: the head and the scroll arm move clearly (>= 20 px at 1080 wide), the gavel stays up,
+#   figure framing within ~2% of the still; risk: the model strikes anyway (the still's pose
+#   "wants" to strike) or the head grows a face.
+# (Trimmed to fit the cap before the first run: no version change.)
+# PASS = a living, declaiming outline for the whole clip, no strike, no face, one tone.
+
+SCENE: A naval-officer silhouette, solid black on bone-white, reads his findings to the gallery like a town crier.
+
+REFERENCE: The attached image is the figure and the field, exactly as shown.
+
+FIRST FRAME: Matches the attached image: full length, frontal, centred, gavel raised high in the right hand, scroll out to the side in the left.
+
+FORMAT: Single continuous take, real-time, no cuts.
+
+CAMERA: Dead-on, frontal, locked off. No push, no pan, no tilt, no drift.
+
+ACTION: He is in full flow, proclaiming. His bare head tips down toward the scroll to find the next line, then lifts and turns to the gallery as he calls it out, then back down. The scroll arm rises and dips at his side with each finding. The raised gavel jabs the air above his head on every stressed word, held high all the time. His shoulders rise and square with each breath, his weight rocks from foot to foot, and the long coat swings at the hem. He ends in the pose he started in.
+
+PHYSICS: Heavy wool coat, lagging the body and settling a beat late.
+
+LIGHTING: The flat warm bone-white of the reference, softly brighter at its centre, steady.
+
+SILHOUETTE: Figure, coat, scroll and gavel are one solid flat black with crisp clean edges, every feature carried by the outline. A bare, completely featureless head.
+
+AUDIO: Quiet hall tone. No voices, no music.
+
+STYLE: Flat graphic image: one solid pure black silhouette on a bone-white field, like a shadow cast on a lit paper screen. The black is flat and absolute with crisp clean edges. The white is a warm bone tone, softly brighter at the centre, as if a lamp glows behind the paper. Two tones only.
+
+QUALITY: Sharp clean edges, no grain, no ghosting, no interpolation.
+
+LOCKS:
+NO ON-SCREEN TEXT.
+EXACTLY 1 figure in frame.
+Exactly one gavel, raised in the right hand, and one scroll in the left, first frame to last.
+LOCKED CAMERA.
+Nothing in frame newer than 1819.

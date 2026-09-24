@@ -131,6 +131,19 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
+### 2026-09-25, third session (VID): the salon break works; the judge performs. All candidates, none approved.
+
+- **Salon break = an Edit-video pass, not a Sequel** (`LOOK.md` D14). A Sequel starts on the
+  unbroken wall, so the break collapses with rubble; Edit video (wither v5 B) floats in place from
+  frame 0. A 30 s edit over the whole chain failed (360 credits: band too wide, snuff lost), so
+  `tools/break_strip.py` lays v5 B over the clean files instead. Previews in `03_TESTS_IN_PROGRESS/`.
+- **The judge** (`LOOK.md` D12-D13, Homie's notes): a reading loop between strikes, one strike
+  style per beat (B3 measured, B5 frantic double, the approved strike at beat 7), Q1 bigger, and a
+  lit-scrim field with shadow-theatre courtroom shadows. **One judge, not three** (the script has
+  one Judge and one voice). `tools/render_court_v2.py`, previews only.
+- **Credits: 1,032** (32 over: the connector duplicated a parallel submission). New connector
+  rules in `PIPELINE.md`: one submission at a time; check `transactions` after errors.
+
 ### 2026-09-24, second session (VID): every wall has finished clean files; the fragment edge is found.
 
 - **Homie delegated all remaining decisions** ("just make decisions"): `LOOK.md` D1-D10 (beat

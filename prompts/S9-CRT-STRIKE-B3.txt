@@ -1,0 +1,96 @@
+# S9-CRT-STRIKE-B3 · v2 · the MEASURED strike, beat 3 ("Order! Order!") · 2026-09-25 (VID, Claude, connector)
+# RESULT 2026-09-25: v2 = CANDIDATE. Blow at f43, gavel head side-on across the chest, head above,
+#   pure two-tone, no bar. (v1 + a duplicate take: the gavel swallowed him; LOG.)
+# Tag on approval: fig_SOTR_judge_strike_b3_s9_v1 (header only).
+#
+# WHY (LOOK.md D12): each appearance gets its own performance, so the court stops reading as one
+#   clip scaled up. Beat 3 = the court in control: a formal, measured single blow.
+# MECHANISM: a SEQUEL (video_extension forward) of the judge's reading loop, so reading -> strike
+#   joins natively inside the file (the snuff pattern). The approved strike
+#   (fig_SOTR_judge_strike_s9_v1) stays as beat 7's verdict (Homie likes it, 2026-09-25).
+# DIRECTION: toward camera, the approved strike's direction (LOOK World 3: down across the body
+#   can't read). Wording adapted from prompts/S9-CRT-STRIKE.txt v3, compressed to the cap.
+# THE KEYLINE, ASKED FOR POSITIVELY (the trap note in S9-CRT-STRIKE.txt: v3's lock BANNED it and
+#   the model made it anyway; any new strike must ask for it, conditionally).
+# SETTINGS · Seedance 2.5 · Sequel: video_extension forward · video = the reading comp loop
+#   (media id: filled in at submission, see LOG) · 9:16 (follows input) · 1080p · 4 s ·
+#   bitrate_mode high · batch 1 · sound ON · 48 credits
+# (Trimmed to the cap before the first run: no version change.)
+# PREDICT: the blow lands ~1-1.5 s, the gavel grows past the body width, a white keyline appears
+#   only while it overlaps the body; one blow, then a hold.
+# PASS = the join is native (<= 1 px), one clean toward-camera blow, formal not frantic.
+
+# ======== v2 (2026-09-25) ========
+# v1 RESULT: the blow reads (formal raise, one blow ~f30, native join), but the held gavel
+#   swallows his head and torso, with a white bar across it. DIAGNOSIS: "wider than his body"
+#   (lesson 9). ONE CHANGE: THE GAVEL's size phrase ->
+#   "until it covers his chest with his head still showing above it" (the approved strike's scale).
+# SETTINGS · as v1 (Sequel of media af453982…, 1080p, 4 s, high, batch 1, sound ON) · 48 credits
+#   (session 936 -> 984, the last run this session).
+# ---- v1 body, for the record ----
+# SCENE: The naval-officer silhouette brings the court to order: one measured, formal blow of the gavel, driven toward the viewer.
+#
+# REFERENCE: This shot continues the attached clip of the same figure and keeps him and the bone-white field exactly as shown.
+#
+# FIRST FRAME: Continues from the last frame of the attached clip: full length, frontal, gavel raised high, scroll out to the side.
+#
+# FORMAT: Single continuous take, real-time, no cuts.
+#
+# CAMERA: Dead-on, locked off. The camera never moves; the gavel is what comes closer.
+#
+# ACTION TIMING:
+# 0:00-0:01 — he draws himself up to his full height, gavel high, a formal pause.
+# 0:01-0:01.5 — the blow: he drives the gavel forward straight at the viewer, shoulder and body behind it, the coat swinging with the movement.
+# 0:01.5-0:04 — he holds it there, huge and close, dead still, while the coat settles.
+#
+# THE GAVEL: As it comes at the viewer it simply grows, a flat black shape with crisp edges, wider than his body, clearly a gavel the whole way. Where it passes in front of his body a thin clean white line separates it from the black of the coat; where it stands clear against the field it has no line.
+#
+# PHYSICS: The gavel has real weight: the arm accelerates hard and stops dead. The heavy wool coat lags and settles a beat late. His feet stay planted.
+#
+# ACTING (motion only): controlled, absolute authority. One committed movement.
+#
+# AUDIO: One wooden knock of the gavel, then quiet hall tone. No voices, no music.
+#
+# STYLE: Flat graphic image: one solid pure black silhouette on a bone-white field, like a shadow cast on a lit paper screen. The black is flat and absolute with crisp clean edges. The white is a warm bone tone, softly brighter at the centre, as if a lamp glows behind the paper. Two tones only.
+#
+# LOCKS:
+# NO ON-SCREEN TEXT.
+# EXACTLY 1 figure. A bare, featureless head.
+# Exactly one gavel and one scroll, first frame to last.
+# LOCKED CAMERA.
+# ONE BLOW ONLY.
+# Nothing in frame newer than 1819.
+#
+
+SCENE: The naval-officer silhouette brings the court to order: one measured, formal blow of the gavel, driven toward the viewer.
+
+REFERENCE: This shot continues the attached clip of the same figure and keeps him and the bone-white field exactly as shown.
+
+FIRST FRAME: Continues from the last frame of the attached clip: full length, frontal, gavel raised high, scroll out to the side.
+
+FORMAT: Single continuous take, real-time, no cuts.
+
+CAMERA: Dead-on, locked off. The camera never moves; the gavel is what comes closer.
+
+ACTION TIMING:
+0:00-0:01 — he draws himself up to his full height, gavel high, a formal pause.
+0:01-0:01.5 — the blow: he drives the gavel forward straight at the viewer, shoulder and body behind it, the coat swinging with the movement.
+0:01.5-0:04 — he holds it there, huge and close, dead still, while the coat settles.
+
+THE GAVEL: As it comes at the viewer it simply grows, a flat black shape with crisp edges, until it covers his chest with his head still showing above it, clearly a gavel the whole way. Where it passes in front of his body a thin clean white line separates it from the black of the coat; where it stands clear against the field it has no line.
+
+PHYSICS: The gavel has real weight: the arm accelerates hard and stops dead. The heavy wool coat lags and settles a beat late. His feet stay planted.
+
+ACTING (motion only): controlled, absolute authority. One committed movement.
+
+AUDIO: One wooden knock of the gavel, then quiet hall tone. No voices, no music.
+
+STYLE: Flat graphic image: one solid pure black silhouette on a bone-white field, like a shadow cast on a lit paper screen. The black is flat and absolute with crisp clean edges. The white is a warm bone tone, softly brighter at the centre, as if a lamp glows behind the paper. Two tones only.
+
+LOCKS:
+NO ON-SCREEN TEXT.
+EXACTLY 1 figure. A bare, featureless head.
+Exactly one gavel and one scroll, first frame to last.
+LOCKED CAMERA.
+ONE BLOW ONLY.
+Nothing in frame newer than 1819.

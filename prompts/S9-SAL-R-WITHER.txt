@@ -1,4 +1,4 @@
-# S9-SAL-R-WITHER · v1 · CAPABILITY PROBE (not a deliverable) · 2026-09-24 (VID, Claude, connector)
+# S9-SAL-R-WITHER · v5 · EDIT VIDEO on the comp loop (the break for the show) · 2026-09-25 (VID, Claude, connector) · v1-v3 capability probes, v4 Sequel
 #
 # QUESTION (Homie): "I just want to see what we can do with Higgsfield itself" for the fragment
 #   edge: the SCENE itself disintegrating toward the inner edge, Control-style (Remedy), "floaty,
@@ -16,6 +16,94 @@
 #   floaty? Does the rest of the wall hold (lock, sconce, candles)? Is Gerard faithful?
 # Prompt names the reference in words (no @tag, CLAUDE.md reference-token rule).
 
+# ======== v5 LONG RUN (2026-09-25): v5's body WORD FOR WORD, new INPUT only ========
+# v5 RESULT: B = the break (from frame 0, floating in place, sconce whole, <1 px framing, band
+#   12-14% steady). A = too wide (strands the sconce). Floor in both: structural (lesson 6),
+#   cleaned by Claude's script, not reworded again.
+# INPUT = the whole beat-2/3 salon in one piece, so ONE generation carries one consistent break
+#   through the candles lighting, the lit hold, the snuff and the dusk, joins included:
+#   approved reveal (120 f) + comp loop x2 (386 f) + approved snuff (120 f) + the snuff's last
+#   frame held 94 f = 720 f, 30.0 s. SOTR_MEDIA/05_REFERENCE_UPLOADS/SAL-R-b23_chain_30s_upload.mp4
+#   (H.264 crf 10, sha256 79ba0039…, media 002f3eca-e992-4e83-8f17-74f61806e147). Joins in the
+#   input measured within ~1 grey level.
+# SETTINGS · Seedance 2.5 · Edit video · that input · 4:3 (follows input) · 1080p · 30 s (follows
+#   input) · bitrate_mode high · batch 1 · sound ON · 360 credits (session 288 -> 648).
+# PREDICT: B-like edge through all 30 s; the fragments' light follows the candles in and out.
+#   Risk: a take like A (too wide), or the edit holds the candles lit through the snuff.
+# ======== v5 (2026-09-25) ========
+# v4 RESULT: mechanism PASS (framing identical to the loop, portrait held), look FAIL. The break
+#   FORMS AS A COLLAPSE: blocks scatter and fall, a rubble heap from ~1.5 s (A); B an event that
+#   isolates the left sconce. DIAGNOSIS (LOG 2026-09-25, lesson 6): a Sequel starts on the
+#   unbroken wall, so the break must happen on camera, which the model plays as a collapse with
+#   gravity. Rubble in 4 takes now. Every take that FLOATED started already broken.
+# v5 = ONE CHANGE, the mechanism: EDIT VIDEO (video_edit) on the comp loop. The break is present
+#   from frame 0 on the loop's own frames; framing, candles and portrait are the input's. Body =
+#   house-rules' surgical-edit template (CHANGE / PRESERVE EXACTLY / ONLY CHANGE, text only, no
+#   image reference: finding 4a). THE CHANGE block = v4's THE EDGE WORD FOR WORD + two lines
+#   (present from the first frame; the candlelight on the fragments, from v4's LIGHTING).
+# SETTINGS · Seedance 2.5 · Edit video (video_edit) · input = SOTR_MEDIA/05_REFERENCE_UPLOADS/
+#   SAL-R-LOOP_comp_upload_4s.mp4 (first 96 frames of the comp upload, H.264 crf 10, sha256
+#   331f52ae…, media f912dd7c-18f6-4abb-bb24-196ab221af34) · output follows the input (4:3, 4 s) ·
+#   1080p · bitrate_mode high · batch 2 · sound ON · billed by input length (8 s = 97 per take).
+# PREDICT: the edge is broken from frame 0, blocks float in place, no fall, no rubble; framing
+#   within 1% of the loop; risk: the edit repaints the whole frame (drift in candles/portrait) or
+#   ignores the change.
+# PASS = full-height floating blocks from frame 0, steady, no floor/rubble, sconce whole.
+# IF IT PASSES: the long source is one take on a TILED input (the seamless loop x3, ~24 s).
+# ---- v4 body, for the record ----
+# SCENE: The salon wall at evening, lit by its six candles. Its left edge frays away into dark space along its whole height, as if the room were a fragment of memory floating in the void. One locked, continuous shot.
+#
+# REFERENCE: This shot continues the attached clip of the same salon wall and keeps its whole picture, colour and light exactly as shown.
+#
+# FIRST FRAME: Continues from the last frame of the attached clip. Within the first second the left edge comes apart, cornice to frame bottom.
+#
+# FORMAT: Single continuous take, no cuts.
+#
+# CAMERA: Locked off, square to the wall. No push, no pan, no tilt, no drift, no zoom.
+#
+# THE WALL: From just left of the left sconce to the right edge of the frame, the wall is whole and solid. The candles burn with their usual soft flicker, and the portrait stays exactly as it is.
+#
+# THE EDGE: Down the whole height of the left edge of the frame, the wall is in pieces: rectangular blocks of panel, gilt and plaster, cut clean like masonry, a few large, most smaller, each with real thickness. They hang weightless in the dark beside the wall like objects in deep space, each slowly turning and drifting a little back and forth around its own place. The band is even from top to bottom: nearest the whole wall the fragments sit close together; toward the frame's left edge they grow smaller and sparser and fade softly into nothingness. Below them, dark space runs to the frame's bottom edge: no floor, no rubble.
+#
+# MOTION: Ethereal, weightless floating for the whole shot; after the first second the frayed edge looks the same to the last.
+#
+# LIGHTING: Warm candlelight on the whole wall and on the nearest fragments; the outer fragments dim into the dark.
+#
+# AUDIO: Quiet room tone and a faint low hum. No music, no voices.
+#
+# QUALITY: Stable, clean picture, no interpolation, no ghosting.
+#
+# LOCKS:
+# NO ON-SCREEN TEXT.
+# The room is empty: nobody in frame.
+# Six flames, all burning, first frame to last.
+# LOCKED CAMERA.
+# Nothing in frame newer than 1819.
+#
+# ======== v4 (2026-09-25, VID, Claude, connector) ========
+# THE MECHANISM MOVE (planned at the 2026-09-24 wrap): v3's body as a SEQUEL (video_extension
+#   forward) from the approved comp loop. v3 A had the look but, run from a still, painted
+#   Gerard out and drifted the framing; Sequel held the framing to 0 px for the snuff and reveal.
+#   The loop carries the placeholder king, so Gerard goes on after via render_wall.py as usual.
+# A SEQUEL STARTS ON THE UNBROKEN WALL (the loop's last frame), so the break must FORM. v4 asks
+#   for it inside the first second and steady after; the forming part is DISCARDED, only the
+#   steady tail becomes the loop source (loop_halo.py crossfade).
+# CHANGES vs v3 (two, in separate regions so each is judged on its own):
+#   1. mechanism: REFERENCE and FIRST FRAME rewritten for the continuation (as snuff v7 did), and
+#      MOTION's "the same at the last second as at the first" -> "after the first second ... the same".
+#   2. the floor (Homie: v3 B and v2 A both show floor + rubble at the bottom): THE EDGE gains
+#      "Below them, dark space runs to the frame's bottom edge: no floor, no rubble." (override 3,
+#      third case: a fixed idea seen in 3 takes, banned by name).
+#   Trims to stay under the cap (no meaning change): REFERENCE shortened (the clip carries the
+#   picture now), FORMAT and QUALITY lose "real-time"/"frame", MOTION drops a phrase THE EDGE
+#   already says ("around their places"). THE EDGE's look wording is v3's, word for word. 1,977 chars.
+# SETTINGS · Seedance 2.5 · Sequel: video_extension forward · video reference =
+#   SOTR_MEDIA/05_REFERENCE_UPLOADS/SAL-R-LOOP_comp_upload.mp4 (media 4afb0ccd-af6f-4d79-9255-f099561f1c5e) ·
+#   aspect follows the input (4:3, 1664x1248) · 1080p · 4 s probe · bitrate_mode high · batch 2 ·
+#   sound ON · 96 credits (48 per take)
+# PREDICT: framing 0 px against the loop, placeholder portrait held; the break forms over ~1 s
+#   (risk: it keeps growing all 4 s, as v1 and v3 B did); no floor strip at the bottom.
+# PASS = at least one take with >= 2 s of steady, full-height Control-block edge, no floor/rubble.
 # ======== v3 (2026-09-24) ========
 # v3 RESULT: A = THE LOOK (Control blocks, full height, steady: band 192/191/192 px) but it
 #   DROPPED GERARD (blank panel in the frame) and the FRAMING DRIFTED. B kept both but is an
@@ -80,32 +168,49 @@
 # LOCKED CAMERA.
 # Nothing in frame newer than 1819.
 #
+# ---- v3 body, for the record ----
+# SCENE: The salon wall at evening, lit by its six candles. Its left edge frays away into dark space along its whole height, as if the room were a fragment of memory floating in the void. One locked, continuous shot.
+#
+# REFERENCE: The attached image controls the whole picture: every panel, moulding, sconce, the portrait and its frame, the colour and the light, exactly as shown.
+#
+# FIRST FRAME: The wall as in the attached image, with its left edge already frayed into floating fragments from the cornice to the floor.
+#
+# FORMAT: Single continuous take, real-time, no cuts.
+#
+# CAMERA: Locked off, square to the wall. No push, no pan, no tilt, no drift, no zoom.
+#
+# THE WALL: From just left of the left sconce to the right edge of the frame, the wall is whole and solid. The candles burn with their usual soft flicker, and the portrait stays exactly as it is.
+#
+# THE EDGE: Down the whole height of the left edge of the frame, the wall is in pieces: rectangular blocks of panel, gilt and plaster, cut clean like masonry, a few large, most smaller, each with real thickness. They hang weightless in the dark beside the wall like objects in deep space, each slowly turning and drifting a little back and forth around its own place. The band is even from top to bottom: nearest the whole wall the fragments sit close together; toward the frame's left edge they grow smaller and sparser and fade softly into nothingness.
+#
+# MOTION: Ethereal, weightless floating for the whole shot. The fragments stay suspended around their places; the frayed edge looks the same at the last second as at the first.
+#
+# LIGHTING: Warm candlelight on the whole wall and on the nearest fragments; the outer fragments dim into the dark.
+#
+# AUDIO: Quiet room tone and a faint low hum. No music, no voices.
+#
+# QUALITY: Stable, clean picture, real-time, no frame interpolation, no ghosting.
+#
+# LOCKS:
+# NO ON-SCREEN TEXT.
+# The room is empty: nobody in frame.
+# Six flames, all burning, first frame to last.
+# LOCKED CAMERA.
+# Nothing in frame newer than 1819.
+#
 
-SCENE: The salon wall at evening, lit by its six candles. Its left edge frays away into dark space along its whole height, as if the room were a fragment of memory floating in the void. One locked, continuous shot.
+Edit the video: the left edge of this salon wall has come apart into floating blocks, from the first frame to the last.
 
-REFERENCE: The attached image controls the whole picture: every panel, moulding, sconce, the portrait and its frame, the colour and the light, exactly as shown.
+CHANGE: Down the whole height of the left edge of the frame, the wall is in pieces: rectangular blocks of panel, gilt and plaster, cut clean like masonry, a few large, most smaller, each with real thickness. They hang weightless in the dark beside the wall like objects in deep space, each slowly turning and drifting a little back and forth around its own place. The band is even from top to bottom: nearest the whole wall the fragments sit close together; toward the frame's left edge they grow smaller and sparser and fade softly into nothingness. Below them, dark space runs to the frame's bottom edge: no floor, no rubble. The broken edge is already there in the first frame and looks the same in the last. Warm candlelight catches the nearest fragments; the outer ones dim into the dark.
 
-FIRST FRAME: The wall as in the attached image, with its left edge already frayed into floating fragments from the cornice to the floor.
+PRESERVE EXACTLY:
+- The camera: locked, square to the wall, the same framing in every frame.
+- From just left of the left sconce to the right edge of the frame, the wall as it is: every panel, moulding and sconce, the portrait and its frame.
+- The six candle flames and their flicker, and the warm light on the panels, as in the input.
+- Colour grade, palette, contrast.
 
-FORMAT: Single continuous take, real-time, no cuts.
-
-CAMERA: Locked off, square to the wall. No push, no pan, no tilt, no drift, no zoom.
-
-THE WALL: From just left of the left sconce to the right edge of the frame, the wall is whole and solid. The candles burn with their usual soft flicker, and the portrait stays exactly as it is.
-
-THE EDGE: Down the whole height of the left edge of the frame, the wall is in pieces: rectangular blocks of panel, gilt and plaster, cut clean like masonry, a few large, most smaller, each with real thickness. They hang weightless in the dark beside the wall like objects in deep space, each slowly turning and drifting a little back and forth around its own place. The band is even from top to bottom: nearest the whole wall the fragments sit close together; toward the frame's left edge they grow smaller and sparser and fade softly into nothingness.
-
-MOTION: Ethereal, weightless floating for the whole shot. The fragments stay suspended around their places; the frayed edge looks the same at the last second as at the first.
-
-LIGHTING: Warm candlelight on the whole wall and on the nearest fragments; the outer fragments dim into the dark.
+ONLY CHANGE: the left edge of the wall, broken into floating blocks for the whole clip. 100% identical otherwise.
 
 AUDIO: Quiet room tone and a faint low hum. No music, no voices.
 
-QUALITY: Stable, clean picture, real-time, no frame interpolation, no ghosting.
-
-LOCKS:
-NO ON-SCREEN TEXT.
-The room is empty: nobody in frame.
-Six flames, all burning, first frame to last.
-LOCKED CAMERA.
-Nothing in frame newer than 1819.
+NO ON-SCREEN TEXT. The room is empty: nobody in frame. Nothing in frame newer than 1819.

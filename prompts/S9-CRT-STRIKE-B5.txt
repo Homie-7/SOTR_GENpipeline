@@ -1,0 +1,53 @@
+# S9-CRT-STRIKE-B5 · v1 · the FRANTIC DOUBLE strike, beat 5 (he loses control) · 2026-09-25 (VID, Claude, connector)
+# RESULT 2026-09-25: v1 = CANDIDATE. Blows at f24 and f64, native join. The held gavel is huge
+#   ("wider than his body", kept here as escalation) with an incidental white bar that
+#   render_court_v2.py closes on this clip only. A v2 would take B3 v2's size phrase.
+# Tag on approval: fig_SOTR_judge_strike_b5_s9_v1 (header only).
+#
+# WHY (LOOK.md D12): beat 5 is the judge losing control ("You're lying!", a scuffle, "Get the
+#   TRAITORS out!"). Two blows back to back, the pompous calm gone.
+# MECHANISM and DIRECTION: as S9-CRT-STRIKE-B3 (Sequel of the reading loop, toward camera, the
+#   keyline asked for positively). This file = B3's body with the SCENE, ACTION TIMING, ACTING,
+#   AUDIO and the blow-count lock rewritten for two blows; every other line is B3's.
+# SETTINGS · Seedance 2.5 · Sequel: video_extension forward · video = the reading comp loop
+#   (media id at submission, see LOG) · 9:16 (follows input) · 1080p · 5 s · bitrate_mode high ·
+#   batch 1 · sound ON · 60 credits
+# (Trimmed to the cap before the first run: no version change.)
+# PREDICT: two blows ~0.5 s apart, the second harder; risk: the model plays one blow, or turns
+#   it comic. Emotion clamped both ways in ACTING.
+# PASS = two clear toward-camera blows, furious, native join.
+
+SCENE: The naval-officer silhouette loses control of the court: two furious blows of the gavel, back to back, toward the viewer.
+
+REFERENCE: This shot continues the attached clip of the same figure and keeps him and the bone-white field exactly as shown.
+
+FIRST FRAME: Continues from the last frame of the attached clip: full length, frontal, gavel raised high, scroll out to the side.
+
+FORMAT: Single continuous take, real-time, no cuts.
+
+CAMERA: Dead-on, locked off. The camera never moves; the gavel is what comes closer.
+
+ACTION TIMING:
+0:00-0:00.5 — he snaps upright, gavel high.
+0:00.5-0:01 — first blow, hard and fast, straight at the viewer.
+0:01-0:01.6 — he yanks it back up over his head,
+0:01.6-0:02.1 — and drives it at the viewer again, harder, his whole body lurching in.
+0:02.1-0:05 — he holds it huge and close, coat swinging, shoulders heaving.
+
+THE GAVEL: As it comes at the viewer it simply grows, a flat black shape with crisp edges, wider than his body, clearly a gavel the whole way. Where it passes in front of his body a thin clean white line separates it from the black of the coat; where it stands clear against the field it has no line.
+
+PHYSICS: The gavel has real weight: the arm accelerates hard and stops dead. The heavy wool coat lags and settles a beat late. His feet stay planted.
+
+ACTING (motion only): fury, authority slipping. Comic flailing = failed take; a calm single tap = failed take.
+
+AUDIO: Two wooden knocks of the gavel, then quiet hall tone. No voices, no music.
+
+STYLE: Flat graphic image: one solid pure black silhouette on a bone-white field, like a shadow cast on a lit paper screen. The black is flat and absolute with crisp clean edges. The white is a warm bone tone, softly brighter at the centre, as if a lamp glows behind the paper. Two tones only.
+
+LOCKS:
+NO ON-SCREEN TEXT.
+EXACTLY 1 figure. A bare, featureless head.
+Exactly one gavel and one scroll, first frame to last.
+LOCKED CAMERA.
+EXACTLY TWO BLOWS.
+Nothing in frame newer than 1819.

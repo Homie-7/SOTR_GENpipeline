@@ -27,6 +27,9 @@ is `L` / `C` / `R`. Loops add `-LOOP`, and composited cues add `-Q<n>`.
 | ~~S9-STU-C, S9-STU-R~~ | The room's other two walls (window, shelves) — **not needed**, the studio never shows more than one wall | — | — | retired 2026-09-22 |
 | S9-CRT-FIG | Naval officer silhouette, frontal, bare featureless head, gavel raised, scroll | Higgsfield (image) | LOOK court locked ✓ | **approved** |
 | S9-CRT-STRIKE | One gavel strike, black on white — **toward camera**, not downward (changed 2026-09-23) | Higgsfield (video, image-to-video) | S9-CRT-FIG approved | **approved** 2026-09-23, `@fig_SOTR_judge_strike_s9_v1`. Epaulette fringe flagged for a comp fix |
+| S9-CRT-READ | The judge reading between strikes (D12), a loop | Higgsfield (video, References from the still) | S9-CRT-FIG approved | **candidate 2026-09-25** (`judge_tests/S9-CRT-READ_v1_loop.mov`) |
+| S9-CRT-STRIKE-B3 / -B5 | Beat 3's measured strike / beat 5's frantic double (D12), Sequels of the reading loop | Higgsfield (video, Sequel) | S9-CRT-READ | **candidates 2026-09-25** (B3 v2, B5 v1) |
+| S9-SAL-R-WITHER | The salon's fragment edge, Control blocks (D10, D14) | Higgsfield (Edit video) + `break_strip.py` | the comp loop | **candidate 2026-09-25** (v5 B) |
 | S9-CRT-Q1…Q5 | The five strike cues, CENTRE only, across three appearances (black between each, matching the studio's beats in between) | compositing | S9-CRT-STRIKE | not started |
 | Transitions | Salon candle-in/out, studio paint-in/bleach, court hard cut | compositing | all plates | not started |
 
