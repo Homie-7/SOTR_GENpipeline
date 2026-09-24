@@ -26,6 +26,82 @@ separating. Warm polish against cold patina.
 
 ---
 
+## DECISIONS, 2026-09-24 (Claude, on Homie's full delegation)
+
+Homie: *"You have the script, you have all the things that I've given you… make the best
+informed decisions you can. This is a niche theatrical performance with grandeur."* Each
+decision below states its reason. They're decided, not proposed; Homie can overrule any.
+
+**D1 · Beat lengths, from the script's word counts at stage pace** (about 2.3 words/s spoken,
+2.0 for the Judge's declaiming, plus the stage business written in the directions):
+
+| Beat | World | Est. | Beat | World | Est. |
+|---|---|---|---|---|---|
+| 2 | Salon | ~75 s | 6 | Studio | ~33 s |
+| 3 | Court | ~40 s | 7 | Court | ~20 s |
+| 4 | Studio | ~69 s | 8 | Salon | ~9 s |
+| 5 | Court | ~101 s | 9 | Studio | ~38 s |
+
+**D2 · Two deliveries per wall, both clean.** (a) One continuous file per appearance at the
+D1 lengths: the finished picture. (b) The same appearance as separate IN / HOLD (a seamless
+loop) / OUT pieces, as a safety net, because live actors never run the same length twice.
+The fades at a file's start and end are the operator's (Homie).
+
+**D3 · The salon's two appearances.** Beat 2: reveal (candles lit one at a time) → lit hold →
+the snuff at the START of beat 3 → the dusk holds while the Judge speaks (the beat table's
+"salon dims"). Beat 8 is only ~9 s, so the salon **snaps back already lit**: no reveal (it
+would eat the line); the court's lie has just been told and the salon is instantly,
+smugly at home. Then the snuff as its final exit.
+
+**D4 · The Raft on the studio canvas follows the SCRIPT, not the old LOOK plan.** The script
+says that at beat 4 the painting is *"half-completed"*, so there is no charcoal-lines stage
+(that was invented, and it's retired). The unpainted areas show how Géricault actually worked:
+the composition outlined in umber on the primed canvas, painted figure by figure. The
+progress is tied to what he says:
+- **Beat 4 (the head, "I must have the likeness"): about half painted.** The dead and dying
+  in the lower left, the raft and the sea are done; the upper figures and the sky are in
+  outline.
+- **Beat 6 ("Hunger. Thirst. Madness… I will show it all!"): most of it painted**, the whole
+  mass of bodies now in colour; the sky and the apex group still unfinished.
+- **Beat 9 ("The injustice will be made visible for all to see"): complete, apex figure
+  last.** The hope, the man waving at the horizon, is the final thing to appear, as
+  Géricault and Sarah step back to look.
+Within each studio beat the painting grows from the previous stage to its own over the first
+~20 s, so he is visibly painting while he talks (Homie's idea; this settles it without
+waiting on blocking, since the growth isn't tied to where his brush is).
+
+**D5 · The studio's entry and exit are the operator's fades** (Homie: the operator handles
+start/end). The studio's in-world motion is the painting growing and the candle. The old
+"paints itself in / bleaches out" comp transitions are retired: they were two transitions
+per beat on a wall that already changes by painting.
+
+**D6 · The candle across the studio beats: low and unsteady (4) → flaring with his rage (6) →
+steady and at its brightest (9).** Beat 4 uses the approved loop (already restless). 6 and 9
+are generated, one line changed each from the approved loop prompt: next session's budget,
+~240 credits.
+
+**D7 · The court does not disintegrate.** The two worlds of the wronged and the witnesses
+(salon, studio) fray at their edges; the institution that writes the lie holds its shape,
+razor-sharp. So the court gets no fragment edge. Its bone-white field is lamplight on a scrim
+that **falls off into darkness at the left and right**, so it's still not a hard rectangle,
+and the silhouette stays two-tone and exact.
+
+**D8 · The court's Q5 capper is IN.** After "CAN NOT be held responsible", one more strike:
+the gavel alone fills the wall, then black. The verdict needs a physical full stop before the
+salon's smug reply, and it's the scene's single biggest image. It's built from the approved
+strike clip (no new generation).
+
+**D9 · Claude builds the court composite** (threshold, key onto the 5:3 field, the Q1-Q5
+scale jumps timed to D1, the impact shudder, the epaulette patch), under the final-product
+rule, as clean renders.
+
+**D10 · The fragment edge** stays an EFFECT (renders/fx/, never on the clean masters). Its
+form, Control-style: the room itself coming apart into slow, weightless slabs, withering into
+the dark. It's decided between a Higgsfield-generated edge and the script 3D fracture from the
+2026-09-24 probe (`prompts/S9-SAL-R-WITHER.txt`).
+
+---
+
 ## World 1 — THE SALON · LOCKED 2026-09-21
 
 ### Decisions (Homie, 2026-09-21)
