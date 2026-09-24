@@ -13,9 +13,9 @@ what the task is right now.
 ---
 
 ```
-Load house-rules, declare MODE, then read CLAUDE.md, STAGE.md, PIPELINE.md, LOOK.md and
-SHOTCARDS.md before anything else. State in one line what you loaded and which mode
-you're in.
+Load house-rules, declare MODE, then read CLAUDE.md, STAGE.md, PIPELINE.md, LOOK.md,
+SHOTCARDS.md and docs/AUTONOMOUS-GEN.md before anything else. State in one line what you
+loaded and which mode you're in.
 
 This is SOTR: theatre projection backgrounds for Secret of the Raft, Scene 9, built in
 Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
@@ -23,9 +23,34 @@ Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
 is a wall of the room, square-on, at true scale. No people in any plate. Cross-screen
 events are built in the wide master comp (4680x1080), not generated.
 
-THE TASK, RIGHT NOW (from 2026-09-23, VID session): IMG scope is DONE and S9-CRT-STRIKE is
-DONE and APPROVED. What is left in VID is the TWO LOOPS: S9-SAL-R-LOOP and S9-STU-L-LOOP.
-Neither prompt is written yet. Stay in VID for them; start a fresh chat.
+THE TASK, RIGHT NOW (from 2026-09-24, VID session): Claude now drives Higgsfield directly.
+Homie added it as a claude.ai connector (https://mcp.higgsfield.ai/mcp). It could not load
+in the session that added it, so THIS session is its first. Before any generation, run
+docs/AUTONOMOUS-GEN.md step 0: list the connector's tools, check the four gaps (local
+reference image / every setting incl. 4:3 10 s High batch sound / full 10-bit file back /
+cost reported), then ONE parity run of the approved salon loop prompt. If the connector
+isn't listed, check session_connectors_status and enable it; if it needs sign-in, Homie
+types /mcp.
+BUDGET: 1,000 credits per session, hard stop, and "be as efficient as possible" (Homie).
+SCOPE FOR CLAUDE: GENERATION ONLY. Compositing stays Homie's (After Effects). Script prep
+of loops with tools/loop_halo.py (detrend, trim, crossfade, amplitude) is not comp work;
+do it without asking.
+Stay in VID.
+
+STATE OF THE LOOPS (2026-09-24):
+- S9-SAL-R-LOOP: APPROVED -> @loc_SOTR_salon_R_loop_s9_v1. Halo flicker boosted 3x by
+  script (Homie picked preview "B"). Comp file: loops/loc_SOTR_salon_R_loop_s9_v1_comp.mov
+  (ProRes 422 HQ 10-bit, 8.04 s cycle). Rebuild: tools/loop_halo.py --boost 3 --skip 12
+  --xfade 36.
+- S9-STU-L-LOOP: v2 WORKS, NOT YET APPROVED -> loops/S9-STU-L-LOOP_v2.mp4. Homie has the
+  looped preview; ask him. On approval: rename to loc_SOTR_studio_L_loop_s9_v1.mp4 and
+  render _comp.mov (loop_halo.py --boost 1 --skip 12 --xfade 36, which also cancels
+  v2's +7% drift). Then OFFER the two beat variants (beat 6 wilder, beat 9 steady and
+  bright; one line changed each, ~240 credits), which Homie hasn't decided yet.
+- S9-SAL-R-SNUFF: v3 was GENERATING IN THE WEB APP when the session closed. It's v1's
+  text with only the smoke amount reduced (read the v3 header: v2 rewrote too much and
+  lost v1's snuff). Find the download in SOTR_MEDIA/loops/ (Homie names files freely),
+  verify it IS the snuff, then review. Rejected v1 and v2 are in rejected/.
 
 WALL MAPPING IS CONFIRMED, not proposed. The client (audience-perspective, confirmed by
 Homie): salon on RIGHT, Gericault's studio on LEFT, the judge on CENTRE ("the back
@@ -34,12 +59,12 @@ LOOK.md's existing "solo wall" design for the salon, each world holds ONE wall f
 whole run, no exceptions - including the court, corrected 2026-09-23 (see below). Full
 reasoning: LOG.md 2026-09-22 "major simplification" entry.
 
-SCOPE IS: 2 wall plates (S9-SAL-R, S9-STU-L), 2 loops, 1 DARK edit. docs/WEEK-PLAN.md has
-the day-by-day schedule.
+SCOPE IS: 2 wall plates (S9-SAL-R, S9-STU-L), 2 loops, 1 DARK edit, plus the salon snuff
+clip (S9-SAL-R-SNUFF, added 2026-09-24). docs/WEEK-PLAN.md has the day-by-day schedule.
 
 ALL SIX IMG ASSETS FOR THIS SCOPE ARE APPROVED (2026-09-23):
-@fig_SOTR_judge_s9_v1, @loc_SOTR_salon_room_s9_v1, @loc_SOTR_studio_room_s9_v1
-(regenerated under night/candlelight, supersedes the daylight version),
+@fig_SOTR_judge_s9_v1, @loc_SOTR_salon_room_s9_v1, @loc_SOTR_studio_room_s9_v2
+(night/candlelight; retagged from _v1 on 2026-09-24, the daylight version is the real v1),
 @loc_SOTR_salon_R_s9_v1, @loc_SOTR_salon_R_dark_s9_v1, @loc_SOTR_studio_L_s9_v1.
 Full details and known non-blocking deviations (canvas proportion, DARK light direction):
 REGISTER.md and LOG.md, 2026-09-23 entries.
@@ -69,24 +94,23 @@ rule: the generated frame's bottom edge sits on the wall's floor line whenever h
 in frame. Details in LOOK.md World 3 step 3.
 
 NEXT ACTIONS, IN ORDER:
-1. VID, THIS IS THE ONLY GENERATION WORK LEFT: S9-SAL-R-LOOP and S9-STU-L-LOOP. Both
-   prompts still need writing, off the approved wall plates. Ambient motion only, locked
-   camera, and they must cycle cleanly because QLab may hold them for minutes
-   (PIPELINE.md 7). Salon: candle flames, glints on gilt, a breath in the curtains. Studio:
-   dust in candlelight, the canvas edge catching a flicker - the candle's dim-and-swell is
-   a comp light pass, NOT generated. Seedance 2.5, and ask Homie for its aspect menu, which
-   is still the one uncaptured field in PIPELINE.md.
-2. Compositing (either mode, or its own session): S9-SAL-R-PORTRAIT (Gerard's Louis XVIII
-   onto the portrait frame), S9-STU-L-PAINT1/2/3 (the Raft's three stages onto the canvas),
-   the epaulette patch on the strike, and the court cues Q1-Q5. Sources verified in
-   REGISTER.md, nothing composited yet.
-3. Still open: final set dimensions (v0.2 draft), codec/container spec, Soul Cinema's
-   aspect-ratio options (uncaptured) - see docs/WEEK-PLAN.md. Q5's capper is STILL
-   unconfirmed with Homie - it is not in the script.
+1. Connector gate + parity run (AUTONOMOUS-GEN step 0). Log the tool list and settings in
+   PIPELINE.md.
+2. Review snuff v3 (see above). Iterate within budget if it fails on smoke only. It's a
+   taste call, so Homie approves.
+3. Ask Homie to approve studio v2; file it; offer the beat variants.
+4. Homie's comp work (not Claude's): S9-SAL-R-PORTRAIT, S9-STU-L-PAINT1/2/3, the epaulette
+   patch, the court cues Q1-Q5, and the studio's beat-driven candle arc if it isn't generated.
+5. Still open: final set dimensions (v0.2 draft), codec/container spec, Soul Cinema's
+   aspect menu (Seedance's is captured now). Q5's capper is STILL unconfirmed with Homie.
+   The painting-grows idea (LOOK World 2) waits on the director's blocking.
+   The client PDF is STALE since 2026-09-21 (a task chip was offered to rebuild it); don't
+   let it go to the client as-is.
 
 CLAUDE MAKES THE TECHNICAL CALLS, Homie directs (set 2026-09-22). Only look and story
 decisions go to Homie, always with a recommendation. Confirm the Higgsfield credit
-balance early - it was last logged around 4,500 on 2026-09-22, likely lower now.
+balance early; it was last logged around 4,500 on 2026-09-22 and is likely lower now. Seedance 2.5
+costs ~12 credits a second at 1080p (48 for 4 s).
 
 RETIRED FILES - do not run, headers explain why: prompts/S9-SAL-L.txt, S9-SAL-C.txt,
 S9-STU-C.txt, S9-STU-R.txt. Each points to its replacement.
@@ -94,12 +118,22 @@ S9-STU-C.txt, S9-STU-R.txt. Each points to its replacement.
 For each result Homie brings: judge it against the card, log one row in LOG.md, change
 one thing at a time, and version the prompt file (v2, v3; never overwrite what produced
 an approved asset). Log each model's aspect options in PIPELINE.md on first use (NBP: 9:16
-2k -> 1536x2752. Seedance 2.5: 9:16 -> 1080x1920, 24fps, HEVC 10-bit. Soul Cinema's and
-Seedance's MENUS are both still uncaptured - ask Homie).
+2k -> 1536x2752. Seedance 2.5 menu CAPTURED 2026-09-24: 21:9 16:9 4:3 1:1 3:4 9:16, modes
+References/Sequel/Prequel/Edit video, NO end-frame slot, 4:3 1080p -> 1664x1248. Soul
+Cinema's menu is still uncaptured).
 
-ALWAYS HAND OVER THE SETTINGS (Homie, 2026-09-23, now a standing rule in CLAUDE.md): every
-prompt ships with MODEL, ASPECT RATIO, RESOLUTION, DURATION and SOUND, in the chat message
-and in the file header. He is the one typing them into Higgsfield. Mark anything unconfirmed
+ALWAYS HAND OVER THE SETTINGS (Homie, 2026-09-23, reinforced 2026-09-24): EVERY message
+about generating carries the FULL block (model, mode, reference file, aspect, resolution,
+duration, quality, batch, sound, prompt file), never "as above", in chat AND the file
+header.
+
+REGENERATE OVER COMP (Homie, 2026-09-24): "If we can do a regeneration, we'll just do a
+regeneration." Don't route fixes into his After Effects work. This overrides WEEK-PLAN's
+"fix it in the comp" budget rule.
+
+RENAME ON APPROVAL (Homie, 2026-09-24): the moment something is approved or finished,
+rename it to its tag WITHOUT the @ and file it. Pending takes: loops/<PROMPT-ID>_v<N>.mp4.
+Rejects: rejected/. Checksum every move. Rules in SOTR_MEDIA/README.txt. He is the one typing them into Higgsfield. Mark anything unconfirmed
 as unconfirmed rather than guessing. Note he deliberately leaves generation AUDIO ON as a
 scratch timing reference for the sound designer - do not switch it off.
 
@@ -157,6 +191,12 @@ a ten-object furniture ban, and the animation went robotic - the model spent its
 compliance and defaulted to minimum safe motion. Worse, narrowing one word ("only the COAT
 and shoulder fabric respond" -> "only the shoulder and SLEEVE fabric") is what removed the
 cloth life Homie liked. Ask for movement positively; only ban what has actually appeared.
+(9) CALMING WORDS FREEZE A CLIP; EXAGGERATION WORDS BLOW IT UP. Studio v1 ("gentle,
+small, constant, as still as stone") came back a still image. v2 with vivid wording moved
+4x as much. Snuff v1 ("full, clearly visible, higher, spreading") made cartoon clouds.
+(10) A REWRITE LOSES WHAT WORKED. Snuff v2 was called "one change" but rewrote 4 blocks
+and lost v1's snuff. Patch the failing phrase, keep every other word, diff before running.
+(11) ONE TAKE CAN'T SEPARATE WORDING FROM LUCK. Use batch 2 at 4 s when that's the question.
 (8) VERIFY THE FILE, NOT THE FILENAME. The first download of the approved strike was the
 wrong take - the failed v2 - and the opening pose is identical in both, so stills looked
 right. Sampling frames across the whole clip caught it. Probe and frame-sample every
@@ -171,5 +211,5 @@ one file that no longer exists locally (the superseded daylight studio master, w
 says to keep), and a destructive sync would remove it. Full note in CLAUDE.md.
 
 ON WRAP: update REGISTER.md and LOG.md, update THIS file's "THE TASK, RIGHT NOW",
-commit, push, back up to the T9.
+commit, push, back up to the T9. Report credits spent this session.
 ```

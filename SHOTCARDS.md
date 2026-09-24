@@ -14,13 +14,14 @@ is `L` / `C` / `R`. Loops add `-LOOP`, and composited cues add `-Q<n>`.
 |---|---|---|---|---|
 | S9-SAL-ROOM | Salon room master, all three of the room's own walls in one wide design image (never projected) | Higgsfield (image) | LOOK salon locked | **approved** |
 | S9-SAL-R | Salon's one active wall (the portrait), plays on the physical RIGHT flat | Higgsfield (image) | S9-SAL-ROOM approved | prompt ready |
-| S9-SAL-R-LOOP | Salon loop (candles, glints) | Higgsfield (video) | S9-SAL-R | not started |
+| S9-SAL-R-LOOP | Salon loop (six candle flames, glints on gilt; the mirror and curtains are on retired walls) | Higgsfield (video) | S9-SAL-R | **approved** 2026-09-24, `@loc_SOTR_salon_R_loop_s9_v1`, halo boosted 3x in post |
+| S9-SAL-R-SNUFF | Salon exit material: smoke rising from the six just-snuffed wicks, thinning to nothing (added 2026-09-24, Homie). The comp times the snuff and cuts into it | Higgsfield (video) | S9-SAL-R-DARK approved ✓ | prompt written 2026-09-24 |
 | S9-SAL-R-DARK | Salon, candles unlit, dusk only. NBP edit of the approved LIT plate | Higgsfield (image edit) | S9-SAL-R approved | prompt ready (template) |
 | S9-SAL-R-PORTRAIT | Gérard's Louis XVIII (public domain) composited into the frame | compositing | S9-SAL-R | source verified |
 | ~~S9-SAL-C, S9-SAL-L~~ | The room's other two walls (mirror, window) — **not needed**, the salon never shows more than one wall | — | — | retired 2026-09-22 |
 | S9-STU-ROOM | Studio room master, all three of the room's own walls (never projected) | Higgsfield (image) | LOOK studio locked | regenerating (light changed to night) |
 | S9-STU-L | Studio's one active wall (the canvas, re-staged as a side-wall elevation), plays on the physical LEFT flat | Higgsfield (image) | S9-STU-ROOM approved | prompt ready |
-| S9-STU-L-LOOP | Studio loop (dust, candlelight, canvas edge) | Higgsfield (video) | S9-STU-L | not started |
+| S9-STU-L-LOOP | Studio loop (fast light shimmer and dust generated; slow cue-timed dim-and-swell in the comp) | Higgsfield (video) | S9-STU-L | prompt written 2026-09-24 |
 | S9-STU-L-PAINT1/2/3 | Raft painting in three stages on the canvas | compositing | S9-STU-L | not started |
 | ~~S9-STU-C, S9-STU-R~~ | The room's other two walls (window, shelves) — **not needed**, the studio never shows more than one wall | — | — | retired 2026-09-22 |
 | S9-CRT-FIG | Naval officer silhouette, frontal, bare featureless head, gavel raised, scroll | Higgsfield (image) | LOOK court locked ✓ | **approved** |
@@ -82,8 +83,8 @@ that's an open comp suggestion, not locked — confirm with Homie before buildin
 | **Camera** | Locked. Square to the wall, eye level 1.6 m, floor to 3.6 m, no floor visible |
 | **Scale anchors** | Dado 0.9 m · mantel 1.1 m · sconce centres 1.9 m · panel tops and window head 3.2 m |
 | **States** | LIT (generated) · DARK (NBP edit of the approved LIT: candles unlit, dusk only) |
-| **Loop motion** | LIT only. Candle flames, glints on gilt, a soft stir of candlelight in the mirror, a faint breath in the curtains. Keep 300 mm clear of each seam |
-| **Enters / exits** | The comp reveals LIT through DARK one candle at a time, gilt first · candles snuff out, back to DARK |
+| **Loop motion** | LIT only. The six flames, and the warm halo each sconce throws on the panels, breathing with them; glints on the gilt nearby. Calm and even. *Amended 2026-09-24: the mirror and curtains are on retired walls; see `LOOK.md` World 1* |
+| **Enters / exits** | The comp reveals LIT through DARK one candle at a time, gilt first · candles snuff out, back to DARK, with the wicks smoking (`S9-SAL-R-SNUFF`, added 2026-09-24) |
 | **Model** | Soul Cinema (room master, plates) · NBP (DARK edits) |
 
 **Room contents. Quote this word for word in the room master prompt.** Since the salon
@@ -111,8 +112,8 @@ this quote's job now is the room master and the design sign-off.
 | **Camera** | Locked. Square to the wall, eye level 1.6 m, floor to 3.6 m, no floor visible |
 | **Scale anchors** | Canvas 0.2–3.4 m high, 4.7 m wide (~3:2), close to true scale on the 4.8 m flat |
 | **Light** | One source, motivated by the room's own candle (on the window's sill, per the room master) but shown off-frame on the active wall: warm light falling hard across the canvas, dying to deep umber at the wall's far edge. 2am, candlelit. *Changed 2026-09-22 from daylight — see LOOK.md and LOG.md* |
-| **Loop motion** | Dust in the candlelight, the canvas's raw edge catching a flicker. The candle (off-frame) dimming and swelling is a light pass in the master comp (replaces the cloud, 2026-09-22, and the room's own guttering-candle motion, which lived on the now-retired window wall). Keep 300 mm clear of each seam |
-| **Enters / exits** | Paints itself in, charcoal to colour, through brushstroke masks · bleaches back to raw canvas, the edges breaking into particles |
+| **Loop motion** | **Amended 2026-09-24, split by speed.** Generated: a small, fast, even shimmer of flame light over the canvas and plaster, plus dust. Comp: the slow, cue-timed dim-and-swell on top, following the drama (beat 4 low and unsteady, beat 6 flares with his rage, beat 9 steady and at its brightest). See `LOOK.md` World 2 |
+| **Enters / exits** | Paints itself in, charcoal to colour, through brushstroke masks · bleaches back to raw canvas, the edges breaking into particles. **Between stages the painting keeps growing while he paints** (Homie, 2026-09-24, pending the director's blocking) |
 | **Model** | Soul Cinema. The painting is composited (PAINT1/2/3) |
 
 **Room contents. Quote this word for word in the room master prompt only.** Since the

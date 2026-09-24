@@ -75,8 +75,44 @@ video vocabularies poison each other, so one session never spans both.
   the file header. Anything not yet confirmed is written as unconfirmed, never guessed —
   these are the settings he types into Higgsfield, so a wrong one costs a generation.
   Duration and sound are omitted for IMG prompts; the other three always apply.
+  **Reinforced 2026-09-24:** every message about generating carries the full block (model,
+  mode, reference file, aspect, resolution, duration, quality, batch, sound, prompt file),
+  never "as above".
+- **Regenerate rather than comp (Homie, 2026-09-24).** *"If we can do a regeneration, we'll
+  just do a regeneration."* Compositing is Homie's own After Effects time, so a fix that a
+  regeneration can make goes into the next prompt version. This overrides `docs/WEEK-PLAN.md`'s
+  "fix it in the comp" budget rule. Script prep Claude does itself (`tools/loop_halo.py`) is
+  not comp work.
+- **Rename on approval (Homie, 2026-09-24).** The moment an asset is approved or finished,
+  rename its file to the tag without the `@` and file it. Rules are in
+  `SOTR_MEDIA/README.txt` and REGISTER's naming block.
+- **Claude drives Higgsfield directly (2026-09-24)** through the claude.ai connector, within
+  `docs/AUTONOMOUS-GEN.md`: generation only, 1,000 credits per session, pre-flight before
+  every run, measure after every run, Homie approves.
 
 ## Current stage
+
+### 2026-09-24 (VID) — Salon loop approved. Studio loop works. Snuff on v3. Higgsfield connected for Claude.
+
+- **`@loc_SOTR_salon_R_loop_s9_v1` approved.** Its halo flicker is boosted 3x by script
+  (the generated halos breathed ~2-3%, too little to read from the seats). The comp file
+  is `loops/loc_SOTR_salon_R_loop_s9_v1_comp.mov`.
+- **Studio loop v2 works but isn't approved yet** (`loops/S9-STU-L-LOOP_v2.mp4`). v1 came back
+  still, because its prompt was full of calming words. v2 asks for a candle guttering in a
+  draught, and the light swing went from 4% to 17%.
+- **`S9-SAL-R-SNUFF` added** (Homie): smoke from the snuffed wicks, for both salon exits.
+  v1's snuff was good but its smoke became cartoon clouds. v2 rewrote too much and lost the
+  snuff. **v3 is v1's text with only the smoke reduced**, and was generating at session close.
+- **Look decisions** (LOOK.md Worlds 1 and 2): on the salon wall the halos breathe, and the
+  mirror and curtains are gone; the studio's light follows the drama across beats 4/6/9; the
+  painting grows while Géricault paints (pending the director).
+- **Seedance 2.5 menu captured** (`PIPELINE.md`): there's no end-frame slot, so loops close with
+  a crossfade (`tools/loop_halo.py`). 4:3 at 1080p gives 1664x1248.
+- **Media renamed and filed**: no `@` in filenames, rejects in `rejected/`. The studio room
+  master is **retagged v2** (the daylight one is the real v1); the rename map is in `LOG.md`.
+- **The Higgsfield connector** was added by Homie. It loads in the next session, which starts with the
+  connector gate in `docs/AUTONOMOUS-GEN.md`.
+- **Found:** the client PDF has been stale since 2026-09-21. Don't send it until it's rebuilt.
 
 ### 2026-09-23 (VID) — The court strike is approved. Only the two loops are left to generate.
 

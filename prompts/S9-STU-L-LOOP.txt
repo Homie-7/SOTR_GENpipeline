@@ -1,0 +1,98 @@
+# S9-STU-L-LOOP · v2 · NOT GENERATED · 2026-09-24 (VID)
+#
+# v1 RESULT (LOG.md 2026-09-24): camera locked, no floor, framing right, but it reads as a
+#   STILL IMAGE. The light moved ~4% as one slow breath of the whole wall (0.5-0.7 Hz), no
+#   flame flicker, and there was no dust at all.
+# DIAGNOSIS: v1 spent its words damping the motion: "wavers gently", "sways a little",
+#   "small and constant", "any moment looks like any other", "shimmers around a steady
+#   level", "as still as stone", "never do". That's lesson 7 in a new form: with a static
+#   plate and no visible source, every calming clause pushes the model toward stillness.
+#   The same happened, milder, on the salon.
+# THE ONE CHANGE IN v2: the motion register, subdued to vivid. MOTION / PACING / LIGHTING
+#   are rewritten to ask for a restless, visibly flickering candle, with a named cause
+#   (a draught) and named visible effects (the pool shivering, stretching and sliding a
+#   hand's width; plaster shadows jumping). The damping words are gone. The camera lock
+#   and every LOCKS line stay word for word. Dust is dropped: v1 ignored it, and at
+#   3-9 mm on the wall it's invisible from the seats anyway.
+#   Looping still holds: a flicker that never settles is statistically the same in every
+#   second, so it still crossfades cleanly. Only a one-off event would break the loop.
+#   Direction (Homie, 2026-09-24): fix it by regenerating, not in the comp.
+#
+# v1 motion lines, kept for the record (v1 was never approved):
+#   MOTION: The warm pool of candlelight on the canvas and plaster wavers gently, the way a
+#   single flame's light does: its soft edge sways a little and back, and the rough plaster
+#   catches and loses the light. Sparse specks of dust drift slowly through the lit air. The
+#   canvas stays taut, flat and entirely blank. Only the light and the dust move; the canvas
+#   and wall never do.
+#   PACING: Even from first second to last. The waver stays small and constant, and the dust
+#   keeps the same slow density. Any moment of the clip looks like any other.
+#   LIGHTING: One candle just outside the frame. Its light shimmers around a steady level:
+#   the overall brightness and the falloff into umber shadow at the edges stay as in the
+#   reference from first frame to last.
+#
+# ---- v1 header follows (settings updated for v2) ----
+#
+# SETTINGS (type these into Higgsfield)
+#   Model:      Seedance 2.5
+#   Mode:       References. Reference = @loc_SOTR_studio_L_s9_v1
+#               (SOTR_MEDIA/plates/studio/loc_SOTR_studio_L_s9_v1.jpg, the CROPPED final,
+#               not the uncropped original in rejected/, which shows floor).
+#               NO end-frame slot on Seedance 2.5, so the loop is a crossfade in the comp.
+#   Aspect:     4:3. The menu has no 3:2 or "match input", and 16:9 would pad a lot.
+#               The plate is 1.45:1, so 4:3 trims about 4% off each side. The plaster
+#               margins survive (about 12% left, 10% right). 4:3 is also the LEFT flat's own
+#               shape. RISK: if the model fills the extra height instead of trimming the
+#               sides, it may paint the floor back in below the blocks. The LOCKS line
+#               about the frame's bottom edge is there for that. Check the bottom corners first.
+#   Resolution: 1080p. Nothing gets upscaled until it's approved.
+#   Duration:   10 s (offered; used on both loops 2026-09-24).
+#   Also:       quality High · batch 1
+#   Sound:      ON (Homie's standing choice: scratch reference, never used in the comp).
+#
+# THE LIGHT IS SPLIT BY SPEED (revised 2026-09-24, before the first run)
+#   The first draft held the generated light dead steady and left ALL candle motion to the
+#   comp. That was wrong, for two reasons:
+#   1. LESSON 1. LOOK.md put the dim-and-swell in the comp because it had to cross "all three
+#      walls". The studio now has one wall, so that reason is gone.
+#   2. SCALE. Dust motes are 1-3 px in a 1080p loop, about 3-9 mm on a 4.8 m wall, which is
+#      invisible from the seats. A dust-only loop would read as a still photograph. The
+#      only thing big enough to read is light moving over the whole canvas and plaster.
+#   So the job is split by SPEED, and the two don't conflict:
+#     GENERATED = small, fast, even shimmer: a real flame's light moving over real plaster
+#       relief, which a comp gain curve can't fake. Stationary, so it loops.
+#     COMP = slow, large, cue-timed dim-and-swell (and any gutter that has to hit a line).
+#       It multiplies on top of the shimmer. The comp still owns every timed light event.
+#   The candle stays out of frame, as on the approved plate.
+#
+# COMP NOTE: the Raft (PAINT1/2/3) is corner-pinned over the canvas, so the canvas must
+#   stay geometrically dead still: no ripple, no breathing. Put the painting on in MULTIPLY
+#   over this loop so it inherits the shimmer, the falloff and some of the dust. The
+#   painting is then lit by the same candle as the room.
+
+SCENE: The approved studio wall at two in the morning, a blank canvas on raw plaster, lit by one candle guttering in a draught just outside the frame. Its restless light is the only thing alive in the room. One locked, continuous shot that plays on a loop behind live actors.
+
+REFERENCE: @loc_SOTR_studio_L_s9_v1 is the seed frame and controls the whole picture: the canvas, the plaster, the colour and the light, exactly as shown.
+
+FIRST FRAME: Identical to the reference.
+
+FORMAT: Single continuous take, real-time, no cuts.
+
+CAMERA: Locked off, square to the wall. No push, no pan, no tilt, no drift, no zoom. The framing at the last second is the framing at the first.
+
+MOTION: The unseen candle flame flickers hard in the draught, and its light visibly dances across the wall. The bright pool on the canvas shivers, stretches and shrinks, sliding a hand's width to one side and back, flaring brighter and sinking dimmer several times a second. The rough plaster and the canvas weave catch the light and lose it, and the soft shadows in the plaster relief jump with every flicker. The canvas itself stays taut and blank; the light is what moves across it.
+
+PACING: Restless from the first second to the last: the flicker never settles into calm, and the flame never goes out.
+
+LIGHTING: Warm light from that single candle, flickering hard: the pool leaps brighter and sinks darker around the level of the reference, and the umber shadow at the edges rises and falls with it.
+
+AUDIO: Quiet night room tone in a large bare room, the faint flutter of a candle flame. No music, no voices.
+
+QUALITY: Stable, clean picture, real-time, no slow motion, no frame interpolation, no ghosting.
+
+LOCKS:
+NO ON-SCREEN TEXT.
+The room is empty: nobody in frame.
+The canvas stays blank: no marks, no image, first frame to last.
+The frame's bottom edge is the foot of the wall, at the base of the canvas's blocks; the frame ends there.
+LOCKED CAMERA.
+Nothing in frame newer than 1819.

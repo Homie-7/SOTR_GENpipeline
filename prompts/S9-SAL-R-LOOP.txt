@@ -1,0 +1,74 @@
+# S9-SAL-R-LOOP · v1 · NOT GENERATED · written 2026-09-24 (VID), motion revised the same day
+#   before any run (scale fix, below)
+#
+# SETTINGS (type these into Higgsfield)
+#   Model:      Seedance 2.5
+#   Mode:       References (the same mode as the court strike). Reference =
+#               @loc_SOTR_salon_R_s9_v1 (SOTR_MEDIA/plates/salon/loc_SOTR_salon_R_s9_v1.jpg).
+#               There's NO end-frame slot on Seedance 2.5 (captured 2026-09-24), so the
+#               loop closes with a crossfade in the comp (PIPELINE.md 7).
+#   Aspect:     4:3 (the plate is 2400x1792 = 1.34:1, and the RIGHT flat is 4:3).
+#   Resolution: 1080p. Nothing gets upscaled until it's approved.
+#   Duration:   10 s (offered; used on both loops 2026-09-24). Longer means
+#               the loop repeats less often, and 10 s of six calm flames won't show a cycle.
+#   Also:       quality High · batch 1 for the first run
+#   Sound:      ON (Homie's standing choice: a scratch reference for the sound designer,
+#               never used in the comp).
+#
+# WHAT CHANGED FROM THE CARD, AND WHY (LESSON 1: the wall changed under the spec)
+#   SHOTCARDS/LOOK loop motion lists "a soft stir in the mirror" and "a faint breath in
+#   the curtains". Both belonged to the salon's CENTRE (mirror) and window wall, and both
+#   are retired. This wall is the portrait wall: two sconces, six candles, gilt.
+#   Neither the mirror nor the curtains are in frame, so both are dropped. Nothing is added.
+#
+#   The LOOK.md salon style prefix is deliberately NOT pasted. It names crimson curtains,
+#   blue-grey dusk at the curtain edges and mirror glass, none of which is on this wall, and
+#   house-rules finding 1 says prose describing a room overrides the reference. The wall
+#   prompt S9-SAL-R left it out for the same reason and was approved. The plate carries the look.
+#
+# LOOP LOGIC: no events. No gust, no guttering, nothing that builds or fades. Every second
+#   is statistically the same, so any frame crossfades cleanly into any other.
+#   The wall does not pulse as a whole: a 4.8 m wall flickering all over would strobe the actors.
+#   The candle-by-candle reveal from DARK is done in the comp, over this loop (LOOK.md World 1).
+#
+# SCALE FIX (revised 2026-09-24, before the first run). As first written, only the flames and
+#   the gilt next to them moved. Measured on the plate, a flame is about 13 px tall at 2400 px,
+#   so about 8 px in the 1080p loop. At true scale that's roughly a 27 mm flame, a point of
+#   light from the seats. The WARM HALO each sconce throws on the panels is about 650 mm
+#   across, roughly 70x the area of the flames. That halo is what the audience will actually
+#   see moving, so it now breathes with the flames. It's still local: the far panels, the
+#   dado and the corners stay steady.
+#   Design reason the salon stays calm: its candles are composed and even (polish, control,
+#   complacency), while the studio's one candle struggles (LOOK.md: salon "soft and even",
+#   studio "gutters"). The same light source behaving in opposite ways tells the worlds apart.
+#
+# COMP NOTE: the placeholder portrait is covered by Gerard (S9-SAL-R-PORTRAIT). The frame
+#   has to stay pixel-still so the corner-pin needs no tracking. Give the composited
+#   painting a light pass sampled from the gilt frame around it so it flickers with the room.
+
+SCENE: The approved salon wall, lit by six candles, alive only in its flames. One locked, continuous ambient shot that plays on a loop behind live actors.
+
+REFERENCE: @loc_SOTR_salon_R_s9_v1 is the seed frame and controls the whole picture: every panel, moulding, sconce, the portrait and its frame, the colour and the light, exactly as shown.
+
+FIRST FRAME: Identical to the reference, all six candles already burning.
+
+FORMAT: Single continuous take, real-time, no cuts.
+
+CAMERA: Locked off, square to the wall. No push, no pan, no tilt, no drift, no zoom. The framing at the last second is the framing at the first.
+
+MOTION: The six candle flames in the two gilt sconces burn calmly, each swaying and stretching a little on its own rhythm. The warm halo each sconce throws on the ivory panels around it breathes softly with its flames, and glints of their light slide gently over the carved gilt nearby. Everything else, including the panelling, mouldings, portrait and frame, stays as still as stone. The portrait is an old oil painting on canvas, flat and motionless.
+
+PACING: Even from first second to last. Every candle keeps burning steadily; nothing builds, fades or changes. Any moment of the clip looks like any other.
+
+LIGHTING: Warm amber candlelight exactly as in the reference. The light moves only within reach of the candles, in the halos around the sconces and on the gilt near them. The outer panels, the dado and the corners hold steady.
+
+AUDIO: Quiet room tone and the faint soft breath of candle flames. No music, no voices.
+
+QUALITY: Stable, clean picture, real-time, no slow motion, no frame interpolation, no ghosting.
+
+LOCKS:
+NO ON-SCREEN TEXT.
+The room is empty: nobody in frame.
+EXACTLY six flames, three in each sconce, first frame to last.
+LOCKED CAMERA.
+Nothing in frame newer than 1819.

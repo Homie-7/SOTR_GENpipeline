@@ -63,7 +63,7 @@ generation, and log it here.
 |---|---|---|---|---|
 | Nano Banana Pro | *not yet captured* | 9:16, 2k | **1536 x 2752** | 2026-09-22, from S9-CRT-FIG |
 | Soul Cinema | **21:9 available** (native), 1:1, 4:3, 3:4, 16:9, 9:16, 3:2, 2:3 — per LIRA; 21:9 native per Higgsfield | 21:9, 2k for room masters | 1.5k / 2k tiers; batch up to 4 | 2026-09-22, from sources, not a test |
-| **Seedance 2.5** (video, image-to-video) | *menu not yet captured — ask Homie* | 9:16 | **1080 x 1920 · 24 fps · 4.04 s (97 frames)** · HEVC Main 10, `yuv420p10le`, ~5.4 Mb/s, AAC 32 kHz stereo | 2026-09-23, measured off `S9-CRT-STRIKE` v3, the project's first video generation |
+| **Seedance 2.5** (video, image-to-video) | **21:9, 16:9, 4:3, 1:1, 3:4, 9:16** (captured 2026-09-24). Modes: References · Sequel · Prequel · Edit video, **no end-frame slot**. Also: batch 1–4, quality (High seen), sound on/off, an "Unlimited" toggle (not available on Homie's plan, 2026-09-24). Cost: **48 credits for 4 s at 1080p** (64 before a discount) | 9:16 | **1080 x 1920 · 24 fps · 4.04 s (97 frames)** · HEVC Main 10, `yuv420p10le`, ~5.4 Mb/s, AAC 32 kHz stereo | 2026-09-23, measured off `S9-CRT-STRIKE` v3, the project's first video generation |
 
 **Seedance 2.5 notes, from the first run (2026-09-23).**
 - **10-bit out of the box** (`yuv420p10le`), which is better than the 8-bit assumed. Worth

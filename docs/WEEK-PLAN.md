@@ -14,7 +14,11 @@ follows this; update it on wrap.
 
 - **One batch of 4 per attempt.** Expect one keeper in four. Pick the best and move.
 - **Three batches on a plate without a keeper = change the route, not the words.**
-- **A defect the comp can fix in minutes is fixed in the comp**, never regenerated.
+- ~~**A defect the comp can fix in minutes is fixed in the comp**, never regenerated.~~
+  **Overridden 2026-09-24 (Homie):** if a regeneration can fix it, regenerate. The comp is his
+  own time. Claude's own script prep (`tools/loop_halo.py`) is still fine.
+- **Claude-run generation (from 2026-09-24):** 1,000 credits per session, probe at 4 s before
+  committing to 10 s, batch 2 only when the question is luck. See `docs/AUTONOMOUS-GEN.md`.
 
 ## Scope — CONFIRMED 2026-09-22, cut from 6 wall plates to 2
 
@@ -37,7 +41,7 @@ edits — roughly a day and 1,500–2,000 credits recovered.
 | ~~Mon 22~~ | IMG | Done: room masters run, wall mapping confirmed, salon and studio simplified to one wall each | Homie generates · Claude reviews |
 | **Tue 23 (today)** | IMG | Absorbs Monday's remaining work now that scope is halved: regenerate `S9-STU-ROOM` and approve it, then generate and approve both `S9-SAL-R` and `S9-STU-L`. No seam check needed — each world holds one wall alone | both |
 | **Wed 24** | IMG | Fixes. `S9-SAL-R-DARK` (NBP edit; fallback: grade LIT down in the comp). Both plates approved | both |
-| **Thu 25** | VID | New session. `S9-CRT-STRIKE` + 2 loops (`S9-SAL-R-LOOP`, `S9-STU-L-LOOP`) | both |
+| **Thu 25** | VID | Strike approved (23rd). **24th, ahead of plan:** salon loop approved, studio loop v2 awaiting approval, snuff at v3. Thu: the Higgsfield connector gate, then finish the snuff and studio with Claude driving | both |
 | **Fri 26** | VID + comp | Loop retries. Comp starts: Gérard portrait onto `S9-SAL-R`, Raft PAINT1–3 onto `S9-STU-L`, court Q1–Q5 (the one moment all three walls carry one world) | Homie comp · Claude cue sheet |
 | **Sat 27** | comp | Transitions, light passes, cue timecodes for sound. Topaz 4K upscale of approved material | Homie |
 | **Sun 28** | — | Delivery to the mapping software. Buffer — larger now that scope has shrunk | Homie |

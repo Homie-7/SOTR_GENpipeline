@@ -88,9 +88,21 @@ room, kept immaculate.
 a soft stir of candlelight in the old mirror glass, a faint drift of warm air in the curtains. Nothing
 else.
 
+**AMENDED 2026-09-24 (Homie + Claude): what moves on the ONE wall we build.** The list above
+was written for three walls. The mirror and curtains are on retired walls, so they're out.
+The portrait wall moves **the six flames, and the warm halo each sconce throws on the panels,
+breathing with them**, plus glints on the gilt nearby. The halo is the part that matters: a
+flame is about 27 mm at true scale, a dot from the seats, while each halo is about 650 mm
+across. The outer panels and corners stay steady, so the wall never flickers as a whole.
+**The salon's candles are calm on purpose.** The studio's one candle struggles; the salon's
+many candles are composed. It's the same light source behaving in opposite ways.
+
 **How it arrives.** "Slowly revealed," as the script says. The comp reveals LIT through
 DARK one candle at a time, and the gilt catches first. **How it leaves.** The candles snuff
-out, and it returns to DARK.
+out, and it returns to DARK. **Added 2026-09-24 (Homie): smoke from the snuffed wicks.**
+A short generated clip from the approved DARK plate (`S9-SAL-R-SNUFF`) with pale smoke
+rising from the six wicks, thinning and gone. It's material, not a generated transition:
+the comp times the snuff and cuts into the clip. Serves both exits (beat 3, and after beat 8).
 
 **References.** `INSPO/Sc 9`: the white-and-gold oval salon (Hôtel de Soubise). For
 hyper-real period Paris interiors, *Assassin's Creed Unity*.
@@ -133,6 +145,29 @@ working room.
 draft, so the light dims and swells across the room (on all three walls, so it's done as a
 light pass in the master comp, not generated per wall — same mechanism as the cloud it
 replaces, 2026-09-22). That's all.
+
+**AMENDED 2026-09-24 (Homie + Claude).** The "all three walls" reason for doing the light
+only in the comp is gone, because the studio has one wall. Dust alone is 3–9 mm on the wall,
+too small to read from the seats. So the candle's light is **split by speed**:
+- **Generated (`S9-STU-L-LOOP`):** a small, fast, even shimmer of flame light over the
+  canvas and the plaster relief, plus the dust. It stays constant, so the clip loops.
+- **Comp:** the slow, cue-timed dim-and-swell, multiplied on top.
+
+**The comp light follows the drama (Homie, 2026-09-24):**
+
+| Beat | Line | Candle |
+|---|---|---|
+| 4 | the head, "I must have the likeness" | low and unsteady |
+| 6 | "Vingt!… I will show it all!" | flares with his rage |
+| 9 | "The injustice will be made visible for all to see" | steady and at its brightest as he and Sarah step back to look |
+
+It fits "the artist makes the invisible visible" (below).
+
+**The painting grows while he paints (Homie, 2026-09-24, pending the director).** The script
+has Géricault painting as he talks. So instead of three jumps, the comp reveals the painting
+slowly during each studio beat, arriving at PAINT1, PAINT2 and PAINT3 respectively. **This
+depends on the director's blocking** (where he paints on the wall, and whether strokes appear
+near his brush), so confirm with the director before building it.
 
 **References.** Géricault's own studies (*Severed Limbs*, 1818). Rembrandt-style studio
 light. *Layers of Fear*.
