@@ -28,8 +28,11 @@ THE TASK, RIGHT NOW (from 2026-09-25, VID session 4; 48 credits spent this sessi
 MANY OTHER SCENES to come: preserve credits. Read the CREDITS rule in CLAUDE.md before any generation):
 
 SCENE 9 IS DELIVERED as v3 in SOTR_MEDIA/01_FINAL_FOR_SHOW/ (00_READ_ME_FIRST.txt is current):
-- THE FILES THAT PLAY are each wall's with_edge_effect/ files: salon *_edge2, studio *_v3_edge2,
-  court *_edge3. The edge now moves ONE WAY only (Homie: the old ping-pong "looks like a cheap
+- THE FILES THAT PLAY are each wall's with_edge_effect/ files: salon *_edge2b (b2-3, b8, OUT: the
+  snuff smoke carried over the break; IN/HOLD stay *_edge2), studio *_v3_edge2, court *_edge3b (burn
+  v2, rebuilt after Homie called v1 "fake and low-poly"). The studio now has backup_pieces too
+  (HOLD-b4/b6/b9, 32 s loops). MEETING BRIEF for Homie: https://claude.ai/artifact/5X9sjRSukpoDc1vhdrmhf9
+  (copy docs/MEETING-BRIEF-2026-09-26.html). The edge now moves ONE WAY only (Homie: the old ping-pong "looks like a cheap
   reverse loop"): tools/edge_flow.py freezes the generated broken edge and sends its blocks drifting
   off, new ones always coming. LOOK D16.
 - STUDIO v3: the Raft is painted in BRUSHSTROKES (render_studio.py --strokes 3000), apex last. The

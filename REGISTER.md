@@ -87,6 +87,8 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 | `LEFT_wall_STUDIO/with_edge_effect/…_v3_edge2.mov` | one-way plaster edge (kit from STU-L-BREAK v1, canvas protected, `--layer-gain 0.6 --count 34 --life 30 --speed 5`); sha256 b4 fe5876c8…, b6 05382294…, b9 21423b9d… | **THE FILES THAT PLAY** |
 | `CENTRE_wall_COURT/with_edge_effect/…_s9_v2_edge3.mov` (+ Q1-Q4) | **the paper burns away** (`court_burn.py`, `render_court.py --scrim --burn`), judge whole on top; sha256 b3 2181ba32…, b5 1b2e7e97…, b7 b8bbc23f…, Q1 b36a9b9f…, Q2 7d1cd962…, Q3 a8dac3ce…, Q4 c5858696… (silent renders in `superseded/court_v3_silent/`) | **THE FILES THAT PLAY** |
 
+**v3.1 (same day), THE FILES THAT PLAY:** salon `…b2-3/b8/OUT_s9_v2_edge2b.mov` (smoke over the break), studio `backup_pieces/…HOLD-b4/b6/b9_s9_v3.mov` + `with_edge_effect/backup_pieces/…_edge2.mov`, court `…_edge3b.mov` (burn v2). sha256: b2-3 8fc2bd91…, b8 bc03ec38…, OUT 64146d27…, HOLD-b4 98e73b1b… / edge e77979dc…, HOLD-b6 f218a194… / 8c361338…, HOLD-b9 1547d6f7… / 74ddeb1f…, court b3 833f1bf6…, b5 0a48f9cd…, b7 31a72c36…, Q1 6deba268…, Q2 ae64f4b0…, Q3 1054f38d…, Q4 3a349090….
+
 **Tools added (v3):** `edge_flow.py` (one-way break flow; `kit`, `kit-court`, `chips`, `render`), `court_burn.py`, `render_studio.py --strokes`, `render_court.py --burn/--flow`. `break_strip.py` is retired (ping-pong).
 
 **Court tool:** `tools/render_court.py` (beats and single strikes from the approved strike clip).

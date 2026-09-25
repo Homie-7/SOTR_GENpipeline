@@ -502,6 +502,32 @@ class EdgeRenderer:
         return base * (1 - self.mask) + layer * self.mask
 
 
+def smoke_layer(path, at, length, xmax, W, H, win=18):
+    """The snuffed wicks' smoke, pulled out of the clean file (Homie 2026-09-25: the smoke vanished where
+    the wall is broken, because the break shows a frozen copy of the wall and the dark). The wall behind
+    is static and the smoke moves, so for each pixel the wall is the darkest value within +-win frames;
+    smoke is what is brighter than that, high-passed so the snuff's own dimming is not taken for smoke.
+    Returns {base frame: smoke RGB (H, xmax, 3)} for the frames of the snuff."""
+    f0 = max(at - win, 0)
+    n = length + 2 * win
+    raw = subprocess.run(['ffmpeg', '-v', 'error', '-ss', f'{f0 / FPS:.4f}', '-i', path, '-frames:v', str(n),
+                          '-vf', f'crop={xmax}:{H}:0:0', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'],
+                         capture_output=True, check=True).stdout
+    B = np.frombuffer(raw, np.uint8).reshape(-1, H, xmax, 3).astype(np.float32)
+    L = lum(B)
+    tint = B[-1].reshape(-1, 3).mean(0)
+    tint = tint / max(lum(tint[None])[0], 1e-3)          # the smoke takes the room's light colour
+    out = {}
+    for i in range(len(B)):
+        lo, hi = max(0, i - win), min(len(B), i + win + 1)
+        d = L[i] - L[lo:hi].min(0)
+        d = d - cv2.GaussianBlur(d, (0, 0), 30)
+        d = np.clip(d - 1.5, 0, None)                    # below this it is grain, not smoke
+        if d.max() > 1:
+            out[f0 + i] = (d[..., None] * tint[None, None]).astype(np.float32)
+    return out
+
+
 def render(a):
     kit = dict(np.load(a.kit, allow_pickle=True))
     W, H = info(a.base)
@@ -509,6 +535,12 @@ def render(a):
     if os.path.exists(a.out):
         raise SystemExit(f'refusing: {a.out} exists')
     er = EdgeRenderer(kit, a)
+    smoke = {}
+    if a.smoke_at is not None:
+        xmax = (int(np.nonzero(kit['foot'].any(0))[0].max()) + 9) // 2 * 2   # even: 4:2:2 crops round
+        smoke = smoke_layer(a.base, a.smoke_at, a.smoke_len, xmax, W, H)
+        sm_mask = er.mask[:, :xmax] * (1 + 1.0 * (1 - er.wall[:, :xmax, None]))   # brighter against the dark
+        print(f'smoke on {len(smoke)} frames')
     enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-pix_fmt', 'yuv422p10le'] if a.out.lower().endswith('.mov') \
         else ['-c:v', 'libx264', '-crf', '17', '-pix_fmt', 'yuv420p']
     cmd_in = ['ffmpeg', '-v', 'error']
@@ -532,6 +564,10 @@ def render(a):
             break
         base = np.frombuffer(buf, '<u2').reshape(H, W, 3).astype(np.float32) / 257.0
         out = er.frame(base, a.t0 + i)
+        k = i + int(round(a.start * FPS))
+        if k in smoke:
+            sm = smoke[k]
+            out[:, :sm.shape[1]] += sm * sm_mask
         wr.stdin.write((np.clip(out, 0, 255) * 257).astype('<u2').tobytes())
         i += 1
     wr.stdin.close()
@@ -600,6 +636,8 @@ def main():
     r.add_argument('--start', type=float, default=0, help='preview: start this many seconds into the base')
     r.add_argument('--seconds', type=float, help='preview: render only this long')
     r.add_argument('--loops', type=int, default=1, help='play a seamless base (a HOLD loop) this many times')
+    r.add_argument('--smoke-at', type=int, help='base frame where the snuff starts: carry its smoke over the break')
+    r.add_argument('--smoke-len', type=int, default=120)
     flow_args(r)
     a = ap.parse_args()
     {'kit': build_kit, 'kit-court': build_court_kit, 'chips': build_chips, 'render': render}[a.cmd](a)
