@@ -85,7 +85,7 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 | `RIGHT_wall_SALON/with_edge_effect/…_b2-3/_b8_s9_v2_edge2.mov`, `backup_pieces/…IN/HOLD/OUT_s9_v2_edge2.mov` | **one-way edge** (`edge_flow.py`, kit from WITHER v5 B): no ping-pong; HOLD = 772 f (32 s) exactly cyclic; sha256 b2-3 810c217f…, b8 9ea28179…, IN 85a9314c…, HOLD fff81b80…, OUT e3a0f183… | **THE FILES THAT PLAY** |
 | `LEFT_wall_STUDIO/loc_SOTR_studio_L_b4/b6/b9_s9_v3.mov` | **brushstroke painting** (`render_studio.py --strokes 3000`), sound by build_audio; sha256 b4 72a6708a…, b6 428bc6ce…, b9 73af0b85… (v2 clean in `superseded/edge_v2_pingpong/LEFT_wall_STUDIO/clean_v2/`) | **clean masters, v3** |
 | `LEFT_wall_STUDIO/with_edge_effect/…_v3_edge2.mov` | one-way plaster edge (kit from STU-L-BREAK v1, canvas protected, `--layer-gain 0.6 --count 34 --life 30 --speed 5`); sha256 b4 fe5876c8…, b6 05382294…, b9 21423b9d… | **THE FILES THAT PLAY** |
-| `CENTRE_wall_COURT/with_edge_effect/…_s9_v2_edge3.mov` (+ Q1-Q4) | **the paper burns away** (`court_burn.py`, `render_court.py --scrim --burn`), judge whole on top | **THE FILES THAT PLAY** |
+| `CENTRE_wall_COURT/with_edge_effect/…_s9_v2_edge3.mov` (+ Q1-Q4) | **the paper burns away** (`court_burn.py`, `render_court.py --scrim --burn`), judge whole on top; sha256 b3 2181ba32…, b5 1b2e7e97…, b7 b8bbc23f…, Q1 b36a9b9f…, Q2 7d1cd962…, Q3 a8dac3ce…, Q4 c5858696… (silent renders in `superseded/court_v3_silent/`) | **THE FILES THAT PLAY** |
 
 **Tools added (v3):** `edge_flow.py` (one-way break flow; `kit`, `kit-court`, `chips`, `render`), `court_burn.py`, `render_studio.py --strokes`, `render_court.py --burn/--flow`. `break_strip.py` is retired (ping-pong).
 
