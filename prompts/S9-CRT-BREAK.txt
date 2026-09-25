@@ -1,0 +1,39 @@
+# S9-CRT-BREAK · v1 · the court's fragment edge (BOTH sides) · 2026-09-25 (VID, Claude, connector)
+# Tag on approval: fig_SOTR_court_C_break_s9_v1 (header only).
+#
+# WHY (Homie 2026-09-25, on the v2 edge files): the court's torn-paper edge "looks a little bit of a
+#   paper tear rather than the actual effect we are after… the fragments in the edges also just look
+#   like paper shreds. It's not really matching what we have with the other scenes." The salon and
+#   studio edges are generated Control blocks (LOOK D10/D14), so the court gets the same: a generated
+#   break, carried onto the finished files by tools/edge_flow.py (one-way flow, no ping-pong).
+# MECHANISM: the proven one (S9-SAL-R-WITHER v5 B, S9-STU-L-BREAK v1): EDIT VIDEO on 4 s of the wall
+#   with NO judge in it (the lit scrim field alone, render_court_v2.field_static + lamp_gain). The judge
+#   is laid on afterwards by the renderer, so he can never break (D7, D15).
+# BODY = S9-STU-L-BREAK v1's body with only the wall words changed: right -> left and right; plaster /
+#   canvas / candle -> the lit screen / its shadows / the lamp behind it. One added clause, the band's
+#   width ("about a tenth of the frame's width"), because two sides at the studio's ~16% would crowd
+#   the judge's Q4 scroll arm (reaches ~84% of the width). edge_flow.py caps what it takes anyway.
+# SETTINGS · Seedance 2.5 · Edit video (video_edit) · input = SOTR_MEDIA/05_REFERENCE_UPLOADS/
+#   CRT-C-field_4s_upload.mp4 (96 frames of the scrim field, 1800x1080 stretched to 1920x1080 16:9 so
+#   the model gets a standard shape; the kit scales it back; H.264 crf 10, sha256 cb1c438f…) · follows
+#   the input (16:9, 4 s) · 1080p · bitrate_mode high · batch 1 · sound ON · 48 credits.
+#   ONE TAKE, submitted alone; check transactions after.
+# PREDICT: blocks of the pale screen floating in the dark at both sides from frame 0, the middle whole.
+#   Risks: the model reads the soft grey balustrade shadow as a real railing and builds it in 3D (it
+#   is inside the preserved middle; harmless there); it breaks deeper than a tenth (edge_flow caps it).
+
+Edit the video: the left and right edges of this lit screen have come apart into floating blocks, from the first frame to the last.
+
+CHANGE: Down the whole height of the left and right edges of the frame, the lit screen is in pieces: rectangular blocks of the screen, cut clean like masonry, a few large, most smaller, each with real thickness, their faces the screen's own warm paper tone. They hang weightless in the dark beside the screen like objects in deep space, each slowly turning and drifting a little back and forth around its own place. Each band is about a tenth of the frame's width and even from top to bottom: nearest the whole screen the fragments sit close together; toward the frame's edge they grow smaller and sparser and fade softly into nothingness. Below them, dark space runs to the frame's bottom edge: no floor, no rubble. The broken edges are already there in the first frame and look the same in the last. The lamp glow behind the screen catches the nearest fragments; the outer ones dim into the dark.
+
+PRESERVE EXACTLY:
+- The camera: locked, square to the screen, the same framing in every frame.
+- The middle of the screen, with its soft grey shadows of the balustrade and the two arched windows, as they are.
+- The slow breathing of the lamp glow on the screen, as in the input.
+- Colour grade, palette, contrast.
+
+ONLY CHANGE: the screen's outer edges, broken into floating blocks for the whole clip. 100% identical otherwise.
+
+AUDIO: Quiet room tone and a faint low hum. No music, no voices.
+
+NO ON-SCREEN TEXT. The room is empty: nobody in frame. Nothing in frame newer than 1819.

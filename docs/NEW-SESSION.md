@@ -23,28 +23,29 @@ Higgsfield. It is NOT a film. Live actors perform in front of three surfaces
 is a wall of the room, square-on, at true scale. No people in any plate. Cross-screen
 events are built in the wide master comp (4680x1080), not generated.
 
-THE TASK, RIGHT NOW (from 2026-09-25, end of VID session 3; 1,080 credits spent that day,
-balance ~3,200. Homie: ~660 of it bought nothing, "absolutely unacceptable". Read the CREDITS
-rule in CLAUDE.md before any generation):
+THE TASK, RIGHT NOW (from 2026-09-25, VID session 4; 48 credits spent this session, balance
+~3,154. Homie presents Scene 9 at a meeting on 2026-09-26 and expects changes and feedback, and has
+MANY OTHER SCENES to come: preserve credits. Read the CREDITS rule in CLAUDE.md before any generation):
 
-SCENE 9 IS DELIVERED as v2 in SOTR_MEDIA/01_FINAL_FOR_SHOW/ (00_READ_ME_FIRST.txt is current):
-- Every show file carries its SOUND (the generated clips' own audio, cut with the picture by
-  tools/build_audio.py, verified at correlation 1.000 against the sources).
-- THE FILES THAT PLAY are each wall's with_edge_effect/*_v2_edge.mov: the fragment edge ON the
-  whole time (LOOK D15). Salon: Control blocks on the left (wither v5 B, an Edit-video pass,
-  laid on by tools/break_strip.py). Studio: plaster blocks right of the canvas (S9-STU-L-BREAK
-  v1, the canvas protected so the painting never breaks). Court: torn paper both sides
-  (render_court.py --scrim --edges), the judge always whole.
-- The COURT is the APPROVED strike and the v1 timing on the new lit-scrim field (Q1 ~2.0 m).
-  Homie rejected the new strikes (B3/B5) and "one judge" is confirmed. Don't regenerate the
-  judge's animation.
-- Clean masters (no edge) sit beside them; every older/silent file is in
-  03_TESTS_IN_PROGRESS/superseded/ (NOTHING was deleted; Homie: "keep everything").
+SCENE 9 IS DELIVERED as v3 in SOTR_MEDIA/01_FINAL_FOR_SHOW/ (00_READ_ME_FIRST.txt is current):
+- THE FILES THAT PLAY are each wall's with_edge_effect/ files: salon *_edge2, studio *_v3_edge2,
+  court *_edge3. The edge now moves ONE WAY only (Homie: the old ping-pong "looks like a cheap
+  reverse loop"): tools/edge_flow.py freezes the generated broken edge and sends its blocks drifting
+  off, new ones always coming. LOOK D16.
+- STUDIO v3: the Raft is painted in BRUSHSTROKES (render_studio.py --strokes 3000), apex last. The
+  canvas NEVER breaks (Homie: the canvas isn't a physical space); only the plaster beside it.
+- COURT: the paper screen BURNS away at both sides (tools/court_burn.py, render_court.py --scrim
+  --burn), creeping inward from beat 3 to 7; the judge always whole on top. Torn paper and cube
+  blocks were both rejected: no brick/cube breakups on anything that isn't masonry.
+- Every file carries its sound (build_audio.py). Old files in 03_TESTS_IN_PROGRESS/superseded/
+  (edge_v2_pingpong/ holds the v2 edge files and the v2 studio clean masters). Nothing deleted.
+- S9-CRT-BREAK v1 (48 credits) FAILED: the model reframed the screen into a hard rectangle with
+  stacked cubes. Not used.
 
-NEXT (ask Homie first; nothing here is urgent):
-1. His verdict on the with_edge_effect files (edge depths are Claude's call, D15).
-2. The studio candle arc (D6): beat 6 flaring, beat 9 steady and bright. Generation, so ask before
-   spending; one 4 s probe first.
+NEXT (ask Homie first):
+1. His feedback from the 2026-09-26 meeting. Fix by script first; generate only with his go-ahead.
+2. The studio candle arc (D6): beat 6 flaring, beat 9 steady and bright. Try a script version
+   (boost / steady the approved loop's flicker) before any generation.
 3. Still open: set dimensions, codec/container, the physical fit (pre-warp or playback?), beat
    timings from rehearsal. The client PDF is STALE.
 4. Homie has MANY OTHER SCENES after this one. Credits are for them.

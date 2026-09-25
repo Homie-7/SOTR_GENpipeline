@@ -24,6 +24,12 @@ cut back to the raised pose. Every impact shudders the field (~6 frames).
   python tools/render_court.py OUT.mov --beat 3|5|7        (timed appearance, D1 lengths)
   python tools/render_court.py OUT.mov --strike Q1|Q2|Q3|Q4 (one strike, for a live operator)
   add --scrim for the v2 look (the lit-scrim field, Q1 ~2.0 m); the strike and timing stay v1
+  add --flow KIT (with --scrim) for the edge effect v2 (2026-09-25): Control blocks breaking off both
+  edges of the screen and drifting away one way for the whole file (tools/edge_flow.py kit-court),
+  behind the judge, who is laid on top and never breaks. Replaces --edges (torn paper, rejected).
+  add --burn (with --scrim) for edge effect v3 (Homie 2026-09-25, chosen over blocks): the paper screen
+  burns away at both sides, one way, ash drifting off (tools/court_burn.py). --t0 is set per beat so
+  the burn continues from beat 3 through 5 to 7.
 
 Output: CENTRE 5:3 at working resolution, 1800x1080, 24 fps. Finished clean renders go to
 SOTR_MEDIA/01_FINAL_FOR_SHOW/CENTRE_wall_COURT/ and are never overwritten. Needs ffmpeg, numpy, OpenCV.
@@ -171,7 +177,19 @@ def main():
                     help='v2 look (Homie 2026-09-25): the lit-scrim field from render_court_v2.py and the bigger '
                          'Q1-Q3 ramp; the approved strike and the v1 timing unchanged')
     ap.add_argument('--edges', action='store_true', help='with --scrim: the torn-paper edges (D7), an effect version')
+    ap.add_argument('--flow', help='with --scrim: a court kit from edge_flow.py kit-court (the block edges)')
+    ap.add_argument('--burn', action='store_true', help='with --scrim: the screen burns away at both sides (v3)')
+    from edge_flow import flow_args, EdgeRenderer
+    flow_args(ap)
+    ap.set_defaults(floor_frac=0.0)
     a = ap.parse_args()
+    flow = EdgeRenderer(dict(np.load(a.flow, allow_pickle=True)), a) if a.flow else None
+    burn = None
+    if a.burn:
+        from court_burn import BurnEdges, BEAT_T0
+        burn = BurnEdges(OW, OH)
+        if a.beat and a.t0 == 0:
+            a.t0 = BEAT_T0[a.beat]
     if a.scrim:
         from render_court_v2 import field_static, lamp_gain, SIZES as V2, TornEdges, with_edges
         edges = TornEdges() if a.edges else None
@@ -203,7 +221,12 @@ def main():
             m = cache[key]
             if a.scrim:
                 li = lamp * lamp_gain(len(written))
-                bg = with_edges(base, li, edges, len(written)) if edges else base * li[..., None]
+                if burn:
+                    bg = burn.frame(base * li[..., None], a.t0 + len(written))
+                elif flow:
+                    bg = flow.frame(base * li[..., None] * 255.0, a.t0 + len(written)) / 255.0
+                else:
+                    bg = with_edges(base, li, edges, len(written)) if edges else base * li[..., None]
             else:
                 bg = fld
             img = bg * m[..., None]

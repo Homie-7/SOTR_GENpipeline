@@ -156,6 +156,19 @@ that are animated and important breaking away").** The show plays the `with_edge
   laid over it and never breaks.
 - **Sound** rides with every file (`tools/build_audio.py`).
 
+**D16 · After Homie's notes on the edge files (2026-09-25).**
+- **The break only ever moves ONE WAY.** No ping-pong ("a cheap reverse loop"). The broken edge is
+  there from frame 0 and stays; pieces come away from it and drift off into the dark, new ones always
+  coming (`tools/edge_flow.py`). A loop, where one is needed, cycles the flow, never rewinds it.
+- **Materials break the way they really would.** The rooms (salon, studio) are physical spaces and
+  break like masonry. **The court's screen is paper, so it BURNS away** (Homie chose it): a char line
+  creeping inward from beat 3 to 7, embers, ash drifting off (`tools/court_burn.py`). Cube or brick
+  breakups on anything that isn't masonry are out (Homie: "not a fan of this cube brick-like
+  disintegration").
+- **The painting canvas never breaks** (Homie: the canvas is not a physical space like the room). Only
+  the plaster beside it breaks.
+- **The Raft is painted in brushstrokes**, not revealed by an opacity fill (`render_studio.py --strokes`).
+
 **D14 · How the salon break is made (2026-09-25, measured).** Not a Sequel: a Sequel starts on
 the unbroken wall, so the break has to happen on camera, which the model plays as a collapse
 (blocks fall, rubble). It's an **Edit-video pass on the salon's own clips**: the break exists

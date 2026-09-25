@@ -141,6 +141,16 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
+### 2026-09-25, fourth session (VID): v3, the edge flows one way, the Raft is painted in strokes, the court burns.
+
+- **No more ping-pong** (Homie: "a cheap reverse loop"). `tools/edge_flow.py` freezes each generated
+  broken edge and sends its blocks drifting off one way, forever; `break_strip.py` is retired.
+- **Studio v3:** brushstroke painting (`render_studio.py --strokes`); the canvas never breaks.
+- **Court:** the paper screen burns away (`tools/court_burn.py`); torn paper and cubes both rejected.
+  Materials break the way they really would (`LOOK.md` D16).
+- **Credits: 48 this session** (one court Edit-video take, failed, unused). Homie presents on
+  2026-09-26 and needs credits for feedback and other scenes.
+
 ### 2026-09-25, third session (VID): Scene 9 delivered as v2, with sound and the edge on every wall.
 
 - **Show files v2** in `SOTR_MEDIA/01_FINAL_FOR_SHOW/`: every file carries its generated **sound**
