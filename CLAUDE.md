@@ -55,8 +55,14 @@ video vocabularies poison each other, so one session never spans both.
   beat, which need beat timings; (2) whether the physical fit onto the angled flats
   (keystone/warp) still happens in playback, or the files must be pre-warped.
 
-- **Folders (Homie, 2026-09-24): `SOTR_MEDIA/01_FINAL_FOR_SHOW/` holds ONLY the files for the
-  show**, per wall, with a client-facing `00_READ_ME_FIRST.txt` (keep it current). Then
+- **Folders (Homie, 2026-09-24; RESTRUCTURED 2026-09-26, "we have so many files I am getting
+  confused"): `SOTR_MEDIA/01_FINAL_FOR_SHOW/` holds ONLY the files for the show**, in three folders:
+  `1_PLAY_THESE_IN_ORDER/` (the 8 show files, with the edge, `S9_b<beat>_<WALL>_<world>.mov`, in
+  script order), `2_BACKUP_LOOPS_for_operator/`, `3_CLEAN_no_edge/` (`_CLEAN` masters). **No version
+  numbers in show names**; the version lives in `REGISTER.md`. A new version takes the SAME show
+  name and the old file goes to `03_TESTS_IN_PROGRESS/superseded/` with its version added. The
+  per-wall folders and `with_edge_effect/` below are the old layout. Client-facing
+  `00_READ_ME_FIRST.txt` (keep it current). Meeting documents go in `06_PRESENTATIONS/`. Then
   `02_APPROVED_BUILDING_BLOCKS/`, `03_TESTS_IN_PROGRESS/`, `04_REJECTED/`,
   `05_REFERENCE_UPLOADS/`. `comp/` is Homie's After Effects area; never reorganise it. Map and
   old-to-new paths are in `SOTR_MEDIA/README.txt`.

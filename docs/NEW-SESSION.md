@@ -28,6 +28,9 @@ THE TASK, RIGHT NOW (from 2026-09-25, VID session 4; 48 credits spent this sessi
 MANY OTHER SCENES to come: preserve credits. Read the CREDITS rule in CLAUDE.md before any generation):
 
 SCENE 9 IS DELIVERED as v3 in SOTR_MEDIA/01_FINAL_FOR_SHOW/ (00_READ_ME_FIRST.txt is current):
+- 2026-09-26 SHOW FOLDER REORGANISED (Homie was confused by the names): 01_FINAL_FOR_SHOW/
+  1_PLAY_THESE_IN_ORDER/ (8 files, S9_b<beat>_<WALL>_<world>.mov), 2_BACKUP_LOOPS_for_operator/,
+  3_CLEAN_no_edge/. No versions in the names; REGISTER.md's "SHOW FOLDER" table maps each to its version.
 - 2026-09-26: salon b2-3/b8 are now *_s9_v3(_edge2b): the frozen smoke in the dusk hold removed
   (tools/clean_hold.py), everything before it bit-identical. Homie liked the rest: DON'T change it.
 - THE FILES THAT PLAY are each wall's with_edge_effect/ files: salon *_edge2b (b2-3, b8, OUT: the

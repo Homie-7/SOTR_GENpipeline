@@ -91,6 +91,48 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 
 **v3.2 (2026-09-26), salon:** `loc_SOTR_salon_R_b2-3_s9_v3.mov` (34f6677e…), `_b8_s9_v3.mov` (19298436…), `with_edge_effect/…b2-3_s9_v3_edge2b.mov` (e8a35c30…), `…b8_s9_v3_edge2b.mov` (1f9aebde…): the dusk hold without frozen smoke (`tools/clean_hold.py`); every frame before the fix bit-identical to v2. **THE FILES THAT PLAY** (salon).
 
+**SHOW FOLDER, 2026-09-26 (reorganised; names carry no version, this table does). THE FILES THAT PLAY are in `1_PLAY_THESE_IN_ORDER/`.**
+
+| Show file (in `01_FINAL_FOR_SHOW/`) | Version | Was |
+|---|---|---|
+| `1_PLAY_THESE_IN_ORDER/S9_b2-3_RIGHT_salon.mov` | salon v3, edge2b | `RIGHT_wall_SALON/with_edge_effect/loc_SOTR_salon_R_b2-3_s9_v3_edge2b.mov` |
+| `1_PLAY_THESE_IN_ORDER/S9_b3_CENTRE_court.mov` | court v2, edge3b | `CENTRE_wall_COURT/with_edge_effect/fig_SOTR_judge_C_b3_s9_v2_edge3b.mov` |
+| `1_PLAY_THESE_IN_ORDER/S9_b4_LEFT_studio.mov` | studio v3, edge2 | `LEFT_wall_STUDIO/with_edge_effect/loc_SOTR_studio_L_b4_s9_v3_edge2.mov` |
+| `1_PLAY_THESE_IN_ORDER/S9_b5_CENTRE_court.mov` | court v2, edge3b | `CENTRE_wall_COURT/with_edge_effect/fig_SOTR_judge_C_b5_s9_v2_edge3b.mov` |
+| `1_PLAY_THESE_IN_ORDER/S9_b6_LEFT_studio.mov` | studio v3, edge2 | `LEFT_wall_STUDIO/with_edge_effect/loc_SOTR_studio_L_b6_s9_v3_edge2.mov` |
+| `1_PLAY_THESE_IN_ORDER/S9_b7_CENTRE_court.mov` | court v2, edge3b | `CENTRE_wall_COURT/with_edge_effect/fig_SOTR_judge_C_b7_s9_v2_edge3b.mov` |
+| `1_PLAY_THESE_IN_ORDER/S9_b8_RIGHT_salon.mov` | salon v3, edge2b | `RIGHT_wall_SALON/with_edge_effect/loc_SOTR_salon_R_b8_s9_v3_edge2b.mov` |
+| `1_PLAY_THESE_IN_ORDER/S9_b9_LEFT_studio.mov` | studio v3, edge2 | `LEFT_wall_STUDIO/with_edge_effect/loc_SOTR_studio_L_b9_s9_v3_edge2.mov` |
+| `2_BACKUP_LOOPS_for_operator/S9_b2_RIGHT_salon_IN_candles-light.mov` | salon IN v2, edge2 | `RIGHT_wall_SALON/with_edge_effect/backup_pieces/loc_SOTR_salon_R_IN_s9_v2_edge2.mov` |
+| `2_BACKUP_LOOPS_for_operator/S9_b2_RIGHT_salon_HOLD_loop.mov` | salon HOLD v2, edge2 | `RIGHT_wall_SALON/with_edge_effect/backup_pieces/loc_SOTR_salon_R_HOLD_s9_v2_edge2.mov` |
+| `2_BACKUP_LOOPS_for_operator/S9_b3-and-b8_RIGHT_salon_OUT_snuff.mov` | salon OUT v2, edge2b | `RIGHT_wall_SALON/with_edge_effect/backup_pieces/loc_SOTR_salon_R_OUT_s9_v2_edge2b.mov` |
+| `2_BACKUP_LOOPS_for_operator/S9_b3_CENTRE_court_strike-size1.mov` | court Q1 v2, edge3b | `CENTRE_wall_COURT/with_edge_effect/backup_pieces/fig_SOTR_judge_C_strikeQ1_s9_v2_edge3b.mov` |
+| `2_BACKUP_LOOPS_for_operator/S9_b4_LEFT_studio_HOLD_loop.mov` | studio HOLD-b4 v3, edge2 | `LEFT_wall_STUDIO/with_edge_effect/backup_pieces/loc_SOTR_studio_L_HOLD-b4_s9_v3_edge2.mov` |
+| `2_BACKUP_LOOPS_for_operator/S9_b5_CENTRE_court_strike-size2.mov` | court Q2 v2, edge3b | `CENTRE_wall_COURT/with_edge_effect/backup_pieces/fig_SOTR_judge_C_strikeQ2_s9_v2_edge3b.mov` |
+| `2_BACKUP_LOOPS_for_operator/S9_b5_CENTRE_court_strike-size3.mov` | court Q3 v2, edge3b | `CENTRE_wall_COURT/with_edge_effect/backup_pieces/fig_SOTR_judge_C_strikeQ3_s9_v2_edge3b.mov` |
+| `2_BACKUP_LOOPS_for_operator/S9_b6_LEFT_studio_HOLD_loop.mov` | studio HOLD-b6 v3, edge2 | `LEFT_wall_STUDIO/with_edge_effect/backup_pieces/loc_SOTR_studio_L_HOLD-b6_s9_v3_edge2.mov` |
+| `2_BACKUP_LOOPS_for_operator/S9_b7_CENTRE_court_strike-size4.mov` | court Q4 v2, edge3b | `CENTRE_wall_COURT/with_edge_effect/backup_pieces/fig_SOTR_judge_C_strikeQ4_s9_v2_edge3b.mov` |
+| `2_BACKUP_LOOPS_for_operator/S9_b9_LEFT_studio_HOLD_loop.mov` | studio HOLD-b9 v3, edge2 | `LEFT_wall_STUDIO/with_edge_effect/backup_pieces/loc_SOTR_studio_L_HOLD-b9_s9_v3_edge2.mov` |
+| `3_CLEAN_no_edge/S9_b2-3_RIGHT_salon_CLEAN.mov` | salon v3 | `RIGHT_wall_SALON/loc_SOTR_salon_R_b2-3_s9_v3.mov` |
+| `3_CLEAN_no_edge/S9_b3_CENTRE_court_CLEAN.mov` | court v2 | `CENTRE_wall_COURT/fig_SOTR_judge_C_b3_s9_v2.mov` |
+| `3_CLEAN_no_edge/S9_b4_LEFT_studio_CLEAN.mov` | studio v3 | `LEFT_wall_STUDIO/loc_SOTR_studio_L_b4_s9_v3.mov` |
+| `3_CLEAN_no_edge/S9_b5_CENTRE_court_CLEAN.mov` | court v2 | `CENTRE_wall_COURT/fig_SOTR_judge_C_b5_s9_v2.mov` |
+| `3_CLEAN_no_edge/S9_b6_LEFT_studio_CLEAN.mov` | studio v3 | `LEFT_wall_STUDIO/loc_SOTR_studio_L_b6_s9_v3.mov` |
+| `3_CLEAN_no_edge/S9_b7_CENTRE_court_CLEAN.mov` | court v2 | `CENTRE_wall_COURT/fig_SOTR_judge_C_b7_s9_v2.mov` |
+| `3_CLEAN_no_edge/S9_b8_RIGHT_salon_CLEAN.mov` | salon v3 | `RIGHT_wall_SALON/loc_SOTR_salon_R_b8_s9_v3.mov` |
+| `3_CLEAN_no_edge/S9_b9_LEFT_studio_CLEAN.mov` | studio v3 | `LEFT_wall_STUDIO/loc_SOTR_studio_L_b9_s9_v3.mov` |
+| `3_CLEAN_no_edge/backups/S9_b2_RIGHT_salon_IN_candles-light_CLEAN.mov` | salon IN v2 | `RIGHT_wall_SALON/backup_pieces/loc_SOTR_salon_R_IN_s9_v2.mov` |
+| `3_CLEAN_no_edge/backups/S9_b2_RIGHT_salon_HOLD_loop_CLEAN.mov` | salon HOLD v2 | `RIGHT_wall_SALON/backup_pieces/loc_SOTR_salon_R_HOLD_s9_v2.mov` |
+| `3_CLEAN_no_edge/backups/S9_b3-and-b8_RIGHT_salon_OUT_snuff_CLEAN.mov` | salon OUT v2 | `RIGHT_wall_SALON/backup_pieces/loc_SOTR_salon_R_OUT_s9_v2.mov` |
+| `3_CLEAN_no_edge/backups/S9_b3_CENTRE_court_strike-size1_CLEAN.mov` | court Q1 v2 | `CENTRE_wall_COURT/backup_pieces/fig_SOTR_judge_C_strikeQ1_s9_v2.mov` |
+| `3_CLEAN_no_edge/backups/S9_b4_LEFT_studio_HOLD_loop_CLEAN.mov` | studio HOLD-b4 v3 | `LEFT_wall_STUDIO/backup_pieces/loc_SOTR_studio_L_HOLD-b4_s9_v3.mov` |
+| `3_CLEAN_no_edge/backups/S9_b5_CENTRE_court_strike-size2_CLEAN.mov` | court Q2 v2 | `CENTRE_wall_COURT/backup_pieces/fig_SOTR_judge_C_strikeQ2_s9_v2.mov` |
+| `3_CLEAN_no_edge/backups/S9_b5_CENTRE_court_strike-size3_CLEAN.mov` | court Q3 v2 | `CENTRE_wall_COURT/backup_pieces/fig_SOTR_judge_C_strikeQ3_s9_v2.mov` |
+| `3_CLEAN_no_edge/backups/S9_b6_LEFT_studio_HOLD_loop_CLEAN.mov` | studio HOLD-b6 v3 | `LEFT_wall_STUDIO/backup_pieces/loc_SOTR_studio_L_HOLD-b6_s9_v3.mov` |
+| `3_CLEAN_no_edge/backups/S9_b7_CENTRE_court_strike-size4_CLEAN.mov` | court Q4 v2 | `CENTRE_wall_COURT/backup_pieces/fig_SOTR_judge_C_strikeQ4_s9_v2.mov` |
+| `3_CLEAN_no_edge/backups/S9_b9_LEFT_studio_HOLD_loop_CLEAN.mov` | studio HOLD-b9 v3 | `LEFT_wall_STUDIO/backup_pieces/loc_SOTR_studio_L_HOLD-b9_s9_v3.mov` |
+| `Scene9_One-Pager_dark.pdf` | meeting one-pager 2026-09-26 | `Scene9_One-Pager_dark.pdf` |
+
 **Tools added (v3):** `edge_flow.py` (one-way break flow; `kit`, `kit-court`, `chips`, `render`), `court_burn.py`, `render_studio.py --strokes`, `render_court.py --burn/--flow`. `break_strip.py` is retired (ping-pong).
 
 **Court tool:** `tools/render_court.py` (beats and single strikes from the approved strike clip).
