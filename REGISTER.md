@@ -89,6 +89,8 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 
 **v3.1 (same day), THE FILES THAT PLAY:** salon `…b2-3/b8/OUT_s9_v2_edge2b.mov` (smoke over the break), studio `backup_pieces/…HOLD-b4/b6/b9_s9_v3.mov` + `with_edge_effect/backup_pieces/…_edge2.mov`, court `…_edge3b.mov` (burn v2). sha256: b2-3 8fc2bd91…, b8 bc03ec38…, OUT 64146d27…, HOLD-b4 98e73b1b… / edge e77979dc…, HOLD-b6 f218a194… / 8c361338…, HOLD-b9 1547d6f7… / 74ddeb1f…, court b3 833f1bf6…, b5 0a48f9cd…, b7 31a72c36…, Q1 6deba268…, Q2 ae64f4b0…, Q3 1054f38d…, Q4 3a349090….
 
+**v3.2 (2026-09-26), salon:** `loc_SOTR_salon_R_b2-3_s9_v3.mov` (34f6677e…), `_b8_s9_v3.mov` (19298436…), `with_edge_effect/…b2-3_s9_v3_edge2b.mov` (e8a35c30…), `…b8_s9_v3_edge2b.mov` (1f9aebde…): the dusk hold without frozen smoke (`tools/clean_hold.py`); every frame before the fix bit-identical to v2. **THE FILES THAT PLAY** (salon).
+
 **Tools added (v3):** `edge_flow.py` (one-way break flow; `kit`, `kit-court`, `chips`, `render`), `court_burn.py`, `render_studio.py --strokes`, `render_court.py --burn/--flow`. `break_strip.py` is retired (ping-pong).
 
 **Court tool:** `tools/render_court.py` (beats and single strikes from the approved strike clip).
