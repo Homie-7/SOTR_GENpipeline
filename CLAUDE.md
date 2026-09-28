@@ -46,11 +46,11 @@ video vocabularies poison each other, so one session never spans both.
   at full picture, with no fade-in or fade-out. **And each wall is a FRAGMENT of reality, not a
   hard rectangle:** whole on its outer side, breaking up toward the CENTRE of the stage (the
   2022 Slide 9 concept). **The edge is ON the whole time a wall is lit, on every wall**
-  (Homie, 2026-09-25), and **the show plays the `with_edge_effect` files**. Depths are `LOOK.md`
-  D15: nothing animated or important ever breaks. Built by script: `tools/break_strip.py` lays a
-  generated Control-block break (an Edit-video pass, D14) over the finished files (salon, studio);
-  `tools/render_court.py --scrim --edges` tears the court's paper. (The old `render_wall.py
-  --fragment-edge` dissolve was not liked and is retired.) **Open with Homie:** (1) how a
+  (Homie, 2026-09-25), and **the show plays the edge versions** (`1_PLAY_THESE_IN_ORDER/`). Depths
+  are `LOOK.md` D15/D16: nothing animated or important ever breaks, and the break moves ONE WAY only.
+  Built by script: `tools/edge_flow.py` (a generated Control-block break, frozen, its blocks drifting
+  off; salon, studio) and `tools/court_burn.py` via `render_court.py --scrim --burn` (the court's
+  paper burns). Retired: `break_strip.py` (ping-pong), `--edges` (torn paper), `--fragment-edge`. **Open with Homie:** (1) how a
   beat's length is set now that nothing holds a loop live, i.e. fixed-length files per
   beat, which need beat timings; (2) whether the physical fit onto the angled flats
   (keystone/warp) still happens in playback, or the files must be pre-warped.
@@ -67,9 +67,10 @@ video vocabularies poison each other, so one session never spans both.
   `05_REFERENCE_UPLOADS/`. `comp/` is Homie's After Effects area; never reorganise it. Map and
   old-to-new paths are in `SOTR_MEDIA/README.txt`.
 - **Clean first, effects separate (Homie, 2026-09-24).** *"File management 101."* Every
-  finished render is saved CLEAN (no effects) in `SOTR_MEDIA/01_FINAL_FOR_SHOW/<wall>/` and is never
-  overwritten or deleted; a change is a new version. Anything added on top (the fragment
-  edge, any effect) is a SEPARATE file in `01_FINAL_FOR_SHOW/<wall>/with_edge_effect/`, rebuilt from clean. Homie can do the
+  finished render is saved CLEAN (no effects) in `SOTR_MEDIA/01_FINAL_FOR_SHOW/3_CLEAN_no_edge/` and is
+  never overwritten or deleted; a change is a new version (the old file to `superseded/`). Anything
+  added on top (the fragment edge, any effect) is a SEPARATE file (`1_PLAY_THESE_IN_ORDER/`,
+  `2_BACKUP_LOOPS_for_operator/`), rebuilt from clean. Homie can do the
   fragments in post himself, so the clean render is the deliverable that matters. Generated
   sources in `02_APPROVED_BUILDING_BLOCKS/` are never modified. `tools/render_wall.py` enforces this.
 - **Sound rides in every show file (Homie, 2026-09-25).** *"Embed it within the file, don't get
@@ -146,6 +147,18 @@ video vocabularies poison each other, so one session never spans both.
   every run, measure after every run, Homie approves.
 
 ## Current stage
+
+### 2026-09-28: SCENE 9 APPROVED by Homie. Next: other scenes, or feedback on 9.
+
+- **Every Scene 9 show file is approved** ("All of these files have been approved. Good work.").
+  Don't change any of it unless Homie asks. The show folder is `SOTR_MEDIA/01_FINAL_FOR_SHOW/`
+  (play `1_PLAY_THESE_IN_ORDER/` top to bottom); `REGISTER.md` maps each file to its version.
+- **Last changes before approval (2026-09-26):** the frozen smoke in the salon's dusk hold removed
+  (`tools/clean_hold.py`, every other frame bit-identical), and the show folder reorganised around
+  the script. Meeting one-pager: `SOTR_MEDIA/06_PRESENTATIONS/`.
+- **Credits:** 48 across the 25-28 September sessions (one failed court take). Balance ~3,154.
+- The Scene 9 open items (set dimensions, codec, pre-warp, rehearsal timings, the studio candle arc)
+  wait on the team and Homie; see `docs/NEW-SESSION.md`.
 
 ### 2026-09-25, fourth session (VID): v3, the edge flows one way, the Raft is painted in strokes, the court burns.
 

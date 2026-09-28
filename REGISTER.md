@@ -91,6 +91,8 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 
 **v3.2 (2026-09-26), salon:** `loc_SOTR_salon_R_b2-3_s9_v3.mov` (34f6677e…), `_b8_s9_v3.mov` (19298436…), `with_edge_effect/…b2-3_s9_v3_edge2b.mov` (e8a35c30…), `…b8_s9_v3_edge2b.mov` (1f9aebde…): the dusk hold without frozen smoke (`tools/clean_hold.py`); every frame before the fix bit-identical to v2. **THE FILES THAT PLAY** (salon).
 
+**2026-09-28: ALL SCENE 9 SHOW FILES APPROVED BY HOMIE** (the table below is the approved set).
+
 **SHOW FOLDER, 2026-09-26 (reorganised; names carry no version, this table does). THE FILES THAT PLAY are in `1_PLAY_THESE_IN_ORDER/`.**
 
 | Show file (in `01_FINAL_FOR_SHOW/`) | Version | Was |
