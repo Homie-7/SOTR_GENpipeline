@@ -693,3 +693,27 @@ the flaking ("pretty good, I like it"); the flag "reads like a cloth… minor ov
    part that matters (the Atlantic coast from France to Senegal) rather than the whole continent if it
    helps; animate the Medusa's route as a focus (a travelling point or a camera-less push along the coast)
    if it fits the script (it does: "Loin !" and "The Medusa appears on the horizon" are the journey).
+
+**What v3 does (2026-09-28, `tools/render_s6.py` v3; v2 rebuildable with `render_s6_v2.py`).**
+Decided by Claude on Homie's delegation ("happy for you to make this decision"): **the flag leaves CENTRE at
+0:40** (it carries the glory lines, then goes back into the smoke on "Nous avons connu la victoire") so the
+five battles can take turns on three walls. Homie approved moving Eylau to 0:50.0 and Friedland to 0:52.5.
+1. **Flag = a real cloth** (ClothFlag). Waves run hoist→fly and the fly flaps hardest. Each frame is inverse-mapped, so the
+   outline, the stripes (crisp seams), the weave, the tear, the bleach and the burn all live ON the cloth
+   and ripple with its folds. The hoist dissolves into smoke (no pole). The tear pulls the two halves apart, and there is no fire on it.
+2. **One picture, one word, apart.** Austerlitz L 0:41 · Wagram R 0:43.5 · Iéna C 0:46 · Eylau L 0:50 ·
+   Friedland R 0:52.5: each word sits in the dark below its own picture. WATERLOO arrives after the white wall
+   has burnt clear; MONARCHISTES / NAPOLÉONISTES sit below their flags; 1816 sits in the open Atlantic. The map
+   and the Medusa follow each other (map gone 2:39.8, ship from 2:39.8). **Measured:** `render_s6.py - --check`
+   finds no picture/picture or word/picture overlap anywhere in the 2:45.
+3. **Always moving.** Every picture scales at a constant, linear 0.8–1%/s for its whole life (the ghosts
+   recede); words grow 0.5%/s; the colour walls' mottling drifts; the map pans; the ship approaches and bobs.
+4. **A physical, consistent burn** (PaperBurn + Ash): court_burn's approved layering, in 2D (brown
+   scorch ahead, a black char band, a pale ash lip, a thin sharp rim with crawling hot spots, veins). The front
+   moves at a constant speed from an ignition point on the side facing the stage centre (LEFT from its right
+   edge, RIGHT from its left, CENTRE from its middle, as the colour walls Homie liked). **The ash leaves the
+   rim the way the front travels**, then rises and cools from ember to grey. Paper stops flaking once it burns.
+5. **The map = the journey.** Cropped to the Atlantic coast (a frame 32° of latitude high), panning south at a
+   constant speed the whole time it's up. The Medusa's course draws down the coast at a constant speed from
+   France to Senegal, with a glowing point at its head. Africa dissolves before any frame edge (no rectangle).
+   The Azores are left out (off the course, and in 1816's sea).

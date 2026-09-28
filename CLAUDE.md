@@ -148,6 +148,11 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
+### 2026-09-28, third part (PREP): Scene 6 animatic v3 built, for Homie's review.
+
+- `S6-ANIMATIC_v3.mp4` answers Homie's five v2 notes (`LOOK.md` Scene 6, "What v3 does"). New in
+  `tools/render_s6.py`: ClothFlag, PaperBurn + Ash, MapJourney, and `--check` (overlap measured, clean). 0 credits.
+
 ### 2026-09-28, second part (PREP): Scene 6 started. Animatic v2 reviewed; v3 next.
 
 - **Client notes (via Homie):** Scene 6 is a movement scene with fragmented spoken word; float imagery
