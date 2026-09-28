@@ -717,3 +717,16 @@ five battles can take turns on three walls. Homie approved moving Eylau to 0:50.
    constant speed the whole time it's up. The Medusa's course draws down the coast at a constant speed from
    France to Senegal, with a glowing point at its head. Africa dissolves before any frame edge (no rectangle).
    The Azores are left out (off the course, and in 1816's sea).
+
+**Homie's notes on v3 (2026-09-28): "near perfect… we are almost there". What v4 does.**
+1. **The burn must be one seamless image across the three walls.** In v3 each wall lit its own fire (the
+   white from its middle while the blue and red had already started from their inner edges), which left hard
+   white edges at the seams. **v4: one front for the whole room** (RoomBurn). It is lit at the middle of CENTRE,
+   reaches CENTRE's edges, and carries straight on across LEFT and RIGHT, in order. Used for Liberté/Égalité/
+   Fraternité into Waterloo (1:41.5–1:50.5) and for the three flags at the end (2:10.5–2:17.5).
+2. **The tear rips like cloth.** It starts at the middle and runs up and down to the edges (2:01.5–2:04). The
+   halves pull apart and droop, widest where the rip began, and keep opening to 2:07.
+3. **The burn at the end, in order:** the same single front (see 1).
+4. **More of Africa.** The map frame is 48° of latitude high (was 32°), centred at longitude −4. The whole
+   northern half of the continent reads as Africa, and it still pans south with the route. 1816 is smaller
+   (180) and whole, in the open Atlantic, 2:30–2:34.

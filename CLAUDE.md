@@ -148,6 +148,12 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
+### 2026-09-28, fourth part (PREP): Scene 6 animatic v4 built, for Homie's review.
+
+- Homie on v3: "near perfect". v4 = one burn front across all three walls (`RoomBurn`: no wall burns
+  ahead of its neighbour, no hard edge at a seam), the flag rips from the middle, a wider map of Africa.
+  `S6-ANIMATIC_v4.mp4`; `--check` clean. 0 credits.
+
 ### 2026-09-28, third part (PREP): Scene 6 animatic v3 built, for Homie's review.
 
 - `S6-ANIMATIC_v3.mp4` answers Homie's five v2 notes (`LOOK.md` Scene 6, "What v3 does"). New in

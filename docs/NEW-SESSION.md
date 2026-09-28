@@ -22,10 +22,12 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (2026-09-28, end of the v3 session):
-SCENE 6 (The Napoleonic Wars): ANIMATIC v3 IS BUILT, waiting for Homie's review. Scene 9 is approved; don't touch it.
-- Watch SOTR_MEDIA/03_TESTS_IN_PROGRESS/S6_animatic/S6-ANIMATIC_v3.mp4 (built by tools/render_s6.py v3;
-  v2 = render_s6_v2.py, v1 = render_s6_v1.py). What v3 does is in LOOK.md Scene 6, "What v3 does", the last block.
+THE TASK, RIGHT NOW (2026-09-28, end of the v4 session):
+SCENE 6 (The Napoleonic Wars): ANIMATIC v4 IS BUILT, waiting for Homie's review (v3 was "near perfect"). Scene 9 is approved; don't touch it.
+- Watch SOTR_MEDIA/03_TESTS_IN_PROGRESS/S6_animatic/S6-ANIMATIC_v4.mp4 (built by tools/render_s6.py v4;
+  v3/v2/v1 = render_s6_v3/_v2/_v1.py). LOOK.md Scene 6: "What v3 does", then "Homie's notes on v3… What v4 does" (last block).
+- v4: ONE burn front across all three walls (RoomBurn, lit at CENTRE's middle), the flag rips from the middle,
+  a wider map (48 deg) so Africa reads as the continent.
 - v3 answered Homie's five notes on v2: a real moving cloth (ClothFlag); one picture + one word, apart (the flag
   leaves CENTRE at 0:40, Claude's call on his delegation; Eylau 0:50, Friedland 0:52.5, approved); constant
   motion; the physical burn (PaperBurn + Ash, ash follows the front); the map = the Atlantic coast panning south

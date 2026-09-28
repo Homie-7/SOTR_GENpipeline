@@ -1,12 +1,6 @@
-"""Scene 6 (The Napoleonic Wars): the ANIMATIC, v4, across all three walls, from one 4680x1080 timeline.
+"""Scene 6 animatic v3 (kept so v3 can be rebuilt; v4 is render_s6.py). Original docstring follows.
 
-v4 (Homie's notes on v3, 2026-09-28: "near perfect"): the burns that span the room (Liberté/Égalité/
-Fraternité into Waterloo, and the three flags at the end) are ONE front (RoomBurn) lit at the middle of
-CENTRE, reaching CENTRE's edges and crossing onto LEFT and RIGHT in order, so no wall burns ahead of its
-neighbour and no seam is left with a hard edge; the flag's tear RIPS from the middle up and down, opening
-most where it tore first; the map is wider (48 degrees of latitude) so Africa reads as the continent.
-v3 = `render_s6_v3.py`. The v3 notes follow.
-
+Scene 6 (The Napoleonic Wars): the ANIMATIC, v3, across all three walls, from one 4680x1080 timeline.
 
 WHY: Scene 6 is floating imagery over a movement piece (client, 2026-09-28). The animatic lets Homie and
 the client judge the whole scene before any credit is spent. v1 = `render_s6_v1.py`, v2 = `render_s6_v2.py`.
@@ -90,8 +84,8 @@ BELLIN_FY = (4.08052042e-05, -7.61695559e-03, 4.75185211e-01)
 # the Medusa's course: off the top (from Rochefort), Madeira, Tenerife, Cap Blanc / Arguin, Saint-Louis
 ROUTE_LONLAT = [(-9.5, 47.0), (-13.0, 38.5), (-16.9, 32.7), (-16.4, 28.3), (-17.4, 21.5), (-17.2, 19.5), (-16.5, 16.0)]
 # the map's journey: a frame MAP_SPAN degrees of latitude high, centred on MAP_LON, panning south at a constant speed
-MAP_SPAN, MAP_LON = 48.0, -4.0
-MAP_T0, MAP_LAT0, MAP_SPEED = 147.5, 36.0, 1.3          # s, deg, deg/s
+MAP_SPAN, MAP_LON = 32.0, -18.0
+MAP_T0, MAP_LAT0, MAP_SPEED = 147.5, 39.4, 1.82          # s, deg, deg/s
 ROUTE_T0, ROUTE_T1 = 149.0, 157.5
 
 LINES = [
@@ -229,7 +223,7 @@ class PaperBurn:
     line eats into it rather than wobbling. (ux, uy) is the direction the front travels at each point:
     the ash leaves that way."""
 
-    def __init__(self, ctx, h, w, p0, seed, valid=None, lobe=0.11):
+    def __init__(self, ctx, h, w, p0, seed, valid=None):
         self.ctx, q = ctx, ctx.q
         rng = np.random.default_rng(seed)
         yy, xx = np.mgrid[0:h, 0:w].astype(F32)
@@ -239,7 +233,7 @@ class PaperBurn:
         big = fractal(h, w, rng, scales=(max(3, int(L / 3)), max(2, int(L / 9)), max(2, int(L / 22))), gains=(1, 0.5, 0.3))
         mid = fractal(h, w, rng, scales=(max(2, int(40 * q)), max(2, int(16 * q)), max(2, int(6 * q))), gains=(1, 0.55, 0.3))
         fine = fractal(h, w, rng, scales=(max(2, int(5 * q)), 2), gains=(1, 0.6))
-        D = dist + lobe * L * big + 13 * q * mid + 3.5 * q * fine
+        D = dist + 0.11 * L * big + 13 * q * mid + 3.5 * q * fine
         hs = (max(3, int(70 * q)), max(2, int(28 * q)), max(2, int(10 * q)))
         self.F = dict(D=D.astype(F32), ux=(dx / dist).astype(F32), uy=(dy / dist).astype(F32),
                       wm=(fractal(h, w, rng, scales=(max(3, int(60 * q)), max(2, int(20 * q))), gains=(1, 0.5)) * 0.5 + 0.5).astype(F32),
@@ -287,19 +281,6 @@ class PaperBurn:
             y, x = pts[i]
             cx, cy = to_canvas(x, y)
             ash.spawn(cx, cy, float(F['ux'][y, x]), float(F['uy'][y, x]))
-
-
-class RoomBurn(PaperBurn):
-    """ONE burn across all three walls (Homie, v3 notes: "it has to look like a seamless image"). A single
-    front over the whole 4680-wide canvas, lit at the middle of CENTRE, reaching CENTRE's edges, then crossing
-    onto LEFT and RIGHT and burning them outward, all in one order. Every wall samples the same field, so
-    nothing burns ahead of its neighbour and no wall is left with a hard edge at a seam."""
-
-    def __init__(self, ctx, seed):
-        super().__init__(ctx, ctx.H, ctx.W, (ctx.W / 2, ctx.H * 0.5), seed, lobe=0.045)   # lobes sized to a wall, not the room
-
-    def region(self, x0, x1):
-        return {k: v[:, x0:x1] for k, v in self.F.items()}
 
 
 class Ash:
@@ -560,7 +541,6 @@ class ClothFlag:
         self.burnf = PaperBurn(ctx, th, tw, p0, seed + 40, valid=inside)
         gy, gx = np.mgrid[0:h, 0:w].astype(F32)
         self.Xs, self.Ys = gx - self.CX0, gy - self.CY0
-        self.gburn = None                                           # set to a RoomBurn to burn with the other walls
 
     def disp(self, cu, cv, t, side=0.0, tear=0.0):
         CW, CH = self.CW, self.CH
@@ -574,17 +554,10 @@ class ClothFlag:
         z = amp * (np.sin(ph1) + 0.6 * np.sin(ph2) + 0.3 * T)
         dy = 0.085 * CH * z * (0.25 + 0.75 * uc)
         dx = 0.04 * CW * amp * np.sin(ph1 + 0.7) - 0.025 * CW * amp * (1 + np.sin(ph1)) * uc
-        if side:                                                   # the rip: the halves pull apart and droop
-            op = self.opening(v, tear)
-            dx = dx + side * 0.5 * op * 0.06 * CW
-            dy = dy + op * 0.03 * CH * np.clip(np.abs(u - 0.5) * 2, 0, 1)
+        if side:                                                   # torn: the halves pull apart and sag
+            dx = dx + side * tear * 0.05 * CW
+            dy = dy + tear * 0.035 * CH * np.clip(np.abs(u - 0.5) * 2, 0, 1)
         return dx.astype(F32), dy.astype(F32), z.astype(F32)
-
-    @staticmethod
-    def opening(v, P):
-        """The rip starts at the middle and runs up and down: P is how far its tips have travelled from the
-        middle (0..0.9 of the height). A row opens once the rip has passed it, widest where it tore first."""
-        return np.clip((P - np.abs(v - 0.5)) / 0.3, 0, 1) ** 0.8
 
     def solve(self, t, side=0.0, tear=0.0):
         cu, cv = self.Xs, self.Ys
@@ -610,13 +583,10 @@ class ClothFlag:
             fr = ss(0, 0.12, bleach * 1.3 - (1 - np.clip((u - 0.5) * 2, 0, 1)) * 0.6 - bn * 0.4) * (u >= tl)
             wimg = cv2.remap(self.whiteC, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
             tex = tex * (1 - fr[..., None]) + wimg * fr[..., None]
-        if tear > 0:                                                # each half keeps its own side of the rip line
-            sg = 1 if side > 0 else -1
-            d0 = (u - tl) * CW * sg
-            tr = np.clip((tear - np.abs(v - 0.5)) / 0.015, 0, 1)    # 1 where the rip has already passed
-            d = d0 + 2.5 * q * self.fray[iy]                        # torn: a frayed, paler edge, no fire
-            a = a * (ss(0, 2.0 * q, d) * tr + ss(-0.6 * q, 0.6 * q, d0) * (1 - tr))
-            tex = tex * (1 + 0.14 * tr * np.exp(-np.clip(d, 0, None) / (3 * q)))[..., None]
+        if tear > 0:                                                # a torn edge: frayed, a little paler, no fire
+            d = (u - tl) * CW * (1 if side > 0 else -1) + 2.5 * q * self.fray[iy]
+            a = a * ss(0, 2.0 * q, d)
+            tex = tex * (1 + 0.14 * np.exp(-np.clip(d, 0, None) / (3 * q)))[..., None]
         gx = np.gradient(z, axis=1)
         gy = np.gradient(z, axis=0)
         g = (0.8 * gx + 0.5 * gy) * CW / (2 * np.pi * 1.15)
@@ -626,12 +596,8 @@ class ClothFlag:
             img = img * (1 - grey) + img.mean(2, keepdims=True) * 0.55 * grey
         emit = rim = F = None
         if burn > 0:
-            bf = self.gburn or self.burnf
-            if self.gburn is not None:                              # the ROOM's burn, sampled where this cloth hangs
-                F = bf.sample((self.x0 + self.CX0 + cu).astype(F32), (self.CY0 + cv).astype(F32))
-            else:
-                F = bf.sample(mx, my)
-            img, a, emit, rim = bf.apply(img, a.astype(F32), burn, t, F)
+            F = self.burnf.sample(mx, my)
+            img, a, emit, rim = self.burnf.apply(img, a.astype(F32), burn, t, F)
         return img.astype(F32), a.astype(F32), emit, rim, F
 
     def draw(self, canvas, t, ash=None, dt=0.0, strength=1.0, reveal=1.0, burn=0.0, tear=0.0, bleach=0.0, grey=0.0):
@@ -646,7 +612,7 @@ class ClothFlag:
             if e2 is not None:
                 emit = e2 if emit is None else emit + e2
                 if ash is not None:
-                    (self.gburn or self.burnf).spawn(ash, rim, F, lambda x, y: (self.x0 + x, y), 45 * self.ctx.s * 2, dt)
+                    self.burnf.spawn(ash, rim, F, lambda x, y: (self.x0 + x, y), 45 * self.ctx.s * 2, dt)
         img = img / np.maximum(a, 1e-4)[..., None]
         a = np.clip(a, 0, 1)
         blit(canvas, img, a * strength, self.x0, 0, None if emit is None else emit * strength,
@@ -681,8 +647,8 @@ class MapJourney:
         im = self._inpaint(im)
         self.ppd = self.h / MAP_SPAN                                   # canvas px per degree of latitude
         sc = self.ppd / (-BELLIN_FY[1] * BH)
-        bx0, by0 = lonlat_to_bellin(-64, 70, BW, BH)
-        bx1, by1 = lonlat_to_bellin(56, -22, BW, BH)
+        bx0, by0 = lonlat_to_bellin(-52, 62, BW, BH)
+        bx1, by1 = lonlat_to_bellin(26, -6, BW, BH)
         self.sc, self.bx0, self.by0 = sc, bx0, by0
         CWm, CHm = int((bx1 - bx0) * sc), int((by1 - by0) * sc)
         M = np.float32([[sc, 0, -sc * bx0], [0, sc, -sc * by0]])
@@ -696,7 +662,7 @@ class MapJourney:
             polys = [geom['coordinates']] if geom['type'] == 'Polygon' else geom['coordinates']
             for poly in polys:
                 ring = np.array(poly[0])
-                if ring[:, 0].max() < -64 or ring[:, 0].min() > 56 or ring[:, 1].max() < -22 or ring[:, 1].min() > 70:
+                if ring[:, 0].max() < -52 or ring[:, 0].min() > 26 or ring[:, 1].max() < -6 or ring[:, 1].min() > 62:
                     continue
                 if ring[:, 0].max() < -20 and ring[:, 1].min() > 30:           # the Azores: off the course, in 1816's sea
                     continue
@@ -723,7 +689,7 @@ class MapJourney:
         self.img = np.ascontiguousarray(img, F32)
         dsea = cv2.distanceTransform((anyland < 0.5).astype(np.uint8), cv2.DIST_L2, 5)
         vn = fractal(CHm, CWm, np.random.default_rng(77), scales=(ctx.px(260), ctx.px(80)), gains=(1, 0.4))
-        sea_a = np.clip(np.exp(-dsea / (2.5 * self.ppd)) * (0.9 + 0.25 * vn), 0, 1) * 0.8   # dark in the open ocean
+        sea_a = np.clip(np.exp(-dsea / (3.5 * self.ppd)) * (0.9 + 0.25 * vn), 0, 1) * 0.8   # dark in the open ocean
         nn = fractal(CHm, CWm, np.random.default_rng(78), scales=(ctx.px(180), ctx.px(50)), gains=(1, 0.45)) * 0.5 + 0.5
         sx, sy = self.to_canvas(MAP_LON, MAP_LAT0)
         yy, xx = np.mgrid[0:CHm, 0:CWm].astype(F32)
@@ -739,7 +705,7 @@ class MapJourney:
         rr = np.sqrt(((xv - self.w / 2) / (self.w * 0.58)) ** 2 + ((yv - self.h / 2) / (self.h * 0.64)) ** 2)
         self.vig = np.clip(1.25 - rr, 0, 1).astype(F32)
         # the continent dissolves before any frame edge (no hard edge, no rectangle): east, top and bottom
-        rl = np.sqrt(((xv - self.w * 0.54) / (self.w * 0.46)) ** 2 + ((yv - self.h * 0.45) / (self.h * 0.53)) ** 2)
+        rl = np.sqrt(((xv - self.w * 0.5) / (self.w * 0.42)) ** 2 + ((yv - self.h * 0.42) / (self.h * 0.5)) ** 2)
         ln = fractal(self.h, self.w, np.random.default_rng(79), scales=(ctx.px(220), ctx.px(70)), gains=(1, 0.45))
         self.lvig = (np.clip((1.12 - rl) * 2.5 + 0.3 * ln, 0, 1) * ss(0, 0.12 * self.h, yv)).astype(F32)
 
@@ -941,12 +907,12 @@ def colour_wall(ctx, wall, col, seed):
     n_in = np.clip(0.5 * (n * 0.5 + 0.5) + 0.5 * np.clip(r / 1.4, 0, 1), 0, 1)
     mot = fractal(h + ctx.px(400), w + ctx.px(900), np.random.default_rng(seed + 2),
                   scales=(max(2, h // 3), max(2, h // 12), max(2, h // 40)), gains=(1, 0.4, 0.15))
-    return dict(img=img.astype(F32), n_in=n_in, mot=mot, x=x0, w=w, h=h, wall=wall)
+    burn = PaperBurn(ctx, h, w, {'L': (w * 1.05, h * 0.5), 'R': (-w * 0.05, h * 0.5), 'C': (w * 0.5, h * 0.5)}[wall], seed + 60)
+    return dict(img=img.astype(F32), n_in=n_in, mot=mot, burn=burn, x=x0, w=w, h=h, wall=wall)
 
 
-def draw_colour_wall(ctx, canvas, cw, t, t_in, t_out, ash, dt, rb, dim=1.0, burn_dur=9.0):
-    """A field of colour; its mottling drifts the whole time; it burns with the room (rb: one RoomBurn front
-    from the middle of CENTRE outward across all three walls)."""
+def draw_colour_wall(ctx, canvas, cw, t, t_in, t_out, ash, dt, dim=1.0, burn_dur=6.0):
+    """A field of colour; its mottling drifts the whole time; it burns from the stage centre outward."""
     if t < t_in:
         return
     w, h = cw['w'], cw['h']
@@ -957,9 +923,8 @@ def draw_colour_wall(ctx, canvas, cw, t, t_in, t_out, ash, dt, rb, dim=1.0, burn
     a = rev.astype(F32)
     emit = None
     if t > t_out:
-        F = rb.region(cw['x'], cw['x'] + w)
-        img, a, emit, rim = rb.apply(img.astype(F32), a, lin(t_out, t_out + burn_dur, t), t, F)
-        rb.spawn(ash, rim, F, lambda x, y: (cw['x'] + x, y), 60 * ctx.s * 2, dt)
+        img, a, emit, rim = cw['burn'].apply(img.astype(F32), a, lin(t_out, t_out + burn_dur, t), t)
+        cw['burn'].spawn(ash, rim, cw['burn'].F, lambda x, y: (cw['x'] + x, y), 60 * ctx.s * 2, dt)
     reg = canvas[:, cw['x']:cw['x'] + w]
     reg[:] = reg * (1 - a[..., None]) + img * a[..., None] + (0 if emit is None else emit)
 
@@ -1014,17 +979,13 @@ def build(ctx):
         Word(ctx, 'WATERLOO', 'C', 0.50, 0.83, 60, 105.5, 111.0),
         Word(ctx, 'MONARCHISTES', 'R', 0.50, 0.82, 58, 124.2, 130.5),
         Word(ctx, 'NAPOLÉONISTES', 'L', 0.50, 0.82, 58, 126.2, 130.5),
-        Word(ctx, '1816', 'C', 0.235, 0.26, 180, 150.0, 154.0, font='PinyonScript-Regular.ttf',
+        Word(ctx, '1816', 'C', 0.26, 0.28, 230, 150.0, 156.5, font='PinyonScript-Regular.ttf',
              colour=np.array([0.95, 0.92, 0.86], F32), tracking=0.02, fade=2.0),
     ]
     S['cwalls'] = [colour_wall(ctx, 'L', BLUE, 21), colour_wall(ctx, 'C', WHITE, 22), colour_wall(ctx, 'R', RED, 23)]
-    S['burn_M5'] = RoomBurn(ctx, 501)                  # Liberté/Égalité/Fraternité burn into Waterloo, as one
-    S['burn_M6'] = RoomBurn(ctx, 602)                  # the three flags burn, as one
     S['flagC'] = ClothFlag(ctx, 'C', 'tri', seed=30)
     S['flagL'] = ClothFlag(ctx, 'L', 'tri', box=(0.10, 0.06, 0.90, 0.62), seed=31)
     S['flagR'] = ClothFlag(ctx, 'R', 'white', box=(0.10, 0.06, 0.90, 0.62), seed=32)
-    for k in ('flagC', 'flagL', 'flagR'):
-        S[k].gburn = S['burn_M6']
     S['smoke'] = Smoke(ctx)
     S['fore'] = Smoke(ctx, seed=16, speed=1.6)
     S['embers'] = Particles(ctx, EMBER)
@@ -1069,19 +1030,16 @@ def render_frame(ctx, S, t, dt):
     if 7 <= t <= 42.6:
         S['flagC'].draw(c, t, ash, dt, reveal=ssf(7, 16, t) * (1 - ssf(38.5, 42.5, t)))
     # M4-M5: the three colour walls, burning from the stage centre outward into Waterloo
-    if 79 <= t <= 111:
+    if 79 <= t <= 110:
         dim = 1 - 0.25 * ssf(96, 101, t)
         for cw, ti in zip(S['cwalls'], (81.0, 83.0, 85.0)):
-            draw_colour_wall(ctx, c, cw, t, ti, 101.5, ash, dt, S['burn_M5'], dim)
+            draw_colour_wall(ctx, c, cw, t, ti, 101.5, ash, dt, dim)
     # M6: France divided: the CENTRE tricolour tears, its right half bleaches white; LEFT tricolour, RIGHT white; all burn
-    # the rip runs from the middle up and down (121.5-124), then the halves keep opening (to 127);
-    # all three flags burn as ONE front from the middle of CENTRE outward (130.5-137.5)
-    if 119.5 <= t <= 137.6:
-        rip = 0.6 * lin(121.5, 124.0, t) + 0.3 * lin(124.0, 127.0, t)
-        fb = lin(130.5, 137.5, t)
-        S['flagC'].draw(c, t, ash, dt, reveal=ssf(119.5, 122.5, t), tear=rip, bleach=ssf(124, 127.5, t), burn=fb)
-        S['flagR'].draw(c, t + 3, ash, dt, strength=0.85, reveal=ssf(124, 127, t), burn=fb)
-        S['flagL'].draw(c, t + 7, ash, dt, strength=0.85, reveal=ssf(126, 129, t), burn=fb)
+    if 119.5 <= t <= 136.5:
+        S['flagC'].draw(c, t, ash, dt, reveal=ssf(119.5, 122.5, t), tear=ssf(121.5, 125.5, t), bleach=ssf(124, 127.5, t),
+                        burn=lin(130.5, 135.5, t))
+        S['flagR'].draw(c, t + 3, ash, dt, strength=0.85, reveal=ssf(124, 127, t), burn=lin(131.0, 136.0, t))
+        S['flagL'].draw(c, t + 7, ash, dt, strength=0.85, reveal=ssf(126, 129, t), burn=lin(131.3, 136.3, t))
     # the pictures, and the fragments that break off them
     for wsh in S['washes']:
         if wsh.active(t):
