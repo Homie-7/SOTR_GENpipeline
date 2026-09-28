@@ -177,3 +177,18 @@ rebuilt); `tools/break_strip.py` (a generated break laid over a finished wall fi
 |---|---|---|---|
 | S9-SAL-R-PORTRAIT | `SOTR_MEDIA/comp/Louis_XVIII_coronation_robes_Gerard.jpg` | **source verified, not yet composited** | Gerard's *Louis XVIII in Coronation Robes*, seated, ermine and fleurs-de-lis robes, gilt throne. 1500x2165, aspect 1.443:1 (h:w). Verified 2026-09-22 by visual match against the known painting (composition, robes, throne, crown and sceptre on the cushion all correct). Public domain (pre-1931). **The portrait frame in S9-SAL-R must be built to this proportion.** He is seated, not standing - card says "full-length," which this satisfies, but flag to the director since it is more static than a standing pose. Resolution is modest for a large composite; revisit if the frame reads large on the final wall |
 | S9-STU-L-PAINT1/2/3 | `SOTR_MEDIA/comp/Raft_of_the_Medusa_Gericault_WGA08630.jpg` | **source verified, not yet composited** | Web Gallery of Art scan via Wikimedia Commons, 5907x4014, aspect 1.472:1 (w:h), matching the real canvas's 1.458:1 (716x491cm) to within 1% - a clean uncropped scan. Public domain (pre-1931). **The S9-STU-L wall prompt must state the canvas as 1.46:1**, not the ~1.66:1 the room master returned — done, see `prompts/S9-STU-L.txt` |
+
+---
+
+## Scene 6 · The Napoleonic Wars (from 2026-09-28)
+
+Tags for Scene 6 follow the same scheme with `_s6`: `@fx_SOTR_flag_s6_v<N>`, `@fx_SOTR_smoke_s6_v<N>`,
+`@fig_SOTR_exiles_s6_v<N>` (none generated yet). The sourced prints are not generated assets: they
+are public-domain material, logged by file and checksum in the folder's `_manifest.json`.
+
+| File | What | Status |
+|---|---|---|
+| `02_APPROVED_BUILDING_BLOCKS/S6_public_domain/` (17 images + `_manifest.json`) | The five battles + Waterloo (1805-1816 prints), Goya pl. 15/18/30/50, maps (Delisle 1707, Bellin 1740s), Baugean's frigate; the 1818 raft plates for later scenes only. Licences: Public domain / CC0 (manifest) | **sourced 2026-09-28** (Homie's go-ahead) |
+| `03_TESTS_IN_PROGRESS/S6_animatic/S6-ANIMATIC_v1.mp4` (b2619ee4…, 2340x598, 24 fps, 3,960 f, 2:45) | The whole scene, three walls, half size with a caption strip; placeholders for the flag, smoke and silhouettes. `tools/render_s6.py` | **for Homie's review** |
+| `03_TESTS_IN_PROGRESS/S6_animatic/S6-ANIMATIC_v2.mp4` (7097d511…, 2340x598, 24 fps, 3,960 f, 2:45) | v2 after Homie's notes: cloth flag, frameless washes with flaking edges, the tear, Goya exiles, the glowing continent. `tools/render_s6.py` (v1 rebuildable with `render_s6_v1.py`) | **for Homie's review** |
+| `02_APPROVED_BUILDING_BLOCKS/S6_public_domain/` (+4) | Goya pl. 41, 44, 45 (fleeing; Met, CC0) and the Natural Earth 1:50m countries outline (public domain), added to `_manifest.json` | **sourced 2026-09-28** |

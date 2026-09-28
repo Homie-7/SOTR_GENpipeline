@@ -22,10 +22,23 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (2026-09-28):
-SCENE 9 IS APPROVED BY HOMIE (all show files, 2026-09-28). Don't change any of it unless he asks.
-Homie has MANY OTHER SCENES to come; the next session is likely one of them, or feedback on 9.
-Higgsfield balance ~3,154 credits. Read the CREDITS rule in CLAUDE.md before any generation.
+THE TASK, RIGHT NOW (2026-09-28, end of session):
+SCENE 6 (The Napoleonic Wars) IS IN PROGRESS: the animatic, v3 next. Scene 9 is approved; don't touch it.
+- Read BIBLE.md "Scene 6", LOOK.md "Scene 6" (DRAFT, with Homie's notes on v1 and v2 at the end:
+  THE v3 TO-DO LIST is the last block), SHOTCARDS.md "Scene 6", docs/SOURCES.md (the Scene 6 sources
+  and Homie's Unreal renders on F:).
+- The animatic is built by tools/render_s6.py (v2; v1 = render_s6_v1.py). Watch
+  SOTR_MEDIA/03_TESTS_IN_PROGRESS/S6_animatic/S6-ANIMATIC_v2.mp4 first.
+- v3 = Homie's five notes: the flag cloth really moving; pictures and words never overlapping;
+  every picture always in motion; a physical, consistent burn (fragments travel with the burn front);
+  the map more animated, cropped tighter, the Medusa's route animated.
+- Decided by Homie: fleeing people = no stick figures (Goya's etchings now), era 1816, all three walls,
+  objects never straddle a seam (fields may), no frames/rectangles anywhere, our picture leads the timing.
+  Sound designer does the music; Sahaj (Scene 7) matches to our renders.
+- Still to ask Homie: flag illustrations from the earlier proof-of-concept (none found on F:/G:).
+- After the animatic is approved: generate S6-FLAG, S6-SMOKE (and optionally S6-EXILE), ~500-600
+  credits, one job at a time, ask above 100. Then full-size show files S6_LEFT/CENTRE/RIGHT + _CLEAN.
+Higgsfield balance ~3,154 credits (0 spent this session). Read the CREDITS rule in CLAUDE.md.
 
 WHERE SCENE 9 LIVES (SOTR_MEDIA/01_FINAL_FOR_SHOW/, 00_READ_ME_FIRST.txt explains it):
 - 1_PLAY_THESE_IN_ORDER/  the 8 show files S9_b<beat>_<WALL>_<world>.mov, sorted = script order

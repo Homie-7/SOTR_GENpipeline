@@ -29,8 +29,8 @@ closing line is the whole play: *"They all forgot you… but I won't."*
 | 2 | Tossed at Sea: the painting melts into a storm | 3D projection | — |
 | 3 | Battlefields of France | 3D projection | — |
 | 4 | Flashback to Les Hautes-Alpes | 3D projection | — |
-| 5 | Battlefields of France (cont.) | — | — |
-| 6 | The Napoleonic Wars | — | — |
+| 5 | Battlefields of France (cont.) | 3D projection (Unreal, 2022) | Homie |
+| **6** | **The Napoleonic Wars** | **floating imagery over the movement** (client, 2026-09-28) | **Homie** |
 | 7 | Expedition to Senegal: deck of the frigate | projection (map on the sail) | Sahaj |
 | 8 | The Medusa runs aground | — | unassigned |
 | **9** | **The Aftermath** | **3D projection** | **Homie** |
@@ -38,6 +38,46 @@ closing line is the whole play: *"They all forgot you… but I won't."*
 
 The UE5/Unity snapshots in the source folder are **Scene 4** (alpine farmhouse, mountains)
 and **Scenes 3/5/6** (burning battlefield at dusk). No prior render work exists for Scene 9.
+
+## Scene 6 — The Napoleonic Wars (next, from 2026-09-28)
+
+**What the client asked (2026-09-28, via Homie):** "essentially a movement scene with fragmented
+spoken word… float some imagery over the movement rather than create a fully developed
+environment." Imagery they had considered: maps of Africa, the French flag, people fleeing Africa,
+other fragments tied to the movement and the text. Visual refs: `INSPO/2026 Visual References - SOTR.pdf`
+(pp. 7, 8, 13) and the 2022 deck's Slide 6 (an old map of Africa with "1816" written over it,
+documents scattered on the walls and floor).
+
+**What the script has.** Out of Scene 5's ending (a cannonball: "Smoke and darkness cover the camp"),
+Sarah and Amina as two Napoleonic soldiers and Agnès as the cantinière come out of the battle haze
+upstage, march downstage centre in line to military music and form **battle tableaux**: running
+beside the men, serving cognac under fire, tending the wounded. Over it, **a bilingual echo**: Agnès
+speaks French, Amina repeats it in English, overlapping ("-" = no pause). 188 spoken words, so about
+80 s of speech; the scene runs roughly 2½–3 min with the march, the tableaux and the silences.
+
+| # | Text (Agnès / Amina) | Turn |
+|---|---|---|
+| 1 | (march in through smoke) | The war, still burning from Scene 5 |
+| 2 | "Après vingt-trois années de guerre… forte, utile, comme les hommes… nos glorieux soldats… la victoire: Austerlitz. Wagram. Iéna. Eylau. Friedland." / "We fought for France." / "We believed in victory." | Glory |
+| 3 | "Et puis il y a eu la famine… les exécutions… la mort" / "Famine. Executions. Death!" | The turn |
+| 4 | "Et malgré tout, nous avons parlé de Liberté, d'Égalité, de Fraternité." **Silence.** | The ideal |
+| 5 | "Il fallait continuer à se battre pour Napoléon… Jusqu'à Waterloo… vaincu" / "Defeated. Banished." / "Humilié ! Exilé ! Après vingt-trois ans, je ne reconnais plus mon pays." | Defeat |
+| 6 | "France is divided." / "Monarchistes ! Napoléonistes ! La France est dangereuse pour moi." | France split |
+| 7 | "Alors… je pars… Recommencer ailleurs… Loin !" / "Away from here!" **"The Medusa appears on the horizon."** | Leaving; into Scene 7 |
+
+**Scene 7** (the Medusa's deck, the map projected on the sail) is **Sahaj's**; he gets our renders and
+matches to them (Homie, 2026-09-28). **Music and sound are the sound designer's**; our picture leads
+the timing and the timecodes go to him (same as Scene 9).
+
+**Era, Scene 6: nothing newer than 1816** (Homie approved 2026-09-28). Agnès's "twenty-three years"
+are 1792 to Waterloo, June 1815; the Medusa sails in June 1816. Sourced imagery is dated 1816 or
+earlier (engravings of the battles, Goya's *Disasters of War*, French maps of 1707-1749, Baugean's
+frigate). The Corréard plates of the raft are 1818 and stay out of this scene.
+
+**"People fleeing"** is done as cut-paper silhouettes, the court's language: no faces, no photographs
+of real refugees (Homie approved 2026-09-28). They read as the exiles of 1815 and as today's at once.
+In the script Agnès flees France *toward* Africa; the client's photos point at people fleeing
+Africa by sea today, the raft's modern mirror. The silhouettes hold both without choosing.
 
 ## Scene 9 — The Aftermath
 

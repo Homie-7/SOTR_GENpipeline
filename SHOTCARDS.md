@@ -150,3 +150,36 @@ master: the design sign-off and the materials/light reference every wall is chec
 | **Q5 risk** | **Measured 2026-09-24 on the approved toward-camera clip:** the gavel needs 3.2× at working resolution and 6.4× at 4K to fill the wall — reduced from enlarging the raised-pose gavel, not removed. Q5 is the same clip further along its travel, no separate generation. Enlarge smoothly, then threshold. Fallback: a vector trace |
 | **Sound link** | Our timing leads. The scale jumps are timed to the drama, and the separate sound designer places the gavel hits on them. Mark each jump's timecode at handover |
 | **Voice** | Pre-recorded (the Judge's actor also plays Sarah, who is on stage). No lip sync: it's a silhouette |
+
+---
+
+# CUE CARDS — Scene 6 · The Napoleonic Wars (from 2026-09-28)
+
+`BIBLE.md` has the script's structure, `LOOK.md` (Scene 6, DRAFT) the look. **ID scheme:** `S6-<THING>`
+for generated elements, `S6-M<n>` for the seven composited movements. All three walls are used.
+
+## Deliverables at a glance
+
+| ID | What | Made in | Depends on | Status |
+|---|---|---|---|---|
+| S6-SOURCES | Public-domain engravings, Goya plates, maps, the frigate (17 files + manifest) | downloaded | — | **done 2026-09-28** |
+| S6-ANIMATIC | The whole scene across three walls, stills + type + scripted effects, placeholders for the generated parts. For Homie's and the client's review | script (`tools/render_s6.py`) | S6-SOURCES | in progress |
+| S6-FLAG | The tricolour moving in battle smoke, on black. Locked camera. The white flag (M6) is this clip recoloured by script | Higgsfield: NBP still → Seedance 2.5 image-to-video | animatic approved | not started |
+| S6-SMOKE | Battle smoke drifting with embers, on black, one way. Crosses walls freely (a field, not an object) | Higgsfield: Seedance 2.5 | animatic approved | not started |
+| S6-EXILE | Cut-paper silhouettes walking (a soldier on a crutch, a woman with a bundle, a child, a cantinière with her barrel), black against a pale haze band | Higgsfield: NBP still → Seedance 2.5; thresholded and keyed like the judge | animatic approved | not started |
+| S6-M1…M7 | The seven movements, composited per `LOOK.md` | script | the three above | not started |
+| S6 show files | `S6_LEFT`, `S6_CENTRE`, `S6_RIGHT`: three synced files from one 4680x1080 timeline (+ `_CLEAN`), full picture at start and end (operator fades) | script | S6-M1…M7 | not started |
+
+## S6 — the scene card
+
+| | |
+|---|---|
+| **World** | No room. Fragments of history on black: paper, ink, fire, one flag. `LOOK.md` Scene 6 |
+| **Walls** | All three. The big single images on CENTRE (behind the dancers downstage centre); fragments and echoes on LEFT and RIGHT. Nothing straddles a seam (`LOOK.md`, "Moving between walls") |
+| **In frame** | No people, except the cut-paper silhouettes of M7. No faces, no photographs |
+| **Camera** | Locked. Fragments float square-on; no push, pan or drift of the "camera" |
+| **Era** | Nothing newer than 1816 |
+| **Enters** | From Scene 5's cannonball smoke (Homie's Unreal render): the first frame is black smoke and embers in the same red-brown |
+| **Exits** | The Medusa on the horizon, still and held, for Sahaj's Scene 7 to take over |
+| **Timing** | Our picture leads (~2:45, seven movements). The timecode of every movement and every battle name goes to the sound designer |
+| **Sound** | The generated clips' own sound rides in the file as scratch (standing rule); the score is the sound designer's |

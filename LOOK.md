@@ -584,3 +584,112 @@ tones only.
 **Prompt length.** `house-rules` caps a prompt at about 1,500 to 2,000 characters. Prefix, camera
 and room contents together land at about 1,900. Any new element has to replace words, not add
 them.
+
+---
+
+# LOOK — Scene 6 · The Napoleonic Wars · DRAFT 2026-09-28 (not locked)
+
+**Status.** Three things are DECIDED by Homie (2026-09-28): the fleeing people are cut-paper
+silhouettes; the era is nothing newer than 1816; the scene uses all three walls. **Everything else
+below is Claude's proposal, awaiting Homie's sign-off on the animatic.** Nothing from it goes into a
+generation prompt until the heading says LOCKED.
+
+**The idea.** Scene 6 has no room. It is **history in fragments floating in black**: pieces of paper
+(engravings, etchings, maps) and the one thing in colour, the flag. It is the Scene 9 edge language
+made into a whole scene: pieces come and go ONE WAY, never reversing (D16).
+
+- **Arrive in ink, leave by burning.** A fragment appears as an ink bloom spreading across paper (the
+  2022 show's transition language, `Transitions/` on Homie's drive) and leaves by burning to ash
+  (court_burn's method; paper burns, D16). Nothing un-burns.
+- **Monochrome paper, colour only in the flag and the fire.** Engravings and etchings in warm black ink
+  on aged paper; blue-white-red appears only in the tricolour; orange only in embers and burning edges.
+  The palette follows the text: warm (glory) → grey (famine, death) → the flag → ash → the sea.
+- **Mostly black.** Keeps light off the dancers and the stage haze: bright areas are small and
+  deliberate. Only the Liberté moment fills the walls with colour.
+- **High on the wall.** Fragments sit in the upper two thirds; the bottom third stays dark behind the
+  dancers, so nothing important is lost behind a body or thrown onto one.
+- **Type.** GFS Didot (the French neoclassical face of the period; `tools/fonts/`, OFL). Battle names in
+  capitals, ivory. "1816" in a copperplate hand (Pinyon Script, OFL), as on the 2022 slide.
+
+**Moving between walls (Homie: "be smart about how objects move").** No object ever straddles a seam:
+1. **Fields cross, objects don't.** Smoke, embers, ash and colour flow freely over all three walls.
+2. **Echo, not travel.** Agnès's French line puts an image on one wall; Amina's English echo answers it
+   on another. The text's structure is the choreography.
+3. **Hand-offs through cover.** Something that must travel goes into smoke/ink at one wall's inner edge
+   and comes out of cover on the next, timed as if it crossed the 830 mm gap.
+4. **Depth, not width.** Things come toward us or sink to the horizon instead of sliding sideways.
+5. **The big single images live on CENTRE** (flag, map, ship), behind the dancers downstage centre.
+
+**The seven movements (timings proposed, ~2:45; the picture leads, the sound designer scores to it):**
+
+| # | ≈ time | Text | LEFT | CENTRE | RIGHT |
+|---|---|---|---|---|---|
+| M1 | 0:00-0:18 | march in | smoke, embers | smoke; the **tricolour** emerges | smoke, embers |
+| M2 | 0:18-0:58 | glory, the five battles | engravings ink in: Austerlitz, Iéna | the flag, which goes back into the smoke as Friedland arrives | Wagram, Eylau |
+| M3 | 0:58-1:18 | famine, executions, death | the battles burn; Goya: famine (pl. 50) | Goya: death (pl. 18) | Goya: executions (pl. 15) |
+| M4 | 1:18-1:36 | Liberté, Égalité, Fraternité + silence | **blue** · LIBERTÉ | **white** · ÉGALITÉ | **red** · FRATERNITÉ |
+| M5 | 1:36-2:00 | Waterloo, defeated, exiled | the colour burns from the inner edge | Waterloo (1815 print), then the burnt field (Jazet 1816) | burns |
+| M6 | 2:00-2:16 | Monarchistes ! Napoléonistes ! | the tricolour's remnant | black (Agnès stands here) | the **white Bourbon flag**: the same cloth, recoloured |
+| M7 | 2:16-2:45 | je pars… Loin ! the Medusa | silhouettes walk into the haze | the **map** of Africa (Delisle 1707) inks in, "1816", a route from France to Senegal; the map washes into sea; **the Medusa** (Baugean) on the horizon | silhouettes walk into the haze |
+
+**The animatic** (`tools/render_s6.py`, 2026-09-28): the whole scene on the three walls, at half size,
+with a caption strip of the spoken lines under the picture. The flag, the smoke and the silhouettes in
+it are script placeholders for the three generated elements below.
+
+**Made how (credits spent only where real motion is needed):**
+- **Sourced, composited (free):** the engravings, Goya, maps, the frigate. Public domain,
+  `SOTR_MEDIA/02_APPROVED_BUILDING_BLOCKS/S6_public_domain/` + `_manifest.json` (licences, dates, checksums).
+  Generators paint wrong versions and gibberish lettering (the Raft rule).
+- **Scripted (free):** ink blooms, burns, drift, type, the three colour walls, the white flag
+  (a recolour of the generated tricolour, so it's visibly the same cloth).
+- **Generated (≈500-600 credits over the sessions, one job at a time, ask above 100):** the tricolour
+  moving in smoke on black; battle smoke and embers on black; the silhouette procession (a still, then
+  image-to-video, thresholded and keyed like the judge). Optional, dropped if hard: the sea under the
+  Medusa.
+
+**The join with Scene 5.** Homie's Scene 5 ends on his cannonball: a white flash, then black smoke and
+embers over the red dusk battlefield. Scene 6's first frame is that smoke and those embers, in the same
+warm red-brown.
+
+**Homie's notes on animatic v1 (2026-09-28), and what v2 does.** He liked the overall flow, the paper
+burning, and Liberté/Égalité/Fraternité burning into Waterloo. Everything else changes toward one rule,
+in his words: *"no horizontal frames. I want this to be nice and atmospheric. Otherwise there's no point
+of using projection mapping."*
+- **The flag is a cloth, not an illustration.** It fills CENTRE, folds in the wind, has no pole and no
+  hard edge, and dissolves into the smoke at its borders. Its blue and red spill as light into the smoke
+  on LEFT and RIGHT. Still a placeholder for the generated S6-FLAG.
+- **No picture is a rectangle.** Every print washes in large and bleeds into the dark with organic,
+  slowly breathing edges that erode one way and break off as drifting paper fragments (the Scene 9 edge
+  idea, in paper). They still ink in and burn out. Pictures are layered as double exposures to fill the walls.
+- **France divided** (was unclear at 2:10): the CENTRE tricolour tears down the middle and its right half
+  bleaches to the white Bourbon flag; the tricolour rises on LEFT ("Napoléonistes !"), the white flag on
+  RIGHT ("Monarchistes !"); then all three burn.
+- **The fleeing people are Goya's**, not drawn figures: *Disasters of War* pl. 41 (they escape through the
+  flames, on CENTRE as the flags burn), pl. 44 and 45 (fleeing families) ghosted into the dawn haze on
+  LEFT and RIGHT, receding toward the ship. The generated S6-EXILE silhouettes become optional.
+- **The map is the continent's shape** (Homie's 2022 Slide 6 mock-up): Africa glowing amber like paper
+  held to a lamp, Bellin's 1740s lettering and mountains inside it, the rest of his map faded into the
+  sea around it with its islands and names, a waterlined coast, "1816" large in a white hand, and the
+  Medusa's course in red ink down the coast to Senegal. Outline from Natural Earth (public domain),
+  aligned to Bellin on seven capes.
+- He liked the horizon haze where everything comes together toward the ship: kept.
+
+**Homie's notes on animatic v2 (2026-09-28) = THE v3 TO-DO LIST.** He likes the broken-paper washes and
+the flaking ("pretty good, I like it"); the flag "reads like a cloth… minor overall, it's good".
+1. **Flag: a real cloth, not shadows animating on a flat.** v2's folds read as shading sliding over a
+   static texture. The cloth itself must move: the silhouette and edges ripple, the stripes bend with the
+   folds, the fly end flaps harder than the hoist. (The generated S6-FLAG is the real fix; the placeholder
+   should at least displace geometry, not just light.)
+2. **Every picture and its word read SEPARATELY.** No two pictures overlap, and no word sits on another
+   picture (v2: AUSTERLITZ and IÉNA stacked on one wash on LEFT). One event, one picture, one word, clearly.
+   If two battles share a wall, they take turns or sit apart with dark between them.
+3. **Nothing is ever static.** Once a picture has fully appeared it keeps moving: a slow, clean, constant
+   scale or drift for its whole life (the map too). Nice clean motion, always.
+4. **The burn must look physical, not "cheap AI".** v2's burn reads blurred and weird (may partly be the
+   half-size animatic; the final is full size, but don't rely on that). And it must be CONSISTENT: fragments
+   travel the way the burn travels. A burn creeping from outside to inside never throws pieces from inside
+   out. The flakes' direction follows the burn front, and the ember rim is sharp, not smeared.
+5. **The map: more animated, and the journey.** Keep moving the whole time it's up; crop further into the
+   part that matters (the Atlantic coast from France to Senegal) rather than the whole continent if it
+   helps; animate the Medusa's route as a focus (a travelling point or a camera-less push along the coast)
+   if it fits the script (it does: "Loin !" and "The Medusa appears on the horizon" are the journey).

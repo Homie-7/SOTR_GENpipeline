@@ -148,6 +148,16 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
+### 2026-09-28, second part (PREP): Scene 6 started. Animatic v2 reviewed; v3 next.
+
+- **Client notes (via Homie):** Scene 6 is a movement scene with fragmented spoken word; float imagery
+  over it (maps of Africa, the French flag, people fleeing). It's Homie's; the script calls it "The
+  Napoleonic Wars" (`BIBLE.md` Scene 6). Built as an animatic first, by script, 0 credits:
+  `tools/render_s6.py`, sources in `SOTR_MEDIA/02_APPROVED_BUILDING_BLOCKS/S6_public_domain/`.
+- **Homie's decisions:** Goya's etchings for the fleeing people (no stick figures, no photos), era 1816,
+  all three walls, no framed/rectangular pictures anywhere, objects never straddle a seam.
+- **Next: v3** from Homie's five notes (end of `LOOK.md` Scene 6). Handover: `docs/NEW-SESSION.md`.
+
 ### 2026-09-28: SCENE 9 APPROVED by Homie. Next: other scenes, or feedback on 9.
 
 - **Every Scene 9 show file is approved** ("All of these files have been approved. Good work.").

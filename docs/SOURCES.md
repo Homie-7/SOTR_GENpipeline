@@ -47,3 +47,33 @@ drift from `git pull`/`push` like any other clone (that's normal and fine — it
 `SOTR_MEDIA` and `SOTR`, though, do **not** auto-update — if either changes on this PC,
 the drive's copy goes stale until someone copies again by hand. Treat the drive as a
 snapshot to carry to the Mac, not a mirror that stays current on its own.
+
+## Homie's earlier Unreal Engine renders (Scenes 2-5), found 2026-09-28
+
+`F:\OrCha Drive\SOR Show Final\SOR SHOW\SOR Renders\` (127 GB, reference only, never modified). Four
+angles each, because that show projected Front / Left / Right / Bottom (floor). 1920x1080 per angle,
+DXV 3 (Resolume) .mov + h264 .mp4.
+
+| Folder | What | Used for |
+|---|---|---|
+| `New Renders/Camps/`, `Camps/Exports/` | The red dusk battlefield with tents (Scenes 3/5), 432 s. `*_CannonballExplosion.mov` (qtrle ARGB, 7.4 s): Scene 5's ending, flash then black smoke and embers | **Scene 6 starts from this smoke** |
+| `New Renders/Alps/`, `Flat renders/`, `Alps/` | Scene 4, the alpine farmhouse | — |
+| `sz/` | The sea: the Medusa, day into night, and the intro title | Scenes 2/7/8 reference |
+| `Transitions/` | Licensed stock ink-bloom mattes (Envato-style) + AE project | Scene 6's ink language (Homie's licence) |
+| `Presentation/2022 SHOWING POWERPOINT CCC` | 20-slide development history (2016-2022) | Background |
+
+## Scene 6 public-domain sources (downloaded 2026-09-28, Homie's go-ahead)
+
+In `SOTR_MEDIA/02_APPROVED_BUILDING_BLOCKS/S6_public_domain/`, 17 images from Wikimedia Commons (BnF
+Gallica, Paris Musées, the Met). **`_manifest.json` beside them has each file's Commons page, licence
+(Public domain or CC0), date, artist and sha256.** Large originals were fetched at 5000 px wide max.
+
+| Group | Files | Dates |
+|---|---|---|
+| The five battles + Waterloo | Austerlitz and Iéna (Duplessi-Bertaux engravings), Eylau, Friedland, Wagram (period estampes), Mont-Saint-Jean 1815, Jazet's battlefield 1816 | 1805-1816 |
+| Goya, *Disasters of War* | pl. 15 executions, pl. 18 death, pl. 30 ravages, pl. 50 famine; pl. 41, 44, 45 fleeing (Met, CC0) | 1810-12 |
+| The continent's outline | Natural Earth 1:50m Admin 0 countries (GeoJSON, public domain), fitted to Bellin's map on seven capes (`render_s6.py`) | modern data, shape only |
+| Maps | Delisle, West Africa (1707); Bellin, Africa and the mouth of the Senegal (1740s). BnF stamps to be cropped | 1707-1749 |
+| The Medusa | Baugean's frigate (the same image as the client's reference deck p. 8). The 1818 raft plan and raft revolt are **later than 1816**: kept for Scenes 8-9 reference, not for Scene 6 | c. 1816 / 1818 |
+
+Fonts in `tools/fonts/` (in git, SIL Open Font License, licences beside them): GFS Didot, Pinyon Script.
