@@ -28,7 +28,15 @@ AN OVERNIGHT CHAIN RAN: SOTR_MEDIA/03_TESTS_IN_PROGRESS/OVERNIGHT_2026-09-30.sh,
 It: restores the 4K S6 flag/smoke loops (S6_generated/4K/) -> renders Scene 6 at 4K from the approved v5 script into
 03_TESTS_IN_PROGRESS/S6_final_4K/ (render.log there; ~5-6 h) -> waits for court b5 + the studio v4 build -> copies
 everything new to the T9 with sha256. READ THE LOG FIRST: it must end "OVERNIGHT FINISHED" with "mismatches 0".
+ALSO OVERNIGHT: Scene 9 fixes (Homie: salon edge artifacts; the judge floating after the slam):
+SOTR_MEDIA/03_TESTS_IN_PROGRESS/scene9_fix_v4/FIX.sh, log FIX.log: rebuilt salon edge + court files, auto-checked,
+promoted into 01_FINAL_FOR_SHOW under the same names (approved ones -> superseded/scene9_v3_pre_fix/), then T9.
+READ FIX.log: every line PROMOTED (or HELD BACK + why), ends "FIX + T9 FINISHED", mismatches 0.
 STEPS NOW:
+0. Look at the promoted files in a player (the sconce by the salon break at ~1:00 in b2-3; b8's snuff at ~0:08; court
+   b5 at 1:18 feet on the floor), update REGISTER's SHOW FOLDER table (salon v4 edge, court v3 placement), README if
+   needed. The 4K versions of the changed files (b2-3, b8, b3, b5) must be redone from the new files (cheap).
+   Studio v4 b6's edge was rendered before the edge fix: re-render it with edge_flow.py v3 before showing Homie.
 1. Scene 6 4K: probe the three files (3600/2880 x 2160, 3,960 f, sound), contact sheet every 10 s, compare frames to
    the approved 1080 v5 (01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S6_*_wars.mov). A crash means a rerun (no resume yet).
 2. Scene 9 4K: all 8 in upscale_4k/<name>_4K.mov. Checked so far (LOG): b8, b6, b4 (+ sound on 5). Check b2-3, b3, b5,

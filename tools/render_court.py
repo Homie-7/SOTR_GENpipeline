@@ -45,6 +45,7 @@ HERE = os.path.dirname(__file__)
 SRC = os.path.join(HERE, '..', '..', 'SOTR_MEDIA', '02_APPROVED_BUILDING_BLOCKS', 'clips', 'fig_SOTR_judge_strike_s9_v1.mp4')
 OW, OH, FPS = 1800, 1080, 24
 SW, SH = 1080, 1920
+FEET_Y = 1786        # the raised pose's feet, source rows (1773-1777 measured) + a few px so they meet the floor
 BONE = np.array([0.93, 0.89, 0.80], np.float32)
 
 # figure scale and placement per size. 'floor': source bottom on the wall bottom; otherwise
@@ -114,8 +115,13 @@ def place(g, size, gbox):
         cx, cy = x + w / 2, y + h / 2
         M = np.float32([[s, 0, OW / 2 - s * cx], [0, s, OH / 2 - s * cy]])
     elif sz['floor']:
+        # v3 (Homie 2026-09-30: after the slam "this guy is out of frame while we have him floating"): the FEET of
+        # the raised pose stand on the wall's floor line, not the source frame's bottom edge. In the approved strike
+        # the feet sit at source row ~1776 of 1920 (measured, frames 0-43), so pinning the frame bottom left him
+        # hovering (95 px at Q3) with the gavel cut off above. Mid-lunge the legs run past the floor line: hidden,
+        # the LOOK World 3 floor-line rule.
         s = sz['s']
-        M = np.float32([[s, 0, OW / 2 - s * SW / 2], [0, s, OH - s * SH]])
+        M = np.float32([[s, 0, OW / 2 - s * SW / 2], [0, s, OH - s * FEET_Y]])
     else:
         s = sz['s']
         M = np.float32([[s, 0, OW / 2 - s * sz['cx']], [0, s, OH / 2 - s * sz['cy']]])

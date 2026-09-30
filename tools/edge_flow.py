@@ -468,6 +468,31 @@ class EdgeRenderer:
         self.mask = cv2.GaussianBlur(self.foot, (0, 0), 4)[..., None]
         self.front = kit['front'].astype(np.float32)
         self.wall = kit['wall'].astype(np.float32)
+        # v3 (Homie 2026-09-30: "weird artifacts"): the frozen front's void is a hard threshold, so small void
+        # islands punched holes in the lit plaster (black specks beside the salon's sconce) and the wall/void line
+        # was stair-stepped. Void islands smaller than --speck px (not the real break) become wall again, drawn from
+        # the clean picture; the wall/void line gets a ~1 px soft edge. The break's shape and the blocks are unchanged.
+        void = ((self.wall < 0.5) & (self.foot > 0.5)).astype(np.uint8)
+        nlab, lab, stats, _ = cv2.connectedComponentsWithStats(void, connectivity=8)
+        small = np.isin(lab, [k for k in range(1, nlab) if stats[k, cv2.CC_STAT_AREA] < getattr(a, 'speck', 400)])
+        # ...and near-black clusters baked INTO the frozen wall (the specks and the notch under the salon sconce's arm,
+        # measured 5-332 px): small ones come from the clean picture too. The designed cracks are brown, not black,
+        # and run in large connected lines, so they stay.
+        blk = ((self.front.mean(2) < 25) & (self.wall > 0.5) & (self.foot > 0.5)).astype(np.uint8)
+        nb, lb, sb, _ = cv2.connectedComponentsWithStats(blk, connectivity=8)
+        near_void = cv2.dilate(void, np.ones((5, 5), np.uint8)) > 0             # clusters on the break line stay
+        touching = set(np.unique(lb[near_void & (blk > 0)]).tolist())
+        specks = np.isin(lb, [k for k in range(1, nb) if sb[k, cv2.CC_STAT_AREA] < getattr(a, 'speck', 400)
+                              and k not in touching])
+        specks = cv2.dilate(specks.astype(np.uint8), np.ones((3, 3), np.uint8)) > 0
+        self.filled = ((small | specks) & (self.foot > 0.5)).astype(np.float32)[..., None]   # the clean picture here
+        wall_c = np.maximum(self.wall, self.filled[..., 0])
+        self.front = np.where(self.filled > 0, 0, self.front)
+        self.front_ext = self.front                                                    # void stays black
+        # the soft wall/void edge: the wall's outermost pixels feather toward the black (never a bright rim)
+        self.alpha = np.minimum(cv2.GaussianBlur(wall_c, (0, 0), 0.8), wall_c)[..., None]
+        self.alpha = np.where(wall_c[..., None] > 0.5, np.clip(self.alpha * 1.6 - 0.3, 0, 1), 0)
+        self.wall = wall_c
         self.live = kit['live_wall'].astype(np.float32)[..., None] if 'live_wall' in kit else None
         self.ref = kit['ref'] + 2.0
         ramp = np.ones((H, 1), np.float32)
@@ -493,7 +518,7 @@ class EdgeRenderer:
         """base: float RGB 0-255, the clean picture; i: the flow frame. Returns the picture with the break."""
         a = self.a
         gain = np.clip((cv2.GaussianBlur(base, (0, 0), self.W / 30) + 2.0) / self.ref, 0, 1.5)
-        layer = self.front * gain * a.front_gain
+        layer = self.front_ext * gain * a.front_gain * self.alpha * (1 - self.filled) + base * self.filled
         if self.live is not None:  # the wall here is the live picture (the painted canvas), cut by the break
             layer = layer * (1 - self.live) + base * self.wall[..., None] * self.live
         layer = layer * self.ramp[..., None]
@@ -517,9 +542,14 @@ def smoke_layer(path, at, length, xmax, W, H, win=18):
     L = lum(B)
     tint = B[-1].reshape(-1, 3).mean(0)
     tint = tint / max(lum(tint[None])[0], 1e-3)          # the smoke takes the room's light colour
+    # v3 (Homie 2026-09-30, the navy "ghosts" in the void): the +-win window let the frames just BEFORE the snuff
+    # compare against the dark frames after it, so the lit wall's own mouldings counted as smoke (tinted the dusk's
+    # navy, doubled in the void). The window now looks back only (plus 3 frames ahead): nothing darker exists
+    # before the snuff, so no ghosts; the wisps after it are found exactly as before. (A lit-wall ratio model was
+    # tried first and rejected: dusk light is not a scaled copy of candlelight; it lifted the gilt and the candles.)
     out = {}
     for i in range(len(B)):
-        lo, hi = max(0, i - win), min(len(B), i + win + 1)
+        lo, hi = max(0, i - win), min(len(B), i + 4)
         d = L[i] - L[lo:hi].min(0)
         d = d - cv2.GaussianBlur(d, (0, 0), 30)
         d = np.clip(d - 1.5, 0, None)                    # below this it is grain, not smoke
@@ -638,6 +668,7 @@ def main():
     r.add_argument('--loops', type=int, default=1, help='play a seamless base (a HOLD loop) this many times')
     r.add_argument('--smoke-at', type=int, help='base frame where the snuff starts: carry its smoke over the break')
     r.add_argument('--smoke-len', type=int, default=120)
+    r.add_argument('--speck', type=int, default=400, help='void islands smaller than this (px) are filled (v3)')
     flow_args(r)
     a = ap.parse_args()
     {'kit': build_kit, 'kit-court': build_court_kit, 'chips': build_chips, 'render': render}[a.cmd](a)
