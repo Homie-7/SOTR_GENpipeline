@@ -61,7 +61,9 @@ This file is the system. Read it before the first Higgsfield call of any session
 The same checks every time, from the saved file:
 - probe: size, fps, frames, bit depth, audio
 - **camera lock** (phase correlation, first/middle/last frame, must be 0 px)
-- **framing against the plate** (landmark positions within about 1%)
+- **framing against the plate** (landmark positions within about 1%), **on the take you actually USE, not only the
+  probe**: the studio's 10 s and 30 s candle takes came back reframed with floor showing while their 4 s probes were
+  framed right (2026-10-01; fixed by `tools/plate_align.py`)
 - **motion by region** (flicker by speed after removing the drift, swing, sway, a motion
   heat-map), compared with the last version's numbers
 - **object checks** (flame count, a still portrait, a blank canvas, no floor, no people)
