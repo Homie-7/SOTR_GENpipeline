@@ -653,6 +653,184 @@ class ClothFlag:
              guard=self.ctx.guard, tag='pic:flag' + self.wall)
 
 
+# --------------------------------------------------------------------------- the GENERATED flag and smoke
+GEN = r'C:\Users\Homie\Documents\SOTR_MEDIA\03_TESTS_IN_PROGRESS\S6_generated'
+GEN_FLAG = os.path.join(GEN, 'S6-FLAG_loop.mov')          # tools/s6_loops.py: probe + Sequel, crossfade-looped
+GEN_SMOKE = os.path.join(GEN, 'S6-SMOKE_loop.mov')
+
+
+class LoopReader:
+    """Frames of a looped clip, read in order (seeking only when the caller jumps), resized on the way in."""
+
+    def __init__(self, path, w, h, gray=False):
+        self.path, self.w, self.h, self.gray = path, int(w), int(h), gray
+        self.cap = cv2.VideoCapture(path)
+        self.n = int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        self.pos, self.last = -1, None
+
+    def get(self, idx):
+        idx %= self.n
+        if idx == self.pos:
+            return self.last
+        if idx != self.pos + 1:
+            self.cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
+        ok, f = self.cap.read()
+        if not ok:
+            self.cap.release()
+            self.cap = cv2.VideoCapture(self.path)
+            self.cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
+            ok, f = self.cap.read()
+        f = cv2.resize(f, (self.w, self.h), interpolation=cv2.INTER_AREA if f.shape[1] > self.w else cv2.INTER_LINEAR)
+        if self.gray:
+            f = cv2.cvtColor(f, cv2.COLOR_BGR2GRAY).astype(F32) / 255
+        else:
+            f = cv2.cvtColor(f, cv2.COLOR_BGR2RGB).astype(F32) / 255
+        self.pos, self.last = idx, f
+        return f
+
+
+BLUE_LIT = np.array([0.13, 0.19, 0.50], F32)              # the tricolour's blue, as the firelight would show it
+
+
+class GenFlag:
+    """S6-FLAG (generated, Seedance 2.5) carried by the script. The cloth, its folds, its outline and its light are
+    the generated clip's; the script keys it off its black, restores the blue (the firelight had turned it nearly
+    black), dissolves the hoist into smoke (no pole), and does every timed thing the animatic approved: the reveal
+    out of the smoke, the rip from the middle, the right half draining to the white Bourbon flag, the all-white flag
+    (the same cloth by its luminance) and the one burn across the room (RoomBurn)."""
+
+    def __init__(self, ctx, wall, kind='tri', box=(0.12, 0.04, 0.88), offset=0.0, seed=0):
+        self.ctx, self.wall, self.kind, self.offset = ctx, wall, kind, offset
+        x0, x1 = ctx.wall_px(wall)
+        w = x1 - x0
+        self.bw = int(round((box[2] - box[0]) * w))
+        self.bh = int(round(self.bw * 9 / 16))
+        self.bx, self.by = x0 + int(round(box[0] * w)), int(round(box[1] * ctx.H))
+        self.rd = LoopReader(GEN_FLAG, self.bw, self.bh)
+        rng = np.random.default_rng(seed)
+        bw, bh = self.bw, self.bh
+        yy, xx = np.mgrid[0:bh, 0:bw].astype(F32)
+        self.X, self.Y, self.u, self.v = xx, yy, xx / bw, yy / bh
+        n = fractal(bh, bw, rng, scales=(ctx.px(200), ctx.px(60)), gains=(1, 0.4)) * 0.5 + 0.5
+        ex, ey = np.abs(self.u - 0.5) * 2, np.abs(self.v - 0.5) * 2
+        r = (ex ** 3 + ey ** 3) ** (1 / 3)
+        self.n_in = np.clip(0.5 * n + 0.5 * r, 0, 1).astype(F32)
+        self.bn = n.astype(F32)
+        self.E = fractal(bh + ctx.px(600), bw + ctx.px(900), rng, scales=(ctx.px(260), ctx.px(90), ctx.px(30)), gains=(1, 0.45, 0.2))
+        self.tearn = fractal(bh, 8, rng, scales=(ctx.px(240), ctx.px(80), max(2, ctx.px(26))), gains=(1, 0.4, 0.12))[:, 0]
+        self.fray = fractal(bh, 8, rng, scales=(max(2, ctx.px(12)), 2), gains=(1, 0.5))[:, 0]
+        self.gburn = None
+
+    def frame(self, t):
+        f = self.rd.get(int(round((t + self.offset) * FPS)))
+        lum = f @ np.array([0.299, 0.587, 0.114], F32)
+        a = ss(0.035, 0.10, f.max(2))                                    # keyed off the clip's black
+        white = ((lum > 0.27) & (f[..., 0] < 2.3 * f[..., 2] + 0.05)).astype(F32)
+        red = ((f[..., 0] > 1.8 * f[..., 1]) & (f[..., 0] > 0.12)).astype(F32)
+        k = max(3, int(self.bw * 0.02)) | 1
+        frac = cv2.blur(white, (k, 3))
+        has = frac.max(1) > 0.5
+        bd = np.argmax(frac > 0.5, axis=1).astype(F32)                     # each row: where the white band starts
+        rows = np.arange(self.bh)
+        if has.sum() >= 2:                                                 # a row far from the others is a stray
+            med = np.median(bd[has])
+            has = has & (np.abs(bd - med) < 0.12 * self.bw)
+        if has.sum() >= 2:                                                 # rows where the white wasn't found (the
+            bd = np.interp(rows, rows[has], bd[has]).astype(F32)           # cloth's thin top and bottom edges) take
+        bd = cv2.GaussianBlur(bd.reshape(-1, 1), (1, 0), sigmaX=0.1, sigmaY=max(1.0, self.bh * 0.02)).ravel()  # their neighbours'
+        q = self.ctx.q
+        bm = 1 - ss(bd[:, None] - q, bd[:, None] + 2 * q, self.X)          # left of the white = the blue band
+        if self.kind == 'tri':
+            bluec = BLUE_LIT * (np.clip(lum / 0.13, 0, 1.35) ** 0.9)[..., None]
+            f = f * (1 - bm[..., None]) + bluec * bm[..., None]
+        # the cloth as white by its own light: each band normalised by its typical brightness
+        base = np.where(white > 0, 0.50, np.where(red > 0, 0.12, 0.13)).astype(F32)
+        wref = np.array([0.66, 0.51, 0.38], F32)
+        whitec = wref * np.clip(lum / base, 0, 1.4)[..., None]
+        return f, a, whitec
+
+    def draw(self, canvas, t, ash=None, dt=0.0, strength=1.0, reveal=1.0, burn=0.0, tear=0.0, bleach=0.0, grey=0.0):
+        f, a, whitec = self.frame(t)
+        q, bw, bh, u, v = self.ctx.q, self.bw, self.bh, self.u, self.v
+        E = slide(self.E, bw, bh, bw / 2 + self.ctx.px(900) - 18 * self.ctx.s * t, bh / 2 + self.ctx.px(600) - 9 * self.ctx.s * t)
+        a = a * ss(0, 0.22, u + 0.07 * E) * ss(0, 0.02, v) * ss(0, 0.02, 1 - v)   # hoist into smoke; no hard crop
+        a = a * np.clip((reveal * 1.25 - self.n_in) / 0.12, 0, 1)
+        tl = (0.45 + 0.02 * self.tearn[:, None]) * bw                              # the rip line, down the white
+        if self.kind == 'white':
+            f = whitec
+        if bleach > 0:                                                             # the Restoration: right half to white
+            ur = np.clip((self.X - tl) / np.maximum(bw - tl, 1), 0, 1)
+            fr = ss(0, 0.12, bleach * 1.3 - (1 - ur) * 0.6 - self.bn * 0.4) * (self.X >= tl)
+            f = f * (1 - fr[..., None]) + whitec * fr[..., None]
+        if grey > 0:
+            f = f * (1 - grey) + f.mean(2, keepdims=True) * 0.55 * grey
+        if tear > 0:                                                               # the rip: halves pulled apart
+            op = (np.clip((tear - np.abs(v[:, :1] - 0.5)) / 0.3, 0, 1) ** 0.8) * 0.06 * bw
+            tr = np.clip((tear - np.abs(v[:, :1] - 0.5)) / 0.015, 0, 1)
+            out_f = np.zeros_like(f)
+            out_a = np.zeros_like(a)
+            for sg in (-1, 1):
+                xs = (self.X - sg * op / 2).astype(F32)
+                ys = self.Y.astype(F32)
+                fs = cv2.remap(np.ascontiguousarray(f, F32), xs, ys, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+                as_ = cv2.remap(np.ascontiguousarray(a, F32), xs, ys, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+                d0 = (xs - tl) * sg
+                d = d0 + 2.5 * q * self.fray[:, None]
+                m = ss(0, 2.0 * q, d) * tr + ss(-0.6 * q, 0.6 * q, d0) * (1 - tr)
+                fs = fs * (1 + 0.14 * tr * np.exp(-np.clip(d, 0, None) / (3 * q)))[..., None]
+                out_f += fs * (as_ * m)[..., None]
+                out_a += as_ * m
+            f = out_f / np.maximum(out_a, 1e-4)[..., None]
+            a = np.clip(out_a, 0, 1)
+        emit = None
+        if burn > 0 and self.gburn is not None:
+            rb = self.gburn
+            F = {k2: v2[self.by:self.by + bh, self.bx:self.bx + bw] for k2, v2 in rb.F.items()}
+            f, a, emit, rim = rb.apply(f.astype(F32), a.astype(F32), burn, t, F)
+            if ash is not None:
+                rb.spawn(ash, rim, F, lambda x, y: (self.bx + x, self.by + y), 45 * self.ctx.s * 2, dt)
+        blit(canvas, f.astype(F32), (a * strength).astype(F32), self.bx, self.by,
+             None if emit is None else emit * strength, guard=self.ctx.guard, tag='pic:flag' + self.wall)
+
+
+class GenSmoke:
+    """S6-SMOKE (generated) as the smoke FIELD across all three walls: the clip's brightness is how thick the smoke
+    is; the colour stays the animatic's (warm fire from below, cold grey in M3, the flag's blue and red spilling in).
+    Two copies side by side, the second 11 s later in the loop, crossfaded in the middle of CENTRE (a field may
+    cross the seams). It drifts left to right, one way, as generated."""
+
+    def __init__(self, ctx, scripted):
+        self.ctx, self.sc = ctx, scripted                       # the scripted Smoke keeps its colours and spill
+        H, W = ctx.H, ctx.W
+        cw = int(round(H * 2206 / 870))
+        self.cw = cw
+        self.ra = LoopReader(GEN_SMOKE, cw, H, gray=True)
+        self.rb = LoopReader(GEN_SMOKE, cw, H, gray=True)
+        xb = W - cw
+        wa = np.zeros(W, F32)
+        wa[:cw] = 1
+        wa[xb:cw] = 1 - ss(xb, cw, np.arange(xb, cw, dtype=F32))
+        self.wa, self.xb = wa, xb
+
+    def draw(self, t, canvas, dens, warm, spill=0.0, cold=0.0):
+        if dens <= 0.001:
+            return
+        W, H, cw, xb = self.ctx.W, self.ctx.H, self.cw, self.xb
+        la = self.ra.get(int(round(t * FPS)))
+        lb = self.rb.get(int(round((t + 11.0) * FPS)))
+        lum = np.zeros((H, W), F32)
+        lum[:, :cw] += la * self.wa[None, :cw]
+        lum[:, xb:] += lb * (1 - self.wa[None, xb:])
+        d = np.clip((lum - 0.03) / 0.42, 0, 1) ** 1.2 * dens
+        sc = self.sc
+        dark = np.array([0.055, 0.045, 0.04], F32) * (1 - cold) + np.array([0.06, 0.06, 0.065], F32) * cold
+        lit = np.array([0.42, 0.17, 0.07], F32) * warm * (1 - cold) + np.array([0.20, 0.20, 0.21], F32) * cold * warm
+        col = dark + lit[None, None] * (0.35 + 0.65 * sc.under[..., None]) * (0.55 + 0.9 * lum[..., None])
+        if spill > 0:
+            col = col + sc.spill * spill
+        canvas[:] = canvas * (1 - d[..., None] * 0.92) + col * d[..., None]
+
+
 # --------------------------------------------------------------------------- the map and the journey
 def lonlat_to_bellin(lon, lat, W, H):
     fx = BELLIN_FX[0] * lon + BELLIN_FX[1] * lat + BELLIN_FX[2]
@@ -1020,12 +1198,17 @@ def build(ctx):
     S['cwalls'] = [colour_wall(ctx, 'L', BLUE, 21), colour_wall(ctx, 'C', WHITE, 22), colour_wall(ctx, 'R', RED, 23)]
     S['burn_M5'] = RoomBurn(ctx, 501)                  # Liberté/Égalité/Fraternité burn into Waterloo, as one
     S['burn_M6'] = RoomBurn(ctx, 602)                  # the three flags burn, as one
-    S['flagC'] = ClothFlag(ctx, 'C', 'tri', seed=30)
-    S['flagL'] = ClothFlag(ctx, 'L', 'tri', box=(0.10, 0.06, 0.90, 0.62), seed=31)
-    S['flagR'] = ClothFlag(ctx, 'R', 'white', box=(0.10, 0.06, 0.90, 0.62), seed=32)
+    if os.path.exists(GEN_FLAG):                     # the generated cloth (S6-FLAG); ClothFlag was the animatic's stand-in
+        S['flagC'] = GenFlag(ctx, 'C', 'tri', box=(0.12, 0.04, 0.88), seed=30)
+        S['flagL'] = GenFlag(ctx, 'L', 'tri', box=(0.10, 0.05, 0.90), seed=31)
+        S['flagR'] = GenFlag(ctx, 'R', 'white', box=(0.10, 0.05, 0.90), seed=32)
+    else:
+        S['flagC'] = ClothFlag(ctx, 'C', 'tri', seed=30)
+        S['flagL'] = ClothFlag(ctx, 'L', 'tri', box=(0.10, 0.06, 0.90, 0.62), seed=31)
+        S['flagR'] = ClothFlag(ctx, 'R', 'white', box=(0.10, 0.06, 0.90, 0.62), seed=32)
     for k in ('flagC', 'flagL', 'flagR'):
         S[k].gburn = S['burn_M6']
-    S['smoke'] = Smoke(ctx)
+    S['smoke'] = GenSmoke(ctx, Smoke(ctx)) if os.path.exists(GEN_SMOKE) else Smoke(ctx)
     S['fore'] = Smoke(ctx, seed=16, speed=1.6)
     S['embers'] = Particles(ctx, EMBER)
     S['ashp'] = Particles(ctx, ASH, rise=(-12, 10), seed=5, blur=1.2, gain=0.9)
@@ -1185,6 +1368,58 @@ def check(ctx, S, step=0.25):
     return bad
 
 
+def render_final(ctx, S, outdir, n0, n1):
+    """The show files: ONE timeline, cut into the three walls frame by frame, so they are in sync by construction.
+    ProRes 422 HQ 10-bit like Scene 9. Picture only; build_audio_s6() lays the sound in afterwards."""
+    os.makedirs(outdir, exist_ok=True)
+    pipes = {}
+    for wall, name in (('L', 'LEFT'), ('C', 'CENTRE'), ('R', 'RIGHT')):
+        x0, x1 = ctx.wall_px(wall)
+        cmd = ['ffmpeg', '-y', '-v', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-s', f'{x1 - x0}x{ctx.H}', '-r', str(FPS),
+               '-i', '-', '-c:v', 'prores_ks', '-profile:v', '3', '-pix_fmt', 'yuv422p10le', '-vendor', 'apl0',
+               os.path.join(outdir, f'S6_{name}_picture.mov')]
+        pipes[wall] = (x0, x1, subprocess.Popen(cmd, stdin=subprocess.PIPE))
+    dt = 1 / FPS
+    for i in range(n0, n1):
+        t = i / FPS
+        fr = (render_frame(ctx, S, t, dt) * 65535 + 0.5).astype(np.uint16)
+        for x0, x1, p in pipes.values():
+            p.stdin.write(np.ascontiguousarray(fr[:, x0:x1]).tobytes())
+        if i % (FPS * 10) == 0:
+            print(f'{t:6.1f} s', flush=True)
+    for _, _, p in pipes.values():
+        p.stdin.close()
+        p.wait()
+    mux_audio(outdir, n0 / FPS, n1 / FPS)
+    print('wrote', outdir)
+
+
+def flag_gain_expr():
+    """The flag's sound follows the flag on screen (the timeline in render_frame): M1-M2, then M6."""
+    c = 'min(max(({x}),0),1)'
+    up1, dn1 = c.format(x='(t-7)/9'), c.format(x='(t-38.5)/4')
+    up2, dn2 = c.format(x='(t-119.5)/3'), c.format(x='(t-130.5)/7')
+    return f'{up1}*(1-{dn1})+{up2}*(1-{dn2})'
+
+
+def mux_audio(outdir, t0, t1):
+    """Standing rule (Homie 2026-09-25): the generated clips' own sound rides in every show file, as the sound
+    designer's scratch. The smoke's wind and distant cannon under the whole scene (its loop, in step with the
+    picture), the flag's cloth-crack whenever the flag is up. Same stereo mix in all three files; picture copied."""
+    wav = os.path.join(outdir, 'S6_scratch_sound.wav')
+    dur = t1 - t0
+    fc = (f'[0:a]atrim={t0}:{t1},asetpts=PTS-STARTPTS,volume=0.8[s];'
+          f"[1:a]atrim={t0}:{t1},asetpts=PTS-STARTPTS,volume='{flag_gain_expr()}':eval=frame[f];"
+          '[s][f]amix=inputs=2:normalize=0[a]')
+    subprocess.run(['ffmpeg', '-y', '-v', 'error', '-stream_loop', '-1', '-i', GEN_SMOKE, '-stream_loop', '-1', '-i', GEN_FLAG,
+                    '-filter_complex', fc, '-map', '[a]', '-t', f'{dur}', '-ar', '48000', '-c:a', 'pcm_s24le', wav], check=True)
+    for name in ('LEFT', 'CENTRE', 'RIGHT'):
+        pic = os.path.join(outdir, f'S6_{name}_picture.mov')
+        subprocess.run(['ffmpeg', '-y', '-v', 'error', '-i', pic, '-i', wav, '-map', '0:v', '-map', '1:a', '-c:v', 'copy',
+                        '-c:a', 'pcm_s24le', '-shortest', os.path.join(outdir, f'S6_{name}.mov')], check=True)
+        os.remove(pic)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('out')
@@ -1194,7 +1429,14 @@ def main():
     ap.add_argument('--stills', default=None, help='write PNGs at --at seconds instead of a movie')
     ap.add_argument('--at', type=str, default='')
     ap.add_argument('--check', action='store_true', help='report picture/word overlaps instead of rendering')
+    ap.add_argument('--flag-loop', default=None, help='use this looped S6-FLAG instead of the default')
+    ap.add_argument('--smoke-loop', default=None, help='use this looped S6-SMOKE instead of the default')
+    ap.add_argument('--final', action='store_true',
+                    help='OUT is a folder: write S6_LEFT/CENTRE/RIGHT.mov (ProRes 422 HQ, one per wall, synced, no caption)')
     a = ap.parse_args()
+    global GEN_FLAG, GEN_SMOKE
+    GEN_FLAG = a.flag_loop or GEN_FLAG
+    GEN_SMOKE = a.smoke_loop or GEN_SMOKE
     ctx = Ctx(a.scale)
     S = build(ctx)
     dt = 1 / FPS
@@ -1211,6 +1453,9 @@ def main():
             print('still', ts, flush=True)
         return
     n0, n1 = int(a.start * FPS), int(a.end * FPS)
+    if a.final:
+        render_final(ctx, S, a.out, n0, n1)
+        return
     sh = max(40, int(ctx.H * 0.11)) // 2 * 2
     cmd = ['ffmpeg', '-y', '-v', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{ctx.W}x{ctx.H + sh}',
            '-r', str(FPS), '-i', '-', '-c:v', 'libx264', '-crf', '19', '-preset', 'medium', '-pix_fmt', 'yuv420p',

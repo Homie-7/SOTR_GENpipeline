@@ -163,9 +163,9 @@ for generated elements, `S6-M<n>` for the seven composited movements. All three 
 | ID | What | Made in | Depends on | Status |
 |---|---|---|---|---|
 | S6-SOURCES | Public-domain engravings, Goya plates, maps, the frigate (17 files + manifest) | downloaded | — | **done 2026-09-28** |
-| S6-ANIMATIC | The whole scene across three walls, stills + type + scripted effects, placeholders for the generated parts. For Homie's and the client's review | script (`tools/render_s6.py`) | S6-SOURCES | **v3 for Homie's review** (2026-09-28) |
-| S6-FLAG | The tricolour moving in battle smoke, on black. Locked camera. The white flag (M6) is this clip recoloured by script | Higgsfield: NBP still → Seedance 2.5 image-to-video | animatic approved | not started |
-| S6-SMOKE | Battle smoke drifting with embers, on black, one way. Crosses walls freely (a field, not an object) | Higgsfield: Seedance 2.5 | animatic approved | not started |
+| S6-ANIMATIC | The whole scene across three walls, stills + type + scripted effects, placeholders for the generated parts. For Homie's and the client's review | script (`tools/render_s6.py`) | S6-SOURCES | **v4 APPROVED by Homie 2026-09-30** (checked against the script: no deviations) |
+| S6-FLAG | The tricolour moving in battle smoke, on black. Locked camera. The white flag (M6) is this clip recoloured by script | Higgsfield: Seedance 2.5 text to video (4 s probe), then a 30 s Sequel of the chosen take | animatic approved | **v1 take A chosen; v2 (30 s Sequel) generated 2026-09-30, downloading**. Blue restored by script (`GenFlag`) |
+| S6-SMOKE | Battle smoke drifting with embers, on black, one way. Crosses walls freely (a field, not an object) | Higgsfield: Seedance 2.5 text to video (4 s probe), then a 30 s Sequel | animatic approved | **v1 passed; v2 (30 s Sequel) generated 2026-09-30, downloading**. Used as a density map (`GenSmoke`) |
 | S6-EXILE | Cut-paper silhouettes walking (a soldier on a crutch, a woman with a bundle, a child, a cantinière with her barrel), black against a pale haze band | Higgsfield: NBP still → Seedance 2.5; thresholded and keyed like the judge | animatic approved | not started |
 | S6-M1…M7 | The seven movements, composited per `LOOK.md` | script | the three above | not started |
 | S6 show files | `S6_LEFT`, `S6_CENTRE`, `S6_RIGHT`: three synced files from one 4680x1080 timeline (+ `_CLEAN`), full picture at start and end (operator fades) | script | S6-M1…M7 | not started |

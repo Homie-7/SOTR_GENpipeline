@@ -587,7 +587,26 @@ them.
 
 ---
 
-# LOOK — Scene 6 · The Napoleonic Wars · DRAFT 2026-09-28 (not locked)
+# LOOK — Scene 6 · The Napoleonic Wars · LOCKED 2026-09-30 (the animatic v4, approved by Homie)
+
+**Approved 2026-09-30.** Homie on v4: "this is looking pretty good… happy with most of the decisions", then
+"make sure that we had that animatic reviewed and approved… every design decision and narrative decision sticks to
+the script". Everything in "What v3 does" and "What v4 does" below is the locked look. **Checked against the script
+itself (the workshop draft V1, pp. 12-14), line by line, 2026-09-30:**
+- Every spoken line is in the script's order, speaker for speaker; the battles in its order (Austerlitz, Wagram,
+  Iéna, Eylau, Friedland). The flag gives way on "Nous avons connu la victoire", before the script's "(Pause.)";
+  the "Silence" after Fraternité and the "beats" are held (0:88-0:96, 1:51-2:00).
+- Stage directions: the opening smoke = "appear upstage through the hazy smoke of battle", out of Scene 5's
+  "Smoke and darkness cover the camp"; "France is divided" -> "AGNÈS looks around her" -> "Monarchistes !
+  Napoléonistes !" = the flag torn on CENTRE, then the white flag on RIGHT and the tricolour on LEFT, one word each,
+  in that order; the Medusa appears on the horizon only after "Away from here!", as written.
+- Not in the Scene 6 text but asked for by the client (2026-09-28): the map of Africa, the flag, people fleeing.
+  "1816" and the route to Senegal come from the next scene (Scene 7, "Expedition to Senegal"; the Captain's
+  "1816!"), so they point forward and contradict nothing. The actors' tableaux (the cantinière running, serving
+  cognac, aiding the wounded) are live; nothing projected competes with them.
+- **No deviations found.** Timings are our proposal (the picture leads); the actors are live.
+
+(The draft notes below are kept as the record of how it got here.)
 
 **Status.** Three things are DECIDED by Homie (2026-09-28): the fleeing people are cut-paper
 silhouettes; the era is nothing newer than 1816; the scene uses all three walls. **Everything else

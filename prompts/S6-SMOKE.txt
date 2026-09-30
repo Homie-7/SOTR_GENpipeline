@@ -1,0 +1,96 @@
+# S6-SMOKE · v2 · 2026-09-30 (VID) · the long take, as a SEQUEL of v1
+#
+# v1 RESULT (LOG.md 2026-09-30): PASS. Real rolling smoke, drifting left to right the whole 4 s (optical flow
+#   +0.7-0.9 px/frame at 552 wide, never reversing), slowly rising; dense in a band across the middle, black
+#   above. One flaw: a strip of pale GROUND along the bottom ~6% (the model's idea of a battlefield). The
+#   script crops it (it uses the clip only as a density map), so no reword. 2206x946, 97 frames.
+#   File `03_TESTS_IN_PROGRESS/S6_generated/S6-SMOKE_v1.mp4` (40fb5c5e…).
+# THE ONE CHANGE IN v2: the mechanism, a Sequel (video_extension forward) of v1, so the long take is the
+#   same smoke continued. Body: SUBJECT becomes REFERENCE, FIRST FRAME points at the clip; the rest word for word.
+#
+# SETTINGS
+#   Model:      Seedance 2.5
+#   Mode:       Sequel (video_extension, extension_mode forward)
+#   Reference:  v1 (job ba87a983-9096-4456-a76a-2083738a9a34), role video_references
+#   Aspect:     21:9 (the reference's)
+#   Resolution: 1080p
+#   Duration:   30 s
+#   Quality:    High
+#   Batch:      1
+#   Sound:      ON
+#   Cost:       preflight (expect 360)
+#
+# ---- v1 header and v1 body follow, commented ----
+# S6-SMOKE · v1 · 2026-09-30 (VID) · Scene 6, the battle smoke across all three walls
+#
+# WHY: the animatic's smoke (render_s6.py Smoke) is script noise: two sliding fractal fields. It is on
+#   screen for most of the 2:45 and across all three walls, so it is where real motion shows most.
+# HOW THE SCRIPT USES IT: as a DENSITY. The clip's brightness becomes how thick the smoke is; the script
+#   keeps colouring it (warm fire-lit in M1-M2 and M5, cold grey in M3, the flag's blue and red spilling
+#   into it). So the clip asks for plain pale-grey smoke, evenly lit, on black: a clean matte, no colour.
+#   Across the 4680 px timeline two copies run side by side, offset in time, crossfaded in the middle of
+#   CENTRE (smoke is a field: it may cross the seams, LOOK.md).
+# ONE WAY: the smoke drifts left to right the whole time, as the scripted smoke did (D16: nothing reverses).
+#   It loops by crossfade (loop_halo's method): a drift that never changes is the same in every second.
+# EMBERS stay scripted (Particles): points 1-3 px wide would be lost in a density matte anyway.
+#
+# SETTINGS
+#   Model:      Seedance 2.5
+#   Mode:       text to video (no reference)
+#   Reference:  none
+#   Aspect:     21:9 (the widest offered: the fewest copies across 4680 px)
+#   Resolution: 1080p
+#   Duration:   4 s probe (the long take, 30 s, only after a probe passes)
+#   Quality:    High
+#   Batch:      1 (the question is wording: does it drift one way, evenly, on black)
+#   Sound:      ON (scratch for the sound designer, rides in the show file)
+#   Cost:       preflight before running
+#
+# v1 BODY:
+#   SCENE: Thick battle smoke drifting across a dark night, filling the whole frame. One locked, continuous shot, used as a projected background behind live dancers.
+#   
+#   SUBJECT: Heavy, rolling gunpowder smoke in pale grey, dense in some places and thin in others, with dark gaps of black night between the billows. It fills the frame from edge to edge and from top to bottom, evenly spread, with no single cloud larger than the rest.
+#   
+#   FIRST FRAME: The smoke already filling the frame and already moving.
+#   
+#   FORMAT: Single continuous take, real-time, no cuts.
+#   
+#   CAMERA: Locked off. No push, no pan, no tilt, no drift, no zoom. The framing at the last second is the framing at the first.
+#   
+#   MOTION: A steady wind carries all of the smoke from the left of the frame to the right, the whole time, at walking pace. Inside that drift the billows churn, curl over, swell and thin out, rising slowly as they travel. New smoke keeps rolling in from the left edge and leaving at the right; the frame never clears and never fills solid.
+#   
+#   LIGHTING: Soft, even, neutral light over all of the smoke, no colour in it. Where there is no smoke, pure black.
+#   
+#   AUDIO: Wind over an open battlefield, distant cannon fire rolling in the far distance. No music, no voices.
+#   
+#   QUALITY: Stable, clean picture, real-time, no slow motion, no frame interpolation, no ghosting.
+#   
+#   LOCKS:
+#   NO ON-SCREEN TEXT.
+#   Only smoke and black night in frame, first frame to last.
+#   LOCKED CAMERA.
+#   Nothing in frame newer than 1816.
+
+SCENE: Thick battle smoke drifting across a dark night, filling the whole frame. One locked, continuous shot, used as a projected background behind live dancers.
+
+REFERENCE: This shot continues the attached clip of the same smoke directly from its last frame, and keeps the whole picture: the smoke, its density, its drift and the black night, exactly as shown.
+
+FIRST FRAME: Continues seamlessly from the last frame of the attached clip, the smoke still drifting.
+
+FORMAT: Single continuous take, real-time, no cuts.
+
+CAMERA: Locked off. No push, no pan, no tilt, no drift, no zoom. The framing at the last second is the framing at the first.
+
+MOTION: A steady wind carries all of the smoke from the left of the frame to the right, the whole time, at walking pace. Inside that drift the billows churn, curl over, swell and thin out, rising slowly as they travel. New smoke keeps rolling in from the left edge and leaving at the right; the frame never clears and never fills solid.
+
+LIGHTING: Soft, even, neutral light over all of the smoke, no colour in it. Where there is no smoke, pure black.
+
+AUDIO: Wind over an open battlefield, distant cannon fire rolling in the far distance. No music, no voices.
+
+QUALITY: Stable, clean picture, real-time, no slow motion, no frame interpolation, no ghosting.
+
+LOCKS:
+NO ON-SCREEN TEXT.
+Only smoke and black night in frame, first frame to last.
+LOCKED CAMERA.
+Nothing in frame newer than 1816.

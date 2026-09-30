@@ -22,24 +22,36 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (2026-09-28, end of the v4 session):
-SCENE 6 (The Napoleonic Wars): ANIMATIC v4 IS BUILT, waiting for Homie's review (v3 was "near perfect"). Scene 9 is approved; don't touch it.
-- Watch SOTR_MEDIA/03_TESTS_IN_PROGRESS/S6_animatic/S6-ANIMATIC_v4.mp4 (built by tools/render_s6.py v4;
-  v3/v2/v1 = render_s6_v3/_v2/_v1.py). LOOK.md Scene 6: "What v3 does", then "Homie's notes on v3… What v4 does" (last block).
-- v4: ONE burn front across all three walls (RoomBurn, lit at CENTRE's middle), the flag rips from the middle,
-  a wider map (48 deg) so Africa reads as the continent.
-- v3 answered Homie's five notes on v2: a real moving cloth (ClothFlag); one picture + one word, apart (the flag
-  leaves CENTRE at 0:40, Claude's call on his delegation; Eylau 0:50, Friedland 0:52.5, approved); constant
-  motion; the physical burn (PaperBurn + Ash, ash follows the front); the map = the Atlantic coast panning south
-  with the Medusa's route drawing down it.
-- `python tools/render_s6.py - --check --scale 0.25` measures picture/picture and word/picture overlap (clean in v3).
-  Run it after any timing change.
-- Next: Homie's notes on v3 -> v4 if needed. Once the animatic is approved: generate S6-FLAG, S6-SMOKE (optionally
-  S6-EXILE), ~500-600 credits, one job at a time, ask above 100. Then full-size show files S6_LEFT/CENTRE/RIGHT + _CLEAN.
-- Decided by Homie: fleeing people = Goya's etchings (no stick figures), era 1816, all three walls, objects never
-  straddle a seam (fields may), no frames/rectangles anywhere, our picture leads the timing. No flag illustrations
-  from the old proof-of-concept exist ("not needed"). Sound designer does the music; Sahaj (Scene 7) matches to our renders.
-Higgsfield balance ~3,154 credits (0 spent in either 2026-09-28 session). Read the CREDITS rule in CLAUDE.md.
+THE TASK, RIGHT NOW (2026-09-30, end of session; MODE: VID):
+FINISH SCENE 6: three full-HD show files from the approved animatic + the generated flag and smoke.
+Scene 9 is approved; don't touch it. Upscaling is parked (Homie: later; files as they are is fine).
+- DONE: animatic v4 APPROVED (Homie, 2026-09-30), checked line by line against the script, LOOK.md Scene 6 LOCKED.
+- DONE: generated S6-FLAG v1 (take A chosen: no pole) and S6-SMOKE v1 (4 s probes), then 30 s SEQUELS of each
+  (jobs 565ac6ac-02ff-4e32-b9d2-7f6ec69bdd43 flag, 2bf6407a-4eb6-448d-bc16-51d587412b77 smoke). 864 credits
+  this session; balance ~4,290. Prompts: prompts/S6-FLAG.txt, S6-SMOKE.txt (v2 = the Sequels).
+- DONE: tools/render_s6.py carries them (GenFlag: keys the flag off black, restores the blue the firelight
+  darkened, rip/bleach/white flag/RoomBurn as approved; GenSmoke: the clip as the smoke density, the animatic's
+  colours). tools/s6_loops.py joins probe + Sequel and crossfade-loops them (picture + sound). `--final` writes
+  S6_LEFT/CENTRE/RIGHT.mov (1440/1800/1440 x 1080, ProRes 422 HQ 10-bit, 48 kHz 24-bit scratch sound). Tested on 4 s.
+STEPS NOW:
+1. Check SOTR_MEDIA/03_TESTS_IN_PROGRESS/S6_generated/S6-FLAG_v2.mp4 and S6-SMOKE_v2.mp4 are complete
+   (ffprobe duration ~30 s). If not, resume: curl -sS --ssl-no-revoke --http1.1 -C - -o FILE URL in a retry loop
+   (URLs: jobs_wait on the job ids above). The CDN kept failing TLS handshakes; it comes and goes.
+2. Check them (lesson: verify the FILE): probe, a contact sheet across the whole 30 s, the flag has NO pole and
+   the same framing as take A, the smoke still drifts left to right. Does the Sequel output START with take A's
+   frames? If yes, don't concatenate twice (s6_loops.py joins probe + Sequel).
+3. Loops: python tools/s6_loops.py S6-FLAG_v1_A.mp4 S6-FLAG_v2.mp4 S6-FLAG_loop.mov
+          python tools/s6_loops.py S6-SMOKE_v1.mp4 S6-SMOKE_v2.mp4 S6-SMOKE_loop.mov --crop-bottom 0.08
+   (in S6_generated/; render_s6.py reads exactly those two names). Delete nothing; _test_*_loop.mov were probe-only tests.
+4. python tools/render_s6.py - --check --scale 0.25  (must be clean), then stills at 14,30,105,123,127,133,152.
+5. Final: python tools/render_s6.py <OUTDIR> --final --scale 1.0   (~70-90 min; run in background).
+   Check the three files (probe, frames across the whole 2:45, sound). Send to Homie for approval.
+6. On approval: file them (propose 01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S6_<WALL>.mov, sorts before S9),
+   REGISTER, LOG, commit, push, T9 (copy + sha256, never mirror-delete).
+7. THEN ask Homie: "Ready for the pipeline v3 update?" (PARKED by Homie 2026-09-30: Precision-Pipeline v3.0.0,
+   commit 1ccc580; his full instructions are in the 2026-09-30 chat; don't start until he says yes, and list
+   proposed changes before editing anything).
+Credits: ask above ~100 per run; one generation at a time; check `transactions` after each.
 
 WHERE SCENE 9 LIVES (SOTR_MEDIA/01_FINAL_FOR_SHOW/, 00_READ_ME_FIRST.txt explains it):
 - 1_PLAY_THESE_IN_ORDER/  the 8 show files S9_b<beat>_<WALL>_<world>.mov, sorted = script order

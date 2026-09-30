@@ -148,6 +148,15 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
+### 2026-09-30 (VID): Scene 6 animatic APPROVED; generated flag + smoke; the final render is set up.
+
+- **Animatic v4 approved by Homie**, checked line by line against the script (no deviations); `LOOK.md` Scene 6 LOCKED.
+- **Generated (864 credits this session, balance ~4,290):** S6-FLAG v1 (take A chosen) + a 30 s Sequel; S6-SMOKE v1 +
+  a 30 s Sequel. `render_s6.py` now carries them (`GenFlag`, `GenSmoke`, `LoopReader`), `tools/s6_loops.py` loops
+  them, and `--final` writes `S6_LEFT/CENTRE/RIGHT.mov` (full HD ProRes 422 HQ + the clips' sound). Tested on 4 s: works.
+- **At wrap the two 30 s takes were still downloading** (the CDN connection kept failing TLS handshakes). Next steps:
+  `docs/NEW-SESSION.md`. Upscaling is parked (Homie: later). The pipeline v3 update is parked until Scene 6 is approved.
+
 ### 2026-09-28, fourth part (PREP): Scene 6 animatic v4 built, for Homie's review.
 
 - Homie on v3: "near perfect". v4 = one burn front across all three walls (`RoomBurn`: no wall burns

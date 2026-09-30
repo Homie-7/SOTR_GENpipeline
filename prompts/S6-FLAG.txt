@@ -1,0 +1,75 @@
+# S6-FLAG · v2 · 2026-09-30 (VID) · the long take, as a SEQUEL of v1 take A
+#
+# v1 RESULT (LOG.md 2026-09-30): take A = the flag for the show: a heavy, worn, firelit cloth filling the
+#   frame, hoist at the left edge (no pole in frame), the fly end snapping inside the right edge, the top and
+#   bottom edges visible just inside the frame, motion 6.7 (mean frame diff). Take B: a FLAGPOLE in frame and
+#   the top/bottom cropped, calmer (4.4). File `03_TESTS_IN_PROGRESS/S6_generated/S6-FLAG_v1_A.mp4` (48855276…).
+# THE ONE CHANGE IN v2: the mechanism. Not a fresh 30 s text run (a probe proves only what it contains, and a
+#   fresh run could bring the pole back or reframe), but a Sequel (video_extension forward) of take A: the same
+#   cloth, the same framing, continued. Body: SUBJECT becomes REFERENCE and FIRST FRAME points at the clip;
+#   MOTION, LIGHTING, AUDIO and LOCKS word for word.
+#
+# SETTINGS
+#   Model:      Seedance 2.5
+#   Mode:       Sequel (video_extension, extension_mode forward)
+#   Reference:  v1 take A (job b77523ae-30e4-4a96-b2dd-4a9c9e9cdb7c), role video_references
+#   Aspect:     16:9 (the reference's)
+#   Resolution: 1080p
+#   Duration:   30 s
+#   Quality:    High
+#   Batch:      1
+#   Sound:      ON
+#   Cost:       preflight (expect 360)
+#
+# ---- v1 header follows ----
+# S6-FLAG · v1 · 2026-09-30 (VID) · Scene 6, the tricolour as a real cloth
+#
+# WHY: the animatic's flag (render_s6.py ClothFlag) is a scripted stand-in. Homie on v2: "a real cloth,
+#   not shadows animating on a flat"; v3/v4 answered it by script, "near perfect". This clip gives the
+#   script a REAL cloth to carry instead: its folds, its outline and its light. The script still does
+#   everything timed: the reveal out of the smoke, the rip from the middle, the right half bleaching to
+#   the white Bourbon flag, the white flag on RIGHT (this clip recoloured by luminance), and the one burn
+#   across all three walls (LOOK.md Scene 6).
+# KEYING: the flag must sit on pure black so the script can pull it out by brightness. Hence no smoke,
+#   no sky and no ground in the clip; the script lays its own smoke around it.
+# POLE: not banned (lesson: prohibition kills performance, ban only what has appeared). The script
+#   dissolves the hoist edge into smoke anyway (no pole in the show, LOOK.md). If a pole comes back
+#   inside the frame, v2 names it.
+#
+# SETTINGS
+#   Model:      Seedance 2.5
+#   Mode:       text to video (no reference)
+#   Reference:  none
+#   Aspect:     16:9 (CENTRE is 5:3; 16:9 is the nearest offered)
+#   Resolution: 1080p
+#   Duration:   4 s probe (the long take, 30 s, only after a probe passes)
+#   Quality:    High
+#   Batch:      2 (the probe's question is partly luck: a pole or not, a frame-filling flag or not)
+#   Sound:      ON (scratch for the sound designer, rides in the show file)
+#   Cost:       48 credits per 4 s take (preflight before running)
+
+SCENE: A great French tricolour of 1815 flying alone in the night over a battlefield, filling the frame. One locked, continuous shot, used as a projected background behind live dancers.
+
+REFERENCE: This shot continues the attached clip of the same flag directly from its last frame, and keeps the whole picture: the cloth, its three bands, its size and place in the frame, the colour and the firelight, exactly as shown.
+
+FIRST FRAME: Continues seamlessly from the last frame of the attached clip, the flag still flying hard.
+
+FORMAT: Single continuous take, real-time, no cuts.
+
+CAMERA: Locked off, square to the flag. No push, no pan, no tilt, no drift, no zoom. The framing at the last second is the framing at the first.
+
+MOTION: A strong, gusting wind drives the whole cloth. Big rolling waves run through it from the hoist to the fly, one after another; the fly end whips and cracks hardest, its corner snapping up and down; the three stripes bend and twist with every fold, and the outline of the cloth ripples along its top and bottom edges. The flag never hangs still and never settles.
+
+LIGHTING: Warm firelight from below and to the left, the glow of distant fires, catching the crests of the folds and leaving the troughs in deep shadow. Behind the flag, nothing but deep black night.
+
+AUDIO: The heavy cloth cracking and snapping in a strong wind; a distant rumble of battle far off. No music, no voices.
+
+QUALITY: Stable, clean picture, real-time, no slow motion, no frame interpolation, no ghosting.
+
+LOCKS:
+NO ON-SCREEN TEXT.
+No people anywhere in frame.
+The background is pure black from first frame to last.
+One flag, three vertical bands, no emblem or lettering on it.
+LOCKED CAMERA.
+Nothing in frame newer than 1816.
