@@ -29,10 +29,23 @@ references, negation, iteration and logging still do.
 
 ## Mode
 
-Declare **IMG**, **VID** or **PREP** at the top of every session and hold it. Image and
-video vocabularies poison each other, so one session never spans both.
+Declare **IMG**, **VID**, **PREP** or **POST** at the top of every session and hold it. Image and
+video vocabularies poison each other, so one session never spans both. **POST** (added 2026-09-30 with pipeline
+v3) is finishing an approved picture: upscales, the restore, grades, encodes, delivery. It follows
+`house-rules/references/finishing.md` (keep the raw master; check any upscaler for temporal stability).
 
 ## Standing rules
+
+- **Pipeline v3 is adopted FORWARD ONLY (Homie, 2026-09-30).** *"What's done is done, and if it's good enough,
+  we don't need to redo something just because we updated our production system."* Precision-Pipeline 3.0.0
+  (commit 1ccc580) is not changed from here. **Per-production exception:** SOTR's approved video prompts use
+  cinema-director-v3's labelled blocks (SCENE / REFERENCE / FIRST FRAME / FORMAT / CAMERA / MOTION / LIGHTING /
+  AUDIO / QUALITY / LOCKS), its image prompts the LIRA / NBP reference-led prose. **Any variant of an approved
+  prompt keeps that layout** (patch one line, never a regrammar); the prompt files are self-contained, so the
+  retired skills need no reinstall. **New scenes' new prompts use the v3 stack** (`scenecraft-v1` for plates,
+  `shotcaller-v1` for video) under SOTR's rules. **House-rules v3 conflicts, SOTR wins:** generation audio stays
+  ON (sound rides in every show file; not Override 12's silent generation), and SOTR's own `@Image 1` token rule
+  stands (Override 14). Adopted from v3: POST mode (above), THE GATE (in `docs/AUTONOMOUS-GEN.md`'s pre-flight).
 
 - **FINAL PRODUCT, NO PLAYBACK FIXES (Homie, 2026-09-24).** *"We are not going to rely on
   QLab or any projection software whatsoever. We are generating everything as a final

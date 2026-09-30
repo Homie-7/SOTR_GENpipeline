@@ -22,26 +22,23 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (2026-09-30, end of session 3; MODE: VID):
-SCENES 6 AND 9 ARE APPROVED AND IN 01_FINAL_FOR_SHOW/. Don't change either unless Homie asks. NEXT = 4K.
-- DONE: Scene 6 v5 approved and filed (S6_LEFT/CENTRE/RIGHT_wars.mov; REGISTER "SHOW FOLDER" table).
-- DONE: 4K route chosen and tested (LOG 2026-09-30 "4K upscale route"): ByteDance video upscale ("aigc", 4k, fps 24)
-  then python tools/upscale_restore.py SOURCE UPSCALE OUT.mov --sigma 12. Downloads ONLY via tools/fetch.py.
-  Tests in 03_TESTS_IN_PROGRESS/upscale_tests/. court_b7 ByteDance 4K (job 7205ce97-505b-4375-b2ac-afefc9a6c13f)
-  is downloaded (upscale_tests/court_b7_bytedance4k.mp4, whole on the 3rd try) but NOT YET CHECKED. It came back
-  3596x2160, not 3600: give upscale_restore.py an output size (resize the upscale to exactly 2x = 3600x2160)
-  before using it for the court.
-STEPS NOW (ask Homie which first; his standing wish: "hq outcomes, these will be projected on large canvases"):
-1. SCENE 9 at 4K: upscale each approved show file (upload a CRF 8 10-bit HEVC copy, like court_b7_upload.mp4),
-   restore against the 1080 ProRes, check (tools: the scratchpad checks = PSNR back to source, geometry, flicker
-   by region, keyframe ticks, 3x zoom crops; the court's silhouette edge is the hardest case), then new files
-   next to the old (a 4K folder; name TBD with Homie). ~0.08 credits/s, ~40 credits for the 8 show files.
-2. SCENE 6 at 4K: ONLY when Homie goes to sleep (his words). Upscale S6-FLAG_loop / S6-SMOKE_loop sources the same
-   way, point render_s6.py at them (--flag-loop / --smoke-loop), render --final --scale 2.0 DETACHED (~4 h). Worth
-   adding chunked output + state snapshots first so a crash resumes (told Homie; not built yet).
-3. THEN ask Homie: "Ready for the pipeline v3 update?" (PARKED by Homie 2026-09-30: Precision-Pipeline v3.0.0,
-   commit 1ccc580; his full instructions are in the 2026-09-30 chat; don't start until he says yes, and list
-   proposed changes before editing anything). And which scene is next (BIBLE scene map: 2/3/4/8 unowned).
+THE TASK, RIGHT NOW (2026-09-30, evening; MODE: POST for the 4K work):
+SCENES 6 AND 9 ARE APPROVED AND IN 01_FINAL_FOR_SHOW/. Don't change either unless Homie asks.
+PIPELINE v3 ADOPTED FORWARD ONLY (CLAUDE.md standing rules): nothing old is redone.
+- RUNNING / DONE: Scene 9 show files at 4K (ByteDance upscale + tools/upscale_restore.py --clamp 2), new files in
+  SOTR_MEDIA/03_TESTS_IN_PROGRESS/upscale_4k/<name>_4K.mov. Jobs + result URLs: upscale_4k/JOBS.txt. Queues:
+  queue2.sh (b3 b6 b9 b7 b4 b2-3 + the S6 loop downloads) then queue3.sh (b5); read their .log files.
+  Downloads ONLY via tools/fetch.py (the network intercepts DNS: memory reference-dns-interception).
+STEPS NOW:
+1. Check every finished 4K file like salon b8 (LOG 2026-09-30): probe; PSNR back to the 1080 file; geometry;
+   frame-step ratio; sound identical; full-size crops. STUDIO FILES: inspect the Raft painting for invented
+   brushwork (finishing.md's ByteDance warning). Then show Homie; on approval decide the 4K folder + names with him.
+2. Scene 6 4K: restore S6-FLAG_loop / S6-SMOKE_loop from upscale_4k/raw/*_bd4k.mp4 against S6_generated/*_loop.mov,
+   point render_s6.py at them (--flag-loop / --smoke-loop), render --final --scale 2.0 DETACHED, ONLY when Homie
+   goes to sleep (his words).
+3. CREDITS: Homie's 2,000 for 2026-09-30; spent today 913 (864 morning + 49 upscales). Asked him whether the 2,000
+   counts the morning. Options put to him: the studio candle arc (LOOK D6, ~250-500, my recommendation) or a new
+   scene (2/3/4/8, his pick + direction). Nothing else is decided; don't spend on undirected takes.
 Credits: ask above ~100 per run; one generation at a time; check `transactions` after each.
 
 WHERE SCENE 9 LIVES (SOTR_MEDIA/01_FINAL_FOR_SHOW/, 00_READ_ME_FIRST.txt explains it):

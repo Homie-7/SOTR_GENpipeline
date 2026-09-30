@@ -38,8 +38,10 @@ week from 2026-09-21.
 
 **Windows PC:** follow `docs/HANDOVER-WINDOWS.md`. Mac or anything else:
 
-The production skills (`house-rules`, `banana-pro-director-30`, `cinema-director-v3`, etc.)
-live in the separate `Precision-Pipeline` repo. Install them once:
+The production skills (`house-rules` v3, `scenecraft-v1`, `shotcaller-v1`, `castkit-v1`, `motiondojo-v1`, etc.)
+live in the separate `Precision-Pipeline` repo (3.0.0 since 2026-09-30; the retired `banana-pro-director-30` and
+`cinema-director-v3` are kept in its `skills/vendor/`: SOTR's approved prompts use their layout, see `CLAUDE.md`).
+Install them once:
 
 ```bash
 git clone https://github.com/Homie-7/Precision-Pipeline.git

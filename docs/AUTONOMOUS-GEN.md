@@ -34,6 +34,13 @@ This file is the system. Read it before the first Higgsfield call of any session
   batch, sound.
 - [ ] **Predict the result in one line** before running it ("expect the halos to swing about
   2x"). A run with no prediction teaches nothing.
+- [ ] **THE GATE** (house-rules v3, adopted 2026-09-30): five lines in the message before the run, each CITING what
+  was opened and what it showed, not asserting it was checked. A line that can't be filled = not ready.
+  `SOURCE` the approved asset / working prompt this derives from · `ROOM` the plate opened for any claim about
+  the space · `REFS` every reference and what it carries · `ROUTE` edit / regeneration / Sequel / upscale / script,
+  and the rule that decides it · `DELTA` what changed vs the last working version, and whether it contradicts
+  anything already in the prompt or the frame. Also for POST routes: open `finishing.md` before choosing a tool
+  (2026-09-30: the upscaler was chosen before it was read).
 - [ ] **Credits:** the running total plus this run stays at or under 1,000.
 
 ## 2 · Spend in the cheapest order

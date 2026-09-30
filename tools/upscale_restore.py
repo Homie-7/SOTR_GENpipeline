@@ -9,9 +9,17 @@ the HIGH ones. So:  out = upscale - blur(upscale) + blur(source upscaled bicubic
 With ByteDance as the input this gives the source's exact light and motion, the new detail, no ticks, no ringing.
 The low band comes from the 10-bit source, and the output is 10-bit ProRes 422 HQ with the SOURCE's own sound.
 
-  python tools/upscale_restore.py SOURCE UPSCALE OUT.mov [--sigma 3.0]
+  python tools/upscale_restore.py SOURCE UPSCALE OUT.mov [--sigma 12] [--size 3600x2160]
+
+--size forces the output size (the upscale is resampled to it): ByteDance returned the 1800x1080 court as
+3596x2160, a 0.1% squeeze; the show needs exactly 2x.
 
 --sigma is in SOURCE pixels (scaled to the output). Frames are matched by index; the counts must agree.
+
+--clamp R (output px, default 2; 0 = off): no output pixel may go brighter than the brightest, or darker than the
+darkest, source pixel within R of it (the source upscaled bicubically). WHY: ByteDance draws a thin pale rim along
+the judge's black silhouette (incidental white, banned by LOOK World 3) and a faint halo round the salon's candle
+flames: overshoot the source never had. The clamp removes it and keeps the upscaler's smooth, unstepped edge.
 """
 import argparse
 import json
@@ -47,10 +55,14 @@ def main():
     ap.add_argument('source')
     ap.add_argument('upscale')
     ap.add_argument('out')
-    ap.add_argument('--sigma', type=float, default=3.0, help='low/high split, in source pixels')
+    ap.add_argument('--sigma', type=float, default=12.0, help='low/high split, in source pixels')
+    ap.add_argument('--size', help='WxH of the output (default: the size the upscale came back at)')
+    ap.add_argument('--clamp', type=int, default=2, help='anti-ringing radius, output px (0 = off)')
     a = ap.parse_args()
     sw, sh, sn, rate = probe(a.source)
     uw, uh, un, _ = probe(a.upscale)
+    if a.size:
+        uw, uh = (int(v) for v in a.size.lower().split('x'))
     if sn != un:
         raise SystemExit(f'frame counts differ: source {sn}, upscale {un}')
     sig = a.sigma * uw / sw
@@ -60,10 +72,13 @@ def main():
                             '-shortest', a.out], stdin=subprocess.PIPE)
     for i, (u, s) in enumerate(zip(reader(a.upscale, uw, uh), reader(a.source, uw, uh))):
         o = u - cv2.GaussianBlur(u, (0, 0), sig) + cv2.GaussianBlur(s, (0, 0), sig)
+        if a.clamp > 0:
+            k = np.ones((2 * a.clamp + 1, 2 * a.clamp + 1), np.uint8)
+            o = np.minimum(np.maximum(o, cv2.erode(s, k)), cv2.dilate(s, k))
         enc.stdin.write((np.clip(o, 0, 1) * 65535 + 0.5).astype(np.uint16).tobytes())
     enc.stdin.close()
     enc.wait()
-    print('wrote', a.out, f'({uw}x{uh}, {sn} frames, sigma {sig:.1f} px)')
+    print('wrote', a.out, f'({uw}x{uh}, {sn} frames, sigma {sig:.1f} px, clamp {a.clamp} px)')
 
 
 if __name__ == '__main__':
