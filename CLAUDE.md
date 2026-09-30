@@ -36,6 +36,13 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Standing rules
 
+- **MEDIA LIVES ON D: (Homie 2026-09-30, C: was 95% full: "migrate the whole thing to D drive").** `SOTR_MEDIA` is at
+  `D:\SOTR\SOTR_MEDIA`; `C:\Users\Homie\Documents\SOTR_MEDIA` is a directory JUNCTION to it, so every tool, path and AE
+  project still works. Old versions / rejected takes / old tests are in `D:\SOTR\SOTR_MEDIA_ARCHIVE\` (same layout);
+  its `_SAFE_TO_DELETE_duplicates_and_intermediates\` is Homie's to delete. The repo stays on C: (small). Moves are
+  always `tools/archive_move.py` (copy, sha256, then remove). The T9 mirror is unchanged. Check the junction exists
+  before writing media (`D:\SOTR\_migration.log`).
+
 - **Pipeline v3 is adopted FORWARD ONLY (Homie, 2026-09-30).** *"What's done is done, and if it's good enough,
   we don't need to redo something just because we updated our production system."* Precision-Pipeline 3.0.0
   (commit 1ccc580) is not changed from here. **Per-production exception:** SOTR's approved video prompts use

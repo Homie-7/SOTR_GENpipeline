@@ -22,7 +22,10 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (2026-09-30, end of day; MODE: POST):
+THE TASK, RIGHT NOW (2026-09-30, overnight into 10-01; MODE: POST):
+FIRST READ D:\SOTR\_migration.log and D:\SOTR\_OVERNIGHT_PART2_2026-09-30.log. PART 2 = the salon HOLD fix, the studio
+v4 b6 edge re-render, the delete bin, the T9 copy, then SOTR_MEDIA MIGRATED to D:\SOTR\SOTR_MEDIA with a JUNCTION at the
+old C: path (CLAUDE.md standing rules). If the junction is missing, the migration stopped: fix it before writing media.
 SCENES 6 AND 9 ARE APPROVED AND IN 01_FINAL_FOR_SHOW/. Pipeline v3 adopted FORWARD ONLY. Nothing old is redone.
 AN OVERNIGHT CHAIN RAN: SOTR_MEDIA/03_TESTS_IN_PROGRESS/OVERNIGHT_2026-09-30.sh, log OVERNIGHT_2026-09-30.log beside it.
 It: restores the 4K S6 flag/smoke loops (S6_generated/4K/) -> renders Scene 6 at 4K from the approved v5 script into
