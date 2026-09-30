@@ -34,9 +34,9 @@ Scene 9 is approved; don't touch it. Upscaling is parked (Homie: later; files as
   colours). tools/s6_loops.py joins probe + Sequel and crossfade-loops them (picture + sound). `--final` writes
   S6_LEFT/CENTRE/RIGHT.mov (1440/1800/1440 x 1080, ProRes 422 HQ 10-bit, 48 kHz 24-bit scratch sound). Tested on 4 s.
 STEPS NOW:
-1. Check SOTR_MEDIA/03_TESTS_IN_PROGRESS/S6_generated/S6-FLAG_v2.mp4 and S6-SMOKE_v2.mp4 are complete
-   (ffprobe duration ~30 s). If not, resume: curl -sS --ssl-no-revoke --http1.1 -C - -o FILE URL in a retry loop
-   (URLs: jobs_wait on the job ids above). The CDN kept failing TLS handshakes; it comes and goes.
+1. DONE at wrap: S6-FLAG_v2.mp4 (58a7e1e4…, 1920x1080) and S6-SMOKE_v2.mp4 (7e614fa0…, 2206x946) are complete,
+   720 frames / 30.0 s each, and on the T9. They hold ONLY the continuation (not the 4 s probe), so step 3's
+   probe + Sequel join is right.
 2. Check them (lesson: verify the FILE): probe, a contact sheet across the whole 30 s, the flag has NO pole and
    the same framing as take A, the smoke still drifts left to right. Does the Sequel output START with take A's
    frames? If yes, don't concatenate twice (s6_loops.py joins probe + Sequel).
