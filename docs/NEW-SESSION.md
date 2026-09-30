@@ -27,16 +27,16 @@ FIRST: did the PC crash again? `Get-WinEvent` System Id 41 / WHEA 18 (memory: pc
 affinity FFFF3FFF, off Core 7). Then READ, in SOTR_MEDIA/03_TESTS_IN_PROGRESS/upscale_4k/: queue5.log (4K of the fixed
 b2-3/b8/b3/b5 + the b9 check; must end QUEUE5 FINISHED), lane0.log + lane1.log (4K of the 10 backup loops, 8 Scene 9
 clean masters, the candle arc v5), results_v3.txt (one VERDICT per file), finish_4k.log + promote_4k.log.
-IF promote_4k.log ends "PROMOTE 4K FINISHED" (T9 mismatches 0): 01_FINAL_FOR_SHOW folders 1-3 ARE 4K (same names), the
-approved 1080 set is in 01_FINAL_FOR_SHOW/4_HD_1080_same_files/, README replaced. Check a few 4K show files in a player,
-then REGISTER (mark done), LOG, commit, push, T9 repo pull.
-IF "GATE FAILED": nothing moved; the failing file is named. Look at its .check.txt (upscale_4k/BACKUP|CLEAN/), fix
-(re-restore, or re-upscale ~0.08 cr/s), then `python promote_4k.py --dry`, then without --dry. A crash mid-lane: rerun the
-lane (`lane_v3.sh 0|1`, it skips finished files; _tmp_ files are partial, delete-bin them).
-WAITING ON HOMIE: the studio candle arc v5 (studio_candle_arc/loc_SOTR_studio_L_b6_s9_v5_edge2.mov + b9; LOOK D6: b6
-flares, b9 steady and brightest). v4 was withdrawn (floor under the wall; tools/plate_align.py fixed it; LOG). On approval:
-replace S9_b6/b9 in the show folder (4K from upscale_4k/CANDLE_v5/, 1080 in 4_HD_1080_same_files/; the _CLEAN from the
-v5 clean), the v3 files to superseded/, REGISTER, README ("COMING NEXT" line goes).
+IF promote_4k.log says "PROMOTE 4K FINISHED (show folder)": 01_FINAL_FOR_SHOW folders 1 (play) and 2 (backup loops) ARE
+4K (same names); their approved 1080 files are in 01_FINAL_FOR_SHOW/4_HD_1080_same_files/; 3_CLEAN_no_edge stays 1080 (Homie:
+only the show files matter; the 8 clean 4K upscales were paid but not used). Studio b9 = candle arc v5 (approved), b6 = v3
+(Homie found v5's b6 reads as exposure; "good enough"), b9 v3 in 03_TESTS_IN_PROGRESS/superseded/studio_b9_v3/. Look at a
+few 4K show files, then REGISTER (mark done), LOG, commit, push.
+IF "GATE FAILED": nothing moved; the failing file is named (upscale_4k/BACKUP|CANDLE_v5/<name>_4K.check.txt). Re-restore
+it (lane_v3.sh skips finished files), `python promote_4k.py --dry`, then without --dry.
+T9 IS AWAY (Homie took it, 2026-10-01): when it is back, `python promote_4k.py --t9-only` (in upscale_4k/), copy the rest
+of today's new media (studio_candle_arc v5, upscale_4k), then `git pull` in G:\SOTR\HF\SOTR_GENpipeline.
+OPTIONAL, NOT DONE (Homie: no extra work): a v5 version of the b9 studio backup HOLD loop (the v3 one is ~24% dimmer).
 Homie 2026-10-01: Scene 6 (1080) reviewed, "happy with them"; the Raft painting at 4K "fine"; the 4K layout delegated
 ("these are all just 4K in the play these in order folder"). After Scenes 6 and 9 the job is likely done unless the
 client comes back. Open with the team (unchanged): set dimensions, codec (4K ProRes x3 at once is heavy; the 1080 set is
