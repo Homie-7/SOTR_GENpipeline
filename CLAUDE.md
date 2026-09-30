@@ -148,6 +148,19 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
+### 2026-09-30, third part (VID): SCENE 6 APPROVED (v5) and filed. 4K upscale route chosen.
+
+- **Scene 6 v5 approved** (Homie: "It's looking fantastic… no complaints"). Show files
+  `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S6_LEFT/CENTRE/RIGHT_wars.mov` (start all three together) + `_CLEAN`
+  copies; README updated; v4 in `03_TESTS_IN_PROGRESS/superseded/S6_final_v4/`. Don't change Scene 6 unless Homie asks.
+- **4K route (Claude's call, Homie delegated):** ByteDance video upscale "aigc" 4k, then `tools/upscale_restore.py`
+  (the upscale's fine detail + the approved source's light and motion). Topaz ticks every 1.25 s (keyframes);
+  ByteDance alone damps the flicker. ~0.08 credits per second. Stills: ByteDance (the only option).
+- **Every ProRes encode now uses `-qscale:v 2`** (the default rate adds frame-to-frame shimmer). **Downloads go
+  through `tools/fetch.py`** (the CDN truncates files that still probe fine).
+- **Credits today: Homie raised the cap to 2,000 for 2026-09-30, no per-run ask.** Spent this part: 10.4.
+- **The Scene 6 4K render runs when Homie goes to sleep** (his words), ~4 h at full load.
+
 ### 2026-09-30, second part (VID): Scene 6 show files v4 rendered, Homie "almost perfect"; v5 rendering.
 
 - Sequels checked (PASS), loops built, `S6_final/` v4 = three full-HD ProRes files with sound. Homie's five notes

@@ -587,7 +587,7 @@ them.
 
 ---
 
-# LOOK — Scene 6 · The Napoleonic Wars · LOCKED 2026-09-30 (the animatic v4, approved by Homie)
+# LOOK — Scene 6 · The Napoleonic Wars · LOCKED 2026-09-30 (the animatic v4, approved by Homie) · SHOW FILES v5 APPROVED 2026-09-30
 
 **Approved 2026-09-30.** Homie on v4: "this is looking pretty good… happy with most of the decisions", then
 "make sure that we had that animatic reviewed and approved… every design decision and narrative decision sticks to

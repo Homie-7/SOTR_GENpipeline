@@ -102,7 +102,7 @@ def main():
         if i >= a.skip:
             head.append(f)
     if a.out.lower().endswith('.mov'):
-        enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-pix_fmt', 'yuv422p10le']
+        enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2', '-pix_fmt', 'yuv422p10le']
     else:
         enc = ['-c:v', 'libx264', '-crf', '16', '-pix_fmt', 'yuv420p']
     p = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb48le',

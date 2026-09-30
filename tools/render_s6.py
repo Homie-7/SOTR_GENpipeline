@@ -1426,7 +1426,7 @@ def render_final(ctx, S, outdir, n0, n1):
     for wall, name in (('L', 'LEFT'), ('C', 'CENTRE'), ('R', 'RIGHT')):
         x0, x1 = ctx.wall_px(wall)
         cmd = ['ffmpeg', '-y', '-v', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-s', f'{x1 - x0}x{ctx.H}', '-r', str(FPS),
-               '-i', '-', '-c:v', 'prores_ks', '-profile:v', '3', '-pix_fmt', 'yuv422p10le', '-vendor', 'apl0',
+               '-i', '-', '-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2', '-pix_fmt', 'yuv422p10le', '-vendor', 'apl0',
                os.path.join(outdir, f'S6_{name}_picture.mov')]
         pipes[wall] = (x0, x1, subprocess.Popen(cmd, stdin=subprocess.PIPE))
     dt = 1 / FPS

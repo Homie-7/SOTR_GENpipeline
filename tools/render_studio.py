@@ -210,7 +210,7 @@ def main():
     primer = np.percentile(first[inside], 99, axis=0).astype(np.float32)
 
     import subprocess
-    enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-pix_fmt', 'yuv422p10le'] if a.out.lower().endswith('.mov') \
+    enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2', '-pix_fmt', 'yuv422p10le'] if a.out.lower().endswith('.mov') \
         else ['-c:v', 'libx264', '-crf', '14', '-pix_fmt', 'yuv420p']
     w_ = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-s', f'{W}x{H}',
                            '-r', '24', '-i', '-'] + enc + [a.out], stdin=subprocess.PIPE)

@@ -22,29 +22,24 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (2026-09-30, end of session 2; MODE: VID):
-SCENE 6 SHOW FILES v5 ARE FOR HOMIE'S REVIEW. Scene 9 is approved; don't touch it. Upscaling parked (Homie: later).
-- DONE: animatic v4 APPROVED; S6-FLAG / S6-SMOKE generated (4 s probes + 30 s Sequels, checked: PASS);
-  loops S6_generated/S6-FLAG_loop.mov + S6-SMOKE_loop.mov (tools/s6_loops.py); `--check` clean.
-- DONE: show files v4 (03_TESTS_IN_PROGRESS/S6_final/). Homie: "almost perfect", five notes (LOOK.md Scene 6,
-  last block): bigger pictures; no paper flakes inside a non-burning picture; frame each print so nothing important
-  fades (Goya pl.15's head); the tear should ride the cloth as two fluttering pieces; why the white flag (answered:
-  the Bourbon Restoration's white flag, 1815-1830 = the Monarchistes; tricolour = the Napoléonistes).
-- DONE: v5 in tools/render_s6.py (FOCUS per print, flatter fade, bigger, flakes/other ash behind the pictures,
-  GenFlag's rip found on the cloth each frame + each torn edge flapping). Rendered to
-  03_TESTS_IN_PROGRESS/S6_final_v5/ (check render.log says "wrote"; ~63 min at full size).
-STEPS NOW:
-1. If S6_final_v5/ has S6_LEFT/CENTRE/RIGHT.mov + S6_scratch_sound.wav: probe them (3,960 f, 165.0 s, ProRes HQ,
-   sound), a contact sheet every 10 s across the three walls, and look at 1:07 (Goya pl.15 head whole), 1:50
-   (Jazet's farm centred), 2:03-2:08 (the tear moving with the cloth). If not: rerun
-   python tools/render_s6.py <that folder> --final --scale 1.0  DETACHED (nohup ... &), not a timed shell.
-2. Copy v5 + the two loops + S6_final/ (v4) to the T9 (G:\SOTR\HF\SOTR_MEDIA\03_TESTS_IN_PROGRESS\...), sha256.
-3. Send v5 to Homie. On approval: file as 01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S6_LEFT/CENTRE/RIGHT.mov (sorts
-   before S9; clean = the same files, Scene 6 has no fragment edge), v4 to superseded/, REGISTER "SHOW FOLDER",
-   00_READ_ME_FIRST.txt, LOG, commit, push, T9 (copy + sha256, never mirror-delete).
-4. THEN ask Homie: "Ready for the pipeline v3 update?" (PARKED by Homie 2026-09-30: Precision-Pipeline v3.0.0,
+THE TASK, RIGHT NOW (2026-09-30, end of session 3; MODE: VID):
+SCENES 6 AND 9 ARE APPROVED AND IN 01_FINAL_FOR_SHOW/. Don't change either unless Homie asks. NEXT = 4K.
+- DONE: Scene 6 v5 approved and filed (S6_LEFT/CENTRE/RIGHT_wars.mov; REGISTER "SHOW FOLDER" table).
+- DONE: 4K route chosen and tested (LOG 2026-09-30 "4K upscale route"): ByteDance video upscale ("aigc", 4k, fps 24)
+  then python tools/upscale_restore.py SOURCE UPSCALE OUT.mov --sigma 12. Downloads ONLY via tools/fetch.py.
+  Tests in 03_TESTS_IN_PROGRESS/upscale_tests/. court_b7 ByteDance 4K (job 7205ce97-505b-4375-b2ac-afefc9a6c13f)
+  was downloading at wrap (the CDN kept truncating it; fetch.py retries).
+STEPS NOW (ask Homie which first; his standing wish: "hq outcomes, these will be projected on large canvases"):
+1. SCENE 9 at 4K: upscale each approved show file (upload a CRF 8 10-bit HEVC copy, like court_b7_upload.mp4),
+   restore against the 1080 ProRes, check (tools: the scratchpad checks = PSNR back to source, geometry, flicker
+   by region, keyframe ticks, 3x zoom crops; the court's silhouette edge is the hardest case), then new files
+   next to the old (a 4K folder; name TBD with Homie). ~0.08 credits/s, ~40 credits for the 8 show files.
+2. SCENE 6 at 4K: ONLY when Homie goes to sleep (his words). Upscale S6-FLAG_loop / S6-SMOKE_loop sources the same
+   way, point render_s6.py at them (--flag-loop / --smoke-loop), render --final --scale 2.0 DETACHED (~4 h). Worth
+   adding chunked output + state snapshots first so a crash resumes (told Homie; not built yet).
+3. THEN ask Homie: "Ready for the pipeline v3 update?" (PARKED by Homie 2026-09-30: Precision-Pipeline v3.0.0,
    commit 1ccc580; his full instructions are in the 2026-09-30 chat; don't start until he says yes, and list
-   proposed changes before editing anything).
+   proposed changes before editing anything). And which scene is next (BIBLE scene map: 2/3/4/8 unowned).
 Credits: ask above ~100 per run; one generation at a time; check `transactions` after each.
 
 WHERE SCENE 9 LIVES (SOTR_MEDIA/01_FINAL_FOR_SHOW/, 00_READ_ME_FIRST.txt explains it):

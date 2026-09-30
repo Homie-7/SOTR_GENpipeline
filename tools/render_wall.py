@@ -253,7 +253,7 @@ def main():
                      a.fragment_style, a.fragment_drift) \
         if a.fragment_edge else None
 
-    enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-pix_fmt', 'yuv422p10le'] if a.out.lower().endswith('.mov') \
+    enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2', '-pix_fmt', 'yuv422p10le'] if a.out.lower().endswith('.mov') \
         else ['-c:v', 'libx264', '-crf', '14', '-pix_fmt', 'yuv420p']
     w_ = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-s', f'{W}x{H}',
                            '-r', '24', '-i', '-'] + enc + [a.out], stdin=subprocess.PIPE)

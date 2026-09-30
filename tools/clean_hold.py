@@ -66,7 +66,7 @@ def clean(a):
     rd = subprocess.Popen(['ffmpeg', '-v', 'error', '-i', a.base, '-vf', f'select=gte(n\\,{d0})', '-fps_mode',
                            'passthrough', '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-'], stdout=subprocess.PIPE)
     wr = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-s', f'{W}x{H}',
-                           '-r', '24', '-i', '-', '-c:v', 'prores_ks', '-profile:v', '3', '-pix_fmt', 'yuv422p10le',
+                           '-r', '24', '-i', '-', '-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2', '-pix_fmt', 'yuv422p10le',
                            tail], stdin=subprocess.PIPE)
     sz = W * H * 6
     i = d0

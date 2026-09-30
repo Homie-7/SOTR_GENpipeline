@@ -104,7 +104,7 @@ def main():
     if a.period:  # resample the ping-pong to exactly --period frames (a 7.3 s float becomes 8.04 s)
         order = [order[int(k * len(order) / a.period)] for k in range(a.period)]
 
-    enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-pix_fmt', 'yuv422p10le'] if a.out.lower().endswith('.mov') \
+    enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2', '-pix_fmt', 'yuv422p10le'] if a.out.lower().endswith('.mov') \
         else ['-c:v', 'libx264', '-crf', '16', '-pix_fmt', 'yuv420p']
     rd = subprocess.Popen(['ffmpeg', '-v', 'error', '-i', a.base, '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-'],
                           stdout=subprocess.PIPE)

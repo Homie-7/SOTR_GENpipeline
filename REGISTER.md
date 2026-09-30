@@ -97,6 +97,8 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 
 | Show file (in `01_FINAL_FOR_SHOW/`) | Version | Was |
 |---|---|---|
+| `1_PLAY_THESE_IN_ORDER/S6_LEFT_wars.mov`, `S6_CENTRE_wars.mov`, `S6_RIGHT_wars.mov` (added 2026-09-30) | Scene 6 v5 | `03_TESTS_IN_PROGRESS/S6_final_v5/S6_<WALL>.mov` |
+| `3_CLEAN_no_edge/S6_<WALL>_wars_CLEAN.mov` (added 2026-09-30) | Scene 6 v5 (no edge: same picture) | copies of the above |
 | `1_PLAY_THESE_IN_ORDER/S9_b2-3_RIGHT_salon.mov` | salon v3, edge2b | `RIGHT_wall_SALON/with_edge_effect/loc_SOTR_salon_R_b2-3_s9_v3_edge2b.mov` |
 | `1_PLAY_THESE_IN_ORDER/S9_b3_CENTRE_court.mov` | court v2, edge3b | `CENTRE_wall_COURT/with_edge_effect/fig_SOTR_judge_C_b3_s9_v2_edge3b.mov` |
 | `1_PLAY_THESE_IN_ORDER/S9_b4_LEFT_studio.mov` | studio v3, edge2 | `LEFT_wall_STUDIO/with_edge_effect/loc_SOTR_studio_L_b4_s9_v3_edge2.mov` |
@@ -198,5 +200,7 @@ are public-domain material, logged by file and checksum in the folder's `_manife
 | `03_TESTS_IN_PROGRESS/S6_generated/S6-SMOKE_v1.mp4` (40fb5c5e…, 2206x946, 97 f) | S6-SMOKE probe: rolling smoke drifting left to right; ground strip cropped by script | **candidate** (the Sequel's source) |
 | `03_TESTS_IN_PROGRESS/S6_generated/S6-FLAG_v2.mp4`, `S6-SMOKE_v2.mp4` | The 30 s Sequels (jobs 565ac6ac… / 2bf6407a…): flag 58a7e1e4… 1920x1080, smoke 7e614fa0… 2206x946, 720 f each | **checked 2026-09-30: PASS** (each continues from its probe; flag no pole) |
 | `03_TESTS_IN_PROGRESS/S6_generated/S6-FLAG_loop.mov`, `S6-SMOKE_loop.mov` | Probe + Sequel joined and crossfade-looped by `tools/s6_loops.py` (781 f = 32.54 s each, ProRes 422 HQ + the clips' sound; smoke bottom 8% cropped). Read by `render_s6.py` | **built 2026-09-30** |
-| `03_TESTS_IN_PROGRESS/S6_final/S6_LEFT/CENTRE/RIGHT.mov` (+ `S6_scratch_sound.wav`) | Scene 6 show files **v4**: 1440/1800/1440x1080, 3,960 f, 2:45, ProRes 422 HQ 10-bit, 48 kHz 24-bit | **reviewed by Homie: "almost perfect", five notes -> v5** |
-| `03_TESTS_IN_PROGRESS/S6_final_v5/S6_LEFT/CENTRE/RIGHT.mov` | Scene 6 show files **v5** (bigger, subject-centred pictures; flakes behind pictures; the tear riding the cloth in two fluttering pieces) | **for Homie's review** |
+| `03_TESTS_IN_PROGRESS/superseded/S6_final_v4/S6_LEFT/CENTRE/RIGHT.mov` (+ `S6_scratch_sound.wav`; was `S6_final/`) | Scene 6 show files **v4**: 1440/1800/1440x1080, 3,960 f, 2:45, ProRes 422 HQ 10-bit, 48 kHz 24-bit | **reviewed by Homie: "almost perfect", five notes -> v5** |
+| `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S6_LEFT/CENTRE/RIGHT_wars.mov` (sha256 97e7e0f3… / 7e79c671… / 1b2d1dd3…; was `03_TESTS_IN_PROGRESS/S6_final_v5/`) + `_CLEAN` copies in `3_CLEAN_no_edge/`; scratch sound stays in `S6_final_v5/` | Scene 6 show files **v5** (bigger, subject-centred pictures; flakes behind pictures; the tear riding the cloth in two fluttering pieces). 1440/1800/1440x1080, 3,960 f, 2:45 | **APPROVED 2026-09-30** (Homie: "It's looking fantastic… no complaints from the V5") |
+
+| `03_TESTS_IN_PROGRESS/upscale_tests/` | The 4K upscale route test (2026-09-30): `salon_loop_topaz2160.mp4`, `salon_loop_bytedance4k_aigc.mp4`, `salon_loop_bd4k_restored*.mov` (`tools/upscale_restore.py`), `court_b7_upload.mp4` + its ByteDance 4K. Decision in LOG | **tests** |

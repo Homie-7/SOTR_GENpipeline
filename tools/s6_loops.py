@@ -34,7 +34,7 @@ def main():
     # 1. join probe + Sequel (same size and rate by construction), 10-bit intermediate
     run(['ffmpeg', '-y', '-v', 'error', '-i', a.probe, '-i', a.sequel, '-filter_complex',
          f'[0:v][0:a][1:v][1:a]concat=n=2:v=1:a=1[v][a];[v]format=yuv422p10le{crop}[vv];[a]aresample=48000[aa]',
-         '-map', '[vv]', '-map', '[aa]', '-c:v', 'prores_ks', '-profile:v', '3', '-c:a', 'pcm_s24le', joined])
+         '-map', '[vv]', '-map', '[aa]', '-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2', '-c:a', 'pcm_s24le', joined])
     dur = float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0',
                                          joined]).decode().strip())
     xf = a.xf
@@ -48,7 +48,7 @@ def main():
           f'[a3]atrim={dur - xf}:{dur},asetpts=PTS-STARTPTS[at];'
           f'[at][ah]acrossfade=d={xf}:c1=tri:c2=tri[ax];[ax][ab]concat=n=2:v=0:a=1[a]')
     run(['ffmpeg', '-y', '-v', 'error', '-i', joined, '-filter_complex', fc, '-map', '[v]', '-map', '[a]',
-         '-c:v', 'prores_ks', '-profile:v', '3', '-pix_fmt', 'yuv422p10le', '-c:a', 'pcm_s24le', a.out])
+         '-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2', '-pix_fmt', 'yuv422p10le', '-c:a', 'pcm_s24le', a.out])
     print('wrote', a.out, f'(loop {dur - xf:.2f} s)')
 
 

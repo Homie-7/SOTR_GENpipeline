@@ -541,7 +541,7 @@ def render(a):
         smoke = smoke_layer(a.base, a.smoke_at, a.smoke_len, xmax, W, H)
         sm_mask = er.mask[:, :xmax] * (1 + 1.0 * (1 - er.wall[:, :xmax, None]))   # brighter against the dark
         print(f'smoke on {len(smoke)} frames')
-    enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-pix_fmt', 'yuv422p10le'] if a.out.lower().endswith('.mov') \
+    enc = ['-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2', '-pix_fmt', 'yuv422p10le'] if a.out.lower().endswith('.mov') \
         else ['-c:v', 'libx264', '-crf', '17', '-pix_fmt', 'yuv420p']
     cmd_in = ['ffmpeg', '-v', 'error']
     if a.start:
