@@ -93,6 +93,14 @@ approved. Run in `PIPELINE.md` order; each row waits for the one it depends on.
 
 **2026-09-28: ALL SCENE 9 SHOW FILES APPROVED BY HOMIE** (the table below is the approved set).
 
+**SHOW FOLDER UPDATE, 2026-09-30/10-01 (same names).** The replaced files: `D:/SOTR/SOTR_MEDIA_ARCHIVE/03_TESTS_IN_PROGRESS/superseded/scene9_v3_pre_fix/` (all but one), and the salon HOLD's in `D:/SOTR/SOTR_MEDIA/03_TESTS_IN_PROGRESS/superseded/scene9_v3_pre_fix/`. Homie's notes: salon edge "weird artifacts", the judge "floating" after the slam. `scene9_fix_v4/FIX.log` has every sha256.
+
+| Show file | New version | What changed |
+|---|---|---|
+| `1_PLAY_THESE_IN_ORDER/S9_b2-3_RIGHT_salon.mov`, `S9_b8_RIGHT_salon.mov`; `2_BACKUP_LOOPS_for_operator/S9_b3-and-b8_RIGHT_salon_OUT_snuff.mov`, `S9_b2_RIGHT_salon_HOLD_loop.mov` | salon v3, **edge v4** (`edge_flow.py` render v3) | black specks / the notch by the sconce filled from the clean picture, a soft wall/void edge, no navy smoke ghosts at the snuff. Clean masters (`3_CLEAN_no_edge/`) unchanged |
+| `1_PLAY_THESE_IN_ORDER/S9_b3_CENTRE_court.mov`, `S9_b5_CENTRE_court.mov`; strikes size1-3 in `2_BACKUP…`; their `_CLEAN` files | **court v3 placement** (`render_court.py`, `FEET_Y`) | the raised pose's feet on the floor line (was ~95 px above at Q3), the gavel back in frame. Court b7 / size4 unchanged |
+| `1_PLAY_THESE_IN_ORDER/S6_*_wars.mov` | Scene 6 v5 | (filed 2026-09-30) |
+
 **SHOW FOLDER, 2026-09-26 (reorganised; names carry no version, this table does). THE FILES THAT PLAY are in `1_PLAY_THESE_IN_ORDER/`.**
 
 | Show file (in `01_FINAL_FOR_SHOW/`) | Version | Was |
@@ -204,3 +212,8 @@ are public-domain material, logged by file and checksum in the folder's `_manife
 | `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S6_LEFT/CENTRE/RIGHT_wars.mov` (sha256 97e7e0f3… / 7e79c671… / 1b2d1dd3…; was `03_TESTS_IN_PROGRESS/S6_final_v5/`) + `_CLEAN` copies in `3_CLEAN_no_edge/`; scratch sound stays in `S6_final_v5/` | Scene 6 show files **v5** (bigger, subject-centred pictures; flakes behind pictures; the tear riding the cloth in two fluttering pieces). 1440/1800/1440x1080, 3,960 f, 2:45 | **APPROVED 2026-09-30** (Homie: "It's looking fantastic… no complaints from the V5") |
 
 | `03_TESTS_IN_PROGRESS/upscale_tests/` | The 4K upscale route test (2026-09-30): `salon_loop_topaz2160.mp4`, `salon_loop_bytedance4k_aigc.mp4`, `salon_loop_bd4k_restored*.mov` (`tools/upscale_restore.py`), `court_b7_upload.mp4` + its ByteDance 4K. Decision in LOG | **tests** |
+
+| `D:/SOTR/SOTR_MEDIA/03_TESTS_IN_PROGRESS/S6_final_4K/S6_LEFT/CENTRE/RIGHT.mov` | Scene 6 at 4K: 2880/3600/2880 x 2160, 3,960 f, ProRes 422 HQ q2, sound identical to v5 (corr 1.000); from the approved v5 script with the 4K-restored flag/smoke loops | **for Homie's review** (checked 2026-10-01: every section matches v5; only random ash/ember placement differs) |
+| `…/upscale_4k/<name>_4K.mov` (8) | Scene 9 at 4K (ByteDance + upscale_restore --clamp 2); b2-3, b8, b3, b5 were made from the PRE-fix files and are redone from the fixed ones (`upscale_4k/v2/`) | **for review** |
+| `…/studio_candle_arc/loc_SOTR_studio_L_b6/b9_s9_v4(.mov / _edge2.mov)` | studio candle arc (LOOK D6): beat 6 = generated 10 s flare take, beat 9 = 30 s take calmed + lifted; b6 edge re-rendered with edge_flow v3 | **for Homie's approval** |
+| `D:/SOTR/SOTR_MEDIA_ARCHIVE/` | superseded (to 2026-09-30), 04_REJECTED, old test folders, upscale tests (74.6 GB, sha256-verified; `MOVED_*.txt`) + `_SAFE_TO_DELETE_duplicates_and_intermediates/` (25 GB of exact duplicates and rebuildable scratch) | archive |
