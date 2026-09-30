@@ -168,6 +168,16 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-01 (POST): the show folder goes 4K overnight; the studio candle arc v5 waits for Homie.
+
+- **The PC hard-crashes under all-core load** (WHEA 18, CPU Core 7; 00:58 and 05:14 today, also in August). Every heavy
+  job now runs with **affinity FFFF3FFF** (off Core 7) and writes to `_tmp_` names (memory: pc-core7-crash).
+- **4K layout (Homie delegated):** folders 1-3 of `01_FINAL_FOR_SHOW` become 4K under the same names; the approved
+  1080 set moves to `01_FINAL_FOR_SHOW/4_HD_1080_same_files/`. Done by `upscale_4k/promote_4k.py`, only if every
+  `upscale_check.py` VERDICT passed. 81.30 credits today (59.35 of them expiring bonus credits).
+- **Studio candle arc v4 withdrawn** (floor showed under the wall: the long takes came back reframed); **v5** fixed by
+  `tools/plate_align.py`, for Homie's approval. Handover: `docs/NEW-SESSION.md`.
+
 ### 2026-09-30, fourth part (POST/VID): Scene 9 at 4K, the studio candle arc, pipeline v3 adopted, overnight 4K render.
 
 - **Scene 9 at 4K:** all 8 show files upscaled (ByteDance + `upscale_restore.py --clamp 2`), in

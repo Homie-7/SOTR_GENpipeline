@@ -78,10 +78,23 @@ def main():
           (lo_u.mean() / lo_s.mean(), np.corrcoef(lo_s, lo_u)[0, 1]))
     a, b = audio(src), audio(up)
     n = min(len(a), len(b))
+    snd_ok = True
     if n and a[:n].std() > 0 and b[:n].std() > 0:
-        print('sound: %.1f s vs %.1f s, corr %.4f' % (len(a) / 8000, len(b) / 8000, np.corrcoef(a[:n], b[:n])[0, 1]))
+        sc = np.corrcoef(a[:n], b[:n])[0, 1]
+        snd_ok = sc >= 0.999 and abs(len(a) - len(b)) <= 800
+        print('sound: %.1f s vs %.1f s, corr %.4f' % (len(a) / 8000, len(b) / 8000, sc))
     else:
+        snd_ok = len(a) == 0 or a.std() == 0  # a silent/soundless source may give a silent 4K; a sounded one may not
         print('sound: MISSING or silent (src %d samples, up %d)' % (len(a), len(b)))
+    # the gate (2026-10-01, from the checks that passed on 09-30/10-01): a FAIL is held back, never promoted
+    why = []
+    if rest_s or rest_u: why.append('frame counts differ')
+    if ps.mean() < 38: why.append('PSNR %.1f < 38' % ps.mean())
+    if shifts and max(max(abs(x), abs(y)) for x, y in shifts) > 0.5: why.append('geometry > 0.5 px')
+    lr, lc = lo_u.mean() / lo_s.mean(), np.corrcoef(lo_s, lo_u)[0, 1]
+    if not (0.85 <= lr <= 1.2) or lc < 0.98: why.append('light/events differ (low band %.3f, corr %.4f)' % (lr, lc))
+    if not snd_ok: why.append('sound')
+    print('VERDICT ' + ('PASS' if not why else 'FAIL: ' + '; '.join(why)))
 
 
 if __name__ == '__main__':
