@@ -1,0 +1,49 @@
+# S9-STU-L-B9 · v1 · 2026-09-30 (VID) · Scene 9 studio candle arc (LOOK D6: 4 low and unsteady -> 6 flaring with his rage
+#   -> 9 steady and at its brightest). Homie: "go ahead with the candle arc".
+# SOURCE: prompts/S9-STU-L-LOOP.txt v2, APPROVED 2026-09-24 as @loc_SOTR_studio_L_loop_s9_v1. Its layout is kept
+#   (CLAUDE.md: variants of approved prompts keep their grammar).
+# THE ONE CHANGE: the LIGHTING line. From a hard flicker around the reference's level to a HIGHER, brighter level reaching further (the umber edge pushed back). The steadiness of beat 9 is made by script (loop_halo amplitude damping), not asked for in words: calming words froze studio v1, and "steady" would contradict MOTION/PACING (three changes).
+#   Also, not a content change: the REFERENCE line names "the attached image" (connector runs; register tags in
+#   prompt bodies are dead text, CLAUDE.md).
+# PREDICTION: mean light on the canvas clearly above the approved loop (+15-30%), the falloff reaching further, flicker similar to the approved loop; lock 0 px; canvas blank; no floor.
+# RESULT v1 probe (2026-09-30): steadier (swing 10% vs 16%) but NOT brighter (+3%): the REFERENCE line pins the light level.
+#   The brightness is lifted by script in the build; the steady flame is kept. 30 s take ran.
+#
+# SETTINGS
+#   Model:      Seedance 2.5 (connector: generate_video, model seedance_2_5)
+#   Mode:       References (mode omni_reference), image_references = the approved plate
+#               loc_SOTR_studio_L_s9_v1.jpg (02_APPROVED_BUILDING_BLOCKS/stills/, the cropped final, blank canvas)
+#   Aspect:     4:3
+#   Resolution: 1080p
+#   Duration:   4 s probe; 30 s once the probe passes
+#   Quality:    High (bitrate_mode high) · batch 1
+#   Sound:      ON (scratch; rides in the show file)
+#
+
+SCENE: The approved studio wall at two in the morning, a blank canvas on raw plaster, lit by one candle guttering in a draught just outside the frame. Its restless light is the only thing alive in the room. One locked, continuous shot that plays on a loop behind live actors.
+
+REFERENCE: The attached image is the seed frame and controls the whole picture: the canvas, the plaster, the colour and the light, exactly as shown.
+
+FIRST FRAME: Identical to the reference.
+
+FORMAT: Single continuous take, real-time, no cuts.
+
+CAMERA: Locked off, square to the wall. No push, no pan, no tilt, no drift, no zoom. The framing at the last second is the framing at the first.
+
+MOTION: The unseen candle flame flickers hard in the draught, and its light visibly dances across the wall. The bright pool on the canvas shivers, stretches and shrinks, sliding a hand's width to one side and back, flaring brighter and sinking dimmer several times a second. The rough plaster and the canvas weave catch the light and lose it, and the soft shadows in the plaster relief jump with every flicker. The canvas itself stays taut and blank; the light is what moves across it.
+
+PACING: Restless from the first second to the last: the flicker never settles into calm, and the flame never goes out.
+
+LIGHTING: Warm light from that single candle, burning high and bright: the pool glows well brighter than the reference and reaches further across the canvas, the umber edges pushed back, flickering around that brighter level.
+
+AUDIO: Quiet night room tone in a large bare room, the faint flutter of a candle flame. No music, no voices.
+
+QUALITY: Stable, clean picture, real-time, no slow motion, no frame interpolation, no ghosting.
+
+LOCKS:
+NO ON-SCREEN TEXT.
+The room is empty: nobody in frame.
+The canvas stays blank: no marks, no image, first frame to last.
+The frame's bottom edge is the foot of the wall, at the base of the canvas's blocks; the frame ends there.
+LOCKED CAMERA.
+Nothing in frame newer than 1819.

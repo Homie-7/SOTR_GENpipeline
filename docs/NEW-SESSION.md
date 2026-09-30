@@ -22,23 +22,25 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (2026-09-30, evening; MODE: POST for the 4K work):
-SCENES 6 AND 9 ARE APPROVED AND IN 01_FINAL_FOR_SHOW/. Don't change either unless Homie asks.
-PIPELINE v3 ADOPTED FORWARD ONLY (CLAUDE.md standing rules): nothing old is redone.
-- RUNNING / DONE: Scene 9 show files at 4K (ByteDance upscale + tools/upscale_restore.py --clamp 2), new files in
-  SOTR_MEDIA/03_TESTS_IN_PROGRESS/upscale_4k/<name>_4K.mov. Jobs + result URLs: upscale_4k/JOBS.txt. Queues:
-  queue2.sh (b3 b6 b9 b7 b4 b2-3 + the S6 loop downloads) then queue3.sh (b5); read their .log files.
-  Downloads ONLY via tools/fetch.py (the network intercepts DNS: memory reference-dns-interception).
+THE TASK, RIGHT NOW (2026-09-30, end of day; MODE: POST):
+SCENES 6 AND 9 ARE APPROVED AND IN 01_FINAL_FOR_SHOW/. Pipeline v3 adopted FORWARD ONLY. Nothing old is redone.
+AN OVERNIGHT CHAIN RAN: SOTR_MEDIA/03_TESTS_IN_PROGRESS/OVERNIGHT_2026-09-30.sh, log OVERNIGHT_2026-09-30.log beside it.
+It: restores the 4K S6 flag/smoke loops (S6_generated/4K/) -> renders Scene 6 at 4K from the approved v5 script into
+03_TESTS_IN_PROGRESS/S6_final_4K/ (render.log there; ~5-6 h) -> waits for court b5 + the studio v4 build -> copies
+everything new to the T9 with sha256. READ THE LOG FIRST: it must end "OVERNIGHT FINISHED" with "mismatches 0".
 STEPS NOW:
-1. Check every finished 4K file like salon b8 (LOG 2026-09-30): probe; PSNR back to the 1080 file; geometry;
-   frame-step ratio; sound identical; full-size crops. STUDIO FILES: inspect the Raft painting for invented
-   brushwork (finishing.md's ByteDance warning). Then show Homie; on approval decide the 4K folder + names with him.
-2. Scene 6 4K: restore S6-FLAG_loop / S6-SMOKE_loop from upscale_4k/raw/*_bd4k.mp4 against S6_generated/*_loop.mov,
-   point render_s6.py at them (--flag-loop / --smoke-loop), render --final --scale 2.0 DETACHED, ONLY when Homie
-   goes to sleep (his words).
-3. CREDITS: Homie's 2,000 for 2026-09-30; spent today 913 (864 morning + 49 upscales). Asked him whether the 2,000
-   counts the morning. Options put to him: the studio candle arc (LOOK D6, ~250-500, my recommendation) or a new
-   scene (2/3/4/8, his pick + direction). Nothing else is decided; don't spend on undirected takes.
+1. Scene 6 4K: probe the three files (3600/2880 x 2160, 3,960 f, sound), contact sheet every 10 s, compare frames to
+   the approved 1080 v5 (01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S6_*_wars.mov). A crash means a rerun (no resume yet).
+2. Scene 9 4K: all 8 in upscale_4k/<name>_4K.mov. Checked so far (LOG): b8, b6, b4 (+ sound on 5). Check b2-3, b3, b5,
+   b7, b9 the same way (PSNR back to 1080, geometry, motion, sound, crops).
+3. Studio candle arc v4 (LOOK D6): studio_candle_arc/loc_SOTR_studio_L_b6_s9_v4.mov (+_edge2) and b9. Check them
+   (build.log), then SEND TO HOMIE for approval: beat 6 = generated 10 s flare take; beat 9 = the 30 s take calmed
+   (loop_halo --boost 0.4) + lifted (candle_beat --lift 1.08,0.25). On approval: they replace S9_b6/b9 in the show
+   folder (v3 to superseded/), REGISTER, README; 4K them like the rest.
+4. Then with Homie: the 4K folder layout/names; his studio-painting texture call (finishing.md warning); next scene.
+CREDITS 2026-09-30: 1,849 spent (864 S6 generations, 49 upscales, 936 candle arc: 360 of it wasted on a 30 s B6
+take that lost its surges, see LOG). Homie: "just because you have credits to use doesn't mean you waste them."
+Balance ~3,390.
 Credits: ask above ~100 per run; one generation at a time; check `transactions` after each.
 
 WHERE SCENE 9 LIVES (SOTR_MEDIA/01_FINAL_FOR_SHOW/, 00_READ_ME_FIRST.txt explains it):

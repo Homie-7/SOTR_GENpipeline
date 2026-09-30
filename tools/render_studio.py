@@ -170,6 +170,9 @@ def main():
     ap.add_argument('--grow', type=float, default=20.0, help='seconds for the painting to grow')
     ap.add_argument('--tail-hold', type=float, default=0)
     ap.add_argument('--overwrite', action='store_true')
+    ap.add_argument('--primer-from', help='measure the primer (full light) on the first frame of this clip, not the '
+                    'input: the candle arc (2026-09-30) shares the approved loop scale, so a brighter beat 9 stays '
+                    'brighter and the beat 6 surges are read against the approved level')
     ap.add_argument('--strokes', type=int, default=0, help='v3: paint with this many brushstrokes (about 4000)')
     ap.add_argument('--fill-lag', type=float, default=0.07, help='with --strokes: how far behind the frontier the '
                     'pinhole fill runs (paint-order units)')
@@ -205,7 +208,7 @@ def main():
         strokes = Strokes(raft, order, thr_of, n_total, np.random.default_rng(1818), a.strokes, a.stage_from)
         print(f'{len(strokes.strokes)} strokes to paint in this beat')
 
-    first = next(frames(a.inputs[0], W, H))
+    first = next(frames(a.primer_from or a.inputs[0], W, H))
     inside = cmask[..., 0] > 0.99
     primer = np.percentile(first[inside], 99, axis=0).astype(np.float32)
 

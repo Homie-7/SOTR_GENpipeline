@@ -161,6 +161,16 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-09-30, fourth part (POST/VID): Scene 9 at 4K, the studio candle arc, pipeline v3 adopted, overnight 4K render.
+
+- **Scene 9 at 4K:** all 8 show files upscaled (ByteDance + `upscale_restore.py --clamp 2`), in
+  `03_TESTS_IN_PROGRESS/upscale_4k/`; the approved 1080 files untouched. Checked ones are faithful (flicker, motion,
+  sound identical). **Found: this network intercepts DNS**; downloads only via `tools/fetch.py` (memory).
+- **Studio candle arc (LOOK D6) built as v4** (not yet approved): beat 6 flares (a generated 10 s take), beat 9 steady
+  and brightest (a 30 s take calmed + lifted by script). `render_studio.py --primer-from` keeps one light scale.
+- **Pipeline v3 adopted forward only** (standing rules above). **Overnight:** Scene 6 at 4K + T9 backup
+  (`OVERNIGHT_2026-09-30.sh`). Credits today 1,849.
+
 ### 2026-09-30, third part (VID): SCENE 6 APPROVED (v5) and filed. 4K upscale route chosen.
 
 - **Scene 6 v5 approved** (Homie: "It's looking fantastic… no complaints"). Show files
