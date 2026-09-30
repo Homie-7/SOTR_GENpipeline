@@ -28,7 +28,9 @@ SCENES 6 AND 9 ARE APPROVED AND IN 01_FINAL_FOR_SHOW/. Don't change either unles
 - DONE: 4K route chosen and tested (LOG 2026-09-30 "4K upscale route"): ByteDance video upscale ("aigc", 4k, fps 24)
   then python tools/upscale_restore.py SOURCE UPSCALE OUT.mov --sigma 12. Downloads ONLY via tools/fetch.py.
   Tests in 03_TESTS_IN_PROGRESS/upscale_tests/. court_b7 ByteDance 4K (job 7205ce97-505b-4375-b2ac-afefc9a6c13f)
-  was downloading at wrap (the CDN kept truncating it; fetch.py retries).
+  is downloaded (upscale_tests/court_b7_bytedance4k.mp4, whole on the 3rd try) but NOT YET CHECKED. It came back
+  3596x2160, not 3600: give upscale_restore.py an output size (resize the upscale to exactly 2x = 3600x2160)
+  before using it for the court.
 STEPS NOW (ask Homie which first; his standing wish: "hq outcomes, these will be projected on large canvases"):
 1. SCENE 9 at 4K: upscale each approved show file (upload a CRF 8 10-bit HEVC copy, like court_b7_upload.mp4),
    restore against the 1080 ProRes, check (tools: the scratchpad checks = PSNR back to source, geometry, flicker
