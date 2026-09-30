@@ -168,15 +168,17 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-10-01 (POST): the show folder goes 4K overnight; the studio candle arc v5 waits for Homie.
+### 2026-10-01 (POST): SCENES 6 AND 9 DONE, THE SHOW FOLDER IS 4K (07:57). T9 sync pending (drive away).
 
 - **The PC hard-crashes under all-core load** (WHEA 18, CPU Core 7; 00:58 and 05:14 today, also in August). Every heavy
   job now runs with **affinity FFFF3FFF** (off Core 7) and writes to `_tmp_` names (memory: pc-core7-crash).
-- **4K layout (Homie delegated):** folders 1-3 of `01_FINAL_FOR_SHOW` become 4K under the same names; the approved
-  1080 set moves to `01_FINAL_FOR_SHOW/4_HD_1080_same_files/`. Done by `upscale_4k/promote_4k.py`, only if every
-  `upscale_check.py` VERDICT passed. 81.30 credits today (59.35 of them expiring bonus credits).
-- **Studio candle arc v4 withdrawn** (floor showed under the wall: the long takes came back reframed); **v5** fixed by
-  `tools/plate_align.py`, for Homie's approval. Handover: `docs/NEW-SESSION.md`.
+- **4K layout (Homie delegated), DONE:** folders 1 (play) and 2 (backup loops) of `01_FINAL_FOR_SHOW` are 4K under the
+  same names; their 1080 files are in `01_FINAL_FOR_SHOW/4_HD_1080_same_files/`. By `upscale_4k/promote_4k.py`, gated on
+  every `upscale_check.py` VERDICT. 81.30 credits today (59.35 of them expiring bonus credits).
+- **Studio candle arc:** v4 withdrawn (floor under the wall: the long takes came back reframed), v5 fixed by
+  `tools/plate_align.py`. Homie: b9 v5 approved (in the show), b6 stays v3 (v5 "feels more like the exposure going up and
+  down"). `3_CLEAN_no_edge` stays 1080 ("the only files that matter are the ones that will be in the show").
+  Handover: `docs/NEW-SESSION.md` (first job when the T9 is back: `promote_4k.py --t9-only`).
 
 ### 2026-09-30, fourth part (POST/VID): Scene 9 at 4K, the studio candle arc, pipeline v3 adopted, overnight 4K render.
 

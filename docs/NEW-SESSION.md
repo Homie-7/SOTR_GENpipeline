@@ -22,27 +22,20 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (2026-10-01; MODE: POST). SCENES 6 AND 9 ARE APPROVED; this is their 4K finishing.
-FIRST: did the PC crash again? `Get-WinEvent` System Id 41 / WHEA 18 (memory: pc-core7-crash; every heavy job runs with
-affinity FFFF3FFF, off Core 7). Then READ, in SOTR_MEDIA/03_TESTS_IN_PROGRESS/upscale_4k/: queue5.log (4K of the fixed
-b2-3/b8/b3/b5 + the b9 check; must end QUEUE5 FINISHED), lane0.log + lane1.log (4K of the 10 backup loops, 8 Scene 9
-clean masters, the candle arc v5), results_v3.txt (one VERDICT per file), finish_4k.log + promote_4k.log.
-IF promote_4k.log says "PROMOTE 4K FINISHED (show folder)": 01_FINAL_FOR_SHOW folders 1 (play) and 2 (backup loops) ARE
-4K (same names); their approved 1080 files are in 01_FINAL_FOR_SHOW/4_HD_1080_same_files/; 3_CLEAN_no_edge stays 1080 (Homie:
-only the show files matter; the 8 clean 4K upscales were paid but not used). Studio b9 = candle arc v5 (approved), b6 = v3
-(Homie found v5's b6 reads as exposure; "good enough"), b9 v3 in 03_TESTS_IN_PROGRESS/superseded/studio_b9_v3/. Look at a
-few 4K show files, then REGISTER (mark done), LOG, commit, push.
-IF "GATE FAILED": nothing moved; the failing file is named (upscale_4k/BACKUP|CANDLE_v5/<name>_4K.check.txt). Re-restore
-it (lane_v3.sh skips finished files), `python promote_4k.py --dry`, then without --dry.
-T9 IS AWAY (Homie took it, 2026-10-01): when it is back, `python promote_4k.py --t9-only` (in upscale_4k/), copy the rest
-of today's new media (studio_candle_arc v5, upscale_4k), then `git pull` in G:\SOTR\HF\SOTR_GENpipeline.
+THE TASK, RIGHT NOW (after 2026-10-01; MODE: POST). SCENES 6 AND 9 ARE DONE AND THE SHOW FOLDER IS 4K.
+01_FINAL_FOR_SHOW: 1_PLAY_THESE_IN_ORDER (11) + 2_BACKUP_LOOPS_for_operator (10) = 4K, same names; 3_CLEAN_no_edge = 1080;
+4_HD_1080_same_files = the same play/backup files at 1080 (fallback if playback can't carry 4K). Studio b9 = candle arc v5
+(approved), b6 = v3. REGISTER's rows dated 2026-10-01 map everything; MANIFEST_4K_2026-10-01.txt has every sha256.
+FIRST, IF HOMIE HAS THE T9 PLUGGED IN (G:): in SOTR_MEDIA/03_TESTS_IN_PROGRESS/upscale_4k/ run `python promote_4k.py --t9-only`
+(renames the T9's 1080 copies into 4_HD_1080_same_files, copies the 4K in, sha256-checked; must log mismatches 0), copy the
+other new media (03_TESTS_IN_PROGRESS/studio_candle_arc/, superseded/studio_b9_v3/, upscale_4k/) with sha256, then
+`git pull` in G:\SOTR\HF\SOTR_GENpipeline. Then REGISTER: mark the T9 done.
+The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF.
 OPTIONAL, NOT DONE (Homie: no extra work): a v5 version of the b9 studio backup HOLD loop (the v3 one is ~24% dimmer).
-Homie 2026-10-01: Scene 6 (1080) reviewed, "happy with them"; the Raft painting at 4K "fine"; the 4K layout delegated
-("these are all just 4K in the play these in order folder"). After Scenes 6 and 9 the job is likely done unless the
-client comes back. Open with the team (unchanged): set dimensions, codec (4K ProRes x3 at once is heavy; the 1080 set is
-the fallback), pre-warp, rehearsal timings.
-CREDITS 2026-10-01: 81.30 (21.95 overnight 4K of the fixed files + 59.35 of Homie's expiring bonus credits on the rest
-of the show folder's 4K). Nothing generated. Credits: ask above ~100 per run; one at a time; `transactions` after each.
+Otherwise the job is done unless the client comes back. Open with the team: set dimensions, codec (three 4K ProRes files at
+once in Scene 6 is heavy; the 1080 set is the fallback), pre-warp, rehearsal timings.
+CREDITS 2026-10-01: 81.30 (21.95 overnight 4K of the fixed files + 59.35 bonus credits: backup loops, clean masters (paid,
+unused), candle arc). Credits: ask above ~100 per run; one at a time; `transactions` after each.
 
 WHERE SCENE 9 LIVES (SOTR_MEDIA/01_FINAL_FOR_SHOW/, 00_READ_ME_FIRST.txt explains it):
 - 1_PLAY_THESE_IN_ORDER/  the 8 show files S9_b<beat>_<WALL>_<world>.mov, sorted = script order
