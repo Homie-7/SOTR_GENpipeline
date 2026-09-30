@@ -148,6 +148,14 @@ video vocabularies poison each other, so one session never spans both.
 
 ## Current stage
 
+### 2026-09-30, second part (VID): Scene 6 show files v4 rendered, Homie "almost perfect"; v5 rendering.
+
+- Sequels checked (PASS), loops built, `S6_final/` v4 = three full-HD ProRes files with sound. Homie's five notes
+  and the answers are the last block of `LOOK.md` Scene 6; v5 (bigger subject-centred prints, flakes behind the
+  pictures, the tear riding the cloth in two fluttering pieces) renders to `03_TESTS_IN_PROGRESS/S6_final_v5/`.
+  0 credits this part. Next steps: `docs/NEW-SESSION.md`.
+- **Long renders run DETACHED** (`nohup … &`): a background shell with a timeout can kill a 60-minute render.
+
 ### 2026-09-30 (VID): Scene 6 animatic APPROVED; generated flag + smoke; the final render is set up.
 
 - **Animatic v4 approved by Homie**, checked line by line against the script (no deviations); `LOOK.md` Scene 6 LOCKED.

@@ -749,3 +749,25 @@ five battles can take turns on three walls. Homie approved moving Eylau to 0:50.
 4. **More of Africa.** The map frame is 48° of latitude high (was 32°), centred at longitude −4. The whole
    northern half of the continent reads as Africa, and it still pans south with the route. 1816 is smaller
    (180) and whole, in the open Atlantic, 2:30–2:34.
+
+**Homie's notes on the v4 show files (2026-09-30): "almost perfect". What v5 does** (Claude's calls where he asked
+for a perspective; the look above stays locked, these are fixes inside it):
+1. **Bigger, clearer pictures** ("still more negative space"). Every print is ~15-25% bigger and, more important,
+   each one is now fully shown out to ~75% of its size (it was ~50%: the fade ate the outer half). The bottom of
+   each wall stays dark behind the dancers because the fade still dies before the bottom edge.
+2. **No paper fragments inside a picture that isn't burning.** The torn-off flakes, and the ash from the colour walls
+   and the flags, pass BEHIND the pictures, so they only show once they've left a picture's edge. A picture's own
+   burn ash stays in front (there the paper is really gone).
+3. **Nothing important fades away.** Each print's fade is centred on its subject (`FOCUS` in `render_s6.py`), each
+   side fading over its own distance to the plate edge: Goya pl. 15's tied man is whole, head included; pl. 18's
+   standing figures, Waterloo's sabres and faces, Eylau's Napoleon and the farm at La Belle Alliance sit inside the
+   fully shown area. Crops re-framed for Austerlitz, Friedland, Waterloo (Mont-Saint-Jean) and Jazet's field.
+4. **The tear rides the cloth, in two fluttering pieces.** The rip is found on the cloth every frame (42% across the
+   white band), so it bends and travels with the folds instead of standing still on screen; each torn edge flaps and
+   curls on its own, out of phase with the other, hardest at the rip.
+5. **Why the flag goes half white (Homie asked).** It's the script's "France is divided… Monarchistes !
+   Napoléonistes !". In 1815 the returning king, Louis XVIII, abolished the tricolour and brought back the Bourbons'
+   plain WHITE flag (it flew until 1830). So the white is the Monarchistes' France, the tricolour the
+   Napoléonistes'. Tearing one flag and bleaching one half shows one country splitting in two; then the white flag
+   stands alone on RIGHT ("Monarchistes !") and the tricolour on LEFT ("Napoléonistes !"). It's also the king of
+   Scene 9's salon portrait (Gérard's Louis XVIII), so the audience meets the same side twice.

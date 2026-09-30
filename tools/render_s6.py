@@ -69,11 +69,11 @@ RED = np.array([0.64, 0.10, 0.12], F32)
 AMBER = np.array([0.98, 0.66, 0.28], F32)
 
 CROPS = {
-    'battle_austerlitz_DuplessiBertaux': (0.07, 0.10, 0.93, 0.54),
+    'battle_austerlitz_DuplessiBertaux': (0.10, 0.10, 0.90, 0.60),
     'battle_wagram_estampe': (0.19, 0.09, 0.82, 0.60),
     'battle_iena_DuplessiBertaux': (0.04, 0.04, 0.97, 0.72),
     'battle_eylau_estampe': (0.19, 0.16, 0.80, 0.67),
-    'battle_friedland_1808': (0.04, 0.11, 0.96, 0.62),
+    'battle_friedland_1808': (0.04, 0.16, 0.96, 0.72),
     'goya_p50_famine_MadreInfeliz': (0.245, 0.22, 0.73, 0.71),
     'goya_p15_execution_YnoHaiRemedio': (0.27, 0.21, 0.725, 0.76),
     'goya_p18_death_EnterraryCallar': (0.21, 0.205, 0.76, 0.705),
@@ -81,8 +81,20 @@ CROPS = {
     'goya_p41_fleeing_EscapanLlamas': (0.205, 0.205, 0.755, 0.715),
     'goya_p44_fleeing_YoLoVi': (0.205, 0.205, 0.745, 0.67),
     'goya_p45_fleeing_YestoTambien': (0.235, 0.215, 0.77, 0.725),
-    'battle_waterloo_MontStJean_1815': (0.10, 0.16, 0.90, 0.76),
-    'battle_waterloo_field_Jazet_1816': (0.12, 0.13, 0.86, 0.72),
+    'battle_waterloo_MontStJean_1815': (0.08, 0.08, 0.92, 0.74),
+    'battle_waterloo_field_Jazet_1816': (0.14, 0.20, 0.84, 0.72),
+}
+# v5 (Homie, 2026-09-30: "we don't see an aspect of an image that is important, but it's kind of faded away"): the
+# centre of each print's fade, as a fraction of the crop, sits on its subject; each side fades over its own distance
+# to the crop edge, so a subject near the plate edge (Goya's tied man's head) stays whole.
+FOCUS = {
+    'battle_austerlitz_DuplessiBertaux': (0.50, 0.55),
+    'battle_eylau_estampe': (0.50, 0.40),
+    'battle_friedland_1808': (0.42, 0.58),
+    'goya_p15_execution_YnoHaiRemedio': (0.42, 0.36),
+    'goya_p18_death_EnterraryCallar': (0.56, 0.42),
+    'battle_waterloo_MontStJean_1815': (0.50, 0.40),
+    'battle_waterloo_field_Jazet_1816': (0.45, 0.52),
 }
 # Bellin's Carte de l'Afrique (1740s): lon/lat -> image fraction, least-squares fit on 7 capes (2026-09-28)
 BELLIN_FX = (8.24193980e-03, -8.60414514e-05, 3.66176906e-01)
@@ -434,7 +446,7 @@ class Wash:
         self.drift, self.grow, self.flake_rate, self.mode, self.name, self.exit = drift, grow, flake_rate, mode, name, exit
         x0, x1 = WALLS[wall]
         smax = 1 + max(0.0, grow) * (t_out + out_dur - t_in)
-        max_w = (x1 - x0 - 2 * MARGIN - 140) / smax                     # full-res px: never nearer a seam than the guard
+        max_w = (x1 - x0 - 2 * MARGIN - 40) / smax                     # full-res px: never nearer a seam than the guard
         h_full = min(h_full, max_w * rgb.shape[0] / rgb.shape[1])
         hh = max(8, ctx.px(h_full))
         ww = max(8, int(round(rgb.shape[1] * hh / rgb.shape[0])))
@@ -443,8 +455,11 @@ class Wash:
         self.cx, self.cy = ctx.wall_xy(wall, cx, cy)
         rng = np.random.default_rng(seed + 3)
         yy, xx = np.mgrid[0:hh, 0:ww].astype(F32)
-        ex, ey = np.abs(xx - ww / 2) / (ww / 2), np.abs(yy - hh / 2) / (hh / 2)
-        r = (ex ** 2.2 + ey ** 2.2) ** (1 / 2.2)
+        fx, fy = FOCUS.get(name.split(':')[0], (0.5, 0.5))
+        fx, fy = fx * ww, fy * hh
+        ex = np.where(xx < fx, (fx - xx) / fx, (xx - fx) / (ww - fx))
+        ey = np.where(yy < fy, (fy - yy) / fy, (yy - fy) / (hh - fy))
+        r = (ex ** 3.2 + ey ** 3.2) ** (1 / 3.2)                        # v5: a flatter core (was 2.2), organic edge kept
         self.base = 1 - r
         sc = max(3, hh // 4)
         self.big = fractal(hh + 80, ww + 160, rng, scales=(sc, max(3, sc // 3), max(2, sc // 8)), gains=(1, 0.5, 0.25))
@@ -464,9 +479,9 @@ class Wash:
         life = max(1e-3, self.t_out - self.t_in)
         br = slide(self.big, self.w, self.h, self.w / 2 + 80 + 9 * self.ctx.s * np.sin(t * 0.21 + self.cx),
                    self.h / 2 + 40 + 5 * self.ctx.s * np.cos(t * 0.17))
-        m = self.base + 0.30 * br + 0.08 * self.fine
-        thr = 0.10 + 0.12 * min(1.0, tt / life)                     # the edges erode, one way
-        shape = ss(thr - 0.06, thr + 0.34, m)
+        m = self.base + 0.24 * br + 0.07 * self.fine
+        thr = 0.08 + 0.10 * min(1.0, tt / life)                     # the edges erode, one way
+        shape = ss(thr - 0.05, thr + 0.20, m)                        # v5: fully shown to ~75% out (was ~50%)
         a_in = ssf(0, 1, tt / self.in_dur) * 1.25
         rev = np.clip((a_in - self.n_in) / 0.07, 0, 1)
         front = np.clip(1 - np.abs(a_in - self.n_in - 0.03) / 0.05, 0, 1) * (a_in < 1.2)
@@ -720,6 +735,7 @@ class GenFlag:
         self.tearn = fractal(bh, 8, rng, scales=(ctx.px(240), ctx.px(80), max(2, ctx.px(26))), gains=(1, 0.4, 0.12))[:, 0]
         self.fray = fractal(bh, 8, rng, scales=(max(2, ctx.px(12)), 2), gains=(1, 0.5))[:, 0]
         self.gburn = None
+        self.tl_prev = None
 
     def frame(self, t):
         f = self.rd.get(int(round((t + self.offset) * FPS)))
@@ -738,6 +754,22 @@ class GenFlag:
         if has.sum() >= 2:                                                 # rows where the white wasn't found (the
             bd = np.interp(rows, rows[has], bd[has]).astype(F32)           # cloth's thin top and bottom edges) take
         bd = cv2.GaussianBlur(bd.reshape(-1, 1), (1, 0), sigmaX=0.1, sigmaY=max(1.0, self.bh * 0.02)).ravel()  # their neighbours'
+        # v5: where the white band ENDS in each row (the white/red seam), found the same way, so the rip rides the cloth
+        wd = (frac > 0.5).sum(1).astype(F32)
+        okw = wd > 0.05 * self.bw
+        if okw.sum() >= 2:
+            medw = np.median(wd[okw])
+            okw = okw & (np.abs(wd - medw) < 0.25 * medw)
+        if okw.sum() >= 2:
+            wd = np.interp(rows, rows[okw], wd[okw]).astype(F32)
+        else:
+            wd = np.full(self.bh, 0.3 * self.bw, F32)
+        wd = cv2.GaussianBlur(wd.reshape(-1, 1), (1, 0), sigmaX=0.1, sigmaY=max(1.0, self.bh * 0.03)).ravel()
+        tl = bd + 0.42 * wd                                                # the rip: 42% across the white, ON the cloth
+        if self.tl_prev is not None and self.tl_prev[0] == int(round((t + self.offset) * FPS)) - 1:
+            tl = 0.6 * tl + 0.4 * self.tl_prev[1]                          # a touch of temporal smoothing, no lag to see
+        self.tl_prev = (int(round((t + self.offset) * FPS)), tl)
+        self.tl = tl
         q = self.ctx.q
         bm = 1 - ss(bd[:, None] - q, bd[:, None] + 2 * q, self.X)          # left of the white = the blue band
         if self.kind == 'tri':
@@ -745,6 +777,7 @@ class GenFlag:
             f = f * (1 - bm[..., None]) + bluec * bm[..., None]
         # the cloth as white by its own light: each band normalised by its typical brightness
         base = np.where(white > 0, 0.50, np.where(red > 0, 0.12, 0.13)).astype(F32)
+        base = cv2.GaussianBlur(base, (0, 0), max(1.0, 2.5 * self.ctx.q))  # v5: no bright line along the old stripe seams
         wref = np.array([0.66, 0.51, 0.38], F32)
         whitec = wref * np.clip(lum / base, 0, 1.4)[..., None]
         return f, a, whitec
@@ -755,7 +788,7 @@ class GenFlag:
         E = slide(self.E, bw, bh, bw / 2 + self.ctx.px(900) - 18 * self.ctx.s * t, bh / 2 + self.ctx.px(600) - 9 * self.ctx.s * t)
         a = a * ss(0, 0.22, u + 0.07 * E) * ss(0, 0.02, v) * ss(0, 0.02, 1 - v)   # hoist into smoke; no hard crop
         a = a * np.clip((reveal * 1.25 - self.n_in) / 0.12, 0, 1)
-        tl = (0.45 + 0.02 * self.tearn[:, None]) * bw                              # the rip line, down the white
+        tl = (self.tl + 0.02 * bw * self.tearn)[:, None]                          # the rip, riding the cloth (v5)
         if self.kind == 'white':
             f = whitec
         if bleach > 0:                                                             # the Restoration: right half to white
@@ -770,14 +803,26 @@ class GenFlag:
             out_f = np.zeros_like(f)
             out_a = np.zeros_like(a)
             for sg in (-1, 1):
-                xs = (self.X - sg * op / 2).astype(F32)
-                ys = self.Y.astype(F32)
+                # v5 (Homie: "two pieces fluttering rather than a random tear"): each torn edge is now a free edge; it
+                # flaps up and down and curls in and out, hardest at the rip and dying away from it, out of phase
+                # with the other half; waves run away from the edge, as they run to a flag's fly
+                dd = np.clip((self.X - tl) * sg, 0, None) / bw
+                wf = np.exp(-dd / 0.16) * np.clip(tear / 0.3, 0, 1)
+                ph = 0.0 if sg < 0 else 2.1
+                dy = 0.030 * bh * wf * np.sin(2 * np.pi * 1.35 * t - 22 * dd + ph + 3 * v)
+                dx = 0.010 * bw * wf * np.sin(2 * np.pi * 1.9 * t + 11 * v + ph)
+                xs = (self.X - sg * op / 2 - sg * dx).astype(F32)
+                ys = (self.Y - dy).astype(F32)
                 fs = cv2.remap(np.ascontiguousarray(f, F32), xs, ys, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
                 as_ = cv2.remap(np.ascontiguousarray(a, F32), xs, ys, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
-                d0 = (xs - tl) * sg
-                d = d0 + 2.5 * q * self.fray[:, None]
+                rs = np.clip(ys, 0, bh - 1)
+                tl_s = np.interp(rs.ravel(), np.arange(bh, dtype=F32), tl[:, 0]).reshape(rs.shape)
+                fr_s = np.interp(rs.ravel(), np.arange(bh, dtype=F32), self.fray).reshape(rs.shape)
+                d0 = (xs - tl_s) * sg
+                d = d0 + 2.5 * q * fr_s
                 m = ss(0, 2.0 * q, d) * tr + ss(-0.6 * q, 0.6 * q, d0) * (1 - tr)
-                fs = fs * (1 + 0.14 * tr * np.exp(-np.clip(d, 0, None) / (3 * q)))[..., None]
+                fold = 1 + 0.12 * wf * np.cos(2 * np.pi * 1.35 * t - 22 * dd + ph + 3 * v)   # the flap catches the light
+                fs = fs * ((1 + 0.14 * tr * np.exp(-np.clip(d, 0, None) / (3 * q))) * fold)[..., None]
                 out_f += fs * (as_ * m)[..., None]
                 out_a += as_ * m
             f = out_f / np.maximum(out_a, 1e-4)[..., None]
@@ -1157,29 +1202,30 @@ def build(ctx):
 
     W = []
     # M2: the five battles TAKE TURNS, one picture and one word each, high on the wall, the word in the dark below
-    W.append(wash('battle_austerlitz_DuplessiBertaux', 'L', 0.50, 0.36, 540, 41.0, 46.0, 1))
-    W.append(wash('battle_wagram_estampe', 'R', 0.50, 0.36, 560, 43.5, 48.5, 2))
-    W.append(wash('battle_iena_DuplessiBertaux', 'C', 0.50, 0.37, 620, 46.0, 53.0, 3))
-    W.append(wash('battle_eylau_estampe', 'L', 0.50, 0.36, 560, 50.0, 55.5, 4))
-    W.append(wash('battle_friedland_1808', 'R', 0.50, 0.36, 560, 52.5, 57.5, 5))
+    W.append(wash('battle_austerlitz_DuplessiBertaux', 'L', 0.50, 0.37, 700, 41.0, 46.0, 1))
+    W.append(wash('battle_wagram_estampe', 'R', 0.50, 0.37, 700, 43.5, 48.5, 2))
+    W.append(wash('battle_iena_DuplessiBertaux', 'C', 0.50, 0.37, 740, 46.0, 53.0, 3))
+    W.append(wash('battle_eylau_estampe', 'L', 0.50, 0.37, 700, 50.0, 55.5, 4))
+    W.append(wash('battle_friedland_1808', 'R', 0.50, 0.37, 700, 52.5, 57.5, 5))
     # M3: Goya, grey, big (no words)
-    W.append(wash('goya_p50_famine_MadreInfeliz', 'L', 0.50, 0.42, 800, 60.5, 72.0, 6, grey=True, grow=0.008, out_dur=4.0))
-    W.append(wash('goya_p15_execution_YnoHaiRemedio', 'R', 0.50, 0.42, 800, 64.5, 73.5, 7, grey=True, grow=0.008, out_dur=4.0))
-    W.append(wash('goya_p18_death_EnterraryCallar', 'C', 0.50, 0.42, 820, 68.5, 75.0, 8, grey=True, grow=0.008, out_dur=4.0))
+    W.append(wash('goya_p50_famine_MadreInfeliz', 'L', 0.50, 0.41, 920, 60.5, 72.0, 6, grey=True, grow=0.008, out_dur=4.0))
+    W.append(wash('goya_p15_execution_YnoHaiRemedio', 'R', 0.50, 0.41, 920, 64.5, 73.5, 7, grey=True, grow=0.008, out_dur=4.0))
+    W.append(wash('goya_p18_death_EnterraryCallar', 'C', 0.50, 0.41, 940, 68.5, 75.0, 8, grey=True, grow=0.008, out_dur=4.0))
     # M5: Waterloo on CENTRE (its word below it), the field after it on LEFT, the ravages on RIGHT
-    W.append(wash('battle_waterloo_MontStJean_1815', 'C', 0.50, 0.36, 640, 104.0, 112.0, 9, out_dur=4.0))
-    W.append(wash('battle_waterloo_field_Jazet_1816', 'L', 0.50, 0.40, 760, 107.5, 116.5, 10, grey=True, grow=0.008, out_dur=4.0))
-    W.append(wash('goya_p30_ravages_Estragos', 'R', 0.50, 0.40, 780, 110.0, 117.5, 11, grey=True, grow=0.008, out_dur=4.0))
+    W.append(wash('battle_waterloo_MontStJean_1815', 'C', 0.50, 0.37, 760, 104.0, 112.0, 9, out_dur=4.0))
+    W.append(wash('battle_waterloo_field_Jazet_1816', 'L', 0.50, 0.40, 880, 107.5, 116.5, 10, grey=True, grow=0.008, out_dur=4.0))
+    W.append(wash('goya_p30_ravages_Estragos', 'R', 0.50, 0.40, 900, 110.0, 117.5, 11, grey=True, grow=0.008, out_dur=4.0))
     # M7: they escape through the flames (CENTRE, once the flags have burnt)...
-    W.append(wash('goya_p41_fleeing_EscapanLlamas', 'C', 0.50, 0.42, 820, 136.5, 143.5, 12, grey=True, grow=0.008))
+    W.append(wash('goya_p41_fleeing_EscapanLlamas', 'C', 0.50, 0.41, 940, 136.5, 143.5, 12, grey=True, grow=0.008))
     # ...then the fleeing families ghost into the dawn haze on LEFT and RIGHT, receding toward the ship
-    W.append(Wash(ctx, gy('goya_p44_fleeing_YoLoVi'), 'L', 0.46, 0.50, 760, 138.0, 157.0, seed=13, drift=(9, 1.0), grow=-0.008,
+    W.append(Wash(ctx, gy('goya_p44_fleeing_YoLoVi'), 'L', 0.46, 0.50, 860, 138.0, 157.0, seed=13, drift=(9, 1.0), grow=-0.008,
                   in_dur=4.0, out_dur=5.0, mode='multiply', name='goya_p44', exit='fade'))
-    W.append(Wash(ctx, gy('goya_p45_fleeing_YestoTambien'), 'R', 0.54, 0.50, 760, 140.0, 157.0, seed=14, drift=(-9, 1.0),
+    W.append(Wash(ctx, gy('goya_p45_fleeing_YestoTambien'), 'R', 0.54, 0.50, 860, 140.0, 157.0, seed=14, drift=(-9, 1.0),
                   grow=-0.008, in_dur=4.0, out_dur=5.0, mode='multiply', name='goya_p45', exit='fade'))
     S['washes'] = W
     S['flakes'] = Flakes(ctx)
     S['ash'] = Ash(ctx)
+    S['ash_bg'] = Ash(ctx, seed=78)                  # v5: ash off the colour walls and flags passes BEHIND the pictures
     S['words'] = [
         Word(ctx, 'AUSTERLITZ', 'L', 0.50, 0.80, 46, 41.4, 46.0),
         Word(ctx, 'WAGRAM', 'R', 0.50, 0.80, 46, 43.9, 48.5),
@@ -1250,26 +1296,30 @@ def render_frame(ctx, S, t, dt):
     ash = S['ash']
     # M1-M2: the tricolour cloth fills CENTRE through the glory lines, then goes back into the smoke for the battles
     if 7 <= t <= 42.6:
-        S['flagC'].draw(c, t, ash, dt, reveal=ssf(7, 16, t) * (1 - ssf(38.5, 42.5, t)))
+        S['flagC'].draw(c, t, S['ash_bg'], dt, reveal=ssf(7, 16, t) * (1 - ssf(38.5, 42.5, t)))
     # M4-M5: the three colour walls, burning from the stage centre outward into Waterloo
     if 79 <= t <= 111:
         dim = 1 - 0.25 * ssf(96, 101, t)
         for cw, ti in zip(S['cwalls'], (81.0, 83.0, 85.0)):
-            draw_colour_wall(ctx, c, cw, t, ti, 101.5, ash, dt, S['burn_M5'], dim)
+            draw_colour_wall(ctx, c, cw, t, ti, 101.5, S['ash_bg'], dt, S['burn_M5'], dim)
     # M6: France divided: the CENTRE tricolour tears, its right half bleaches white; LEFT tricolour, RIGHT white; all burn
     # the rip runs from the middle up and down (121.5-124), then the halves keep opening (to 127);
     # all three flags burn as ONE front from the middle of CENTRE outward (130.5-137.5)
     if 119.5 <= t <= 137.6:
         rip = 0.6 * lin(121.5, 124.0, t) + 0.3 * lin(124.0, 127.0, t)
         fb = lin(130.5, 137.5, t)
-        S['flagC'].draw(c, t, ash, dt, reveal=ssf(119.5, 122.5, t), tear=rip, bleach=ssf(124, 127.5, t), burn=fb)
-        S['flagR'].draw(c, t + 3, ash, dt, strength=0.85, reveal=ssf(124, 127, t), burn=fb)
-        S['flagL'].draw(c, t + 7, ash, dt, strength=0.85, reveal=ssf(126, 129, t), burn=fb)
-    # the pictures, and the fragments that break off them
+        S['flagC'].draw(c, t, S['ash_bg'], dt, reveal=ssf(119.5, 122.5, t), tear=rip, bleach=ssf(124, 127.5, t), burn=fb)
+        S['flagR'].draw(c, t + 3, S['ash_bg'], dt, strength=0.85, reveal=ssf(124, 127, t), burn=fb)
+        S['flagL'].draw(c, t + 7, S['ash_bg'], dt, strength=0.85, reveal=ssf(126, 129, t), burn=fb)
+    # the pictures, and the fragments that break off them. v5 (Homie: "if it's not burning away, why am I seeing
+    # fragments of paper within the image?"): the torn-off flakes and the ash of other burns pass BEHIND the pictures,
+    # so they only show where a picture has faded out (at its edge, drifting away); a picture's own burn ash stays
+    # in front, where the paper really is gone
+    S['flakes'].draw(c, dt)
+    S['ash_bg'].draw(c, dt)
     for wsh in S['washes']:
         if wsh.active(t):
             wsh.draw(t, c, S['flakes'], ash, dt)
-    S['flakes'].draw(c, dt)
     ash.draw(c, dt)
     # M7: the coast, the course, 1816; it washes into the dawn; the frigate
     if t >= MAP_T0:
