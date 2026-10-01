@@ -1,4 +1,0 @@
-# S9-STU-R · RETIRED 2026-09-22 — not needed
-# The client confirmed the studio plays on ONE physical wall only (LEFT), carrying the
-# canvas — see S9-STU-L.txt for the active prompt. This file (the window wall) is not
-# needed because the studio is not on RIGHT at all. Kept only so the ID isn't reused.

@@ -713,7 +713,7 @@ the flaking ("pretty good, I like it"); the flag "reads like a cloth… minor ov
    helps; animate the Medusa's route as a focus (a travelling point or a camera-less push along the coast)
    if it fits the script (it does: "Loin !" and "The Medusa appears on the horizon" are the journey).
 
-**What v3 does (2026-09-28, `tools/render_s6.py` v3; v2 rebuildable with `render_s6_v2.py`).**
+**What v3 does (2026-09-28, `tools/render_s6.py` v3; v1-v3 scripts retired 2026-10-02, in git history).**
 Decided by Claude on Homie's delegation ("happy for you to make this decision"): **the flag leaves CENTRE at
 0:40** (it carries the glory lines, then goes back into the smoke on "Nous avons connu la victoire") so the
 five battles can take turns on three walls. Homie approved moving Eylau to 0:50.0 and Friedland to 0:52.5.

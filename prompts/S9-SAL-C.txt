@@ -1,7 +1,0 @@
-# S9-SAL-C · RETIRED 2026-09-22 — not needed
-# The client confirmed the salon plays on ONE physical wall only (RIGHT), carrying the
-# portrait — see S9-SAL-R.txt for the active prompt. This file (the mirror/chimneypiece
-# wall) is not needed because the salon is not on CENTRE at all. Kept only so the ID isn't
-# reused by mistake. NOTE: S9-SAL-R.txt itself was also overwritten this session — it used
-# to hold the window-wall content (also not needed); it now holds the portrait wall,
-# retagged from the old S9-SAL-L.txt. See LOG.md 2026-09-22 for the full change.

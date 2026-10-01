@@ -86,8 +86,8 @@ passes the numbers goes to Homie as a preview; it's never approved by Claude.
 
 ## 5 · Filing (standing rule, Homie 2026-09-24)
 
-- An untested or pending take goes in `03_TESTS_IN_PROGRESS/<PROMPT-ID>_v<N>.mp4`.
-- A rejected take moves to `04_REJECTED/<PROMPT-ID>_v<N>.mp4`.
+- An untested or pending take goes in `04_WORKING_FILES/<test folder>/<PROMPT-ID>_v<N>.mp4` (layout since 2026-10-02).
+- A rejected take moves to a dated `_DELETE_ME_<date>` bin outside `SOTR_MEDIA` (Homie empties it; Claude never hard-deletes).
 - **Approved by Homie:** rename it to the tag without the `@`
   (`loc_SOTR_<world>_<wall>_loop_s9_v<N>.mp4`), render `<tag>_comp.mov` with
   `loop_halo.py` if it's a loop, and add it to REGISTER.

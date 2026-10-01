@@ -38,10 +38,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 - **MEDIA LIVES ON D: (Homie 2026-09-30, C: was 95% full: "migrate the whole thing to D drive").** `SOTR_MEDIA` is at
   `D:\SOTR\SOTR_MEDIA`; `C:\Users\Homie\Documents\SOTR_MEDIA` is a directory JUNCTION to it, so every tool, path and AE
-  project still works. Old versions / rejected takes / old tests are in `D:\SOTR\SOTR_MEDIA_ARCHIVE\` (same layout);
-  its `_SAFE_TO_DELETE_duplicates_and_intermediates\` is Homie's to delete. The repo stays on C: (small). Moves are
-  always `tools/archive_move.py` (copy, sha256, then remove). The T9 mirror is unchanged. Check the junction exists
-  before writing media (`D:\SOTR\_migration.log`).
+  project still works. **The archive is gone (cleanup 2026-10-02, Homie: "delete everything unnecessary"):** history,
+  rejects and old tests went to `D:\SOTR\_DELETE_ME_2026-10-02\` (and `G:\SOTR\HF\_DELETE_ME_2026-10-02\`) for Homie to
+  delete; every move is in `D:\SOTR\CLEANUP_2026-10-02_moves.tsv`. Claude never hard-deletes: unneeded media goes to a
+  dated `_DELETE_ME_` bin and Homie empties it. The repo stays on C: (small). Cross-drive moves are always
+  `tools/archive_move.py` (copy, sha256, then remove). Check the junction exists before writing media
+  (`D:\SOTR\_migration.log`).
 
 - **Pipeline v3 is adopted FORWARD ONLY (Homie, 2026-09-30).** *"What's done is done, and if it's good enough,
   we don't need to redo something just because we updated our production system."* Precision-Pipeline 3.0.0
@@ -75,20 +77,21 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
   beat, which need beat timings; (2) whether the physical fit onto the angled flats
   (keystone/warp) still happens in playback, or the files must be pre-warped.
 
-- **Folders (Homie, 2026-09-24; RESTRUCTURED 2026-09-26, "we have so many files I am getting
-  confused"): `SOTR_MEDIA/01_FINAL_FOR_SHOW/` holds ONLY the files for the show**, in three folders:
-  `1_PLAY_THESE_IN_ORDER/` (the 8 show files, with the edge, `S9_b<beat>_<WALL>_<world>.mov`, in
-  script order), `2_BACKUP_LOOPS_for_operator/`, `3_CLEAN_no_edge/` (`_CLEAN` masters). **No version
-  numbers in show names**; the version lives in `REGISTER.md`. A new version takes the SAME show
-  name and the old file goes to `03_TESTS_IN_PROGRESS/superseded/` with its version added. The
-  per-wall folders and `with_edge_effect/` below are the old layout. Client-facing
-  `00_READ_ME_FIRST.txt` (keep it current). Meeting documents go in `06_PRESENTATIONS/`. Then
-  `02_APPROVED_BUILDING_BLOCKS/`, `03_TESTS_IN_PROGRESS/`, `04_REJECTED/`,
-  `05_REFERENCE_UPLOADS/`. `comp/` is Homie's After Effects area; never reorganise it. Map and
-  old-to-new paths are in `SOTR_MEDIA/README.txt`.
+- **Folders (Homie, 2026-09-24; restructured 2026-09-26; RECOMPARTMENTALISED 2026-10-02 at the cleanup).
+  `SOTR_MEDIA/01_FINAL_FOR_SHOW/` IS THE CLIENT DELIVERY: upload the whole folder.** It holds
+  `00_READ_ME_FIRST.txt` (client-facing, keep it current), `1_PLAY_THESE_IN_ORDER/` (the 11 show files,
+  4K, with the edge, in script order), `2_BACKUP_LOOPS_for_operator/` (4K), `3_HD_1080_fallback/` (the same
+  files at 1080). Then `02_APPROVED_BUILDING_BLOCKS/` (every generated source the show is built from,
+  incl. `S6_generated/`, `studio_b9_candle/`), `03_CLEAN_MASTERS_no_edge/` (the `_CLEAN` masters),
+  `04_WORKING_FILES/` (edge kits, build recipes, 4K records, `superseded/`, and any new test folder),
+  `05_REFERENCE_UPLOADS/`, `06_PRESENTATIONS/`, `comp/` (Homie's After Effects area; never reorganise
+  it). **No version numbers in show names**; the version lives in `REGISTER.md`. A new version takes
+  the SAME show name and the old file goes to `04_WORKING_FILES/superseded/` with its version added.
+  Map in `SOTR_MEDIA/README.txt`. Older rows below quote the old layout (`03_TESTS_IN_PROGRESS/`,
+  `3_CLEAN_no_edge/`, `4_HD_1080_same_files/`, per-wall folders, `with_edge_effect/`).
 - **Clean first, effects separate (Homie, 2026-09-24).** *"File management 101."* Every
-  finished render is saved CLEAN (no effects) in `SOTR_MEDIA/01_FINAL_FOR_SHOW/3_CLEAN_no_edge/` and is
-  never overwritten or deleted; a change is a new version (the old file to `superseded/`). Anything
+  finished render is saved CLEAN (no effects) in `SOTR_MEDIA/03_CLEAN_MASTERS_no_edge/` and is
+  never overwritten; a change is a new version (the old file to `superseded/`). Anything
   added on top (the fragment edge, any effect) is a SEPARATE file (`1_PLAY_THESE_IN_ORDER/`,
   `2_BACKUP_LOOPS_for_operator/`), rebuilt from clean. Homie can do the
   fragments in post himself, so the clean render is the deliverable that matters. Generated
@@ -156,7 +159,7 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
   never "as above".
 - **Regenerate rather than comp (Homie, 2026-09-24).** *"If we can do a regeneration, we'll
   just do a regeneration."* Compositing is Homie's own After Effects time, so a fix that a
-  regeneration can make goes into the next prompt version. This overrides `docs/WEEK-PLAN.md`'s
+  regeneration can make goes into the next prompt version. This overrode `docs/WEEK-PLAN.md`'s (retired 2026-10-02)
   "fix it in the comp" budget rule. Script prep Claude does itself (`tools/loop_halo.py`) is
   not comp work.
 - **Rename on approval (Homie, 2026-09-24).** The moment an asset is approved or finished,
@@ -167,6 +170,16 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
   every run, measure after every run, Homie approves.
 
 ## Current stage
+
+### 2026-10-02, second part (POST): FULL CLEANUP + NEW FOLDER LAYOUT. Upload `01_FINAL_FOR_SHOW/` to the client.
+
+- Homie: "Delete everything unnecessary… do a full project cleanup, recompartmentalize everything… which folder do I
+  need to upload to the client". **`SOTR_MEDIA` 117 GB + 96 GB archive -> 80 GB**, same on the T9 (272 -> 80 GB).
+  New layout in the Folders rule above. Unneeded media in `_DELETE_ME_2026-10-02\` on both drives (D: 134 GB,
+  T9 193 GB) for Homie to empty (Claude doesn't hard-delete). Kept set sha256-identical on D: and the T9.
+- Repo: retired tools (render_s6 v1-v3, break_strip, fracture_edge_proto, make_client_pdf, reorg scripts),
+  prompts for retired walls / rejected takes, and finished plans removed (in git history). `render_s6.py` reads
+  Scene 6's loops from `02_APPROVED_BUILDING_BLOCKS/S6_generated/`. Script: `tools/cleanup_2026-10-02.py`.
 
 ### 2026-10-02 (POST): FINISHED. T9 backup complete; Homie is taking it to the client.
 
@@ -378,7 +391,7 @@ salon, this collapsed each world to **one confirmed wall** instead of three — 
 
 `@fig_SOTR_judge_s9_v1` approved, comp fix done. `@loc_SOTR_salon_room_s9_v1` approved.
 **Active wall prompts are now `prompts/S9-SAL-R.txt` and `prompts/S9-STU-L.txt`** — the
-old L/C/R-per-world set is retired (files kept, headers point to the replacements).
+old L/C/R-per-world set is retired (removed 2026-10-02; in git history).
 
 **One thing still blocks the studio:** `@loc_SOTR_studio_room_s9_v1` is **superseded** —
 the light changed from daylight to night/candlelight (see `LOG.md`) — and must be
@@ -393,7 +406,7 @@ Scope: **Court Martial, Salon, Géricault's studio** (Scene 9), deadline about a
 `prompts/` has every IMG prompt. **Next: IMG. Homie playtests the prompts and brings the
 results back to review, log and iterate.** Loops and the court strike come later, in a VID
 session. Homie's standing preference: the worlds are ours to shape, not literal copies.
-The Windows PC handover is `docs/HANDOVER-WINDOWS.md`.
+The Windows PC handover (`docs/HANDOVER-WINDOWS.md`) is done and was retired 2026-10-02.
 
 ## Session close
 

@@ -1,5 +1,0 @@
-# S9-STU-C · RETIRED 2026-09-22 — not needed
-# The client confirmed the studio plays on ONE physical wall only (LEFT). The canvas — this
-# file's subject — is now the whole of that single wall. See S9-STU-L.txt for the active
-# prompt. This file (the canvas alone, framed for a CENTRE/16:9 surface) is not needed
-# because the studio is not on CENTRE at all. Kept only so the ID isn't reused by mistake.

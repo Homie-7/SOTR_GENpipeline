@@ -32,11 +32,11 @@ week from 2026-09-21.
 | `prompts/` | Final prompt text, by cue ID. |
 | `docs/NEW-SESSION.md` | Paste-in opener for a fresh Claude Code session. |
 | `docs/SOURCES.md` | Where the source material lives (not in git). |
-| `tools/make_client_pdf.py` | Builds the client direction PDF (the PDF itself stays out of git). |
+| `tools/` | The scripts that build every show file from the generated sources (each docstring explains it). |
 
 ## Setting up on another machine
 
-**Windows PC:** follow `docs/HANDOVER-WINDOWS.md`. Mac or anything else:
+**Windows PC:** already set up (the Windows handover doc was retired 2026-10-02; it's in git history). Mac or anything else:
 
 The production skills (`house-rules` v3, `scenecraft-v1`, `shotcaller-v1`, `castkit-v1`, `motiondojo-v1`, etc.)
 live in the separate `Precision-Pipeline` repo (3.0.0 since 2026-09-30; the retired `banana-pro-director-30` and

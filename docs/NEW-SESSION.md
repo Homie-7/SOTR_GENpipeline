@@ -24,27 +24,33 @@ walls as walls at true scale, no people in any plate, nothing newer than the sce
 
 THE TASK, RIGHT NOW (after 2026-10-02; MODE: whatever the client's notes need). THE JOB IS FINISHED (Homie, 2026-10-02:
 "I think we'll call it finished"). He is meeting the client and will come back only if more is needed. DON'T CHANGE ANYTHING
-unless he asks. Scenes 6 and 9 are approved; the show folder is 4K and FULLY BACKED UP to the T9 (2026-10-02, sha256, 0
-mismatches; LOG's 2026-10-02 row).
-01_FINAL_FOR_SHOW: 1_PLAY_THESE_IN_ORDER (11) + 2_BACKUP_LOOPS_for_operator (10) = 4K, same names; 3_CLEAN_no_edge = 1080;
-4_HD_1080_same_files = the same play/backup files at 1080 (fallback if playback can't carry 4K). Studio b9 = candle arc v5
-(approved), b6 = v3. REGISTER's rows dated 2026-10-01 map everything; MANIFEST_4K_2026-10-01.txt has every sha256.
-IF HOMIE COMES BACK: start by asking what the client said. Client notes = a new version under the SAME show name (old file to
-03_TESTS_IN_PROGRESS/superseded/), rebuilt by the scripts in tools/, then 4K by the 2026-10-01 route (ByteDance + upscale_restore
-+ upscale_check VERDICT), then the T9. A new scene = PREP first (card, look with Homie), v3 stack (CLAUDE.md standing rules).
+unless he asks. Scenes 6 and 9 are approved, 4K, cleaned up and backed up to the T9 (sha256-identical, 2026-10-02).
+THE CLIENT DELIVERY = SOTR_MEDIA/01_FINAL_FOR_SHOW/ (upload the whole folder): 1_PLAY_THESE_IN_ORDER (11, 4K) +
+2_BACKUP_LOOPS_for_operator (10, 4K) + 3_HD_1080_fallback (the same 21 at 1080). Studio b9 = candle arc v5, b6 = v3.
+CLEANUP 2026-10-02: the media was recompartmentalised (SOTR_MEDIA/README.txt is the map) and everything unneeded went to
+D:\SOTR\_DELETE_ME_2026-10-02 and G:\SOTR\HF\_DELETE_ME_2026-10-02 for Homie to empty. If they're still there, they're his;
+don't use anything in them (D:\SOTR\CLEANUP_2026-10-02_moves.tsv lists every move if something has to come back).
+IF HOMIE COMES BACK: start by asking what the client said. Client notes = a new version under the SAME show name: rebuild
+clean from 02_APPROVED_BUILDING_BLOCKS with tools/ (recipes in 04_WORKING_FILES/build_recipes/; their paths are
+pre-cleanup, the README has the map) -> 03_CLEAN_MASTERS_no_edge (old file to 04_WORKING_FILES/superseded/), the edge on
+top (04_WORKING_FILES/edge_kits/) -> 01, then 4K by the 2026-10-01 route (ByteDance + upscale_restore + upscale_check
+VERDICT; records in 04_WORKING_FILES/4K_records/), then the T9. A new scene = PREP first (card, look with Homie), v3 stack
+(CLAUDE.md standing rules). New tests go in a new 04_WORKING_FILES/<name>/ folder.
 The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF.
 OPTIONAL, NOT DONE (Homie: no extra work): a v5 version of the b9 studio backup HOLD loop (the v3 one is ~24% dimmer).
 Open with the team: set dimensions, codec (three 4K ProRes files at once in Scene 6 is heavy; the 1080 set is the fallback),
 pre-warp, rehearsal timings.
 CREDITS: 0 on 2026-10-02; 81.30 on 2026-10-01. Credits: ask above ~100 per run; one at a time; `transactions` after each.
 
-WHERE SCENE 9 LIVES (SOTR_MEDIA/01_FINAL_FOR_SHOW/, 00_READ_ME_FIRST.txt explains it):
-- 1_PLAY_THESE_IN_ORDER/  the 8 show files S9_b<beat>_<WALL>_<world>.mov, sorted = script order
-- 2_BACKUP_LOOPS_for_operator/  salon IN/HOLD/OUT, court single strikes, studio HOLD loops
-- 3_CLEAN_no_edge/  the same pictures without the edge (_CLEAN masters)
+WHERE IT LIVES (D:\SOTR\SOTR_MEDIA = C:\Users\Homie\Documents\SOTR_MEDIA, a junction; README.txt is the map):
+- 01_FINAL_FOR_SHOW/  the client delivery (00_READ_ME_FIRST.txt explains it): S6_<WALL>_wars.mov and
+  S9_b<beat>_<WALL>_<world>.mov, sorted = script order; 2_BACKUP_LOOPS_for_operator/ (salon IN/HOLD/OUT, court single
+  strikes, studio HOLD loops); 3_HD_1080_fallback/.
+- 02_APPROVED_BUILDING_BLOCKS/ generated sources · 03_CLEAN_MASTERS_no_edge/ the _CLEAN masters ·
+  04_WORKING_FILES/ edge kits, recipes, 4K records, superseded/.
 - No versions in show names; REGISTER.md's "SHOW FOLDER" table maps each to its version.
-  A new version keeps the SAME show name; the old file goes to 03_TESTS_IN_PROGRESS/superseded/.
-- Meeting docs: SOTR_MEDIA/06_PRESENTATIONS/ (one-pager PDF), docs/MEETING-*.html.
+  A new version keeps the SAME show name; the old file goes to 04_WORKING_FILES/superseded/.
+- Meeting docs: SOTR_MEDIA/06_PRESENTATIONS/ (one-pager PDF), docs/MEETING-ONE-PAGER-2026-09-26.html.
 - Salon RIGHT, court CENTRE, studio LEFT (client, audience view, confirmed 2026-09-22).
 
 HOW SCENE 9 WAS BUILT (reuse for other scenes; tools/ has each script, docstrings explain):

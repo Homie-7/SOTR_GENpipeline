@@ -1,4 +1,0 @@
-# S9-SAL-L · RETIRED 2026-09-22 — superseded by S9-SAL-R.txt
-# The client confirmed (audience-perspective) that the salon plays on the physical RIGHT
-# flat, not LEFT. Same content (the portrait wall) — see S9-SAL-R.txt for the active prompt.
-# Kept here only so the ID isn't reused by mistake. Do not run this file.

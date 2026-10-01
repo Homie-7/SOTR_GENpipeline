@@ -221,3 +221,26 @@ are public-domain material, logged by file and checksum in the folder's `_manife
 | `…/studio_candle_arc/loc_SOTR_studio_L_b6_s9_v5(_edge2).mov` | the candle arc's beat 6 v5 (the flare take) | **not used** (Homie: reads as exposure going up and down; beat 6 stays v3) |
 | `2_BACKUP_LOOPS_for_operator/S9_b9_LEFT_studio_HOLD_loop.mov` | still the v3 candle (~24% dimmer than b9 v5) | optional v5 rebuild NOT done (Homie: no extra work) |
 | `D:/SOTR/SOTR_MEDIA_ARCHIVE/` | superseded (to 2026-09-30), 04_REJECTED, old test folders, upscale tests (74.6 GB, sha256-verified; `MOVED_*.txt`) + `_SAFE_TO_DELETE_duplicates_and_intermediates/` (25 GB of exact duplicates and rebuildable scratch) | archive |
+
+## 2026-10-02 · CLEANUP AND NEW LAYOUT (supersedes every media path above)
+
+Homie: "Delete everything unnecessary. Only keep what we need… recompartmentalize everything." Every path in the rows
+above is the pre-cleanup address; the map below is current. Unneeded media is in `D:\SOTR\_DELETE_ME_2026-10-02\` and
+`G:\SOTR\HF\_DELETE_ME_2026-10-02\` for Homie to empty; `D:\SOTR\CLEANUP_2026-10-02_moves.tsv` lists every move.
+The kept set (139 files, 80 GB) is sha256-identical on D: and the T9.
+
+| Path (SOTR_MEDIA/…) | What | Status |
+|---|---|---|
+| `01_FINAL_FOR_SHOW/` | **THE CLIENT DELIVERY: upload this whole folder.** README + `1_PLAY_THESE_IN_ORDER/` (11, 4K) + `2_BACKUP_LOOPS_for_operator/` (10, 4K) + `3_HD_1080_fallback/` (was `4_HD_1080_same_files/`) | **delivery** |
+| `02_APPROVED_BUILDING_BLOCKS/stills/`, `clips/`, `S6_public_domain/` | unchanged | approved |
+| `02_APPROVED_BUILDING_BLOCKS/S6_generated/` | S6-FLAG v1 A + v2, S6-SMOKE v1 + v2 (generated), their loops (`render_s6.py` reads these) and `4K/` loops | approved (moved from `03_TESTS_IN_PROGRESS/S6_generated/`) |
+| `02_APPROVED_BUILDING_BLOCKS/studio_b9_candle/` | S9-STU-L-B9 v1 takes (generated) + `B9_candle_965f(_aligned).mov`, the candle studio b9 v5 is painted on | approved (from `studio_candle_arc/`) |
+| `03_CLEAN_MASTERS_no_edge/` | the `_CLEAN` masters, 1080 (was `01_FINAL_FOR_SHOW/3_CLEAN_no_edge/`) | masters |
+| `04_WORKING_FILES/edge_kits/kit_salon.npz`, `kit_studio.npz` | the frozen breaks edge_flow.py draws the edges from (kit_court / kit_studio_chips: rejected looks, binned) | working |
+| `04_WORKING_FILES/build_recipes/` | the .sh scripts that built the current show files (pre-cleanup paths; map in `SOTR_MEDIA/README.txt`) | records |
+| `04_WORKING_FILES/4K_records/` | `promote_4k.py`, `MANIFEST_4K_2026-10-01.txt`, check results | records |
+| `04_WORKING_FILES/superseded/studio_b9_v3/` | the previous studio b9 (play + clean), the one fallback kept | superseded |
+| `04_WORKING_FILES/S6-ANIMATIC_v4_approved.mp4` | the animatic Scene 6's look was approved on | reference |
+| `05_REFERENCE_UPLOADS/` | the salon/studio loop references only (court READ / field and the salon chain uploads binned) | reference |
+| `06_PRESENTATIONS/`, `comp/` | unchanged | — |
+| **Binned** | the whole `SOTR_MEDIA_ARCHIVE` (superseded to 09-30, `04_REJECTED`, tests, upscale tests, the safe-to-delete set); studio b6 v5 (not used) and v4 (floor); upscale raws, upload transcodes, the unused clean 4Ks, the pre-fix 4Ks; S6 animatics v1-v3, S6-FLAG v1 B; scene9_fix previews; intermediates and logs; on the T9 also the pre-09-24 layout leftovers | for Homie to delete |

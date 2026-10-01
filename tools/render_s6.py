@@ -5,7 +5,7 @@ Fraternité into Waterloo, and the three flags at the end) are ONE front (RoomBu
 CENTRE, reaching CENTRE's edges and crossing onto LEFT and RIGHT in order, so no wall burns ahead of its
 neighbour and no seam is left with a hard edge; the flag's tear RIPS from the middle up and down, opening
 most where it tore first; the map is wider (48 degrees of latitude) so Africa reads as the continent.
-v3 = `render_s6_v3.py`. The v3 notes follow.
+v3 = `render_s6_v3.py` (v1-v3 retired 2026-10-02, in git history). The v3 notes follow.
 
 
 WHY: Scene 6 is floating imagery over a movement piece (client, 2026-09-28). The animatic lets Homie and
@@ -669,7 +669,7 @@ class ClothFlag:
 
 
 # --------------------------------------------------------------------------- the GENERATED flag and smoke
-GEN = r'C:\Users\Homie\Documents\SOTR_MEDIA\03_TESTS_IN_PROGRESS\S6_generated'
+GEN = r'C:\Users\Homie\Documents\SOTR_MEDIA\02_APPROVED_BUILDING_BLOCKS\S6_generated'   # moved here 2026-10-02
 GEN_FLAG = os.path.join(GEN, 'S6-FLAG_loop.mov')          # tools/s6_loops.py: probe + Sequel, crossfade-looped
 GEN_SMOKE = os.path.join(GEN, 'S6-SMOKE_loop.mov')
 
