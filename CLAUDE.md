@@ -168,6 +168,13 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-02 (POST): FINISHED. T9 backup complete; Homie is taking it to the client.
+
+- Homie: "I think we'll call it finished." Nothing changes unless he comes back with client notes.
+- **T9 fully in line with D:** show folder by `promote_4k.py --t9-only` (0 mismatches), then every other new or changed
+  media file (124, 37 GB, sha256; the T9's older copies kept in `superseded/t9_replaced_2026-10-02/`). All 21 show and
+  backup files probed: 4K ProRes HQ, 24 fps, sound. 0 credits. Details: `LOG.md` 2026-10-02.
+
 ### 2026-10-01 (POST): SCENES 6 AND 9 DONE, THE SHOW FOLDER IS 4K (07:57). T9 sync pending (drive away).
 
 - **The PC hard-crashes under all-core load** (WHEA 18, CPU Core 7; 00:58 and 05:14 today, also in August). Every heavy

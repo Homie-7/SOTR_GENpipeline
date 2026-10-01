@@ -22,20 +22,21 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (after 2026-10-01; MODE: POST). SCENES 6 AND 9 ARE DONE AND THE SHOW FOLDER IS 4K.
+THE TASK, RIGHT NOW (after 2026-10-02; MODE: whatever the client's notes need). THE JOB IS FINISHED (Homie, 2026-10-02:
+"I think we'll call it finished"). He is meeting the client and will come back only if more is needed. DON'T CHANGE ANYTHING
+unless he asks. Scenes 6 and 9 are approved; the show folder is 4K and FULLY BACKED UP to the T9 (2026-10-02, sha256, 0
+mismatches; LOG's 2026-10-02 row).
 01_FINAL_FOR_SHOW: 1_PLAY_THESE_IN_ORDER (11) + 2_BACKUP_LOOPS_for_operator (10) = 4K, same names; 3_CLEAN_no_edge = 1080;
 4_HD_1080_same_files = the same play/backup files at 1080 (fallback if playback can't carry 4K). Studio b9 = candle arc v5
 (approved), b6 = v3. REGISTER's rows dated 2026-10-01 map everything; MANIFEST_4K_2026-10-01.txt has every sha256.
-FIRST, IF HOMIE HAS THE T9 PLUGGED IN (G:): in SOTR_MEDIA/03_TESTS_IN_PROGRESS/upscale_4k/ run `python promote_4k.py --t9-only`
-(renames the T9's 1080 copies into 4_HD_1080_same_files, copies the 4K in, sha256-checked; must log mismatches 0), copy the
-other new media (03_TESTS_IN_PROGRESS/studio_candle_arc/, superseded/studio_b9_v3/, upscale_4k/) with sha256, then
-`git pull` in G:\SOTR\HF\SOTR_GENpipeline. Then REGISTER: mark the T9 done.
+IF HOMIE COMES BACK: start by asking what the client said. Client notes = a new version under the SAME show name (old file to
+03_TESTS_IN_PROGRESS/superseded/), rebuilt by the scripts in tools/, then 4K by the 2026-10-01 route (ByteDance + upscale_restore
++ upscale_check VERDICT), then the T9. A new scene = PREP first (card, look with Homie), v3 stack (CLAUDE.md standing rules).
 The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF.
 OPTIONAL, NOT DONE (Homie: no extra work): a v5 version of the b9 studio backup HOLD loop (the v3 one is ~24% dimmer).
-Otherwise the job is done unless the client comes back. Open with the team: set dimensions, codec (three 4K ProRes files at
-once in Scene 6 is heavy; the 1080 set is the fallback), pre-warp, rehearsal timings.
-CREDITS 2026-10-01: 81.30 (21.95 overnight 4K of the fixed files + 59.35 bonus credits: backup loops, clean masters (paid,
-unused), candle arc). Credits: ask above ~100 per run; one at a time; `transactions` after each.
+Open with the team: set dimensions, codec (three 4K ProRes files at once in Scene 6 is heavy; the 1080 set is the fallback),
+pre-warp, rehearsal timings.
+CREDITS: 0 on 2026-10-02; 81.30 on 2026-10-01. Credits: ask above ~100 per run; one at a time; `transactions` after each.
 
 WHERE SCENE 9 LIVES (SOTR_MEDIA/01_FINAL_FOR_SHOW/, 00_READ_ME_FIRST.txt explains it):
 - 1_PLAY_THESE_IN_ORDER/  the 8 show files S9_b<beat>_<WALL>_<world>.mov, sorted = script order
