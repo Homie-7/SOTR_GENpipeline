@@ -244,3 +244,4 @@ The kept set (139 files, 80 GB) is sha256-identical on D: and the T9.
 | `05_REFERENCE_UPLOADS/` | the salon/studio loop references only (court READ / field and the salon chain uploads binned) | reference |
 | `06_PRESENTATIONS/`, `comp/` | unchanged | — |
 | **Binned** | the whole `SOTR_MEDIA_ARCHIVE` (superseded to 09-30, `04_REJECTED`, tests, upscale tests, the safe-to-delete set); studio b6 v5 (not used) and v4 (floor); upscale raws, upload transcodes, the unused clean 4Ks, the pre-fix 4Ks; S6 animatics v1-v3, S6-FLAG v1 B; scene9_fix previews; intermediates and logs; on the T9 also the pre-09-24 layout leftovers | for Homie to delete |
+| `04_WORKING_FILES/S9-ANIMATIC_v1.mp4` (2026-10-03) | Scene 9 whole, for review: the eight show files on the three walls in script order + the script's lines + their sound (`tools/s9_animatic.py`) | **for Homie** (review only, not a show file) |
