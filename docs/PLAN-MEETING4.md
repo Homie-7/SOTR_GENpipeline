@@ -58,6 +58,12 @@ one were hunted.** That's the "instability" the client asks for, and it's true.
   prints. **A, B and C approved as the concept** ("happy with your recommendations"). The free preview (step 1) still
   comes before any credit is spent; Homie checks it, then the 48-credit probe.
 
+### v6 IS AN OPTION, v5 STAYS (Homie, 3 Oct)
+*"Make sure you don't overwrite anything. This is just the second version… so that we can present both of these and see
+which one they want to use."* So Scene 6 v6 is built ALONGSIDE v5: `render_s6.py --v6` (v5 renders bit for bit as before
+without the flag, checked), every v6 file under its own name/folder, v5's show files untouched in `01_FINAL_FOR_SHOW`.
+Step 5's "promote under the SAME names" is ON HOLD until the client picks.
+
 ### Steps and credits
 1. **Free preview (0 cr):** M2, M4, M6 with B and C built by script on the CURRENT cloth plus a softening grade, three
    walls side by side, Scene 6 animatic-style. **Homie picks / changes the concept. Nothing is generated before this.**
@@ -68,8 +74,9 @@ one were hunted.** That's the "instability" the client asks for, and it's true.
    edited take alone if the 4 s probe and the 30 s pass don't match at the join).
 4. **Re-tune `GenFlag`** (its keying looks for clean white/red/blue), render **S6 v6** at 1080 (show + clean), Homie
    approves.
-5. **4K:** upscale the new flag loop (ByteDance, ~3 cr) and re-render Scene 6 at 4K by script (`render_s6 --final`,
-   ~4 h, affinity FFFF3FFF); promote under the SAME names, v5 to `04_WORKING_FILES/superseded/`; T9.
+5. **4K:** upscale the new flag loop (ByteDance, ~3 cr) and re-render Scene 6 at 4K by script (`render_s6 --final --v6`,
+   ~4 h, affinity FFFF3FFF) into its OWN folder (v6 is an option beside v5, see above; nothing promoted until the client
+   picks); T9.
 **Total ≈ 410 credits** (408 + ~3), inside today's 1,000. Stop rules (`AUTONOMOUS-GEN.md`): two failed takes on the same
 defect, stop and ask.
 

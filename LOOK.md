@@ -771,3 +771,23 @@ for a perspective; the look above stays locked, these are fixes inside it):
    Napoléonistes'. Tearing one flag and bleaching one half shows one country splitting in two; then the white flag
    stands alone on RIGHT ("Monarchistes !") and the tricolour on LEFT ("Napoléonistes !"). It's also the king of
    Scene 9's salon portrait (Gérard's Louis XVIII), so the audience meets the same side twice.
+
+**v6 — AN OPTION BESIDE v5, for the client to choose (Meeting 4, 2026-10-03). NOT LOCKED; v5 above stays the approved
+look.** The client: the flags "quite strong and graphic"; soften, weather, show the monarchist/Napoleonic instability.
+Homie approved the concept (A-C, flags only, no small dates; `docs/PLAN-MEETING4.md`) and asked for it as a second
+version to present beside v5 ("don't overwrite anything"). Built by `render_s6.py --v6` (without the flag, v5 renders
+bit for bit as before). Every other part of Scene 6 is v5's.
+- **A · the worn cloth (M2 and every flag).** Faded (half the saturation), yellowed, smoke-blackened toward the fly and
+  the foot, faint water stains, a few small holes with scorched brown edges (the smoke shows through), the fly torn
+  ragged. All of it laid on the cloth's own coordinates (each row's white band), so it rides the folds. The real cloth
+  may come from an Edit-video pass on the approved S6-FLAG (`prompts/S6-FLAG-WORN.txt`); the script's wear is the
+  stand-in.
+- **B · M4 as coloured light, not flat fields.** Faded dye (slate, old linen, brick) on linen held to a lamp: lit in the
+  middle, dying to dark before each wall's edges, a fine weave and uneven dye, smoke behind and in front. Words kept.
+- **C · M6, "the flag that can't hold its colours".** 1:56 the worn tricolour comes out of the smoke on CENTRE ("je ne
+  reconnais plus mon pays"); 1:59-2:01 its blue and red run out in blotches from the top down to the king's white
+  (1814); 2:01-2:02 they flood back in OTHER blotches ("France is divided"; the Hundred Days, never a reversal of the
+  first drain); 2:02-2:04 they drain for good as "Monarchistes !" lands (1815). CENTRE then goes back into the smoke
+  (dark for Agnès, as LOOK's first M6). RIGHT: the plain white flag (Monarchistes). LEFT: a tricolour CUT INTO PIECES
+  (Napoléonistes: regiments cut up their colours rather than surrender them, 1815), the pieces drifting apart one way,
+  each turning and fluttering on its own. Both burn as one front from 2:10.5, as v5. The tear of v5 is not in v6.

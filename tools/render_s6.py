@@ -136,6 +136,15 @@ MOVES = [(0, 'M1 · smoke, the march'), (18, 'M2 · glory, the five battles'), (
          (136, 'M7 · je pars… the Medusa')]
 
 REC = None                       # --check: every tagged blit appends (tag, y0, y1, x0, x1, mask) here
+# v6 (Meeting 4, 2026-10-03, docs/PLAN-MEETING4.md, concept A-C approved by Homie): softer, weathered flags and the
+# history of the colours. OFF by default, so the approved v5 renders bit for bit as before; --v6 switches it on.
+V6 = False
+LUMW = np.array([0.299, 0.587, 0.114], F32)
+AGED = np.array([1.0, 0.91, 0.76], F32)                  # old silk yellows; the whites go to ivory
+SOOT = np.array([0.05, 0.04, 0.035], F32)
+FADED = {'L': np.array([0.17, 0.22, 0.38], F32),        # M4's colour light: indigo faded to slate,
+         'C': np.array([0.66, 0.61, 0.52], F32),        # the white gone to old linen,
+         'R': np.array([0.55, 0.19, 0.14], F32)}        # madder red to brick
 
 
 def ss(e0, e1, x):
@@ -736,6 +745,128 @@ class GenFlag:
         self.fray = fractal(bh, 8, rng, scales=(max(2, ctx.px(12)), 2), gains=(1, 0.5))[:, 0]
         self.gburn = None
         self.tl_prev = None
+        if V6:
+            self._v6_init(seed)
+
+    # ---- v6: everything below is laid out in CLOTH coordinates, so it rides the folds. The clip has no cloth
+    # coordinates of its own; each row's white band (found in frame()) gives one: uc = 0 where the white starts,
+    # 1 where it ends (blue -1..0, red 1..2). Rows stay screen rows (the cloth's vertical travel is small).
+    NU, UC0, UC1 = 512, -1.4, 2.6
+    CUTS = [((-0.55, -0.05), (0.45, 1.05)), ((1.65, -0.05), (1.05, 1.05)), ((-1.1, 0.78), (2.1, 0.30))]
+
+    def _v6_init(self, seed):
+        r = np.random.default_rng(seed + 1000)
+        bh, NU = self.bh, self.NU
+        uc = self.UC0 + (np.arange(NU, dtype=F32) + 0.5) / NU * (self.UC1 - self.UC0)
+        soot = fractal(bh, NU, r, scales=(max(3, bh // 3), max(2, bh // 10), max(2, bh // 30)), gains=(1, 0.5, 0.25))
+        stain = fractal(bh, NU, r, scales=(max(3, bh // 4), max(2, bh // 12)), gains=(1, 0.4))
+        hole = fractal(bh, NU, r, scales=(max(3, bh // 12), max(2, bh // 30), 2), gains=(1, 0.4, 0.15)) * 0.5 + 0.5
+        hole = hole + 0.10 * np.clip(uc - 0.6, 0, 1)[None, :] - 0.25 * (uc < 0.3)[None, :]   # shot through near the fly
+
+        def runs():                                     # dye drains in tall blotches: noise stretched down the cloth
+            n = fractal(max(4, bh // 3), NU, r, scales=(max(3, bh // 6), max(2, bh // 18), 2), gains=(1, 0.5, 0.2))
+            return cv2.resize(n, (NU, bh), interpolation=cv2.INTER_CUBIC) * 0.5 + 0.5
+        self.T1 = np.ascontiguousarray(np.dstack([soot * 0.5 + 0.5, stain * 0.5 + 0.5, hole, runs()]), F32)
+        self.T2 = np.ascontiguousarray(np.dstack([runs(), runs(), fractal(bh, NU, r, scales=(max(2, bh // 60), 2), gains=(1, 0.6)),
+                                                  np.zeros((bh, NU), F32)]), F32)
+        self.fray_lo = fractal(bh, 8, r, scales=(max(2, bh // 9), max(2, bh // 30)), gains=(1, 0.4))[:, 0] * 0.5 + 0.5
+        self.fray_hi = fractal(bh, 8, r, scales=(2,), gains=(1,))[:, 0] * 0.5 + 0.5
+
+    def _v6_maps(self, a):
+        """uc for every pixel of the box, and the cloth textures sampled there."""
+        uc = (self.X - self.bd[:, None]) / np.maximum(self.wd, 1.0)[:, None]
+        mx = ((uc - self.UC0) / (self.UC1 - self.UC0) * self.NU - 0.5).astype(F32)
+        my = self.Y.astype(F32)
+        T1 = cv2.remap(self.T1, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
+        T2 = cv2.remap(self.T2, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
+        return uc.astype(F32), T1, T2
+
+    def _v6_fray(self, a):
+        """The fly end is torn ragged: each row loses a ragged few percent from wherever its fly edge is now."""
+        on = a > 0.5
+        has = on.any(1)
+        xe = (self.bw - 1 - np.argmax(on[:, ::-1], axis=1)).astype(F32)
+        d = (xe[:, None] - self.X) / self.bw
+        bite = (0.012 + 0.045 * self.fray_lo ** 2 + 0.012 * self.fray_hi)[:, None]
+        return a * np.where(has[:, None], ss(0, 0.006, d - bite), 1.0)
+
+    def _v6_drain(self, f, whitec, T1, T2, d1, r, d3):
+        """The colours won't hold (1814 white, 1815 the tricolour back, 1815 white for good): the blue and red run
+        out in blotches from the top down, leaving the white that was always in the middle; they flood back in
+        OTHER blotches (never a reversal of the first), then drain for good. A tide line where the dye gathers."""
+        v = self.v
+
+        def m(x, n):
+            return ss(-0.07, 0.07, x * 1.5 - 0.2 - n + 0.15 * (0.5 - v))
+        m1, m2, m3 = m(d1, T1[..., 3]), m(r, T2[..., 0]), m(d3, T2[..., 1])
+        k = 1 - m1
+        k = k + (1 - k) * m2 * 0.95
+        k = k * (1 - m3)
+        tide = np.clip(4 * m1 * (1 - m1) * (1 - m2) + 4 * m3 * (1 - m3), 0, 1)
+        f = f * k[..., None] + whitec * (1 - k)[..., None]
+        return f * (1 - 0.08 * tide)[..., None]
+
+    def _v6_worn(self, f, a, uc, T1):
+        """A battle-worn regimental colour: faded, yellowed, smoke-blackened toward the fly and the foot, water-
+        stained, shot through, softer overall. All of it in cloth coordinates."""
+        v = self.v
+        lum = (f @ LUMW)[..., None]
+        g = (lum + (f - lum) * 0.5) * AGED
+        fly = np.clip((uc - 0.2) / 1.8, 0, 1)
+        so = T1[..., 0]
+        soot = np.clip(so * 1.4 - 0.45, 0, 1) ** 1.3 * (0.35 + 0.65 * fly) + 0.30 * ss(0.6, 1.0, v) * so
+        soot = np.clip(soot, 0, 1)[..., None]
+        g = g * (1 - 0.62 * soot) + SOOT * 0.62 * soot
+        st = T1[..., 1]
+        g = g * (1 - np.exp(-((st - 0.64) / 0.03) ** 2) * 0.07 - ss(0.60, 0.70, st) * 0.05)[..., None]
+        h = T1[..., 2]
+        ring = np.exp(-np.clip(0.845 - h, 0, None) / 0.018) * (h < 0.86)          # a scorched brown edge, not ink
+        g = g * (1 - 0.45 * ring)[..., None] + BROWN * 0.30 * (ring[..., None] * lum)
+        a = a * (1 - ss(0.845, 0.865, h + 0.015 * T1[..., 3]))
+        return g * 0.86, a
+
+    def _v6_cut(self, f, a, uc, T2, sep, t):
+        """Napoléonistes: the regiments cut their colours into pieces rather than give them up (1815). The cuts are
+        laid on the cloth, frayed; each piece moves away at its own constant speed, one way, turning and sinking a
+        little, and flutters on its own (it is a loose scrap of cloth now). Returns the pieces on a buffer padded by
+        P px each side, so a piece can leave the clip's frame without being clipped."""
+        q, bw, bh = self.ctx.q, self.bw, self.bh
+        P = int(0.25 * bw)
+        wdm = float(np.median(self.wd))
+        px, py = uc * wdm, self.v * bh
+        rag = 2.5 * q * (T2[..., 2] * 2 - 1)
+        sds = []
+        for (u0, v0), (u1, v1) in self.CUTS:
+            x0, y0, x1, y1 = u0 * wdm, v0 * bh, u1 * wdm, v1 * bh
+            nx, ny = -(y1 - y0), (x1 - x0)
+            ln = np.hypot(nx, ny)
+            sds.append(((px - x0) * nx + (py - y0) * ny) / ln + rag)
+        aw = a.sum() + 1e-6
+        cx0, cy0 = float((self.X * a).sum() / aw), float((self.Y * a).sum() / aw)
+        fp = np.pad(np.ascontiguousarray(f, F32), ((P, P), (P, P), (0, 0)))
+        out_f, out_a = np.zeros_like(fp), np.zeros(fp.shape[:2], F32)
+        for i in range(8):
+            m = np.ones_like(a)
+            for j, sd in enumerate(sds):
+                s = 1 if (i >> j) & 1 else -1
+                m = m * ss(-0.7 * q, 0.7 * q, s * sd)
+            ma = (a * m).astype(F32)
+            w = float(ma.sum())
+            if w < 0.002 * bw * bh:
+                continue
+            cx, cy = float((self.X * ma).sum() / w), float((self.Y * ma).sum() / w)
+            dx, dy = cx - cx0, cy - cy0
+            n = np.hypot(dx, dy) + 1e-6
+            spd = 0.7 + 0.15 * ((i * 5) % 7)                       # each piece its own speed, turn and flutter
+            ph = 1.7 * i
+            rot = (1 if i % 2 else -1) * (5.0 + 1.2 * (i % 3)) * sep * spd + 1.5 * np.sin(2 * np.pi * 0.45 * t + ph)
+            M = cv2.getRotationMatrix2D((cx + P, cy + P), rot, 1.0)
+            M[0, 2] += sep * spd * 0.16 * bw * dx / n
+            M[1, 2] += sep * spd * (0.16 * bw * dy / n + 0.05 * bh) + 0.012 * bh * np.sin(2 * np.pi * 0.6 * t + ph)
+            map_ = np.pad(ma, P)
+            out_f += cv2.warpAffine(fp * map_[..., None], M, (bw + 2 * P, bh + 2 * P), flags=cv2.INTER_LINEAR, borderValue=0)
+            out_a += cv2.warpAffine(map_, M, (bw + 2 * P, bh + 2 * P), flags=cv2.INTER_LINEAR, borderValue=0)
+        return out_f / np.maximum(out_a, 1e-4)[..., None], np.clip(out_a, 0, 1), P
 
     def frame(self, t):
         f = self.rd.get(int(round((t + self.offset) * FPS)))
@@ -770,6 +901,7 @@ class GenFlag:
             tl = 0.6 * tl + 0.4 * self.tl_prev[1]                          # a touch of temporal smoothing, no lag to see
         self.tl_prev = (int(round((t + self.offset) * FPS)), tl)
         self.tl = tl
+        self.bd, self.wd = bd, wd                                          # v6: the cloth's own coordinates
         q = self.ctx.q
         bm = 1 - ss(bd[:, None] - q, bd[:, None] + 2 * q, self.X)          # left of the white = the blue band
         if self.kind == 'tri':
@@ -782,7 +914,8 @@ class GenFlag:
         whitec = wref * np.clip(lum / base, 0, 1.4)[..., None]
         return f, a, whitec
 
-    def draw(self, canvas, t, ash=None, dt=0.0, strength=1.0, reveal=1.0, burn=0.0, tear=0.0, bleach=0.0, grey=0.0):
+    def draw(self, canvas, t, ash=None, dt=0.0, strength=1.0, reveal=1.0, burn=0.0, tear=0.0, bleach=0.0, grey=0.0,
+             drain=None, cut=0.0):
         f, a, whitec = self.frame(t)
         q, bw, bh, u, v = self.ctx.q, self.bw, self.bh, self.u, self.v
         E = slide(self.E, bw, bh, bw / 2 + self.ctx.px(900) - 18 * self.ctx.s * t, bh / 2 + self.ctx.px(600) - 9 * self.ctx.s * t)
@@ -791,6 +924,16 @@ class GenFlag:
         tl = (self.tl + 0.02 * bw * self.tearn)[:, None]                          # the rip, riding the cloth (v5)
         if self.kind == 'white':
             f = whitec
+        pad = 0
+        if V6:
+            uc, T1, T2 = self._v6_maps(a)
+            a = self._v6_fray(a)
+            if drain is not None:
+                f = self._v6_drain(f, whitec, T1, T2, *drain)
+            f, a = self._v6_worn(f, a, uc, T1)
+            if cut > 0:                             # a scrap has no straight edge: the clip's frame edges go ragged first
+                a = a * ss(0, 0.30, u + 0.10 * E) * ss(0, 0.09, v + 0.05 * E) * ss(0, 0.09, 1 - v + 0.05 * E)
+                f, a, pad = self._v6_cut(f, a, uc, T2, cut, t)
         if bleach > 0:                                                             # the Restoration: right half to white
             ur = np.clip((self.X - tl) / np.maximum(bw - tl, 1), 0, 1)
             fr = ss(0, 0.12, bleach * 1.3 - (1 - ur) * 0.6 - self.bn * 0.4) * (self.X >= tl)
@@ -828,13 +971,18 @@ class GenFlag:
             f = out_f / np.maximum(out_a, 1e-4)[..., None]
             a = np.clip(out_a, 0, 1)
         emit = None
+        bx, by = self.bx - pad, self.by - pad                                     # v6: the cut pieces sit on a padded buffer
         if burn > 0 and self.gburn is not None:
             rb = self.gburn
-            F = {k2: v2[self.by:self.by + bh, self.bx:self.bx + bw] for k2, v2 in rb.F.items()}
+            if pad:
+                F = {k2: cv2.getRectSubPix(v2, (bw + 2 * pad, bh + 2 * pad), (bx + (bw + 2 * pad) / 2 - 0.5, by + (bh + 2 * pad) / 2 - 0.5))
+                     for k2, v2 in rb.F.items()}
+            else:
+                F = {k2: v2[self.by:self.by + bh, self.bx:self.bx + bw] for k2, v2 in rb.F.items()}
             f, a, emit, rim = rb.apply(f.astype(F32), a.astype(F32), burn, t, F)
             if ash is not None:
-                rb.spawn(ash, rim, F, lambda x, y: (self.bx + x, self.by + y), 45 * self.ctx.s * 2, dt)
-        blit(canvas, f.astype(F32), (a * strength).astype(F32), self.bx, self.by,
+                rb.spawn(ash, rim, F, lambda x, y: (bx + x, by + y), 45 * self.ctx.s * 2, dt)
+        blit(canvas, f.astype(F32), (a * strength).astype(F32), bx, by,
              None if emit is None else emit * strength, guard=self.ctx.guard, tag='pic:flag' + self.wall)
 
 
@@ -1164,7 +1312,18 @@ def colour_wall(ctx, wall, col, seed):
     n_in = np.clip(0.5 * (n * 0.5 + 0.5) + 0.5 * np.clip(r / 1.4, 0, 1), 0, 1)
     mot = fractal(h + ctx.px(400), w + ctx.px(900), np.random.default_rng(seed + 2),
                   scales=(max(2, h // 3), max(2, h // 12), max(2, h // 40)), gains=(1, 0.4, 0.15))
-    return dict(img=img.astype(F32), n_in=n_in, mot=mot, x=x0, w=w, h=h, wall=wall)
+    cw = dict(img=img.astype(F32), n_in=n_in, mot=mot, x=x0, w=w, h=h, wall=wall)
+    if V6:
+        # v6 (client, Meeting 4: "softening the colours"): no flat field. Faded dye on old linen held to a lamp: the
+        # light is in the middle and dies to dark before the wall's edges; the threads and slubs of the weave show
+        # through, the dye is uneven, and the smoke passes in front
+        r6 = np.random.default_rng(seed + 600)
+        thread = fractal(h, w, r6, scales=(2,), gains=(1,))
+        slub = fractal(h, w, r6, scales=(max(2, h // 40), max(2, h // 120)), gains=(1, 0.5))
+        weave = 1 + 0.05 * thread + 0.05 * slub
+        lamp = np.exp(-1.7 * r ** 2)
+        cw['img6'] = (FADED[wall][None, None] * (0.10 + 0.95 * lamp)[..., None] * weave[..., None]).astype(F32)
+    return cw
 
 
 def draw_colour_wall(ctx, canvas, cw, t, t_in, t_out, ash, dt, rb, dim=1.0, burn_dur=9.0):
@@ -1177,6 +1336,8 @@ def draw_colour_wall(ctx, canvas, cw, t, t_in, t_out, ash, dt, rb, dim=1.0, burn
     rev = np.clip((a_in - cw['n_in']) / 0.08, 0, 1)
     mot = slide(cw['mot'], w, h, w / 2 + ctx.px(900) - 20 * ctx.s * (t - t_in), h / 2 + ctx.px(200) + 4 * ctx.s * (t - t_in))
     img = cw['img'] * (1 + 0.10 * mot[..., None]) * dim
+    if V6:
+        img = cw['img6'] * (1 + 0.16 * mot[..., None]) * dim
     a = rev.astype(F32)
     emit = None
     if t > t_out:
@@ -1184,6 +1345,9 @@ def draw_colour_wall(ctx, canvas, cw, t, t_in, t_out, ash, dt, rb, dim=1.0, burn
         img, a, emit, rim = rb.apply(img.astype(F32), a, lin(t_out, t_out + burn_dur, t), t, F)
         rb.spawn(ash, rim, F, lambda x, y: (cw['x'] + x, y), 60 * ctx.s * 2, dt)
     reg = canvas[:, cw['x']:cw['x'] + w]
+    if V6:                                                   # light in the smoke: the smoke behind still shows
+        reg[:] = reg * (1 - 0.6 * a[..., None]) + img * a[..., None] + (0 if emit is None else emit)
+        return
     reg[:] = reg * (1 - a[..., None]) + img * a[..., None] + (0 if emit is None else emit)
 
 
@@ -1286,6 +1450,9 @@ def render_frame(ctx, S, t, dt):
     warm = 1.0 * (1 - ssf(20, 60, t)) + 0.35 + 0.45 * ssf(98, 104, t) * (1 - ssf(118, 126, t))
     spill = ssf(8, 16, t) * (1 - ssf(38, 44, t)) * 0.9 + 0.6 * ssf(120, 124, t) * (1 - ssf(130, 135, t))
     cold = ssf(56, 64, t) * (1 - ssf(96, 102, t))
+    if V6:
+        dens += 0.40 * ssf(78, 84, t) * (1 - ssf(98, 104, t))          # M4: the colours are light IN the smoke
+        spill = ssf(8, 16, t) * (1 - ssf(38, 44, t)) * 0.45 + 0.15 * ssf(118, 122, t) * (1 - ssf(130, 135, t))
     S['smoke'].draw(t, c, dens, warm, spill=spill, cold=cold)
     # M7 dawn haze (a field) and the light behind the exiles
     hz = ssf(135, 141, t)
@@ -1305,7 +1472,20 @@ def render_frame(ctx, S, t, dt):
     # M6: France divided: the CENTRE tricolour tears, its right half bleaches white; LEFT tricolour, RIGHT white; all burn
     # the rip runs from the middle up and down (121.5-124), then the halves keep opening (to 127);
     # all three flags burn as ONE front from the middle of CENTRE outward (130.5-137.5)
-    if 119.5 <= t <= 137.6:
+    if V6 and 116.0 <= t <= 137.6:
+        # v6 (concept C): "the flag that can't hold its colours". On "je ne reconnais plus mon pays" the worn
+        # tricolour comes out of the smoke on CENTRE; its blue and red run out to the king's white (1814), flood back
+        # in other blotches (1815, the Hundred Days, under "France is divided"), and drain for good as "Monarchistes !"
+        # lands (1815). Then the split as it happened: the plain white flag on RIGHT (Monarchistes), a tricolour CUT
+        # INTO PIECES on LEFT (Napoléonistes: the regiments cut up their colours rather than surrender them). CENTRE
+        # goes back into the smoke so the two sides lead (CENTRE dark for Agnès, as LOOK's first M6); both burn as one front.
+        fb = lin(130.5, 137.5, t)
+        drain = (ssf(119.0, 121.0, t), ssf(121.0, 122.4, t), ssf(122.4, 124.2, t))
+        if t <= 129.0:                                  # CENTRE goes back into the smoke as the white takes RIGHT
+            S['flagC'].draw(c, t, S['ash_bg'], dt, reveal=ssf(116.0, 119.0, t) * (1 - ssf(124.8, 128.8, t)), drain=drain)
+        S['flagR'].draw(c, t + 3, S['ash_bg'], dt, strength=0.85, reveal=ssf(124, 127, t), burn=fb)
+        S['flagL'].draw(c, t + 7, S['ash_bg'], dt, strength=0.85, reveal=ssf(126, 128.5, t), cut=0.15 + lin(126.0, 138.0, t), burn=fb)
+    elif 119.5 <= t <= 137.6:
         rip = 0.6 * lin(121.5, 124.0, t) + 0.3 * lin(124.0, 127.0, t)
         fb = lin(130.5, 137.5, t)
         S['flagC'].draw(c, t, S['ash_bg'], dt, reveal=ssf(119.5, 122.5, t), tear=rip, bleach=ssf(124, 127.5, t), burn=fb)
@@ -1330,6 +1510,8 @@ def render_frame(ctx, S, t, dt):
         wd.draw(c, t)
     # a thin smoke in FRONT of everything
     fd = 0.22 * ssf(10, 20, t) * (1 - ssf(74, 80, t)) + 0.22 * ssf(100, 106, t) * (1 - ssf(128, 136, t))
+    if V6:
+        fd += 0.20 * ssf(78, 84, t) * (1 - ssf(100, 106, t))           # M4: smoke drifts in front of the colour
     S['fore'].draw(t, c, fd, warm * 0.8, cold=cold)
     rate = 90 * (1 - ssf(14, 30, t)) + 22 * ssf(14, 30, t) * (1 - ssf(58, 70, t)) + 55 * ssf(100, 104, t) * (1 - ssf(118, 125, t)) \
         + 30 * ssf(131, 133, t) * (1 - ssf(137, 140, t))
@@ -1448,7 +1630,7 @@ def flag_gain_expr():
     """The flag's sound follows the flag on screen (the timeline in render_frame): M1-M2, then M6."""
     c = 'min(max(({x}),0),1)'
     up1, dn1 = c.format(x='(t-7)/9'), c.format(x='(t-38.5)/4')
-    up2, dn2 = c.format(x='(t-119.5)/3'), c.format(x='(t-130.5)/7')
+    up2, dn2 = c.format(x='(t-116)/3' if V6 else '(t-119.5)/3'), c.format(x='(t-130.5)/7')
     return f'{up1}*(1-{dn1})+{up2}*(1-{dn2})'
 
 
@@ -1483,8 +1665,10 @@ def main():
     ap.add_argument('--smoke-loop', default=None, help='use this looped S6-SMOKE instead of the default')
     ap.add_argument('--final', action='store_true',
                     help='OUT is a folder: write S6_LEFT/CENTRE/RIGHT.mov (ProRes 422 HQ, one per wall, synced, no caption)')
+    ap.add_argument('--v6', action='store_true', help='Meeting 4 flags: weathered cloth, M4 as coloured light, M6 rebuilt')
     a = ap.parse_args()
-    global GEN_FLAG, GEN_SMOKE
+    global GEN_FLAG, GEN_SMOKE, V6
+    V6 = a.v6
     GEN_FLAG = a.flag_loop or GEN_FLAG
     GEN_SMOKE = a.smoke_loop or GEN_SMOKE
     ctx = Ctx(a.scale)

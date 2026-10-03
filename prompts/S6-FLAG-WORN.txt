@@ -1,0 +1,51 @@
+# S6-FLAG-WORN · v1 · 2026-10-03 (VID, Claude, connector) · EDIT VIDEO on the approved S6-FLAG: the weathered cloth
+#
+# v1 RESULT (LOG 2026-10-03, job 351a10f9…, 48 cr): MECHANISM PASS (motion and outline kept, IoU 0.92-0.97 frame for
+#   frame, ~7% fast), LOOK FAIL: toothed slit holes that read as mouths, a camouflage-blotched blue, posterised red,
+#   weak fade, no ragged fly. Not used. The script wear (render_s6.py --v6) carries the preview. IF Homie wants the
+#   generated stains after all: ONE retry with the holes line removed and the colours "faded evenly"; else stop here.
+#
+# WHY (Meeting 4, client: "the flags appear quite strong and graphic"; docs/PLAN-MEETING4.md concept A, approved by
+#   Homie 3 Oct): the M2 tricolour becomes a battle-worn regimental colour: faded, smoke-stained, holed, frayed. Made
+#   by Edit video on the APPROVED cloth so its folds, outline and motion stay the ones Homie approved, and the wear
+#   lives ON the cloth (moves with the folds), which a script overlay can't do. The script (render_s6.py --v6) still
+#   does the softening grade, the M6 drain and the cut-up flag on top of it.
+# THIS IS AN OPTION, NOT A REPLACEMENT (Homie, 3 Oct: "the second version... present both"). v5 and its sources stay.
+# ROUTE: Edit video (video_edit), PIPELINE.md: keeps framing <1 px, billed by input length. Body = the house surgical-
+#   edit template (CHANGE / PRESERVE EXACTLY / ONLY CHANGE), as S9-SAL-R-WITHER v5 (the edit that held framing).
+#   Text only, no image reference (finding 4a). AUDIO and the locks from S6-FLAG word for word.
+# INPUT: the first 96 frames (4.0 s) of the approved S6-FLAG_v2.mp4 (the 30 s Sequel), H.264 crf 10 + its AAC:
+#   SOTR_MEDIA/05_REFERENCE_UPLOADS/S6-FLAG_v2_first4s_upload.mp4, sha256 d3efcda7…
+# PREDICT: framing within 1 px of the input, the same folds and motion, colours faded (not changed), a few holes
+#   showing black, a ragged fly. RISKS: the whole picture darkened (the salon chain lost ~30%), the wear overdone
+#   into rags, holes or stains standing still on screen while the cloth moves, a pole or lettering appearing.
+# PASS = framing <1 px, motion kept, faded not recoloured, no pole, no text, the wear moving with the cloth.
+#   THEN step 3: the same body on all 30 s of S6-FLAG_v2.mp4 (360 cr). Two failed takes on one defect = stop, ask.
+#
+# SETTINGS
+#   Model:      Seedance 2.5
+#   Mode:       Edit video (video_edit)
+#   Reference:  the input above, role video_references (no image reference)
+#   Aspect:     16:9 (follows the input)
+#   Resolution: 1080p
+#   Duration:   4 s (follows the input)
+#   Quality:    High (bitrate_mode high)
+#   Batch:      1
+#   Sound:      ON
+#   Cost:       48 credits (preflight with get_cost)
+
+Edit the video: this tricolour is an old, battle-worn regimental flag, from the first frame to the last.
+
+CHANGE: The same cloth, aged by years of campaigning. Its colours are faded and soft: the blue gone to a dusty slate indigo, the red to a dull brick, the white to a yellowed, dirty ivory. Smoke has blackened it unevenly, darkest toward the fly end and along the bottom edge; old water stains and grime mottle the cloth. A few small holes are shot and burnt right through it, their edges scorched brown, the black night showing through them. The fly end is torn ragged and frayed into loose threads. Every stain, hole and tear is part of the cloth and moves with its folds.
+
+PRESERVE EXACTLY:
+- The camera: locked, the same framing in every frame.
+- The flag's size, shape, outline and place in the frame, and every fold, wave and snap of its motion, as in the input.
+- The three vertical bands, in the same places.
+- The warm firelight on the cloth, as in the input, and the pure black night behind the flag.
+
+ONLY CHANGE: the cloth's age and wear. 100% identical otherwise.
+
+AUDIO: The heavy cloth cracking and snapping in a strong wind; a distant rumble of battle far off. No music, no voices.
+
+NO ON-SCREEN TEXT. One flag, three vertical bands, no emblem or lettering on it. No people anywhere in frame. Nothing in frame newer than 1816.
