@@ -171,6 +171,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-03 (PREP): a floor-projection plan, ready in case it's needed.
+
+- A floor projector is NOT confirmed. If it is, `docs/FLOOR-PLAN.md` is the plan: floor as floor (light pools,
+  the judge's shadow, smoke, ash, the Scene 6 route + sea), top-down, no pre-warp, the mapping guy fits it; 19 extra
+  files, nothing approved changes. Homie: judge's shadow YES, carpet OUT, scratch sound only (sound designer).
+
 ### 2026-10-02, second part (POST): FULL CLEANUP + NEW FOLDER LAYOUT. Upload `01_FINAL_FOR_SHOW/` to the client.
 
 - Homie: "Delete everything unnecessary… do a full project cleanup, recompartmentalize everything… which folder do I

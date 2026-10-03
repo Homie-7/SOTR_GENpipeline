@@ -37,6 +37,7 @@ top (04_WORKING_FILES/edge_kits/) -> 01, then 4K by the 2026-10-01 route (ByteDa
 VERDICT; records in 04_WORKING_FILES/4K_records/), then the T9. A new scene = PREP first (card, look with Homie), v3 stack
 (CLAUDE.md standing rules). New tests go in a new 04_WORKING_FILES/<name>/ folder.
 The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF.
+IF A FLOOR PROJECTOR IS CONFIRMED: follow docs/FLOOR-PLAN.md (ready, not started; the judge's shadow is a YES, no carpet).
 OPTIONAL, NOT DONE (Homie: no extra work): a v5 version of the b9 studio backup HOLD loop (the v3 one is ~24% dimmer).
 Open with the team: set dimensions, codec (three 4K ProRes files at once in Scene 6 is heavy; the 1080 set is the fallback),
 pre-warp, rehearsal timings.

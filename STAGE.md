@@ -137,6 +137,8 @@ done on top. The visual language for it is in `LOOK.md`.
       walls are done. If it does, it's a fourth surface with its own camera (top-down), the
       same whole-objects rule applies at the wall–floor edge, and light will spill onto the
       actors. For now, plates show no floor.
+      **2026-10-03: a ready-to-go plan is in `docs/FLOOR-PLAN.md`** (floor as floor: only light, shadow, water,
+      smoke and ash, top-down at true scale, no pre-warp; the judge's shadow is a YES). Still unconfirmed.
 
 - [ ] Final set dimensions. The drawing is a v0.2 draft; the proportions above follow it.
 - [x] Frame rate: **the model's native rate.** 24 is fine; take a higher rate when a model
