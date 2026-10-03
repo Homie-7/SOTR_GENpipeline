@@ -803,6 +803,13 @@ for yourself").** Still an option beside v5, not locked.
    streamers flapping on their own with the smoke showing through. Each streamer then breaks off at the hoist and
    is carried away, up and into depth (LOOK's "depth, not width"), turning and fluttering, and is lost in the smoke.
    One way, nothing re-forms. It is gone by about 2:07.8, before "La France est dangereuse pour moi".
+2b. **v6.2 (Homie on v6.1: "everything is perfect except this shredding… like office paper being put through a
+   shredder… torn more organically… ripped to pieces across all directions"): the streamers are replaced.** The cloth
+   tears into ~15 irregular scraps along jagged, curving tears that run every way (cells bent by noise, frayed threads
+   on every edge, laid on the cloth so they ride its folds). The tear spreads from where the wind hits the fly; each
+   scrap's edges open and it flaps on its own ~0.5 s before it comes free, then the wind takes it up and into depth,
+   spinning and turning over in the air (it narrows edge-on and its back is in shadow), lost in the smoke like
+   distance. The hoist goes last; everything is gone by ~2:08.2. One way: nothing re-forms. (`_v6_shred`)
 3. **Napoléonistes = the tricolour whole but battle-torn**, still flying (the cut-into-pieces colour didn't read, and
    its border boiled). More shot through and blackened than the others, its fly hanging in ragged streamers of uneven
    length that flap on their own: the same tear language as CENTRE, stopped part way. The Napoleonists' colour, carried

@@ -778,6 +778,8 @@ class GenFlag:
         def n1(*scales):                                # 1D noise along the cloth (uc), about 0..1
             return fractal(4, NU, r2, scales=scales, gains=(1, 0.45, 0.2)[:len(scales)])[1] * 0.5 + 0.5
         self.hem = n1(max(2, NU // 16), max(2, NU // 60), 2)
+        # v6.1's streamer shred is retired (Homie: "like office paper through a shredder"); its draws stay so the
+        # tatter below keeps exactly the same random numbers. v6.2's shred: _v6_shred.
         # the tears: horizontal, along the weft, the way wind shreds a flag. SHRED (CENTRE's exit): seven tears run
         # from the fly to the hoist, each at its own speed, then each streamer breaks off and the wind takes it.
         # TATTER (Napoléonistes): five tears already there, stopped part way, the fly hanging in streamers.
@@ -832,7 +834,7 @@ class GenFlag:
         the fly side, fluttering, turning, receding and wearing away into the smoke. One way: nothing re-forms.
         Returns f, a and the padding P of the buffer (a carried-off streamer may leave the clip's frame)."""
         q, bw, bh, X, Y = self.ctx.q, self.bw, self.bh, self.X, self.Y
-        tears, strips = (self.shred, self.shred_strip) if mode == 'shred' else (self.tatter, self.tatter_strip)
+        tears, strips = self.tatter, self.tatter_strip
         ts = t - t0
         rag = 1.4 * q * (T2[..., 2] * 2 - 1)
         ys, tips = [], []
@@ -889,6 +891,113 @@ class GenFlag:
                 ai = cv2.warpAffine(ai, M, (W2, H2), flags=cv2.INTER_LINEAR, borderValue=0)
             out_f += fi * ai[..., None]
             out_a += ai
+        return out_f / np.maximum(out_a, 1e-4)[..., None], np.clip(out_a, 0, 1), P
+
+    def _v6_pieces(self):
+        """v6.2: the scraps the CENTRE flag tears into, laid out once in cloth coordinates (a grid of (UC1-UC0) x the
+        median white-band width wide, bh high, so its cells are ~square): irregular cells (nearest of 15 seeds, denser
+        toward the fly), their borders bent by two scales of noise into jagged, curving tears running every way, and
+        each pixel's distance to its scrap's edge. Each scrap gets a release time: the tear spreads from where the wind
+        hits the fly (uc 1.6, v 0.45) out across the cloth, the hoist last."""
+        r = np.random.default_rng(4242)
+        wdm = float(np.median(self.wd))
+        bh = self.bh
+        Gw = int((self.UC1 - self.UC0) * wdm)
+        gy, gx = np.mgrid[0:bh, 0:Gw].astype(F32)
+        warp = 0.11 * bh
+        sc = (max(3, bh // 3), max(2, bh // 10), max(2, bh // 32))
+        wx = gx + warp * fractal(bh, Gw, r, scales=sc, gains=(1, 0.45, 0.18))
+        wy = gy + warp * fractal(bh, Gw, r, scales=sc, gains=(1, 0.45, 0.18))
+        n = 15
+        us = -1.15 + 3.3 * np.sqrt(r.uniform(0, 1, n))
+        vs = r.uniform(0.04, 0.96, n)
+        sx = (us - self.UC0) * wdm
+        sy = vs * bh
+        d2 = (wx[None] - sx[:, None, None]) ** 2 + (wy[None] - sy[:, None, None]) ** 2
+        lab = np.argmin(d2, 0).astype(np.int32)
+        dist = np.zeros((bh, Gw), F32)
+        for i in range(n):
+            m = (lab == i).astype(np.uint8)
+            if m.any():
+                dist = np.maximum(dist, cv2.distanceTransform(m, cv2.DIST_L2, 3).astype(F32))
+        org = np.array([(1.6 - self.UC0) * wdm, 0.45 * bh])
+        cen = np.array([[float(gx[lab == i].mean()) if (lab == i).any() else sx[i],
+                         float(gy[lab == i].mean()) if (lab == i).any() else sy[i]] for i in range(n)])
+        dd = np.hypot(cen[:, 0] - org[0], cen[:, 1] - org[1])
+        rel = 0.40 + 1.6 * dd / dd.max() + r.uniform(-0.15, 0.15, n)          # s after the shred starts
+        self.pc = dict(wdm=wdm, lab=lab, dist=dist, n=n, cen=cen, rel=rel,
+                       spin=r.choice([-1, 1], n) * r.uniform(25, 60, n), flip=r.uniform(1.2, 2.6, n),
+                       wind=r.uniform(0.8, 1.25, n), hz=r.uniform(1.6, 2.6, n), ph=r.uniform(0, 6.3, n),
+                       life=r.uniform(1.3, 1.8, n))
+
+    def _v6_shred(self, f, a, uc, T2, t, t0):
+        """v6.2 (Homie on v6.1's streamers: "like office paper being put through a shredder… torn more organically, as
+        if a cloth is being shred or ripped to pieces across all directions"): the cloth tears into irregular scraps
+        along jagged tears running every way (_v6_pieces). Each scrap's edges open (frayed threads, the smoke behind
+        showing through) and it starts to flap on its own ~0.5 s before it comes free; then the wind takes it: up and
+        into depth, spinning, turning over in the air (it narrows as it turns edge-on), fluttering, darkening, lost in
+        the smoke like distance. The tear spreads from the fly; the scraps by the hoist go last. One way: nothing
+        re-forms. Returns f, a and the padding P of the buffer."""
+        if not hasattr(self, 'pc'):
+            self._v6_pieces()
+        pc, q, bw, bh, X, Y = self.pc, self.ctx.q, self.bw, self.bh, self.X, self.Y
+        ts = t - t0
+        mx = ((uc - self.UC0) * pc['wdm']).astype(F32)
+        lab = cv2.remap(pc['lab'].astype(F32), mx, Y, cv2.INTER_NEAREST, borderMode=cv2.BORDER_REPLICATE).astype(np.int32)
+        dist = cv2.remap(pc['dist'], mx, Y, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
+        rag = 2.6 * q * (T2[..., 2] * 2 - 1)                             # frayed threads along every tear
+        P = int(0.25 * bw)
+        H2, W2 = bh + 2 * P, bw + 2 * P
+        out_f, out_a = np.zeros((H2, W2, 3), F32), np.zeros((H2, W2), F32)
+        fc = np.ascontiguousarray(f, F32)
+        rest = np.zeros_like(a)
+        for i in range(pc['n']):
+            k = (lab == i)
+            if not k.any():
+                continue
+            tr = ts - pc['rel'][i]                                     # < 0: still attached; > 0: free
+            tear = float(np.clip((tr + 0.5) / 0.5, 0, 1))              # its edges opening over the last 0.5 s
+            gap = tear * (0.8 * q + 2.5 * q * (1 - np.exp(-max(tr, 0.0) * 4)))
+            m = k * ss(gap - 0.6 * q, gap + 0.9 * q, dist + rag * tear) if tear > 0 else k.astype(F32)
+            if tear <= 0:
+                rest += m
+                continue
+            ma = (a * m).astype(F32)
+            if float(ma.sum()) < 4:
+                continue
+            tf = max(tr, 0.0)
+            pr = tf / pc['life'][i]
+            if pr >= 1:
+                continue
+            cx, cy = float((X * ma).sum() / ma.sum()), float((Y * ma).sum() / ma.sum())
+            amp = (0.010 + 0.022 * min(tf / 0.6, 1.0) + 0.006 * tear) * bh
+            wave = 2 * np.pi * pc['hz'][i] * t - 0.018 * (X - cx) / q + pc['ph'][i]
+            dy = (amp * np.sin(wave) * np.clip(np.abs(X - cx) / (0.15 * bw), 0.2, 1.0)).astype(F32)
+            fold = (1 + 0.12 * np.cos(wave)).astype(F32)
+            fi = cv2.remap(fc * fold[..., None], X, Y - dy, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+            ai = cv2.remap(ma, X, Y - dy, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+            fi, ai = np.pad(fi, ((P, P), (P, P), (0, 0))), np.pad(ai, P)
+            if tf > 0:
+                ai = ai * (1 - ss(0.45, 1.0, pr))
+                turn = abs(np.cos(pc['flip'][i] * tf * np.pi))             # turning over: edge-on narrows it
+                shade = 0.65 + 0.35 * turn                                 # the back of the cloth, in shadow
+                fi = fi * ((1 - 0.4 * pr) * shade)
+                sc = 1 / (1 + 0.6 * tf)
+                ang = pc['spin'][i] * (tf + 0.5 * tf * tf)
+                c, s_ = np.cos(np.radians(ang)), np.sin(np.radians(ang))
+                sy_ = sc * max(turn, 0.22)
+                A2 = np.array([[c, -s_], [s_, c]], np.float64) @ np.array([[sc, 0], [0, sy_]])
+                pcx, pcy = cx + P, cy + P
+                tx = pc['wind'][i] * bw * (0.04 * tf + 0.07 * tf * tf)
+                ty = -pc['wind'][i] * bh * (0.03 * tf + 0.05 * tf * tf) * float(np.clip((cy / bh - 0.12) / 0.4, 0, 1))
+                M = np.hstack([A2, (np.array([pcx + tx, pcy + ty]) - A2 @ np.array([pcx, pcy]))[:, None]]).astype(np.float64)
+                fi = cv2.warpAffine(fi, M, (W2, H2), flags=cv2.INTER_LINEAR, borderValue=0)
+                ai = cv2.warpAffine(ai, M, (W2, H2), flags=cv2.INTER_LINEAR, borderValue=0)
+            out_f += fi * ai[..., None]
+            out_a += ai
+        ra = np.pad((a * rest).astype(F32), P)                             # the cloth still whole moves as one
+        out_f += np.pad(fc, ((P, P), (P, P), (0, 0))) * ra[..., None]
+        out_a += ra
         return out_f / np.maximum(out_a, 1e-4)[..., None], np.clip(out_a, 0, 1), P
 
     def _v6_drain(self, f, whitec, T1, T2, d1, r, d3):
@@ -995,7 +1104,7 @@ class GenFlag:
             if tatter:
                 f, a, pad = self._v6_tears(f, a, uc, T2, t, 'tatter')
             elif shred is not None and t >= shred:
-                f, a, pad = self._v6_tears(f, a, uc, T2, t, 'shred', shred)
+                f, a, pad = self._v6_shred(f, a, uc, T2, t, shred)
         if bleach > 0:                                                             # the Restoration: right half to white
             ur = np.clip((self.X - tl) / np.maximum(bw - tl, 1), 0, 1)
             fr = ss(0, 0.12, bleach * 1.3 - (1 - ur) * 0.6 - self.bn * 0.4) * (self.X >= tl)

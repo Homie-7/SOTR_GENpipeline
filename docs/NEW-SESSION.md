@@ -22,39 +22,23 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (3 Oct, night). docs/PLAN-MEETING4.md IS THE PLAN. MODE: VID (S6), POST (S5, S9 studio edge).
-1. SCENE 6 v6.1 IS BUILT, FOR HOMIE'S REVIEW (his 3 notes on v6, decided by Claude on his delegation; LOOK.md v6.1):
-   a. the "clipping lines" on every v6 flag's reveal/exit: FIXED (the fray was measured after the reveal mask; now on the
-      keyed cloth) + the cloth's cropped foot frayed (`_v6_hem`);
-   b. CENTRE flag exit = torn to shreds by the wind (`_v6_tears('shred')`, from 124.4 s, gone by ~127.8 s);
-   c. Napoléonistes = the whole tricolour, battle-torn, fly in streamers (`_v6_tears('tatter')`; the cut-up flag removed).
-   `--check --v6` clean; v5 still bit-identical without --v6. Files: 04_WORKING_FILES/S6_v6_option/ (1080, 3 walls,
-   sound; v6.0 in superseded/S6_v6_option_v6.0/) and S6_flags_v6_preview/S6_v5_vs_v6_COMPARE.mp4 (v5 over v6.1).
-   NEXT: Homie's verdict. 4K + promote under the SAME show names (v5 to superseded) ONLY when Homie says v6 replaces v5
-   (the client chooses; both presented).
-2. SCENE 5 BATTLEFIELD (POST): the REAL files are F:\OrCha Drive\SOR Show Final\SOR SHOW\SOR Renders\New Renders\Camps\
-   <Front|Left|Right|Bottom>\*.mov (DXV 1920x1080, 25 fps, 7:12, all equal, PCM sound). Homie asked Claude to choose.
-   CLAUDE'S RECOMMENDATION: C "cold dusk" (the script, Sc 3: "the day is late; it is eerie, smoky, and cold", north Italy
-   near the Alps; the renders are a hot orange sunset). tools/grade_battlefield.py v2: sky mask + ground/sky LUTs + a
-   firelight pass (the fires are the only warmth); the first 30 frames (render warm-up) dropped; sound carried.
-   Stills: 04_WORKING_FILES/S5_battlefield_grade/S5_grade_ALL_OPTIONS.jpg; 10 s test of Front in C: test_front_C_10s.mov
-   (79 s per 250 frames = ~57 min per angle with fires). TO DO: Homie confirms C (or A/B); render the four angles one at a
-   time (affinity FFFF3FFF) into that folder; check whether the old cannonball overlays (Camps/Exports, qtrle+alpha) are
-   still used. Offer: 4K (~140 cr), a thin battle haze from S6-SMOKE (tested, subtle).
-   HOMIE (3 Oct): ALL FOUR ANGLES MUST READ AS ONE SCENE split into four cameras (Unreal rendered them with different
-   exposure/colour). After the grade: measure each angle's SKY and GROUND (mean level + colour balance, and the horizon
-   band where walls meet), then a per-angle correction (exposure + white balance, separately for sky and ground via the
-   sky mask) toward ONE shared target, so the sky, the ground and the light flow from wall to wall. Check with the four
-   graded frames side by side (Left | Front | Right, Bottom under) before rendering.
-2b. SCENE 9 STUDIO CANVAS EDGE (POST, Homie 3 Oct, PARKED by him: "we'll get back to this later"; a separate chat is
-   fine): on the LEFT studio files the Raft canvas's right edge runs nearly to the wall's inner (right) edge and reads as a
-   HARD vertical cut, while the court burns away and the studio plaster breaks into fragments. He asks to move the canvas
-   or fade it from its corners so it isn't a hard cut; change the FINAL files. Constraint (LOOK D15/D16): the canvas never
-   BREAKS (edge_flow --protect keeps it whole) -- so the fix is a fade/shadow/move, not a break. Measured on b9 (1080,
-   1664 wide): canvas edge ~x1500-1515, the void from ~x1515. Files: play b4 (v3), b6 (v3), b9 (v5) + the 3 HOLD backups,
-   1080 + 4K (re-upscale the changed files: upscale_4k/promote_4k.py, ~a few credits), _CLEAN masters untouched
-   (effect files only), then the T9. Show Homie stills first.
-3. THE ALPS ("remove the birds" = the floating orbs?): ask Homie; not started.
+THE TASK, RIGHT NOW (4 Oct, overnight). docs/PLAN-MEETING4.md IS THE PLAN. MODE: POST (S4, S5), VID done (S6).
+FOR HOMIE TO REVIEW (everything below was built on his delegation while he slept):
+1. SCENE 6 v6.2 (the option beside v5): the CENTRE flag now TEARS INTO RAGGED SCRAPS that tumble away (his note on v6.1's
+   "office shredder" streamers); everything else as v6.1 (reveal fix, Napoléonistes tattered). 04_WORKING_FILES/
+   S6_v6_option/ + S6_flags_v6_preview/S6_v5_vs_v6_COMPARE.mp4. 4K + promote ONLY when he says v6 replaces v5.
+2. SCENE 9 STUDIO CANVAS EDGE: DONE AND IN THE SHOW (his "make the changes in the final file itself"): ragged plaster lip
+   beside the canvas + the canvas edge sunk into shadow at its corners, b4/b6/b9 + HOLD loops, 4K + 1080, checks PASS.
+   Old files in 04_WORKING_FILES/superseded/studio_pre_canvas_edge/ (swap back if he dislikes it).
+3. SCENE 5 CAMPS: grade C ("cold dusk") + the angle match (sky/ground per angle to one target, seam ramps) ->
+   04_WORKING_FILES/S5_battlefield_grade/C_matched/S5_camps_<angle>_C.mov (1080, 25 fps, sound). Check the four side by
+   side (Left|Front|Right, Bottom under). Open: 4K (~140 cr); the old cannonball overlays (Camps/Exports, qtrle+alpha).
+4. SCENE 4 ALPS: grade S4 (C's stock in daylight, so Alps -> camps reads as one film) + angle match + Despeck (small
+   specks/orbs in the sky replaced by their +-1 s median) -> 04_WORKING_FILES/S4_alps_grade/S4_matched/. ASK HOMIE:
+   (a) the current Alps = New Renders/Alps (3:36, used, as the camps) or SOR Renders/Alps/AlpsF..mp4 (2:00, 29.97, orbs)?
+   (b) "the birds" = ? (no birds seen in the New Renders; the 2:00 exports have glowing orbs). Lens flares: ignore (Homie).
+5. Then: show files for Scenes 4/5 (names, 4K, delivery), the Scene 5 -> 6 join (Scene 6 opens on red-brown smoke; C is
+   cold: check the cut), the floor plan (parked).
 CREDITS: 3 Oct: 48 spent (the S6-FLAG-WORN Edit-video test, look fail). Balance 2,267.66.
 The floor plan (docs/FLOOR-PLAN.md) is PARKED. Scene 9 is unchanged. The client delivery stays 01_FINAL_FOR_SHOW.
 The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF.

@@ -171,6 +171,14 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-03, night (VID -> POST, Homie asleep, delegated): S6 v6.2, the studio canvas edge IN THE SHOW, S5 + S4 graded. 19.29 cr.
+
+- S6 v6.2: the CENTRE flag tears into ragged scraps (Homie: v6.1 was "office paper through a shredder"). Option beside v5.
+- Scene 9 studio: `edge_flow.py --canvas-edge` (ragged plaster lip + canvas edge in shadow), promoted 4K + 1080 under the
+  same names; old in `superseded/studio_pre_canvas_edge/`. S5 camps: C + `grade_battlefield.py match`. S4 Alps: S4 (C's
+  stock in daylight) + match + Despeck, from `New Renders/Alps` (to confirm with Homie, and what "the birds" are).
+  Review list: `docs/NEW-SESSION.md`. If everything finishes before he's back: wrap, T9, then shut the PC down (Homie).
+
 ### 2026-10-03, third part (VID): SCENE 6 v6 = THE FLAG OPTION, BESIDE v5 (both go to the client). 48 cr.
 
 - Homie: "don't overwrite anything… the second version… present both". `render_s6.py --v6` (v5 bit-identical without it):
