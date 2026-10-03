@@ -791,3 +791,19 @@ bit for bit as before). Every other part of Scene 6 is v5's.
   (dark for Agnès, as LOOK's first M6). RIGHT: the plain white flag (Monarchistes). LEFT: a tricolour CUT INTO PIECES
   (Napoléonistes: regiments cut up their colours rather than surrender them, 1815), the pieces drifting apart one way,
   each turning and fluttering on its own. Both burn as one front from 2:10.5, as v5. The tear of v5 is not in v6.
+
+**v6.1 — Homie's three notes on v6 (2026-10-03: "will 100% go with this"; the notes delegated: "make these decisions
+for yourself").** Still an option beside v5, not locked.
+1. **The "clipping lines" on every v6 flag's reveal and exit are gone.** Cause: the ragged fly edge was measured row by row
+   AFTER the reveal mask, so each row's edge jumped to wherever the reveal had reached. It is now measured on the keyed
+   cloth before any mask. Also new: the foot of the cloth, where the generated clip cropped it in a straight line, is
+   frayed in cloth coordinates (it rides the folds).
+2. **The CENTRE flag tears to shreds** (it lingered). From 2:04.4, just after "Monarchistes !", the wind tears it along
+   the weft, the way wind shreds a flag: seven tears run from the fly to the hoist, each at its own speed, the torn
+   streamers flapping on their own with the smoke showing through. Each streamer then breaks off at the hoist and
+   is carried away, up and into depth (LOOK's "depth, not width"), turning and fluttering, and is lost in the smoke.
+   One way, nothing re-forms. It is gone by about 2:07.8, before "La France est dangereuse pour moi".
+3. **Napoléonistes = the tricolour whole but battle-torn**, still flying (the cut-into-pieces colour didn't read, and
+   its border boiled). More shot through and blackened than the others, its fly hanging in ragged streamers of uneven
+   length that flap on their own: the same tear language as CENTRE, stopped part way. The Napoleonists' colour, carried
+   to the end, beside the plain white of the Monarchistes. Both burn as one front from 2:10.5, as v5.

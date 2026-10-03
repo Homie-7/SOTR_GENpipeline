@@ -22,20 +22,16 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (3 Oct, late). docs/PLAN-MEETING4.md IS THE PLAN. MODE: VID (S6), POST (S5).
-1. SCENE 6 v6: HOMIE APPROVED THE DESIGN ("will 100% go with this": the worn smoky torn flag, M4, the centre colour
-   switching). Built beside v5 (`render_s6.py --v6`; v5 bit-identical without it). Files: 04_WORKING_FILES/S6_v6_option/
-   (1080, 3 walls, sound) and S6_flags_v6_preview/S6_v5_vs_v6_COMPARE.mp4. HIS NOTES = THE NEXT JOB (GenFlag._v6_*):
-   a. GLITCHY REVEAL/EXIT: straight horizontal "clipping lines" whenever a v6 flag appears or disappears (v5 eased cleanly).
-      Likely cause: _v6_fray() finds each ROW's fly edge from `a > 0.5` AFTER the reveal mask, so rows pop on and off. Fix:
-      take the fray from the keyed alpha BEFORE the reveal/hoist masks. Check stills at 116-119 s and 124-129 s.
-   b. CENTRE flag exit (~124.8-128.8 s, as the Monarchistes flag comes in): it lingers. Homie: TEAR IT TO SHREDS instead
-      of dissolving (Claude's call how: physical, one way, the pieces carried off in the smoke; no cube/brick look).
-   c. NAPOLEONISTES (LEFT, cut=...): cut lines + pieces drifting while the cloth still flutters as one flag doesn't read,
-      and its bottom border glitches. Rethink, sticking to the script ("Napoléonistes !", a tricolour on LEFT): e.g. the
-      tricolour whole but tattered, or the same shredding language as (b). Decide, build, show stills.
-   Then re-render 04_WORKING_FILES/S6_v6_option/ (render_s6.py OUT --final --v6 --scale 1.0, ~80 min, affinity FFFF3FFF);
-   4K + promote under the SAME show names (v5 to superseded) ONLY when Homie says v6 replaces v5.
+THE TASK, RIGHT NOW (3 Oct, night). docs/PLAN-MEETING4.md IS THE PLAN. MODE: VID (S6), POST (S5, S9 studio edge).
+1. SCENE 6 v6.1 IS BUILT, FOR HOMIE'S REVIEW (his 3 notes on v6, decided by Claude on his delegation; LOOK.md v6.1):
+   a. the "clipping lines" on every v6 flag's reveal/exit: FIXED (the fray was measured after the reveal mask; now on the
+      keyed cloth) + the cloth's cropped foot frayed (`_v6_hem`);
+   b. CENTRE flag exit = torn to shreds by the wind (`_v6_tears('shred')`, from 124.4 s, gone by ~127.8 s);
+   c. Napoléonistes = the whole tricolour, battle-torn, fly in streamers (`_v6_tears('tatter')`; the cut-up flag removed).
+   `--check --v6` clean; v5 still bit-identical without --v6. Files: 04_WORKING_FILES/S6_v6_option/ (1080, 3 walls,
+   sound; v6.0 in superseded/S6_v6_option_v6.0/) and S6_flags_v6_preview/S6_v5_vs_v6_COMPARE.mp4 (v5 over v6.1).
+   NEXT: Homie's verdict. 4K + promote under the SAME show names (v5 to superseded) ONLY when Homie says v6 replaces v5
+   (the client chooses; both presented).
 2. SCENE 5 BATTLEFIELD (POST): the REAL files are F:\OrCha Drive\SOR Show Final\SOR SHOW\SOR Renders\New Renders\Camps\
    <Front|Left|Right|Bottom>\*.mov (DXV 1920x1080, 25 fps, 7:12, all equal, PCM sound). Homie asked Claude to choose.
    CLAUDE'S RECOMMENDATION: C "cold dusk" (the script, Sc 3: "the day is late; it is eerie, smoky, and cold", north Italy
@@ -50,6 +46,14 @@ THE TASK, RIGHT NOW (3 Oct, late). docs/PLAN-MEETING4.md IS THE PLAN. MODE: VID 
    band where walls meet), then a per-angle correction (exposure + white balance, separately for sky and ground via the
    sky mask) toward ONE shared target, so the sky, the ground and the light flow from wall to wall. Check with the four
    graded frames side by side (Left | Front | Right, Bottom under) before rendering.
+2b. SCENE 9 STUDIO CANVAS EDGE (POST, Homie 3 Oct, PARKED by him: "we'll get back to this later"; a separate chat is
+   fine): on the LEFT studio files the Raft canvas's right edge runs nearly to the wall's inner (right) edge and reads as a
+   HARD vertical cut, while the court burns away and the studio plaster breaks into fragments. He asks to move the canvas
+   or fade it from its corners so it isn't a hard cut; change the FINAL files. Constraint (LOOK D15/D16): the canvas never
+   BREAKS (edge_flow --protect keeps it whole) -- so the fix is a fade/shadow/move, not a break. Measured on b9 (1080,
+   1664 wide): canvas edge ~x1500-1515, the void from ~x1515. Files: play b4 (v3), b6 (v3), b9 (v5) + the 3 HOLD backups,
+   1080 + 4K (re-upscale the changed files: upscale_4k/promote_4k.py, ~a few credits), _CLEAN masters untouched
+   (effect files only), then the T9. Show Homie stills first.
 3. THE ALPS ("remove the birds" = the floating orbs?): ask Homie; not started.
 CREDITS: 3 Oct: 48 spent (the S6-FLAG-WORN Edit-video test, look fail). Balance 2,267.66.
 The floor plan (docs/FLOOR-PLAN.md) is PARKED. Scene 9 is unchanged. The client delivery stays 01_FINAL_FOR_SHOW.

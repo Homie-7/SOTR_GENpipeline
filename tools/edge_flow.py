@@ -53,6 +53,11 @@ def read_all(p, w, h):
     return np.frombuffer(raw, np.uint8).reshape(-1, h, w, 3)
 
 
+def ss(e0, e1, x):
+    t = np.clip((x - e0) / (e1 - e0 + 1e-9), 0, 1)
+    return t * t * (3 - 2 * t)
+
+
 def lum(a):
     return a[..., 0] * 0.299 + a[..., 1] * 0.587 + a[..., 2] * 0.114
 
@@ -458,6 +463,37 @@ class Flow:
             reg[:] = reg * (1 - al[..., None]) + rgb * (lit * depth) * al[..., None]
 
 
+def canvas_edge_fields(a, W, H):
+    """v4 (Homie 2026-10-03, on the Scene 9 animatic: the painting's edge "is touching pretty much the end… that hard
+    edge of the painting is going to be a problem… fade it from the corners in a way that it doesn't come across as a
+    hard cut"). The studio kit was built with the canvas as an exact protected rectangle, so the void began at the
+    canvas's own straight edge (measured on b9: canvas edge x=1511, break from x=1512), the one straight line among
+    ragged ones. The canvas still never breaks (LOOK D16); instead:
+      - a ragged LIP of the wall's own plaster (14-70 px at 1664 wide, varying down the edge) is kept beside the canvas,
+        drawn from the clean picture, its broken edge in shadow, so the wall breaks raggedly like masonry and the
+        canvas hangs on wall, not on nothing; the blocks come out from behind the lip;
+      - the canvas's right edge sinks into shadow, 30 px wide mid-height and 100 px at the top and bottom corners
+        (never near the apex figure, ~275 px in), so the canvas's edge is lost in the dark instead of cut.
+    Fixed seed: the same lip on every studio file. Returns (band, shade, fade) as (H, W, 1) fields."""
+    from court_burn import fractal
+    x0, y0, x1, y1 = [float(v) for v in a.canvas_edge.split(',')]
+    sx, sy = W / 1664.0, H / 1248.0
+    x0, x1, y0, y1 = x0 * sx, x1 * sx, y0 * sy, y1 * sy
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    xe = x0 + (x1 - x0) * (yy - y0) / max(y1 - y0, 1.0)                 # the canvas edge, row by row (it leans a little)
+    rng = np.random.default_rng(1819)
+    n = fractal(H, 8, rng, scales=(int(160 * sy), int(50 * sy), max(2, int(14 * sy)), 4), gains=(1, 0.5, 0.25, 0.12))[:, 0] * 0.5 + 0.5
+    wl = (14 + 56 * n)[:, None] * sx                                     # the lip's width
+    dx = xx - xe
+    band = (1 - ss(wl - 1.5 * sx, wl + 1.5 * sx, dx)) * (dx > -2 * sx) * (yy > y0 - 60 * sy)
+    shade = 0.35 + 0.65 * ss(0, 9 * sx, wl - dx)                         # the broken lip in shadow
+    corner = np.maximum(ss(y0 + 260 * sy, y0, yy), ss(y1 - 260 * sy, y1, yy))
+    fw = (30 + 70 * corner) * sx
+    inside = (xx <= xe) & (yy >= y0 - 2 * sy) & (yy <= y1 + 2 * sy)
+    fade = np.where(inside, 0.1 + 0.9 * ss(0, 1, (xe - xx) / fw), 1.0)
+    return band[..., None].astype(np.float32), shade[..., None].astype(np.float32), fade[..., None].astype(np.float32)
+
+
 class EdgeRenderer:
     """The break over one frame: the static front (lit by the frame), the live-wall zone, the flows."""
 
@@ -505,6 +541,7 @@ class EdgeRenderer:
         side = str(kit['side'])
         sprites = list(kit['sprites'])
         live = list(kit['live_sprites']) if 'live_sprites' in kit else []
+        self.canvas = canvas_edge_fields(a, W, H) if getattr(a, 'canvas_edge', None) else None
         self.flows = []
         for n, sd in enumerate(['left', 'right'] if side == 'both' else [side]):
             fx = kit['fx_' + sd] if side == 'both' else kit['fx']
@@ -524,7 +561,12 @@ class EdgeRenderer:
         layer = layer * self.ramp[..., None]
         for fl in self.flows:
             fl.draw(layer, gain, base, i, self.vis)
-        return base * (1 - self.mask) + layer * self.mask
+        out = base * (1 - self.mask) + layer * self.mask
+        if self.canvas is not None:
+            band, shade, fade = self.canvas
+            out = out * (1 - band) + base * (band * shade)
+            out = out * fade
+        return out
 
 
 def smoke_layer(path, at, length, xmax, W, H, win=18):
@@ -669,6 +711,9 @@ def main():
     r.add_argument('--smoke-at', type=int, help='base frame where the snuff starts: carry its smoke over the break')
     r.add_argument('--smoke-len', type=int, default=120)
     r.add_argument('--speck', type=int, default=400, help='void islands smaller than this (px) are filled (v3)')
+    r.add_argument('--canvas-edge', help="the studio (v4, Homie 2026-10-03): 'x_top,y_top,x_bottom,y_bottom' of the canvas's "
+                                         "right edge (px at 1664x1248, scaled to the base): keep a ragged plaster lip beside "
+                                         "it and sink the canvas edge into shadow at its corners (see canvas_edge_fields)")
     flow_args(r)
     a = ap.parse_args()
     {'kit': build_kit, 'kit-court': build_court_kit, 'chips': build_chips, 'render': render}[a.cmd](a)

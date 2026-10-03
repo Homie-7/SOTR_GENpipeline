@@ -246,6 +246,14 @@ The kept set (139 files, 80 GB) is sha256-identical on D: and the T9.
 | **Binned** | the whole `SOTR_MEDIA_ARCHIVE` (superseded to 09-30, `04_REJECTED`, tests, upscale tests, the safe-to-delete set); studio b6 v5 (not used) and v4 (floor); upscale raws, upload transcodes, the unused clean 4Ks, the pre-fix 4Ks; S6 animatics v1-v3, S6-FLAG v1 B; scene9_fix previews; intermediates and logs; on the T9 also the pre-09-24 layout leftovers | for Homie to delete |
 | `04_WORKING_FILES/S9-ANIMATIC_v1.mp4` (2026-10-03) | Scene 9 whole, for review: the eight show files on the three walls in script order + the script's lines + their sound (`tools/s9_animatic.py`) | **for Homie** (review only, not a show file) |
 
+## 2026-10-03 (night) · Scene 6 v6.1: Homie's three notes on v6, built (still an option beside v5)
+
+| Path (SOTR_MEDIA/…) | What | Status |
+|---|---|---|
+| `04_WORKING_FILES/S6_v6_option/S6_LEFT/CENTRE/RIGHT_wars.mov` (sha256 ae51ec57… / 699602816… / 5352541f…) | **Scene 6 v6.1 at 1080**: `render_s6.py --final --v6` (fray fix + frayed foot, CENTRE torn to shreds 2:04.4-2:07.8, Napoléonistes tattered), 3,960 f, ProRes 422 HQ 10-bit, 48 kHz sound + `S6_scratch_sound.wav` | **for Homie** (the client chooses v5 or v6) |
+| `04_WORKING_FILES/S6_flags_v6_preview/S6_v5_vs_v6_COMPARE.mp4` | v5 (top) over v6.1 (bottom) from the 1080 show files, M2 0:05-0:44 + M4/M5 1:17-1:53 + M6 1:53-2:19, 2340x1080, 1:41, no sound | **for Homie / the client** |
+| `04_WORKING_FILES/superseded/S6_v6_option_v6.0/` | the v6.0 files (`_v6.0` added) and the v6.0 comparison/preview | superseded |
+
 ## 2026-10-03 · Scene 6 v6: THE MEETING 4 FLAG OPTION, beside v5 (nothing of v5 changed)
 
 Homie: "Make sure you don't overwrite anything. This is just the second version… present both of these and see which

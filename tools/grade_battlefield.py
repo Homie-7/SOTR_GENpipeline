@@ -17,7 +17,15 @@ Every LUT is a .cube, so stills and videos go through the same files with ffmpeg
   python tools/grade_battlefield.py mask FRAME.png OUT/mask_<angle>.png    (the sky mask of one angle)
   python tools/grade_battlefield.py firemask OUT/fire_<angle>.png <angle> F1.png F2.png ...
   python tools/grade_battlefield.py stills OUTDIR FRAME.png=MASK.png ...  (one sheet: a row per option)
+  python tools/grade_battlefield.py match OUTDIR OPTION MASKDIR     (writes S5_match_<OPTION>.json from the fk_<angle>_*.png)
   python tools/grade_battlefield.py render SRC.mov OUT.mov ANGLE OPTION MASKDIR [N]   (in the .cube folder; N = test frames)
+
+MATCH (Homie, 2026-10-03: "all four angles must read as one scene split into four cameras"; Unreal rendered each with
+its own exposure and colour): after the grade, each angle's SKY and GROUND (medians over frames spread through the
+clip, the sun and the firelight left out) get their own RGB gain toward ONE shared target (the mean of LEFT, FRONT and
+RIGHT; the floor, Bottom, takes the ground target), and the sky gets a soft ramp toward each seam so the two walls'
+skies meet at the same level where they touch (each side going halfway). One fixed gain field per angle (the cameras
+are locked), applied before the fire pass. The geometry (where each horizon sits) is the renders' and is not touched.
 
 Options:
   A  amber dusk      sky: warm, desaturated, the sun calmer; ground: umber   (closest to now and to Scene 6's smoke)
@@ -204,6 +212,96 @@ class FirePass:
         return np.clip(out * (1 - core) + orig * core, 0, 1)
 
 
+ANGLES = ('left', 'front', 'right', 'bottom')
+SEAMS = (('left', 'front'), ('front', 'right'))                  # (the wall on the left, the wall on the right)
+LUM709 = np.array([0.2126, 0.7152, 0.0722], np.float32)
+RAMP_W = 0.40                                                    # the seam ramp reaches this far into a wall
+
+
+def _regions(im, m, fire):
+    """Sky without the sun (below its 90th percentile) and ground without the firelight, as boolean masks."""
+    lum = im @ LUM709
+    nofire = (1 - fire.pool[..., 0]) if fire.on else np.ones_like(m)
+    sky = None
+    if (m > 0.9).sum() > 1000:
+        sky = (m > 0.9) & (lum < np.percentile(lum[m > 0.9], 90))
+    return sky, (m < 0.1) & (nofire > 0.9)
+
+
+def gain_field(angle, maskdir, match, shape):
+    """The angle's per-pixel RGB gain (H, W, 3): sky gain x the seam ramp where the sky mask is, ground gain elsewhere."""
+    a = match[angle]
+    m = cv2.imread(os.path.join(maskdir, f'mask_{angle}.png'), 0).astype(np.float32)[..., None] / 255
+    H, W = shape
+    xs = (np.arange(W, dtype=np.float32) + 0.5) / W
+    ramp = np.ones((W, 3), np.float32)
+    for side, edge in (('l', a.get('edge_l')), ('r', a.get('edge_r'))):
+        if edge is None:
+            continue
+        d = xs if side == 'l' else 1 - xs                            # 0 at that edge
+        w = (1 - ss(0.0, RAMP_W, d))[:, None]
+        ramp = ramp * np.exp(w * np.log(np.array(edge, np.float32)))
+    sky = np.array(a['sky'], np.float32)[None, None] * ramp[None] if a.get('sky') else 1.0
+    return (m * sky + (1 - m) * np.array(a['ground'], np.float32)[None, None]).astype(np.float32)
+
+
+def make_match(outdir, k, maskdir):
+    """Grade the fk_<angle>_*.png samples with option k, measure, write S5_match_<k>.json (see MATCH above)."""
+    import glob
+    import json
+    os.chdir(outdir)
+    med, edges = {}, {}
+    for ang in ANGLES:
+        m = cv2.imread(os.path.join(maskdir, f'mask_{ang}.png'), 0).astype(np.float32) / 255
+        fire = FirePass(os.path.join(maskdir, f'fire_{ang}.png'))
+        S, Gd, El, Er = [], [], [], []
+        for f in sorted(glob.glob(os.path.join(maskdir, f'fk_{ang}_*.png'))):
+            tmp = f'_match_{ang}.png'
+            graded(f, os.path.join(maskdir, f'mask_{ang}.png'), k, tmp, width=1920)
+            im = cv2.imread(tmp)[..., ::-1].astype(np.float32) / 255
+            os.remove(tmp)
+            sky, gr = _regions(im, m, fire)
+            Gd.append(np.median(im[gr], 0))
+            if sky is not None:
+                S.append(np.median(im[sky], 0))
+                W = m.shape[1]
+                el, er = sky.copy(), sky.copy()
+                el[:, int(0.08 * W):] = False
+                er[:, :int(0.92 * W)] = False
+                El.append(np.median(im[el], 0))
+                Er.append(np.median(im[er], 0))
+        med[ang] = dict(sky=np.median(S, 0) if S else None, ground=np.median(Gd, 0))
+        edges[ang] = (np.median(El, 0) if El else None, np.median(Er, 0) if Er else None)
+    walls = ('left', 'front', 'right')
+    t_sky = np.mean([med[a]['sky'] for a in walls], 0)
+    t_gr = np.mean([med[a]['ground'] for a in walls], 0)
+    out = {}
+    for ang in ANGLES:
+        g_sky = None if med[ang]['sky'] is None else np.clip(t_sky / med[ang]['sky'], 0.8, 1.25)
+        out[ang] = dict(sky=None if g_sky is None else g_sky.tolist(),
+                        ground=np.clip(t_gr / med[ang]['ground'], 0.8, 1.25).tolist(), edge_l=None, edge_r=None,
+                        measured=dict(sky=None if med[ang]['sky'] is None else med[ang]['sky'].tolist(),
+                                      ground=med[ang]['ground'].tolist()))
+    for a, b in SEAMS:                                               # after the global gains, meet halfway at the seam
+        ea = edges[a][1] * np.array(out[a]['sky'])
+        eb = edges[b][0] * np.array(out[b]['sky'])
+        mid = np.sqrt(ea * eb)
+        out[a]['edge_r'] = np.clip(mid / ea, 0.75, 1.33).tolist()
+        out[b]['edge_l'] = np.clip(mid / eb, 0.75, 1.33).tolist()
+    out['_target'] = dict(sky=t_sky.tolist(), ground=t_gr.tolist(), option=k, ramp_width=RAMP_W)
+    with open(f'S5_match_{k}.json', 'w') as f:
+        json.dump(out, f, indent=1)
+    for ang in ANGLES:
+        print(ang, {x: (None if out[ang][x] is None else [round(v, 3) for v in out[ang][x]]) for x in ('sky', 'ground', 'edge_l', 'edge_r')})
+    print('wrote', os.path.join(outdir, f'S5_match_{k}.json'))
+
+
+def load_match(k):
+    import json
+    p = f'S5_match_{k}.json'
+    return json.load(open(p)) if os.path.exists(p) else None
+
+
 def lut_chain(k, src, mask, fmt):
     """The two LUTs merged by the sky mask, 16-bit throughout."""
     return (f'{src}split[a][b];[a]lut3d=file=S5_{k}_ground.cube:interp=tetrahedral,format=gbrp16le[g];'
@@ -211,14 +309,17 @@ def lut_chain(k, src, mask, fmt):
             f'[g][s][m]maskedmerge,format={fmt}[o]')
 
 
-def graded(frame, mask, k, out, width=720):
-    """A still through the same chain as the videos: the LUTs merged by the sky mask, then the fire pass."""
+def graded(frame, mask, k, out, width=720, match=None):
+    """A still through the same chain as the videos: the LUTs merged by the sky mask, (the angle match,) the fire pass."""
     raw = out + '.raw.png'
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', frame, '-i', mask, '-filter_complex', lut_chain(k, '[0]', '[1]', 'rgb48be'),
                     '-map', '[o]', '-frames:v', '1', raw], check=True)
     o = cv2.imread(frame, cv2.IMREAD_UNCHANGED)[..., ::-1].astype(np.float32) / 255
     g = cv2.imread(raw, cv2.IMREAD_UNCHANGED)[..., ::-1].astype(np.float32) / 65535
     os.remove(raw)
+    if match is not None:
+        ang = os.path.basename(mask)[5:-4]
+        g = np.clip(g * gain_field(ang, os.path.dirname(mask), match, g.shape[:2]), 0, 1)
     res = FirePass(mask.replace('mask_', 'fire_'))(o, g)
     hh = int(round(res.shape[0] * width / res.shape[1] / 2)) * 2
     res = cv2.resize(res, (width, hh), interpolation=cv2.INTER_AREA)
@@ -243,6 +344,9 @@ def render(src, out, angle, k, maskdir, trim=30, limit=None):
     num, den = (int(x) for x in fps.split('/'))
     t0 = f'{trim * den / num:.6f}'
     fp = FirePass(fire)
+    match = load_match(k)
+    gf = gain_field(angle, maskdir, match, (H, W)) if match else None
+    print(f'{angle}: angle match', 'ON' if gf is not None else f'OFF (no S5_match_{k}.json)', flush=True)
     tmp = os.path.join(os.path.dirname(out), '_tmp_' + os.path.basename(out))
     enc = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-s', f'{W}x{H}', '-r', fps,
                             '-i', '-', '-ss', t0, '-i', src, '-map', '0:v', '-map', '1:a?', '-c:v', 'prores_ks', '-profile:v', '3',
@@ -264,6 +368,8 @@ def render(src, out, angle, k, maskdir, trim=30, limit=None):
         if len(gb) < nb:
             break
         g = np.frombuffer(gb, np.uint16).reshape(H, W, 3).astype(np.float32) / 65535
+        if gf is not None:
+            g = np.clip(g * gf, 0, 1)
         if od is not None:
             ob = od.stdout.read(nb)
             if len(ob) < nb:
@@ -291,6 +397,9 @@ def main():
         return
     if cmd == 'firemask':                                          # firemask OUT.png ANGLE FRAME1.png ...
         make_fire_mask(sys.argv[4:], sys.argv[2], sys.argv[3])
+        return
+    if cmd == 'match':                                             # match OUTDIR OPTION MASKDIR
+        make_match(os.path.abspath(sys.argv[2]), sys.argv[3], os.path.abspath(sys.argv[4]))
         return
     if cmd == 'render':                                            # render SRC.mov OUT.mov ANGLE OPTION MASKDIR [N]
         render(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], limit=int(sys.argv[7]) if len(sys.argv) > 7 else None)

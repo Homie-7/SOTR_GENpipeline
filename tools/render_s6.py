@@ -139,6 +139,7 @@ REC = None                       # --check: every tagged blit appends (tag, y0, 
 # v6 (Meeting 4, 2026-10-03, docs/PLAN-MEETING4.md, concept A-C approved by Homie): softer, weathered flags and the
 # history of the colours. OFF by default, so the approved v5 renders bit for bit as before; --v6 switches it on.
 V6 = False
+M6_SHRED = 124.4                 # v6.1: when the wind starts tearing the CENTRE flag to shreds
 LUMW = np.array([0.299, 0.587, 0.114], F32)
 AGED = np.array([1.0, 0.91, 0.76], F32)                  # old silk yellows; the whites go to ivory
 SOOT = np.array([0.05, 0.04, 0.035], F32)
@@ -752,7 +753,6 @@ class GenFlag:
     # coordinates of its own; each row's white band (found in frame()) gives one: uc = 0 where the white starts,
     # 1 where it ends (blue -1..0, red 1..2). Rows stay screen rows (the cloth's vertical travel is small).
     NU, UC0, UC1 = 512, -1.4, 2.6
-    CUTS = [((-0.55, -0.05), (0.45, 1.05)), ((1.65, -0.05), (1.05, 1.05)), ((-1.1, 0.78), (2.1, 0.30))]
 
     def _v6_init(self, seed):
         r = np.random.default_rng(seed + 1000)
@@ -771,6 +771,31 @@ class GenFlag:
                                                   np.zeros((bh, NU), F32)]), F32)
         self.fray_lo = fractal(bh, 8, r, scales=(max(2, bh // 9), max(2, bh // 30)), gains=(1, 0.4))[:, 0] * 0.5 + 0.5
         self.fray_hi = fractal(bh, 8, r, scales=(2,), gains=(1,))[:, 0] * 0.5 + 0.5
+        # v6.1 (Homie's notes on v6, 2026-10-03): its own generator, so every texture above is unchanged
+        r2 = np.random.default_rng(seed + 2000)
+        self.ucg = uc
+
+        def n1(*scales):                                # 1D noise along the cloth (uc), about 0..1
+            return fractal(4, NU, r2, scales=scales, gains=(1, 0.45, 0.2)[:len(scales)])[1] * 0.5 + 0.5
+        self.hem = n1(max(2, NU // 16), max(2, NU // 60), 2)
+        # the tears: horizontal, along the weft, the way wind shreds a flag. SHRED (CENTRE's exit): seven tears run
+        # from the fly to the hoist, each at its own speed, then each streamer breaks off and the wind takes it.
+        # TATTER (Napoléonistes): five tears already there, stopped part way, the fly hanging in streamers.
+        nt = 7
+        vs = (np.arange(1, nt + 1) + r2.uniform(-0.2, 0.2, nt)) / (nt + 1)
+        self.shred = [dict(v=float(v), wander=n1(max(2, NU // 6), max(2, NU // 24)) * 2 - 1, fr=n1(max(2, NU // 40), 2),
+                           t0=float(r2.uniform(0.0, 0.5)), spd=float(r2.uniform(2.6, 3.8))) for v in vs]
+        self.shred_strip = [dict(amp=float(r2.uniform(0.016, 0.028)), hz=float(r2.uniform(1.6, 2.4)), ph=float(r2.uniform(0, 6.3)),
+                                 lag=float(r2.uniform(0.05, 0.45)), wind=float(r2.uniform(0.8, 1.25)),
+                                 spin=float(r2.choice([-1, 1]) * r2.uniform(3, 7)), life=float(r2.uniform(1.6, 2.1)))
+                            for _ in range(nt + 1)]
+        nt2 = 5
+        vs2 = (np.arange(1, nt2 + 1) + r2.uniform(-0.25, 0.25, nt2)) / (nt2 + 1)
+        self.tatter = [dict(v=float(v), wander=n1(max(2, NU // 6), max(2, NU // 24)) * 2 - 1, fr=n1(max(2, NU // 40), 2),
+                            stop=float(r2.uniform(0.35, 1.1))) for v in vs2]
+        self.tatter_strip = [dict(amp=float(r2.uniform(0.020, 0.032)), hz=float(r2.uniform(1.5, 2.2)), ph=float(r2.uniform(0, 6.3)),
+                                  short=float(r2.choice([2.4, 2.4, r2.uniform(1.55, 2.0)])))     # some streamers shot away short
+                             for _ in range(nt2 + 1)]
 
     def _v6_maps(self, a):
         """uc for every pixel of the box, and the cloth textures sampled there."""
@@ -782,13 +807,89 @@ class GenFlag:
         return uc.astype(F32), T1, T2
 
     def _v6_fray(self, a):
-        """The fly end is torn ragged: each row loses a ragged few percent from wherever its fly edge is now."""
+        """The fly end is torn ragged: each row loses a ragged few percent from wherever its fly edge is now.
+        Returns the multiplier. v6.1: `a` must be the KEYED cloth, before the reveal and hoist masks (Homie's
+        "clipping lines": found after the reveal, each row's edge jumped to wherever the reveal had got to)."""
         on = a > 0.5
         has = on.any(1)
         xe = (self.bw - 1 - np.argmax(on[:, ::-1], axis=1)).astype(F32)
         d = (xe[:, None] - self.X) / self.bw
         bite = (0.012 + 0.045 * self.fray_lo ** 2 + 0.012 * self.fray_hi)[:, None]
-        return a * np.where(has[:, None], ss(0, 0.006, d - bite), 1.0)
+        return np.where(has[:, None], ss(0, 0.006, d - bite), 1.0)
+
+    def _v6_hem(self, uc, T2):
+        """v6.1: where the cloth runs off the bottom of the generated frame, its edge was a straight crop line; a worn
+        flag's foot is frayed, so it is bitten back raggedly, in cloth coordinates (it rides the folds)."""
+        q, bh = self.ctx.q, self.bh
+        bite = bh * (0.022 + 0.035 * np.interp(uc, self.ucg, self.hem)) + 1.5 * q * (T2[..., 2] * 2 - 1)
+        return ss(0, 1.5 * q, (bh - 1 - self.Y) - bite)
+
+    def _v6_tears(self, f, a, uc, T2, t, mode, t0=0.0):
+        """Horizontal tears along the weft split the cloth into streamers; every torn tail flutters on its own (waves
+        running to its free end, out of phase with its neighbours) and the smoke shows through the gaps.
+        mode 'tatter': the tears stop part way (a tattered colour, the fly in streamers). mode 'shred' (t0 = when it
+        starts): the tears run fly -> hoist, then each streamer breaks off and the wind carries it away, up and to
+        the fly side, fluttering, turning, receding and wearing away into the smoke. One way: nothing re-forms.
+        Returns f, a and the padding P of the buffer (a carried-off streamer may leave the clip's frame)."""
+        q, bw, bh, X, Y = self.ctx.q, self.bw, self.bh, self.X, self.Y
+        tears, strips = (self.shred, self.shred_strip) if mode == 'shred' else (self.tatter, self.tatter_strip)
+        ts = t - t0
+        rag = 1.4 * q * (T2[..., 2] * 2 - 1)
+        ys, tips = [], []
+        for k in tears:
+            ys.append(bh * (k['v'] + 0.02 * np.interp(uc, self.ucg, k['wander'])))
+            tips.append(2.3 - k['spd'] * max(0.0, ts - k['t0']) if mode == 'shred' else k['stop'])
+        P = int(0.25 * bw) if mode == 'shred' else 0
+        H2, W2 = bh + 2 * P, bw + 2 * P
+        out_f, out_a = np.zeros((H2, W2, 3), F32), np.zeros((H2, W2), F32)
+        fc = np.ascontiguousarray(f, F32)
+        for i, s in enumerate(strips):
+            m = np.ones_like(a)
+            tip = None
+            for j, side in ((i - 1, 1), (i, -1)):                      # the tear above (d > 0 below it), below
+                if j < 0 or j >= len(tears):
+                    continue
+                d = side * (Y - ys[j])
+                torn = ss(tips[j], tips[j] + 0.08, uc)
+                gap = torn * (0.8 * q + 2.2 * q * np.interp(uc, self.ucg, tears[j]['fr'])
+                              + 0.010 * bh * np.clip(uc - tips[j], 0, 1.5))      # torn edges curl apart toward the fly
+                m = m * (torn * ss(0, 1.2 * q, d - gap + rag) + (1 - torn) * ss(-0.6 * q, 0.6 * q, d))
+                tip = tips[j] if tip is None else max(tip, tips[j])
+            if 'short' in s and s['short'] < 2.3:                       # this streamer's end is gone, raggedly
+                m = m * ss(0, 0.05, s['short'] - uc + 0.04 * (T2[..., 2] * 2 - 1))
+            ma = a * m
+            if float(ma.sum()) < 1e-3 * bw * bh:
+                continue
+            free = tip < -1.0 and mode == 'shred'                     # torn right through to the hoist: it breaks off
+            tf = ts - (max(tears[j]['t0'] + (2.3 + 1.0) / tears[j]['spd'] for j in (i - 1, i) if 0 <= j < len(tears)) + s['lag']) \
+                if free else -1.0
+            w = np.ones_like(uc) if tf > 0 else np.clip((uc - tip) / 0.7, 0, 1) ** 1.2
+            wave = 2 * np.pi * s['hz'] * t - 7.0 * (uc - max(tip, -1.0)) + s['ph']
+            amp = s['amp'] * (1 + 0.6 * min(max(tf, 0.0), 1.0))
+            wave2 = 2 * np.pi * 1.7 * s['hz'] * t - 12.0 * (uc - max(tip, -1.0)) + 1.3 * s['ph']
+            dy = (amp * bh * w * (np.sin(wave) + 0.3 * np.sin(wave2))).astype(F32)
+            fold = (1 + 0.10 * w * np.cos(wave)).astype(F32)
+            fi = cv2.remap(fc * fold[..., None], X, (Y - dy).astype(F32), cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+            ai = cv2.remap(np.ascontiguousarray(ma, F32), X, (Y - dy).astype(F32), cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT,
+                           borderValue=0)
+            if P:
+                fi, ai = np.pad(fi, ((P, P), (P, P), (0, 0))), np.pad(ai, P)
+            if tf > 0:
+                pr = tf / s['life']
+                if pr >= 1:
+                    continue
+                ai = ai * (1 - ss(0.40, 1.0, pr))                      # lost in the smoke as it goes, the way distance fades
+                fi = fi * (1 - 0.40 * pr)
+                vc = (tears[min(i, len(tears) - 1)]['v'] + (tears[i - 1]['v'] if i > 0 else 0.0)) / (2 if i > 0 else 1)
+                cx, cy = P + 0.55 * bw, P + vc * bh
+                M = cv2.getRotationMatrix2D((cx, cy), s['spin'] * (tf + 0.8 * tf * tf), 1 / (1 + 0.7 * tf))    # away, into depth
+                M[0, 2] += s['wind'] * bw * (0.04 * tf + 0.06 * tf * tf)
+                M[1, 2] -= s['wind'] * bh * (0.03 * tf + 0.04 * tf * tf) * np.clip((vc - 0.15) / 0.4, 0, 1)   # rising a little, never off the wall
+                fi = cv2.warpAffine(fi, M, (W2, H2), flags=cv2.INTER_LINEAR, borderValue=0)
+                ai = cv2.warpAffine(ai, M, (W2, H2), flags=cv2.INTER_LINEAR, borderValue=0)
+            out_f += fi * ai[..., None]
+            out_a += ai
+        return out_f / np.maximum(out_a, 1e-4)[..., None], np.clip(out_a, 0, 1), P
 
     def _v6_drain(self, f, whitec, T1, T2, d1, r, d3):
         """The colours won't hold (1814 white, 1815 the tricolour back, 1815 white for good): the blue and red run
@@ -806,67 +907,26 @@ class GenFlag:
         f = f * k[..., None] + whitec * (1 - k)[..., None]
         return f * (1 - 0.08 * tide)[..., None]
 
-    def _v6_worn(self, f, a, uc, T1):
+    def _v6_worn(self, f, a, uc, T1, heavy=0.0):
         """A battle-worn regimental colour: faded, yellowed, smoke-blackened toward the fly and the foot, water-
-        stained, shot through, softer overall. All of it in cloth coordinates."""
+        stained, shot through, softer overall. All of it in cloth coordinates. heavy (v6.1, the Napoléonistes'
+        colour, carried to the end): more shot through and more blackened."""
         v = self.v
+        hth = 0.845 - 0.012 * heavy
         lum = (f @ LUMW)[..., None]
         g = (lum + (f - lum) * 0.5) * AGED
         fly = np.clip((uc - 0.2) / 1.8, 0, 1)
         so = T1[..., 0]
         soot = np.clip(so * 1.4 - 0.45, 0, 1) ** 1.3 * (0.35 + 0.65 * fly) + 0.30 * ss(0.6, 1.0, v) * so
-        soot = np.clip(soot, 0, 1)[..., None]
+        soot = np.clip(soot * (1 + 0.5 * heavy), 0, 1)[..., None]
         g = g * (1 - 0.62 * soot) + SOOT * 0.62 * soot
         st = T1[..., 1]
         g = g * (1 - np.exp(-((st - 0.64) / 0.03) ** 2) * 0.07 - ss(0.60, 0.70, st) * 0.05)[..., None]
         h = T1[..., 2]
-        ring = np.exp(-np.clip(0.845 - h, 0, None) / 0.018) * (h < 0.86)          # a scorched brown edge, not ink
+        ring = np.exp(-np.clip(hth - h, 0, None) / 0.018) * (h < hth + 0.015)      # a scorched brown edge, not ink
         g = g * (1 - 0.45 * ring)[..., None] + BROWN * 0.30 * (ring[..., None] * lum)
-        a = a * (1 - ss(0.845, 0.865, h + 0.015 * T1[..., 3]))
+        a = a * (1 - ss(hth, hth + 0.02, h + 0.015 * T1[..., 3]))
         return g * 0.86, a
-
-    def _v6_cut(self, f, a, uc, T2, sep, t):
-        """Napoléonistes: the regiments cut their colours into pieces rather than give them up (1815). The cuts are
-        laid on the cloth, frayed; each piece moves away at its own constant speed, one way, turning and sinking a
-        little, and flutters on its own (it is a loose scrap of cloth now). Returns the pieces on a buffer padded by
-        P px each side, so a piece can leave the clip's frame without being clipped."""
-        q, bw, bh = self.ctx.q, self.bw, self.bh
-        P = int(0.25 * bw)
-        wdm = float(np.median(self.wd))
-        px, py = uc * wdm, self.v * bh
-        rag = 2.5 * q * (T2[..., 2] * 2 - 1)
-        sds = []
-        for (u0, v0), (u1, v1) in self.CUTS:
-            x0, y0, x1, y1 = u0 * wdm, v0 * bh, u1 * wdm, v1 * bh
-            nx, ny = -(y1 - y0), (x1 - x0)
-            ln = np.hypot(nx, ny)
-            sds.append(((px - x0) * nx + (py - y0) * ny) / ln + rag)
-        aw = a.sum() + 1e-6
-        cx0, cy0 = float((self.X * a).sum() / aw), float((self.Y * a).sum() / aw)
-        fp = np.pad(np.ascontiguousarray(f, F32), ((P, P), (P, P), (0, 0)))
-        out_f, out_a = np.zeros_like(fp), np.zeros(fp.shape[:2], F32)
-        for i in range(8):
-            m = np.ones_like(a)
-            for j, sd in enumerate(sds):
-                s = 1 if (i >> j) & 1 else -1
-                m = m * ss(-0.7 * q, 0.7 * q, s * sd)
-            ma = (a * m).astype(F32)
-            w = float(ma.sum())
-            if w < 0.002 * bw * bh:
-                continue
-            cx, cy = float((self.X * ma).sum() / w), float((self.Y * ma).sum() / w)
-            dx, dy = cx - cx0, cy - cy0
-            n = np.hypot(dx, dy) + 1e-6
-            spd = 0.7 + 0.15 * ((i * 5) % 7)                       # each piece its own speed, turn and flutter
-            ph = 1.7 * i
-            rot = (1 if i % 2 else -1) * (5.0 + 1.2 * (i % 3)) * sep * spd + 1.5 * np.sin(2 * np.pi * 0.45 * t + ph)
-            M = cv2.getRotationMatrix2D((cx + P, cy + P), rot, 1.0)
-            M[0, 2] += sep * spd * 0.16 * bw * dx / n
-            M[1, 2] += sep * spd * (0.16 * bw * dy / n + 0.05 * bh) + 0.012 * bh * np.sin(2 * np.pi * 0.6 * t + ph)
-            map_ = np.pad(ma, P)
-            out_f += cv2.warpAffine(fp * map_[..., None], M, (bw + 2 * P, bh + 2 * P), flags=cv2.INTER_LINEAR, borderValue=0)
-            out_a += cv2.warpAffine(map_, M, (bw + 2 * P, bh + 2 * P), flags=cv2.INTER_LINEAR, borderValue=0)
-        return out_f / np.maximum(out_a, 1e-4)[..., None], np.clip(out_a, 0, 1), P
 
     def frame(self, t):
         f = self.rd.get(int(round((t + self.offset) * FPS)))
@@ -915,8 +975,9 @@ class GenFlag:
         return f, a, whitec
 
     def draw(self, canvas, t, ash=None, dt=0.0, strength=1.0, reveal=1.0, burn=0.0, tear=0.0, bleach=0.0, grey=0.0,
-             drain=None, cut=0.0):
+             drain=None, shred=None, tatter=False):
         f, a, whitec = self.frame(t)
+        a_key = a
         q, bw, bh, u, v = self.ctx.q, self.bw, self.bh, self.u, self.v
         E = slide(self.E, bw, bh, bw / 2 + self.ctx.px(900) - 18 * self.ctx.s * t, bh / 2 + self.ctx.px(600) - 9 * self.ctx.s * t)
         a = a * ss(0, 0.22, u + 0.07 * E) * ss(0, 0.02, v) * ss(0, 0.02, 1 - v)   # hoist into smoke; no hard crop
@@ -927,13 +988,14 @@ class GenFlag:
         pad = 0
         if V6:
             uc, T1, T2 = self._v6_maps(a)
-            a = self._v6_fray(a)
+            a = a * self._v6_fray(a_key) * self._v6_hem(uc, T2)
             if drain is not None:
                 f = self._v6_drain(f, whitec, T1, T2, *drain)
-            f, a = self._v6_worn(f, a, uc, T1)
-            if cut > 0:                             # a scrap has no straight edge: the clip's frame edges go ragged first
-                a = a * ss(0, 0.30, u + 0.10 * E) * ss(0, 0.09, v + 0.05 * E) * ss(0, 0.09, 1 - v + 0.05 * E)
-                f, a, pad = self._v6_cut(f, a, uc, T2, cut, t)
+            f, a = self._v6_worn(f, a, uc, T1, heavy=1.0 if tatter else 0.0)
+            if tatter:
+                f, a, pad = self._v6_tears(f, a, uc, T2, t, 'tatter')
+            elif shred is not None and t >= shred:
+                f, a, pad = self._v6_tears(f, a, uc, T2, t, 'shred', shred)
         if bleach > 0:                                                             # the Restoration: right half to white
             ur = np.clip((self.X - tl) / np.maximum(bw - tl, 1), 0, 1)
             fr = ss(0, 0.12, bleach * 1.3 - (1 - ur) * 0.6 - self.bn * 0.4) * (self.X >= tl)
@@ -1441,6 +1503,23 @@ def build(ctx):
     return S
 
 
+def draw_m6_v6(ctx, S, c, t, dt, flags_only=False):
+    """v6 (concept C): "the flag that can't hold its colours". On "je ne reconnais plus mon pays" the worn tricolour
+    comes out of the smoke on CENTRE; its blue and red run out to the king's white (1814), flood back in other
+    blotches (1815, the Hundred Days, under "France is divided"), and drain for good as "Monarchistes !" lands (1815).
+    v6.1 (Homie: it lingered, "tear it to shreds"): from 124.4 the wind tears it along the weft into streamers that
+    break off one by one and are carried away into the smoke, gone by ~129, so the two sides lead (CENTRE dark for
+    Agnès, as LOOK's first M6). RIGHT: the plain white flag (Monarchistes). LEFT (v6.1, the cut-up colour didn't
+    read): the tricolour whole but tattered, shot through, its fly hanging in streamers: the Napoléonistes' colour,
+    still flying. Both burn as one front from 130.5, as v5."""
+    fb = lin(130.5, 137.5, t)
+    drain = (ssf(119.0, 121.0, t), ssf(121.0, 122.4, t), ssf(122.4, 124.2, t))
+    if t <= 130.0:
+        S['flagC'].draw(c, t, S['ash_bg'], dt, reveal=ssf(116.0, 119.0, t), drain=drain, shred=M6_SHRED)
+    S['flagR'].draw(c, t + 3, S['ash_bg'], dt, strength=0.85, reveal=ssf(124, 127, t), burn=fb)
+    S['flagL'].draw(c, t + 7, S['ash_bg'], dt, strength=0.85, reveal=ssf(126, 128.5, t), tatter=True, burn=fb)
+
+
 def render_frame(ctx, S, t, dt):
     W, H = ctx.W, ctx.H
     c = np.zeros((H, W, 3), F32)
@@ -1473,18 +1552,7 @@ def render_frame(ctx, S, t, dt):
     # the rip runs from the middle up and down (121.5-124), then the halves keep opening (to 127);
     # all three flags burn as ONE front from the middle of CENTRE outward (130.5-137.5)
     if V6 and 116.0 <= t <= 137.6:
-        # v6 (concept C): "the flag that can't hold its colours". On "je ne reconnais plus mon pays" the worn
-        # tricolour comes out of the smoke on CENTRE; its blue and red run out to the king's white (1814), flood back
-        # in other blotches (1815, the Hundred Days, under "France is divided"), and drain for good as "Monarchistes !"
-        # lands (1815). Then the split as it happened: the plain white flag on RIGHT (Monarchistes), a tricolour CUT
-        # INTO PIECES on LEFT (Napoléonistes: the regiments cut up their colours rather than surrender them). CENTRE
-        # goes back into the smoke so the two sides lead (CENTRE dark for Agnès, as LOOK's first M6); both burn as one front.
-        fb = lin(130.5, 137.5, t)
-        drain = (ssf(119.0, 121.0, t), ssf(121.0, 122.4, t), ssf(122.4, 124.2, t))
-        if t <= 129.0:                                  # CENTRE goes back into the smoke as the white takes RIGHT
-            S['flagC'].draw(c, t, S['ash_bg'], dt, reveal=ssf(116.0, 119.0, t) * (1 - ssf(124.8, 128.8, t)), drain=drain)
-        S['flagR'].draw(c, t + 3, S['ash_bg'], dt, strength=0.85, reveal=ssf(124, 127, t), burn=fb)
-        S['flagL'].draw(c, t + 7, S['ash_bg'], dt, strength=0.85, reveal=ssf(126, 128.5, t), cut=0.15 + lin(126.0, 138.0, t), burn=fb)
+        draw_m6_v6(ctx, S, c, t, dt)
     elif 119.5 <= t <= 137.6:
         rip = 0.6 * lin(121.5, 124.0, t) + 0.3 * lin(124.0, 127.0, t)
         fb = lin(130.5, 137.5, t)
