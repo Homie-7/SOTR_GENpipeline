@@ -56,6 +56,18 @@ OPTIONS = {
     'B': dict(name='brown earth',
               g=dict(hue=24.0, sat=0.52, val=0.78, mult=(1.00, 1.00, 1.00), gsat=0.90),
               s=dict(sat=0.38, mult=(1.00, 0.99, 0.98), knee=0.75, comp=0.45, val=0.92)),
+    'N': dict(name='natural dusk (v4: only the soil changes)', fire='cores',
+              g=dict(hue=26.0, sat=0.55, val=0.86, mult=(1.00, 1.00, 1.00), gsat=1.00),
+              s=dict(sat=0.88, mult=(1.00, 0.98, 0.95), knee=0.86, comp=0.60, val=0.98)),
+    'N2': dict(name='amber haze (v4)', fire='cores',
+               g=dict(hue=22.0, sat=0.62, val=0.84, mult=(1.00, 0.96, 0.88), gsat=0.94),
+               s=dict(sat=0.75, mult=(1.00, 0.95, 0.86), knee=0.82, comp=0.55, val=0.95)),
+    'N3': dict(name='golden earth (v4)', fire='cores',
+               g=dict(hue=34.0, sat=0.50, val=0.88, mult=(1.00, 0.99, 0.92), gsat=0.96),
+               s=dict(sat=0.80, mult=(1.00, 0.97, 0.90), knee=0.84, comp=0.58, val=0.97)),
+    'A4': dict(name='the Alps, natural (v2, from Renders 050422)', kind='alps',
+               g=dict(gsat=0.95, green_sat=0.86, olive=5.0, val=0.98, mult=(1.00, 1.00, 1.00)),
+               s=dict(sat=0.90, mult=(0.99, 0.99, 1.00), knee=0.88, comp=0.65, val=0.99)),
     'S4': dict(name='the Alps, same stock as C', kind='alps',
                g=dict(gsat=0.62, green_sat=0.62, olive=14.0, val=0.90, mult=(0.97, 0.98, 1.00)),
                s=dict(sat=0.42, mult=(0.93, 0.96, 1.03), knee=0.70, comp=0.45, val=0.90)),
@@ -231,7 +243,9 @@ class FirePass:
     discs, 2026-10-03): inside a wide soft pool around each fire the graded picture is warmed in proportion to how
     brightly the fire lit it in the original; only the flame cores themselves come back from the original."""
 
-    def __init__(self, placement_png):
+    def __init__(self, placement_png, pool=True):
+        self.use_pool = pool                                         # False (v4 natural grades): only the flame cores
+                                                                     # come back from the original; no warm pool added
         src = (cv2.imread(placement_png, 0) > 0).astype(np.uint8)
         if src.sum() > 2000:
             src = cv2.erode(src, np.ones((15, 15), np.uint8))
@@ -247,7 +261,7 @@ class FirePass:
         lum = orig @ np.array([0.299, 0.587, 0.114], np.float32)
         sat = (orig.max(-1) - orig.min(-1)) / np.maximum(orig.max(-1), 1e-6)
         k = self.pool * ss(0.30, 0.80, lum)[..., None]
-        out = graded * (1 + k * (FIRE_GAIN - 1))
+        out = graded * (1 + k * (FIRE_GAIN - 1)) if self.use_pool else graded
         core = (self.tight * ss(0.72, 0.95, lum) * ss(0.35, 0.6, sat))[..., None]
         return np.clip(out * (1 - core) + orig * core, 0, 1)
 
@@ -255,7 +269,7 @@ class FirePass:
 ANGLES = ('left', 'front', 'right', 'bottom')
 SEAMS = (('left', 'front'), ('front', 'right'))                  # (the wall on the left, the wall on the right)
 LUM709 = np.array([0.2126, 0.7152, 0.0722], np.float32)
-MATCH_EXP, MATCH_WB = 0.8, 0.03                                  # see make_match.gain
+MATCH_EXP, MATCH_WB = 1.0, 0.03          # exposure fully (Homie 2026-10-04: "imperative… a single cohesive environment")                                  # see make_match.gain
 RAMP_W = 0.40                                                    # the seam ramp reaches this far into a wall
 
 
@@ -264,8 +278,8 @@ def _regions(im, m, fire):
     lum = im @ LUM709
     nofire = (1 - fire.pool[..., 0]) if fire.on else np.ones_like(m)
     sky = None
-    if (m > 0.9).sum() > 1000:
-        sky = (m > 0.9) & (lum < np.percentile(lum[m > 0.9], 90))
+    if (m > 0.75).sum() > 1000:
+        sky = (m > 0.75) & (lum < np.percentile(lum[m > 0.75], 90))
     return sky, (m < 0.1) & (nofire > 0.9)
 
 
@@ -309,8 +323,10 @@ def make_match(outdir, k, maskdir):
                 el, er = sky.copy(), sky.copy()
                 el[:, int(0.08 * W):] = False
                 er[:, :int(0.92 * W)] = False
-                El.append(np.median(im[el], 0))
-                Er.append(np.median(im[er], 0))
+                if el.sum() > 200:
+                    El.append(np.median(im[el], 0))
+                if er.sum() > 200:
+                    Er.append(np.median(im[er], 0))
         med[ang] = dict(sky=np.median(S, 0) if S else None, ground=np.median(Gd, 0))
         edges[ang] = (np.median(El, 0) if El else None, np.median(Er, 0) if Er else None)
     walls = ('left', 'front', 'right')
@@ -333,6 +349,8 @@ def make_match(outdir, k, maskdir):
                         measured=dict(sky=None if med[ang]['sky'] is None else med[ang]['sky'].tolist(),
                                       ground=med[ang]['ground'].tolist()))
     for a, b in SEAMS:                                               # after the global gains, meet halfway at the seam
+        if edges[a][1] is None or edges[b][0] is None:
+            continue                                                 # nothing measurable at this seam
         ea = edges[a][1] * np.array(out[a]['sky'])
         eb = edges[b][0] * np.array(out[b]['sky'])
         mid = np.sqrt(ea * eb)
@@ -370,7 +388,7 @@ def graded(frame, mask, k, out, width=720, match=None):
     if match is not None:
         ang = os.path.basename(mask)[5:-4]
         g = np.clip(g * gain_field(ang, os.path.dirname(mask), match, g.shape[:2]), 0, 1)
-    res = FirePass(mask.replace('mask_', 'fire_'))(o, g)
+    res = FirePass(mask.replace('mask_', 'fire_'), pool=OPTIONS[k].get('fire') != 'cores')(o, g)
     hh = int(round(res.shape[0] * width / res.shape[1] / 2)) * 2
     res = cv2.resize(res, (width, hh), interpolation=cv2.INTER_AREA)
     cv2.imwrite(out, (res[..., ::-1] * 255 + 0.5).astype(np.uint8))
@@ -451,7 +469,7 @@ def render(src, out, angle, k, maskdir, trim=30, limit=None, despeck=False):
                                 'stream=nb_read_packets', '-of', 'csv=p=0', src], capture_output=True, text=True).stdout.strip()) - trim
     if limit:
         total = min(total, limit)
-    fp = FirePass(fire)
+    fp = FirePass(fire, pool=OPTIONS[k].get('fire') != 'cores')
     match = load_match(k)
     gf = gain_field(angle, maskdir, match, (H, W)) if match else None
     print(f'{angle}: angle match', 'ON' if gf is not None else f'OFF (no S5_match_{k}.json)', flush=True)

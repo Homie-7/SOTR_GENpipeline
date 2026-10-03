@@ -22,26 +22,34 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (4 Oct, overnight). docs/PLAN-MEETING4.md IS THE PLAN. MODE: POST (S4, S5), VID done (S6).
-FOR HOMIE TO REVIEW (everything below was built on his delegation while he slept):
-1. SCENE 6 v6.2 (the option beside v5): the CENTRE flag now TEARS INTO RAGGED SCRAPS that tumble away (his note on v6.1's
-   "office shredder" streamers); everything else as v6.1 (reveal fix, Napoléonistes tattered). 04_WORKING_FILES/
-   S6_v6_option/ + S6_flags_v6_preview/S6_v5_vs_v6_COMPARE.mp4. 4K + promote ONLY when he says v6 replaces v5.
-2. SCENE 9 STUDIO CANVAS EDGE: DONE AND IN THE SHOW (his "make the changes in the final file itself"): ragged plaster lip
-   beside the canvas + the canvas edge sunk into shadow at its corners, b4/b6/b9 + HOLD loops, 4K + 1080, checks PASS.
-   Old files in 04_WORKING_FILES/superseded/studio_pre_canvas_edge/ (swap back if he dislikes it).
-3. SCENE 5 CAMPS: grade C ("cold dusk") + the angle match (sky/ground per angle to one target, seam ramps) ->
-   04_WORKING_FILES/S5_battlefield_grade/C_matched/S5_camps_<angle>_C.mov (1080, 25 fps, sound). Check the four side by
-   side (Left|Front|Right, Bottom under). DONE (4 x 10,770 f). Open: 4K (~140 cr); the old cannonball overlays (Camps/
-   Exports, qtrle+alpha); THE CAMPS FRONT SKY HAS BIRDS (dark specks) - left as is; re-render with --despeck if wanted.
-4. SCENE 4 ALPS: grade S4 (C's stock in daylight, so Alps -> camps reads as one film) + angle match + Despeck (small
-   specks/orbs in the sky replaced by their +-1 s median) -> 04_WORKING_FILES/S4_alps_grade/S4_matched/ (DONE, 4 x 5,370 f).
-   ASK HOMIE:
-   (a) the current Alps = New Renders/Alps (3:36, used, as the camps) or SOR Renders/Alps/AlpsF..mp4 (2:00, 29.97, orbs)?
-   (b) "the birds" = ? (no birds seen in the New Renders; the 2:00 exports have glowing orbs). Lens flares: ignore (Homie).
-5. Then: show files for Scenes 4/5 (names, 4K, delivery), the Scene 5 -> 6 join (Scene 6 opens on red-brown smoke; C is
-   cold: check the cut), the floor plan (parked).
-CREDITS: 3 Oct: 48 spent (the S6-FLAG-WORN Edit-video test, look fail). Balance 2,267.66.
+THE TASK, RIGHT NOW (4 Oct, morning). MODE: POST. Homie's weekly model limit is near: finish TODAY, and right.
+DECIDED BY HOMIE (4 Oct): (a) Scene 6 v6.2 REPLACES v5 in the show; (b) the Scene 9 studio canvas edge is APPROVED (in the
+show); (c) Alps = the CLEAN `F:/OrCha Drive/SOR Show Final/Renders (050422)/Alps/` renders, grade A4 "natural daylight"
+(S4_alps_v2_FOR_HOMIE.jpg, row 2); (d) camps = option N "RICH DUSK" (S5_options_v4_FOR_HOMIE.jpg: only the red soil
+turns to earth; sky/sun/light as rendered; fires = the original flame cores by position, no warm pool). EXPOSURE MATCHED
+FULLY across all four angles is imperative (MATCH_EXP 1.0 in grade_battlefield.py). He found C "extremely dull".
+RUNNING AT HANDOVER (detached, affinity FFFF3FFF; logs in C:/Users/Homie/AppData/Local/Temp/claude/C--Users-Homie-Documents-SOTR-GENpipeline/15f546ce-6f02-4c65-a43e-4e27570918e5/scratchpad/):
+  - s4v2.log: Alps A4 renders -> 04_WORKING_FILES/S4_alps_grade_v2/A4_matched/S4_alps_<front|left|right|bottom>.mov
+    (29.97 fps native, first 30 warm-up frames dropped, --despeck = the birds, sound). Front done 08:04.
+  - s5n.log: camps N renders, start after S4V2_ALL_DONE -> S5_battlefield_grade/N_matched/S5_camps_<angle>.mov
+    (New Renders/Camps, 25 fps, ~1 h per angle).
+NEXT, IN ORDER:
+1. SCENE 6 v6.2 -> SHOW: uploads ready (04_WORKING_FILES/S6_v6_option/uploads/*.mp4, HEVC crf 12). media_upload ->
+   tools/put_upload.py -> media_confirm -> CDN size check -> ByteDance upscale_video aigc 4k 24 fps, ONE AT A TIME,
+   `transactions` after each (~13 cr per wall) -> tools/fetch.py -> upscale_restore.py --clamp 2 (--size 2880x2160 sides,
+   3600x2160 CENTRE) -> upscale_check.py VERDICT -> promote under the SAME names: 4K into 01_FINAL_FOR_SHOW/
+   1_PLAY_THESE_IN_ORDER/S6_<WALL>_wars.mov, 1080 into 3_HD_1080_fallback/1_PLAY…, a copy into 03_CLEAN_MASTERS_no_edge/
+   S6_<WALL>_wars_CLEAN.mov; every v5 file to 04_WORKING_FILES/superseded/S6_v5/ (sha256 every move). The studio run of
+   3 Oct is the template (S9_studio_canvas_edge/: JOBS_4K.txt, the job script pattern; give ffmpeg </dev/null in loops).
+2. When the Alps + camps renders finish: verify frames/sound, a side-by-side sheet (L|F|R, Floor under) per scene, and
+   1:1 crops of the floor (no speckle). Make H.264 REVIEW COPIES (crf 18) beside the ProRes: D: is a spinning HDD and the
+   7-min ProRes HQ (217 Mb/s) stalled in his player. Show Homie.
+3. Then (ask): Scenes 4/5 as show files (names S4_/S5_<WALL>_<world>.mov, the floor angle separately), 4K (~0.08 cr/s),
+   the cannonball (050422 Camps/Cannonball EXR + CB_Explosion), the Scene 5 -> 6 join (S6 opens on red-brown smoke).
+NOTES: grade_battlefield.py now has options N/N2/N3 (camps) and A4 (Alps), FirePass(pool=False) = flame cores only,
+soft air masks for the Alps, the camps sky masks refined per pixel near the horizon (mask_<a>_v2.png = the C-era masks),
+Despeck, the frame-count bound. The camps Front sky has birds (left; --despeck removes them if asked).
+CREDITS: 3-4 Oct: 48 + 19.29 spent; balance ~2,248 (keep >= 1,500, Homie) (the S6-FLAG-WORN Edit-video test, look fail). Balance 2,267.66.
 The floor plan (docs/FLOOR-PLAN.md) is PARKED. Scene 9 is unchanged. The client delivery stays 01_FINAL_FOR_SHOW.
 The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF.
 Credits: ask above ~100 per run; one at a time; `transactions` after each.

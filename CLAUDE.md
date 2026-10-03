@@ -171,6 +171,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-04, morning (POST): Homie's verdicts. S6 v6.2 REPLACES v5; studio canvas edge APPROVED; Alps = 050422 renders, natural grade; camps = RICH DUSK.
+
+- C (cold dusk) was "extremely dull"; the camps go to option N (only the red soil turns to earth), exposure matched 100%
+  across all four angles ("imperative"). The Alps switch to the clean `Renders (050422)` set. Renders running; the
+  S6 4K + promotion is next. Full handover: `docs/NEW-SESSION.md`.
+
 ### 2026-10-03, night (VID -> POST, Homie asleep, delegated): S6 v6.2, the studio canvas edge IN THE SHOW, S5 + S4 graded. 19.29 cr.
 
 - S6 v6.2: the CENTRE flag tears into ragged scraps (Homie: v6.1 was "office paper through a shredder"). Option beside v5.
