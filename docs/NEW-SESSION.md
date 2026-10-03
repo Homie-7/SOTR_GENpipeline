@@ -30,7 +30,9 @@ THE TASK, RIGHT NOW (after Meeting 4; updated 2026-10-03 evening). docs/PLAN-MEE
    2.0 with the 4K loops, ~4 h, affinity FFFF3FFF), then it replaces v5 under the SAME show names (v5 to superseded).
    The generated wear (S6-FLAG-WORN v1, 48 cr) FAILED on look; don't run the 360-cr pass unless Homie asks.
 2. NEXT (MODE: POST, a fresh session): the Alps (remove "the birds" = probably the floating orbs; ASK Homie, the still is
-   in 04_WORKING_FILES/meeting4_prep/), 3. the battlefield grade (too red: three grade stills, Homie picks). Sources:
+   in 04_WORKING_FILES/meeting4_prep/), 3. the battlefield grade: OPTIONS BUILT 3 Oct (tools/grade_battlefield.py; LUTs + stills in 04_WORKING_FILES/
+   S5_battlefield_grade/; Claude recommends A, amber dusk). WAITING ON Homie's pick + how the 4 different-length angles are used;
+   then grade every angle and the cannonball overlays (alpha kept) by ffmpeg lut3d, ProRes, native 29.97, sound copied. Sources:
    F:\OrCha Drive\SOR Show Final\SOR SHOW\SOR Renders\Alps\ and ...\Camps\Exports\; outputs to D: (SOTR_MEDIA).
    Both 0 credits. The Higgsfield subscription ENDS on the 2nd (Nov; confirm).
 CREDITS: 3 Oct budget 1,000, spent 48 (balance 2,267.66). "Very conservative, no wasted credits".
