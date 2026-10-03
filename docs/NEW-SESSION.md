@@ -27,8 +27,8 @@ THE CLIENT'S NOTES: docs/PLAN-MEETING4.md IS THE PLAN. Order (Homie): 1. Scene 6
 monarchist/Napoleonic instability, history clear), 2. the Alps (remove "the birds" = probably the floating orbs;
 confirm), 3. the battlefield grade (too red). Sources for 2-3: F:\OrCha Drive\SOR Show Final\SOR SHOW\SOR Renders\
 Alps\ and ...\Camps\Exports\; outputs to D: (SOTR_MEDIA). The Higgsfield subscription ENDS on the 2nd (Nov; confirm).
-CREDITS: Homie: 1,000 today (3 Oct), "very conservative, no wasted credits". The flag plan costs ~410. NOTHING is
-generated before Homie picks the flag concept from the free preview (plan step 1). Balance 2,315.66 on 3 Oct.
+CREDITS: Homie: 1,000 today (3 Oct), "very conservative, no wasted credits". The flag plan costs ~410. Concept A-C APPROVED
+(flags only, no small dates). START WITH PLAN STEP 1: the free preview (0 cr), Homie checks it, THEN the 48-cr probe. Balance 2,315.66 on 3 Oct.
 The floor plan (docs/FLOOR-PLAN.md) is PARKED. Scene 9 is unchanged. The client delivery stays 01_FINAL_FOR_SHOW.
 The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF.
 Credits: ask above ~100 per run; one at a time; `transactions` after each.

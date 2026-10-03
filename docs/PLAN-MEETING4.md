@@ -54,9 +54,9 @@ one were hunted.** That's the "instability" the client asks for, and it's true.
   ("Napoléonistes", the regiments that cut their flags rather than give them up); on RIGHT, **the plain white flag**
   ("Monarchistes"). Then all burn, as now. Script on the generated cloth, 0 credits.
 - ~~D. Small dates~~: **dropped (Homie, 3 Oct: "we don't want the small dates").**
-- **Open (asked 3 Oct):** the notes say "imagery", not only flags. If Louise and Simon meant the two sides' symbols
-  too, add Napoleon's eagle and the Bourbon fleur-de-lis (public-domain prints, like the battles) drifting apart in
-  M6. Free. Waiting on Homie.
+- **DECIDED (Homie, 3 Oct): flags only** ("the flag is what we are trying to work on"); no eagle / fleur-de-lis
+  prints. **A, B and C approved as the concept** ("happy with your recommendations"). The free preview (step 1) still
+  comes before any credit is spent; Homie checks it, then the 48-credit probe.
 
 ### Steps and credits
 1. **Free preview (0 cr):** M2, M4, M6 with B and C built by script on the CURRENT cloth plus a softening grade, three
@@ -107,8 +107,7 @@ matches; re-grade Scene 6's first seconds only if it doesn't.
 - **Deliver:** as Scene 4.
 
 ## Questions for Homie (none block the flag preview)
-1. The flag concept (A–C above; D dropped), after the free preview; and whether "imagery" means the eagle /
-   fleur-de-lis too.
+1. ~~The flag concept~~: A–C approved, flags only (3 Oct). Homie checks the free preview before credits.
 2. The Alps "birds" = the floating orbs? (the still)
 3. The battlefield: how the four different-length angles are used; which of three grades.
 4. Scenes 4 and 5 into `01_FINAL_FOR_SHOW` as show files (ProRes, native 29.97), and 4K?
