@@ -171,6 +171,13 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-03, second part: MEETING 4 NOTES -> `docs/PLAN-MEETING4.md`. Flags first (1,000 cr today, conservative).
+
+- Client: the Scene 6 flags too strong/graphic; soften, weather them, show the monarchist/Napoleonic instability
+  (researched: the tricolour holds the king's white; white 1814, tricolour 1815, white 1815-30; flags cut up and
+  burned; the White Terror = why Agnès leaves). Then the Alps (remove "birds") and the battlefield grade (too red),
+  Homie's 2022 Unreal renders on F:. Floor plan parked. Nothing generated before Homie picks the flag concept.
+
 ### 2026-10-03 (PREP): a floor-projection plan, ready in case it's needed.
 
 - A floor projector is NOT confirmed. If it is, `docs/FLOOR-PLAN.md` is the plan: floor as floor (light pools,

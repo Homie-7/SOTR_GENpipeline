@@ -22,26 +22,15 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (after 2026-10-02; MODE: whatever the client's notes need). THE JOB IS FINISHED (Homie, 2026-10-02:
-"I think we'll call it finished"). He is meeting the client and will come back only if more is needed. DON'T CHANGE ANYTHING
-unless he asks. Scenes 6 and 9 are approved, 4K, cleaned up and backed up to the T9 (sha256-identical, 2026-10-02).
-THE CLIENT DELIVERY = SOTR_MEDIA/01_FINAL_FOR_SHOW/ (upload the whole folder): 1_PLAY_THESE_IN_ORDER (11, 4K) +
-2_BACKUP_LOOPS_for_operator (10, 4K) + 3_HD_1080_fallback (the same 21 at 1080). Studio b9 = candle arc v5, b6 = v3.
-CLEANUP 2026-10-02: the media was recompartmentalised (SOTR_MEDIA/README.txt is the map) and everything unneeded went to
-D:\SOTR\_DELETE_ME_2026-10-02 and G:\SOTR\HF\_DELETE_ME_2026-10-02 for Homie to empty. If they're still there, they're his;
-don't use anything in them (D:\SOTR\CLEANUP_2026-10-02_moves.tsv lists every move if something has to come back).
-IF HOMIE COMES BACK: start by asking what the client said. Client notes = a new version under the SAME show name: rebuild
-clean from 02_APPROVED_BUILDING_BLOCKS with tools/ (recipes in 04_WORKING_FILES/build_recipes/; their paths are
-pre-cleanup, the README has the map) -> 03_CLEAN_MASTERS_no_edge (old file to 04_WORKING_FILES/superseded/), the edge on
-top (04_WORKING_FILES/edge_kits/) -> 01, then 4K by the 2026-10-01 route (ByteDance + upscale_restore + upscale_check
-VERDICT; records in 04_WORKING_FILES/4K_records/), then the T9. A new scene = PREP first (card, look with Homie), v3 stack
-(CLAUDE.md standing rules). New tests go in a new 04_WORKING_FILES/<name>/ folder.
+THE TASK, RIGHT NOW (after Meeting 4, 2026-10-03; MODE: VID for the flag, POST for Scenes 4/5).
+THE CLIENT'S NOTES: docs/PLAN-MEETING4.md IS THE PLAN. Order (Homie): 1. Scene 6 flags (softer, weathered, the
+monarchist/Napoleonic instability, history clear), 2. the Alps (remove "the birds" = probably the floating orbs;
+confirm), 3. the battlefield grade (too red). Sources for 2-3: F:\OrCha Drive\SOR Show Final\SOR SHOW\SOR Renders\nAlps\ and ...\Camps\Exports\; outputs to D: (SOTR_MEDIA). The Higgsfield subscription ENDS on the 2nd (Nov; confirm).
+CREDITS: Homie: 1,000 today (3 Oct), "very conservative, no wasted credits". The flag plan costs ~410. NOTHING is
+generated before Homie picks the flag concept from the free preview (plan step 1). Balance 2,315.66 on 3 Oct.
+The floor plan (docs/FLOOR-PLAN.md) is PARKED. Scene 9 is unchanged. The client delivery stays 01_FINAL_FOR_SHOW.
 The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF.
-IF A FLOOR PROJECTOR IS CONFIRMED: follow docs/FLOOR-PLAN.md (ready, not started; the judge's shadow is a YES, no carpet).
-OPTIONAL, NOT DONE (Homie: no extra work): a v5 version of the b9 studio backup HOLD loop (the v3 one is ~24% dimmer).
-Open with the team: set dimensions, codec (three 4K ProRes files at once in Scene 6 is heavy; the 1080 set is the fallback),
-pre-warp, rehearsal timings.
-CREDITS: 0 on 2026-10-02; 81.30 on 2026-10-01. Credits: ask above ~100 per run; one at a time; `transactions` after each.
+Credits: ask above ~100 per run; one at a time; `transactions` after each.
 
 WHERE IT LIVES (D:\SOTR\SOTR_MEDIA = C:\Users\Homie\Documents\SOTR_MEDIA, a junction; README.txt is the map):
 - 01_FINAL_FOR_SHOW/  the client delivery (00_READ_ME_FIRST.txt explains it): S6_<WALL>_wars.mov and
