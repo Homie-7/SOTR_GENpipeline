@@ -32,9 +32,11 @@ FOR HOMIE TO REVIEW (everything below was built on his delegation while he slept
    Old files in 04_WORKING_FILES/superseded/studio_pre_canvas_edge/ (swap back if he dislikes it).
 3. SCENE 5 CAMPS: grade C ("cold dusk") + the angle match (sky/ground per angle to one target, seam ramps) ->
    04_WORKING_FILES/S5_battlefield_grade/C_matched/S5_camps_<angle>_C.mov (1080, 25 fps, sound). Check the four side by
-   side (Left|Front|Right, Bottom under). Open: 4K (~140 cr); the old cannonball overlays (Camps/Exports, qtrle+alpha).
+   side (Left|Front|Right, Bottom under). DONE (4 x 10,770 f). Open: 4K (~140 cr); the old cannonball overlays (Camps/
+   Exports, qtrle+alpha); THE CAMPS FRONT SKY HAS BIRDS (dark specks) - left as is; re-render with --despeck if wanted.
 4. SCENE 4 ALPS: grade S4 (C's stock in daylight, so Alps -> camps reads as one film) + angle match + Despeck (small
-   specks/orbs in the sky replaced by their +-1 s median) -> 04_WORKING_FILES/S4_alps_grade/S4_matched/. ASK HOMIE:
+   specks/orbs in the sky replaced by their +-1 s median) -> 04_WORKING_FILES/S4_alps_grade/S4_matched/ (DONE, 4 x 5,370 f).
+   ASK HOMIE:
    (a) the current Alps = New Renders/Alps (3:36, used, as the camps) or SOR Renders/Alps/AlpsF..mp4 (2:00, 29.97, orbs)?
    (b) "the birds" = ? (no birds seen in the New Renders; the 2:00 exports have glowing orbs). Lens flares: ignore (Homie).
 5. Then: show files for Scenes 4/5 (names, 4K, delivery), the Scene 5 -> 6 join (Scene 6 opens on red-brown smoke; C is

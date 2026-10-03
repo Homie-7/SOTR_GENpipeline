@@ -444,6 +444,13 @@ def render(src, out, angle, k, maskdir, trim=30, limit=None, despeck=False):
     W, H, fps = pr['width'], pr['height'], pr['r_frame_rate']
     num, den = (int(x) for x in fps.split('/'))
     t0 = f'{trim * den / num:.6f}'
+    # exactly the source's frames minus the trim: with no fire pass nothing else bounds the graded stream (the looped mask
+    # keeps maskedmerge going), and Right/Bottom ran 12 frames past the end until the encoder's -shortest cut the pipe
+    # (2026-10-04)
+    total = int(subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-count_packets', '-show_entries',
+                                'stream=nb_read_packets', '-of', 'csv=p=0', src], capture_output=True, text=True).stdout.strip()) - trim
+    if limit:
+        total = min(total, limit)
     fp = FirePass(fire)
     match = load_match(k)
     gf = gain_field(angle, maskdir, match, (H, W)) if match else None
@@ -465,11 +472,13 @@ def render(src, out, angle, k, maskdir, trim=30, limit=None, despeck=False):
     gd = subprocess.Popen(g_cmd, stdout=subprocess.PIPE)
     od = subprocess.Popen(o_cmd, stdout=subprocess.PIPE) if fp.on else None
     nb, n = W * H * 6, 0
-    while True:
+    got = 0
+    while got < total:
         gb = gd.stdout.read(nb)
         if len(gb) < nb:
             break
         g = np.frombuffer(gb, np.uint16).reshape(H, W, 3).astype(np.float32) / 65535
+        got += 1
         if gf is not None:
             g = np.clip(g * gf, 0, 1)
         if od is not None:
