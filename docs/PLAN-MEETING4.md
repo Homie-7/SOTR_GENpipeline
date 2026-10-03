@@ -53,8 +53,10 @@ one were hunted.** That's the "instability" the client asks for, and it's true.
   left white. Then **the split, as it happened:** on LEFT, **pieces of a cut-up tricolour** drift in the smoke
   ("Napoléonistes", the regiments that cut their flags rather than give them up); on RIGHT, **the plain white flag**
   ("Monarchistes"). Then all burn, as now. Script on the generated cloth, 0 credits.
-- **D. Optional clarity text** (the team liked the battle text): small dates under the change, "1814 · 1815 · 1815", or
-  nothing. Default: nothing new (Agnès's lines already say it); add only if Homie wants it.
+- ~~D. Small dates~~: **dropped (Homie, 3 Oct: "we don't want the small dates").**
+- **Open (asked 3 Oct):** the notes say "imagery", not only flags. If Louise and Simon meant the two sides' symbols
+  too, add Napoleon's eagle and the Bourbon fleur-de-lis (public-domain prints, like the battles) drifting apart in
+  M6. Free. Waiting on Homie.
 
 ### Steps and credits
 1. **Free preview (0 cr):** M2, M4, M6 with B and C built by script on the CURRENT cloth plus a softening grade, three
@@ -105,7 +107,8 @@ matches; re-grade Scene 6's first seconds only if it doesn't.
 - **Deliver:** as Scene 4.
 
 ## Questions for Homie (none block the flag preview)
-1. The flag concept (A–D above), after the free preview.
+1. The flag concept (A–C above; D dropped), after the free preview; and whether "imagery" means the eagle /
+   fleur-de-lis too.
 2. The Alps "birds" = the floating orbs? (the still)
 3. The battlefield: how the four different-length angles are used; which of three grades.
 4. Scenes 4 and 5 into `01_FINAL_FOR_SHOW` as show files (ProRes, native 29.97), and 4K?
