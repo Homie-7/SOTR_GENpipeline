@@ -178,7 +178,8 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
   then CENTRE dark, RIGHT the white flag, LEFT a tricolour cut into pieces. `--check` clean.
 - Files only in `04_WORKING_FILES/`: `S6_flags_v6_preview/S6_v5_vs_v6_COMPARE.mp4` (for the client), `S6_v6_option/`
   (1080 show files). The Edit-video wear (S6-FLAG-WORN v1, 48 cr) failed on look (slit holes like mouths): not used,
-  the 360-cr pass not run. 4K of v6 only if the client picks it. Next: the Alps / battlefield (POST, new session).
+  the 360-cr pass not run. **Homie approved the v6 design (3 Oct, late) with 3 notes** (reveal glitch, centre exit to
+  shreds, Napoléonistes rethink): `docs/NEW-SESSION.md`. Scene 5: grade options on the REAL renders, Claude recommends C.
 
 ### 2026-10-03, second part: MEETING 4 NOTES -> `docs/PLAN-MEETING4.md`. Flags first (1,000 cr today, conservative).
 

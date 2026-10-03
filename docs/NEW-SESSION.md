@@ -22,20 +22,31 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (after Meeting 4; updated 2026-10-03 evening). docs/PLAN-MEETING4.md IS THE PLAN.
-1. SCENE 6 FLAGS: DONE AS AN OPTION. v6 is built BESIDE v5 (Homie: "don't overwrite anything… present both"):
-   `render_s6.py --v6` (v5 renders bit for bit without it). For the client: 04_WORKING_FILES/S6_flags_v6_preview/
-   S6_v5_vs_v6_COMPARE.mp4 (A over B, M2/M4/M6) and 04_WORKING_FILES/S6_v6_option/ (v6 at 1080, three walls, sound).
-   WAITING ON: Homie's view of v6, then the client's pick. If v6 is picked: 4K by script (render_s6 --final --v6 --scale
-   2.0 with the 4K loops, ~4 h, affinity FFFF3FFF), then it replaces v5 under the SAME show names (v5 to superseded).
-   The generated wear (S6-FLAG-WORN v1, 48 cr) FAILED on look; don't run the 360-cr pass unless Homie asks.
-2. NEXT (MODE: POST, a fresh session): the Alps (remove "the birds" = probably the floating orbs; ASK Homie, the still is
-   in 04_WORKING_FILES/meeting4_prep/), 3. the battlefield grade: OPTIONS BUILT 3 Oct (tools/grade_battlefield.py; LUTs + stills in 04_WORKING_FILES/
-   S5_battlefield_grade/; Claude recommends A, amber dusk). WAITING ON Homie's pick + how the 4 different-length angles are used;
-   then grade every angle and the cannonball overlays (alpha kept) by ffmpeg lut3d, ProRes, native 29.97, sound copied. Sources:
-   F:\OrCha Drive\SOR Show Final\SOR SHOW\SOR Renders\Alps\ and ...\Camps\Exports\; outputs to D: (SOTR_MEDIA).
-   Both 0 credits. The Higgsfield subscription ENDS on the 2nd (Nov; confirm).
-CREDITS: 3 Oct budget 1,000, spent 48 (balance 2,267.66). "Very conservative, no wasted credits".
+THE TASK, RIGHT NOW (3 Oct, late). docs/PLAN-MEETING4.md IS THE PLAN. MODE: VID (S6), POST (S5).
+1. SCENE 6 v6: HOMIE APPROVED THE DESIGN ("will 100% go with this": the worn smoky torn flag, M4, the centre colour
+   switching). Built beside v5 (`render_s6.py --v6`; v5 bit-identical without it). Files: 04_WORKING_FILES/S6_v6_option/
+   (1080, 3 walls, sound) and S6_flags_v6_preview/S6_v5_vs_v6_COMPARE.mp4. HIS NOTES = THE NEXT JOB (GenFlag._v6_*):
+   a. GLITCHY REVEAL/EXIT: straight horizontal "clipping lines" whenever a v6 flag appears or disappears (v5 eased cleanly).
+      Likely cause: _v6_fray() finds each ROW's fly edge from `a > 0.5` AFTER the reveal mask, so rows pop on and off. Fix:
+      take the fray from the keyed alpha BEFORE the reveal/hoist masks. Check stills at 116-119 s and 124-129 s.
+   b. CENTRE flag exit (~124.8-128.8 s, as the Monarchistes flag comes in): it lingers. Homie: TEAR IT TO SHREDS instead
+      of dissolving (Claude's call how: physical, one way, the pieces carried off in the smoke; no cube/brick look).
+   c. NAPOLEONISTES (LEFT, cut=...): cut lines + pieces drifting while the cloth still flutters as one flag doesn't read,
+      and its bottom border glitches. Rethink, sticking to the script ("Napoléonistes !", a tricolour on LEFT): e.g. the
+      tricolour whole but tattered, or the same shredding language as (b). Decide, build, show stills.
+   Then re-render 04_WORKING_FILES/S6_v6_option/ (render_s6.py OUT --final --v6 --scale 1.0, ~80 min, affinity FFFF3FFF);
+   4K + promote under the SAME show names (v5 to superseded) ONLY when Homie says v6 replaces v5.
+2. SCENE 5 BATTLEFIELD (POST): the REAL files are F:\OrCha Drive\SOR Show Final\SOR SHOW\SOR Renders\New Renders\Camps\
+   <Front|Left|Right|Bottom>\*.mov (DXV 1920x1080, 25 fps, 7:12, all equal, PCM sound). Homie asked Claude to choose.
+   CLAUDE'S RECOMMENDATION: C "cold dusk" (the script, Sc 3: "the day is late; it is eerie, smoky, and cold", north Italy
+   near the Alps; the renders are a hot orange sunset). tools/grade_battlefield.py v2: sky mask + ground/sky LUTs + a
+   firelight pass (the fires are the only warmth); the first 30 frames (render warm-up) dropped; sound carried.
+   Stills: 04_WORKING_FILES/S5_battlefield_grade/S5_grade_ALL_OPTIONS.jpg; 10 s test of Front in C: test_front_C_10s.mov
+   (79 s per 250 frames = ~57 min per angle with fires). TO DO: Homie confirms C (or A/B); render the four angles one at a
+   time (affinity FFFF3FFF) into that folder; check whether the old cannonball overlays (Camps/Exports, qtrle+alpha) are
+   still used. Offer: 4K (~140 cr), a thin battle haze from S6-SMOKE (tested, subtle).
+3. THE ALPS ("remove the birds" = the floating orbs?): ask Homie; not started.
+CREDITS: 3 Oct: 48 spent (the S6-FLAG-WORN Edit-video test, look fail). Balance 2,267.66.
 The floor plan (docs/FLOOR-PLAN.md) is PARKED. Scene 9 is unchanged. The client delivery stays 01_FINAL_FOR_SHOW.
 The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF.
 Credits: ask above ~100 per run; one at a time; `transactions` after each.
