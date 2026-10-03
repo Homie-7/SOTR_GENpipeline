@@ -45,6 +45,11 @@ THE TASK, RIGHT NOW (3 Oct, late). docs/PLAN-MEETING4.md IS THE PLAN. MODE: VID 
    (79 s per 250 frames = ~57 min per angle with fires). TO DO: Homie confirms C (or A/B); render the four angles one at a
    time (affinity FFFF3FFF) into that folder; check whether the old cannonball overlays (Camps/Exports, qtrle+alpha) are
    still used. Offer: 4K (~140 cr), a thin battle haze from S6-SMOKE (tested, subtle).
+   HOMIE (3 Oct): ALL FOUR ANGLES MUST READ AS ONE SCENE split into four cameras (Unreal rendered them with different
+   exposure/colour). After the grade: measure each angle's SKY and GROUND (mean level + colour balance, and the horizon
+   band where walls meet), then a per-angle correction (exposure + white balance, separately for sky and ground via the
+   sky mask) toward ONE shared target, so the sky, the ground and the light flow from wall to wall. Check with the four
+   graded frames side by side (Left | Front | Right, Bottom under) before rendering.
 3. THE ALPS ("remove the birds" = the floating orbs?): ask Homie; not started.
 CREDITS: 3 Oct: 48 spent (the S6-FLAG-WORN Edit-video test, look fail). Balance 2,267.66.
 The floor plan (docs/FLOOR-PLAN.md) is PARKED. Scene 9 is unchanged. The client delivery stays 01_FINAL_FOR_SHOW.
