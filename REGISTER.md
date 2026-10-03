@@ -245,3 +245,18 @@ The kept set (139 files, 80 GB) is sha256-identical on D: and the T9.
 | `06_PRESENTATIONS/`, `comp/` | unchanged | — |
 | **Binned** | the whole `SOTR_MEDIA_ARCHIVE` (superseded to 09-30, `04_REJECTED`, tests, upscale tests, the safe-to-delete set); studio b6 v5 (not used) and v4 (floor); upscale raws, upload transcodes, the unused clean 4Ks, the pre-fix 4Ks; S6 animatics v1-v3, S6-FLAG v1 B; scene9_fix previews; intermediates and logs; on the T9 also the pre-09-24 layout leftovers | for Homie to delete |
 | `04_WORKING_FILES/S9-ANIMATIC_v1.mp4` (2026-10-03) | Scene 9 whole, for review: the eight show files on the three walls in script order + the script's lines + their sound (`tools/s9_animatic.py`) | **for Homie** (review only, not a show file) |
+
+## 2026-10-03 · Scene 6 v6: THE MEETING 4 FLAG OPTION, beside v5 (nothing of v5 changed)
+
+Homie: "Make sure you don't overwrite anything. This is just the second version… present both of these and see which
+one they want to use." v5 stays the show's Scene 6 in `01_FINAL_FOR_SHOW`; v6 lives only in `04_WORKING_FILES/`.
+`render_s6.py --v6` builds it (without the flag v5 renders bit for bit as before: three stills compared, identical).
+
+| Path (SOTR_MEDIA/…) | What | Status |
+|---|---|---|
+| `04_WORKING_FILES/S6_flags_v6_preview/S6_v5_vs_v6_COMPARE.mp4` | v5 (top) over v6 (bottom), M2 0:05-0:44 + M4 1:17-1:53 + M6 1:53-2:19 back to back, 2340x1196, 1:41, caption strip, no sound | **for Homie / the client** |
+| `04_WORKING_FILES/S6_flags_v6_preview/S6_v6_flags_PREVIEW.mp4` | the same three moments, v6 only, 2340x598 | for review |
+| `04_WORKING_FILES/S6_flags_v6_preview/S6-FLAG-WORN_v1.mp4` (3f97708e…, 1920x1080, 89 f, HEVC 10-bit + AAC) | Edit video on the first 4 s of S6-FLAG_v2 (`prompts/S6-FLAG-WORN.txt`, job 351a10f9…, 48 cr) | **not used** (look fail: slit holes like mouths, camouflage blue, banded red; LOG) |
+| `04_WORKING_FILES/S6_flags_v6_preview/S6-FLAG-WORN_compare.jpg` | input / Edit-video test / the script's wear, side by side | reference |
+| `05_REFERENCE_UPLOADS/S6-FLAG_v2_first4s_upload.mp4` (d3efcda7…, media 1edaa210…) | the test's input: S6-FLAG_v2 f0-95, H.264 crf 10 + AAC | reference |
+| `04_WORKING_FILES/S6_v6_option/S6_LEFT/CENTRE/RIGHT_wars.mov` | **Scene 6 v6 at 1080**: three synced walls, 2:45, ProRes 422 HQ 10-bit, the clips' sound (flag sound from 1:56 in M6) | rendering 2026-10-03 (see below) |

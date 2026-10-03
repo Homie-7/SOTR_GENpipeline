@@ -22,13 +22,18 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (after Meeting 4, 2026-10-03; MODE: VID for the flag, POST for Scenes 4/5).
-THE CLIENT'S NOTES: docs/PLAN-MEETING4.md IS THE PLAN. Order (Homie): 1. Scene 6 flags (softer, weathered, the
-monarchist/Napoleonic instability, history clear), 2. the Alps (remove "the birds" = probably the floating orbs;
-confirm), 3. the battlefield grade (too red). Sources for 2-3: F:\OrCha Drive\SOR Show Final\SOR SHOW\SOR Renders\
-Alps\ and ...\Camps\Exports\; outputs to D: (SOTR_MEDIA). The Higgsfield subscription ENDS on the 2nd (Nov; confirm).
-CREDITS: Homie: 1,000 today (3 Oct), "very conservative, no wasted credits". The flag plan costs ~410. Concept A-C APPROVED
-(flags only, no small dates). START WITH PLAN STEP 1: the free preview (0 cr), Homie checks it, THEN the 48-cr probe. Balance 2,315.66 on 3 Oct.
+THE TASK, RIGHT NOW (after Meeting 4; updated 2026-10-03 evening). docs/PLAN-MEETING4.md IS THE PLAN.
+1. SCENE 6 FLAGS: DONE AS AN OPTION. v6 is built BESIDE v5 (Homie: "don't overwrite anything… present both"):
+   `render_s6.py --v6` (v5 renders bit for bit without it). For the client: 04_WORKING_FILES/S6_flags_v6_preview/
+   S6_v5_vs_v6_COMPARE.mp4 (A over B, M2/M4/M6) and 04_WORKING_FILES/S6_v6_option/ (v6 at 1080, three walls, sound).
+   WAITING ON: Homie's view of v6, then the client's pick. If v6 is picked: 4K by script (render_s6 --final --v6 --scale
+   2.0 with the 4K loops, ~4 h, affinity FFFF3FFF), then it replaces v5 under the SAME show names (v5 to superseded).
+   The generated wear (S6-FLAG-WORN v1, 48 cr) FAILED on look; don't run the 360-cr pass unless Homie asks.
+2. NEXT (MODE: POST, a fresh session): the Alps (remove "the birds" = probably the floating orbs; ASK Homie, the still is
+   in 04_WORKING_FILES/meeting4_prep/), 3. the battlefield grade (too red: three grade stills, Homie picks). Sources:
+   F:\OrCha Drive\SOR Show Final\SOR SHOW\SOR Renders\Alps\ and ...\Camps\Exports\; outputs to D: (SOTR_MEDIA).
+   Both 0 credits. The Higgsfield subscription ENDS on the 2nd (Nov; confirm).
+CREDITS: 3 Oct budget 1,000, spent 48 (balance 2,267.66). "Very conservative, no wasted credits".
 The floor plan (docs/FLOOR-PLAN.md) is PARKED. Scene 9 is unchanged. The client delivery stays 01_FINAL_FOR_SHOW.
 The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF.
 Credits: ask above ~100 per run; one at a time; `transactions` after each.

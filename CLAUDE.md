@@ -171,6 +171,15 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-03, third part (VID): SCENE 6 v6 = THE FLAG OPTION, BESIDE v5 (both go to the client). 48 cr.
+
+- Homie: "don't overwrite anything… the second version… present both". `render_s6.py --v6` (v5 bit-identical without it):
+  A worn cloth (script), B M4 as faded coloured light on linen, C M6 = the colours drain/flood back/drain (1814-1815),
+  then CENTRE dark, RIGHT the white flag, LEFT a tricolour cut into pieces. `--check` clean.
+- Files only in `04_WORKING_FILES/`: `S6_flags_v6_preview/S6_v5_vs_v6_COMPARE.mp4` (for the client), `S6_v6_option/`
+  (1080 show files). The Edit-video wear (S6-FLAG-WORN v1, 48 cr) failed on look (slit holes like mouths): not used,
+  the 360-cr pass not run. 4K of v6 only if the client picks it. Next: the Alps / battlefield (POST, new session).
+
 ### 2026-10-03, second part: MEETING 4 NOTES -> `docs/PLAN-MEETING4.md`. Flags first (1,000 cr today, conservative).
 
 - Client: the Scene 6 flags too strong/graphic; soften, weather them, show the monarchist/Napoleonic instability
