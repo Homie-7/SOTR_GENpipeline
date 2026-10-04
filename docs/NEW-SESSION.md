@@ -22,19 +22,28 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (after 4 Oct, evening). Homie has ANOTHER SCENE to start that needs Higgsfield: ask him what it is.
-DONE: Scene 6 v6.2 in the show (4K). Scene 4 Alps A4 APPROVED (`04_WORKING_FILES/S4_alps_grade_v2/A4_matched/`).
-Scene 5 camps DONE: PRIMARY = rich dusk `04_WORKING_FILES/S5_battlefield_grade/S5_PRIMARY_rich_dusk/` (approved; Front
-flicker fixed by tools/deflicker_ground.py, birds removed by tools/debird.py; the odd bird popping in/out accepted);
-SECONDARY = Cold dusk `S5_SECONDARY_cold_dusk/` (the client chooses between them). Each has review/ H.264 copies.
-Scenes 4/5 are NOT in 01_FINAL_FOR_SHOW and NOT upscaled: Homie "We don't need to upscale those… Just make the things
-that I asked you to make" (memory only-what-asked). Check first: did `finish_and_shutdown.sh` finish? (LOG top row
-"Cold dusk (C2) FINISHED"; if missing, the C2 files are in C2_final/ + C2_graded/: run the scratchpad organise_secondary
-step, then tools/backup_t9.py.)
-CREDITS: 4 Oct total 40.08 (S6) + 0.80 (Alps probe); every failed ByteDance job was refunded. Balance ~2,207.
-ByteDance video upscale: ~15 min of processing per job max (failed + refunded beyond); tools/upscale_pieces.py splits.
-The PC crashes under all-core load (memory pc-core7-crash): heavy jobs with affinity FFFF3FFF via PowerShell Start-Process.
-Credits: ask above ~100 per run; one at a time; `transactions` after each.
+THE TASK, RIGHT NOW (5 Oct): A NEW SCENE, BUILT ON THE MACBOOK PRO. Ask Homie which scene and its brief first.
+MODE: declare it for the new scene (IMG for plates first, VID after; never both in one chat). New scenes' prompts use the
+v3 stack (scenecraft-v1 plates, shotcaller-v1 video) under SOTR's rules (CLAUDE.md standing rules).
+THE MAC SETUP (no F: drive, no D: drive: work from the T9 only; the new scene has no dependencies on F:):
+- Repo: `git pull` the Mac clone (or `git clone https://github.com/Homie-7/SOTR_GENpipeline.git`). The T9 also holds a
+  clone at <T9>/SOTR/HF/SOTR_GENpipeline (find the mount with `ls /Volumes`).
+- Skills: Precision-Pipeline at ~/Documents/HF/Precision-Pipeline, NOT installed: run its `bin/install.py` (README.md).
+- Media: write the new scene's files to <T9>/SOTR/HF/SOTR_MEDIA/04_WORKING_FILES/<new scene folder>/ (same layout as D:).
+  THE T9 IS THE MASTER for that folder until it is copied back to the PC's D:\SOTR\SOTR_MEDIA (copy + sha256, never
+  mirror-delete; on the PC tools/backup_t9.py copies D: -> T9 only, so the reverse copy is by hand / a new script).
+- Windows-only, IGNORE on the Mac: the Core 7 affinity rule, PowerShell launches, the D: junction, F:/Unreal renders,
+  tools/backup_t9.py's paths. The Higgsfield CDN downloads still go through tools/fetch.py if on the same home network
+  (DNS interception, memory dns-interception).
+- Source script/PDFs: /Users/homie/Documents/SOTR/ (docs/SOURCES.md). BIBLE.md has the play's scenes.
+STATE (all finished, committed dbce80f, T9 backed up 221 GB, 0 mismatches, 4 Oct 23:59):
+- Show folder 01_FINAL_FOR_SHOW = Scenes 6 (v6.2, 4K) and 9. Unchanged.
+- Scene 4 Alps APPROVED: 04_WORKING_FILES/S4_alps_grade_v2/A4_matched/. Scene 5 camps DONE: PRIMARY rich dusk
+  S5_battlefield_grade/S5_PRIMARY_rich_dusk/ (approved), SECONDARY Cold dusk S5_SECONDARY_cold_dusk/ (client chooses).
+  Neither is in the show folder or upscaled (Homie: not needed).
+- Homie, 4 Oct: "Just make the things that I asked you to make" (memory only-what-asked): no unrequested next steps.
+CREDITS: balance ~2,207 (keep >= 1,500). Ask above ~100 per run; ONE job at a time; `transactions` after each.
+ByteDance video upscale fails beyond ~15 min of processing per job (refunded): split long clips (tools/upscale_pieces.py).
 
 WHERE IT LIVES (D:\SOTR\SOTR_MEDIA = C:\Users\Homie\Documents\SOTR_MEDIA, a junction; README.txt is the map):
 - 01_FINAL_FOR_SHOW/  the client delivery (00_READ_ME_FIRST.txt explains it): S6_<WALL>_wars.mov and
