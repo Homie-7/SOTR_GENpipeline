@@ -22,36 +22,28 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (4 Oct, morning). MODE: POST. Homie's weekly model limit is near: finish TODAY, and right.
-DECIDED BY HOMIE (4 Oct): (a) Scene 6 v6.2 REPLACES v5 in the show; (b) the Scene 9 studio canvas edge is APPROVED (in the
-show); (c) Alps = the CLEAN `F:/OrCha Drive/SOR Show Final/Renders (050422)/Alps/` renders, grade A4 "natural daylight"
-(S4_alps_v2_FOR_HOMIE.jpg, row 2); (d) camps = option N "RICH DUSK" (S5_options_v4_FOR_HOMIE.jpg: only the red soil
-turns to earth; sky/sun/light as rendered; fires = the original flame cores by position, no warm pool). EXPOSURE MATCHED
-FULLY across all four angles is imperative (MATCH_EXP 1.0 in grade_battlefield.py). He found C "extremely dull".
-RUNNING AT HANDOVER (detached, affinity FFFF3FFF; logs in C:/Users/Homie/AppData/Local/Temp/claude/C--Users-Homie-Documents-SOTR-GENpipeline/15f546ce-6f02-4c65-a43e-4e27570918e5/scratchpad/):
-  - s4v2.log: Alps A4 renders -> 04_WORKING_FILES/S4_alps_grade_v2/A4_matched/S4_alps_<front|left|right|bottom>.mov
-    (29.97 fps native, first 30 warm-up frames dropped, --despeck = the birds, sound). Front done 08:04.
-  - s5n.log: camps N renders, start after S4V2_ALL_DONE -> S5_battlefield_grade/N_matched/S5_camps_<angle>.mov
-    (New Renders/Camps, 25 fps, ~1 h per angle).
-NEXT, IN ORDER:
-1. SCENE 6 v6.2 -> SHOW: uploads ready (04_WORKING_FILES/S6_v6_option/uploads/*.mp4, HEVC crf 12). media_upload ->
-   tools/put_upload.py -> media_confirm -> CDN size check -> ByteDance upscale_video aigc 4k 24 fps, ONE AT A TIME,
-   `transactions` after each (~13 cr per wall) -> tools/fetch.py -> upscale_restore.py --clamp 2 (--size 2880x2160 sides,
-   3600x2160 CENTRE) -> upscale_check.py VERDICT -> promote under the SAME names: 4K into 01_FINAL_FOR_SHOW/
-   1_PLAY_THESE_IN_ORDER/S6_<WALL>_wars.mov, 1080 into 3_HD_1080_fallback/1_PLAY…, a copy into 03_CLEAN_MASTERS_no_edge/
-   S6_<WALL>_wars_CLEAN.mov; every v5 file to 04_WORKING_FILES/superseded/S6_v5/ (sha256 every move). The studio run of
-   3 Oct is the template (S9_studio_canvas_edge/: JOBS_4K.txt, the job script pattern; give ffmpeg </dev/null in loops).
-2. When the Alps + camps renders finish: verify frames/sound, a side-by-side sheet (L|F|R, Floor under) per scene, and
-   1:1 crops of the floor (no speckle). Make H.264 REVIEW COPIES (crf 18) beside the ProRes: D: is a spinning HDD and the
-   7-min ProRes HQ (217 Mb/s) stalled in his player. Show Homie.
-3. Then (ask): Scenes 4/5 as show files (names S4_/S5_<WALL>_<world>.mov, the floor angle separately), 4K (~0.08 cr/s),
-   the cannonball (050422 Camps/Cannonball EXR + CB_Explosion), the Scene 5 -> 6 join (S6 opens on red-brown smoke).
-NOTES: grade_battlefield.py now has options N/N2/N3 (camps) and A4 (Alps), FirePass(pool=False) = flame cores only,
-soft air masks for the Alps, the camps sky masks refined per pixel near the horizon (mask_<a>_v2.png = the C-era masks),
-Despeck, the frame-count bound. The camps Front sky has birds (left; --despeck removes them if asked).
-CREDITS: 3-4 Oct: 48 + 19.29 spent; balance ~2,248 (keep >= 1,500, Homie) (the S6-FLAG-WORN Edit-video test, look fail). Balance 2,267.66.
+THE TASK, RIGHT NOW (after 4 Oct). MODE: POST. Ask Homie for his verdict on the Scenes 4 and 5 renders first.
+DONE 4 Oct: (a) SCENE 6 v6.2 IS IN THE SHOW: 4K `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S6_<WALL>_wars.mov`, 1080 in
+`3_HD_1080_fallback/`, `_CLEAN` in `03_CLEAN_MASTERS_no_edge/`; v5 in `04_WORKING_FILES/superseded/S6_v5/`. Checks PASS
+(PSNR 47-49, light corr >= 0.999, sound 1.000), join between the two upscaled halves measured invisible. README updated.
+(b) Scene 9 studio canvas edge is in the show (approved). (c) Alps = `04_WORKING_FILES/S4_alps_grade_v2/A4_matched/`
+(grade A4 on the clean Renders (050422), full match, birds removed by Despeck, 29.97 fps, 5,190 f, sound).
+(d) Camps = `04_WORKING_FILES/S5_battlefield_grade/N_nobirds/S5_camps_<front|left|right>.mov` (grade N rich dusk, full
+match, 25 fps, 10,770 f, sound) with THE BIRDS REMOVED (Homie: "the obvious ones in the front circling need to go";
+far dots stay) by `tools/debird.py`; the floor (no sky) is `N_matched/S5_camps_bottom.mov`. Review: each folder's
+`review/` (L|F|R + floor sheet, 1:1 floor crops, H.264 `_REVIEW.mp4` copies that play from the HDD).
+NEXT, IN ORDER (ask Homie):
+1. His verdict on the Alps and the camps (review copies). Known: Alps RIGHT reads cooler in the mountains (= the approved
+   A4 row); birds crossing the smoke/cloud zones (debird's smoke map, ~42% of the Front sky) were left in on purpose.
+2. Scenes 4/5 as show files: names S4_/S5_<WALL>_<world>.mov, the floor angle separately; 4K (~0.08 cr/s); a ByteDance
+   job over ~2 min TIMES OUT (refunded): split into overlapping halves like S6 (`04_WORKING_FILES/S6_v6_option/`:
+   uploads_halves, s6_4k pattern = xfade the halves over the overlap, then upscale_restore). The Alps (2:53) and camps
+   (7:11) need 2 and 4+ pieces per angle. Their 1080 sides are 1920x1080 (16:9): ask how they map onto the 4:3 flats.
+3. The cannonball (050422 Camps/Cannonball EXR + CB_Explosion) and the Scene 5 -> 6 join (S6 opens on red-brown smoke).
+CREDITS: 4 Oct 40.08 (S6 halves; the full-length try was refunded). Balance ~2,208 (keep >= 1,500, Homie).
 The floor plan (docs/FLOOR-PLAN.md) is PARKED. Scene 9 is unchanged. The client delivery stays 01_FINAL_FOR_SHOW.
-The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF.
+The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF; launch it from
+the PowerShell tool (Start-Process + ProcessorAffinity = [IntPtr][long]4294918143), not `cmd start` from Bash.
 Credits: ask above ~100 per run; one at a time; `transactions` after each.
 
 WHERE IT LIVES (D:\SOTR\SOTR_MEDIA = C:\Users\Homie\Documents\SOTR_MEDIA, a junction; README.txt is the map):

@@ -171,6 +171,13 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-04, day (POST): S6 v6.2 IS THE SHOW (4K). Alps A4 + camps N rendered; the camps birds removed. 40.08 cr.
+
+- **Scene 6 v6.2 replaced v5** under the same names (4K play, 1080 fallback, CLEAN); v5 in `superseded/S6_v5/`. ByteDance
+  timed out on the 165 s walls (refunded): **clips over ~2 min are upscaled in two overlapping halves**, joined, restored.
+- Alps (A4) and camps (N) done, for Homie with H.264 review copies. **Camps birds removed** by `tools/debird.py` (Homie:
+  the near circling ones; far dots and birds crossing smoke/cloud stay). Next: Homie's review, then S4/S5 as show files.
+
 ### 2026-10-04, morning (POST): Homie's verdicts. S6 v6.2 REPLACES v5; studio canvas edge APPROVED; Alps = 050422 renders, natural grade; camps = RICH DUSK.
 
 - C (cold dusk) was "extremely dull"; the camps go to option N (only the red soil turns to earth), exposure matched 100%

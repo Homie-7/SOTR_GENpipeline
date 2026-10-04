@@ -133,6 +133,11 @@ Claude drives Seedance 2.5 directly. What the web menu calls things, the API cal
   - Seedance runs up to 30 s. Once a prompt is PROVEN on a probe, generate the long version rather
     than looping a short one (Homie, 2026-09-25), but only when the probe contained what the long
     run contains.
+- **ByteDance video upscale (`upscale_video`, aigc 4k) TIMES OUT on long clips (2026-10-04):** three 165 s walls all
+  failed after ~16 min with no reason and were refunded in full; 117 s had worked. Clips over ~2 min go up in
+  overlapping pieces (Scene 6: two 83.5 s halves, 48 frames of overlap), crossfaded over the overlap into one
+  intermediate, then `upscale_restore.py` against the approved 1080 (records: `04_WORKING_FILES/S6_v6_option/`).
+  ~6.7 cr per 83.5 s half at 1440x1080 or 1800x1080.
 - Poll with `jobs_wait`. A 10 s 1080p render took about 6 minutes. Download `result_url`
   with curl; it's the full file, not a preview.
 - **Parity run** (`S9-SAL-R-LOOP` v1, word for word): same size, fps, frames, bit depth,

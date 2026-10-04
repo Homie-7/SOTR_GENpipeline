@@ -246,6 +246,22 @@ The kept set (139 files, 80 GB) is sha256-identical on D: and the T9.
 | **Binned** | the whole `SOTR_MEDIA_ARCHIVE` (superseded to 09-30, `04_REJECTED`, tests, upscale tests, the safe-to-delete set); studio b6 v5 (not used) and v4 (floor); upscale raws, upload transcodes, the unused clean 4Ks, the pre-fix 4Ks; S6 animatics v1-v3, S6-FLAG v1 B; scene9_fix previews; intermediates and logs; on the T9 also the pre-09-24 layout leftovers | for Homie to delete |
 | `04_WORKING_FILES/S9-ANIMATIC_v1.mp4` (2026-10-03) | Scene 9 whole, for review: the eight show files on the three walls in script order + the script's lines + their sound (`tools/s9_animatic.py`) | **for Homie** (review only, not a show file) |
 
+## 2026-10-04 · Scene 6 v6.2 IN THE SHOW (4K) + Scenes 4/5 graded (Alps A4, camps N, the camps birds removed)
+
+**SHOW FOLDER UPDATE (same names): Scene 6 = v6.2** (Homie, 4 Oct: "S6 v6.2 REPLACES v5"). The `## 2026-10-02` table's S6 rows now read v6.2.
+
+| Path (SOTR_MEDIA/…) | What | Status |
+|---|---|---|
+| `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S6_LEFT/CENTRE/RIGHT_wars.mov` (sha256 21191345… / 428f670d… / f9f41b82…) | **Scene 6 v6.2 at 4K**: 2880/3600/2880x2160, 3,960 f, 24 fps, ProRes 422 HQ q2, 48 kHz 24-bit sound = the 1080's (corr 1.000). ByteDance aigc 4k in two overlapping halves per wall, joined, `upscale_restore.py --clamp 2` (LOG 4 Oct) | **IN THE SHOW** (v6.2 approved by Homie 4 Oct) |
+| `01_FINAL_FOR_SHOW/3_HD_1080_fallback/1_PLAY_THESE_IN_ORDER/S6_<WALL>_wars.mov` + `03_CLEAN_MASTERS_no_edge/S6_<WALL>_wars_CLEAN.mov` (ae51ec57… / 2eddf365… / 5352541f…) | Scene 6 v6.2 at 1080 (= `04_WORKING_FILES/S6_v6_option/S6_<WALL>_wars.mov`, byte-identical; Scene 6 has no edge, so CLEAN = the same picture) | **IN THE SHOW** |
+| `04_WORKING_FILES/superseded/S6_v5/S6_<WALL>_wars_v5_4K.mov`, `_v5_1080.mov`, `_CLEAN_v5_1080.mov` | the nine replaced v5 files | superseded |
+| `04_WORKING_FILES/S6_v6_option/` | the v6.2 1080 masters, `uploads/` (full walls, failed at ByteDance), `uploads_halves/`, `4K/raw/` (the six halves + the joined intermediates), `JOBS_4K.txt`, `promote_s6_v62.py` + `.log` | records |
+| `04_WORKING_FILES/S4_alps_grade_v2/A4_matched/S4_alps_<front|left|right|bottom>.mov` | **Scene 4 Alps, A4 natural daylight** (Homie's pick), from `F:/OrCha Drive/SOR Show Final/Renders (050422)/Alps/`, full exposure match, Despeck, 1920x1080 ProRes 422 HQ, 29.97 fps, 5,190 f (173.2 s), sound | **for Homie** (not yet a show file) |
+| `04_WORKING_FILES/S4_alps_grade_v2/A4_matched/review/` | `S4_alps_A4_SHEET.jpg` (L|F|R, floor under, 4 times), `_floor_1to1_t*.png`, **`S4_alps_<a>_REVIEW.mp4`** (H.264 crf 18 + AAC: plays from the HDD) | for Homie |
+| `04_WORKING_FILES/S5_battlefield_grade/N_matched/S5_camps_<a>.mov` | **Scene 5 camps, N rich dusk** (Homie's pick), `New Renders/Camps`, full match, 25 fps, 10,770 f (430.8 s), sound. Birds still in | the graded master (kept) |
+| `04_WORKING_FILES/S5_battlefield_grade/N_nobirds/S5_camps_<front|left|right>.mov` + `_smokemap.png` | **the camps with the birds removed** (`tools/debird.py`, Homie 4 Oct), everything else the graded master through a 16-bit path, sound copied. The floor has no sky: `N_matched/S5_camps_bottom.mov` is its file | **for Homie** |
+| `04_WORKING_FILES/S5_battlefield_grade/N_nobirds/review/` | `S5_camps_<a>_REVIEW.mp4` (H.264 crf 18 + AAC; the floor's from N_matched), `S5_camps_N_SHEET.jpg`, floor crops | for Homie |
+
 ## 2026-10-03 (late night) · S6 v6.2 (the organic tear) + Scene 9 studio canvas edge IN THE SHOW + S5/S4 grades
 
 | Path (SOTR_MEDIA/…) | What | Status |
