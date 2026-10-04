@@ -171,6 +171,14 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-05 (IMG, MacBook): SCENES 1+10, THE LOUVRE GALLERY, built (walls LIT + DARK, floor + puddle). 64 cr.
+
+- New add-on (Homie): one build serves Scene 1 and 10; CENTRE = the Raft, LEFT = Louis XVI + Marie-Antoinette, RIGHT =
+  Napoléon; real public-domain paintings pinned by script; ONE room light across all walls (Homie: "cohesive as a single
+  space"); the floor + the puddle on the script's beats. Homie: "Gallery seems to be alright". Media on the T9 only.
+- Next (docs/NEW-SESSION.md): a VID session for a hyper-real dripping/building puddle; then the surprise scene (rec. 8).
+- Mac tools: `tools/gallery_wall.py`, `gallery_floor.py`, `gallery_dark.py`. Leave 500 credits at the end (Homie).
+
 ### 2026-10-04, evening (POST): Scenes 4 and 5 DONE. Camps PRIMARY = rich dusk, SECONDARY = Cold dusk (client picks).
 
 - Alps A4 approved. Camps: Front ground flicker fixed (`tools/deflicker_ground.py`), a carved-plume sky-mask defect fixed

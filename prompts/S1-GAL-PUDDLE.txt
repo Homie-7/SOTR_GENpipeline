@@ -1,0 +1,20 @@
+ID        S1-GAL-PUDDLE  (the spill on the floor in front of the Raft; Scene 1)
+VERSION   v2  (2026-10-05)  ONE CHANGE vs v1: the wet-wood phrase. v1 (4 takes): 'the wood beneath a shade darker'
+          came back as a hard plank-aligned dark rectangle inside every pool. Best v1 = 9f086ce6.
+SKILL     scenecraft-v1 Plate D (edit: target / change / protected), text only (house-rules finding 4a)
+MODEL     Nano Banana Pro (nano_banana_pro) · 21:9 · 2k · batch 4 · IMG
+INPUT     S1-GAL-FLOOR v1 take a4ea7b7a (media cbbfb7f1-3e71-42f9-b388-caa8ebd139d1): the image being edited, not a reference
+SCRIPT    "There has been a recent spill of water and AMINA… is at the far end of the gallery mopping the floor"
+          in front of the Raft; later "The water disappears. Then it mysteriously returns, glowing." Sarah slips on it.
+          This plate is the ORDINARY wet spill. Disappearing, returning and the glow are built by script from it.
+SCALE     plate ~315 px/m. Puddle centre ~0.9 m from the top (upstage) edge, centred; ~1.5 x 0.9 m.
+PREDICT   A thin clear water film with a darker wet-wood edge. Risks: a bucket/mop/footprints appear; the floor redrawn.
+
+----- PROMPT -----
+Edit this top-down photograph of an oak floor.
+
+Target: the upper middle of the picture, centred left to right, about a fifth of the way down from the top edge.
+
+Change: a shallow spill of clear water lies there on the oak, an irregular rounded pool about one seventh of the picture's width across and a little less deep, its edge soft and organic with two or three small separate droplets and a thin trickle running along one plank joint. The water is a thin transparent film: the planks and grain show through it at their own colour, only a soft darker wet margin following the curved rim, and a soft even sheen across the surface reflecting the bright daylight from above. A few faint damp arcs from a mop curve across the planks just below it, already half dry.
+
+Protected: everything else stays exactly as it is — the camera looking straight down, the framing, every plank, joint and grain line, the colour of the oak, the even daylight and the grain of the photograph. Nothing else is added: the floor stays empty around the water. The change matches the existing grain, contrast and colour rendition of the image.

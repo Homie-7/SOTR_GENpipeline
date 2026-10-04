@@ -22,27 +22,36 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (5 Oct): A NEW SCENE, BUILT ON THE MACBOOK PRO. Ask Homie which scene and its brief first.
-MODE: declare it for the new scene (IMG for plates first, VID after; never both in one chat). New scenes' prompts use the
-v3 stack (scenecraft-v1 plates, shotcaller-v1 video) under SOTR's rules (CLAUDE.md standing rules).
-THE MAC SETUP (no F: drive, no D: drive: work from the T9 only; the new scene has no dependencies on F:):
-- Repo: `git pull` the Mac clone (or `git clone https://github.com/Homie-7/SOTR_GENpipeline.git`). The T9 also holds a
-  clone at <T9>/SOTR/HF/SOTR_GENpipeline (find the mount with `ls /Volumes`).
-- Skills: Precision-Pipeline at ~/Documents/HF/Precision-Pipeline, NOT installed: run its `bin/install.py` (README.md).
-- Media: write the new scene's files to <T9>/SOTR/HF/SOTR_MEDIA/04_WORKING_FILES/<new scene folder>/ (same layout as D:).
-  THE T9 IS THE MASTER for that folder until it is copied back to the PC's D:\SOTR\SOTR_MEDIA (copy + sha256, never
-  mirror-delete; on the PC tools/backup_t9.py copies D: -> T9 only, so the reverse copy is by hand / a new script).
-- Windows-only, IGNORE on the Mac: the Core 7 affinity rule, PowerShell launches, the D: junction, F:/Unreal renders,
-  tools/backup_t9.py's paths. The Higgsfield CDN downloads still go through tools/fetch.py if on the same home network
-  (DNS interception, memory dns-interception).
-- Source script/PDFs: /Users/homie/Documents/SOTR/ (docs/SOURCES.md). BIBLE.md has the play's scenes.
-STATE (all finished, committed dbce80f, T9 backed up 221 GB, 0 mismatches, 4 Oct 23:59):
-- Show folder 01_FINAL_FOR_SHOW = Scenes 6 (v6.2, 4K) and 9. Unchanged.
-- Scene 4 Alps APPROVED: 04_WORKING_FILES/S4_alps_grade_v2/A4_matched/. Scene 5 camps DONE: PRIMARY rich dusk
-  S5_battlefield_grade/S5_PRIMARY_rich_dusk/ (approved), SECONDARY Cold dusk S5_SECONDARY_cold_dusk/ (client chooses).
-  Neither is in the show folder or upscaled (Homie: not needed).
-- Homie, 4 Oct: "Just make the things that I asked you to make" (memory only-what-asked): no unrequested next steps.
-CREDITS: balance ~2,207 (keep >= 1,500). Ask above ~100 per run; ONE job at a time; `transactions` after each.
+THE TASK, RIGHT NOW (5 Oct, evening): TWO JOBS, ONE SESSION EACH (the mode rule). Ask Homie which first; recommend 1.
+1. VID — SCENES 1+10, THE PUDDLE RETURNS, HYPER-REAL. Homie (5 Oct): "have the puddle appear as if water was dropping on it
+   and then slowly, slowly building rather than just magically appearing… I want this to look hyper-real." The script:
+   "The water disappears. Then it mysteriously returns, glowing." Build it as a generated clip: top-down onto the
+   approved oak floor plate (04_WORKING_FILES/S1_gallery/floor/S1-GAL-FLOOR_v1_a4ea7b7a.png), locked camera: drops fall
+   from above and splash, bead, join, the pool slowly spreads; then the glow rises from inside it (the painting-melt
+   render's sea-teal, Final Animations/Painting melt + Ocean loop/paintingMelt_1109.mp4). shotcaller-v1 under SOTR rules;
+   probe 4 s first (seedance_2_5, omni_reference, the floor plate as reference). PLACEMENT (checked 5 Oct): the floor file's
+   TOP = upstage = the CENTRE wall (FLOOR-PLAN.md); the puddle sits ~1.0 m out from CENTRE, centred under the Raft
+   ("mopping the floor in front of… The Raft"). The scripted floor (tools/gallery_floor.py, finished/floor_v1/) stays the
+   frame for it: SPILL_HOLD / VANISH are fine; RETURN_GLOW is the cheap one to replace; the glow loops may be replaced
+   by a Sequel of the generated return. Then the walls' DARK still has the puddle's teal at CENTRE's foot (gallery_dark.py).
+2. IMG — THE SURPRISE SCENE: Homie (5 Oct): "See if we can surprise the client by addressing one more scene." Claude's
+   recommendation: SCENE 8, "The Medusa runs aground" (unassigned; script pp.16-18): dusk at sea, the frigate grinding on
+   the sandbank, the lifeboats in the distance, "the deep red light of sunset", "the light fades… beneath them, the image
+   of the raft begins to emerge" (a floor moment), the ropes SNAP, "the sea washes over the raft… from blue to crimson".
+   Era <= 1816. CHECK FIRST with Homie: Scene 7 (the deck of the frigate) is Sahaj's; does 8 share his deck?
+STATE (5 Oct, evening): SCENES 1+10 GALLERY — Homie: "Gallery seems to be alright". All in T9 04_WORKING_FILES/S1_gallery/:
+- finished/S1-GAL-<C,L,R>_LIT_v2_* (one room light, gallery_wall.py --room-light), S1-GAL_LIT_v2_SEAM_4680x1080.png;
+  DARK by script (gallery_dark.py) S1-GAL-*_DARK_v1_*; floor_v1/ (floor stills + 6 ProRes clips, silent);
+  S1-GAL_REVIEW_walls+floor_*.jpg. LOOK.md "Scenes 1 + 10", SHOTCARDS.md, LOG/REGISTER 5 Oct. Frames checked against
+  the Louvre (Salle Mollien: gilded frames, wood floor, RED walls; ours are warm grey by the "clean modern" brief; red is a
+  script-only change if Homie wants it). Nothing is in the show folder yet; not upscaled.
+- The melt render is Final Animations/Painting melt + Ocean loop/paintingMelt_1109.mp4 (360, 4096x3112, 25 fps, 20 s):
+  an ARCHED gilt frame (ours are rectangular), the script's blackout sits between.
+- The T9 is the master for 04_WORKING_FILES/S1_gallery/ (copy to D: by hand + sha256 when back on the PC).
+- Mac python: numpy/Pillow/opencv are NOT installed system-wide; install to the session scratchpad
+  (`python3 -m pip install --target <scratch>/py numpy pillow opencv-python-headless`, PYTHONPATH=<scratch>/py).
+  Paths with spaces ("DMD T9") break flag arrays: symlink the T9 to a no-space path in the scratchpad.
+CREDITS: balance 2,143.49 (5 Oct). Homie: plenty this week but LEAVE 500 AT THE END. ONE job at a time; `transactions` after each.
 ByteDance video upscale fails beyond ~15 min of processing per job (refunded): split long clips (tools/upscale_pieces.py).
 
 WHERE IT LIVES (D:\SOTR\SOTR_MEDIA = C:\Users\Homie\Documents\SOTR_MEDIA, a junction; README.txt is the map):

@@ -1,0 +1,21 @@
+ID        S1-GAL-R  (RIGHT flat: Napoléon alone)
+VERSION   v1  (2026-10-05)
+SKILL     scenecraft-v1 Plate C, editorial, spherical
+MODEL     Nano Banana Pro (nano_banana_pro) · 4:3 · 2k · batch 4 · IMG
+          4:3 = the 4.8 x 3.6 m flat. The room's back corner is at the LEFT edge (mirror of LEFT).
+REFS      1  loc_SOTR_gallery_room_s1-10 (room master, take 56306f43)  media 62b0d82b-5a0a-4d4a-a1e1-016f63a1b124
+          2  loc_SOTR_gallery_C_s1-10 (approved CENTRE)               media ee63ca0d-f776-4872-b136-3dea9a3aba86 (S1-GAL-C v1 take 2800713a)
+          3  src_SOTR_napoleon_ingres          media 3f9edf2b-2bcd-4a09-bec1-c98b9841a570
+SCALE     wall 4.8 x 3.6 m. Napoléon frame ~1.75 x 2.75 m, centred, bottom ~0.5 m.
+PREDICT   One tall gilt frame centred on grey. Risks: floor strip, a second painting invented to balance LEFT.
+
+----- PROMPT -----
+A straight-on architectural elevation photograph of the right-hand wall of the gallery in the first attached image, the camera square to the wall at eye height, level, verticals and horizontals dead straight, a natural normal field of view. The frame spans the wall corner to corner: the corner with the back wall is a thin vertical line at the left edge. The bottom edge of the frame sits exactly on the shadow-gap skirting at the foot of the wall; the top edge crops the wall three point six metres up.
+
+NO ON-SCREEN TEXT: no captions, no subtitles, no titles, no lower thirds, no watermarks, no logos overlaid on the image, no timecode, no UI or social-media overlays, no borders, no frame labels anywhere in the image.
+
+The first attached image carries the room and the second carries this wall's exact finish, gilt and daylight; neither carries this framing. The third attached image is the painting, carrying only the picture inside its frame. It hangs alone, centred on the wall, in a deep carved gilt frame about two and three quarter metres high, filling three quarters of the photograph's height, its bottom edge half a metre above the floor, broad plain wall to either side. This is the only painting on the wall.
+
+Soft, even, neutral daylight falls from above down the whole wall, brightest near the top; a soft warm pool of accent light rests on the painting and fades just beyond its gilt frame. No people, no floor below the skirting, the wall complete and self-contained.
+
+Clean spherical lens, locked and level. Color-negative film rendition, daylight-balanced, fine grain in the lifted shadows. Low macro contrast, soft highlights; razor micro texture in plaster, gilt and canvas. A real photograph of a real place — no CGI, no rendered look, no glossy AI sheen, no HDR.

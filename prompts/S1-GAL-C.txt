@@ -1,0 +1,23 @@
+ID        S1-GAL-C  (CENTRE, the back wall: the Raft alone)
+VERSION   v2  (2026-10-05)  ONE CHANGE vs v1: the scale sentence (v1 came back ~2.9 m wide = 48% of the wall; target 4 m = 2/3).
+          v1 fallback: take 2800713a (no floor, corners in, blank plaque). v1 takes 1bda31c9/182e5ed7 showed floor; 1e2e7c0a off-centre.
+SKILL     scenecraft-v1 Plate C (coverage off the approved master), editorial, spherical
+MODEL     Nano Banana Pro (nano_banana_pro) · 16:9 · 2k · batch 4 · IMG
+          16:9 at 3.6 m tall = 6.4 m, so both corners of the 6.0 m wall fall just inside the frame; crop to 5:3 at the corners.
+REFS      1  loc_SOTR_gallery_room_s1-10 (S1-GAL-ROOM v1 take 56306f43, provisional master)  media 62b0d82b-5a0a-4d4a-a1e1-016f63a1b124
+             -> room: wall finish, skirting, gilt frame style, light, NOT framing
+          2  src_SOTR_raft_gericault  media ba511ba3-c0ee-4d83-b6eb-3500e6c046be  -> the picture inside the frame only
+SCALE     wall 6.0 x 3.6 m. Frame outer ~4.0 x 2.8 m, bottom ~0.45 m, top ~3.25 m (the real 4.91 x 7.16 m can't fit; LOOK).
+PREDICT   A flat elevation of the grey wall, the Raft centred and dominant. Risks: floor showing below the skirting
+          (S9 lesson), a perspective view instead of square-on, extra objects (labels, sensor).
+
+----- PROMPT -----
+A straight-on architectural elevation photograph of the back wall of the gallery in the first attached image, the camera square to the wall at eye height, level, verticals and horizontals dead straight, a natural normal field of view. The wall runs corner to corner across the frame, each corner a thin vertical line just inside the left and right edges. The bottom edge of the frame sits exactly on the shadow-gap skirting at the foot of the wall; the top edge crops the wall three point six metres up.
+
+NO ON-SCREEN TEXT: no captions, no subtitles, no titles, no lower thirds, no watermarks, no logos overlaid on the image, no timecode, no UI or social-media overlays, no borders, no frame labels anywhere in the image.
+
+The first attached image carries the room: its warm stone-grey plaster, the skirting, the style of the deep carved gilt frames and the daylight, not its framing. The second attached image is the painting itself and carries only the picture inside the frame. The great painting hangs centred and dominant in its gilt frame, the frame filling two thirds of the photograph's width and four fifths of its height, about four metres wide on this six-metre wall, its bottom edge half a metre above the floor, a narrow band of plain wall above it and a metre of plain wall to either side. Nothing else is on the wall.
+
+Soft, even, neutral daylight falls from above down the whole wall, brightest near the top; a soft warm pool of accent light rests on the painting and fades evenly just beyond the gilt frame, the gilt glowing where it catches. The wall's corners stay soft and open. No people, no floor below the skirting, the wall complete and self-contained.
+
+Clean spherical lens, locked and level. Color-negative film rendition, daylight-balanced, fine grain in the lifted shadows. Low macro contrast, soft highlights; razor micro texture in plaster, gilt and canvas. A real photograph of a real place — no CGI, no rendered look, no glossy AI sheen, no HDR.

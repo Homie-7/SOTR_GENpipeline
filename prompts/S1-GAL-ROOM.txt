@@ -1,0 +1,25 @@
+ID        S1-GAL-ROOM  (serves Scene 1 "Au Louvre" and Scene 10 "Back at the Louvre")
+VERSION   v1  (2026-10-05, first build)
+SKILL     scenecraft-v1 Plate A (environment, empty), editorial register, spherical (house-rules Override 13)
+MODEL     Nano Banana Pro (nano_banana_pro) · 21:9 · 2k · batch 4 · IMG (no duration / sound)
+PURPOSE   Room master: design sign-off + ground truth for CENTRE / LEFT / RIGHT. Never projected.
+REFS      (attach order; register tags live here only, prompt body names them by position)
+  1  src_SOTR_raft_gericault      -> hangs on the BACK wall      (media ba511ba3-c0ee-4d83-b6eb-3500e6c046be)
+  2  src_SOTR_louisXVI_callet     -> LEFT wall, nearer the back  (media a67cf34e-8182-470f-ac37-70f156a47303)
+  3  src_SOTR_marieantoinette_gd  -> LEFT wall, nearer camera    (media 8be0584f-7ef1-47cf-bf10-1ef5bd1fcb9c)
+  4  src_SOTR_napoleon_ingres     -> RIGHT wall, centred         (media 3f9edf2b-2bcd-4a09-bec1-c98b9841a570)
+  Each carries ONLY the picture inside its frame (finding 3). The true images are composited onto the
+  approved walls later (the Raft rule); the refs exist so the frames come back at each painting's real shape.
+PREDICT   A pale, quiet, symmetrical gallery; the Raft dominant on the back wall; risk = the model repaints
+          the paintings loosely (fine, they are replaced) and adds benches/visitors/labels.
+
+----- PROMPT -----
+A clean architectural photograph of an empty modern gallery in a great Paris museum at midday, taken square-on from the open end of a rectangular room at standing eye height, a symmetrical wide frame holding the long back wall dead ahead and both side walls running back to meet it at square corners, the room perfectly still.
+
+NO ON-SCREEN TEXT: no captions, no subtitles, no titles, no lower thirds, no watermarks, no logos overlaid on the image, no timecode, no UI or social-media overlays, no borders, no frame labels anywhere in the image.
+
+Smooth matte plaster walls in a soft warm stone grey, seamless, meeting a pale oak floor at a slim recessed shadow-gap skirting; a frosted-glass laylight ceiling. The four attached images are the paintings hanging here, each carrying only the picture inside its frame, nothing about this room or camera. The first, enormous, in a deep carved gilt frame, is centred on the back wall and fills most of its width. On the left wall, side by side with open wall between: the second, a tall full-length portrait, nearer the back; the third, smaller, nearer camera. The fourth, a tall portrait, is centred on the right wall. All gilt-framed, each whole on its own wall, bare wall near every corner. The room is otherwise bare and empty.
+
+Soft, even, neutral daylight falls from the ceiling down every wall, brightest near the top; each painting has a soft warm pool of accent light fading just beyond its gilt frame. The corners stay soft and open. Thin, clean air: the back wall a touch softer than the near ends of the side walls.
+
+Clean spherical lens, natural field of view, locked and level, verticals true. Color-negative film rendition, daylight-balanced, fine grain in the lifted shadows. Low macro contrast, soft highlights; razor micro texture in plaster, gilt, oak and canvas. A real photograph of a real place — no CGI, no rendered look, no glossy AI sheen, no HDR.

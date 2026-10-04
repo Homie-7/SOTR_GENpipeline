@@ -246,6 +246,30 @@ The kept set (139 files, 80 GB) is sha256-identical on D: and the T9.
 | **Binned** | the whole `SOTR_MEDIA_ARCHIVE` (superseded to 09-30, `04_REJECTED`, tests, upscale tests, the safe-to-delete set); studio b6 v5 (not used) and v4 (floor); upscale raws, upload transcodes, the unused clean 4Ks, the pre-fix 4Ks; S6 animatics v1-v3, S6-FLAG v1 B; scene9_fix previews; intermediates and logs; on the T9 also the pre-09-24 layout leftovers | for Homie to delete |
 | `04_WORKING_FILES/S9-ANIMATIC_v1.mp4` (2026-10-03) | Scene 9 whole, for review: the eight show files on the three walls in script order + the script's lines + their sound (`tools/s9_animatic.py`) | **for Homie** (review only, not a show file) |
 
+## 2026-10-05 · Scenes 1 + 10 · THE LOUVRE GALLERY (new projection add-on; built on the MacBook, media on the T9)
+
+Media: `T9/SOTR/HF/SOTR_MEDIA/04_WORKING_FILES/S1_gallery/` (the T9 is the master for this folder until it is copied to D:).
+Nothing approved by Homie yet; tags are assigned on approval.
+
+| File | What | Status |
+|---|---|---|
+| `sources/src_SOTR_raft_gericault.jpg` | Géricault, Le Radeau de la Méduse (Wikimedia, 5872x4008, public domain) | source |
+| `sources/src_SOTR_louisXVI_callet.jpg` | Callet, Louis XVI in coronation robes, 1779 (Wikimedia photo, 3083x3944, PD) | source |
+| `sources/src_SOTR_marieantoinette_gautierdagoty.jpg` | Gautier-Dagoty, Marie-Antoinette playing the harp, 1777 (Wikimedia "Marie Antoinette Young7", PD) | source |
+| `sources/src_SOTR_napoleon_ingres.jpg` | Ingres, Napoléon Ier sur le trône impérial, 1806 (Wikimedia, 2047x3364, PD) | source |
+| `room/S1-GAL-ROOM_v1_56306f43.png` (e2f43d82…) | room master, 3168x1344 | **provisional master** (pending Homie) |
+| `centre/S1-GAL-C_v1_2800713a.png` (8693d12b…) | CENTRE plate, 2752x1536 | chosen |
+| `left/S1-GAL-L_v1_9194a1ce.png` (d9c06e62…) | LEFT plate, 2400x1792 | chosen |
+| `right/S1-GAL-R_v1_a77585ae.png` (d2d0ac39…) | RIGHT plate, 2400x1792 | chosen |
+| `finished/S1-GAL-<C,L,R>_LIT_v1_{native,1800x1080|1440x1080}.png` | LIT walls, real paintings pinned, plaster matched at the seams (`gallery_wall.py`; commands in LOG) | **candidate, for Homie** |
+| `finished/S1-GAL_LIT_v1_SEAM_4680x1080.png` | the 4:5:4 seam check | for Homie |
+| other takes in `room/ centre/ left/ right/` | unchosen takes (reasons in LOG) | kept until Homie decides |
+| `finished/S1-GAL-<C,L,R>_LIT_v2_*` + `S1-GAL_LIT_v2_SEAM_4680x1080.png` | **LIT v2: one room light** (`--room-light finished/S1-GAL_room_light_v2.json`). Supersedes v1 (kept in `finished/v1_seam_matched/`) | **candidate** (Homie approved the look; v2 = his cohesion note) |
+| `floor/S1-GAL-FLOOR_v1_a4ea7b7a.png` | the oak floor plate, top-down | chosen |
+| `finished/S1-GAL-<C,L,R>_DARK_v1_*` + `S1-GAL_DARK_v1_SEAM_4680x1080.png` | the blackout walls (`gallery_dark.py`) | candidate |
+| `floor/S1-GAL-PUDDLE_v1_*`, `_v2_*` | NBP spill edits | not used (LOG) |
+| `finished/floor_v1/S1-GAL-FLOOR_<DRY,SPILL,GLOW-LIT,GLOW-DARK>_1920x1080.png` + `_<SPILL_HOLD,VANISH,RETURN_GLOW,GLOW-LIT_LOOP,GLOW-DARK_LOOP,DRY_HOLD>_1920x1080.mov` | the floor and the puddle's beats (`gallery_floor.py`), ProRes 422 HQ, 24 fps, silent | **candidate**; RETURN_GLOW rejected (Homie: cheap) -> generated next session |
+
 ## 2026-10-04 (evening) · Scene 5 camps FINAL: PRIMARY = rich dusk, SECONDARY = Cold dusk (the client chooses)
 
 Homie: Alps A4 **approved**; camps N "all approved except the flickering on the ground in front" -> fixed -> "I think the

@@ -1,0 +1,22 @@
+ID        S1-GAL-FLOOR  (the gallery floor, top-down; Homie 2026-10-05: "we also need a floor version… where the water puddle is")
+VERSION   v1  (2026-10-05)
+SKILL     scenecraft-v1 Plate A (empty), editorial, spherical. docs/FLOOR-PLAN.md rules: floor as floor, top-down,
+          orthographic, true scale, no pre-warp; the mapping guy fits it.
+MODEL     Nano Banana Pro (nano_banana_pro) · 21:9 · 2k · batch 4 · IMG
+          21:9 = 2.33, the floor envelope 10,057 x 4,350 mm = 2.31. Top of the picture = upstage (CENTRE wall).
+REFS      1  loc_SOTR_gallery_room_s1-10 (room master, take 56306f43)  media 62b0d82b-5a0a-4d4a-a1e1-016f63a1b124
+             -> the floor's material and colour only (pale oak), NOT the view
+PURPOSE   An evenly lit texture plate. The room's light (pools at the walls' feet, corners) is added by script from
+          the same model as the walls (S1-GAL_room_light_v2), so floor and walls are one space.
+PREDICT   Boards running top to bottom. Risks: a perspective view, a vignette, objects, a rug.
+
+----- PROMPT -----
+A perfectly top-down architectural photograph looking straight down onto a wide expanse of gallery floor, the camera high above and pointing vertically down, orthographic and flat, no horizon and no walls anywhere in the frame, the floor filling the whole picture edge to edge.
+
+NO ON-SCREEN TEXT: no captions, no subtitles, no titles, no lower thirds, no watermarks, no logos overlaid on the image, no timecode, no UI or social-media overlays, no borders, no frame labels anywhere in the image.
+
+The floor carries the material of the attached image's floor: long planks of pale oiled oak, each about eighteen centimetres wide, running straight from the top edge of the picture to the bottom edge, butt joints staggered, a soft satin finish with the fine open grain of oak, faint scuffs from visitors' shoes, clean and well kept. The attached image carries only the floor's wood and colour, not its view. The floor is completely bare and empty.
+
+Soft, perfectly even, neutral daylight falls from directly above across the whole floor, the same brightness at every edge and in the middle, the satin finish taking a faint even sheen.
+
+Clean spherical lens, verticals true. Color-negative film rendition, daylight-balanced, fine grain in the lifted shadows. Low macro contrast, soft highlights; razor micro texture in the oak grain. A real photograph of a real place — no CGI, no rendered look, no glossy AI sheen, no HDR.

@@ -814,3 +814,40 @@ for yourself").** Still an option beside v5, not locked.
    its border boiled). More shot through and blackened than the others, its fly hanging in ragged streamers of uneven
    length that flap on their own: the same tear language as CENTRE, stopped part way. The Napoleonists' colour, carried
    to the end, beside the plain white of the Monarchistes. Both burn as one front from 2:10.5, as v5.
+
+---
+
+# LOOK — Scenes 1 + 10 · The Louvre gallery · DECIDED 2026-10-05 by Claude on Homie's delegation (pending his sign-off on the room master)
+
+Homie, 2026-10-05: "one build that serves both… modern-day… I'm happy for you to take charge and do the best. It's
+supposed to be clean and modern." Centre = the Raft, portraits on LEFT/RIGHT confirmed; the split was delegated.
+
+- **The split: LEFT = Louis XVI + Marie-Antoinette, RIGHT = Napoléon, CENTRE = the Raft alone.** The two regimes flank
+  the painting about the Restoration's failure; the king and queen hang as a pair. It is also the script's walking order.
+- **The paintings (public domain, composited, never generated; the Raft rule):** Callet's *Louis XVI in coronation
+  robes* (1779; the script's "peint en 1786" is licence), Gautier-Dagoty's *Marie-Antoinette playing the harp in her
+  chamber at Versailles* (1777; Ann mimes the harp), Ingres's *Napoléon Ier sur le trône impérial* (1806; the guide's
+  "photoshoppé" emperor), Géricault's Raft. They are attached to the plate generations as references only so the gilt
+  frames come back at each painting's real shape; the true images are pinned in afterwards.
+- **The room:** clean modern museum. Matte plaster walls in a soft warm stone grey (mid value: not white, which would
+  throw light onto the actors; not near-black, which reads murky on a projector), a slim recessed shadow-gap skirting,
+  a frosted laylight ceiling (above the 3.6 m crop on the walls), deep carved gilt frames. Nothing else on the walls.
+- **Light:** soft even neutral daylight from above, brightest near the top of each wall; a soft warm accent pool on each
+  painting. Register: editorial, clean spherical lens (house-rules Override 13).
+- **Scale:** the real Raft (4.91 × 7.16 m) can't fit a 3.6 m wall; it is scaled to fill most of CENTRE (frame about
+  3 m high), as the 2022 melt render hung it (high and large in a gilt frame on a pale wall). Liberty, as Scene 9's canvas.
+- **No fragment edge** in the Louvre (the waking world). The dream scenes break; this room doesn't.
+- **DARK state:** the blackout. Lights off, the room almost gone, only a faint cool emergency glow, so Amina's real torch
+  reads on the projected wall. The puddle "mysteriously returns, glowing": its blue-green water light ripples up the
+  lower wall onto the Raft in the dark (VID, later), a bridge into the melt; the alarm is a red pulse (light only).
+- **ONE ROOM LIGHT (Homie, 2026-10-05: "all of this will be projected at the same time… cohesive as a single space… a
+  single space that you're walking through").** All three walls are relit from one model (`gallery_wall.py --room-light`):
+  one plaster colour, one laylight curve (brightest at the top, as above), soft darkening into the two real corners only,
+  the same warm pool and drop shadow on every painting, one shadow-gap skirting. The floor uses the same light.
+- **THE FLOOR (Homie, 2026-10-05).** Pale oak planks, top-down at true scale (FLOOR-PLAN.md rules), brightness capped
+  below the walls, contact shadow along each wall's foot, the paintings' warm light spilling onto the floor below them.
+- **THE PUDDLE follows the script, beat by beat:** an ordinary spill in front of the Raft (Amina mopping) -> "The water
+  disappears" (it dries away from the rim inward) -> "Then it mysteriously returns, glowing" (it wells up from its
+  centre, glowing the melt render's sea-teal, an organic caustic web and slow ripples inside it) -> it keeps glowing
+  through the blackout (Sarah slips on it). Scene 10: the floor is dry. The water is drawn by script (NBP drew wet oak as
+  hard dark plank bands, twice). The glow is the first drop of Scene 2's sea.

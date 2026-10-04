@@ -183,3 +183,43 @@ for generated elements, `S6-M<n>` for the seven composited movements. All three 
 | **Exits** | The Medusa on the horizon, still and held, for Sahaj's Scene 7 to take over |
 | **Timing** | Our picture leads (~2:45, seven movements). The timecode of every movement and every battle name goes to the sound designer |
 | **Sound** | The generated clips' own sound rides in the file as scratch (standing rule); the score is the sound designer's |
+
+---
+
+# CUE CARDS — Scenes 1 + 10 · The Louvre gallery (from 2026-10-05)
+
+A new projection add-on (Homie, 2026-10-05). **One build serves both scenes**: Scene 1 "Au Louvre" (the tour, then
+the blackout) and Scene 10 "Back at the Louvre" (light restored, same room). Modern day: the 1819 era law does not
+apply; only the paintings are period. `LOOK.md` → "Scenes 1 + 10". **ID scheme:** `S1-GAL-<WALL>`, states add
+`-DARK`, loops `-LOOP`.
+
+## Deliverables at a glance
+
+| ID | What | Made in | Depends on | Status |
+|---|---|---|---|---|
+| S1-SOURCES | The four paintings, public domain (Wikimedia): Géricault's Raft, Callet's Louis XVI (1779), Gautier-Dagoty's Marie-Antoinette at the harp (1777), Ingres's Napoléon Ier (1806) | downloaded | — | **done 2026-10-05** |
+| S1-GAL-ROOM | Room master, all three walls, never projected | Higgsfield NBP 21:9, the four paintings as refs | LOOK decided | v1 take 56306f43 (look approved by Homie) |
+| S1-GAL-C | CENTRE: the Raft alone, gilt frame | NBP, ref = room master | S1-GAL-ROOM approved | — |
+| S1-GAL-L | LEFT: Louis XVI + Marie-Antoinette | NBP, refs = room master + C | S1-GAL-C approved | — |
+| S1-GAL-R | RIGHT: Napoléon alone | NBP, refs = room master + C | S1-GAL-C approved | — |
+| S1-GAL-SEAM | All three side by side at 4:5:4; **the first world with all three walls live at once** | script | the three walls | — |
+| S1-GAL-PAINT | The true paintings corner-pinned into the generated frames, the plate's own light kept | script | the three walls | — |
+| S1-GAL-*-DARK | Blackout state: lights off, faint emergency glow, so Amina's real torch reads | NBP edit (text only, finding 4a) | the lit walls | — |
+| S1-GAL-FLOOR | The oak floor, top-down, in the room light (FLOOR-PLAN.md) | NBP plate + `gallery_floor.py` | room light | **v1 rendering** |
+| S1-GAL-PUDDLE | The spill -> vanish -> returns glowing -> glows in the blackout (the script's beats); Scene 10 dry | `gallery_floor.py` (drawn) | the floor | **v1 rendering** |
+| (later, optional) | The puddle's teal light on the foot of CENTRE in the dark; the red alarm pulse | script or VID | DARK | not asked |
+| (script) | Lights cut out bank by bank (S1 blackout); "light suddenly restored" (S10) | script, 0 cr | LIT + DARK | — |
+| (existing) | The Raft melts into the sea (2022 render, start of Scene 2). Source file not found on the T9 or the Mac; only inside `T9/Private/Export/LH_Pitchwmelt.mp4` (~0:41-0:52). Ask Homie | — | — | **open** |
+
+## S1-GAL — the card
+
+| | |
+|---|---|
+| **World** | A clean modern gallery in a great Paris museum, today, daytime. `LOOK.md` → Scenes 1 + 10 |
+| **Walls** | **CENTRE** the Raft, alone, dominant (the script: "the most prominent painting in the gallery room"). **LEFT** Louis XVI and Marie-Antoinette, the old regime as a pair. **RIGHT** Napoléon alone, the Empire. The tour's order is L, L, R, then C |
+| **In frame** | No people. No benches, ropes, signs or labels generated (labels, if wanted, are composited with real text) |
+| **Camera** | Locked. Square to each wall, eye level 1.6 m, floor to 3.6 m, no floor visible |
+| **States** | LIT (Scene 1 tour, Scene 10) · DARK (the blackout; Amina's torch is a live prop) |
+| **Motion** | LIT: a still gallery (nothing moves in a museum). DARK: the puddle's water light and the alarm, generated in VID |
+| **Enters / exits** | Scene 1 ends: selfie → BLACKOUT (lights cut by script) → the dark scene → Sarah falls → the melt (Scene 2). Scene 10: "Light is suddenly restored" (a hard snap back to LIT) |
+| **Fragment edge** | **None.** The Louvre is the waking world; only the dream breaks |
