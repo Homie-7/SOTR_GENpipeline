@@ -171,6 +171,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-04, evening (POST): Scenes 4 and 5 DONE. Camps PRIMARY = rich dusk, SECONDARY = Cold dusk (client picks).
+
+- Alps A4 approved. Camps: Front ground flicker fixed (`tools/deflicker_ground.py`), a carved-plume sky-mask defect fixed
+  (v5 masks); Homie: "can we consider the camps fully done?" Cold dusk (C2) renders unattended, then T9 + shutdown.
+- **Homie: "Just make the things that I asked you to make"**: no unrequested upscales or show-folder changes (memory).
+
 ### 2026-10-04, day (POST): S6 v6.2 IS THE SHOW (4K). Alps A4 + camps N rendered; the camps birds removed. 40.08 cr.
 
 - **Scene 6 v6.2 replaced v5** under the same names (4K play, 1080 fallback, CLEAN); v5 in `superseded/S6_v5/`. ByteDance

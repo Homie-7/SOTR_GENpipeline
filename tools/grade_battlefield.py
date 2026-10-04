@@ -74,6 +74,11 @@ OPTIONS = {
     'C': dict(name='cold dusk',
               g=dict(hue=27.0, sat=0.38, val=0.70, mult=(0.93, 0.96, 1.03), gsat=0.72),
               s=dict(sat=0.18, mult=(0.88, 0.93, 1.04), knee=0.62, comp=0.30, val=0.78)),
+    # Homie 2026-10-04 ("In the S5_grade_ALL_OPTIONS, I really like the Cold dusk option… a version with that as well"):
+    # C exactly, with his 4 Oct fire decision (the original flame cores only, no warm pool; the pool on grey read "off")
+    'C2': dict(name='cold dusk (v4 fire)', fire='cores',
+               g=dict(hue=27.0, sat=0.38, val=0.70, mult=(0.93, 0.96, 1.03), gsat=0.72),
+               s=dict(sat=0.18, mult=(0.88, 0.93, 1.04), knee=0.62, comp=0.30, val=0.78)),
 }
 LUMW = np.array([0.2126, 0.7152, 0.0722])
 

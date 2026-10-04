@@ -246,6 +246,21 @@ The kept set (139 files, 80 GB) is sha256-identical on D: and the T9.
 | **Binned** | the whole `SOTR_MEDIA_ARCHIVE` (superseded to 09-30, `04_REJECTED`, tests, upscale tests, the safe-to-delete set); studio b6 v5 (not used) and v4 (floor); upscale raws, upload transcodes, the unused clean 4Ks, the pre-fix 4Ks; S6 animatics v1-v3, S6-FLAG v1 B; scene9_fix previews; intermediates and logs; on the T9 also the pre-09-24 layout leftovers | for Homie to delete |
 | `04_WORKING_FILES/S9-ANIMATIC_v1.mp4` (2026-10-03) | Scene 9 whole, for review: the eight show files on the three walls in script order + the script's lines + their sound (`tools/s9_animatic.py`) | **for Homie** (review only, not a show file) |
 
+## 2026-10-04 (evening) · Scene 5 camps FINAL: PRIMARY = rich dusk, SECONDARY = Cold dusk (the client chooses)
+
+Homie: Alps A4 **approved**; camps N "all approved except the flickering on the ground in front" -> fixed -> "I think the
+flicker is okay now… can we consider the camps fully done?" (the birds that still pop in/out now and then: accepted, not
+worth fixing). The client sees both grades and decides. Not in `01_FINAL_FOR_SHOW` and not upscaled (Homie: not needed).
+
+| Path (`04_WORKING_FILES/S5_battlefield_grade/…`) | What | Status |
+|---|---|---|
+| `S5_PRIMARY_rich_dusk/S5_camps_<front|left|right|bottom>.mov` + `review/*_REVIEW.mp4` | **PRIMARY, rich dusk (N)**: 1920x1080 ProRes 422 HQ, 25 fps, 10,770 f (430.8 s), the render's sound. Front = v5 sky mask (no pale plume silhouettes) + birds removed + ground deflickered (`tools/deflicker_ground.py`, -77%); Left/Right = birds removed; Floor = graded | **APPROVED (Homie 4 Oct)** |
+| `S5_SECONDARY_cold_dusk/S5_camps_<a>.mov` + `review/` (+ `S5_camps_COLD_SHEET.jpg`) | **SECONDARY, Cold dusk (C2 = C + flame cores only)**, v5 masks, full match, same bird removal, Front deflickered. Rendered unattended after the wrap (LOG) | for the client |
+| `superseded/S5_camps_front_N_v4mask_flicker.mov` (+ REVIEW) | the previous N Front (flicker, pale plume silhouettes) | superseded |
+| `_new_v5/` | v5 sky masks (front: the left plume cluster's columns from the smooth v2 horizon; left: one plume column) + fire placements + fk samples | records |
+| `N_matched/`, `N_nobirds/`, `N_v5_graded/`, `C2_graded/`, `C2_test/`, `C_matched/` | intermediates (graded with birds, the de-birded Front before deflicker, the C2 renders before debird, tests) | records |
+| `../S4_alps_grade_v2/A4_matched/S4_alps_<a>.mov` + `review/` | **Scene 4 Alps A4** | **APPROVED (Homie 4 Oct)** |
+
 ## 2026-10-04 · Scene 6 v6.2 IN THE SHOW (4K) + Scenes 4/5 graded (Alps A4, camps N, the camps birds removed)
 
 **SHOW FOLDER UPDATE (same names): Scene 6 = v6.2** (Homie, 4 Oct: "S6 v6.2 REPLACES v5"). The `## 2026-10-02` table's S6 rows now read v6.2.

@@ -22,28 +22,18 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (after 4 Oct). MODE: POST. Ask Homie for his verdict on the Scenes 4 and 5 renders first.
-DONE 4 Oct: (a) SCENE 6 v6.2 IS IN THE SHOW: 4K `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S6_<WALL>_wars.mov`, 1080 in
-`3_HD_1080_fallback/`, `_CLEAN` in `03_CLEAN_MASTERS_no_edge/`; v5 in `04_WORKING_FILES/superseded/S6_v5/`. Checks PASS
-(PSNR 47-49, light corr >= 0.999, sound 1.000), join between the two upscaled halves measured invisible. README updated.
-(b) Scene 9 studio canvas edge is in the show (approved). (c) Alps = `04_WORKING_FILES/S4_alps_grade_v2/A4_matched/`
-(grade A4 on the clean Renders (050422), full match, birds removed by Despeck, 29.97 fps, 5,190 f, sound).
-(d) Camps = `04_WORKING_FILES/S5_battlefield_grade/N_nobirds/S5_camps_<front|left|right>.mov` (grade N rich dusk, full
-match, 25 fps, 10,770 f, sound) with THE BIRDS REMOVED (Homie: "the obvious ones in the front circling need to go";
-far dots stay) by `tools/debird.py`; the floor (no sky) is `N_matched/S5_camps_bottom.mov`. Review: each folder's
-`review/` (L|F|R + floor sheet, 1:1 floor crops, H.264 `_REVIEW.mp4` copies that play from the HDD).
-NEXT, IN ORDER (ask Homie):
-1. His verdict on the Alps and the camps (review copies). Known: Alps RIGHT reads cooler in the mountains (= the approved
-   A4 row); birds crossing the smoke/cloud zones (debird's smoke map, ~42% of the Front sky) were left in on purpose.
-2. Scenes 4/5 as show files: names S4_/S5_<WALL>_<world>.mov, the floor angle separately; 4K (~0.08 cr/s); a ByteDance
-   job over ~2 min TIMES OUT (refunded): split into overlapping halves like S6 (`04_WORKING_FILES/S6_v6_option/`:
-   uploads_halves, s6_4k pattern = xfade the halves over the overlap, then upscale_restore). The Alps (2:53) and camps
-   (7:11) need 2 and 4+ pieces per angle. Their 1080 sides are 1920x1080 (16:9): ask how they map onto the 4:3 flats.
-3. The cannonball (050422 Camps/Cannonball EXR + CB_Explosion) and the Scene 5 -> 6 join (S6 opens on red-brown smoke).
-CREDITS: 4 Oct 40.08 (S6 halves; the full-length try was refunded). Balance ~2,208 (keep >= 1,500, Homie).
-The floor plan (docs/FLOOR-PLAN.md) is PARKED. Scene 9 is unchanged. The client delivery stays 01_FINAL_FOR_SHOW.
-The PC crashes under all-core load (memory pc-core7-crash): every heavy job runs with affinity FFFF3FFF; launch it from
-the PowerShell tool (Start-Process + ProcessorAffinity = [IntPtr][long]4294918143), not `cmd start` from Bash.
+THE TASK, RIGHT NOW (after 4 Oct, evening). Homie has ANOTHER SCENE to start that needs Higgsfield: ask him what it is.
+DONE: Scene 6 v6.2 in the show (4K). Scene 4 Alps A4 APPROVED (`04_WORKING_FILES/S4_alps_grade_v2/A4_matched/`).
+Scene 5 camps DONE: PRIMARY = rich dusk `04_WORKING_FILES/S5_battlefield_grade/S5_PRIMARY_rich_dusk/` (approved; Front
+flicker fixed by tools/deflicker_ground.py, birds removed by tools/debird.py; the odd bird popping in/out accepted);
+SECONDARY = Cold dusk `S5_SECONDARY_cold_dusk/` (the client chooses between them). Each has review/ H.264 copies.
+Scenes 4/5 are NOT in 01_FINAL_FOR_SHOW and NOT upscaled: Homie "We don't need to upscale those… Just make the things
+that I asked you to make" (memory only-what-asked). Check first: did `finish_and_shutdown.sh` finish? (LOG top row
+"Cold dusk (C2) FINISHED"; if missing, the C2 files are in C2_final/ + C2_graded/: run the scratchpad organise_secondary
+step, then tools/backup_t9.py.)
+CREDITS: 4 Oct total 40.08 (S6) + 0.80 (Alps probe); every failed ByteDance job was refunded. Balance ~2,207.
+ByteDance video upscale: ~15 min of processing per job max (failed + refunded beyond); tools/upscale_pieces.py splits.
+The PC crashes under all-core load (memory pc-core7-crash): heavy jobs with affinity FFFF3FFF via PowerShell Start-Process.
 Credits: ask above ~100 per run; one at a time; `transactions` after each.
 
 WHERE IT LIVES (D:\SOTR\SOTR_MEDIA = C:\Users\Homie\Documents\SOTR_MEDIA, a junction; README.txt is the map):
