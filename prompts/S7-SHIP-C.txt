@@ -1,0 +1,14 @@
+ID        S7-SHIP-C  (CENTRE, the back wall: forward from just aft of the foremast to the bow; the landed perspective)
+VERSION   v1  (2026-10-05; docs/PLAN-SHIP-INTRO.md §2)
+SKILL     scenecraft-v1 Plate C (coverage off the approved master), spherical
+MODEL     Nano Banana Pro (nano_banana_pro) · 16:9 · 2k · batch 4 · IMG   (16:9 cropped to 5:3 at the sides)
+PURPOSE   The landed view. Homie: "the actors are close to the front… two poles in the front is wrong" -> ONE mast, the
+          foremast, whole and centred, the bow close beyond it. Walls-as-walls exception (this sequence only, Homie
+          "side quest"): CENTRE looks forward along the deck, as Sahaj's mockups. The bottom edge = the stage floor.
+          The foremast falls forward over the bow in Sc 8, so nothing ever crosses a seam.
+REFS      1  the approved deck master (S7-SHIP-ROOM v2, take TBC)  -> the ship, materials, light; framing close to it
+PREDICT   The master's centre, tighter: the foremast dead centre, its shrouds to the frame edges, the forecastle and
+          bowsprit beyond, the horizon on the middle of the frame. Risks: a second mast, a sail.
+
+----- PROMPT -----
+(written from the chosen v2 master: patch only its framing sentence, so the ship stays the master's word for word)

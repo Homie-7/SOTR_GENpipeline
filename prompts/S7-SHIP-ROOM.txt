@@ -1,0 +1,29 @@
+ID        S7-SHIP-ROOM  (the Medusa's deck, the landed perspective; serves the intro's landing, Scene 7 on deck and Scene 8's wreck)
+VERSION   v2  (2026-10-05)  CHANGE vs v1 = the VANTAGE (one fix, two linked lines: the opening shot + the mast sentence).
+          Homie on v1: "two poles in the front which is wrong… the actors are close to the front and both side screens
+          have the sides of the ship." Cause: from the quarterdeck the foremast lines up behind the mainmast (structural,
+          not wording). v2 stands just aft of the FOREMAST near the bow: one mast, the bow beyond, the sides close.
+          v1 takes: 82f8306c (cleanest, two masts), 4d719159 (Sahaj's ladders, a loose sail + a blue flag), 3c3b909e.
+SKILL     scenecraft-v1 Plate A (environment, empty), spherical (house-rules Override 13: one lens register with the video)
+MODEL     Nano Banana Pro (nano_banana_pro) · 21:9 · 2k · batch 4 · IMG (no duration / sound)
+PURPOSE   Deck master: design sign-off + ground truth for CENTRE / LEFT / RIGHT. Never projected. NO SAILS (furled):
+          the sail is physical (Homie). Built for destruction: ONE mast (the foremast) whole and centred; it falls forward over the bow in Sc 8.
+REFS      (attach order; register tags live here only, prompt body names them by position)
+  1  src_SOTR_medusa_baugean (Baugean engraving, cropped to the frigate)  media f15dfdca-10be-45e3-8ee7-6741e39f438b
+     -> the ship: three masts, one gun deck, masts/yards/rigging. NOT the engraving's rendering, NOT its sails.
+  2  ref_pack10_setsai3l44 (Sahaj's 2020 deck-POV mockup)                  media 1595a67d-7cdd-4477-973e-91c72b3c79ff
+     -> vantage + deck layout only. NOT its 3D rendering, NOT the seated figure, NOT the black boxes, NOT the sail.
+PREDICT   A symmetrical view forward along a sunlit frigate deck, mainmast centred, shrouds both sides, open sea.
+          Risks: sails come back set (the model's prior for a ship), people on deck, a modern/pirate-film ship,
+          the deck floor dominating the frame (fine for the master; the walls crop it).
+
+----- PROMPT -----
+A real photograph taken on the deck of a French naval frigate at sea in 1816, standing near the bow just aft of the foremast at eye height and looking straight forward along the centreline over the bow, a wide symmetrical frame, the ship's sides close on the left and right, open sea ahead.
+
+NO ON-SCREEN TEXT: no captions, no subtitles, no titles, no lower thirds, no watermarks, no logos overlaid on the image, no timecode, no UI or social-media overlays, no borders, no frame labels anywhere in the image.
+
+The first attached image is the ship herself, a three-masted frigate: her masts, yards and rigging, not its engraved rendering or its sails. The second carries only the deck's layout and its single mast, not its vantage, rendering, figure or objects. The deck ahead: pale weathered oak planking scrubbed grey, open gratings, black iron guns on their carriages along both bulwarks, the inner bulwarks a worn, faded red ochre. The foremast rises dead centre close in front, the only mast in view, its foot wrapped in coiled hemp, its tarred shrouds and ratlines running down to the tall bulwarks at the left and right edges. Beyond it two short ladders climb to the forecastle and the bow, the bowsprit reaching out toward the horizon. Every sail is furled tight and lashed along its yard; the yards stand squared and bare against the open sky. The deck is empty and still.
+
+Bright late-morning daylight, the sun high and ahead of the bow, light falling evenly on both rails; a pale sky with scattered white cumulus, the sea a deep blue-green with small whitecaps. Real air at every depth: the nearest rail crisp, the foremast a touch softer, the bow softer still, the horizon pale.
+
+Clean spherical lens, natural wide field of view, level, verticals true. Color-negative film, fine grain, low macro contrast, razor micro texture in oak, tarred rope and iron. A real photograph of a real ship — no CGI, no rendered look, no game-engine look, no glossy AI sheen, no HDR.

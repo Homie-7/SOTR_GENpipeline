@@ -22,7 +22,18 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (5 Oct, latest): SCENES 1+10 DONE AND IN 01_FINAL_FOR_SHOW. 01 IS THE COMPLETE CLIENT UPLOAD (S1, S4, S5, S6, S9, S10).
+THE TASK, RIGHT NOW (5 Oct, evening, IMG, MacBook): THE SHIP SEQUENCE (Sc 7-8), a side quest APPROVED by Homie: "make
+the calls and go ahead". READ docs/PLAN-SHIP-INTRO.md FIRST (sources, Sahaj's notes decoded, designed-for-destruction,
+Sahaj's angle, credits). Higgsfield credits EXPIRE 6 Oct: spend them today, one job at a time, no waste.
+STATE: S7-SHIP-ROOM v1 rejected (two masts); v2 (one foremast, bow close; prompts/S7-SHIP-ROOM.txt) and S7-INTRO-F1 v1
+(the gull + the Medusa; prompts/S7-INTRO-F1.txt) were QUEUED at Higgsfield: jobs f5180ed8, 20f01ff7, 33dc1d0a, 0aebdf8a
+(ROOM v2) and 30c3d773, 1714a32e, 66ad98e8, 450ae830 (F1). Collect with jobs_wait, download with tools/fetch.py to
+T9 04_WORKING_FILES/S7_ship/1_deck_master/ (and 2_intro/). Fallback master = v1 take 087f71a5 (one mast).
+NEXT: pick the master -> Homie's look check -> walls from ONE plate (tools/ship_walls.py; outpaint sideways if keeping the
+full height) -> layers (tools/ship_layers.py) -> VID session: the intro flight, sea loops, the mast falls, the rowboats.
+Credits spent this session: 24 (all NBP). Mac kept awake by caffeinate.
+
+PREVIOUS (5 Oct, latest): SCENES 1+10 DONE AND IN 01_FINAL_FOR_SHOW. 01 IS THE COMPLETE CLIENT UPLOAD (S1, S4, S5, S6, S9, S10).
 Ask Homie which is next; recommend 1 (it's the next production job), and 2 when the PC is next on.
 1. IMG — THE SURPRISE SCENE (Scene 8), parked behind the gallery. Start from BIBLE.md / the script PDF; LOOK first, nothing
    invented (look decisions go to Homie with a recommendation).

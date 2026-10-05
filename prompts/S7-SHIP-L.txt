@@ -1,0 +1,24 @@
+ID        S7-SHIP-L  (LEFT flat: the ship's PORT side, square-on; the landed deck perspective)
+VERSION   v1  (2026-10-05; docs/PLAN-SHIP-INTRO.md §2)
+SKILL     scenecraft-v1 Plate C (coverage off the approved master), spherical
+MODEL     Nano Banana Pro (nano_banana_pro) · 4:3 · 2k · batch 4 · IMG
+PURPOSE   Homie: "both side screens have the sides of the ship". Walls as walls (STAGE.md): the camera square to the
+          port bulwark, the image's bottom edge = the deck = the stage floor, the top edge 3.6 m up. NO SAILS.
+          The foremast is NOT on this wall (it lives whole on CENTRE); only its shrouds rise out of the top edge, so when
+          it falls in Sc 8 nothing crosses a seam. The RIGHT wall (starboard) = this plate mirrored + its own take.
+SCALE     wall 4.8 x 3.6 m. Bulwark top (the rail) ~1.2 m = one third up the frame; the deck not visible (it IS the floor).
+REFS      1  the approved deck master (S7-SHIP-ROOM, take TBC)  -> materials, colours, light, rigging style; NOT framing
+PREDICT   A flat elevation: red-ochre bulwark across the bottom third, a gun port or two, deadeyes and lanyards on the
+          rail, shrouds and ratlines climbing diagonally out of the top, open sea and sky beyond. Risks: a perspective
+          view down the deck (the master's framing leaking in), deck floor visible below the bulwark, people.
+
+----- PROMPT -----
+A straight-on photograph of the inside of the port bulwark of the frigate in the first attached image, the camera on her deck square to the ship's side at eye height, level, verticals true, a natural normal field of view. The bottom edge of the frame sits exactly at the foot of the bulwark where it meets the deck; the top edge crops the rigging three point six metres up.
+
+NO ON-SCREEN TEXT: no captions, no subtitles, no titles, no lower thirds, no watermarks, no logos overlaid on the image, no timecode, no UI or social-media overlays, no borders, no frame labels anywhere in the image.
+
+The first attached image carries the ship: her oak, the worn red-ochre bulwarks, the tarred rigging, the furled canvas and the daylight, not its framing. Across the lower third of the frame runs the bulwark, its rail about a third of the way up, a lidded gun port in the planking, belaying pins and coiled hemp on the rail. From a row of deadeyes along the rail the foremast's tarred shrouds and ratlines climb steeply up and out of the top edge of the frame. Above and beyond the rail lies open sea to the horizon and a pale sky with scattered white cumulus. No sails, no people, nothing on the deck.
+
+Bright late-morning daylight from high ahead, falling evenly along the rail; the sea a deep blue-green with small whitecaps. Real air at every depth: the rail and rigging crisp, the horizon pale.
+
+Clean spherical lens, level, verticals true. Color-negative film, fine grain, low macro contrast, razor micro texture in oak, tarred rope and iron. A real photograph of a real ship — no CGI, no rendered look, no game-engine look, no glossy AI sheen, no HDR.
