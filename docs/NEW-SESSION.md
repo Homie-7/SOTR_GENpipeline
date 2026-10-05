@@ -22,28 +22,41 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (6 Oct, after Homie's review; NEXT SESSION = VID, MacBook): REDO THE SHIP INTRO. Load house-rules
-(+ references/findings-video.md) and shotcaller-v1, MODE = VID, then read docs/VID-BRIEF-S7-INTRO-v2.md (the whole job, from
-Homie's verdict), docs/PLAN-SHIP-INTRO.md, docs/AUTONOMOUS-GEN.md, PIPELINE.md (connector), prompts/S7-INTRO-FLIGHT.txt +
-S7-INTRO-LAND.txt (v1, what failed), and the top LOG.md rows.
-HOMIE'S REVIEW (6 Oct):
-  - THE INTRO v1 = FAIL: "the bird is not even flapping… just kind of randomly seeing it glide. It never really goes far or
-    close to the camera… looks extremely AI generated. We approach the ship from the front… then we sit on the front deck
-    border. The whole point is to land inside the last frame where the scene will continue. So we should be where the
-    _strip_wreck_v1 angle is. Redo the thing again, make it more believable." -> brief v2: real wingbeats, the distance to
-    camera changes, approach from ASTERN/quarter, come aboard and END EXACTLY ON THE DECK PLATE (end frame made: T9
-    S7_ship/4_intro_video/endframe/S7-SHIP-C_day_16x9_ENDFRAME.png; Seedance end_image UNTESTED), our red-ochre ship (no gilding).
-  - THE LIGHT STATES: "I approve all the states and times" (day, magic hour, sunset, night, wreck). BUT: "This is a complete
-    cohesive single scene, so they all need to align… while they are animated it all looks like a single scene." FIXED (0 cr,
-    same day): tools/ship_seams.py -> T9 S7_ship/3_walls/seamed_v1/<day|magic|sunset|night|wreck>/ = THE CURRENT WALLS. The
-    side walls' rail now meets CENTRE's at both seams (it stepped 72 / 111 px), the half cathead on the RIGHT seam removed,
-    sky and sea colour matched to CENTRE (zone medians, 50-70% less mismatch). Layers rebuilt: 5_layers/seamed_v1/. Review:
-    6_review/S7-SHIP_light_arc_preview_SEAMED_v2.mp4 + S7-SHIP_all_states_contact_SEAMED_v2.jpg. Cloud shapes still change at
-    the seams (the fold and gap hide it). The old assembled_* sets are superseded (kept).
-  - Every animated piece from now on (sea loops, the mast fall, rowboats) is built on seamed_v1 and moves as ONE sea across
-    the three walls (same swell direction, speed and scale).
-NEXT after the intro: side-wall sea loops (one sea), the mast fall, rowboats + snap, 4K of what Homie approves.
-Credits: balance 1,127.49 (6 Oct). Redo cap 450. Keep 500 at the end of the week.
+THE TASK, RIGHT NOW (7 Oct, MacBook): TWO SESSIONS, IN THIS ORDER. Ship sequence (Sc 7-8). Read docs/PLAN-SHIP-INTRO.md.
+
+SESSION 1 = IMG (this one). Load house-rules (+ references/findings-image.md) and scenecraft-v1. MODE = IMG.
+  JOB 1: THE SEAMS, PROPERLY. Homie (7 Oct, on 6_review/S7-SHIP_light_arc_preview_SEAMED_v2.mp4): "the seams are still not
+  fully aligned… you can tell the ship's edges are a bit off." He is right. tools/ship_seams.py (6 Oct) made the rail HEIGHTS
+  and the sky/sea COLOUR meet, but a script can't fix what is left, because LEFT and RIGHT are separate generations, not
+  continuations of CENTRE. Seen at the seams of 3_walls/seamed_v1/day (Claude, 7 Oct):
+    1. SCALE: the side walls' guns and bulwark planks are ~1.3x bigger than CENTRE's at the seam (closer camera).
+    2. RAIL ANGLE: the heights meet but the rail kinks into a V at each seam.
+    3. DOUBLES: a gun on both sides of each seam; the deck planks run different ways.
+    4. LIGHT: RIGHT's deck is bright sun where CENTRE's edge is shade; the rail caps differ in tone.
+  ROUTE TO TRY (untested, probe first, ~4 cr): build each side wall OUTWARD FROM THE MASTER. The 21:9 deck master
+  (1_deck_master/S7-SHIP-ROOM_v2_f5180ed8.png, 3168x1344) holds ~464 px of TRUE continuation beyond the CENTRE crop on each
+  side. Make a 4:3 canvas per side with that strip at its INNER edge (the edge that meets CENTRE), the rest flat neutral grey,
+  and run an NBP edit (scenecraft Plate D): "fill the grey area, continuing the deck, bulwark, guns, rigging, sea and sky
+  of the strip outward; keep the strip exactly". Then crop/scale so the strip lands pixel for pixel next to CENTRE.
+  (5 Oct's failures, LOG: outpaint_image ignored the size and re-centred; side walls generated from a reference re-showed
+  the bow. This route differs: the real pixels sit IN the canvas at the seam.) PASS = at both seams the rail cap, bulwark
+  height, gun size, plank direction and light continue; no object cut by a seam. Two failed versions = stop, report to Homie.
+  If it passes: re-make the side walls' light states (magic, sunset, night) as the same proven NBP edits, then
+  ship_states.py / ship_seams.py (colour only) / ship_layers.py, and a new 6_review arc preview for Homie.
+  JOB 2: a NEW FIRST FRAME for the intro redo (docs/VID-BRIEF-S7-INTRO-v2.md): the Medusa from ASTERN/quarter, sailing away,
+  small, OUR red-ochre ship (no gilding, white ensign), a herring gull mid-wingbeat (wings UP or DOWN, not a flat glide),
+  hazed by tools/aerial_haze.py like F1.
+
+SESSION 2 = VID (fresh chat). Load house-rules (+ findings-video.md) and shotcaller-v1. MODE = VID. Do
+  docs/VID-BRIEF-S7-INTRO-v2.md: the intro REDO from Job 2's frame, ending ON the deck plate
+  (4_intro_video/endframe/S7-SHIP-C_day_16x9_ENDFRAME.png; Seedance end_image untested). Then the sea loops as ONE sea.
+
+STATE: Homie APPROVED the five light states and their timing (day, magic hour in Louise's sky, sunset, night, wreck); the
+intro v1 is REJECTED. Current walls = T9 S7_ship/3_walls/seamed_v1/ until Job 1 replaces their sides. CENTRE is final in
+every state (it is never re-made: only LEFT and RIGHT change).
+Credits: balance 1,127.49. Job 1 + 2 ~60 cr; intro redo cap 450; keep 500 at the end of the week. One job at a time,
+get_cost first, transactions after. Media: the T9 mounts at /Volumes/DMD T9 (SOTR/HF/SOTR_MEDIA). Python deps:
+pip install --target <scratchpad>/py numpy pillow opencv-python-headless, then PYTHONPATH=<scratchpad>/py.
 
 HISTORY (6 Oct morning and night, superseded by the block above):
 (was THE TASK, 6 Oct morning, IMG): THE SHIP SEQUENCE (Sc 7-8), a side quest APPROVED by Homie: "make
