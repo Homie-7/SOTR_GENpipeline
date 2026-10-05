@@ -36,6 +36,12 @@ gull landed, NO hard cuts. Be efficient: Homie is short of time.
   media 83eb6345-979a-40f0-a152-d51e36de2066 (role start_image).
 - SUBMITTED 7 Oct: the 480p draft = job 615146e9-3685-4eaa-bf6a-95bbb0211db7 (60 cr; preset 3D RENDER declined). Check it
   first (jobs_wait / job_display) before submitting anything new.
+- DRAFT RESULT (7 Oct): routeA_21x9/S7-INTRO-FLIGHT_v4draft480_615146e9.mp4 (992x432, 20 s) + 3-wall preview
+  S7-INTRO_3walls_PREVIEW_v4draft.mp4 (tools/s7_intro_3walls.sh). NO hard cut (largest frame diff = the rail crossing, spread
+  over f327-335 = motion). Flaps, comes close, up the side, aboard, the gull lands on the rail. Faults: gold trim on the stern
+  windows; the generated deck is a diagonal view with sails set, NOT our walls' straight-ahead deck, so the end is a 1 s
+  DISSOLVE onto the walls, not a match. Homie (7 Oct): "the bird can just fly away and we land at the end frame… whatever
+  makes it easy". Awaiting Homie: finalize this draft (job 615146e9 via draft_job_id, ~240 cr) or re-roll.
 - STEPS: (1) 480p draft (draft: true, ~60 cr, get_cost first) -> download to routeA_21x9/ (tools/fetch.py) -> check: no cut
   (frame-diff spikes), flapping, aboard, gull on rail, band holds gull + ship; (2) if it passes, finalize 1080p via
   draft_job_id (~240 cr); (3) build the 3-wall cut by script: scale the 21:9 to 4680 wide, crop the centred 4.33:1 band,
