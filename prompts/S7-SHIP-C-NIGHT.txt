@@ -1,0 +1,7 @@
+ID        S7-SHIP-C-NIGHT  (Sc 8 end / Sahaj: 'deep purple and starry moonlight, subtle'); from prompts/S7-SHIP-SUNSET.txt with ONLY the Change line replaced
+MODEL     Nano Banana Pro · 16:9 · 2k · batch 2 · IMG
+
+----- PROMPT -----
+Target: the light, the sky and the sea in the attached photograph.
+Change: it is now night, an hour after sunset. A deep purple-blue sky full of faint stars, a thin crescent moon low ahead beyond the bow, small and sharp; a narrow trembling path of pale moonlight on a dark sea. The ship is lit only by that low cool moonlight from ahead: a faint silver edge on the rails, guns, ropes and the mast, everything else deep blue-violet shadow that still holds detail. Subtle, quiet, dark. Real air: the horizon a faint violet line.
+Protected: everything else stays exactly as it is: the framing, the camera position and lens, the ship, the single mast, its rigging and furled canvas, the bulwarks, guns, ladders, deck and every object in its place. No sails, no people. The change matches the photograph's grain, contrast and film rendition.

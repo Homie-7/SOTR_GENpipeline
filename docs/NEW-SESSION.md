@@ -22,7 +22,7 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (5 Oct, evening, IMG, MacBook): THE SHIP SEQUENCE (Sc 7-8), a side quest APPROVED by Homie: "make
+THE TASK, RIGHT NOW (6 Oct morning, continue IMG, MacBook): THE SHIP SEQUENCE (Sc 7-8), a side quest APPROVED by Homie: "make
 the calls and go ahead". READ docs/PLAN-SHIP-INTRO.md FIRST (sources, Sahaj's notes decoded, designed-for-destruction,
 Sahaj's angle, credits). Higgsfield credits EXPIRE 6 Oct: spend them today, one job at a time, no waste.
 STATE (updated as work goes): v1 rejected (two masts). v2 DONE: 4 takes in T9 04_WORKING_FILES/S7_ship/1_deck_master/;
@@ -37,18 +37,18 @@ Night-shift auto-resume: blocked by the safety check; Homie restarts the session
 DONE since: haze/DOF on F1 (2_intro/S7-INTRO-F1_v1_1714a32e_haze.png). THE THREE WALLS ARE ASSEMBLED (v1, 0 cr):
 T9 04_WORKING_FILES/S7_ship/3_walls/assembled_v1/ (LEFT 260b6359 + CENTRE from master f5180ed8 + RIGHT 972c8b09, one horizon;
 tools/ship_assemble.py --hz-c 0.387). One-plate cutting + outpaint FAILED (LOG). AWAITING HOMIE'S LOOK CHECK (Claude decides if away).
-IN FLIGHT at the handover: SUNSET state. v1 probe (CENTRE, 'huge' sun = too big, CG) -> v2 (sun at real size, one phrase).
-Jobs: CENTRE v2 b3696a61-6e6b-40b7-b394-be6d3f722cb7, 1a97def3-7b72-4efa-a518-8907a418d86a; LEFT 17bd1936-ad0b-4a59-bdd4-3b4dc8dd8082,
-5294584f-01df-4a78-8de0-13707407a90a; RIGHT 919a3824-87e0-4a9b-be76-a028787b5174, 68744df0-c79c-4e85-abfe-9c7cf28c1f8d
-(prompts S7-SHIP-SUNSET / -L-SUNSET / -R-SUNSET; inputs: C media f51d98e7, L f2172e8e, R d81781ae = assembled_v1 walls).
--> jobs_wait, fetch to 3_walls/states/, pick one per wall, run tools/ship_assemble.py on the picks (--hz-c 0.387; the L/R
-inputs are already 1440x1080 walls, so pass --cut-l 0 --cut-r 0). Then magic hour + purple night (patch the Change line only),
-then the WRECK. FIRST THING NEXT SESSION: show Homie 3_walls/assembled_v1 preview (+ the sunset set).
+DONE 5 Oct night: SUNSET state of all three walls, chosen + assembled on one horizon: 3_walls/assembled_sunset_v1/
+(C b3696a61, L 17bd1936, R 68744df0; real-size sun after one patch). NIGHT prompts WRITTEN, NOT RUN: prompts/S7-SHIP-{C,L,R}-NIGHT.txt
+(same edit layout, only the Change line; inputs C media f51d98e7, L f2172e8e, R d81781ae; 2 takes each = 12 cr).
+NEXT (IMG): 1) show Homie assembled_v1 (day) + assembled_sunset_v1; 2) run NIGHT, then MAGIC HOUR (patch the Change line);
+3) the WRECK on CENTRE (foremast snapped and fallen forward over the bow, rigging slack, water on deck): an edit of the day
+CENTRE; 4) layers (tools/ship_layers.py). Then a VID session: the intro flight from 2_intro/S7-INTRO-F1_v1_1714a32e_haze.png
+(4 s probe first), sea loops per light, the mast falling, the rowboats + snap. Then 4K of what Homie approves.
 LOUISE'S REFERENCE IMAGES (Homie, 5 Oct night): 4 images pasted in chat were TOO BIG to read (>2000 px). Ask Homie for their
 file path; read them downscaled (ffmpeg -vf scale=1600:-1) before more look work.
 THEN VID (fresh session, house-rules VID + shotcaller-v1): intro flight from the HAZED F1 (4 s probe, then ~15 s + a landing
 Sequel), sea loops per light, the foremast falls forward, the rowboats + snap. Then 4K of what's approved.
-Credits spent this session: 60 (NBP 56, outpaint 4). Balance ~1,577. Mac kept awake by caffeinate.
+Credits spent 5 Oct ship session: 60 (NBP 56, outpaint 4). Balance ~1,577. CHECK if the credits really expire today (6 Oct) and when. Mac kept awake by caffeinate.
 
 PREVIOUS (5 Oct, latest): SCENES 1+10 DONE AND IN 01_FINAL_FOR_SHOW. 01 IS THE COMPLETE CLIENT UPLOAD (S1, S4, S5, S6, S9, S10).
 Ask Homie which is next; recommend 1 (it's the next production job), and 2 when the PC is next on.
