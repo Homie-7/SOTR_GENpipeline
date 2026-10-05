@@ -22,37 +22,30 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (5 Oct, evening): TWO JOBS, ONE SESSION EACH (the mode rule). Ask Homie which first; recommend 1.
-1. VID — SCENES 1+10, THE PUDDLE RETURNS, HYPER-REAL. Homie (5 Oct): "have the puddle appear as if water was dropping on it
-   and then slowly, slowly building rather than just magically appearing… I want this to look hyper-real." The script:
-   "The water disappears. Then it mysteriously returns, glowing." Build it as a generated clip: top-down onto the
-   approved oak floor plate (04_WORKING_FILES/S1_gallery/floor/S1-GAL-FLOOR_v1_a4ea7b7a.png), locked camera: drops fall
-   from above and splash, bead, join, the pool slowly spreads; then the glow rises from inside it (the painting-melt
-   render's sea-teal, Final Animations/Painting melt + Ocean loop/paintingMelt_1109.mp4). shotcaller-v1 under SOTR rules;
-   probe 4 s first (seedance_2_5, omni_reference, the floor plate as reference). PLACEMENT (checked 5 Oct): the floor file's
-   TOP = upstage = the CENTRE wall (FLOOR-PLAN.md); the puddle sits ~1.0 m out from CENTRE, centred under the Raft
-   ("mopping the floor in front of… The Raft"). The scripted floor (tools/gallery_floor.py, finished/floor_v1/) stays the
-   frame for it: SPILL_HOLD / VANISH are fine; RETURN_GLOW is the cheap one to replace; the glow loops may be replaced
-   by a Sequel of the generated return. Then the walls' DARK still has the puddle's teal at CENTRE's foot (gallery_dark.py).
-2. IMG — THE SURPRISE SCENE: Homie (5 Oct): "See if we can surprise the client by addressing one more scene." Claude's
-   recommendation: SCENE 8, "The Medusa runs aground" (unassigned; script pp.16-18): dusk at sea, the frigate grinding on
-   the sandbank, the lifeboats in the distance, "the deep red light of sunset", "the light fades… beneath them, the image
-   of the raft begins to emerge" (a floor moment), the ropes SNAP, "the sea washes over the raft… from blue to crimson".
-   Era <= 1816. CHECK FIRST with Homie: Scene 7 (the deck of the frigate) is Sahaj's; does 8 share his deck?
-STATE (5 Oct, evening): SCENES 1+10 GALLERY — Homie: "Gallery seems to be alright". All in T9 04_WORKING_FILES/S1_gallery/:
-- finished/S1-GAL-<C,L,R>_LIT_v2_* (one room light, gallery_wall.py --room-light), S1-GAL_LIT_v2_SEAM_4680x1080.png;
-  DARK by script (gallery_dark.py) S1-GAL-*_DARK_v1_*; floor_v1/ (floor stills + 6 ProRes clips, silent);
-  S1-GAL_REVIEW_walls+floor_*.jpg. LOOK.md "Scenes 1 + 10", SHOTCARDS.md, LOG/REGISTER 5 Oct. Frames checked against
-  the Louvre (Salle Mollien: gilded frames, wood floor, RED walls; ours are warm grey by the "clean modern" brief; red is a
-  script-only change if Homie wants it). Nothing is in the show folder yet; not upscaled.
-- The melt render is Final Animations/Painting melt + Ocean loop/paintingMelt_1109.mp4 (360, 4096x3112, 25 fps, 20 s):
-  an ARCHED gilt frame (ours are rectangular), the script's blackout sits between.
-- The T9 is the master for 04_WORKING_FILES/S1_gallery/ (copy to D: by hand + sha256 when back on the PC).
-- Mac python: numpy/Pillow/opencv are NOT installed system-wide; install to the session scratchpad
-  (`python3 -m pip install --target <scratch>/py numpy pillow opencv-python-headless`, PYTHONPATH=<scratch>/py).
-  Paths with spaces ("DMD T9") break flag arrays: symlink the T9 to a no-space path in the scratchpad.
-CREDITS: balance 2,143.49 (5 Oct). Homie: plenty this week but LEAVE 500 AT THE END. ONE job at a time; `transactions` after each.
-ByteDance video upscale fails beyond ~15 min of processing per job (refunded): split long clips (tools/upscale_pieces.py).
+THE TASK, RIGHT NOW (5 Oct, late): SCENES 1+10, THREE JOBS, ONE MODE PER SESSION. Homie: "the gallery takes precedence";
+his order: the new floor first, then the water. Ask which; recommend 1.
+1. IMG — A NEW GALLERY FLOOR. Homie: the pale oak "gives me a cheap townhouse kind of vibe… a darker floor would help with the
+   glimmer". The script says nothing about the floor. Claude's recommendation (NOT decided, show Homie options): aged dark oak
+   parquet, Versailles panels or herringbone (the Louvre's painting galleries), top-down at true scale, same as S1-GAL-FLOOR v1's
+   route (prompts/S1-GAL-FLOOR.txt, NBP 21:9 2k x4 ~8 cr, ref = room master for material only). Then gallery_floor.py on it
+   (DRY / SPILL / VANISH stills + clips), FLOOR-PLAN's "mostly dark" cap.
+2. VID — THE PUDDLE RETURNS (S1-GAL-PUDDLE-RETURN, prompts/ file has v1-v3 + results; LOG 5 Oct). AGREED WITH HOMIE: the script
+   has NO drops ("The water disappears. Then it mysteriously returns, glowing", mid-dialogue) and v2's drops read as RAIN, too
+   busy for sound: so 2-3 drops, a pause, then the water WELLS UP BY ITSELF to the spill's size (~1.5 x 0.9 m), STOPS, lies still.
+   Route that worked: a 3.0 x 1.69 m patch of the floor plate centred on the spill (x 0, 1.0 m from CENTRE; recut it from the NEW
+   floor, same geometry, patch_geom.json), Seedance 2.5 References 16:9 1080p, probe 4 s (48) then ~10 s (120); the model keeps
+   SPREADING past what is asked (v2, v3): end the take when the pool reaches size (--end) and HOLD the last frame (--hold).
+   THE GLOW = Homie's teal EDGE GLIMMER by script, OK'd ("I think it's fine"): tools/puddle_comp.py --glimmer (lit gain 0.55,
+   --dark 1.1, --loop 8). Whole-pool glow (v3, a Sequel) REJECTED: "not cutting it". puddle_comp measures the water vs the take's
+   OWN dry frames, so a take that redraws the floor still lands right (identity warp). Server offers the "3D RENDER" preset:
+   declined_preset_id 5a77643c-b6cc-4efd-bdc6-ab8ff48dfa82.
+3. POST — THE GALLERY SHOW FILES (0 cr, script): the three walls (LIT v2 / DARK v1) as finished files like Scene 9's: the tour
+   hold, the blackout bank by bank, the DARK hold (CENTRE foot: the puddle's teal now = the edge glimmer's faint light), Scene
+   10's "Light is suddenly restored"; + the floor files from 1 and 2. Nothing in the show folder yet; no upscales unless asked.
+STATE: all S1 media on the T9 (master): 04_WORKING_FILES/S1_gallery/ (finished/, floor/, puddle_return/). Credits: 276 spent
+5 Oct evening, balance 1,867.49; LEAVE 500 AT THE END OF THE WEEK. Mac: pip --target <scratch>/py numpy pillow opencv-python-headless
+(+ pypdf to read the script PDF: ~/Documents/SOTR/2026 RMIT Dev 'Secret of the Raft' Workhop Draft V1.pdf); symlink the T9.
+The surprise scene (Scene 8, IMG) is parked behind these.
 
 WHERE IT LIVES (D:\SOTR\SOTR_MEDIA = C:\Users\Homie\Documents\SOTR_MEDIA, a junction; README.txt is the map):
 - 01_FINAL_FOR_SHOW/  the client delivery (00_READ_ME_FIRST.txt explains it): S6_<WALL>_wars.mov and

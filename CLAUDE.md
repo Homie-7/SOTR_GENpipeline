@@ -171,6 +171,14 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-05, evening (VID, MacBook): THE PUDDLE RETURN tried 3 ways; Homie's TEAL EDGE GLIMMER (script) OK'd. 276 cr.
+
+- Generated water on a close floor patch, composited by new `tools/puddle_comp.py`. v2's drops read as rain and v3's whole-pool
+  teal read as gel: both rejected. Agreed: 2-3 drops, then it wells up by itself and lies still; the glow = a subtle teal
+  glimmer on the waterline only (`--glimmer`, lit + blackout), "I think it's fine". Homie: "the gallery takes precedence".
+- **Next (docs/NEW-SESSION.md): IMG a darker gallery floor** (pale oak = "cheap townhouse"; rec. dark oak parquet), **then VID
+  the new water on it, and POST the gallery show files.**
+
 ### 2026-10-05 (IMG, MacBook): SCENES 1+10, THE LOUVRE GALLERY, built (walls LIT + DARK, floor + puddle). 64 cr.
 
 - New add-on (Homie): one build serves Scene 1 and 10; CENTRE = the Raft, LEFT = Louis XVI + Marie-Antoinette, RIGHT =

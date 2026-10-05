@@ -851,3 +851,13 @@ supposed to be clean and modern." Centre = the Raft, portraits on LEFT/RIGHT con
   centre, glowing the melt render's sea-teal, an organic caustic web and slow ripples inside it) -> it keeps glowing
   through the blackout (Sarah slips on it). Scene 10: the floor is dry. The water is drawn by script (NBP drew wet oak as
   hard dark plank bands, twice). The glow is the first drop of Scene 2's sea.
+- **THE RETURN, REVISED WITH HOMIE (2026-10-05, evening).** The script has no drops ("The water disappears. Then it mysteriously
+  returns, glowing", mid-dialogue), and it must stay subtle (live dialogue, the sound designer). So: **two or three drops, a pause,
+  then the water wells up by itself, spreads to the spill's size (~1.5 x 0.9 m), STOPS and lies still** (generated, Seedance, a
+  close top-down patch, composited by `tools/puddle_comp.py`). **The glow = a subtle TEAL GLIMMER ON THE WATERLINE ONLY** ("like a
+  portal has glowing edges, but… subtle"; "Teal is preferable. We don't want something warmer"), by script (`puddle_comp.py
+  --glimmer`): it rises as the pool reaches size, then travels slowly round the rim through the hold and the blackout (where it is
+  the only light). The whole-pool teal glow (v3) is rejected ("definitely not cutting it"); v2's rain of drops is rejected.
+- **THE FLOOR WILL CHANGE (Homie, 2026-10-05): the pale oak "gives me a cheap townhouse kind of vibe"; darker wanted** (it also
+  helps the glimmer). Claude's recommendation, NOT yet decided: aged dark oak parquet (Versailles panels or herringbone), as the
+  Louvre's painting galleries; it also suits FLOOR-PLAN's "mostly dark". The script says nothing about the floor.

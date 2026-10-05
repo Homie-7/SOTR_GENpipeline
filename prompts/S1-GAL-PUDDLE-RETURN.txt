@@ -1,0 +1,187 @@
+# STATUS 2026-10-05 (late): v3 RESULT: join seamless, but the whole pool went teal GEL (no caustics, glints lost, a CG halo) and
+#   the pool kept spreading: REJECTED by Homie. v2's drops read as RAIN: rejected. NEXT (docs/NEW-SESSION.md): a NEW prompt on the
+#   new floor patch: 2-3 drops, a pause, then the water wells up by itself, stops, lies still; the glow is the scripted teal edge
+#   glimmer (tools/puddle_comp.py --glimmer), not generated.
+#
+# S1-GAL-PUDDLE-RETURN · v3 · 2026-10-05 (VID, Claude, connector, MacBook) · THE GLOW: a 4 s Sequel probe of v2 at 9.7 s
+#
+# v2 RESULT (LOG 2026-10-05, job cf2aadbc, 180 cr): BUILD PASS to 9.7 s (beads -> cluster -> one pool ~1.44 x 1.03 m,
+#   the scripted spill's size); then it overshot to ~2.4 m and off the patch, and it redrew the floor (References mode =
+#   a loose guide). Neither re-rolled: trimmed at 9.7 s, and tools/puddle_comp.py measures the water against the
+#   take's own dry frames. Composite checked.
+# THE STEP IN v3: the planned glow, as a Sequel (shotcaller VIDEO EXTENSION: continuity paragraph second, First Frame
+#   removed, hold breaks in the first quarter second). Kept word for word from v2: the header form, Style, NO
+#   ON-SCREEN TEXT, CAMERA, the LOCKS form. New: THE GLOW (CRITICAL), LIGHT, ACTION, PHYSICS, AUDIO for the new beat.
+#   The teal = the melt render's sea (paintingMelt_1109, LOOK.md "Scenes 1 + 10": "the first drop of Scene 2's sea").
+#   Homie (5 Oct): "the glowing and glinting will definitely be the selling point, and as it grows, it should become
+#   more prominent". The glow starts in the LIT room (agreed), so the daylight on the floor stays.
+# INPUT: v2's first 233 frames (9.71 s), H.264 crf 10 + AAC: SOTR_MEDIA/05_REFERENCE_UPLOADS/
+#   S1-GAL-PUDDLE-RETURN_v2_first9.7s_upload.mp4, sha256 ed92aadc…, media 8d86953d-7c06-443a-9ea8-10e31ff081fe.
+# PREDICT: the join seamless (same pool, framing within 1%), the drops stop by 1.5 s, a teal glow growing from the
+#   centre to fill the pool by 4 s, moving caustic lines, stronger glints; the outline holds.
+# RISKS: the pool keeps spreading (v2's habit); the glow reads as paint/dye in the water instead of light; the glow
+#   floods the whole floor; a hole or depth opening in the floor ("lit from far beneath"); cartoon neon.
+# PASS = a seamless join, light (not dye) rising from inside, outline held, glints stronger, hyper-real.
+# THEN v4: the same body at 15 s (the glow arriving and holding, for the GLOW loops).
+#
+# SETTINGS
+#   Model:      Seedance 2.5
+#   Mode:       Sequel (video_extension, extension_mode forward)
+#   Reference:  the input above, role video_references
+#   Aspect:     16:9 (the input's)
+#   Resolution: 1080p
+#   Duration:   4 s
+#   Quality:    High (bitrate_mode high)
+#   Batch:      1
+#   Sound:      ON
+#   Cost:       preflight (expect 48)
+#   Preset:     decline any offer (declined_preset_id); never run a preset
+
+1 continuous shot, 4 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+
+This continues directly from the end of the attached video: a thin pool of clear water on the pale oak floor, seen from straight above, rings rippling across it, a few stray beads around it. Motion picks up unbroken from that final frame: same floor, same pool, same light, same locked camera. No reset, no re-establish, no jump. The last drops keep landing within the first quarter second.
+
+Style: hyper-real footage of real water on real wood, natural film grain, large-format look. NOT a 3D render, NOT a game engine, NOT a cartoon. Real-time 24fps, true 180-degree shutter, natural motion blur. No frame interpolation, no morphing, no warping.
+
+NO ON-SCREEN TEXT.
+
+THE GLOW — CRITICAL: a light rises from inside the pool, as if the water were lit from far beneath the floor. It is sea-teal, a luminous blue-green, growing from a faint tint at the centre until the whole pool glows. Bright rippling lines of caustic light drift and weave across the pool, and the glints on its surface grow brighter as the glow rises.
+
+CAMERA: locked off, 47 degrees, straight down. No push, pan, tilt, drift or zoom.
+
+LIGHT: the soft daylight from above stays as it is on the floor. The teal light comes only from inside the water, with a faint teal tint on the oak just around the rim.
+
+ACTION:
+0-1.5s: the last few drops land, slower and slower, then stop; their rings spread and fade. A faint teal tint appears deep in the centre of the pool.
+1.5-4s: the teal light swells outward from the centre until the whole pool glows, the caustic lines brightening and slowly moving.
+
+PHYSICS: the pool keeps its size and outline exactly; only the light inside it changes. Gentle ripples keep moving across its surface.
+
+AUDIO: the last drips tapping on wood, then quiet watery lapping. No music, no voices.
+
+LOCKS: the same floor, the same pool outline and the same stray beads in every frame; only oak and water in frame.
+
+# ---- v2 and v1, headers and bodies, commented ----
+# S1-GAL-PUDDLE-RETURN · v2 · 2026-10-05 (VID, Claude, connector, MacBook) · THE BUILD: drops to a pool, 15 s
+# #
+# v1 RESULT (LOG 2026-10-05, job 7fcb885b, 48 cr): MECHANISM PASS, PACING FAIL. Real water (domed beads with ripple
+#   rings and glints, a thin rippled pool, wood a shade darker only inside it, no plank bands), lock 0.1 px, framing
+#   constant (one warp fixes it). But one bead for 2.7 s, then six at once merged into a 0.7 m pool in the last second.
+# THE ONE CHANGE IN v2: the length, 15 s, with the ACTION beats spread over it (0.3-4 single drops / 4-8 a cluster /
+#   8-12 one dinner-plate pool / 12-15 spreading to a metre). Header line "4 seconds" -> "15 seconds". Trims to stay
+#   under 2,000 chars removed only repeated clauses: v1's crown-splash line (never rendered), "rings ripple out" and
+#   "touching beads snap together" (both now in ACTION), "straight down" in GEOMETRY (in CAMERA), "from the top of the
+#   frame to the bottom" -> "top to bottom". Everything else word for word. Body 1,984 chars.
+# PREDICT: the same water look, a gradual build: a few beads by 4 s, a cluster by 8 s, a plate-sized pool by 12 s,
+#   ~1 m by 15 s. RISKS: the model still runs its own clock (flat start, sudden finish); reframing at length (PIPELINE:
+#   check the take you USE); the pool drifting off-centre.
+# PASS = a visible, gradual build across the whole 15 s, the water look of v1, framing constant.
+# THEN v3: the glow, a 4 s Sequel probe of v2.
+# #
+# SETTINGS
+#   Model:      Seedance 2.5
+#   Mode:       References (omni_reference)
+#   Reference:  the patch, role image_references (media beb40508-a3e6-4446-bc0e-9d56324d17bc)
+#   Aspect:     16:9
+#   Resolution: 1080p
+#   Duration:   15 s
+#   Quality:    High (bitrate_mode high)
+#   Batch:      1
+#   Sound:      ON
+#   Cost:       preflight (expect 180)
+#   Preset:     the server offers "3D RENDER": declined_preset_id 5a77643c-b6cc-4efd-bdc6-ab8ff48dfa82
+#
+# 1 continuous shot, 15 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+#
+# Style: hyper-real footage of real water on real wood, natural film grain, large-format look. NOT a 3D render, NOT a game engine, NOT a cartoon. Real-time 24fps, true 180-degree shutter, natural motion blur. No frame interpolation, no morphing, no warping.
+#
+# NO ON-SCREEN TEXT.
+#
+# THE DROPS — CRITICAL: out of nowhere, water drops start landing on the dry floor. Only the impacts are seen: each drop falls from out of frame above and strikes near the centre.
+#
+# The attached image is the floor: pale oak planks about 28 cm wide, running top to bottom, seen from directly above. It sets the wood, light and framing.
+#
+# GEOMETRY: square to the floor; the frame covers 3 metres left to right. Only oak and water are in frame.
+#
+# FIRST FRAME: the attached image exactly, dry, held still for a third of a second, then the first drop lands.
+#
+# CAMERA: locked off, 47 degrees, straight down. No push, pan, tilt, drift or zoom.
+#
+# LIGHT: soft, even daylight from high above. Every bead and wet edge catches it in bright, crisp glints, glinting more as the water gathers.
+#
+# ACTION:
+# 0.3-4s: single drops land, about one a second. Each leaves a round, domed bead, a ring rippling out.
+# 4-8s: faster, two a second; beads gather in a cluster and touching beads run together into little pools.
+# 8-12s: a steady patter; the little pools join into one thin, irregular pool the size of a dinner plate, its edge creeping along the grain.
+# 12-15s: drops keep falling in; the pool spreads slowly to a metre across, each impact ringing across its bright surface.
+#
+# PHYSICS: real 5 mm drops. Surface tension holds round beads on the oiled wood; the pool's edge advances in small jerks. The wet wood is only a shade darker, exactly inside the water's outline.
+#
+# AUDIO: drops tapping on a wooden floor in a quiet room, then wetter splats. No music, no voices.
+#
+# LOCKS: the same planks and grain in every frame; the water only grows.
+#
+# ---- v1 (the 4 s probe), header and body, commented ----
+# S1-GAL-PUDDLE-RETURN · v1 · 2026-10-05 (VID, Claude, connector, MacBook) · PROBE: the first drops on dry oak
+# #
+# WHY (Homie, 5 Oct): "have the puddle appear as if water was dropping on it and then slowly, slowly building rather
+#   than just magically appearing… I want this to look hyper-real." The script: "The water disappears. Then it
+#   mysteriously returns, glowing." Replaces gallery_floor.py's RETURN_GLOW (Homie: cheap). Agreed plan (Homie, 5 Oct,
+#   "I agree with everything… the glowing and glinting will definitely be the selling point, and as it grows, it
+#   should become more prominent"): impacts only (drops arrive from out of frame above), the glow starts in the LIT
+#   room and carries through the blackout.
+# CHAIN: v1 probe 4 s (this) -> v2 the build, 15 s -> v3 glow probe, a 4 s Sequel -> v4 the glow, 15 s Sequel.
+# ROUTE: generated close patch, composited into the scripted floor by script (each frame aligned to the plate patch,
+#   the change vs the dry wood carried onto gallery_floor.py's lit floor). A whole-floor generation gives a 5 mm drop
+#   ~1 px: the patch gives ~3 px drops and ~20 px splash crowns at 1080p.
+# REFERENCE: a 3.00 x 1.69 m patch of the CHOSEN floor plate S1-GAL-FLOOR_v1_a4ea7b7a.png, crop x1120 y48 928x522 of
+#   3168x1344 (309 px/m), centred on the spill (x 0, 1.0 m out from CENTRE), Lanczos to 1920x1080:
+#   SOTR_MEDIA/05_REFERENCE_UPLOADS/S1-GAL-PUDDLE-RETURN_ref_patch_1920x1080.png, sha256 6087f6a7…, geometry in
+#   patch_geom.json beside it. Higgsfield media beb40508-a3e6-4446-bc0e-9d56324d17bc.
+# Shotcaller-v1 spine under SOTR rules: no people blocks; "start_image" can't pin frame 0 on this connector
+#   (PIPELINE.md), so the plate rides as image_references and the script re-aligns. Sound ON (SOTR beats Override 12).
+# PREDICT: the oak kept (same planks, ±1% framing), single drops landing with small crowns and beads, beads joining
+#   into a palm-sized pool by 4 s, glints on every bead. RISKS: slow-motion splash footage; drops seen falling as
+#   streaks or a stream from a tap; perspective tilt; the wood darkening in hard plank-shaped bands (NBP did, twice);
+#   the pool appearing too fast; a mop, hand or bucket.
+# PASS = real-time water that reads as real, oak and framing kept, the build is gradual, only oak and water in frame.
+# #
+# SETTINGS
+#   Model:      Seedance 2.5
+#   Mode:       References (omni_reference)
+#   Reference:  the patch above, role image_references (media beb40508…)
+#   Aspect:     16:9
+#   Resolution: 1080p
+#   Duration:   4 s
+#   Quality:    High (bitrate_mode high)
+#   Batch:      1
+#   Sound:      ON
+#   Cost:       48 credits (preflight with get_cost)
+# #
+# 1 continuous shot, 4 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+# #
+# Style: hyper-real footage of real water on real wood, natural film grain, large-format look. NOT a 3D render, NOT a game engine, NOT a cartoon. Real-time 24fps, true 180-degree shutter, natural motion blur. No frame interpolation, no morphing, no warping.
+# #
+# NO ON-SCREEN TEXT.
+# #
+# THE DROPS — CRITICAL: out of nowhere, water drops start landing on the dry floor. Only the impacts are seen: each drop falls from out of frame above and strikes near the centre.
+# #
+# The attached image is the floor: pale oak planks about 28 cm wide, running from the top of the frame to the bottom, seen from directly above. It sets the wood, light and framing.
+# #
+# GEOMETRY: straight down, square to the floor; the frame covers 3 metres of floor left to right. Only oak and water are in frame.
+# #
+# FIRST FRAME: the attached image exactly, dry, held still for a third of a second, then the first drop lands.
+# #
+# CAMERA: locked off, 47 degrees, straight down. No push, pan, tilt, drift or zoom.
+# #
+# LIGHT: soft, even daylight from high above. Every bead and wet edge catches it in bright, crisp glints, glinting more as the water gathers.
+# #
+# ACTION:
+# 0.3-1.5s: single drops land, one every half second. Each hits with a small crown splash, flings tiny droplets and leaves a round, domed bead on the oak.
+# 1.5-4.0s: the drops come faster, two or three a second. New drops burst the beads; beads touch and run together into one thin, irregular pool the size of a palm, its edge creeping outward along the grain.
+# #
+# PHYSICS: real 5 mm drops. Surface tension holds round beads on the oiled wood; touching beads snap together; the pool's edge advances in small jerks; rings ripple out from each impact. The wet wood is only a shade darker, exactly inside the water's outline.
+# #
+# AUDIO: drops tapping on a wooden floor in a quiet room, then wetter splats. No music, no voices.
+# #
+# LOCKS: the same planks and grain in every frame; the water only grows.

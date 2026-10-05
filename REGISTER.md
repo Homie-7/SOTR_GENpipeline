@@ -270,6 +270,22 @@ Nothing approved by Homie yet; tags are assigned on approval.
 | `floor/S1-GAL-PUDDLE_v1_*`, `_v2_*` | NBP spill edits | not used (LOG) |
 | `finished/floor_v1/S1-GAL-FLOOR_<DRY,SPILL,GLOW-LIT,GLOW-DARK>_1920x1080.png` + `_<SPILL_HOLD,VANISH,RETURN_GLOW,GLOW-LIT_LOOP,GLOW-DARK_LOOP,DRY_HOLD>_1920x1080.mov` | the floor and the puddle's beats (`gallery_floor.py`), ProRes 422 HQ, 24 fps, silent | **candidate**; RETURN_GLOW rejected (Homie: cheap) -> generated next session |
 
+## 2026-10-05 (evening, VID, MacBook) · S1-GAL-PUDDLE-RETURN: the puddle returns, generated + the scripted teal edge glimmer
+
+All in T9 `SOTR_MEDIA/04_WORKING_FILES/S1_gallery/puddle_return/` (the T9 is the master for S1_gallery; copy to D: + sha256 on the PC).
+Prompt: `prompts/S1-GAL-PUDDLE-RETURN.txt` (v3 on top, v2 and v1 commented). 276 credits.
+
+| File | What | Status |
+|---|---|---|
+| `05_REFERENCE_UPLOADS/S1-GAL-PUDDLE-RETURN_ref_patch_1920x1080.png` (6087f6a7…) + `patch_geom.json` | 3.00 x 1.69 m patch of FLOOR a4ea7b7a centred on the spill (x 0, 1.0 m from CENTRE); media beb40508 | reference (superseded if the floor changes) |
+| `S1-GAL-PUDDLE-RETURN_v1.mp4` (5eeb79be…) | 4 s probe: real beads + pool, pacing collapsed | not used |
+| `S1-GAL-PUDDLE-RETURN_v2.mp4` (16e162d8…) | 15 s build; usable to 9.7 s; redrew the floor; drops read as RAIN (Homie) | **rejected** (too busy) |
+| `05_REFERENCE_UPLOADS/S1-GAL-PUDDLE-RETURN_v2_first9.7s_upload.mp4` (ed92aadc…) | v2's first 233 frames, Sequel input, media 8d86953d | working |
+| `S1-GAL-PUDDLE-RETURN_v3.mp4` (76218627…) | 4 s Sequel: the whole pool turns teal "gel" | **rejected** (Homie) |
+| `S1-GAL-PUDDLE-RETURN_v2cut+v3_FLOOR_1920x1080.mov` | v2 cut + v3 composited into the scripted floor | review only |
+| `GLIMMER_TEST_lit_on_v2_1920x1080.mov`, `GLIMMER_TEST_dark_hold_1920x1080.mov`, `GLIMMER_TEST_REVIEW_lit_then_dark_fullfloor+zoom.mp4` | the teal edge glimmer by script (`puddle_comp.py --glimmer`), lit + blackout hold | **look OK'd by Homie** ("I think it's fine"); method kept, water underneath to be replaced |
+| `floor/S1-GAL-FLOOR_v1_a4ea7b7a.png` | the pale oak plate | **to be replaced** (Homie: "cheap townhouse"; darker wanted) |
+
 ## 2026-10-04 (evening) · Scene 5 camps FINAL: PRIMARY = rich dusk, SECONDARY = Cold dusk (the client chooses)
 
 Homie: Alps A4 **approved**; camps N "all approved except the flickering on the ground in front" -> fixed -> "I think the
