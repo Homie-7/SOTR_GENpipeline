@@ -1,0 +1,18 @@
+ID        S7-SHIP-C-WRECK  (Sc 8 after the grind: Sahaj p17 "mast broken - some water on deck"; back page "disruption 3: mast
+          crack, fall"; PLAN-SHIP-INTRO "DESIGNED FOR DESTRUCTION": the mast falls FORWARD AND AWAY, into depth, inside CENTRE)
+VERSION   v2  (2026-10-06)  ONE CHANGE vs v1: + 'Nothing stands above the stump any more: no mast, yard or spar rises
+          anywhere over the deck, only open sky above the bow.' v1 (7ebcb04b, 764e5fe0): the stump + wet deck GOOD, but both kept
+          a standing pole at the bow (a new thin mast / the old mast still holding its yard): the yard pulls a mast to hold it.
+SKILL     scenecraft-v1 Plate D (target / change / protected), text-only edit (house-rules finding 4a)
+MODEL     Nano Banana Pro (nano_banana_pro) · 16:9 · 2k · batch 2 · IMG
+INPUT     the DAY CENTRE wall (S7-SHIP-C v1 from master f5180ed8, media f51d98e7-f3ec-4b0e-b1b1-6c0b935db333)
+WHY DAY   the handover's route: the wreck as a STATE of the approved day plate; its light states (sunset, night) follow as the
+          same light edits already proven, or by grade. The tilt ("tipped over on side") is done by script, not baked in.
+PREDICT   Same framing; the mast a splintered stump above the rope coils, its upper part with the yard lying forward along the
+          deck toward the bow and over the rail; shrouds slack; a wet sheen on the planks. Risks: the mast gone entirely, the
+          whole deck rebuilt, a tilted horizon, debris everywhere (CG disaster look), water as a flood.
+
+----- PROMPT -----
+Target: the single mast standing at the centre of the attached photograph, its yard and rigging, and the deck planks around it.
+Change: the mast has snapped a little above the coils of rope at its foot. The lower stump stands upright and splintered, raw pale wood torn into long jagged fibres at the break. The whole upper part of the mast, with its yard and furled canvas still lashed on, has fallen forward and away from the camera: it lies along the deck toward the bow, its far end resting across the forward rail and hanging out over the water. Nothing stands above the stump any more: no mast, yard or spar rises anywhere over the deck, only open sky above the bow. The shrouds and stays on both sides hang slack in long loose curves, and a few parted lines trail across the planks. A thin sheet of sea water lies across the deck, a wet dark sheen in the seams and small shallow pools around the gun carriages, reflecting the sky.
+Protected: everything else stays exactly as it is: the framing, the camera position and lens, the level horizon, the sky, the sea and the light, the bulwarks, every gun, the ladders, the grating and every other object in its place. No sails, no people. The change matches the photograph's grain, contrast and film rendition.

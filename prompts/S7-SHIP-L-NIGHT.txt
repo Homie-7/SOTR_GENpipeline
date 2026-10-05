@@ -1,7 +1,11 @@
 ID        S7-SHIP-L-NIGHT  (Sc 8 end / Sahaj: 'deep purple and starry moonlight, subtle'); from prompts/S7-SHIP-L-SUNSET.txt with ONLY the Change line replaced
 MODEL     Nano Banana Pro · 4:3 · 2k · batch 2 · IMG
+PATCH     2026-10-06, before the first run: 'the moon' -> 'the full moon' (matches CENTRE; Louise's Charente sky).
+
+v2        2026-10-06 ONE CHANGE: the moon clause removed (L v1, both takes: 'the moon out of view beyond the edge' put a
+          full moon IN the corner = a second moon in the room; take 84412bd6 also added a sail bundle). Only its light stays.
 
 ----- PROMPT -----
 Target: the light, the sky and the sea in the attached photograph.
-Change: it is now night, an hour after sunset. A deep purple-blue sky full of faint stars, the moon low and out of view beyond the right edge of this frame; faint pale moonlight glancing off the dark sea toward the right. The ship is lit only by that low cool moonlight: a faint silver edge on the rails, guns, shrouds and ropes, everything else deep blue-violet shadow that still holds detail. Subtle, quiet, dark. Real air: the horizon a faint violet line.
+Change: it is now night, an hour after sunset. A deep purple-blue sky full of faint stars; faint pale moonlight glancing off the dark sea toward the right. The ship is lit only by that low cool moonlight: a faint silver edge on the rails, guns, shrouds and ropes, everything else deep blue-violet shadow that still holds detail. Subtle, quiet, dark. Real air: the horizon a faint violet line.
 Protected: everything else stays exactly as it is: the framing, the camera position and lens, the ship, the shrouds and furled canvas, the bulwarks, guns, ladders, deck and every object in its place. No sails, no people. The change matches the photograph's grain, contrast and film rendition.

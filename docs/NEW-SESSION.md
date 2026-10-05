@@ -48,7 +48,19 @@ LOUISE'S REFERENCE IMAGES (Homie, 5 Oct night): 4 images pasted in chat were TOO
 file path; read them downscaled (ffmpeg -vf scale=1600:-1) before more look work.
 THEN VID (fresh session, house-rules VID + shotcaller-v1): intro flight from the HAZED F1 (4 s probe, then ~15 s + a landing
 Sequel), sea loops per light, the foremast falls forward, the rowboats + snap. Then 4K of what's approved.
-Credits spent 5 Oct ship session: 60 (NBP 56, outpaint 4). Balance ~1,577. CHECK if the credits really expire today (6 Oct) and when. Mac kept awake by caffeinate.
+Credits spent 5 Oct ship session: 60 (NBP 56, outpaint 4). Balance ~1,577.
+OVERNIGHT 6 Oct (Claude, Homie asleep, delegated: "finish everything we agreed"; every pick below is PROVISIONAL, for his review):
+- LOUISE'S IMAGES READ (~/Downloads/IMG-20261005-WA0019/20/22.jpg + the WhatsApp screenshot): "the sky over the Charente River on my
+  last night in France. This is where the Méduse set sail from." Lavender-blue twilight, rose cirrus, a near-full moon. USED AS THE
+  MAGIC HOUR SKY, and the NIGHT moon became the same FULL moon (was a crescent) so the evening has one moon.
+- ALL FOUR LIGHT STATES DONE, on ONE geometry (T9 S7_ship/3_walls/): assembled_v1 (DAY), assembled_magic_v1, assembled_sunset_v2,
+  assembled_night_v2. NEW tools/ship_align.py + ship_states.py warp every state onto the day walls (<1 px): NBP had reframed the
+  CENTRE edits by up to 16%, which a light crossfade would show as a jump. Old unaligned sets kept (sunset_v1, night_v1).
+- LAYERS: 5_layers/day/ (ship RGBA + sea/sky mask per wall; states reuse the day masks).
+- WRECK on CENTRE DONE: v2 take 40936720 (splintered stump, the yard fallen across the deck, wet deck), 3_walls/assembled_wreck_v1/
+  + 5_layers/wreck_v1/. v1 kept a standing pole at the bow; v2 fixed it with one sentence (LOG).
+- IMG LIST DONE (night, magic hour, wreck, layers). 36 cr (18 NBP takes; balance 1,541.49). NOW: the VID sub-agent, docs/VID-BRIEF-S7-INTRO.md (cap 600 cr).
+  Details: LOG.md 2026-10-06 rows. CHECK if the credits really expire today (6 Oct) and when. Mac kept awake by caffeinate.
 
 PREVIOUS (5 Oct, latest): SCENES 1+10 DONE AND IN 01_FINAL_FOR_SHOW. 01 IS THE COMPLETE CLIENT UPLOAD (S1, S4, S5, S6, S9, S10).
 Ask Homie which is next; recommend 1 (it's the next production job), and 2 when the PC is next on.

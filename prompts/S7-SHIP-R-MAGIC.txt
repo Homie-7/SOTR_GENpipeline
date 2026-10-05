@@ -1,0 +1,12 @@
+ID        S7-SHIP-R-MAGIC  (Sc 7 siren song 'Calm. A sea of indigo blue' / Sahaj: 'just pass magic hour'); from prompts/S7-SHIP-R-NIGHT.txt with ONLY the Change line replaced
+MODEL     Nano Banana Pro · 4:3 · 2k · batch 2 · IMG   INPUT R wall 1080 (media d81781ae)
+SKY       Louise Howlett's photos, 5 Oct 2026: 'the sky over the Charente River on my last night in France. This is where the
+          Méduse set sail from.' (~/Downloads/IMG-20261005-WA0019/20/22.jpg): lavender-blue, rose cirrus, a near-full moon.
+          Text-only (finding 4a): her photos are NOT attached (a second image would pull its buildings in).
+
+NOTE      no moon named on the side walls (L-NIGHT v1: 'out of view beyond the edge' drew it into the corner).
+
+----- PROMPT -----
+Target: the light, the sky and the sea in the attached photograph.
+Change: it is now the calm twilight just after sunset, the sun already below the horizon. The whole sky is a soft clear lavender-blue, streaked with long thin wisps of rose-pink cloud lit from below by the sun that has just set. The sea lies calm and smooth, a deep indigo blue holding the lavender and rose of the sky. No direct sunlight anywhere: the ship is lit only by soft, even, shadowless light from the whole sky, the wood, guns and ropes muted and cool, a faint rose-lavender sheen on every upward-facing surface. Real air: the horizon a soft pale violet line.
+Protected: everything else stays exactly as it is: the framing, the camera position and lens, the ship, the shrouds and furled canvas, the bulwarks, guns, ladders, deck and every object in its place. No sails, no people. The change matches the photograph's grain, contrast and film rendition.

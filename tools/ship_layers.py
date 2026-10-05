@@ -25,7 +25,7 @@ import cv2
 import numpy as np
 
 
-def split(path, run=14, speck=400):
+def split(path, run=14, speck=400, hz_frac=None):
     bgr = cv2.imread(path, cv2.IMREAD_COLOR)
     im = bgr.astype(np.float32) / 255.0
     b, g, r = im[..., 0], im[..., 1], im[..., 2]
@@ -35,12 +35,17 @@ def split(path, run=14, speck=400):
     # 1. The horizon row: the strongest step in mean brightness down the outer 15% of the frame (open sea and sky).
     side = np.concatenate([lum[:, :w * 15 // 100], lum[:, -w * 15 // 100:]], axis=1).mean(axis=1)
     hz = int(np.argmax(np.abs(np.diff(cv2.GaussianBlur(side.reshape(-1, 1), (1, 9), 0).ravel()))[h // 8: h * 7 // 8])) + h // 8
+    if hz_frac:                                  # CENTRE: the detector locks onto the deck grating (LOG 2026-10-05)
+        hz = int(round(hz_frac * h))
     # 2. Seeds = SKY: class pixels above the horizon joined to the top edge through a RUN px bridge (crosses rigging).
     above = cls.copy(); above[hz:, :] = False
     k, lab = cv2.connectedComponents(cv2.dilate(above.astype(np.uint8), np.ones((run, run), np.uint8)), connectivity=4)
     top = np.unique(lab[0, :])
     seeds = above & np.isin(lab, top[top > 0])
     # 3. Grow from the sky into the sea through only a 3 px bridge: a gap in the rail never joins the deck planks.
+    # 2b. Open sea right under the horizon also seeds (2026-10-06): on LEFT a pocket of sea walled off by the shrouds and
+    # the frame edge never met the sky through 3 px. The deck never reaches the horizon line (the rails sit below it).
+    seeds = seeds | (cls & (np.arange(h)[:, None] >= hz + 2) & (np.arange(h)[:, None] <= hz + 8))
     k, lab = cv2.connectedComponents(cv2.dilate(cls.astype(np.uint8), np.ones((3, 3), np.uint8)), connectivity=4)
     hit = np.unique(lab[seeds])
     m = (cls & (np.isin(lab, hit[hit > 0]) | seeds)).astype(np.uint8)
@@ -56,10 +61,15 @@ def main():
     ap.add_argument('outdir')
     ap.add_argument('--run', type=int, default=14)
     ap.add_argument('--speck', type=int, default=400)
+    ap.add_argument('--mask-from', help='a DAY wall\'s _bgmask.png: split a light state with it (same geometry: ship_states.py)')
+    ap.add_argument('--hz', type=float, help='horizon as a fraction of the height (the assembled walls: 0.387)')
     a = ap.parse_args()
     os.makedirs(a.outdir, exist_ok=True)
     stem = os.path.splitext(os.path.basename(a.plate))[0]
-    bgr, m = split(a.plate, a.run, a.speck)
+    if a.mask_from:
+        bgr, m = cv2.imread(a.plate, cv2.IMREAD_COLOR), cv2.imread(a.mask_from, cv2.IMREAD_GRAYSCALE)
+    else:
+        bgr, m = split(a.plate, a.run, a.speck, a.hz)
     rgba = cv2.cvtColor(bgr, cv2.COLOR_BGR2BGRA)
     rgba[..., 3] = 255 - m
     cv2.imwrite(os.path.join(a.outdir, stem + '_ship.png'), rgba)
