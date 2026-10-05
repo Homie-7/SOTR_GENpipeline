@@ -1,3 +1,48 @@
+# S7-INTRO-BOARD · v2 · 2026-10-07 night (VID sub-agent) · Sequel DRAFT 480p 8 s
+#
+# v1 RESULT (draft job 2e4753f2, 24 cr; redo_v2/S7-INTRO-BOARD_v1draft480_2e4753f2.mp4): THE end_image TEST.
+#   end_image PINS THE LAST FRAME: last frame vs ENDFRAME aligned MAD 10.5 (480p), ECC cc 0.998, sx 0.987 sy 0.968 (the same
+#   ~3% vertical squash start_image gives), motion in the last second 2.6 (still). BUT the model reached it by a HARD CUT
+#   at f66 = 2.75 s (frame diff 95.5 vs ~20 elsewhere), exactly where the timeline said "over the rail and down onto the
+#   deck"; after the cut the plate is nearly there and the shot just settles for 5 s. And FRAME 0 WAS NOT PINNED (ECC cc
+#   0.805, scale 1.37): consistent with V10, the "already moving… carry straight on, no pause" wording let it invent the
+#   opening (the Override 10 deviation was wrong for a start_image).
+# DIAGNOSIS: end_image pulls the clip to the plate; a climb from the waterline to the deck is a big 3D move and the model
+#   prefers a cut. RESTRUCTURE (not a reword): the climb + walk forward as a SEQUEL from A (native join, proven on LAND
+#   v1/v2), no end_image; then the last small gap to the plate either by a short omni start+end "settle" or a script
+#   dissolve. THE GATE: SOURCE = A v3 FINAL 24ba0a6b (whole 12 s, uploaded as H.264 crf 10: media 66ee3125-33a1-46be-ad29-
+#   e44ca2483588, sha256 18c2be19…), its last frame opened (as v1). ROOM = the ENDFRAME (opened; as v1). REFS = the video
+#   only. ROUTE = video_extension forward. DELTA = mode change + extension grammar (continuity paragraph second, no FIRST
+#   FRAME, no LAST FRAME block); the deck described in words from the end image; "never a cut" put in the CRITICAL block.
+# PREDICT: a seamless join; the camera climbs the side, crosses the rail ~3 s, ends on the deck looking forward at a mast,
+#   still; the deck resembles the plate but not exactly (no end pin). RISKS: a cut again; the camera never gets aboard; the
+#   gull lands instead; people on deck.
+# SETTINGS: seedance_2_5 · video_extension forward · video_references 66ee3125-33a1-46be-ad29-e44ca2483588 · aspect follows
+#   input (16:9) · 480p DRAFT -> finalize 1080p · 8 s · bitrate high · batch 1 · sound ON · use_unlim false ·
+#   decline preset 5a77643c-… · Cost 24 (preflight)
+
+1 continuous shot, 8 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+
+This continues directly from the end of the attached video. In its final frame the camera is low beside the frigate's starboard side, heading forward, the red-ochre hull and a side ladder on the left, the herring gull beating its wings at the height of her rail, upper right. Motion picks up unbroken from that frame: same gull, same ship, same light, same camera operator. No reset, no new scene; the gull's next wingbeat comes within the first quarter second.
+
+Style: real documentary footage at sea in 1816, film grain. NOT a 3D render. Natural motion blur, no frame interpolation, no morphing.
+
+NO ON-SCREEN TEXT.
+
+THE BOARDING — CRITICAL: one unbroken camera move, never a cut: the camera climbs the ship's side with the gull, passes over the rail and drops onto the deck at a standing person's eye height, turns to face along the deck toward the bow, and travels forward to a few paces behind a mast. The gull flies on forward over the deck, beating, and climbs out of the top of the frame.
+
+ACTION:
+0-3s: the gull beats hard up the side toward the rail; the camera rises with it, the hull sliding down past the lens until the rail is level.
+3-5s: over the rail and down onto the deck; the deck opens ahead: weathered grey planks, red-ochre bulwarks and black guns on wooden carriages down both sides and a mast in the middle of the deck. The gull flies on and up out of frame.
+5-8s: the camera travels forward along the empty deck, slows and comes to rest with the mast dead centre and the bow beyond, still for the last second.
+
+CAMERA: the same operator, continuing, with real weight and small late corrections.
+
+AUDIO: wind, wingbeats, timber, rigging, the sea along the hull. NO BGM — no music of any kind: no score, no song, no instrumental, no drone.
+
+LOCKS: one gull, one ship; no people anywhere on deck or in the rigging; nothing newer than 1816; light continuous across the join.
+
+# ==================== v1 (kept verbatim below) ====================
 # S7-INTRO-BOARD · v1 · 2026-10-07 night (VID sub-agent, connector; Homie asleep, delegated) · DRAFT 480p 8 s
 #
 # WHAT: the gull + camera come aboard: up the starboard side, over the rail, forward along the deck, and the LAST FRAME =

@@ -1,3 +1,55 @@
+# S7-INTRO-FLIGHT · v4 · ROUTE A (21:9, three walls) · 2026-10-07 (Homie present) · DRAFT 480p 20 s
+#
+# WHY: Homie liked FLIGHT v3 but "it has to be a seamless thing across all 3 screens" -> route A (his pick): generate at
+#   21:9 and lay the MIDDLE 4.33:1 BAND (54% of the height) across LEFT+CENTRE+RIGHT (4680x1080). And "the bird actually
+#   lands at the last frame without any harsh cuts" -> ONE continuous 20 s take: flight + boarding + the gull lands on the
+#   rail; no Sequel join, no end_image (BOARD v1 showed end_image forces a hard cut). The end goes to the deck walls by a
+#   script dissolve.
+# DELTA vs v3 (a restructure by route, not a reword): aspect 16:9 -> 21:9; start frame = F1-ASTERN cropped 2752x1180 at
+#   y=100 (gull body + hull inside the band); 12 -> 20 s; an ONE UNBROKEN TAKE + band CRITICAL; the boarding/landing beats
+#   (9-20 s) added; deck described in words; v3's distance events compressed; PHYSICS cut for length (1,979 chars).
+# THE GATE
+#   SOURCE  v3's prompt (below) + its take 24ba0a6b (Homie: "looks good"). Start frame opened (21:9 crop + band drawn).
+#   ROOM    frame 0 = gull left third wings up, frigate right going away, horizon ~70% down the crop. The deck = ENDFRAME /
+#           seamed_v2 day walls (grey planks, red-ochre bulwarks, guns both sides, one mast centre).
+#   REFS    ONE image: start_image = 83eb6345-979a-40f0-a152-d51e36de2066 (S7-INTRO-F1-ASTERN_21x9.png, sha256 aa7d920389779e2a…)
+#   ROUTE   omni_reference draft 480p -> finalize 1080p via draft_job_id if it passes.
+#   DELTA   as above; nothing contradicts frame one.
+# PREDICT: frame 0 = start frame; flapping in bouts; aboard by ~13 s without a cut; gull on the rail at the end.
+#   RISKS: a cut at the boarding (as BOARD v1); deck unlike ours; the gull leaves the band.
+# SETTINGS
+#   Model seedance_2_5 · omni_reference · start_image 83eb6345-979a-40f0-a152-d51e36de2066 · 21:9 · 480p DRAFT -> 1080p ·
+#   20 s · bitrate high · batch 1 · sound ON · use_unlim false
+# FILES: T9 S7_ship/4_intro_video/routeA_21x9/
+
+1 continuous shot, 20 seconds, no cuts. Real-time, no slow motion.
+
+Style: real documentary footage of the open Atlantic in 1816, film grain. NOT a 3D render. Natural motion blur, no interpolation, no morphing.
+
+NO ON-SCREEN TEXT.
+
+ONE UNBROKEN TAKE — CRITICAL: the camera never cuts; it travels continuously from the sea, up the ship's side, onto her deck. Wide panorama: the gull and the ship stay in the middle band of the frame.
+
+THE WINGBEATS — CRITICAL: the herring gull flies under its own power. It beats its wings hard in bouts of deep full strokes, about three a second, wings sweeping high above its back and down below its belly, the body lifting on each downstroke; a short glide, then the next bout.
+
+FIRST FRAME: the attached image exactly as composed, held still for a third of a second, nothing reframed; then motion begins.
+
+THE SHIP: the frigate in the image, sailing away: plain stern, dark hull with a red-ochre band, no gilding, a plain white flag. Her deck: grey planks, red-ochre bulwarks, plain wooden rail cap, black guns along both sides, a mast with its yard furled, empty.
+
+CAMERA: flies with the gull at 47 degrees, with real weight: it bobs and lags the bird's turns.
+
+ACTION:
+0-4s: the gull swings close to the lens, then pulls ahead, shrinking over the wake.
+4-9s: it banks and comes back close, beating; we close on the ship's starboard quarter.
+9-13s: the gull climbs her side with strong strokes; the camera rises with it and passes over the rail.
+13-17s: the camera settles at eye height and turns forward along the deck, the mast ahead in the middle; the gull flaps down and lands on the rail at the right, folding its wings.
+17-20s: the camera comes to rest looking forward along the deck, the mast centred, still; the gull stands on the rail.
+
+AUDIO: wind, swell, wingbeats, timber, one gull call. NO BGM — no music of any kind: no score, no song, no instrumental, no drone.
+
+LOCKS: one gull, one ship; no people; nothing newer than 1816.
+
+# ==================== v3 (kept verbatim below) ====================
 # S7-INTRO-FLIGHT · v3 · 2026-10-07 night (VID sub-agent, connector; Homie asleep, delegated) · DRAFT 480p 12 s
 #   REDO per docs/VID-BRIEF-S7-INTRO-v2.md (Homie rejected v1/v2's cut: "the bird is not even flapping… never really goes far
 #   or close to the camera… extremely AI generated… we approach the ship from the front").

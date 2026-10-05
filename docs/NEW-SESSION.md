@@ -22,6 +22,31 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
+HANDOVER, 7 OCT DAY (Homie present; MODE = VID; Claude's weekly limit at 95%, so another account may continue from here).
+THE TASK: THE SHIP INTRO, ROUTE A (Homie's pick): ONE seamless picture across all THREE walls, ending on the deck with the
+gull landed, NO hard cuts. Be efficient: Homie is short of time.
+- Homie on the overnight work: the FLIGHT v3 (redo_v2/S7-INTRO-FLIGHT_v3_24ba0a6b.mp4, 16:9) "looks good", BUT "it has to be a
+  seamless thing across all 3 screens". It played on CENTRE only. Route A = regenerate at 21:9 and lay the MIDDLE 4.33:1 band
+  (54% of the frame height, centred) across LEFT+CENTRE+RIGHT (4680x1080; 4K 9360x2160 after upscale).
+- ONE 20 s take (flight -> up the starboard side -> over the rail -> the camera settles looking forward along the deck, mast
+  centred -> the gull LANDS on the rail at the right). No Sequel join and no end_image (BOARD v1: end_image forced a hard cut
+  at 2.75 s). The end goes onto the deck walls (3_walls/seamed_v2/day) by a ~1 s script dissolve.
+- PROMPT: prompts/S7-INTRO-FLIGHT.txt v4 (top of file: settings, GATE, prediction). Start frame = T9
+  S7_ship/4_intro_video/routeA_21x9/S7-INTRO-F1-ASTERN_21x9.png (F1-ASTERN haze cropped 2752x1180 at y=100), uploaded as
+  media 83eb6345-979a-40f0-a152-d51e36de2066 (role start_image).
+- STEPS: (1) 480p draft (draft: true, ~60 cr, get_cost first) -> download to routeA_21x9/ (tools/fetch.py) -> check: no cut
+  (frame-diff spikes), flapping, aboard, gull on rail, band holds gull + ship; (2) if it passes, finalize 1080p via
+  draft_job_id (~240 cr); (3) build the 3-wall cut by script: scale the 21:9 to 4680 wide, crop the centred 4.33:1 band,
+  split 1440|1800|1440, dissolve the last ~1 s into seamed_v2/day walls, carry the sound (build_audio rule); show Homie.
+  If it fails twice on the same defect: stop, report. Then LOG/REGISTER rows + commit.
+- CREDITS: balance ~851 after the overnight VID (228 spent: FLIGHT v3 draft 36 + final 144, BOARD v1 draft 24, BOARD v2
+  draft 24 = submitted, never downloaded, superseded by route A). Keep 500 at the week's end.
+- PARKED (0 cr, script, Homie asked "can it be fixed?"): the ROPES ZIG-ZAG at the very top of CENTRE in the non-day states
+  (magic/sunset/night; check wreck). Cause: tools/ship_align.py filled CENTRE's missing top strip (~40 px) with the take
+  MIRRORED, folding the shrouds into a V. Fix: rebuild that strip from the DAY wall's straight rigging, recoloured per state;
+  old CENTRE files to superseded/; rebuild the SEAMED arc preview. Day CENTRE is clean.
+- Homie finds the T9 folders hard to navigate: when showing files, `open -R` the exact file and say which 1-2 to watch.
+
 MORNING REVIEW, 7 OCT (Homie: watch these; T9 = /Volumes/DMD T9/SOTR/HF/SOTR_MEDIA/04_WORKING_FILES/S7_ship/):
 1. THE SEAMS, REBUILT: 6_review/S7-SHIP_light_arc_preview_SEAMED_v3.mp4 (+ S7-SHIP_all_states_contact_SEAMED_v3.jpg).
    The side walls now continue the deck master (same rail line, gun scale, planks, light at both seams). Walls per state:
