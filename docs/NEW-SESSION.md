@@ -37,11 +37,15 @@ Night-shift auto-resume: blocked by the safety check; Homie restarts the session
 DONE since: haze/DOF on F1 (2_intro/S7-INTRO-F1_v1_1714a32e_haze.png). THE THREE WALLS ARE ASSEMBLED (v1, 0 cr):
 T9 04_WORKING_FILES/S7_ship/3_walls/assembled_v1/ (LEFT 260b6359 + CENTRE from master f5180ed8 + RIGHT 972c8b09, one horizon;
 tools/ship_assemble.py --hz-c 0.387). One-plate cutting + outpaint FAILED (LOG). AWAITING HOMIE'S LOOK CHECK (Claude decides if away).
-NEXT IMG (cheap, tonight): the light states of the three walls as NBP text-only edits (magic hour, red sunset, purple night) and
-the WRECK state (foremast snapped, rigging slack, water on deck), then layers (tools/ship_layers.py).
+IN FLIGHT at the handover: S7-SHIP-SUNSET v1 probe on CENTRE (prompts/S7-SHIP-SUNSET.txt, NBP edit, 2 takes, 4 cr):
+jobs c45c10a0-45e8-42c0-843b-94884bf6194f, 852e96c1-9a03-45be-b4e0-91f91c467ee2 -> jobs_wait, fetch to 3_walls/states/, judge
+(framing kept? one mast? no sail?). If it holds: the same edit on LEFT + RIGHT (the 1080 walls), then magic hour + purple night
+(patch the Change line only), then the WRECK. Then layers. FIRST THING NEXT SESSION: show Homie 3_walls/assembled_v1 preview.
+LOUISE'S REFERENCE IMAGES (Homie, 5 Oct night): 4 images pasted in chat were TOO BIG to read (>2000 px). Ask Homie for their
+file path; read them downscaled (ffmpeg -vf scale=1600:-1) before more look work.
 THEN VID (fresh session, house-rules VID + shotcaller-v1): intro flight from the HAZED F1 (4 s probe, then ~15 s + a landing
 Sequel), sea loops per light, the foremast falls forward, the rowboats + snap. Then 4K of what's approved.
-Credits spent this session: 44 (NBP 40, outpaint 4). Mac kept awake by caffeinate.
+Credits spent this session: 48 (NBP 44, outpaint 4). Balance ~1,589. Mac kept awake by caffeinate.
 
 PREVIOUS (5 Oct, latest): SCENES 1+10 DONE AND IN 01_FINAL_FOR_SHOW. 01 IS THE COMPLETE CLIENT UPLOAD (S1, S4, S5, S6, S9, S10).
 Ask Homie which is next; recommend 1 (it's the next production job), and 2 when the PC is next on.

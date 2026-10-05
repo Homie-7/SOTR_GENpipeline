@@ -1,0 +1,13 @@
+ID        S7-SHIP-SUNSET  (the landed deck at Sc 8's "deep red light of sunset": a light state of the approved walls)
+VERSION   v1  (2026-10-05; PLAN-SHIP-INTRO light arc: day -> magic hour -> red sunset -> purple night)
+SKILL     scenecraft-v1 Plate D (plate edit: target / change / protected), text-only (house-rules finding 4a)
+MODEL     Nano Banana Pro (nano_banana_pro) · 16:9 (CENTRE) / 4:3 (LEFT, RIGHT) · 2k · batch 2 · IMG
+INPUT     the wall plate itself (CENTRE probe first: S7-SHIP-C v1 ref, media f51d98e7), as the image to edit
+PREDICT   The same deck, same framing, a low sun dead ahead behind the bow, the sky deep red-orange to violet overhead,
+          the sea dark with a red sun path, every surface warm on the sun side and in long shadow. Risks: framing drift
+          (budget one), a sail appearing, the mast changing.
+
+----- PROMPT -----
+Target: the light, the sky and the sea in the attached photograph.
+Change: it is now the last minutes of sunset. The sun sits low and huge just above the horizon dead ahead, beyond the bow, a deep red-orange disc; the sky burns deep red and orange along the horizon, fading to dusky violet overhead with long dark-edged clouds lit from beneath. The sea goes dark slate, a long broken path of red light running from the sun toward the ship. The low sun rakes along the deck from ahead: every rail, gun, coil of rope and the mast catch a thin hot red-orange edge on the side facing the sun, and long cool shadows stretch back toward the camera. Real air: the horizon dissolves into a warm glow.
+Protected: everything else stays exactly as it is: the framing, the camera position and lens, the ship, the single mast, its rigging and furled canvas, the bulwarks, guns, ladders, deck and every object in its place. No sails, no people. The change matches the photograph's grain, contrast and film rendition.
