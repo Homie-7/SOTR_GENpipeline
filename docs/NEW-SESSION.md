@@ -22,6 +22,32 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
+MORNING REVIEW, 7 OCT (Homie: watch these; T9 = /Volumes/DMD T9/SOTR/HF/SOTR_MEDIA/04_WORKING_FILES/S7_ship/):
+1. THE SEAMS, REBUILT: 6_review/S7-SHIP_light_arc_preview_SEAMED_v3.mp4 (+ S7-SHIP_all_states_contact_SEAMED_v3.jpg).
+   The side walls now continue the deck master (same rail line, gun scale, planks, light at both seams). Walls per state:
+   3_walls/seamed_v2/<day|magic|sunset|night|wreck>/. Rec: approve; they replace seamed_v1.
+   Known: CENTRE's own top shrouds kink (a reflected strip from the 6 Oct alignment, in the approved CENTRE files); SUNSET's
+   side glow toward CENTRE was tamed by script (tools/ship_skymatch.py).
+2. THE INTRO START FRAME: 2_intro/S7-INTRO-F1-ASTERN_v1_34a41ccb_haze.png (from astern, gull mid-wingbeat, white ensign).
+3. THE INTRO REDO (VID sub-agent, cap 450 cr): was STILL RUNNING when the session hit its limit. Its files:
+   4_intro_video/redo_v2/ (review cut S7-INTRO_review_v2.mp4 if it got that far). NOT YET VERIFIED by Claude, NOT logged,
+   its prompts (S7-INTRO-FLIGHT.txt / S7-INTRO-BOARD.txt) committed as a mid-run snapshot: re-check them. Next session: check `transactions`
+   (spend since 1,079.49), probe + contact-sheet its files, last frame vs the ENDFRAME, then LOG/REGISTER + commit.
+Credits: IMG 48 (balance 1,079.49 before VID). Keep 500 at week's end.
+
+PROGRESS, NIGHT OF 7 OCT (Claude, Homie asleep, delegated; every pick PROVISIONAL):
+- JOB 1 DONE (44 cr): the side walls are BUILT OUT FROM THE MASTER (tools/ship_buildout.py): v1 grey canvas FAILED (NBP
+  mirrored the strip into a V); v2 = a geometric guide (the master's own perspective) PASSED: rail, bulwark, gun scale, planks
+  and light continue across both seams (seam step = the master's own). States re-made on the new sides (magic, sunset, night;
+  wreck = day sides), seams colour-matched (ship_seams.py --colour-only + new tools/ship_skymatch.py; SUNSET's side glare
+  at the inner edge failed twice in prompts -> tamed by script). NEW CURRENT WALLS = T9 S7_ship/3_walls/seamed_v2/<state>/,
+  layers 5_layers/seamed_v2/, review: 6_review/S7-SHIP_light_arc_preview_SEAMED_v3.mp4 + _all_states_contact_SEAMED_v3.jpg.
+- JOB 2 DONE (4 cr): new first frame S7-INTRO-F1-ASTERN take 34a41ccb (from astern-quarter, stern windows + wake toward
+  camera, red-ochre band, no gilding, gull at the top of a wingbeat); its Union-Jack-like ensign painted plain white by script;
+  hazed: T9 S7_ship/2_intro/S7-INTRO-F1-ASTERN_v1_34a41ccb_haze.png (aerial_haze.py --ship-km 1.5 + a colour-keyed gull mask,
+  new --subject-mask option). IMG total 48 cr, balance 1,079.49.
+- SESSION 2 (VID): a fresh sub-agent runs the intro redo (cap 450). Unfinished at wrap: see MORNING REVIEW 3.
+
 THE TASK, RIGHT NOW (7 Oct, MacBook): TWO SESSIONS, IN THIS ORDER. Ship sequence (Sc 7-8). Read docs/PLAN-SHIP-INTRO.md.
 
 SESSION 1 = IMG (this one). Load house-rules (+ references/findings-image.md) and scenecraft-v1. MODE = IMG.

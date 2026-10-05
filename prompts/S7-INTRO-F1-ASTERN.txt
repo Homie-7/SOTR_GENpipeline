@@ -1,0 +1,27 @@
+ID        S7-INTRO-F1-ASTERN  (Job 2, 7 Oct: the NEW first frame for the intro redo, docs/VID-BRIEF-S7-INTRO-v2.md)
+VERSION   v1  (2026-10-07)  derived from prompts/S7-INTRO-F1.txt v1 (the same light, sea and lens paragraphs)
+CHANGES   vs F1 (by brief, not iteration): the ship from ASTERN / her starboard quarter, sailing AWAY (Homie: "we approach the
+          ship from the front rather than somewhere else" = v1 rejected); OUR ship (red-ochre upper strakes, no gilding, plain
+          white ensign; v1's video drew a gilded dark hull); the gull mid-WINGBEAT, wings raised (Homie: "the bird is not even
+          flapping"); the ship a little larger (~1/7 of the width) so her stern reads; the reference set re-scoped.
+SKILL     scenecraft-v1 Plate A (empty of people; the gull is wildlife), spherical lens (Override 13: the video is spherical)
+MODEL     Nano Banana Pro (nano_banana_pro) · 16:9 · 2k · batch 2 · IMG
+REFS      1  the DAY CENTRE wall (S7-SHIP-C v1 from master f5180ed8)  media f51d98e7-f3ec-4b0e-b1b1-6c0b935db333
+             -> ONLY the ship's paint and materials and the day's sky, sea colour and light; NOT its deck view, NOT its framing
+          2  src_SOTR_medusa_baugean (cropped)  media f15dfdca-10be-45e3-8ee7-6741e39f438b -> ONLY the rig (three masts, full
+             square sails); NOT its engraving, NOT its angle
+POST      tools/aerial_haze.py (as F1: distance haze + DOF, the gull kept sharp) -> the start frame for the VID session.
+PREDICT   A level sea, horizon on the lower third, a frigate right of centre going away (stern + starboard side, wake toward
+          camera, white flag), a herring gull on the left third with both wings up. Risks: the ship turned toward us again
+          (v1's video), a gilded stern, the gull in a flat glide anyway, two ships, a deck view leaking from ref 1.
+
+----- PROMPT -----
+A real photograph of the open Atlantic in 1816 under a bright late-morning sky, a low following view from just above the swell, the horizon resting on the lower third, a three-masted frigate under full sail sailing away from camera on the horizon right of centre, seen from astern and a little off her starboard quarter, and a large gull in the near foreground on the left third flying away from camera after her in the middle of a wingbeat.
+
+NO ON-SCREEN TEXT: no captions, no subtitles, no titles, no lower thirds, no watermarks, no logos overlaid on the image, no timecode, no UI or social-media overlays, no borders, no frame labels anywhere in the image.
+
+The first attached image carries only this ship's paint and materials and the day's sky, sea colour and daylight, not its deck view and not its framing. The second attached image is the frigate's rig: her three masts and full set of square sails, not its engraved rendering and not its angle. Here she is a far ship about a seventh of the frame wide: her plain square stern with a row of small dark windows faces the camera and her starboard side runs away from it, a dark lower hull with a band of weathered red-ochre along her upper side, no gilding and no carving anywhere, a small plain white ensign streaming from her stern, a pale wake trailing back toward the camera. The sea is deep blue-green with long low swells and small whitecaps, empty but for the ship and the gull.
+
+The gull is a European herring gull: white head and body, pale silver-grey back and upper wings, black wingtips with small white spots, a yellow bill with a red spot, pink legs tucked. It is caught at the top of a wingbeat, both wings raised high above its back with the long primaries spread and bending, its body tilting as it banks toward the ship, sharp and close, about a sixth of the frame wide. The sun high and ahead to the right lays a soft glitter on the water toward the ship; the gull's back is lit softly from above, its underside in gentle shadow. Real air at every depth: the near water crisp, the swell softening with distance, the ship a soft, slightly pale shape in the brightness of the horizon.
+
+Clean spherical lens, natural field of view, level horizon. Color-negative film, fine grain, low macro contrast, razor micro texture in feathers and water. A real photograph of a real sea — no CGI, no rendered look, no glossy AI sheen, no HDR.

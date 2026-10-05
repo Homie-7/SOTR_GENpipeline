@@ -132,6 +132,9 @@ def main():
     ap.add_argument('--masks', default=None, help='dir with the DAY walls\' _bgmask.png (default: ../../5_layers/day)')
     ap.add_argument('--band', type=int, default=700)
     ap.add_argument('--strip', type=int, default=140)
+    ap.add_argument('--colour-only', action='store_true',
+                    help='no rail warp, no cathead patch: for walls whose geometry already continues CENTRE '
+                         '(tools/ship_buildout.py, 7 Oct); only the per-state light match at the seams')
     a = ap.parse_args()
     masks = a.masks or os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(a.state_dir))), '5_layers', 'day')
     os.makedirs(a.outdir, exist_ok=True)
@@ -146,10 +149,13 @@ def main():
         c_cols = slice(0, 600) if wall == 'LEFT' else slice(1200, 1800)
         before = mismatch(cv2.cvtColor(img[wall], cv2.COLOR_BGR2LAB).astype(np.float32), c_lab, msk[wall], msk['CENTRE'],
                           side_cols, c_cols)
-        if wall == 'RIGHT':
-            img[wall], msk[wall] = clear_cathead(img[wall], msk[wall])
-        wi = warp_side(img[wall], wall)
-        wm = warp_side(msk[wall].astype(np.uint8) * 255, wall, cv2.INTER_LINEAR) > 127
+        if a.colour_only:
+            wi, wm = img[wall], msk[wall]
+        else:
+            if wall == 'RIGHT':
+                img[wall], msk[wall] = clear_cathead(img[wall], msk[wall])
+            wi = warp_side(img[wall], wall)
+            wm = warp_side(msk[wall].astype(np.uint8) * 255, wall, cv2.INTER_LINEAR) > 127
         xs = np.arange(w, dtype=np.float32)
         dist = (w - 1 - xs) if wall == 'LEFT' else xs
         f = (1 - smoothstep(0, a.band, dist))[None, :, None]
@@ -172,7 +178,7 @@ def main():
         after = mismatch(cv2.cvtColor(res, cv2.COLOR_BGR2LAB).astype(np.float32), c_lab, wm, msk['CENTRE'], side_cols, c_cols)
         out[wall] = res
         cv2.imwrite(os.path.join(a.outdir, f'S7-SHIP-{wall}_1080_bgmask.png'), wm.astype(np.uint8) * 255)
-        log.append(f'{wall}: rail {RAIL[wall][0]}->{RAIL[wall][1]} at the seam; seam mismatch (Lab dist of zone medians, sky/sea | ship) '
+        log.append(f'{wall}: ' + ('colour only' if a.colour_only else f'rail {RAIL[wall][0]}->{RAIL[wall][1]} at the seam') + '; seam mismatch (Lab dist of zone medians, sky/sea | ship) '
                    f'before {before[0]:.1f} | {before[1]:.1f}  after {after[0]:.1f} | {after[1]:.1f}')
         print(log[-1])
     cv2.imwrite(os.path.join(a.outdir, 'S7-SHIP-CENTRE_1080_bgmask.png'), msk['CENTRE'].astype(np.uint8) * 255)
@@ -186,7 +192,7 @@ def main():
     cv2.imwrite(os.path.join(a.outdir, 'S7-SHIP_walls_preview.jpg'), cv2.resize(pv2, (2340, 540)), [cv2.IMWRITE_JPEG_QUALITY, 88])
     cv2.imwrite(os.path.join(a.outdir, 'S7-SHIP_walls_clean_2340.png'), cv2.resize(pv, (2340, 540), interpolation=cv2.INTER_AREA))
     with open(os.path.join(a.outdir, 'SEAMS_LOG.txt'), 'w') as fh:
-        fh.write(f'tools/ship_seams.py {a.state_dir}\n' + '\n'.join(log) + '\n')
+        fh.write(f'tools/ship_seams.py {a.state_dir}' + (' --colour-only' if a.colour_only else '') + '\n' + '\n'.join(log) + '\n')
 
 
 if __name__ == '__main__':

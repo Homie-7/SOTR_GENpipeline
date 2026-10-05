@@ -45,6 +45,8 @@ def main():
     ap.add_argument('--focus', type=float, default=4.0, help='focus distance, metres (the subject)')
     ap.add_argument('--fstop', type=float, default=4.0)
     ap.add_argument('--sensor-mm', type=float, default=36.0)
+    ap.add_argument('--subject-mask', help='a ready subject mask (white = subject) instead of GrabCut in the box; GrabCut takes\n'
+                    'a pale sky as part of a white bird (S7-INTRO-F1-ASTERN, 7 Oct)')
     ap.add_argument('--check', action='store_true')
     a = ap.parse_args()
 
@@ -90,11 +92,14 @@ def main():
     out = np.where((sig >= levels[-1])[..., None], stack[-1], out)
 
     # the subject: GrabCut inside its box, kept sharp and clear
-    x, y, bw, bh = [int(v) for v in a.subject.split(',')]
-    mask = np.zeros((h, w), np.uint8)
-    bgd, fgd = np.zeros((1, 65), np.float64), np.zeros((1, 65), np.float64)
-    cv2.grabCut(img, mask, (x, y, bw, bh), bgd, fgd, 6, cv2.GC_INIT_WITH_RECT)
-    sub = np.where((mask == cv2.GC_FGD) | (mask == cv2.GC_PR_FGD), 1.0, 0.0).astype(np.float32)
+    if a.subject_mask:
+        sub = (cv2.imread(a.subject_mask, 0) > 127).astype(np.float32)
+    else:
+        x, y, bw, bh = [int(v) for v in a.subject.split(',')]
+        mask = np.zeros((h, w), np.uint8)
+        bgd, fgd = np.zeros((1, 65), np.float64), np.zeros((1, 65), np.float64)
+        cv2.grabCut(img, mask, (x, y, bw, bh), bgd, fgd, 6, cv2.GC_INIT_WITH_RECT)
+        sub = np.where((mask == cv2.GC_FGD) | (mask == cv2.GC_PR_FGD), 1.0, 0.0).astype(np.float32)
     sub = cv2.GaussianBlur(sub, (0, 0), 1.2)[..., None]
     out = out * (1 - sub) + J * sub
 

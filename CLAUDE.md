@@ -171,6 +171,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-07, night (IMG -> VID, Homie asleep, delegated): SIDE WALLS BUILT OUT FROM THE MASTER; new astern start frame. 48 cr IMG.
+
+- Seams: `tools/ship_buildout.py` (guide canvas -> NBP -> registered onto the master's true pixels), states re-made,
+  `tools/ship_skymatch.py`; **current walls = T9 `S7_ship/3_walls/seamed_v2/`** (PROVISIONAL). Intro start frame
+  `2_intro/S7-INTRO-F1-ASTERN_v1_34a41ccb_haze.png`. The VID redo sub-agent was unfinished at wrap: MORNING REVIEW in `docs/NEW-SESSION.md`.
+
 ### 2026-10-06, day (IMG/script, MacBook): Homie APPROVED the ship's 5 light states; REJECTED the intro; walls re-made as ONE scene.
 
 - His note "a complete cohesive single scene, they all need to align" -> `tools/ship_seams.py`: rails meet at both seams,

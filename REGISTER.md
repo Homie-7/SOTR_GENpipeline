@@ -503,3 +503,19 @@ the walls were re-made as ONE scene (`tools/ship_seams.py`): **the current walls
 | `6_review/S7-SHIP_light_arc_preview_SEAMED_v2.mp4`, `S7-SHIP_all_states_contact_SEAMED_v2.jpg` | the seamed arc + all states | for review |
 | `4_intro_video/endframe/S7-SHIP-C_day_16x9_ENDFRAME.png` | 1920x1080 deck master at 16:9; its centre 1800 = the CENTRE wall (diff 0.5) | for the intro redo (end_image) |
 | `4_intro_video/S7-INTRO_review_v1*.mp4` + takes | the v1 intro | **REJECTED by Homie** (kept) |
+
+## 2026-10-07 (night, Homie asleep, delegated) · S7 SHIP: side walls BUILT OUT FROM THE MASTER + the astern first frame. ALL PROVISIONAL
+
+Job 1 of `docs/NEW-SESSION.md` (Homie on SEAMED_v2: "the seams are still not fully aligned"). The side walls are no longer
+separate generations: each continues the deck master f5180ed8 outward (`tools/ship_buildout.py`), so at both seams the rail,
+bulwark, gun scale, planks and light are the master's own (seam step = the master's own neighbour-column step, ratio 0.94-0.95).
+CENTRE is unchanged in every state (bit-identical to the approved files). Media on the T9 (`04_WORKING_FILES/S7_ship/`).
+
+| Path (S7_ship/…) | What | Status |
+|---|---|---|
+| `3_walls/seamed_v2/{day,magic,sunset,night,wreck}/S7-SHIP-<WALL>_1080.png` (+ logs, previews) | **the three walls per state, sides built out from the master**; supersede `seamed_v1/` (kept) | **Claude's pick, for Homie** |
+| `3_walls/buildout_v1/` | canvases (v1 grey, v2 guide), NBP takes, `day/` (the composite), `states/` (side-wall state takes), `aligned/`, `seamed/`, `skymatched/` (the steps), `_rejected_*` (two dropped script attempts) | working |
+| `5_layers/buildout_day/`, `5_layers/seamed_v2/<state>/` | ship RGBA + sea/sky mask per wall (states split with the day mask) | working |
+| `6_review/S7-SHIP_light_arc_preview_SEAMED_v3.mp4` (2340x540, 14 s) + `S7-SHIP_all_states_contact_SEAMED_v3.jpg` | the new arc + all 5 states | **for review** |
+| side-wall takes used: L day d0c874d6 / R day d81714a4; MAGIC L ae66c450 / R 573c717f; SUNSET L 5b940650 / R 99de00bd (v2); NIGHT L a2aacc1b / R 42b011f5 | NBP edits, in `buildout_v1/` | Claude's picks |
+| `2_intro/S7-INTRO-F1-ASTERN_v1_34a41ccb_haze.png` (+ `_flagwhite.png`, `_gullmask.png`, `_gullmask_RECIPE.py`, raw take, 2nd take b8b5fd73) | **the intro's new first frame**: from astern-quarter, ship sailing away, gull at the top of a wingbeat; ensign painted white; haze + DOF | **Claude's pick, start frame for the VID redo** |

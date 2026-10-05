@@ -1,0 +1,22 @@
+ID        S7-SHIP-R-BUILDOUT  (Job 1, docs/NEW-SESSION.md 7 Oct: the side walls built OUTWARD from the master's true strips)
+VERSION   v2  (2026-10-07)  ONE CHANGE vs v1: the INPUT. v1's grey half -> a GEOMETRIC GUIDE built by script from the master
+          (tools/ship_buildout.py guide): the rail cap continued on the master's own line (slope at
+          the edge 0.13), the bulwark planks/stanchions/coils carried outward by the plane's own perspective step (an elation
+          about the vanishing point (1592, 519), lambda 4.4e-4 = one gun bay, measured on the gun ports), sky and sea as plain
+          row-median colour, a grey patch where the near gun continues. The Target/Change lines are rewritten to name that
+          input (the v1 wording described a grey area that no longer exists); Protected unchanged in substance.
+v1 FAIL   (78fc5792, 21684352, 4 cr): the grey was filled with a MIRROR of the strip: a V-shaped corner of bulwark, shrouds
+          rising in a V (78fc5792 fully symmetric; 21684352 a corner at the join + a visible join line). Diagnosis: the
+          model reads half a deck and draws the other half (an object prior, finding 5c), not a wording problem.
+SKILL     scenecraft-v1 Plate D (target / change / protected), text-only edit (house-rules finding 4a)
+MODEL     Nano Banana Pro (nano_banana_pro) · 16:9 · 2k · batch 2 · IMG
+INPUT     3_walls/buildout_v1/S7-SHIP-R_BUILDOUT_v2_guide.png (2389x1344; left 1061 px = the master's true pixels)
+PREDICT   The guide's layout held (rail straight down-left, bulwark, one coil), sky and sea re-rendered real, the near gun
+          completed to its port; no shrouds on the new part. Risk: NBP keeps the flat sky/streaky sea; or adds shrouds again.
+
+MIRROR    the RIGHT wall = the LEFT v2 wording mirrored (left<->right only); the guide is built on the flipped master.
+LEFT v2   PASSED geometry (9ae16aac, d0c874d6): rail straight to the outer edge, no V, no shrouds on the new part.
+----- PROMPT -----
+Target: the right part of the attached photograph, right of the gun at the bottom: there the sky and the sea are flat and smeared, the bulwark is soft and stretched, and a flat grey patch sits low beside the gun.
+Change: that right part becomes the same real photograph, keeping its layout exactly. The dark wooden rail cap and the weathered red-ochre bulwark run on along the same straight line down toward the lower-right corner, with the same stanchions, belaying pins and coiled rope. The near gun on its carriage continues out of the grey patch, its barrel running forward to its gun port in the bulwark. The sea becomes real open sea with small waves and sun glints, larger nearer the rail, out to the same level horizon, and the sky becomes the same bright blue sky with soft white clouds. Above the rail on this right part there is only open sky and sea, with no mast and no shrouds. An 1816 French frigate, sails furled, no people.
+Protected: the photographed left part stays exactly as it is, in exactly the same place and size: the rigging, the rail, every gun, rope and plank, the deck, the light and the colour; the framing, the camera position and lens, the horizon line and the line of the rail across the whole frame. The new part matches the photograph's grain, contrast and film rendition.

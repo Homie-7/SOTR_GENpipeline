@@ -1,3 +1,67 @@
+# S7-INTRO-FLIGHT · v3 · 2026-10-07 night (VID sub-agent, connector; Homie asleep, delegated) · DRAFT 480p 12 s
+#   REDO per docs/VID-BRIEF-S7-INTRO-v2.md (Homie rejected v1/v2's cut: "the bird is not even flapping… never really goes far
+#   or close to the camera… extremely AI generated… we approach the ship from the front").
+# DIAGNOSIS (before the fix, against v2's own prompt below): every rejected trait was WRITTEN into v2:
+#   "glides low over the swell… two or three slow, deep wingbeats" = a glider; "the bird always large in frame" = a fixed
+#   distance; "smooth, no shake" = a floaty drone glide (shotcaller: never gimbal-glide). The head-on bow came from a start
+#   frame that shows the ship far and ambiguous; the new start frame (F1-ASTERN) shows her stern going away.
+# WHAT CHANGED (a rebuild by brief, not a one-line patch: new start frame, new action):
+#   start_image = the NEW F1-ASTERN haze frame; a CRITICAL WINGBEATS block (vivid: "beats its wings hard… deep full
+#   strokes, about three a second"); the distance written as events (close, wingtip past the lens 0-3 s / away and small
+#   3-6 s / back close 6-9 s); the camera given weight and late corrections; ship = going away, plain stern, red-ochre band,
+#   no gilding, white flag; FIRST FRAME = Override 10 (held ~1/3 s). Gull field marks dropped from the body (the frame
+#   carries them) to stay under 2,000 chars (1,995).
+# THE GATE
+#   SOURCE  v2's prompt (below) + Homie's verdict (LOG 2026-10-06). Start frame opened: 2752x1536, sha256 c3fd832b…
+#   ROOM    the sea + ship in the start frame (opened): frigate right of centre going away, stern windows, wake toward camera,
+#           red-ochre band, white ensign; gull left third, wings raised high (top of a beat), horizon ~60% down.
+#   REFS    ONE image: start_image = f03d3b08-67d2-4092-afeb-4c654876681f (S7-INTRO-F1-ASTERN_v1_34a41ccb_haze.png).
+#   ROUTE   omni_reference draft (start_image held frame 0 in v1/v2); the boarding = S7-INTRO-BOARD (end_image test).
+#   DELTA   as above; nothing contradicts frame one (wings up = mid-beat; ship already going away).
+# PREDICT: frame 0 = the start frame (ECC > 0.95); the gull flaps in visible bouts (>= 2 bouts); its size varies > 3x;
+#   the ship grows to ~half the frame by 12 s; the camera bobs. RISKS: still a glide; the gull lost when small; the ship
+#   turns toward us; an end rush into the hull.
+# SETTINGS
+#   Model:      Seedance 2.5 (seedance_2_5)
+#   Mode:       omni_reference
+#   Media:      start_image = f03d3b08-67d2-4092-afeb-4c654876681f
+#   Aspect:     16:9
+#   Resolution: 480p DRAFT (draft: true) -> finalize 1080p via draft_job_id if it passes
+#   Duration:   12 s
+#   Quality:    bitrate_mode high
+#   Batch:      1
+#   Sound:      ON (generate_audio true)
+#   use_unlim:  false
+#   Cost:       36 (preflight, draft)
+
+1 continuous shot, 12 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+
+Style: real documentary footage of the open Atlantic in 1816, film grain. NOT a 3D render. True 180-degree shutter, natural motion blur, no frame interpolation, no morphing.
+
+NO ON-SCREEN TEXT.
+
+THE WINGBEATS — CRITICAL: the herring gull flies under its own power the whole time. It beats its wings hard in bouts of deep full strokes, about three a second, the wings sweeping high above its back and driving down below its belly, its body lifting on every downstroke; a short glide of a second, then the next bout.
+
+FIRST FRAME: the attached image exactly as composed, held still for the first third of a second, nothing invented or reframed; then motion begins.
+
+THE SHIP: the frigate in the image, sailing away from us: her plain stern toward camera, a dark hull with a red-ochre band, no gilding, a plain white flag, her wake running back to us.
+
+CAMERA: flies with the gull low over the water at 47 degrees, with real weight: it bobs, lags the bird's turns and catches up with small late corrections.
+
+ACTION:
+0-3s: the gull beats hard and swings back toward the lens, growing until it fills a third of the frame; one wingtip sweeps past close to the lens.
+3-6s: it pulls ahead and away, beating hard, shrinking to a small white bird over the wake, then glides.
+6-9s: it banks, drops low over a swell and comes back close to the camera, beating.
+9-12s: we close on the ship's starboard quarter, her stern and rail high and near; the gull climbs toward her rail with strong strokes.
+The ship grows a little every second from the start.
+
+PHYSICS: primaries flex and spread, the tail fans and twists in the banks. The ship pitches on the swell. Sun ahead right, a glitter path, real haze in the distance.
+
+AUDIO: wind, the swell, wingbeats, one gull call. NO BGM — no music of any kind: no score, no song, no instrumental, no drone.
+
+LOCKS: one gull, one ship; no people; nothing newer than 1816.
+
+# ==================== v2 and earlier (kept verbatim below) ====================
 # STATUS 2026-10-06 night: v2 DRAFT CHOSEN (job d27ab78a, 45 cr) and FINALIZED at 1080p (job b37921bd, 180 cr). v2 RESULT:
 #   change A worked (no haze-column morph, the ship grows smoothly, mostly 8-14 s; frame 0 = F1, ECC cc 0.997 as v1);
 #   change B half-worked: no gilded baroque stern, but the model drew her BOW (head-on, bowsprit toward camera, bow wave)

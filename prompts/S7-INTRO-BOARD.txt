@@ -1,0 +1,62 @@
+# S7-INTRO-BOARD · v1 · 2026-10-07 night (VID sub-agent, connector; Homie asleep, delegated) · DRAFT 480p 8 s
+#
+# WHAT: the gull + camera come aboard: up the starboard side, over the rail, forward along the deck, and the LAST FRAME =
+#   the deck plate (= the CENTRE wall), empty of the gull (docs/VID-BRIEF-S7-INTRO-v2.md points 4-5). Replaces S7-INTRO-LAND
+#   (v1 landed the gull on the bow rail and wiped the lens: rejected by Homie).
+# GRAMMAR: shotcaller-v1 spine compacted under SOTR's 2,000 chars (1,959). Two roles: start_image + end_image (omni_reference).
+#   Deviation from Override 10 (flagged): NO 1/3 s hold on frame one, because A ends mid-motion and a hold would stall
+#   the join; the frame is pinned in words and the motion "carries straight on, no pause". The LAST FRAME gets a
+#   CRITICAL block naming the end image's landmarks.
+# THE GATE
+#   SOURCE  S7-INTRO-FLIGHT v3 FINAL (job 24ba0a6b), its last frame f288 (opened at 1080): the camera low beside the
+#           frigate's starboard side heading forward, the red-ochre hull + gunports + a side ladder filling the left 2/3,
+#           the rail and shrouds above, sails set, the gull flapping at rail height top right, open bright sea right.
+#   ROOM    the END image (opened): S7-SHIP-C_day_16x9_ENDFRAME.png 1920x1080 sha256 0e6edc4d…: the deck forward from
+#           aft of a mast: the mast dead centre with rope coils, a furled yard above, grey planks, red-ochre bulwarks, black
+#           guns on carriages both sides, forecastle ladders, a grating bottom centre, the sea beyond, day, clouds.
+#   REFS    start_image = b15c1c69-cf81-4523-b0ae-fb21fb0e5bc3 (S7-INTRO-FLIGHT_v3_24ba0a6b_lastframe288.png, 8-bit);
+#           end_image = af931bff-53cb-4c8f-921e-dbfd3a0f8ebc (the ENDFRAME). Named in words ("the start image" / "the end image").
+#   ROUTE   omni_reference with end_image = the ONLY connector route that could pin a last frame (Sequel can't take one).
+#           end_image is UNTESTED (PIPELINE): THIS DRAFT IS THE TEST. Fallback if it does not pin: end B on the deck and
+#           join to the plate with a short script dissolve (0 cr).
+#   DELTA   first version. Known tension: A shows every sail SET; the end image's foremast yard is FURLED (the plate is
+#           fixed): the end image wins, the boarding passes under the set mainsail (not written: nothing to add).
+# PREDICT: frame 0 = the start image (ECC > 0.95); the camera climbs the side and crosses the rail ~2-3 s; the last frames
+#   converge on the end image (MAD < 10 at 480p if it pins; a fresh-render look if it does not); the gull exits top.
+# RISKS: a morph/dissolve from side to deck instead of a camera move (end_image pulling too hard); the gull left in frame
+#   at the end; people on deck; the camera stops short of the end view.
+# SETTINGS
+#   Model:      Seedance 2.5 (seedance_2_5)
+#   Mode:       omni_reference
+#   Media:      start_image = b15c1c69-cf81-4523-b0ae-fb21fb0e5bc3 · end_image = af931bff-53cb-4c8f-921e-dbfd3a0f8ebc
+#   Aspect:     16:9
+#   Resolution: 480p DRAFT (draft: true) -> finalize 1080p via draft_job_id if it passes
+#   Duration:   8 s
+#   Quality:    bitrate_mode high
+#   Batch:      1
+#   Sound:      ON (generate_audio true)
+#   use_unlim:  false
+#   Cost:       24 (preflight, draft)
+
+1 continuous shot, 8 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+
+Style: real documentary footage at sea in 1816, film grain. NOT a 3D render. True 180-degree shutter, natural motion blur, no frame interpolation, no morphing.
+
+NO ON-SCREEN TEXT.
+
+FIRST FRAME: the start image exactly as composed, nothing invented or reframed; the camera and the gull are already moving in it and carry straight on, no pause.
+
+LAST FRAME — CRITICAL: the shot ends exactly on the end image: the empty deck seen forward from just aft of the mast: the mast dead centre with rope coiled at its foot and a furled yard above, weathered grey planks, red-ochre bulwarks and black guns down both sides, a grating in the foreground, the sea beyond the bow, bright day. The camera arrives there and holds still for the last half second, with no gull in frame.
+
+THE BOARDING — CRITICAL: the herring gull keeps beating its wings hard, deep full strokes, and climbs up the ship's side and over her rail; the camera rises with it up the hull, over the rail and down onto the deck at a standing person's eye height, then travels forward along the deck. The gull flies on ahead over the deck and climbs out of the top of the frame.
+
+ACTION:
+0-2.5s: alongside the hull, the gull beats hard up toward the rail; the camera rises with it up the ship's side.
+2.5-5s: over the rail and down onto the deck; the gull flies on forward, beating, and climbs out of the top of the frame.
+5-8s: the camera travels forward along the empty deck, slows, squares up to the bow and settles into the end image.
+
+CAMERA: real weight, small late corrections, braking into stillness at the end.
+
+AUDIO: wind, wingbeats, timber creaking, rigging, the sea along the hull. NO BGM — no music of any kind: no score, no song, no instrumental, no drone.
+
+LOCKS: one gull, one ship; no people anywhere on deck or in the rigging; nothing newer than 1816; light continuous from the start image.
