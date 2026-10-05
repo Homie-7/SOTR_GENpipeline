@@ -270,7 +270,28 @@ Nothing approved by Homie yet; tags are assigned on approval.
 | `floor/S1-GAL-PUDDLE_v1_*`, `_v2_*` | NBP spill edits | not used (LOG) |
 | `finished/floor_v1/S1-GAL-FLOOR_<DRY,SPILL,GLOW-LIT,GLOW-DARK>_1920x1080.png` + `_<SPILL_HOLD,VANISH,RETURN_GLOW,GLOW-LIT_LOOP,GLOW-DARK_LOOP,DRY_HOLD>_1920x1080.mov` | the floor and the puddle's beats (`gallery_floor.py`), ProRes 422 HQ, 24 fps, silent | **candidate**; RETURN_GLOW rejected (Homie: cheap) -> generated next session |
 
-## 2026-10-05 (latest, VID, MacBook) · S1-GAL-PUDDLE-RETURN v4-v6 on the dark Versailles floor: v6 composited, FOR HOMIE'S REVIEW
+## 2026-10-05 (latest, POST, MacBook) · THE GALLERY SHOW FILES (Scenes 1 + 10): paintings re-hung, 1080 full length, 4K loops; the puddle FLOW
+
+Homie: "the gallery scene is imperative… finish it today… paintings nice and centered on all sides"; "full length at 1080
+only" (asked; 4K only as backup hold loops); puddle notes: flow outwards (not a blob scaling), no bubbles, shimmer earlier.
+Credits: 6 (3 ByteDance image upscales at 2; CENTRE failed once, refunded, re-run). All on the T9; sha256 in
+`04_WORKING_FILES/S1_gallery/SHA256SUMS_2026-10-05_gallery.txt`. **Nothing promoted to 01_FINAL_FOR_SHOW yet** (Homie: file
+management later).
+
+| Path (`04_WORKING_FILES/S1_gallery/…`) | What | Status |
+|---|---|---|
+| `1_READY_for_show_build/walls/S1-GAL-<L,C,R>_LIT_v3_{native,1440x1080/1800x1080,2880x2160/3600x2160}.png` + `_frames_*.json` + `S1-GAL_LIT_v3_SEAM_4680x1080.png` | **LIT v3: RE-HUNG** (`tools/gallery_rehang.py` on the LIT v2 natives): Raft centred (moved 8.8 cm left), Napoléon centred (6.0 cm right) on a 1.61 m centre line, the LEFT pair centred as a group with Marie-Antoinette raised 11.1 cm onto the same line. Plaster rebuilt with the room-light model (no-move rebuild = v2 to 0.0004 mean); old spots refilled with plain plaster grain (a plate ledge 43 px under the old Marie-Antoinette removed with it). 4K: gilt + paintings from the upscale (matches 1080; a source re-pin was tried: different crop, dropped) | **candidate, for Homie** (supersedes LIT v2 on approval) |
+| `1_READY_for_show_build/walls/S1-GAL-<L,C,R>_DARK_v3_*` + `S1-GAL_DARK_v3_SEAM_4680x1080.png` | blackout walls from LIT v3 (`gallery_dark.py`, 5% / paintings 11%, CENTRE's puddle teal at its foot) | **candidate** |
+| `1_READY_for_show_build/walls/upscale_4k/S1-GAL-<L,C,R>_LIT_v2_native_UP4K.png` | ByteDance 4k upscales of the v2 natives (4096 wide), sources of the 4K walls | source |
+| `3_SHOW_FILES_1080_for_review/S1_a_<WALL>_gallery.mov` | Scene 1 tour, LIT held **15:00** (script ~11 min, the operator cuts at "Pas de flash ici!") | **candidate** |
+| `3_SHOW_FILES_1080_for_review/S1_b_<WALL>_gallery-blackout.mov` | 0.5 s LIT, the lights fail **bank by bank** (LEFT f12, CENTRE f15, RIGHT f18: cut, one flicker, dead), DARK to **5:00** | **candidate** |
+| `3_SHOW_FILES_1080_for_review/S10_<WALL>_gallery.mov` | Scene 10 "Light is suddenly restored": LIT held **5:00** (opens at full picture) | **candidate** |
+| `3_SHOW_FILES_1080_for_review/4K_backup_loops/S1-and-S10_<WALL>_gallery_LIT_HOLD_loop.mov`, `S1_<WALL>_gallery_DARK_HOLD_loop.mov` | 32 s 4K holds (2880x2160 / 3600x2160) | **candidate** |
+| `3_SHOW_FILES_1080_for_review/S1-GAL_REVIEW_tour-blackout-restored_3walls.mp4` | review: the three walls side by side through the cut | review |
+| All show files | ProRes 422 HQ yuv422p10le **qscale 8** (a still encodes every frame identically: no shimmer at any q; q8 = 44 dB vs source at ~40% of q2), 24 fps, a silent stereo track (nothing generated with sound). 37 GB at 1080 + 2.4 GB of 4K loops | — |
+| `2_PUDDLE_RETURN_in_progress/S1-GAL-PUDDLE-RETURN_v6flow_FLOOR_<lit,dark>_1920x1080.mov` + `_v6flow_REVIEW_lit_then_dark_fullfloor+zoom.mp4` | **the return v2 (script):** v6's drops and pause (take 2.0-4.9 s), then the water FLOWS out to the settled shape over 3.5 s (`puddle_comp.py --flow-from 4.9 --flow-s 3.5`: lobes, small surges, a bright edge; ease-out), the 2 marbles removed (`--debubble`), the glimmer from the first flow riding the edge (`--glow-start 4.9 --glow-ramp 3`), 8 s hold | **candidate, for Homie** (supersedes the `_v6_FLOOR_` eased-stop pair) |
+
+## 2026-10-05 (VID, MacBook) · S1-GAL-PUDDLE-RETURN v4-v6 on the dark Versailles floor: v6 composited, FOR HOMIE'S REVIEW
 
 Homie's beat: 2-3 drops, a pause, the water spreads by itself to the spill's size, stops, lies still; the teal edge glimmer by
 script. 216 credits (48 + 48 + 120). Patch uploaded: media `35c82bf4-c8a0-4d72-baa7-af603f20a105` (= `05_REFERENCE_UPLOADS/

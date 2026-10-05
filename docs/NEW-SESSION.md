@@ -22,28 +22,22 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (5 Oct, latest): SCENES 1+10. THE PUDDLE RETURN IS COMPOSITED (v6, 216 cr), AWAITING HOMIE. ONE MODE PER SESSION.
-Homie: "the gallery takes precedence". First ask Homie his verdict on the return review (below); then 3 (POST).
-1. DONE — THE FLOOR (aged dark oak Versailles parquet a650a2ac, de-sheened plate 1_READY_for_show_build/floor/
-   S1-GAL-FLOOR_v2_a650a2ac_desheen.png = --dry everywhere) + the spill + VANISH v2 (dewet), all APPROVED.
-2. FOR REVIEW — THE PUDDLE RETURN (S1-GAL-PUDDLE-RETURN; prompts/ file v1-v6 + results; LOG + REGISTER 5 Oct latest).
-   Review: 04_WORKING_FILES/S1_gallery/2_PUDDLE_RETURN_in_progress/S1-GAL-PUDDLE-RETURN_v6_REVIEW_lit_then_dark_fullfloor+zoom.mp4
-   (+ _v6_FLOOR_lit / _dark_1920x1080.mov). Seedance v6 (10 s): ~3 drops into one spot, a pause, the film spreads by itself;
-   it overshot (1.9 m, off the frame from 8 s: the 3rd over-spread, STRUCTURAL, don't reword it), so the stop is SCRIPTED:
-   puddle_comp.py --base dry --start 2.0 --end 6.8 --ease-src 0.6 --glimmer --glow-start 6.2 --glow-ramp 2.5 --hold 8 [--dark].
-   Pool at rest ~1.25 x 1.2 m, ROUND (the drawn spill was 1.56 x 0.92): ASK HOMIE whether round is fine. If he wants it
-   longer/bigger: a scaled/anisotropic comp, or a wider patch; NOT a new size sentence. Small known bits: 2 tiny "marble"
-   beads (~6 px on the floor), drops seen in flight at ~2.9 s (v1's "Only the impacts are seen" was dropped in v4).
-   On approval: rename to the tag, file the take in 02_APPROVED_BUILDING_BLOCKS/S1_gallery/, REGISTER. v4/v5 to _DELETE_ME.
-   puddle_comp now has a dark-wood NOISE FLOOR (needed: the fixed 0.03 caught 10% of dry pixels) and tools/puddle_measure.py.
-3. POST — THE GALLERY SHOW FILES (0 cr, script): the three walls (LIT v2 / DARK v1) as finished files like Scene 9's: the tour
-   hold, the blackout bank by bank, the DARK hold (CENTRE foot: the puddle's teal now = the edge glimmer's faint light), Scene
-   10's "Light is suddenly restored"; + the floor files from 1 and 2. Nothing in the show folder yet; no upscales unless asked.
+THE TASK, RIGHT NOW (5 Oct, latest): SCENES 1+10 BUILT, AWAITING HOMIE'S REVIEW, THEN FILE MANAGEMENT (he: "we'll do file management later").
+1. FOR REVIEW — THE GALLERY SHOW FILES (REGISTER 5 Oct latest, LOG): 04_WORKING_FILES/S1_gallery/3_SHOW_FILES_1080_for_review/
+   (review clip S1-GAL_REVIEW_tour-blackout-restored_3walls.mp4). LIT v3 = paintings RE-HUNG centred (gallery_rehang.py; seam
+   1_READY_for_show_build/walls/S1-GAL_LIT_v3_SEAM_4680x1080.png). Homie chose 1080 full length (tour 15:00, blackout+dark
+   5:00, S10 5:00) + 4K 32 s LIT/DARK hold loops. On approval: promote into 01_FINAL_FOR_SHOW (1_PLAY_THESE_IN_ORDER = the
+   1080 files; 2_BACKUP_LOOPS = the 4K loops), LIT v2/DARK v1 -> superseded, update 00_READ_ME_FIRST.txt (play order: S1_a,
+   S1_b … S10 last, though "S10_" lists first) and SOTR_MEDIA/README.txt. The client uploads 01_FINAL_FOR_SHOW (T9 has S4-S9
+   complete, 211 GB; skip the ._ files).
+2. FOR REVIEW — THE PUDDLE RETURN v6 FLOW: 2_PUDDLE_RETURN_in_progress/S1-GAL-PUDDLE-RETURN_v6flow_REVIEW_lit_then_dark_fullfloor+zoom.mp4
+   (his 3 notes done by script: flowing front, no bubbles, glimmer from the first flow). Floor files only matter if a floor
+   projector is confirmed (5_FLOOR_only_if_a_floor_projector/). Then the floor show files (DRY / SPILL / VANISH / RETURN).
 STATE: all S1 media on the T9 (master), REORGANISED 5 Oct (REGISTER 'HANDOVER REORG'): 04_WORKING_FILES/S1_gallery/
 (00_STATUS_READ_ME.txt, 1_READY_for_show_build/, 2_PUDDLE_RETURN_in_progress/ = new takes go here),
 02_APPROVED_BUILDING_BLOCKS/S1_gallery/. Scenes 4 + 5 are now IN 01_FINAL_FOR_SHOW. ON THE PC: run
-tools/reorg_2026-10-05.py D:/SOTR run (Scenes 4/5), then copy S1 from the T9 to D: (sha256). Credits: 216 spent
-5 Oct (VID, the return), balance ~1,643. CREDITS (Homie): keep enough for ALL the gallery's video generations AND upscales, and LEAVE
+tools/reorg_2026-10-05.py D:/SOTR run (Scenes 4/5), then copy S1 from the T9 to D: (sha256). Credits: 222 spent
+5 Oct (VID + POST), balance ~1,637. CREDITS (Homie): keep enough for ALL the gallery's video generations AND upscales, and LEAVE
 500 AT THE END OF THE WEEK. Mac: pip --target <scratch>/py numpy pillow opencv-python-headless
 (+ pypdf to read the script PDF: ~/Documents/SOTR/2026 RMIT Dev 'Secret of the Raft' Workhop Draft V1.pdf); the T9 mounts at
 /Volumes/DMD T9 (media under SOTR/HF/SOTR_MEDIA).

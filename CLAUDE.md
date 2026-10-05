@@ -171,7 +171,14 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-10-05, latest (VID, MacBook): THE PUDDLE RETURN on the dark floor, composited (v6), AWAITING HOMIE. 216 cr.
+### 2026-10-05, latest (POST, MacBook): THE GALLERY SHOW FILES BUILT (1080 full length + 4K loops), paintings re-hung. 6 cr.
+
+- Homie: paintings centred on every wall (`tools/gallery_rehang.py`, LIT/DARK v3); "full length at 1080 only", 4K as 32 s
+  backup loops (`tools/gallery_show.py`: tour 15:00, blackout bank by bank + dark 5:00, S10 5:00). In
+  `04_WORKING_FILES/S1_gallery/3_SHOW_FILES_1080_for_review/`, NOT yet in 01_FINAL_FOR_SHOW (file management later).
+- The puddle: his notes done by script (`puddle_comp.py --flow-from --debubble`), awaiting him. T9 = full client delivery.
+
+### 2026-10-05 (VID, MacBook): THE PUDDLE RETURN on the dark floor, composited (v6), AWAITING HOMIE. 216 cr.
 
 - Seedance v4 (dome), v5 (flat film), v6 10 s: drops, a pause, it spreads by itself, but overshoots off the frame (3rd time =
   structural): the stop is scripted (`puddle_comp.py --end 6.8 --ease-src 0.6 --hold`, + the glimmer). Review in

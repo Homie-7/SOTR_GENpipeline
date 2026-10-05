@@ -142,6 +142,78 @@ def glimmer(mask, ratio_hi, t, loop, ppm, phases):
     return ((core + catch + bloom) * mod + hl).astype(np.float32)
 
 
+def arrival_field(seeds, domain, dry_hi, step=4, seed=11):
+    """FLOW (Homie 2026-10-05: "flowing outwards like it naturally does rather than just the blob scaling up"): when the
+    water reaches each point of the final pool, from the drops' bead. A weighted distance (8-neighbour relaxation at
+    1/step resolution), cheaper along the parquet's seams (water runs ahead in them) and uneven by a low-frequency
+    noise (lobes and fingers). Normalised to 1 at the farthest point of the pool; inf outside it."""
+    H, W = domain.shape
+    h, w = H // step, W // step
+    dom = cv2.resize(domain.astype(np.uint8), (w, h), interpolation=cv2.INTER_NEAREST) > 0
+    sd = cv2.resize(seeds.astype(np.uint8), (w, h), interpolation=cv2.INTER_NEAREST) > 0
+    if not sd.any():
+        ys, xs = np.nonzero(dom)
+        sd[int(ys.mean()), int(xs.mean())] = True
+    lum = cv2.resize(cv2.cvtColor(dry_hi.astype(np.float32), cv2.COLOR_RGB2GRAY), (w, h), interpolation=cv2.INTER_AREA)
+    seam = cv2.morphologyEx(lum, cv2.MORPH_BLACKHAT, cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5)))
+    seam = np.clip(seam / (np.percentile(seam, 99) + 1e-6), 0, 1)
+    rng = np.random.default_rng(seed)
+    def octave(sig):
+        nz = cv2.GaussianBlur(rng.normal(0, 1, (h, w)).astype(np.float32), (0, 0), sig)
+        return (nz - nz.mean()) / (nz.std() + 1e-6)
+    # big lobes + small fingers; the seams only a little faster (v1 1.6: the front ran along them in straight lines)
+    noise = 0.35 * octave(max(w, h) / 14) + 0.15 * octave(max(w, h) / 60)
+    cost = 1.0 / np.clip(1.0 + 0.2 * seam + noise, 0.4, None)
+    T = np.full((h, w), np.inf, np.float32)
+    T[sd & dom] = 0
+    T[sd & ~dom] = 0
+    steps = [(dy, dx, np.hypot(dy, dx)) for dy in (-1, 0, 1) for dx in (-1, 0, 1) if dy or dx]
+    for _ in range(4 * (h + w)):
+        old = T.copy()
+        for dy, dx, d in steps:
+            sh = np.full_like(T, np.inf)
+            sh[max(dy, 0):h + min(dy, 0), max(dx, 0):w + min(dx, 0)] = \
+                T[max(-dy, 0):h + min(-dy, 0), max(-dx, 0):w + min(-dx, 0)]
+            T = np.minimum(T, sh + cost * d)
+        T[~dom] = np.inf
+        T[sd] = 0
+        if np.array_equal(old, T):
+            break
+    fin = np.isfinite(T)
+    T[dom & ~fin] = T[fin].max()        # pockets the relaxation never reached fill last (v1: holes = teal dots)
+    fin = np.isfinite(T)
+    T = T / (np.percentile(T[fin], 99.5) + 1e-6)
+    T[~fin] = 9.0
+    T = np.where(dom, cv2.GaussianBlur(np.minimum(T, 1.5), (0, 0), 3.0), 9.0)   # a rounded front, not stair-steps
+    return cv2.resize(T, (W, H), interpolation=cv2.INTER_LINEAR)
+
+
+def debubble(ratio_hi, mask, ppm, frame):
+    """Homie 2026-10-05: no bubbles on the settled pool. The 'marbles' (domed beads sitting on the water, ~4-8 cm) are
+    found as small round specular blobs in the take's own picture (Hough circles; the ratio is useless here: the
+    laylight's reflection reaches 9x) inside the pool, and filled in the ratio by a normalised blur of their
+    surroundings (colour-safe: per-channel inpainting left coloured specks, v1)."""
+    g = (np.clip(frame.mean(2), 0, 1) * 255).astype(np.uint8)
+    c = cv2.HoughCircles(cv2.GaussianBlur(g, (5, 5), 1.2), cv2.HOUGH_GRADIENT, dp=1, minDist=int(0.03 * ppm),
+                         param1=60, param2=18, minRadius=int(0.01 * ppm), maxRadius=int(0.04 * ppm))
+    inner = cv2.erode(mask.astype(np.uint8), np.ones((int(0.06 * ppm),) * 2, np.uint8)) > 0
+    hole = np.zeros(mask.shape, np.float32)
+    found = []
+    for x, y, r in (c[0] if c is not None else []):
+        if inner[int(y), int(x)]:
+            cv2.circle(hole, (int(x), int(y)), int(r * 1.5) + 3, 1.0, -1)
+            found.append((int(x), int(y), int(r)))
+    if not found:
+        print('debubble: none found', flush=True)
+        return ratio_hi
+    sig = 0.02 * ppm
+    keep = 1 - hole
+    fill = cv2.GaussianBlur(ratio_hi * keep[..., None], (0, 0), sig) / (cv2.GaussianBlur(keep, (0, 0), sig)[..., None] + 1e-4)
+    soft = cv2.GaussianBlur(hole, (0, 0), 2)[..., None]
+    print(f'debubble: {len(found)} beads filled {found}', flush=True)
+    return ratio_hi * (1 - soft) + fill * soft
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('take')
@@ -165,6 +237,11 @@ def main():
     ap.add_argument('--ease-src', type=float, default=0.0,
                     help='the last S s of the take (before --end) are slowed to a stop: stretched x3 with a cubic ease-out '
                          '(speed matched at the join). v6 kept spreading past the patch: the stop is made here')
+    ap.add_argument('--flow-from', type=float, default=None,
+                    help='FLOW: play the take to S (the drops and the pause), then reveal the pool at --end by a flowing '
+                         'front (arrival_field) over --flow-s, ease-out with small surges; the glimmer rides the front')
+    ap.add_argument('--flow-s', type=float, default=4.0)
+    ap.add_argument('--debubble', action='store_true', help='inpaint the small spheres sitting on the settled pool')
     ap.add_argument('--hold', type=float, default=0.0, help='after the last frame, hold the pool still for N s, the '
                                                             'glimmer still moving (a whole number of --loop cycles loops)')
     a = ap.parse_args()
@@ -221,7 +298,9 @@ def main():
     n_hold = int(round(a.hold * 24))
     n_src = int(round(a.ease_src * 24))
     n_out = 3 * n_src            # cubic ease-out: starting speed 3 * (n_src - 1) / n_out ~ the take's own
-    total = n - i_start + (n_out - n_src) + n_hold
+    n_ff = int(round(a.flow_from * 24)) if a.flow_from is not None else None
+    n_flow = int(round(a.flow_s * 24)) if n_ff is not None else 0
+    total = (n_ff - i_start + n_flow + n_hold) if n_ff is not None else (n - i_start + (n_out - n_src) + n_hold)
     dur = f'{total / 24:.4f}'   # the take's sound, padded with silence through the hold, cut to the picture
     enc = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb48le',
                             '-s', f'{size[0]}x{size[1]}', '-r', '24', '-i', '-', '-ss', f'{i_start / 24:.4f}', '-i', a.take,
@@ -232,10 +311,14 @@ def main():
     sheet = []
     last = {}
 
-    def render(i, f=None):
-        """i = take frame index (past n during the hold); f = the take frame, or None to reuse the last one."""
+    def render(i, f=None, state=None):
+        """i = take frame index (past n during the hold); f = the take frame, or None to reuse the last one;
+        state = (ratio, ratio_hi, mm, pool) injected by the FLOW."""
         nonlocal acc, pool
-        if f is not None:
+        if state is not None:
+            last.update(ratio=state[0], ratio_hi=state[1], mm=state[2])
+            pool = state[3]
+        elif f is not None:
             hi = warp(f)
             ratio_hi, thr_hi = noise_floor((hi + 0.01) / (dry_hi + 0.01), 0.03, 3, pool)
             s = small(hi)
@@ -252,7 +335,7 @@ def main():
         ratio, ratio_hi = last['ratio'], last['ratio_hi']
         if i < i_start:
             return None
-        mm = (acc * edge)[..., None]
+        mm = ((last['mm'] if 'mm' in last else acc) * edge)[..., None]
         out = base.copy()
         reg = base[r0:r0 + rh, c0:c0 + rw] * (1 + mm * (ratio - 1))
         if a.glimmer:
@@ -272,6 +355,41 @@ def main():
     for f in first:
         render(i, f); i += 1
     src, buf = a.dry_frames, []
+    if n_ff is not None:
+        for f in it:                                   # the take: the drops, the beads, the pause
+            if src >= n_ff:
+                break
+            render(i, f); i += 1; src += 1
+        r_last, rh_last, acc_last, seeds = last['ratio'], last['ratio_hi'], acc.copy(), pool.copy()
+        tail = []
+        for f in it:                                   # read on to --end: the final pool's shape and surface
+            src += 1
+            if src > n - 3:
+                tail.append(warp(f))
+            if src >= n:
+                break
+        hi = np.mean(tail, 0)
+        rf_hi, thr_f = noise_floor((hi + 0.01) / (dry_hi + 0.01), 0.03, 3)
+        M = water_mask(rf_hi, thr_f, 25)
+        M = cv2.morphologyEx(M, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (61, 61)))  # seam inlets
+        if a.debubble:
+            rf_hi = debubble(rf_hi, M, ppm_take, hi)
+        Tf = arrival_field(seeds > 0, cv2.dilate(M, np.ones((5, 5), np.uint8)) > 0, dry_hi)
+        Msoft = cv2.GaussianBlur(M.astype(np.float32), (0, 0), 1.5)
+        prev_u = 0.0
+        for j in range(n_flow):
+            tau = (j + 1) / n_flow
+            u = 1.04 * (1 - (1 - tau) ** 2.2) + 0.025 * np.sin(2 * np.pi * 5 * tau) * (1 - tau)
+            u = prev_u = max(prev_u, u)                # surges, never backwards
+            Rv = np.clip((u - Tf) / 0.02, 0, 1)
+            Rv = cv2.GaussianBlur(Rv * Rv * (3 - 2 * Rv), (0, 0), 1.5) * np.maximum(Msoft, (seeds > 0) * 1.0)
+            c = gf.ease(min(1.0, j / 12))              # the bead's surface hands over to the settled pool's
+            r_hi = (1 - c) * rh_last + c * rf_hi
+            front = 4 * Rv * (1 - Rv) * (1 - gf.ease(tau)) * 0.16   # a bright meniscus on the advancing edge
+            ratio_hi_j = 1 + Rv[..., None] * (r_hi - 1) + front[..., None]
+            mm_j = np.maximum(small(Rv), acc_last * (1 - c))
+            render(i, state=(small(ratio_hi_j), ratio_hi_j, mm_j, (Rv > 0.5).astype(np.uint8))); i += 1
+        it = iter(())
     for f in it:
         if src >= n:
             break
@@ -289,7 +407,7 @@ def main():
         render(i); i += 1
     enc.stdin.close()
     enc.wait()
-    print('frames', i - i_start, f'(take {i_start}-{n - 1}, last {n_src} eased to {n_out if buf else 0} + hold {n_hold})'
+    print('frames', i - i_start, f'(take {i_start}-{(n_ff or n) - 1}, flow {n_flow}, last {n_src} eased to {n_out if buf else 0} + hold {n_hold})'
           ' ->', a.out, flush=True)
     if a.check and sheet:
         tiles = [cv2.cvtColor((np.clip(cv2.resize(t, (640, int(640 * t.shape[0] / t.shape[1]))), 0, 1) * 255)
