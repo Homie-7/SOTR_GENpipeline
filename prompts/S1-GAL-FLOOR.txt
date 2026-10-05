@@ -1,21 +1,28 @@
 ID        S1-GAL-FLOOR  (the gallery floor, top-down; Homie 2026-10-05: "we also need a floor version… where the water puddle is")
-VERSION   v1  (2026-10-05)
+VERSION   v2  (2026-10-05, late)  v1 = pale oak planks, take a4ea7b7a (used for the puddle work, now superseded by Homie's note)
+CHANGE    ONE change: the floor's material paragraph -> aged dark oak Versailles parquet (Homie picked option A: the pale oak
+          "gives me a cheap townhouse kind of vibe… a darker floor would help with the glimmer"). FORCED with it: the room-master
+          reference is DROPPED (it carries pale oak; finding 3/5: a reference whose material contradicts the text averages the
+          two). Text-only. Every other paragraph word for word as v1 (diffed).
 SKILL     scenecraft-v1 Plate A (empty), editorial, spherical. docs/FLOOR-PLAN.md rules: floor as floor, top-down,
           orthographic, true scale, no pre-warp; the mapping guy fits it.
 MODEL     Nano Banana Pro (nano_banana_pro) · 21:9 · 2k · batch 4 · IMG
-          21:9 = 2.33, the floor envelope 10,057 x 4,350 mm = 2.31. Top of the picture = upstage (CENTRE wall).
-REFS      1  loc_SOTR_gallery_room_s1-10 (room master, take 56306f43)  media 62b0d82b-5a0a-4d4a-a1e1-016f63a1b124
-             -> the floor's material and colour only (pale oak), NOT the view
-PURPOSE   An evenly lit texture plate. The room's light (pools at the walls' feet, corners) is added by script from
-          the same model as the walls (S1-GAL_room_light_v2), so floor and walls are one space.
-PREDICT   Boards running top to bottom. Risks: a perspective view, a vignette, objects, a rug.
+          21:9 = 2.33 (3168x1344), the floor envelope 10,057 x 4,350 mm = 2.31. Top of the picture = upstage (CENTRE wall).
+          gallery_floor.py covers the 10.06 m width with the plate: ~315 px/m, so a 1 m panel ~315 px, ~10 across, ~4 down.
+REFS      none (text only)
+PURPOSE   An evenly lit texture plate. The room's light (pools at the walls' feet, corners) and the "mostly dark" cap are
+          added by script from the same model as the walls (S1-GAL_room_light_v2), so floor and walls are one space.
+RESULT    a650a2ac CHOSEN (10 x 4, true scale). e60dc032 / 14d53e61 backups, 73c67f9b perspective. Baked laylight glare ->
+          tools/floor_desheen.py --tol 0.02 (LOG 5 Oct late). Homie: "I'm happy with the floor."
+PREDICT   Square Versailles panels in a grid, dark warm brown. Risks: panel scale off (tiny panels or 3-4 across), panels laid
+          on the diagonal, herringbone instead, a perspective view or vignette, glossy varnish highlights.
 
 ----- PROMPT -----
 A perfectly top-down architectural photograph looking straight down onto a wide expanse of gallery floor, the camera high above and pointing vertically down, orthographic and flat, no horizon and no walls anywhere in the frame, the floor filling the whole picture edge to edge.
 
 NO ON-SCREEN TEXT: no captions, no subtitles, no titles, no lower thirds, no watermarks, no logos overlaid on the image, no timecode, no UI or social-media overlays, no borders, no frame labels anywhere in the image.
 
-The floor carries the material of the attached image's floor: long planks of pale oiled oak, each about eighteen centimetres wide, running straight from the top edge of the picture to the bottom edge, butt joints staggered, a soft satin finish with the fine open grain of oak, faint scuffs from visitors' shoes, clean and well kept. The attached image carries only the floor's wood and colour, not its view. The floor is completely bare and empty.
+The floor is aged dark oak parquet de Versailles, the classic floor of the great Paris palace and museum galleries: large square panels about one metre across, each a woven lattice of short oak strips framed by a border of straight strips, the panels laid square to the edges of the picture in a regular grid, about ten panels across the width of the picture and four down. The oak is a deep warm brown darkened by two centuries of wax, with subtle variation from strip to strip and the fine open grain of oak, a soft low satin finish, worn evenly smooth, clean and well kept. The floor is completely bare and empty.
 
 Soft, perfectly even, neutral daylight falls from directly above across the whole floor, the same brightness at every edge and in the middle, the satin finish taking a faint even sheen.
 

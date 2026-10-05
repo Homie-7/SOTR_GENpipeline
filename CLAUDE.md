@@ -171,6 +171,16 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-05, late (IMG, MacBook): THE NEW GALLERY FLOOR = dark oak Versailles parquet (a650a2ac). 8 cr.
+
+- Homie picked option A; "I'm happy with the floor". His worry, the baked reflections, is handled by new `tools/floor_desheen.py`
+  (glare subtracted; the plate every tool builds from is `floor/S1-GAL-FLOOR_v2_a650a2ac_desheen.png`). The drawn spill reads on
+  dark oak by its reflections (`gallery_floor.py --wet-gain 2.5`). The Seedance patch is recut from it (`05_REFERENCE_UPLOADS/`).
+- **The drawn VANISH rebuilt and APPROVED** (Homie: v1's even shrink was "a cheap animation scaling back"; v2 "Yep, I like it"):
+  `gallery_floor.py --vanish dewet --vanish-s 3.5` (frays, holes, islands, a damp ghost). The teal glimmer stays on the RETURN only.
+- **Homie: keep enough credits for ALL the gallery's video generations and upscales** (+ 500 at the week's end).
+- **Next (docs/NEW-SESSION.md): VID, the puddle returns on the new floor; then POST, the gallery show files.**
+
 ### 2026-10-05, evening (VID, MacBook): THE PUDDLE RETURN tried 3 ways; Homie's TEAL EDGE GLIMMER (script) OK'd. 276 cr.
 
 - Generated water on a close floor patch, composited by new `tools/puddle_comp.py`. v2's drops read as rain and v3's whole-pool

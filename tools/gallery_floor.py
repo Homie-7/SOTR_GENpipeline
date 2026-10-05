@@ -44,7 +44,7 @@ def save(a, p):
 
 
 class Floor:
-    def __init__(self, dry, size, pad_m=0.35, seed=4):
+    def __init__(self, dry, size, pad_m=0.35, seed=4, wet_gain=1.0):
         self.W, self.H = size
         self.ppm = self.W / ENV_W
         self.eh = int(round(ENV_H * self.ppm))
@@ -53,6 +53,7 @@ class Floor:
         self.x_m = (xx + 0.5) / self.ppm - ENV_W / 2       # metres from the centre line
         self.d_m = (yy + 0.5 - self.y0) / self.ppm          # metres downstage from the CENTRE wall
         self.rng = np.random.default_rng(seed)
+        self.wet_gain = wet_gain             # the water's reflections (laylight panes, sheen, meniscus line); 1 = pale oak v1
         self.dry = self._fit(dry)
         self.wedge = self._wedge(pad_m)
         self.light = self._light()
@@ -126,10 +127,12 @@ class Floor:
         dout = cv2.distanceTransform(1 - inside, cv2.DIST_L2, 5) / self.ppm
         return cv2.GaussianBlur((din - dout).astype(np.float32), (0, 0), 1.0)
 
-    def water(self, level, t=0.0, loop=10.0):
+    def water(self, level, t=0.0, loop=10.0, s=None, ghost=None, thin=0.0):
         """level: metres the waterline has moved IN from the rim (0 = the full spill; grows to dry it away).
+        s / ghost / thin: the dewetting vanish (see dewet()) passes its own waterline field, damp ghost and thinning.
         Returns (alpha, look-multiplier, look-add) for thin water on the lit oak."""
-        s = self.sd - level
+        if s is None:
+            s = self.sd - level
         a = np.clip(s / 0.004 + 0.5, 0, 1)                         # the water's footprint, crisp
         rim = np.exp(-np.maximum(s, 0) / 0.010) * a                 # meniscus band just inside the edge
         ph = 2 * np.pi * t / loop
@@ -142,23 +145,57 @@ class Floor:
         gy = np.abs(((self.d_m + 0.3 + 0.02 * shimmer) / pane) % 1 - 0.5) * 2
         panes = np.clip((0.92 - np.maximum(gx, gy)) / 0.18, 0, 1)
         mul = 1 - a * 0.07 - rim * 0.28
-        add = ((sheen * 0.08 + panes * 0.04) * a + hl * 0.12)[..., None] * np.float32([0.97, 1.0, 1.03])
-        damp = np.clip(1 - np.maximum(-s, 0) / 0.05, 0, 1) * (level > 0)   # a faint damp ghost where it has dried
-        mul = mul - damp * (1 - a) * 0.04
+        add = ((sheen * 0.08 + panes * 0.04) * a * (1 - 0.5 * thin) + hl * 0.12)[..., None] \
+            * np.float32([0.97, 1.0, 1.03]) * self.wet_gain
+        if ghost is None:
+            damp = np.clip(1 - np.maximum(-s, 0) / 0.05, 0, 1) * (level > 0)   # a faint damp ghost where it has dried
+            mul = mul - damp * (1 - a) * 0.04
+        else:
+            mul = mul - ghost * (1 - a) * 0.22                                  # wet wood, darker, drying off
         return a, mul[..., None], add
+
+    def dewet(self, p, ghost_m=0.08):
+        """THE VANISH, v2 (Homie 2026-10-05: the rim-inward vanish "looks like a cheap animation scaling back").
+        Real thin water doesn't shrink evenly: it DEWETS. The outline frays where the film is thinnest, dry holes punch
+        through the shallow middle, the pool breaks into islands, the last beads go, and the wood stays dark and damp
+        for a moment where each part has just dried. p: 0 (the full spill, identical to SPILL) .. 1 (dry floor).
+        Returns (s, ghost, thin) for water()."""
+        if not hasattr(self, '_dw'):
+            rng = np.random.default_rng(11)
+            def field(sig_m):
+                f = cv2.GaussianBlur(rng.standard_normal(self.sd.shape).astype(np.float32), (0, 0), self.ppm * sig_m)
+                return f / (f.std() + 1e-6)
+            n = 0.75 * field(0.20) + 0.45 * field(0.06)          # big shallow areas + a fine fray
+            n = np.clip(n / 1.6, -1, 1)
+            h = np.minimum(self.sd, 0.025) + 0.08 * (n + 1)      # the film's "height above drying": a flat spill is about
+            #                                                       equally thin everywhere, so thin spots open all over at once
+            self._dw = np.minimum(self.sd, h)                    # >= 0 inside the spill; at p = 0, s = this (= SPILL)
+            self._dw_end = float(self._dw.max()) + ghost_m + 0.01
+        thr = self._dw_end * p
+        s = np.where(self.sd > 0, self._dw, self.sd) - thr     # the soft edge outside the outline dries too
+        inside = np.clip(self.sd / 0.003 + 0.5, 0, 1)            # the spill's own footprint (the ghost lives there)
+        dried = np.clip(thr - self._dw, 0, None)
+        ghost = np.clip(1 - dried / ghost_m, 0, 1) * (thr > self._dw) * inside
+        return s, ghost, p
 
     # ------------------------------------------------------------------ pictures
     def base(self, level=0.72):
         """Floor brightness capped below the walls (FLOOR-PLAN: mostly dark, capped)."""
         return level
 
-    def lit(self, level=None, glow=0.0, t=0.0, loop=10.0, dark=False):
-        """level: None = dry floor, else the waterline (see water()); glow 0..1; dark = the blackout."""
+    def lit(self, level=None, glow=0.0, t=0.0, loop=10.0, dark=False, dewet=None):
+        """level: None = dry floor, else the waterline (see water()); glow 0..1; dark = the blackout.
+        dewet: 0..1, the dewetting vanish instead of a level (see dewet())."""
         fl = self.dry
         img = fl * self.base() * (0.035 * np.float32([0.8, 0.9, 1.0]) if dark else self.light)
-        if level is None:
+        if level is None and dewet is None:
             return np.clip(img, 0, 1) * self.wedge
-        a, mul, add = self.water(level, t, loop)
+        if dewet is not None:
+            s, ghost, thin = self.dewet(dewet)
+            level = 0.0
+            a, mul, add = self.water(0.0, t, loop, s=s, ghost=ghost, thin=thin)
+        else:
+            a, mul, add = self.water(level, t, loop)
         img = img * mul + (0 if dark else add * self.base())
         if glow > 0:
             img = img + self._glow(t, loop, level) * glow * a[..., None]
@@ -207,10 +244,15 @@ def main():
     ap.add_argument('--loop', type=float, default=10.0)
     ap.add_argument('--stills', action='store_true')
     ap.add_argument('--clips', action='store_true')
+    ap.add_argument('--vanish', choices=['erode', 'dewet'], default='erode',
+                    help='erode = v1 (the waterline moves in evenly); dewet = v2 (frays, holes, islands, a damp ghost)')
+    ap.add_argument('--vanish-s', type=float, default=3.0, help='length of the vanish, seconds')
+    ap.add_argument('--wet-gain', type=float, default=1.0,
+                    help='strength of the water\'s reflections; 1 = pale oak v1. A dark floor shows water by its mirror of the laylight')
     a = ap.parse_args()
     size = tuple(map(int, a.size.split('x')))
     os.makedirs(a.outdir, exist_ok=True)
-    F = Floor(load(a.dry), size)
+    F = Floor(load(a.dry), size, wet_gain=a.wet_gain)
     tag = f'{size[0]}x{size[1]}'
     if a.stills:
         save(F.lit(None), f'{a.outdir}/S1-GAL-FLOOR_DRY_{tag}.png')
@@ -222,14 +264,17 @@ def main():
         fps, L = 24, a.loop
         n_loop = int(round(L * fps))
         deep = float(F.sd.max()) + 0.01
-        def vanish(i):   # 3 s: it dries from the rim inward and is gone
-            k = ease(i / (3 * fps - 1))
+        nv = int(round(a.vanish_s * fps))
+        def vanish(i):   # erode: it dries from the rim inward and is gone; dewet: it breaks up and dries off (v2)
+            k = ease(i / (nv - 1))
+            if a.vanish == 'dewet':
+                return F.lit(dewet=i / (nv - 1), t=i / fps, loop=L)
             return F.lit(k * deep, t=i / fps, loop=L)
         def ret(i):      # 4 s: it wells up from the centre outward, glowing as it comes
             k = ease(i / (4 * fps - 1))
             return F.lit((1 - k) * deep, glow=ease(k * 1.4), t=i / fps, loop=L)
         jobs = [('SPILL_HOLD', lambda i: F.lit(0.0, t=i / fps, loop=L), n_loop),
-                ('VANISH', vanish, 3 * fps),
+                ('VANISH', vanish, nv),
                 ('RETURN_GLOW', ret, 4 * fps),
                 ('GLOW-LIT_LOOP', lambda i: F.lit(0.0, glow=1.0, t=(i + 4 * fps) / fps, loop=L), n_loop),
                 ('GLOW-DARK_LOOP', lambda i: F.lit(0.0, glow=1.0, t=(i + 4 * fps) / fps, loop=L, dark=True), n_loop),

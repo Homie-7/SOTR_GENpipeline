@@ -858,6 +858,12 @@ supposed to be clean and modern." Centre = the Raft, portraits on LEFT/RIGHT con
   portal has glowing edges, but… subtle"; "Teal is preferable. We don't want something warmer"), by script (`puddle_comp.py
   --glimmer`): it rises as the pool reaches size, then travels slowly round the rim through the hold and the blackout (where it is
   the only light). The whole-pool teal glow (v3) is rejected ("definitely not cutting it"); v2's rain of drops is rejected.
+- **THE FLOOR, v2 (Homie picked it, 2026-10-05 late): aged dark oak parquet de Versailles**, ~1 m panels square to the stage
+  (10 across the envelope), deep waxed brown; the baked glare taken out by script (`floor_desheen.py`) so it carries only the
+  room's light. Homie: "I'm happy with the floor… I don't mind how it looks." The drawn spill reads on it by its reflections
+  (`--wet-gain 2.5`), not by darkening. Supersedes the pale oak bullet above and the note below.
+  **The vanish (v2, APPROVED by Homie 2026-10-05):** thin water dewets: the outline frays, holes open, islands and beads dry off, the wood stays damp
+  and dark a moment where it has just dried (v1's even rim-inward shrink was "a cheap animation scaling back").
 - **THE FLOOR WILL CHANGE (Homie, 2026-10-05): the pale oak "gives me a cheap townhouse kind of vibe"; darker wanted** (it also
   helps the glimmer). Claude's recommendation, NOT yet decided: aged dark oak parquet (Versailles panels or herringbone), as the
   Louvre's painting galleries; it also suits FLOOR-PLAN's "mostly dark". The script says nothing about the floor.

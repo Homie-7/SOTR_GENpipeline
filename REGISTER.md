@@ -270,7 +270,25 @@ Nothing approved by Homie yet; tags are assigned on approval.
 | `floor/S1-GAL-PUDDLE_v1_*`, `_v2_*` | NBP spill edits | not used (LOG) |
 | `finished/floor_v1/S1-GAL-FLOOR_<DRY,SPILL,GLOW-LIT,GLOW-DARK>_1920x1080.png` + `_<SPILL_HOLD,VANISH,RETURN_GLOW,GLOW-LIT_LOOP,GLOW-DARK_LOOP,DRY_HOLD>_1920x1080.mov` | the floor and the puddle's beats (`gallery_floor.py`), ProRes 422 HQ, 24 fps, silent | **candidate**; RETURN_GLOW rejected (Homie: cheap) -> generated next session |
 
-## 2026-10-05 (evening, VID, MacBook) · S1-GAL-PUDDLE-RETURN: the puddle returns, generated + the scripted teal edge glimmer
+## 2026-10-05 (late, IMG, MacBook) · S1-GAL-FLOOR v2: the dark Versailles parquet (Homie picked option A)
+
+Homie: "I'm happy with the floor, I'm just concerned that the reflections on the floor might be problematic. If you think you
+can work with them, then it's all good." Prompt `prompts/S1-GAL-FLOOR.txt` v2 (text only). 8 credits. T9 is the master.
+
+| Path (`04_WORKING_FILES/S1_gallery/…` unless noted) | What | Status |
+|---|---|---|
+| `floor/S1-GAL-FLOOR_v2_a650a2ac.png` (8645ce87…) | the NBP take: aged dark oak parquet de Versailles, 10 x 4 panels (~1 m, true scale), 3168x1344 | **chosen** (Homie happy; generated source, never modified) |
+| `floor/S1-GAL-FLOOR_v2_a650a2ac_desheen.png` (71b3206d…) | the same, broad falloff flattened + baked laylight glare subtracted (`tools/floor_desheen.py --tol 0.02`) | **THE FLOOR PLATE every tool builds from** |
+| `floor/S1-GAL-FLOOR_v2_e60dc032.png`, `_14d53e61.png` | backups (e60: same scale, softer; 14d: panels ~1.4 m) | not used |
+| `floor/S1-GAL-FLOOR_v2_73c67f9b.png` | perspective view | rejected |
+| `floor/v2_review/` | raw 4-take sheet + walls-over-floor previews per take | review |
+| `finished/floor_v2/S1-GAL-FLOOR_<DRY,SPILL>_1920x1080.png` + `_<DRY_HOLD,SPILL_HOLD,VANISH>_1920x1080.mov` | the floor + the drawn spill / vanish (`gallery_floor.py --wet-gain 2.5`), ProRes 422 HQ 24 fps, silent | **candidate** (the drawn glow clips NOT rendered here: rejected) |
+| `finished/floor_v2/S1-GAL-FLOOR_VANISH_1920x1080.mov` (7ac6eb0f…) + `_VANISH_REVIEW_spill-vanish-dry_full+zoom.mp4` | **VANISH v2, dewetting** (`--vanish dewet --vanish-s 3.5`): frays, holes, islands, a damp ghost; 3.5 s, ends = DRY | **APPROVED 2026-10-05** (Homie: "I like it"; v1 "cheap animation scaling back" -> `floor_v2/superseded/S1-GAL-FLOOR_VANISH_v1erode_1920x1080.mov`) |
+| `finished/S1-GAL_REVIEW_walls+floor_v2_SPILL.jpg` | LIT walls over the new floor with the spill | review |
+| `05_REFERENCE_UPLOADS/S1-GAL-PUDDLE-RETURN_ref_patch_v2floor_1920x1080.png` (7761cdc1…) + `patch_geom_v2floor.json` (+ `_patch_native_v2floor.png`) | the Seedance patch recut from the de-sheened plate, SAME geometry as v1 (crop 1120,48 928x522, Lanczos to 1920x1080) | **reference for the VID puddle**, not yet uploaded to Higgsfield |
+| `floor/S1-GAL-FLOOR_v1_a4ea7b7a.png`, `finished/floor_v1/`, `05_REFERENCE_UPLOADS/…ref_patch_1920x1080.png` + `patch_geom.json` | the pale oak floor and its patch | **superseded** by v2 (kept) |
+
+: the puddle returns, generated + the scripted teal edge glimmer
 
 All in T9 `SOTR_MEDIA/04_WORKING_FILES/S1_gallery/puddle_return/` (the T9 is the master for S1_gallery; copy to D: + sha256 on the PC).
 Prompt: `prompts/S1-GAL-PUDDLE-RETURN.txt` (v3 on top, v2 and v1 commented). 276 credits.

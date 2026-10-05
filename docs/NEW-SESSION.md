@@ -22,29 +22,34 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (5 Oct, late): SCENES 1+10, THREE JOBS, ONE MODE PER SESSION. Homie: "the gallery takes precedence";
-his order: the new floor first, then the water. Ask which; recommend 1.
-1. IMG — A NEW GALLERY FLOOR. Homie: the pale oak "gives me a cheap townhouse kind of vibe… a darker floor would help with the
-   glimmer". The script says nothing about the floor. Claude's recommendation (NOT decided, show Homie options): aged dark oak
-   parquet, Versailles panels or herringbone (the Louvre's painting galleries), top-down at true scale, same as S1-GAL-FLOOR v1's
-   route (prompts/S1-GAL-FLOOR.txt, NBP 21:9 2k x4 ~8 cr, ref = room master for material only). Then gallery_floor.py on it
-   (DRY / SPILL / VANISH stills + clips), FLOOR-PLAN's "mostly dark" cap.
+THE TASK, RIGHT NOW (5 Oct, latest): SCENES 1+10. THE FLOOR IS DONE (IMG, 8 cr). TWO JOBS LEFT, ONE MODE PER SESSION.
+Homie: "the gallery takes precedence". Ask which; recommend 2 (the water), then 3.
+1. DONE — THE NEW FLOOR: aged dark oak parquet de Versailles, take a650a2ac (Homie: "I'm happy with the floor"). His worry was the
+   REFLECTIONS: the takes had the laylight's glare baked in; tools/floor_desheen.py subtracts it (--tol 0.02) ->
+   floor/S1-GAL-FLOOR_v2_a650a2ac_desheen.png = THE plate every tool builds from (--dry). The drawn spill on dark oak reads by its
+   reflections: gallery_floor.py --wet-gain 2.5. DRY/SPILL/VANISH in finished/floor_v2/. VANISH v2 = --vanish dewet --vanish-s 3.5
+   (Homie: v1's even shrink was "a cheap animation scaling back"; v2 frays, breaks into islands, leaves a damp ghost): APPROVED ("Yep, I like it")
+   (review: finished/floor_v2/S1-GAL-FLOOR_VANISH_REVIEW_spill-vanish-dry_full+zoom.mp4). The floor is now ~1/3 of v1's brightness.
 2. VID — THE PUDDLE RETURNS (S1-GAL-PUDDLE-RETURN, prompts/ file has v1-v3 + results; LOG 5 Oct). AGREED WITH HOMIE: the script
    has NO drops ("The water disappears. Then it mysteriously returns, glowing", mid-dialogue) and v2's drops read as RAIN, too
    busy for sound: so 2-3 drops, a pause, then the water WELLS UP BY ITSELF to the spill's size (~1.5 x 0.9 m), STOPS, lies still.
-   Route that worked: a 3.0 x 1.69 m patch of the floor plate centred on the spill (x 0, 1.0 m from CENTRE; recut it from the NEW
-   floor, same geometry, patch_geom.json), Seedance 2.5 References 16:9 1080p, probe 4 s (48) then ~10 s (120); the model keeps
+   THE PATCH IS READY: 05_REFERENCE_UPLOADS/S1-GAL-PUDDLE-RETURN_ref_patch_v2floor_1920x1080.png (sha 7761cdc1…) +
+   patch_geom_v2floor.json (same 3.0 x 1.69 m geometry, centred x 0, 1.0 m from CENTRE; NOT yet uploaded to Higgsfield: upload it,
+   the old media beb40508 is the pale oak). Seedance 2.5 References 16:9 1080p, probe 4 s (48) then ~10 s (120); the model keeps
    SPREADING past what is asked (v2, v3): end the take when the pool reaches size (--end) and HOLD the last frame (--hold).
+   Dark oak = new risk: the water reads by REFLECTION here, not darkening; puddle_comp measures the water vs the take's OWN dry
+   frames, so check its pool mask still finds the waterline on dark wood (it was tuned on pale oak).
    THE GLOW = Homie's teal EDGE GLIMMER by script, OK'd ("I think it's fine"): tools/puddle_comp.py --glimmer (lit gain 0.55,
-   --dark 1.1, --loop 8). Whole-pool glow (v3, a Sequel) REJECTED: "not cutting it". puddle_comp measures the water vs the take's
-   OWN dry frames, so a take that redraws the floor still lands right (identity warp). Server offers the "3D RENDER" preset:
-   declined_preset_id 5a77643c-b6cc-4efd-bdc6-ab8ff48dfa82.
+   --dark 1.1, --loop 8), --dry = the de-sheened v2 plate. Whole-pool glow (v3, a Sequel) REJECTED. Server offers the "3D RENDER"
+   preset: declined_preset_id 5a77643c-b6cc-4efd-bdc6-ab8ff48dfa82.
 3. POST — THE GALLERY SHOW FILES (0 cr, script): the three walls (LIT v2 / DARK v1) as finished files like Scene 9's: the tour
    hold, the blackout bank by bank, the DARK hold (CENTRE foot: the puddle's teal now = the edge glimmer's faint light), Scene
    10's "Light is suddenly restored"; + the floor files from 1 and 2. Nothing in the show folder yet; no upscales unless asked.
-STATE: all S1 media on the T9 (master): 04_WORKING_FILES/S1_gallery/ (finished/, floor/, puddle_return/). Credits: 276 spent
-5 Oct evening, balance 1,867.49; LEAVE 500 AT THE END OF THE WEEK. Mac: pip --target <scratch>/py numpy pillow opencv-python-headless
-(+ pypdf to read the script PDF: ~/Documents/SOTR/2026 RMIT Dev 'Secret of the Raft' Workhop Draft V1.pdf); symlink the T9.
+STATE: all S1 media on the T9 (master): 04_WORKING_FILES/S1_gallery/ (finished/, floor/, puddle_return/). Credits: 8 spent
+5 Oct late (IMG), balance ~1,859. CREDITS (Homie): keep enough for ALL the gallery's video generations AND upscales, and LEAVE
+500 AT THE END OF THE WEEK. Mac: pip --target <scratch>/py numpy pillow opencv-python-headless
+(+ pypdf to read the script PDF: ~/Documents/SOTR/2026 RMIT Dev 'Secret of the Raft' Workhop Draft V1.pdf); the T9 mounts at
+/Volumes/DMD T9 (media under SOTR/HF/SOTR_MEDIA).
 The surprise scene (Scene 8, IMG) is parked behind these.
 
 WHERE IT LIVES (D:\SOTR\SOTR_MEDIA = C:\Users\Homie\Documents\SOTR_MEDIA, a junction; README.txt is the map):

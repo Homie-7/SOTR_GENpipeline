@@ -207,8 +207,8 @@ apply; only the paintings are period. `LOOK.md` → "Scenes 1 + 10". **ID scheme
 | S1-GAL-*-DARK | Blackout state: lights off, faint emergency glow, so Amina's real torch reads | NBP edit (text only, finding 4a) | the lit walls | — |
 | S1-GAL-FLOOR | The oak floor, top-down, in the room light (FLOOR-PLAN.md) | NBP plate + `gallery_floor.py` | room light | **v1 rendering** |
 | S1-GAL-PUDDLE | The spill -> vanish -> returns glowing -> glows in the blackout (the script's beats); Scene 10 dry | `gallery_floor.py` (drawn) | the floor | SPILL/VANISH v1 fine; RETURN_GLOW rejected |
-| S1-GAL-PUDDLE-RETURN | The return, hyper-real: 2-3 drops, then it wells up by itself, stops, lies still; a teal glimmer on the waterline (lit + blackout) | Seedance (patch) + `puddle_comp.py --glimmer` | the NEW floor plate | v1-v3 tried (LOG); glimmer OK'd; **water to regenerate on the new floor** |
-| S1-GAL-FLOOR v2 | A darker, grander gallery floor (rec.: aged dark oak parquet) | NBP (IMG) | Homie's pick | **next session** |
+| S1-GAL-PUDDLE-RETURN | The return, hyper-real: 2-3 drops, then it wells up by itself, stops, lies still; a teal glimmer on the waterline (lit + blackout) | Seedance (patch) + `puddle_comp.py --glimmer` | the NEW floor plate | v1-v3 tried (LOG); glimmer OK'd; **water to regenerate on the new floor: patch ready (`05_REFERENCE_UPLOADS/…_ref_patch_v2floor_1920x1080.png`), next session (VID)** |
+| S1-GAL-FLOOR v2 | Aged dark oak parquet de Versailles (Homie picked A) | NBP (IMG) + `floor_desheen.py` + `gallery_floor.py --wet-gain 2.5` | — | **done 2026-10-05**: a650a2ac; DRY/SPILL/VANISH in `finished/floor_v2/` |
 | (later, optional) | The puddle's teal light on the foot of CENTRE in the dark; the red alarm pulse | script or VID | DARK | not asked |
 | (script) | Lights cut out bank by bank (S1 blackout); "light suddenly restored" (S10) | script, 0 cr | LIT + DARK | — |
 | (existing) | The Raft melts into the sea (2022 render, start of Scene 2). Source file not found on the T9 or the Mac; only inside `T9/Private/Export/LH_Pitchwmelt.mp4` (~0:41-0:52). Ask Homie | — | — | **open** |
