@@ -22,8 +22,8 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (5 Oct, latest): SCENES 1+10 BUILT, AWAITING HOMIE'S REVIEW, THEN FILE MANAGEMENT (he: "we'll do file management later").
-1. FOR REVIEW — THE GALLERY SHOW FILES (REGISTER 5 Oct latest, LOG): 04_WORKING_FILES/S1_gallery/3_SHOW_FILES_1080_for_review/
+THE TASK, RIGHT NOW (5 Oct, latest): SCENES 1+10 APPROVED (Homie: "we can call it finished"). NEXT = FILE MANAGEMENT (POST): promote.
+1. APPROVED — THE GALLERY SHOW FILES (REGISTER 5 Oct latest, LOG): 04_WORKING_FILES/S1_gallery/3_SHOW_FILES_1080_for_review/
    (review clip S1-GAL_REVIEW_tour-blackout-restored_3walls.mp4). LIT v3 = paintings RE-HUNG centred (gallery_rehang.py; seam
    1_READY_for_show_build/walls/S1-GAL_LIT_v3_SEAM_4680x1080.png). Homie chose 1080 full length (tour 15:00, blackout+dark
    5:00, S10 5:00) + 4K 32 s LIT/DARK hold loops. On approval: promote into 01_FINAL_FOR_SHOW (1_PLAY_THESE_IN_ORDER = the

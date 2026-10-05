@@ -272,6 +272,10 @@ Nothing approved by Homie yet; tags are assigned on approval.
 
 ## 2026-10-05 (latest, POST, MacBook) · THE GALLERY SHOW FILES (Scenes 1 + 10): paintings re-hung, 1080 full length, 4K loops; the puddle FLOW
 
+**APPROVED by Homie (5 Oct, evening): "I guess we can call it finished… I don't see any issues in terms of how it looks. I like
+how it looks when the lights are off."** The walls + show files below are approved; promotion into 01_FINAL_FOR_SHOW is next
+(file management). The puddle flow's verdict to be confirmed (floor projector unconfirmed).
+
 Homie: "the gallery scene is imperative… finish it today… paintings nice and centered on all sides"; "full length at 1080
 only" (asked; 4K only as backup hold loops); puddle notes: flow outwards (not a blob scaling), no bubbles, shimmer earlier.
 Credits: 6 (3 ByteDance image upscales at 2; CENTRE failed once, refunded, re-run). All on the T9; sha256 in
@@ -280,7 +284,7 @@ management later).
 
 | Path (`04_WORKING_FILES/S1_gallery/…`) | What | Status |
 |---|---|---|
-| `1_READY_for_show_build/walls/S1-GAL-<L,C,R>_LIT_v3_{native,1440x1080/1800x1080,2880x2160/3600x2160}.png` + `_frames_*.json` + `S1-GAL_LIT_v3_SEAM_4680x1080.png` | **LIT v3: RE-HUNG** (`tools/gallery_rehang.py` on the LIT v2 natives): Raft centred (moved 8.8 cm left), Napoléon centred (6.0 cm right) on a 1.61 m centre line, the LEFT pair centred as a group with Marie-Antoinette raised 11.1 cm onto the same line. Plaster rebuilt with the room-light model (no-move rebuild = v2 to 0.0004 mean); old spots refilled with plain plaster grain (a plate ledge 43 px under the old Marie-Antoinette removed with it). 4K: gilt + paintings from the upscale (matches 1080; a source re-pin was tried: different crop, dropped) | **candidate, for Homie** (supersedes LIT v2 on approval) |
+| `1_READY_for_show_build/walls/S1-GAL-<L,C,R>_LIT_v3_{native,1440x1080/1800x1080,2880x2160/3600x2160}.png` + `_frames_*.json` + `S1-GAL_LIT_v3_SEAM_4680x1080.png` | **LIT v3: RE-HUNG** (`tools/gallery_rehang.py` on the LIT v2 natives): Raft centred (moved 8.8 cm left), Napoléon centred (6.0 cm right) on a 1.61 m centre line, the LEFT pair centred as a group with Marie-Antoinette raised 11.1 cm onto the same line. Plaster rebuilt with the room-light model (no-move rebuild = v2 to 0.0004 mean); old spots refilled with plain plaster grain (a plate ledge 43 px under the old Marie-Antoinette removed with it). 4K: gilt + paintings from the upscale (matches 1080; a source re-pin was tried: different crop, dropped) | **APPROVED 2026-10-05** (supersedes LIT v2) |
 | `1_READY_for_show_build/walls/S1-GAL-<L,C,R>_DARK_v3_*` + `S1-GAL_DARK_v3_SEAM_4680x1080.png` | blackout walls from LIT v3 (`gallery_dark.py`, 5% / paintings 11%, CENTRE's puddle teal at its foot) | **candidate** |
 | `1_READY_for_show_build/walls/upscale_4k/S1-GAL-<L,C,R>_LIT_v2_native_UP4K.png` | ByteDance 4k upscales of the v2 natives (4096 wide), sources of the 4K walls | source |
 | `3_SHOW_FILES_1080_for_review/S1_a_<WALL>_gallery.mov` | Scene 1 tour, LIT held **15:00** (script ~11 min, the operator cuts at "Pas de flash ici!") | **candidate** |

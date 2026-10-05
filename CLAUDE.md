@@ -171,7 +171,7 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-10-05, latest (POST, MacBook): THE GALLERY SHOW FILES BUILT (1080 full length + 4K loops), paintings re-hung. 6 cr.
+### 2026-10-05, latest (POST, MacBook): THE GALLERY SHOW FILES APPROVED (Homie: "we can call it finished"). Next: promote them. 6 cr.
 
 - Homie: paintings centred on every wall (`tools/gallery_rehang.py`, LIT/DARK v3); "full length at 1080 only", 4K as 32 s
   backup loops (`tools/gallery_show.py`: tour 15:00, blackout bank by bank + dark 5:00, S10 5:00). In
