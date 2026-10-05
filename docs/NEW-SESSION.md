@@ -25,12 +25,17 @@ walls as walls at true scale, no people in any plate, nothing newer than the sce
 THE TASK, RIGHT NOW (5 Oct, evening, IMG, MacBook): THE SHIP SEQUENCE (Sc 7-8), a side quest APPROVED by Homie: "make
 the calls and go ahead". READ docs/PLAN-SHIP-INTRO.md FIRST (sources, Sahaj's notes decoded, designed-for-destruction,
 Sahaj's angle, credits). Higgsfield credits EXPIRE 6 Oct: spend them today, one job at a time, no waste.
-STATE: S7-SHIP-ROOM v1 rejected (two masts); v2 (one foremast, bow close; prompts/S7-SHIP-ROOM.txt) and S7-INTRO-F1 v1
-(the gull + the Medusa; prompts/S7-INTRO-F1.txt) were QUEUED at Higgsfield: jobs f5180ed8, 20f01ff7, 33dc1d0a, 0aebdf8a
-(ROOM v2) and 30c3d773, 1714a32e, 66ad98e8, 450ae830 (F1). Collect with jobs_wait, download with tools/fetch.py to
-T9 04_WORKING_FILES/S7_ship/1_deck_master/ (and 2_intro/). Fallback master = v1 take 087f71a5 (one mast).
-NEXT: pick the master -> Homie's look check -> walls from ONE plate (tools/ship_walls.py; outpaint sideways if keeping the
-full height) -> layers (tools/ship_layers.py) -> VID session: the intro flight, sea loops, the mast falls, the rowboats.
+STATE (updated as work goes): v1 rejected (two masts). v2 DONE: 4 takes in T9 04_WORKING_FILES/S7_ship/1_deck_master/;
+CHOSEN (Claude) = S7-SHIP-ROOM_v2_f5180ed8 (one foremast, bow closest, both sides big). INTRO-F1 v1 DONE: 3 takes in 2_intro/
+(the 4th, 66ad98e8, was still rendering); CHOSEN = S7-INTRO-F1_v1_1714a32e (the Medusa dead centre on the horizon). The gull
+CHECKED = goeland argente (Larus argentatus), the lead species of Homie's link: every field mark right (Homie: "imperative").
+Homie's notes 5 Oct: VOLUMETRIC HAZE in the distance, real physics, the ship NOT so clear from beside the bird, DOF; IN POST
+(credits precious): tools/aerial_haze.py (Koschmieder haze by true sea distance + thin-lens DOF, gull kept sharp), applied to
+the START FRAME before the video. Sahaj's angle seen (Desktop/VID-20261005-WA0016.mp4): ONE continuous camera across the
+three walls -> walls are CUT FROM ONE PLATE (tools/ship_walls.py), outpaint sideways to keep the full height.
+Night-shift auto-resume: blocked by the safety check; Homie restarts the session himself from THIS file.
+NEXT: haze/DOF on F1 -> walls from the master (+ outpaint) -> layers -> VID (fresh session): intro flight 4 s probe, then the
+take; sea loops; the foremast falls forward; the rowboats + snap. Then 4K of what's approved. Everything per PLAN-SHIP-INTRO.
 Credits spent this session: 24 (all NBP). Mac kept awake by caffeinate.
 
 PREVIOUS (5 Oct, latest): SCENES 1+10 DONE AND IN 01_FINAL_FOR_SHOW. 01 IS THE COMPLETE CLIENT UPLOAD (S1, S4, S5, S6, S9, S10).
