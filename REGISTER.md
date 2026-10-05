@@ -270,6 +270,30 @@ Nothing approved by Homie yet; tags are assigned on approval.
 | `floor/S1-GAL-PUDDLE_v1_*`, `_v2_*` | NBP spill edits | not used (LOG) |
 | `finished/floor_v1/S1-GAL-FLOOR_<DRY,SPILL,GLOW-LIT,GLOW-DARK>_1920x1080.png` + `_<SPILL_HOLD,VANISH,RETURN_GLOW,GLOW-LIT_LOOP,GLOW-DARK_LOOP,DRY_HOLD>_1920x1080.mov` | the floor and the puddle's beats (`gallery_floor.py`), ProRes 422 HQ, 24 fps, silent | **candidate**; RETURN_GLOW rejected (Homie: cheap) -> generated next session |
 
+## 2026-10-05 (latest) · HANDOVER REORG: Scenes 4 + 5 into the show folder; the gallery split ready / in progress
+
+Homie: "put all the relevant files in production ready… I'm not sure which one is which". His calls: all approved scenes
+into `01_FINAL_FOR_SHOW` now (the gallery when built); Scene 5 Rich dusk plays, Cold dusk = a client option. 88 + 2
+renames on the T9 (`tools/reorg_2026-10-05.py`; log `T9/SOTR/HF/REORG_2026-10-05_moves.tsv`), size-checked. **Older rows
+below quote the old paths; this table is the map.** The PC must run the same script on D: (Scenes 4/5), then copy the
+gallery over from the T9 in its new layout (sha256).
+
+| New path (`SOTR_MEDIA/…`) | Was (`04_WORKING_FILES/…`) | What | Status |
+|---|---|---|---|
+| `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S4_<LEFT,CENTRE,RIGHT>_alps.mov` | `S4_alps_grade_v2/A4_matched/S4_alps_<left,front,right>.mov` | Scene 4, A4 grade, 1920x1080 ProRes HQ 29.97, 2:53, sound | **IN THE SHOW** |
+| `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S5_<LEFT,CENTRE,RIGHT>_camps.mov` | `S5_battlefield_grade/S5_PRIMARY_rich_dusk/S5_camps_<a>.mov` | Scene 5 rich dusk, 1920x1080 ProRes HQ 25, 7:11, sound | **IN THE SHOW** |
+| `01_FINAL_FOR_SHOW/4_CLIENT_OPTION_S5_cold_dusk/S5_<WALL>_camps_cold-dusk.mov` (4, incl. FLOOR) | `S5_battlefield_grade/S5_SECONDARY_cold_dusk/S5_camps_<a>.mov` | Scene 5 cold dusk | **client option** |
+| `01_FINAL_FOR_SHOW/5_FLOOR_only_if_a_floor_projector/S4_FLOOR_alps.mov`, `S5_FLOOR_camps.mov` | `…_bottom.mov` | the floor angles (floor unconfirmed) | in the show folder, apart |
+| `04_WORKING_FILES/superseded/S4_alps_grade_v1/` | `S4_alps_grade/` | the first Alps grade (S4) | superseded |
+| `02_APPROVED_BUILDING_BLOCKS/S1_gallery/` (+ `paintings/`) | `S1_gallery/{room,centre,left,right,floor,sources}/` | chosen takes 56306f43, 2800713a, 9194a1ce, a77585ae, FLOOR v2 a650a2ac + the 4 paintings | approved sources |
+| `04_WORKING_FILES/S1_gallery/1_READY_for_show_build/{walls,floor}/` | `S1_gallery/finished/…`, `floor_v2/…`, the de-sheened plate | LIT v2, DARK v1, seams, room light v2; floor plate (desheen), DRY/SPILL/holds/VANISH | **the inputs of the gallery show files** |
+| `04_WORKING_FILES/S1_gallery/2_PUDDLE_RETURN_in_progress/` | `S1_gallery/puddle_return/GLIMMER_TEST_*` + SHA256SUMS | the glimmer look reference | in progress |
+| `04_WORKING_FILES/superseded/S1_gallery/{walls_LIT_v1,floor_v1_pale_oak,floor_v2_vanish_v1}/` | `finished/v1_seam_matched`, `finished/floor_v1`, the pale plate, vanish v1 | replaced versions | superseded |
+| `T9/SOTR/HF/_DELETE_ME_2026-10-05/SOTR_MEDIA/04_WORKING_FILES/S1_gallery/…` | unchosen NBP takes (room 3, C 7, L 3, R 3, floor v1 3, v2 3), the 8 NBP puddle edits, `floor/v2_review/`, Seedance PUDDLE-RETURN v1-v3 + the v2cut+v3 composite | unused / rejected | **for Homie to empty** |
+
+Status notes on the T9: `04_WORKING_FILES/S1_gallery/00_STATUS_READ_ME.txt`, `S4_alps_grade_v2/00_STATUS_READ_ME.txt`,
+`S5_battlefield_grade/00_STATUS_READ_ME.txt`; `01_FINAL_FOR_SHOW/00_READ_ME_FIRST.txt` and `SOTR_MEDIA/README.txt` updated.
+
 ## 2026-10-05 (late, IMG, MacBook) · S1-GAL-FLOOR v2: the dark Versailles parquet (Homie picked option A)
 
 Homie: "I'm happy with the floor, I'm just concerned that the reflections on the floor might be problematic. If you think you

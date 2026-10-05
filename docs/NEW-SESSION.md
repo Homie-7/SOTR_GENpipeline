@@ -26,8 +26,9 @@ THE TASK, RIGHT NOW (5 Oct, latest): SCENES 1+10. THE FLOOR IS DONE (IMG, 8 cr).
 Homie: "the gallery takes precedence". Ask which; recommend 2 (the water), then 3.
 1. DONE — THE NEW FLOOR: aged dark oak parquet de Versailles, take a650a2ac (Homie: "I'm happy with the floor"). His worry was the
    REFLECTIONS: the takes had the laylight's glare baked in; tools/floor_desheen.py subtracts it (--tol 0.02) ->
-   floor/S1-GAL-FLOOR_v2_a650a2ac_desheen.png = THE plate every tool builds from (--dry). The drawn spill on dark oak reads by its
-   reflections: gallery_floor.py --wet-gain 2.5. DRY/SPILL/VANISH in finished/floor_v2/. VANISH v2 = --vanish dewet --vanish-s 3.5
+   04_WORKING_FILES/S1_gallery/1_READY_for_show_build/floor/S1-GAL-FLOOR_v2_a650a2ac_desheen.png = THE plate every tool
+   builds from (--dry). The drawn spill on dark oak reads by its
+   reflections: gallery_floor.py --wet-gain 2.5. DRY/SPILL/VANISH in 1_READY_for_show_build/floor/. VANISH v2 = --vanish dewet --vanish-s 3.5
    (Homie: v1's even shrink was "a cheap animation scaling back"; v2 frays, breaks into islands, leaves a damp ghost): APPROVED ("Yep, I like it")
    (review: finished/floor_v2/S1-GAL-FLOOR_VANISH_REVIEW_spill-vanish-dry_full+zoom.mp4). The floor is now ~1/3 of v1's brightness.
 2. VID — THE PUDDLE RETURNS (S1-GAL-PUDDLE-RETURN, prompts/ file has v1-v3 + results; LOG 5 Oct). AGREED WITH HOMIE: the script
@@ -45,7 +46,10 @@ Homie: "the gallery takes precedence". Ask which; recommend 2 (the water), then 
 3. POST — THE GALLERY SHOW FILES (0 cr, script): the three walls (LIT v2 / DARK v1) as finished files like Scene 9's: the tour
    hold, the blackout bank by bank, the DARK hold (CENTRE foot: the puddle's teal now = the edge glimmer's faint light), Scene
    10's "Light is suddenly restored"; + the floor files from 1 and 2. Nothing in the show folder yet; no upscales unless asked.
-STATE: all S1 media on the T9 (master): 04_WORKING_FILES/S1_gallery/ (finished/, floor/, puddle_return/). Credits: 8 spent
+STATE: all S1 media on the T9 (master), REORGANISED 5 Oct (REGISTER 'HANDOVER REORG'): 04_WORKING_FILES/S1_gallery/
+(00_STATUS_READ_ME.txt, 1_READY_for_show_build/, 2_PUDDLE_RETURN_in_progress/ = new takes go here),
+02_APPROVED_BUILDING_BLOCKS/S1_gallery/. Scenes 4 + 5 are now IN 01_FINAL_FOR_SHOW. ON THE PC: run
+tools/reorg_2026-10-05.py D:/SOTR run (Scenes 4/5), then copy S1 from the T9 to D: (sha256). Credits: 8 spent
 5 Oct late (IMG), balance ~1,859. CREDITS (Homie): keep enough for ALL the gallery's video generations AND upscales, and LEAVE
 500 AT THE END OF THE WEEK. Mac: pip --target <scratch>/py numpy pillow opencv-python-headless
 (+ pypdf to read the script PDF: ~/Documents/SOTR/2026 RMIT Dev 'Secret of the Raft' Workhop Draft V1.pdf); the T9 mounts at

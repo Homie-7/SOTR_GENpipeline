@@ -79,9 +79,9 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 - **Folders (Homie, 2026-09-24; restructured 2026-09-26; RECOMPARTMENTALISED 2026-10-02 at the cleanup).
   `SOTR_MEDIA/01_FINAL_FOR_SHOW/` IS THE CLIENT DELIVERY: upload the whole folder.** It holds
-  `00_READ_ME_FIRST.txt` (client-facing, keep it current), `1_PLAY_THESE_IN_ORDER/` (the 11 show files,
-  4K, with the edge, in script order), `2_BACKUP_LOOPS_for_operator/` (4K), `3_HD_1080_fallback/` (the same
-  files at 1080). Then `02_APPROVED_BUILDING_BLOCKS/` (every generated source the show is built from,
+  `00_READ_ME_FIRST.txt` (client-facing, keep it current), `1_PLAY_THESE_IN_ORDER/` (the show files in
+  script order: S4 + S5 at 1080, S6 + S9 4K with the edge), `2_BACKUP_LOOPS_for_operator/` (4K), `3_HD_1080_fallback/`
+  (S6 + S9 at 1080), `4_CLIENT_OPTION_S5_cold_dusk/`, `5_FLOOR_only_if_a_floor_projector/` (added 2026-10-05). Then `02_APPROVED_BUILDING_BLOCKS/` (every generated source the show is built from,
   incl. `S6_generated/`, `studio_b9_candle/`), `03_CLEAN_MASTERS_no_edge/` (the `_CLEAN` masters),
   `04_WORKING_FILES/` (edge kits, build recipes, 4K records, `superseded/`, and any new test folder),
   `05_REFERENCE_UPLOADS/`, `06_PRESENTATIONS/`, `comp/` (Homie's After Effects area; never reorganise
@@ -170,6 +170,14 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
   every run, measure after every run, Homie approves.
 
 ## Current stage
+
+### 2026-10-05, latest (files): HANDOVER REORG. Scenes 4 + 5 are IN the show folder; the gallery is NOT done yet.
+
+- Homie asked for production-ready files. `01_FINAL_FOR_SHOW` now holds S4 + S5 (Rich dusk plays; Cold dusk in
+  `4_CLIENT_OPTION_S5_cold_dusk/`; floors in `5_FLOOR_only_if_a_floor_projector/`) beside S6 + S9. The gallery's working
+  folder is split (`1_READY_for_show_build/`, `2_PUDDLE_RETURN_in_progress/`, `00_STATUS_READ_ME.txt`). Unused takes in
+  `T9/SOTR/HF/_DELETE_ME_2026-10-05/`. `tools/reorg_2026-10-05.py`; **the PC runs it on D: next time** (REGISTER).
+- **The puddle return and the gallery show files are still to make** (VID, then POST).
 
 ### 2026-10-05, late (IMG, MacBook): THE NEW GALLERY FLOOR = dark oak Versailles parquet (a650a2ac). 8 cr.
 
