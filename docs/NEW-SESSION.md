@@ -34,6 +34,8 @@ gull landed, NO hard cuts. Be efficient: Homie is short of time.
 - PROMPT: prompts/S7-INTRO-FLIGHT.txt v4 (top of file: settings, GATE, prediction). Start frame = T9
   S7_ship/4_intro_video/routeA_21x9/S7-INTRO-F1-ASTERN_21x9.png (F1-ASTERN haze cropped 2752x1180 at y=100), uploaded as
   media 83eb6345-979a-40f0-a152-d51e36de2066 (role start_image).
+- SUBMITTED 7 Oct: the 480p draft = job 615146e9-3685-4eaa-bf6a-95bbb0211db7 (60 cr; preset 3D RENDER declined). Check it
+  first (jobs_wait / job_display) before submitting anything new.
 - STEPS: (1) 480p draft (draft: true, ~60 cr, get_cost first) -> download to routeA_21x9/ (tools/fetch.py) -> check: no cut
   (frame-diff spikes), flapping, aboard, gull on rail, band holds gull + ship; (2) if it passes, finalize 1080p via
   draft_job_id (~240 cr); (3) build the 3-wall cut by script: scale the 21:9 to 4680 wide, crop the centred 4.33:1 band,
