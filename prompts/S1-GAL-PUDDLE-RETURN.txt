@@ -1,3 +1,199 @@
+# STATUS 2026-10-05 (latest): v6 RAN (job 99955ddd, 120 cr): the beat works (drops, a pause, the film spreads by itself, stops)
+#   but it stops at 1.90 x 1.63 m, off the bottom of the frame from 8 s: the 3rd over-spread (v2, v3, v6) = structural, no more
+#   rewording. The stop is made by SCRIPT (puddle_comp.py --end 6.8 --ease-src 0.6 --hold, + --glimmer): candidate composites
+#   in 2_PUDDLE_RETURN_in_progress/, awaiting Homie. If he wants it bigger/longer, the route is a wider patch or a scaled comp,
+#   not a new size sentence.
+#
+# S1-GAL-PUDDLE-RETURN · v6 · 2026-10-05 (VID, Claude, connector, MacBook) · 10 s: the whole beat, drops / pause / film / STOP
+#
+# v5 RESULT (job cd679a76, 48 cr): THE DOME FIXED: a thin, flat film (wood seen through it, meniscus, irregular edge), reads
+#   as water on the dark oak; floor kept (ECC sx 1.002 sy 0.976 dx -13 px), lock 0.35 px. Measured (puddle_measure, the new
+#   noise floor): pool 0.56 m at 1 s -> 1.36 x 1.28 m at 4 s, still growing slowly. DIAGNOSIS: (1) NO PAUSE: growth runs
+#   straight from ~1 s (the model compresses a 4 s timeline: v1 did too); (2) ROUND, not long (1.36 x 1.28 vs 1.5 x 0.9);
+#   (3) four small spheres sit ON the pool like glass marbles (v1's "round, domed bead" leftovers: judged at 10 s, where
+#   the drops land on dry wood long before the film); (4) drops still seen in flight 0-0.8 s (minor).
+# THE ONE CHANGE IN v6 (the planned step, as v1 -> v2): length 4 -> 10 s with the beats spread (0.3-2.5 drops ~1/s /
+#   2.5-3.5 pause / 3.5-8 the film to "half the frame's width and height" = 1.5 x 0.85 m / 8-10 STOPS, lies still), and
+#   LOCKS "the water only grows" -> "grows, then stops" (else it contradicts the stop). Trims of repeated clauses only, as
+#   v2's: "seen from directly above" + "straight down" in GEOMETRY (both in CAMERA), "of floor", "about", "falling",
+#   "no drops now" (in 2.5-3.5 + LOCKS), "sit". 1,989 chars. Diffed against v5.
+# PREDICT: drops on dry wood to ~2.5 s, a visible pause, a flat film spreading 3.5-8 s to ~1.5 m wide, then still.
+# RISKS: it keeps spreading past size (v2, v3: then --end at the right size + --hold); the model's own clock again; the
+#   marbles persist; reframing at length (check the take USED, PIPELINE).
+# PASS = a visible pause, the film grows by itself, reaches ~1.5 x 0.9 m (or passes it, trimmed), water reads real.
+#
+# SETTINGS
+#   Model:      Seedance 2.5
+#   Mode:       References (omni_reference)
+#   Reference:  the v2-floor patch, role image_references (media 35c82bf4-c8a0-4d72-baa7-af603f20a105)
+#   Aspect:     16:9
+#   Resolution: 1080p
+#   Duration:   10 s
+#   Quality:    High (bitrate_mode high)
+#   Batch:      1
+#   Sound:      ON
+#   Cost:       120 (preflight)
+#   Preset:     decline "3D RENDER" (declined_preset_id 5a77643c-b6cc-4efd-bdc6-ab8ff48dfa82); never run a preset
+
+1 continuous shot, 10 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+
+Style: hyper-real footage of real water on real wood, natural film grain, large-format look. NOT a 3D render, NOT a game engine, NOT a cartoon. Real-time 24fps, true 180-degree shutter, natural motion blur. No frame interpolation, no morphing, no warping.
+
+NO ON-SCREEN TEXT.
+
+THE WATER — CRITICAL: out of nowhere, just three drops land near the centre of the dry floor. Then no more fall: from where they landed, a thin, flat film of water slides out by itself.
+
+The attached image is the floor: aged dark oak parquet in square Versailles panels a metre across. It sets the wood, light and framing.
+
+GEOMETRY: square to the floor; the frame covers 3 metres left to right. Only oak and water are in frame.
+
+FIRST FRAME: the attached image exactly, dry, held still for a third of a second, then the first drop lands.
+
+CAMERA: locked off, 47 degrees, straight down. No push, pan, tilt, drift or zoom.
+
+LIGHT: soft, even daylight from high above. Every bead and wet edge catches it in bright, crisp glints, the pool's surface a soft sheen.
+
+ACTION:
+0.3-2.5s: three single drops land, about one a second, from out of frame above; each leaves a round, domed bead, a ring rippling out.
+2.5-3.5s: nothing falls; the beads glint.
+3.5-8s: from the beads, a thin, flat film of water slides out by itself: one irregular pool spreading across the panels in small jerks, until it spans half the frame's width and height.
+8-10s: the pool stops spreading and lies still.
+
+PHYSICS: real 5 mm drops. Surface tension holds round beads on the waxed wood; the pool is a thin film, a bright meniscus at its rim. The wood under the water is a shade deeper and glossier, exactly inside its outline.
+
+AUDIO: three soft drips on a wooden floor in a quiet room, then a faint wet trickle. No music, no voices.
+
+LOCKS: the same panels and grain in every frame; no more drops after the third; the water grows, then stops.
+
+# ---- v5, header and body, commented ----
+# S1-GAL-PUDDLE-RETURN · v5 · 2026-10-05 (VID, Claude, connector, MacBook) · PROBE 4 s: the welling as a THIN FILM, not a dome
+#
+# v4 RESULT (job ee0ac05c, 48 cr): DROPS + FLOOR PASS, WATER SHAPE FAIL. Measured: 1920x1080 HEVC 10-bit 24 fps 97 f, AAC;
+#   lock 0.2 px; floor KEPT (ECC take->ref sx 1.041 sy 0.970 dx -39 px: a 4% reframe, one warp fixes it). A few drops (not
+#   rain), all into ONE spot, rings to ~1.8 s; the water grows to ~0.55 m by 4 s. DIAGNOSIS (before the fix): the water is
+#   a raised DOMED LENS (a near-circular brown glassy blob, a highlight crescent on top), not a thin irregular film: v4's
+#   new phrases "wells up from beneath them" and "a thin pool swelling outward" made the model inflate the bead from below
+#   (v1's "round, domed bead" its seed; in v1 the pool stayed thin because it formed by beads merging). Minor: drops seen
+#   falling in the air 0-0.8 s (v4 dropped v1's "Only the impacts are seen"); left for now, one change per run. Also found:
+#   on real dark-oak footage puddle_comp's tracer threshold (0.03) catches ~10% of DRY pixels (pale: 0%): panel tone
+#   shimmer joined the pool (traced 1.44 m vs the real ~0.55 m). Fixed by script, not by prompt.
+# THE ONE CHANGE IN v5: the welling idea, in its two places (THE WATER, ACTION 2.2-4.0): "wells up / swelling" -> "a thin,
+#   flat film of water slides out by itself". Everything else word for word (diffed). 1,994 chars.
+# PREDICT: the same few drops into one spot, then a FLAT irregular film spreading from it (no dome, no crescent highlight
+#   ridge), ~0.6-0.9 m by 4 s.
+# RISKS: the dome persists (then it is the bead seed: v6 would drop "domed"); the film reads as a stain; more drops.
+# PASS = a flat thin pool with an irregular edge, growing with no impacts after the drops.
+#
+# SETTINGS
+#   Model:      Seedance 2.5
+#   Mode:       References (omni_reference)
+#   Reference:  the v2-floor patch, role image_references (media 35c82bf4-c8a0-4d72-baa7-af603f20a105)
+#   Aspect:     16:9
+#   Resolution: 1080p
+#   Duration:   4 s
+#   Quality:    High (bitrate_mode high)
+#   Batch:      1
+#   Sound:      ON
+#   Cost:       48 (preflight)
+#   Preset:     decline "3D RENDER" (declined_preset_id 5a77643c-b6cc-4efd-bdc6-ab8ff48dfa82); never run a preset
+#
+# 1 continuous shot, 4 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+#
+# Style: hyper-real footage of real water on real wood, natural film grain, large-format look. NOT a 3D render, NOT a game engine, NOT a cartoon. Real-time 24fps, true 180-degree shutter, natural motion blur. No frame interpolation, no morphing, no warping.
+#
+# NO ON-SCREEN TEXT.
+#
+# THE WATER — CRITICAL: out of nowhere, just three drops land near the centre of the dry floor. Then no more fall: from where they landed, a thin, flat film of water slides out by itself.
+#
+# The attached image is the floor: aged dark oak parquet in square Versailles panels about a metre across, seen from directly above. It sets the wood, light and framing.
+#
+# GEOMETRY: straight down, square to the floor; the frame covers 3 metres of floor left to right. Only oak and water are in frame.
+#
+# FIRST FRAME: the attached image exactly, dry, held still for a third of a second, then the first drop lands.
+#
+# CAMERA: locked off, 47 degrees, straight down. No push, pan, tilt, drift or zoom.
+#
+# LIGHT: soft, even daylight from high above. Every bead and wet edge catches it in bright, crisp glints, the pool's surface a soft sheen.
+#
+# ACTION:
+# 0.3-1.5s: three single drops land one after another, falling from out of frame above; each leaves a round, domed bead, a ring rippling out.
+# 1.5-2.2s: nothing falls; the beads sit, glinting.
+# 2.2-4.0s: no drops now; from the beads, a thin, flat film of water slides out by itself: one irregular pool spreading across the panels, its edge creeping out in small jerks.
+#
+# PHYSICS: real 5 mm drops. Surface tension holds round beads on the waxed wood; the pool is a thin film, a bright meniscus at its rim. The wood under the water is a shade deeper and glossier, exactly inside its outline.
+#
+# AUDIO: three soft drips on a wooden floor in a quiet room, then a faint wet trickle. No music, no voices.
+#
+# LOCKS: the same panels and grain in every frame; no more drops after the third; the water only grows.
+
+# ---- v4, header and body, commented ----
+# S1-GAL-PUDDLE-RETURN · v4 · 2026-10-05 (VID, Claude, connector, MacBook) · PROBE 4 s: three drops, a pause, it wells up, on DARK OAK
+#
+# WHY (agreed with Homie 5 Oct evening, LOOK.md Scenes 1+10 "THE RETURN, REVISED"): the script has no drops ("The water
+#   disappears. Then it mysteriously returns, glowing", mid-dialogue); v2's drops read as RAIN, too busy under live dialogue.
+#   So: 2-3 drops, a pause, then the water WELLS UP BY ITSELF to the spill's size (~1.5 x 0.9 m), STOPS, lies still. The glow
+#   is NOT generated: Homie's teal edge glimmer goes on by script (tools/puddle_comp.py --glimmer). No glow in this prompt.
+# DERIVES FROM v1 (the References-mode 4 s probe whose water read real: domed beads, rings, glints, a thin pool, no plank
+#   bands; lock 0.1 px), word for word except: (1) the floor line, FORCED by the new reference (pale oak planks -> dark oak
+#   Versailles panels); (2) the new agreed beat: THE WATER (was THE DROPS), ACTION, PHYSICS (beads/meniscus/"a shade deeper
+#   and glossier": on dark oak water reads by sheen, not darkening), AUDIO, LOCKS (+ "no more drops after the third": v2's
+#   rain actually appeared), LIGHT's last clause (sheen). Trimmed to 1,997 chars. Diffed against v1.
+# REFERENCE: the patch recut from the de-sheened v2 floor, SAME geometry as v1 (3.00 x 1.69 m, centred x 0, 1.0 m from
+#   CENTRE): SOTR_MEDIA/05_REFERENCE_UPLOADS/S1-GAL-PUDDLE-RETURN_ref_patch_v2floor_1920x1080.png, sha256 7761cdc1…,
+#   geometry patch_geom_v2floor.json. Higgsfield media 35c82bf4-c8a0-4d72-baa7-af603f20a105 (uploaded 2026-10-05; the old
+#   beb40508 is the PALE oak, never reuse it).
+# PRE-CHECK (0 cr): puddle_comp's waterline tracer on dark-oak stand-ins (v2's water ratio x the dark patch; the drawn
+#   reflection spill) with Seedance's measured grain (0.0025) at x1 and x2: IoU 0.96-0.997, no false water on dry frames.
+# PREDICT: three beads by ~1.5 s, a still gap, then a pool growing with NO impacts to ~0.5-0.8 m by 4 s; the water reads by
+#   sheen and glints on the dark wood; the tracer finds its waterline.
+# RISKS: more than three drops (the rain again); the welling reads as a hole / a spring bubbling / a dark stain; the model
+#   runs its own clock (v1: everything in the last second); the floor redrawn (v2); the water invisible on dark oak.
+# PASS = <= 3 drops, a visible pause, the pool grows by itself, reads as real water on the dark wood, tracer finds it.
+# THEN v5: the same body at 10 s (beats 0.3-2.5 drops / 2.5-3.5 pause / 3.5-8 wells to size / 8-10 lies still).
+#
+# SETTINGS
+#   Model:      Seedance 2.5
+#   Mode:       References (omni_reference)
+#   Reference:  the patch above, role image_references (media 35c82bf4-c8a0-4d72-baa7-af603f20a105)
+#   Aspect:     16:9
+#   Resolution: 1080p
+#   Duration:   4 s
+#   Quality:    High (bitrate_mode high)
+#   Batch:      1
+#   Sound:      ON
+#   Cost:       preflight (expect 48)
+#   Preset:     decline "3D RENDER" (declined_preset_id 5a77643c-b6cc-4efd-bdc6-ab8ff48dfa82); never run a preset
+#
+# 1 continuous shot, 4 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+#
+# Style: hyper-real footage of real water on real wood, natural film grain, large-format look. NOT a 3D render, NOT a game engine, NOT a cartoon. Real-time 24fps, true 180-degree shutter, natural motion blur. No frame interpolation, no morphing, no warping.
+#
+# NO ON-SCREEN TEXT.
+#
+# THE WATER — CRITICAL: out of nowhere, just three drops land near the centre of the dry floor. Then no more fall: the water wells up by itself where they landed, a thin pool swelling outward on its own.
+#
+# The attached image is the floor: aged dark oak parquet in square Versailles panels about a metre across, seen from directly above. It sets the wood, light and framing.
+#
+# GEOMETRY: straight down, square to the floor; the frame covers 3 metres of floor left to right. Only oak and water are in frame.
+#
+# FIRST FRAME: the attached image exactly, dry, held still for a third of a second, then the first drop lands.
+#
+# CAMERA: locked off, 47 degrees, straight down. No push, pan, tilt, drift or zoom.
+#
+# LIGHT: soft, even daylight from high above. Every bead and wet edge catches it in bright, crisp glints, the pool's surface a soft sheen.
+#
+# ACTION:
+# 0.3-1.5s: three single drops land one after another, falling from out of frame above; each leaves a round, domed bead, a ring rippling out.
+# 1.5-2.2s: nothing falls; the beads sit, glinting.
+# 2.2-4.0s: the beads run together and water wells up from beneath them: one thin, irregular pool spreading across the panels, its edge creeping out in small jerks.
+#
+# PHYSICS: real 5 mm drops. Surface tension holds round beads on the waxed wood; the pool is a thin film, a bright meniscus at its rim. The wood under the water is a shade deeper and glossier, exactly inside its outline.
+#
+# AUDIO: three soft drips on a wooden floor in a quiet room, then a faint wet trickle. No music, no voices.
+#
+# LOCKS: the same panels and grain in every frame; no more drops after the third; the water only grows.
+
+# ---- v3, header and body, commented ----
 # STATUS 2026-10-05 (late): v3 RESULT: join seamless, but the whole pool went teal GEL (no caustics, glints lost, a CG halo) and
 #   the pool kept spreading: REJECTED by Homie. v2's drops read as RAIN: rejected. NEXT (docs/NEW-SESSION.md): a NEW prompt on the
 #   new floor patch: 2-3 drops, a pause, then the water wells up by itself, stops, lies still; the glow is the scripted teal edge
@@ -36,30 +232,30 @@
 #   Sound:      ON
 #   Cost:       preflight (expect 48)
 #   Preset:     decline any offer (declined_preset_id); never run a preset
-
-1 continuous shot, 4 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
-
-This continues directly from the end of the attached video: a thin pool of clear water on the pale oak floor, seen from straight above, rings rippling across it, a few stray beads around it. Motion picks up unbroken from that final frame: same floor, same pool, same light, same locked camera. No reset, no re-establish, no jump. The last drops keep landing within the first quarter second.
-
-Style: hyper-real footage of real water on real wood, natural film grain, large-format look. NOT a 3D render, NOT a game engine, NOT a cartoon. Real-time 24fps, true 180-degree shutter, natural motion blur. No frame interpolation, no morphing, no warping.
-
-NO ON-SCREEN TEXT.
-
-THE GLOW — CRITICAL: a light rises from inside the pool, as if the water were lit from far beneath the floor. It is sea-teal, a luminous blue-green, growing from a faint tint at the centre until the whole pool glows. Bright rippling lines of caustic light drift and weave across the pool, and the glints on its surface grow brighter as the glow rises.
-
-CAMERA: locked off, 47 degrees, straight down. No push, pan, tilt, drift or zoom.
-
-LIGHT: the soft daylight from above stays as it is on the floor. The teal light comes only from inside the water, with a faint teal tint on the oak just around the rim.
-
-ACTION:
-0-1.5s: the last few drops land, slower and slower, then stop; their rings spread and fade. A faint teal tint appears deep in the centre of the pool.
-1.5-4s: the teal light swells outward from the centre until the whole pool glows, the caustic lines brightening and slowly moving.
-
-PHYSICS: the pool keeps its size and outline exactly; only the light inside it changes. Gentle ripples keep moving across its surface.
-
-AUDIO: the last drips tapping on wood, then quiet watery lapping. No music, no voices.
-
-LOCKS: the same floor, the same pool outline and the same stray beads in every frame; only oak and water in frame.
+#
+# 1 continuous shot, 4 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+#
+# This continues directly from the end of the attached video: a thin pool of clear water on the pale oak floor, seen from straight above, rings rippling across it, a few stray beads around it. Motion picks up unbroken from that final frame: same floor, same pool, same light, same locked camera. No reset, no re-establish, no jump. The last drops keep landing within the first quarter second.
+#
+# Style: hyper-real footage of real water on real wood, natural film grain, large-format look. NOT a 3D render, NOT a game engine, NOT a cartoon. Real-time 24fps, true 180-degree shutter, natural motion blur. No frame interpolation, no morphing, no warping.
+#
+# NO ON-SCREEN TEXT.
+#
+# THE GLOW — CRITICAL: a light rises from inside the pool, as if the water were lit from far beneath the floor. It is sea-teal, a luminous blue-green, growing from a faint tint at the centre until the whole pool glows. Bright rippling lines of caustic light drift and weave across the pool, and the glints on its surface grow brighter as the glow rises.
+#
+# CAMERA: locked off, 47 degrees, straight down. No push, pan, tilt, drift or zoom.
+#
+# LIGHT: the soft daylight from above stays as it is on the floor. The teal light comes only from inside the water, with a faint teal tint on the oak just around the rim.
+#
+# ACTION:
+# 0-1.5s: the last few drops land, slower and slower, then stop; their rings spread and fade. A faint teal tint appears deep in the centre of the pool.
+# 1.5-4s: the teal light swells outward from the centre until the whole pool glows, the caustic lines brightening and slowly moving.
+#
+# PHYSICS: the pool keeps its size and outline exactly; only the light inside it changes. Gentle ripples keep moving across its surface.
+#
+# AUDIO: the last drips tapping on wood, then quiet watery lapping. No music, no voices.
+#
+# LOCKS: the same floor, the same pool outline and the same stray beads in every frame; only oak and water in frame.
 
 # ---- v2 and v1, headers and bodies, commented ----
 # S1-GAL-PUDDLE-RETURN · v2 · 2026-10-05 (VID, Claude, connector, MacBook) · THE BUILD: drops to a pool, 15 s

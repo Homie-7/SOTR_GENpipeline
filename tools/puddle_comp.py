@@ -16,12 +16,18 @@ Everything outside the water stays the scripted floor pixel for pixel; only the 
    (1 + mask * (ratio - 1)). The patch is from the same plate the floor is built from, so this is the take relit to
    the floor's light. Written as ProRes 422 HQ q2 (yuv422p10le), 24 fps, with the take's own sound (standing rule).
 
+NOISE (2026-10-05, the dark Versailles floor): on dark oak Seedance's frame-to-frame tone shimmer is ~10x the pale oak's
+   in ratio terms (v4: ~10% of DRY pixels over the old fixed 0.03; whole panels joined the pool). So every ratio is first
+   divided by its own exposure drift (the median ratio on the patch's outer 8% band, where the water never reaches) and the
+   threshold is max(base, 3 x the band's 95th percentile) per frame (noise_floor()). On pale oak that stays at the base.
+
 5. --glimmer (Homie, 2026-10-05: "a glimmer on the edges… like a portal has glowing edges, but… subtle", teal): the pool's
    waterline traced per frame from the same ratio, a thin teal rim travelling slowly round it (glimmer()); --hold N keeps
    the last water frame still with the glimmer moving (loops every --loop s); --dark = the blackout floor, rim the only light.
 
   python tools/puddle_comp.py TAKE.mp4 --patch-geom patch_geom.json --ref REF_PATCH.png --dry FLOOR_PLATE.png
-         --out OUT.mov [--size 1920x1080] [--base dry|vanish] [--dry-frames 4] [--start S] [--end S] [--check SHEET.jpg]
+         --out OUT.mov [--size 1920x1080] [--base dry|vanish] [--dry-frames 4] [--start S] [--end S] [--ease-src S]
+         [--check SHEET.jpg]
          [--glimmer --glow-start S --glow-ramp S --gain G --loop S --hold S] [--dark]
 Needs numpy, opencv, Pillow, ffmpeg (and tools/gallery_floor.py beside it).
 """
@@ -68,6 +74,24 @@ def align_warp(take_mean, ref):
     _, w = cv2.findTransformECC(g(ref), g(take_mean), w, cv2.MOTION_AFFINE,
                                 (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 300, 1e-7), ring, 5)
     return w
+
+
+def noise_floor(ratio, base, sigma, wet=None):
+    """(ratio with the frame's exposure drift divided out, threshold): both from the patch's outer 8% band, minus any
+    known water (wet: the water found so far, dilated; v6's pool reached the band at 7.5 s and the threshold ran away).
+    thr = max(base, 3 x p95 of the band's blurred |ratio - 1|)."""
+    H, W = ratio.shape[:2]
+    band = np.zeros((H, W), bool)
+    by, bx = max(1, int(.08 * H)), max(1, int(.08 * W))
+    band[:by] = band[-by:] = True
+    band[:, :bx] = band[:, -bx:] = True
+    if wet is not None:
+        clear = band & ~cv2.dilate(wet.astype(np.uint8), np.ones((max(3, W // 40),) * 2, np.uint8)).astype(bool)
+        if clear.sum() > 0.3 * band.sum():
+            band = clear
+    ratio = ratio / np.median(ratio[band], axis=0)
+    lum = cv2.GaussianBlur(np.abs(ratio.mean(2) - 1), (0, 0), sigma)
+    return ratio, max(base, 3.0 * float(np.percentile(lum[band], 95)))
 
 
 def water_mask(ratio_hi, thr, close_px):
@@ -138,6 +162,9 @@ def main():
     ap.add_argument('--glow-ramp', type=float, default=2.0)
     ap.add_argument('--gain', type=float, default=None, help='glimmer strength (default 0.55 lit, 1.1 dark)')
     ap.add_argument('--loop', type=float, default=8.0, help='the glimmer pattern repeats every LOOP seconds')
+    ap.add_argument('--ease-src', type=float, default=0.0,
+                    help='the last S s of the take (before --end) are slowed to a stop: stretched x3 with a cubic ease-out '
+                         '(speed matched at the join). v6 kept spreading past the patch: the stop is made here')
     ap.add_argument('--hold', type=float, default=0.0, help='after the last frame, hold the pool still for N s, the '
                                                             'glimmer still moving (a whole number of --loop cycles loops)')
     a = ap.parse_args()
@@ -192,7 +219,9 @@ def main():
     poolf = np.zeros((th, tw), np.float32)
 
     n_hold = int(round(a.hold * 24))
-    total = n - i_start + n_hold
+    n_src = int(round(a.ease_src * 24))
+    n_out = 3 * n_src            # cubic ease-out: starting speed 3 * (n_src - 1) / n_out ~ the take's own
+    total = n - i_start + (n_out - n_src) + n_hold
     dur = f'{total / 24:.4f}'   # the take's sound, padded with silence through the hold, cut to the picture
     enc = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb48le',
                             '-s', f'{size[0]}x{size[1]}', '-r', '24', '-i', '-', '-ss', f'{i_start / 24:.4f}', '-i', a.take,
@@ -208,15 +237,16 @@ def main():
         nonlocal acc, pool
         if f is not None:
             hi = warp(f)
-            ratio_hi = (hi + 0.01) / (dry_hi + 0.01)
+            ratio_hi, thr_hi = noise_floor((hi + 0.01) / (dry_hi + 0.01), 0.03, 3, pool)
             s = small(hi)
-            ratio = (s + 0.01) / (dry_s + 0.01)
-            lum = cv2.GaussianBlur(np.abs(ratio.mean(2) - 1), (0, 0), max(1.0, rw / 900))
-            m = np.clip((lum - a.thresh) / a.thresh, 0, 1)
+            sig = max(1.0, rw / 900)
+            ratio, thr = noise_floor((s + 0.01) / (dry_s + 0.01), a.thresh, sig, acc > 0.5)
+            lum = cv2.GaussianBlur(np.abs(ratio.mean(2) - 1), (0, 0), sig)
+            m = np.clip((lum - thr) / thr, 0, 1)
             m = cv2.dilate(m, np.ones((k, k), np.uint8))
             acc = np.maximum(acc, cv2.GaussianBlur(m, (0, 0), k / 2))
             if a.glimmer:   # smoothed over ~4 frames: steady, but follows the waterline (an OR kept old seam leaks)
-                poolf[:] = poolf * 0.7 + water_mask(ratio_hi, 0.03, 25) * 0.3
+                poolf[:] = poolf * 0.7 + water_mask(ratio_hi, thr_hi, 25) * 0.3
                 pool = (poolf > 0.5).astype(np.uint8)
             last.update(ratio=ratio, ratio_hi=ratio_hi)
         ratio, ratio_hi = last['ratio'], last['ratio_hi']
@@ -241,15 +271,26 @@ def main():
     i = 0
     for f in first:
         render(i, f); i += 1
+    src, buf = a.dry_frames, []
     for f in it:
-        if i >= n:
+        if src >= n:
             break
-        render(i, f); i += 1
+        if src >= n - n_src:
+            buf.append(f.astype(np.float16))   # the stretch, blended below
+        else:
+            render(i, f); i += 1
+        src += 1
+    for j in range(n_out if buf else 0):
+        u = j / max(n_out - 1, 1)
+        q = (len(buf) - 1) * (1 - (1 - u) ** 3)
+        q0 = int(q); q1 = min(q0 + 1, len(buf) - 1); w = q - q0
+        render(i, buf[q0].astype(np.float32) * (1 - w) + buf[q1].astype(np.float32) * w); i += 1
     for _ in range(n_hold):
         render(i); i += 1
     enc.stdin.close()
     enc.wait()
-    print('frames', i - i_start, f'(take {i_start}-{n - 1} + hold {n_hold}) ->', a.out, flush=True)
+    print('frames', i - i_start, f'(take {i_start}-{n - 1}, last {n_src} eased to {n_out if buf else 0} + hold {n_hold})'
+          ' ->', a.out, flush=True)
     if a.check and sheet:
         tiles = [cv2.cvtColor((np.clip(cv2.resize(t, (640, int(640 * t.shape[0] / t.shape[1]))), 0, 1) * 255)
                               .astype(np.uint8), cv2.COLOR_RGB2BGR) for _, t in sheet]

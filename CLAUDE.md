@@ -171,7 +171,14 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-10-05, latest (files): HANDOVER REORG. Scenes 4 + 5 are IN the show folder; the gallery is NOT done yet.
+### 2026-10-05, latest (VID, MacBook): THE PUDDLE RETURN on the dark floor, composited (v6), AWAITING HOMIE. 216 cr.
+
+- Seedance v4 (dome), v5 (flat film), v6 10 s: drops, a pause, it spreads by itself, but overshoots off the frame (3rd time =
+  structural): the stop is scripted (`puddle_comp.py --end 6.8 --ease-src 0.6 --hold`, + the glimmer). Review in
+  `04_WORKING_FILES/S1_gallery/2_PUDDLE_RETURN_in_progress/`. Open: Homie's verdict, incl. the pool's ROUND shape (~1.25 m).
+- `puddle_comp` got a dark-wood noise floor (its fixed threshold read 10% of dry dark oak as water); new `tools/puddle_measure.py`.
+
+### 2026-10-05 (files): HANDOVER REORG. Scenes 4 + 5 are IN the show folder; the gallery is NOT done yet.
 
 - Homie asked for production-ready files. `01_FINAL_FOR_SHOW` now holds S4 + S5 (Rich dusk plays; Cold dusk in
   `4_CLIENT_OPTION_S5_cold_dusk/`; floors in `5_FLOOR_only_if_a_floor_projector/`) beside S6 + S9. The gallery's working

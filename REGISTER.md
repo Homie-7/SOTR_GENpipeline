@@ -270,7 +270,27 @@ Nothing approved by Homie yet; tags are assigned on approval.
 | `floor/S1-GAL-PUDDLE_v1_*`, `_v2_*` | NBP spill edits | not used (LOG) |
 | `finished/floor_v1/S1-GAL-FLOOR_<DRY,SPILL,GLOW-LIT,GLOW-DARK>_1920x1080.png` + `_<SPILL_HOLD,VANISH,RETURN_GLOW,GLOW-LIT_LOOP,GLOW-DARK_LOOP,DRY_HOLD>_1920x1080.mov` | the floor and the puddle's beats (`gallery_floor.py`), ProRes 422 HQ, 24 fps, silent | **candidate**; RETURN_GLOW rejected (Homie: cheap) -> generated next session |
 
-## 2026-10-05 (latest) · HANDOVER REORG: Scenes 4 + 5 into the show folder; the gallery split ready / in progress
+## 2026-10-05 (latest, VID, MacBook) · S1-GAL-PUDDLE-RETURN v4-v6 on the dark Versailles floor: v6 composited, FOR HOMIE'S REVIEW
+
+Homie's beat: 2-3 drops, a pause, the water spreads by itself to the spill's size, stops, lies still; the teal edge glimmer by
+script. 216 credits (48 + 48 + 120). Patch uploaded: media `35c82bf4-c8a0-4d72-baa7-af603f20a105` (= `05_REFERENCE_UPLOADS/
+S1-GAL-PUDDLE-RETURN_ref_patch_v2floor_1920x1080.png`, sha 7761cdc1…; the old beb40508 is the pale oak). All paths in
+`04_WORKING_FILES/S1_gallery/2_PUDDLE_RETURN_in_progress/` (sha256 in its `SHA256SUMS_2026-10-05.txt`).
+
+| File | What | Status |
+|---|---|---|
+| `S1-GAL-PUDDLE-RETURN_v4.mp4` (5327765c…) | 4 s probe: few drops into one spot, but a raised DOMED lens of water | rejected (kept here for Homie to bin) |
+| `S1-GAL-PUDDLE-RETURN_v5.mp4` (2d905202…) | 4 s probe: a thin flat film (dome fixed); no pause, round | probe, not used |
+| `S1-GAL-PUDDLE-RETURN_v6.mp4` (32f2d5bc…) | 10 s: drops ~2.9-3.8 s, a pause 4.2-4.8 s, the film spreads by itself, stops by ~9.2 s, but at 1.90 x 1.63 m and off the bottom of the take from 8 s | **the source of the candidate** (usable to ~6.8 s) |
+| `S1-GAL-PUDDLE-RETURN_v6_FLOOR_lit_1920x1080.mov` (8f218438…) | v6 on the lit dark-oak floor from the approved vanish's end state (= DRY): take 2.0-6.8 s, the last 0.6 s eased to a stop over 1.75 s (`--ease-src 0.6`), then an 8 s still hold with the teal glimmer (rises from 6.2 s, ramp 2.5 s, lit gain 0.55). Pool at rest ~1.25 x 1.2 m. ProRes 422 HQ 24 fps 13.96 s, the take's sound (-35.7 LUFS) | **candidate, awaiting Homie** |
+| `S1-GAL-PUDDLE-RETURN_v6_FLOOR_dark_1920x1080.mov` (656e1560…) | the same on the blackout floor (`--dark`, gain 1.1): only the rim reads | **candidate, awaiting Homie** |
+| `S1-GAL-PUDDLE-RETURN_v6_REVIEW_lit_then_dark_fullfloor+zoom.mp4` (810c13f0…) | review copy, H.264, full floor + zoom, lit then dark | review |
+
+Tools: `tools/puddle_measure.py` (new: pool size over time, impacts, lock, framing, a sheet with the traced waterline);
+`tools/puddle_comp.py` + a per-frame NOISE FLOOR for dark wood (exposure drift divided out, threshold from the patch's outer band
+minus known water; pale oak unchanged) and `--ease-src` (the stop).
+
+## 2026-10-05 · HANDOVER REORG: Scenes 4 + 5 into the show folder; the gallery split ready / in progress
 
 Homie: "put all the relevant files in production ready… I'm not sure which one is which". His calls: all approved scenes
 into `01_FINAL_FOR_SHOW` now (the gallery when built); Scene 5 Rich dusk plays, Cold dusk = a client option. 88 + 2
