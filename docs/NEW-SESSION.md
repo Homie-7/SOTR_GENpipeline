@@ -34,14 +34,14 @@ Homie's notes 5 Oct: VOLUMETRIC HAZE in the distance, real physics, the ship NOT
 the START FRAME before the video. Sahaj's angle seen (Desktop/VID-20261005-WA0016.mp4): ONE continuous camera across the
 three walls -> walls are CUT FROM ONE PLATE (tools/ship_walls.py), outpaint sideways to keep the full height.
 Night-shift auto-resume: blocked by the safety check; Homie restarts the session himself from THIS file.
-DONE since: haze/DOF on F1 (2_intro/S7-INTRO-F1_v1_1714a32e_haze.png, tools/aerial_haze.py). WALLS: one-plate cutting FAILED
-(4.33:1 crop loses half the height; outpaint can't go past 21:9 and re-imagines) -> CENTRE = master cropped 5:3 full height
-(3_walls/S7-SHIP-C_v1_from_f5180ed8.png, uploaded as media f51d98e7); LEFT v2 RENDERING: jobs 4efe4822, b297c01e, 260b6359,
-e3a2e0ee (prompts/S7-SHIP-L.txt) -> pick, then RIGHT (prompts/S7-SHIP-R.txt, same ref) -> align horizons at the seams by
-script -> layers -> show Homie the three walls side by side.
+DONE since: haze/DOF on F1 (2_intro/S7-INTRO-F1_v1_1714a32e_haze.png). THE THREE WALLS ARE ASSEMBLED (v1, 0 cr):
+T9 04_WORKING_FILES/S7_ship/3_walls/assembled_v1/ (LEFT 260b6359 + CENTRE from master f5180ed8 + RIGHT 972c8b09, one horizon;
+tools/ship_assemble.py --hz-c 0.387). One-plate cutting + outpaint FAILED (LOG). AWAITING HOMIE'S LOOK CHECK (Claude decides if away).
+NEXT IMG (cheap, tonight): the light states of the three walls as NBP text-only edits (magic hour, red sunset, purple night) and
+the WRECK state (foremast snapped, rigging slack, water on deck), then layers (tools/ship_layers.py).
 THEN VID (fresh session, house-rules VID + shotcaller-v1): intro flight from the HAZED F1 (4 s probe, then ~15 s + a landing
 Sequel), sea loops per light, the foremast falls forward, the rowboats + snap. Then 4K of what's approved.
-Credits spent this session: 36 (NBP 32, outpaint 4). Mac kept awake by caffeinate.
+Credits spent this session: 44 (NBP 40, outpaint 4). Mac kept awake by caffeinate.
 
 PREVIOUS (5 Oct, latest): SCENES 1+10 DONE AND IN 01_FINAL_FOR_SHOW. 01 IS THE COMPLETE CLIENT UPLOAD (S1, S4, S5, S6, S9, S10).
 Ask Homie which is next; recommend 1 (it's the next production job), and 2 when the PC is next on.
