@@ -80,7 +80,7 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 - **Folders (Homie, 2026-09-24; restructured 2026-09-26; RECOMPARTMENTALISED 2026-10-02 at the cleanup).
   `SOTR_MEDIA/01_FINAL_FOR_SHOW/` IS THE CLIENT DELIVERY: upload the whole folder.** It holds
   `00_READ_ME_FIRST.txt` (client-facing, keep it current), `1_PLAY_THESE_IN_ORDER/` (the show files in
-  script order: S4 + S5 at 1080, S6 + S9 4K with the edge), `2_BACKUP_LOOPS_for_operator/` (4K), `3_HD_1080_fallback/`
+  script order: S1 + S10 gallery at 1080, S4 + S5 at 1080, S6 + S9 4K with the edge), `2_BACKUP_LOOPS_for_operator/` (4K), `3_HD_1080_fallback/`
   (S6 + S9 at 1080), `4_CLIENT_OPTION_S5_cold_dusk/`, `5_FLOOR_only_if_a_floor_projector/` (added 2026-10-05). Then `02_APPROVED_BUILDING_BLOCKS/` (every generated source the show is built from,
   incl. `S6_generated/`, `studio_b9_candle/`), `03_CLEAN_MASTERS_no_edge/` (the `_CLEAN` masters),
   `04_WORKING_FILES/` (edge kits, build recipes, 4K records, `superseded/`, and any new test folder),
@@ -171,7 +171,13 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-10-05, latest (POST, MacBook): THE GALLERY SHOW FILES APPROVED (Homie: "we can call it finished"). Next: promote them. 6 cr.
+### 2026-10-05, latest (POST, MacBook): SCENES 1 + 10 DONE AND IN 01_FINAL_FOR_SHOW. The client upload is complete. 6 cr.
+
+- Promoted by `tools/promote_gallery_2026-10-05.py` (19 show files sha256-verified): the gallery's 9 show files in
+  `1_PLAY_THESE_IN_ORDER/`, 6 4K loops in `2_BACKUP_LOOPS_for_operator/`, 4 floor files (the puddle FLOW) in folder 5.
+  Next (docs/NEW-SESSION.md): IMG, the surprise scene (Scene 8); the PC to sync S1 from the T9.
+
+### 2026-10-05 (POST, MacBook): THE GALLERY SHOW FILES APPROVED (Homie: "we can call it finished").
 
 - Homie: paintings centred on every wall (`tools/gallery_rehang.py`, LIT/DARK v3); "full length at 1080 only", 4K as 32 s
   backup loops (`tools/gallery_show.py`: tour 15:00, blackout bank by bank + dark 5:00, S10 5:00). In

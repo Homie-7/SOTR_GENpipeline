@@ -270,7 +270,38 @@ Nothing approved by Homie yet; tags are assigned on approval.
 | `floor/S1-GAL-PUDDLE_v1_*`, `_v2_*` | NBP spill edits | not used (LOG) |
 | `finished/floor_v1/S1-GAL-FLOOR_<DRY,SPILL,GLOW-LIT,GLOW-DARK>_1920x1080.png` + `_<SPILL_HOLD,VANISH,RETURN_GLOW,GLOW-LIT_LOOP,GLOW-DARK_LOOP,DRY_HOLD>_1920x1080.mov` | the floor and the puddle's beats (`gallery_floor.py`), ProRes 422 HQ, 24 fps, silent | **candidate**; RETURN_GLOW rejected (Homie: cheap) -> generated next session |
 
-## 2026-10-05 (latest, POST, MacBook) · THE GALLERY SHOW FILES (Scenes 1 + 10): paintings re-hung, 1080 full length, 4K loops; the puddle FLOW
+## 2026-10-05 (latest) · GALLERY PROMOTED: Scenes 1 + 10 IN 01_FINAL_FOR_SHOW (the client delivery is complete)
+
+`tools/promote_gallery_2026-10-05.py` (35 renames on the T9, log `T9/SOTR/HF/PROMOTE_GALLERY_2026-10-05_moves.tsv`); the 19
+promoted show files re-hashed = the recorded sums. Readme (`01_FINAL_FOR_SHOW/00_READ_ME_FIRST.txt`) and `SOTR_MEDIA/README.txt`
+updated (S10 plays last though it lists first). The floor files go with Homie's "fine" on the flow.
+
+| Now at (`SOTR_MEDIA/…`) | What | Status |
+|---|---|---|
+| `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S1_a_<WALL>_gallery.mov`, `S1_b_<WALL>_gallery-blackout.mov`, `S10_<WALL>_gallery.mov` | the gallery show files (1080, 15:00 / 5:00 / 5:00) | **IN THE SHOW** |
+| `01_FINAL_FOR_SHOW/2_BACKUP_LOOPS_for_operator/S1-and-S10_<WALL>_gallery_LIT_HOLD_loop.mov`, `S1_<WALL>_gallery_DARK_HOLD_loop.mov` | 4K 32 s holds | **IN THE SHOW (backup)** |
+| `01_FINAL_FOR_SHOW/5_FLOOR_only_if_a_floor_projector/S1_a_ / S1_a2_ / S1_b_ / S10_FLOOR_gallery*.mov` | the gallery floor + the puddle | **in the show folder, apart** (floor unconfirmed) |
+| `04_WORKING_FILES/superseded/S1_gallery/walls_LIT_v2_DARK_v1/`, `…/puddle_v6_eased_stop/` | the walls before the re-hang; the eased-stop return | superseded |
+| `T9/SOTR/HF/_DELETE_ME_2026-10-05/…/2_PUDDLE_RETURN_in_progress/S1-GAL-PUDDLE-RETURN_v4.mp4`, `_v5.mp4` | the dome probe, the 4 s flat-film probe | for Homie to empty |
+
+## 2026-10-05 (POST, MacBook) · THE GALLERY FLOOR SHOW FILES (only if a floor projector): the puddle finished
+
+Homie: "I think we should definitely finish the puddle." `tools/gallery_floor_show.py` (new), 0 cr, from the approved floor
+pieces + the return v6 FLOW (`2_PUDDLE_RETURN_in_progress/S1-GAL-PUDDLE-RETURN_v6flow_FLOOR_<lit,dark>_1920x1080.mov`, each
+ending in one seamless 8 s glimmer cycle). In `04_WORKING_FILES/S1_gallery/3_SHOW_FILES_1080_for_review/FLOOR_only_if_a_floor_projector/`.
+
+| File | What | Status |
+|---|---|---|
+| `S1_a_FLOOR_gallery.mov` | the SPILL held 15:00 (still, q8) | **candidate** |
+| `S1_a2_FLOOR_gallery-puddle-returns.mov` | cue "Allez-vous-en!": VANISH (approved) -> 1.5 s dry -> drops -> the FLOW -> glimmer cycle looped, lit, 8:00, q2, the take's sound | **candidate** (the flow itself awaits Homie's look) |
+| `S1_b_FLOOR_gallery-blackout.mov` | lit pool + glimmer, lights cut on frame 15 with CENTRE's bank (gallery_show's FAIL pattern), then the dark glimmer cycle looped, 5:00, q2 | **candidate** |
+| `S10_FLOOR_gallery.mov` | DRY held 5:00 (still, q8) | **candidate** |
+
+Checks (short test): lengths exact (a first pass: the loop filter's restarting timestamps dropped every repeat -> renumbered);
+frame-to-frame at the glimmer-cycle joins 0.013/1000 (seamless), vanish -> dry -> return joins <= 1.3/1000 (< 1/3 of an 8-bit
+level), the only step = the lights cutting.
+
+## 2026-10-05 (POST, MacBook) · THE GALLERY SHOW FILES (Scenes 1 + 10): paintings re-hung, 1080 full length, 4K loops; the puddle FLOW
 
 **APPROVED by Homie (5 Oct, evening): "I guess we can call it finished… I don't see any issues in terms of how it looks. I like
 how it looks when the lights are off."** The walls + show files below are approved; promotion into 01_FINAL_FOR_SHOW is next

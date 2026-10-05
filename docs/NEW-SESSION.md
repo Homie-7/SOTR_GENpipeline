@@ -22,17 +22,17 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (5 Oct, latest): SCENES 1+10 APPROVED (Homie: "we can call it finished"). NEXT = FILE MANAGEMENT (POST): promote.
-1. APPROVED — THE GALLERY SHOW FILES (REGISTER 5 Oct latest, LOG): 04_WORKING_FILES/S1_gallery/3_SHOW_FILES_1080_for_review/
-   (review clip S1-GAL_REVIEW_tour-blackout-restored_3walls.mp4). LIT v3 = paintings RE-HUNG centred (gallery_rehang.py; seam
-   1_READY_for_show_build/walls/S1-GAL_LIT_v3_SEAM_4680x1080.png). Homie chose 1080 full length (tour 15:00, blackout+dark
-   5:00, S10 5:00) + 4K 32 s LIT/DARK hold loops. On approval: promote into 01_FINAL_FOR_SHOW (1_PLAY_THESE_IN_ORDER = the
-   1080 files; 2_BACKUP_LOOPS = the 4K loops), LIT v2/DARK v1 -> superseded, update 00_READ_ME_FIRST.txt (play order: S1_a,
-   S1_b … S10 last, though "S10_" lists first) and SOTR_MEDIA/README.txt. The client uploads 01_FINAL_FOR_SHOW (T9 has S4-S9
-   complete, 211 GB; skip the ._ files).
-2. FOR REVIEW — THE PUDDLE RETURN v6 FLOW: 2_PUDDLE_RETURN_in_progress/S1-GAL-PUDDLE-RETURN_v6flow_REVIEW_lit_then_dark_fullfloor+zoom.mp4
-   (his 3 notes done by script: flowing front, no bubbles, glimmer from the first flow). Floor files only matter if a floor
-   projector is confirmed (5_FLOOR_only_if_a_floor_projector/). Then the floor show files (DRY / SPILL / VANISH / RETURN).
+THE TASK, RIGHT NOW (5 Oct, latest): SCENES 1+10 DONE AND IN 01_FINAL_FOR_SHOW. 01 IS THE COMPLETE CLIENT UPLOAD (S1, S4, S5, S6, S9, S10).
+Ask Homie which is next; recommend 1 (it's the next production job), and 2 when the PC is next on.
+1. IMG — THE SURPRISE SCENE (Scene 8), parked behind the gallery. Start from BIBLE.md / the script PDF; LOOK first, nothing
+   invented (look decisions go to Homie with a recommendation).
+2. ON THE PC: run tools/reorg_2026-10-05.py D:/SOTR run (Scenes 4/5), copy S1 (the whole 04_WORKING_FILES/S1_gallery +
+   02_APPROVED_BUILDING_BLOCKS/S1_gallery + the gallery files now in 01_FINAL_FOR_SHOW) from the T9 to D: (sha256: the T9's
+   SHA256SUMS_2026-10-05_gallery.txt), superseded/S1_gallery too.
+DONE 5 Oct: gallery walls re-hung centred (LIT/DARK v3), 1080 full-length show files + 4K loops, the floor files with the
+puddle FLOW (Homie: "fine"), promoted by tools/promote_gallery_2026-10-05.py (log: T9/SOTR/HF/PROMOTE_GALLERY_2026-10-05_moves.tsv),
+client readme + SOTR_MEDIA/README.txt updated. Homie's open question answered: the dark files never go to full black (the
+operator's fade does that before Scene 2).
 STATE: all S1 media on the T9 (master), REORGANISED 5 Oct (REGISTER 'HANDOVER REORG'): 04_WORKING_FILES/S1_gallery/
 (00_STATUS_READ_ME.txt, 1_READY_for_show_build/, 2_PUDDLE_RETURN_in_progress/ = new takes go here),
 02_APPROVED_BUILDING_BLOCKS/S1_gallery/. Scenes 4 + 5 are now IN 01_FINAL_FOR_SHOW. ON THE PC: run
