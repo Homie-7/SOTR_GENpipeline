@@ -488,3 +488,18 @@ in `01_FINAL_FOR_SHOW`. Raw takes in `3_walls/states/` and `4_intro_video/` (job
 | `4_intro_video/S7-INTRO_review_v1.mp4` (+ `_3walls_4680.mp4`) | the intro: FLIGHT v2 b37921bd (trim f346) + LANDING v2 4140a014, 22.4 s 1800x1080 + sound | **for review** |
 | `4_intro_video/S7-INTRO-FLIGHT_v2_b37921bd_flagwhite.mov` | the flight with the masthead flag painted white (`tools/s7_flag_white.py`) | working |
 | `0_refs_louise/` | Louise Howlett's 4 images (WhatsApp, 5 Oct): the Charente sky, the Méduse's port | reference |
+
+## 2026-10-06 (day) · Homie's review of the overnight S7 work
+
+**APPROVED (Homie): the five light states and their timing** ("I approve all the states and times"): day, magic hour,
+sunset, night, wreck. **The intro v1 is REJECTED** (brief v2: `docs/VID-BRIEF-S7-INTRO-v2.md`). On his alignment note
+the walls were re-made as ONE scene (`tools/ship_seams.py`): **the current walls are `3_walls/seamed_v1/<state>/`**; the
+`assembled_*` sets are superseded (kept). Media on the T9 (`04_WORKING_FILES/S7_ship/`).
+
+| Path (S7_ship/…) | What | Status |
+|---|---|---|
+| `3_walls/seamed_v1/{day,magic,sunset,night,wreck}/S7-SHIP-<WALL>_1080.png` (+ `_bgmask`, `SEAMS_LOG.txt`, previews) | the three walls per state, rails meeting at both seams, sky/sea matched to CENTRE | **states APPROVED; seam fix for Homie's check** |
+| `5_layers/seamed_v1/<state>/` | ship RGBA + sea/sky mask per wall | working |
+| `6_review/S7-SHIP_light_arc_preview_SEAMED_v2.mp4`, `S7-SHIP_all_states_contact_SEAMED_v2.jpg` | the seamed arc + all states | for review |
+| `4_intro_video/endframe/S7-SHIP-C_day_16x9_ENDFRAME.png` | 1920x1080 deck master at 16:9; its centre 1800 = the CENTRE wall (diff 0.5) | for the intro redo (end_image) |
+| `4_intro_video/S7-INTRO_review_v1*.mp4` + takes | the v1 intro | **REJECTED by Homie** (kept) |

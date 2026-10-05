@@ -1,3 +1,5 @@
+> SUPERSEDED 6 Oct 2026 by docs/VID-BRIEF-S7-INTRO-v2.md (Homie rejected the v1 intro). Kept for its connector facts.
+
 # VID BRIEF — S7 intro flight (overnight 6 Oct 2026, delegated by Homie)
 
 Written by the IMG session for a FRESH VID session (house-rules MODE: image and video never share a chat).

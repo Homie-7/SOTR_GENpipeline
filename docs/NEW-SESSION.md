@@ -22,16 +22,31 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-MORNING REVIEW FOR HOMIE (6 Oct, after the overnight run; everything below is PROVISIONAL, Claude's picks):
-  1. The intro: T9 S7_ship/4_intro_video/S7-INTRO_review_v1.mp4 (+ _3walls_4680). Rec: approve the flight's motion; the big
-     question is SHIP CONTINUITY (gilded dark hull + balustrade in the video vs our red-ochre deck walls). Rec: regrade/repaint
-     is not enough; re-run the landing with the deck wall as a reference, or end the intro on the wing wipe before the deck shows.
-  2. The light states: T9 S7_ship/6_review/S7-SHIP_light_arc_preview.mp4 + S7-SHIP_all_states_contact.jpg (day, magic hour in
-     Louise's sky, sunset, night, wreck). Rec: approve; add the moon to the SUNSET sky by script (0 cr) so one moon runs through.
-  3. Then: side-wall sea loops for the flight (~120 cr, mirrored), the mast-fall video, rowboats + snap, 4K of what's approved.
-  Credits: 450 spent overnight (36 IMG + 414 VID). Balance 1,127.49.
+THE TASK, RIGHT NOW (6 Oct, after Homie's review; NEXT SESSION = VID, MacBook): REDO THE SHIP INTRO. Load house-rules
+(+ references/findings-video.md) and shotcaller-v1, MODE = VID, then read docs/VID-BRIEF-S7-INTRO-v2.md (the whole job, from
+Homie's verdict), docs/PLAN-SHIP-INTRO.md, docs/AUTONOMOUS-GEN.md, PIPELINE.md (connector), prompts/S7-INTRO-FLIGHT.txt +
+S7-INTRO-LAND.txt (v1, what failed), and the top LOG.md rows.
+HOMIE'S REVIEW (6 Oct):
+  - THE INTRO v1 = FAIL: "the bird is not even flapping… just kind of randomly seeing it glide. It never really goes far or
+    close to the camera… looks extremely AI generated. We approach the ship from the front… then we sit on the front deck
+    border. The whole point is to land inside the last frame where the scene will continue. So we should be where the
+    _strip_wreck_v1 angle is. Redo the thing again, make it more believable." -> brief v2: real wingbeats, the distance to
+    camera changes, approach from ASTERN/quarter, come aboard and END EXACTLY ON THE DECK PLATE (end frame made: T9
+    S7_ship/4_intro_video/endframe/S7-SHIP-C_day_16x9_ENDFRAME.png; Seedance end_image UNTESTED), our red-ochre ship (no gilding).
+  - THE LIGHT STATES: "I approve all the states and times" (day, magic hour, sunset, night, wreck). BUT: "This is a complete
+    cohesive single scene, so they all need to align… while they are animated it all looks like a single scene." FIXED (0 cr,
+    same day): tools/ship_seams.py -> T9 S7_ship/3_walls/seamed_v1/<day|magic|sunset|night|wreck>/ = THE CURRENT WALLS. The
+    side walls' rail now meets CENTRE's at both seams (it stepped 72 / 111 px), the half cathead on the RIGHT seam removed,
+    sky and sea colour matched to CENTRE (zone medians, 50-70% less mismatch). Layers rebuilt: 5_layers/seamed_v1/. Review:
+    6_review/S7-SHIP_light_arc_preview_SEAMED_v2.mp4 + S7-SHIP_all_states_contact_SEAMED_v2.jpg. Cloud shapes still change at
+    the seams (the fold and gap hide it). The old assembled_* sets are superseded (kept).
+  - Every animated piece from now on (sea loops, the mast fall, rowboats) is built on seamed_v1 and moves as ONE sea across
+    the three walls (same swell direction, speed and scale).
+NEXT after the intro: side-wall sea loops (one sea), the mast fall, rowboats + snap, 4K of what Homie approves.
+Credits: balance 1,127.49 (6 Oct). Redo cap 450. Keep 500 at the end of the week.
 
-THE TASK, RIGHT NOW (6 Oct morning, continue IMG, MacBook): THE SHIP SEQUENCE (Sc 7-8), a side quest APPROVED by Homie: "make
+HISTORY (6 Oct morning and night, superseded by the block above):
+(was THE TASK, 6 Oct morning, IMG): THE SHIP SEQUENCE (Sc 7-8), a side quest APPROVED by Homie: "make
 the calls and go ahead". READ docs/PLAN-SHIP-INTRO.md FIRST (sources, Sahaj's notes decoded, designed-for-destruction,
 Sahaj's angle, credits). Higgsfield credits EXPIRE 6 Oct: spend them today, one job at a time, no waste.
 STATE (updated as work goes): v1 rejected (two masts). v2 DONE: 4 takes in T9 04_WORKING_FILES/S7_ship/1_deck_master/;

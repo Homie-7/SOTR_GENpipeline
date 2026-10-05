@@ -171,6 +171,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-06, day (IMG/script, MacBook): Homie APPROVED the ship's 5 light states; REJECTED the intro; walls re-made as ONE scene.
+
+- His note "a complete cohesive single scene, they all need to align" -> `tools/ship_seams.py`: rails meet at both seams,
+  sky/sea matched to CENTRE; **current walls = T9 `S7_ship/3_walls/seamed_v1/`**. Intro redo = a VID session from
+  `docs/VID-BRIEF-S7-INTRO-v2.md` (real wingbeats, distance changing, from astern, ending ON the deck plate). 0 cr.
+
 ### 2026-10-06, overnight (IMG -> VID by a fresh sub-agent, Homie asleep, delegated): THE SHIP SEQUENCE's states + the intro. 450 cr.
 
 - IMG (36 cr): NIGHT, MAGIC HOUR (Louise's Charente sky: one full moon), WRECK, layers; every state warped onto the day walls
