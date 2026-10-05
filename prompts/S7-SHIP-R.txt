@@ -1,4 +1,4 @@
-ID        S7-SHIP-L  (LEFT flat: the ship's PORT side, the view continuing left from CENTRE; the landed deck)
+ID        S7-SHIP-R  (RIGHT flat: the ship's STARBOARD side, the view continuing right from CENTRE; the landed deck)
 VERSION   v2  (2026-10-05)  CHANGE vs v1 (square-on bulwark, never run): the wall is now the LEFT CONTINUATION of CENTRE's
           view (Sahaj's continuous-camera angle; Homie "both side screens have the sides of the ship"), because one-plate
           cutting failed: the 4.33:1 crop lost half the height, and outpaint (max 21:9) re-imagined the ship (LOG).
@@ -7,17 +7,17 @@ MODEL     Nano Banana Pro (nano_banana_pro) · 4:3 · 2k · batch 4 · IMG
 REFS      1  S7-SHIP-C v1 (the master f5180ed8 cropped to 5:3, full height)   media TBC
              -> the ship, materials, light, sea, sky and the HORIZON HEIGHT; its framing is what this frame continues from
 SEAM      CENTRE's horizon sits 38.7% down the frame; this wall's horizon must sit at the same height. The rail and the
-          shrouds leave CENTRE's left edge and continue here. Fixed by script if a take is off (shift/scale only).
-PREDICT   The port bulwark close and large, running from the right edge of the frame toward the near left, shrouds and
+          shrouds leave CENTRE's right edge and continue here. Fixed by script if a take is off (shift/scale only).
+PREDICT   The port bulwark close and large, running from the left edge of the frame toward the near right, shrouds and
           deadeyes on the rail, guns along it, open sea and sky beyond. Risks: a second mast, a sail, the horizon at a
           different height, people.
 
 ----- PROMPT -----
-A real photograph taken from the same spot on the frigate's deck as the attached frame, the camera turned to the left so this frame continues directly from the attached frame's left edge: the port side of the ship close beside the camera, the horizon at exactly the same height in the frame, a little above the middle.
+A real photograph taken from the same spot on the frigate's deck as the attached frame, the camera turned to the right so this frame continues directly from the attached frame's right edge: the starboard side of the ship close beside the camera, the horizon at exactly the same height in the frame, a little above the middle.
 
 NO ON-SCREEN TEXT: no captions, no subtitles, no titles, no lower thirds, no watermarks, no logos overlaid on the image, no timecode, no UI or social-media overlays, no borders, no frame labels anywhere in the image.
 
-The attached image carries the ship, her materials, the light, the sea and the sky; this frame shows what lies to the left of it. The worn red-ochre port bulwark runs from the right edge of the frame toward the camera, growing larger and closer on the left, its rail capped in dark weathered oak, black iron guns on their carriages along it, coils of hemp on the belaying pins. The foremast's tarred shrouds and ratlines climb from the deadeyes on the rail up and out of the top of the frame. Pale grey oak deck planking along the bottom. Beyond the rail, open sea to the horizon and a pale sky with scattered white cumulus. No mast stands in this frame, no sails, no people.
+The attached image carries the ship, her materials, the light, the sea and the sky; this frame shows what lies to the right of it. The worn red-ochre starboard bulwark runs from the left edge of the frame toward the camera, growing larger and closer on the right, its rail capped in dark weathered oak, black iron guns on their carriages along it, coils of hemp on the belaying pins. The foremast's tarred shrouds and ratlines climb from the deadeyes on the rail up and out of the top of the frame. Pale grey oak deck planking along the bottom. Beyond the rail, open sea to the horizon and a pale sky with scattered white cumulus. No mast stands in this frame, no sails, no people.
 
 The same bright late-morning daylight from high ahead. Real air at every depth: the near bulwark crisp, the horizon pale.
 

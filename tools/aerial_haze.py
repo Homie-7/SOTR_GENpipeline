@@ -12,6 +12,7 @@ PHYSICS.
   (below the horizon row hz) at distance d = CAM_H * f / (y - hz). Everything at or above the horizon band (the ship,
   the far clouds) is put at SHIP_KM.
 - Haze (Koschmieder): I = J t + A (1 - t), t = exp(-beta d), beta = 3.912 / VIS (VIS = meteorological visibility, m).
+  Above the horizon the haze fades out over SKY_BAND of the height (first run flattened the whole sky: wrong).
   A, the airlight, is sampled from the sky just above the horizon, so the far sea and the ship melt into the real sky.
 - Depth of field (thin lens): blur circle c(d) = (f_mm^2 / N) |1/S - 1/d| / (1 - f_mm/S), converted to px; S = the focus
   distance (the gull), N = the f-number. Far objects get c(inf); the near sea under the gull stays sharp. Built from a
@@ -38,7 +39,8 @@ def main():
     ap.add_argument('--subject', required=True, help='x,y,w,h box around the near subject (px, full size)')
     ap.add_argument('--cam-h', type=float, default=3.0)
     ap.add_argument('--fov', type=float, default=50.0, help='horizontal field of view, degrees')
-    ap.add_argument('--vis', type=float, default=9000.0, help='meteorological visibility, metres')
+    ap.add_argument('--vis', type=float, default=25000.0, help='meteorological visibility, metres (25 km: a clear Atlantic day)')
+    ap.add_argument('--sky-band', type=float, default=0.06, help='above the horizon, the haze fades out over this fraction of the height')
     ap.add_argument('--ship-km', type=float, default=6.0)
     ap.add_argument('--focus', type=float, default=4.0, help='focus distance, metres (the subject)')
     ap.add_argument('--fstop', type=float, default=4.0)
@@ -63,7 +65,11 @@ def main():
     A = np.median(band, axis=0)
 
     beta = 3.912 / a.vis
-    t = np.exp(-beta * d)[..., None]
+    t = np.exp(-beta * d)
+    # Above the horizon only the near-horizon band (the ship, the far cloud base) is at SHIP_KM; the open sky above it is
+    # already the airlight integrated through the whole atmosphere, so the haze fades out upward (it never flattens the sky).
+    fade = np.exp(-np.maximum(hz - yy, 0) / (a.sky_band * h))[:, None]
+    t = np.where((yy <= hz + 2)[:, None], 1 - (1 - t) * fade, t)[..., None]
     hazed = J * t + A[None, None, :] * (1 - t)
 
     # depth of field
