@@ -1,0 +1,161 @@
+# STATUS 2026-10-06 night: v2 DRAFT CHOSEN (job d27ab78a, 45 cr) and FINALIZED at 1080p (job b37921bd, 180 cr). v2 RESULT:
+#   change A worked (no haze-column morph, the ship grows smoothly, mostly 8-14 s; frame 0 = F1, ECC cc 0.997 as v1);
+#   change B half-worked: no gilded baroque stern, but the model drew her BOW (head-on, bowsprit toward camera, bow wave)
+#   although "stern" is written three times: the ship sails toward us. KEPT (Claude, PROVISIONAL for Homie): the gull
+#   meets the oncoming ship, the landing goes onto her bow rail. End rush again 14.5-15 s -> the flight is TRIMMED at
+#   ~14.4 s and the Sequel (S7-INTRO-LAND) continues from the trimmed end.
+#
+# S7-INTRO-FLIGHT · v2 · 2026-10-06 night (VID, Claude, connector; Homie asleep, delegated) · DRAFT 480p 15 s
+#
+# v1 RESULT (draft job e358e812, 45 cr; file 4_intro_video/S7-INTRO-FLIGHT_v1draft480_e358e812.mp4): MOSTLY PASS.
+#   Measured: 854x480 HEVC 10-bit 24 fps 361 f, AAC stereo. FRAME 0 = F1 (ECC cc 0.997, sx 0.992 sy 0.964, dx -3.6 dy -6.7 px
+#   at 854 wide): start_image in omni_reference DID hold the opening this time (a 3.6% vertical squash, not a fresh render).
+#   One continuous smooth follow (global motion 0.8-2.0 px/frame, jerk p95 1.5), no cut, no text, ONE gull (herring gull
+#   marks hold, seen from behind), ONE ship, real haze early, the ship grows to her stern, wake, sound present.
+#   DEFECTS, diagnosed before the fix:
+#   (1) 6.5-8.5 s THE SHIP MORPHS: a glowing column of haze swells round the tiny far ship, she dissolves in it and comes
+#       out twice the size. Cause: the timeline held her "small and pale" to 6 s, then asked her to grow by 11 s; the model
+#       made the jump in scale with a dissolve, and "pale and soft, sharpening only as she nears" handed it the veil.
+#   (2) THE STERN IS BAROQUE: a gilded, heavily carved Louis XIV stern (a 1690s ship of the line), not an 1816 frigate's
+#       plain transom; it clashes with the plain naval deck we land on. Nothing in the prompt described the stern.
+#   (3) 14.7-15 s the camera RUSHES into the carvings (motion spike f354-358, ends dark on the stern face) and the gull never
+#       climbs over the rail. NOT fixed by prompt: the flight will be TRIMMED before the rush (~13.5 s) and the climb +
+#       landing are the Sequel's job (S7-INTRO-LAND), which starts from the trimmed end.
+# THE CHANGES IN v2 (two, on two different things, flagged: bundled because each is a single phrase on its own element
+#   and the drafts are cheap; if only one lands, the next draft separates them):
+#   A. ACTION 0-6 / 6-11: the ship GROWS FROM THE START ("grows a little with every second" / "keeps growing steadily"),
+#      replacing "the ship small and pale ahead" (the hold that forced the jump).
+#   B. THE SHIP: + "Her stern is plain: a row of square windows, dark paint, little carving."
+#   Trims to stay under 2,000 (no meaning lost): "Real-time 24fps," (header says real-time), "straight on from it",
+#   "and continuous", "the ship's" -> "her", "on the water", "and the white flag" (the flag is in THE SHIP). 1,992 chars. Diffed against v1.
+# THE GATE
+#   SOURCE  v1's prompt (this file, below) and its draft (contact sheet 16 frames + dense frames 6.5-9.5 s and 13.75-15 s,
+#           opened: the morph, the baroque stern and the end rush are seen there).
+#   ROOM    the sea in F1 (opened; unchanged). The deck walls (assembled_v1 preview, opened): plain red-ochre bulwarks,
+#           black guns, no gilding = why the stern should be plain.
+#   REFS    the same one image, haze F1 as start_image (media 936d38f6-66a5-45de-a512-97fe5870f850).
+#   ROUTE   regeneration (draft) - a prompt defect (timing + an undescribed stern), not a scriptable fix; the end rush is
+#           a trim (script, 0 cr).
+#   DELTA   A and B above. A contradicts nothing in frame one (the ship is small there; it now grows from there on).
+# PREDICT: frame 0 = F1 again; the ship enlarges gradually from ~1 s with no haze column; a plain dark transom with a row
+#   of windows at 11-14 s; the end may still rush (trimmed anyway).
+# RISKS: the haze disappears entirely (the ship crisp from the start: Homie's note); the stern still carved (the model's
+#   idea of "old sailing ship"); the growth still saved for late.
+# PASS = no dissolve/morph, plain stern, the rest as v1 -> finalize at 1080p (180 cr, preflighted).
+#
+# SETTINGS
+#   Model:      Seedance 2.5 (seedance_2_5)
+#   Mode:       omni_reference
+#   Media:      start_image = 936d38f6-66a5-45de-a512-97fe5870f850 (S7-INTRO-F1_v1_1714a32e_haze.png)
+#   Aspect:     16:9
+#   Resolution: 480p DRAFT (draft: true) -> finalize 1080p via draft_job_id (preflight: 180 cr)
+#   Duration:   15 s
+#   Quality:    bitrate_mode high
+#   Batch:      1
+#   Sound:      ON (generate_audio true)
+#   use_unlim:  false
+#   Preset:     decline "3D RENDER" (declined_preset_id 5a77643c-b6cc-4efd-bdc6-ab8ff48dfa82)
+#   Cost:       45 (preflight, draft)
+
+1 continuous shot, 15 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+
+Style: real footage of the open Atlantic in 1816, natural film grain. NOT a 3D render, NOT a cartoon. True 180-degree shutter, natural motion blur. No frame interpolation, no morphing, no warping.
+
+NO ON-SCREEN TEXT.
+
+THE FLIGHT — CRITICAL: one gull flies low over the swell toward one sailing ship, and the camera travels with it the whole way, until her stern fills the frame.
+
+FIRST FRAME: the attached image exactly as composed, nothing invented or reframed; then the glide continues.
+
+THE GULL: a European herring gull: white head and body, pale silver-grey back and wings, black wingtips with small white spots, a yellow bill with a red spot, pink legs tucked.
+
+THE SHIP: a French naval frigate of 1816, three masts, every sail set and full of wind, a dark wooden hull, a plain white flag at her stern. Her stern is plain: a row of square windows, dark paint, little carving.
+
+CAMERA: follows the gull from just behind and above it at its own speed, the bird always large in frame; 47 degrees, smooth, no shake.
+
+LIGHT: bright late-morning sun high ahead, a glitter path. Real haze over the distance: the far ship pale and soft, sharpening only as she nears. The gull stays sharp.
+
+ACTION:
+0-6s: the gull glides low over the swell toward the ship, two or three slow, deep wingbeats; the ship ahead grows a little with every second.
+6-11s: the ship keeps growing steadily as they close in on her stern.
+11-15s: close astern, the gull climbs toward her stern rail; the camera rises with it, the stern filling the frame.
+
+PHYSICS: the gull rides the air with real weight, wings flexing, body dipping with the gusts. The ship pitches gently on the swell, a white wake behind her.
+
+AUDIO: wind and the swell; near the ship, creaking timber. NO BGM — no music of any kind: no score, no song, no instrumental, no drone.
+
+LOCKS: one gull, one ship; nothing newer than 1816; the horizon stays level.
+
+# ---- v1, header and body, commented ----
+# # S7-INTRO-FLIGHT · v1 · 2026-10-06 night (VID, Claude, connector, MacBook; Homie asleep, delegated) · DRAFT 480p 15 s = the probe
+# #
+# # WHAT: the goéland flies from the hazed F1 toward the Medusa; the camera follows; the ship grows; the gull climbs to her
+# #   stern rail (docs/PLAN-SHIP-INTRO.md §1 steps 1-4). The landing + the wing over the lens = the Sequel (S7-INTRO-LAND).
+# #   The camera MOVES here: PLAN exception, this sequence only. Delivered on CENTRE, 16:9 cropped 5:3 (1800x1080).
+# # GRAMMAR: shotcaller-v1 spine, compacted to SOTR's <2,000-char body (AUTONOMOUS-GEN pre-flight), as S1-GAL-PUDDLE-RETURN.
+# #   Deviation from Override 10 / V10 (flagged): no "held still for a third of a second": a gull frozen in mid-air reads
+# #   as a paused frame; the first frame is pinned in words, then the glide simply continues (trim in the edit if needed).
+# #
+# # THE GATE
+# #   SOURCE  2_intro/S7-INTRO-F1_v1_1714a32e_haze.png (opened, 2752x1536, sha256 654462ee…): open sea, bright late morning,
+# #           horizon at ~49% height, a pale soft three-master under full sail dead centre on it, a glitter path under her;
+# #           the herring gull large in the left foreground, wings spread, seen from behind/above, heading frame-right toward
+# #           her. Its prompt (prompts/S7-INTRO-F1.txt) supplied the gull's field marks, reused word for word here.
+# #   ROOM    no interior; the space is the sea in F1 (above). The deck it lands on = 3_walls/assembled_v1/ (opened the
+# #           preview: forward view, red-ochre inner bulwarks, black guns, one mast, sails furled) = the Sequel's concern.
+# #   REFS    ONE image: the haze F1, role start_image (media 936d38f6-66a5-45de-a512-97fe5870f850, uploaded + confirmed
+# #           tonight). It carries the opening composition, the gull's identity and the light. Nothing else attached (the
+# #           Baugean engraving is left out: an engraving's surface would pull the render, finding 3/5).
+# #   ROUTE   Seedance 2.5 omni_reference, start_image (PIPELINE: start_image is only allowed in omni_reference; in Sept it
+# #           did NOT pin frame 0 -> MEASURE frame 0 vs F1). Drafted at 480p (45 cr) instead of a 4 s 1080p probe (48 cr):
+# #           the flight's questions (does the ship grow, does it reach her stern, does the gull hold) live at 6-15 s, which
+# #           a 4 s probe never shows. If the draft passes, finalize it at 1080p via draft_job_id (cost preflighted then).
+# #   DELTA   first version. Checked against F1: the gull's position/heading, the ship dead ahead, the sun ahead (glitter)
+# #           all agree with the frame; nothing written contradicts frame one.
+# # PREDICT: frame 0 a near copy of F1 but not pinned (a few % reframe); the gull glides with a few wingbeats; the ship grows,
+# #   but probably stops short of filling the frame by 15 s; the haze/defocus on the far ship holds early.
+# # RISKS: a 2nd gull or ship; the gull turns CG or changes species; the camera overtakes and loses the bird; a cut; the
+# #   ship morphs (sails/masts count) as she grows; music under the audio.
+# # PASS = one continuous smooth follow, the same herring gull, one 1816 frigate growing from soft to sharp, no text, no cut.
+# #
+# # SETTINGS
+# #   Model:      Seedance 2.5 (seedance_2_5)
+# #   Mode:       omni_reference
+# #   Media:      start_image = 936d38f6-66a5-45de-a512-97fe5870f850 (S7-INTRO-F1_v1_1714a32e_haze.png)
+# #   Aspect:     16:9
+# #   Resolution: 480p DRAFT (draft: true) -> finalize 1080p via draft_job_id if it passes
+# #   Duration:   15 s
+# #   Quality:    bitrate_mode high
+# #   Batch:      1
+# #   Sound:      ON (generate_audio true; SOTR rule)
+# #   use_unlim:  false
+# #   Cost:       45 (preflight, draft); finalize = preflight after the draft
+#
+# 1 continuous shot, 15 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+#
+# Style: real footage of the open Atlantic in 1816, natural film grain. NOT a 3D render, NOT a cartoon. Real-time 24fps, true 180-degree shutter, natural motion blur. No frame interpolation, no morphing, no warping.
+#
+# NO ON-SCREEN TEXT.
+#
+# THE FLIGHT — CRITICAL: one gull flies low over the swell toward one sailing ship, and the camera travels with it the whole way, until the ship's stern fills the frame.
+#
+# FIRST FRAME: the attached image exactly as composed, nothing invented or reframed; the glide continues straight on from it.
+#
+# THE GULL: a European herring gull: white head and body, pale silver-grey back and wings, black wingtips with small white spots, a yellow bill with a red spot, pink legs tucked.
+#
+# THE SHIP: a French naval frigate of 1816, three masts, every sail set and full of wind, a dark wooden hull, a plain white flag at her stern.
+#
+# CAMERA: follows the gull from just behind and above it at its own speed, the bird always large in frame; 47 degrees, smooth and continuous, no shake.
+#
+# LIGHT: bright late-morning sun high ahead, a glitter path on the water. Real haze over the distance: the far ship pale and soft, sharpening only as she nears. The gull stays sharp.
+#
+# ACTION:
+# 0-6s: the gull glides low over the swell toward the ship, two or three slow, deep wingbeats; the ship small and pale ahead.
+# 6-11s: the ship grows steadily as they close in on her stern.
+# 11-15s: close astern, the gull climbs toward her stern rail; the camera rises with it, the stern and the white flag filling the frame.
+#
+# PHYSICS: the gull rides the air with real weight, wings flexing, body dipping with the gusts. The ship pitches gently on the swell, a white wake behind her.
+#
+# AUDIO: wind and the swell; near the ship, creaking timber. NO BGM — no music of any kind: no score, no song, no instrumental, no drone.
+#
+# LOCKS: one gull, one ship; nothing newer than 1816; the horizon stays level.

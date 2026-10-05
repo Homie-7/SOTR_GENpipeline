@@ -171,6 +171,13 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-06, overnight (IMG -> VID by a fresh sub-agent, Homie asleep, delegated): THE SHIP SEQUENCE's states + the intro. 450 cr.
+
+- IMG (36 cr): NIGHT, MAGIC HOUR (Louise's Charente sky: one full moon), WRECK, layers; every state warped onto the day walls
+  (new `tools/ship_align.py`, `ship_states.py`: NBP had reframed CENTRE edits by up to 16%). VID (414 cr): the intro flight +
+  landing Sequel, review cut in T9 `S7_ship/4_intro_video/`. ALL PROVISIONAL: Homie's review list is at the top of
+  `docs/NEW-SESSION.md` (lead issue: the video's gilded ship vs our red-ochre deck walls).
+
 ### 2026-10-05, latest (POST, MacBook): SCENES 1 + 10 DONE AND IN 01_FINAL_FOR_SHOW. The client upload is complete. 6 cr.
 
 - Promoted by `tools/promote_gallery_2026-10-05.py` (19 show files sha256-verified): the gallery's 9 show files in

@@ -22,6 +22,15 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
+MORNING REVIEW FOR HOMIE (6 Oct, after the overnight run; everything below is PROVISIONAL, Claude's picks):
+  1. The intro: T9 S7_ship/4_intro_video/S7-INTRO_review_v1.mp4 (+ _3walls_4680). Rec: approve the flight's motion; the big
+     question is SHIP CONTINUITY (gilded dark hull + balustrade in the video vs our red-ochre deck walls). Rec: regrade/repaint
+     is not enough; re-run the landing with the deck wall as a reference, or end the intro on the wing wipe before the deck shows.
+  2. The light states: T9 S7_ship/6_review/S7-SHIP_light_arc_preview.mp4 + S7-SHIP_all_states_contact.jpg (day, magic hour in
+     Louise's sky, sunset, night, wreck). Rec: approve; add the moon to the SUNSET sky by script (0 cr) so one moon runs through.
+  3. Then: side-wall sea loops for the flight (~120 cr, mirrored), the mast-fall video, rowboats + snap, 4K of what's approved.
+  Credits: 450 spent overnight (36 IMG + 414 VID). Balance 1,127.49.
+
 THE TASK, RIGHT NOW (6 Oct morning, continue IMG, MacBook): THE SHIP SEQUENCE (Sc 7-8), a side quest APPROVED by Homie: "make
 the calls and go ahead". READ docs/PLAN-SHIP-INTRO.md FIRST (sources, Sahaj's notes decoded, designed-for-destruction,
 Sahaj's angle, credits). Higgsfield credits EXPIRE 6 Oct: spend them today, one job at a time, no waste.
@@ -61,6 +70,14 @@ OVERNIGHT 6 Oct (Claude, Homie asleep, delegated: "finish everything we agreed";
   + 5_layers/wreck_v1/. v1 kept a standing pole at the bow; v2 fixed it with one sentence (LOG).
 - IMG LIST DONE (night, magic hour, wreck, layers). 36 cr (18 NBP takes; balance 1,541.49). NOW: the VID sub-agent, docs/VID-BRIEF-S7-INTRO.md (cap 600 cr).
   Details: LOG.md 2026-10-06 rows. CHECK if the credits really expire today (6 Oct) and when. Mac kept awake by caffeinate.
+- VID (night 6 Oct) DONE, 414 cr of 600 (balance 1,127.49), all PROVISIONAL for Homie: REVIEW CUT = T9 S7_ship/4_intro_video/
+  S7-INTRO_review_v1.mp4 (22.4 s, 1800x1080, sound) + S7-INTRO_review_v1_3walls_4680.mp4 (cut to the DAY deck walls). FLIGHT v2
+  (b37921bd, 1080p): smooth follow, the ship grows, the gull meets her HEAD-ON (the model drew her bow, not her stern); its
+  Union-Jack-like masthead flag painted WHITE by script (_flagwhite.mov); trimmed at f346 (an end rush). LANDING v2 Sequel
+  (4140a014): over the bow rail, lands, stands 3 s (deck matches our walls), rises, wing over the lens. CHECKED BY THE PARENT SESSION: the deck only PARTLY matches our walls (red bulwarks, guns,
+  rope coils, but a turned BALUSTRADE rail and a dark banded mast; the flight's hull is dark with GILDED bands vs our red-ochre):
+  the dissolve onto the deck walls lands on a different-looking ship. Homie to judge: head-on
+  vs astern; the ship's gilded 18th-c. bow; the quick last-2-frame wing wipe (v1 draft 4ff856e8 has a slower one, ruffled wings).
 
 PREVIOUS (5 Oct, latest): SCENES 1+10 DONE AND IN 01_FINAL_FOR_SHOW. 01 IS THE COMPLETE CLIENT UPLOAD (S1, S4, S5, S6, S9, S10).
 Ask Homie which is next; recommend 1 (it's the next production job), and 2 when the PC is next on.

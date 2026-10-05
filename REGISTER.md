@@ -471,3 +471,20 @@ one they want to use." v5 stays the show's Scene 6 in `01_FINAL_FOR_SHOW`; v6 li
 | `05_REFERENCE_UPLOADS/S6-FLAG_v2_first4s_upload.mp4` (d3efcda7…, media 1edaa210…) | the test's input: S6-FLAG_v2 f0-95, H.264 crf 10 + AAC | reference |
 | `04_WORKING_FILES/S6_v6_option/S6_LEFT/CENTRE/RIGHT_wars.mov` (sha256 964bb483… / dd0bbe24… / a71622d2…) | **Scene 6 v6 at 1080**: three synced walls, 3,960 f, 2:45, ProRes 422 HQ 10-bit, 48 kHz 24-bit sound (mean -31 dB, peak -1.7) + `S6_scratch_sound.wav` | **design approved by Homie 3 Oct; 3 notes to fix** (`docs/NEW-SESSION.md`) |
 | `04_WORKING_FILES/S5_battlefield_grade/` | Scene 5 grade: `S5_<A|B|C>_ground/sky.cube`, `_new/` (sky masks, fire placements, sample frames), `S5_grade_ALL_OPTIONS.jpg`, `test_front_C_10s.mov` (C, 250 f), `v1_old_Exports_renders/` (v1, made on the wrong, older files) | options for Homie; Claude recommends C |
+
+## 2026-10-06 (overnight, Homie asleep, delegated) · S7 SHIP: light states, wreck, layers, the intro flight. ALL PROVISIONAL
+
+Media on the T9 only (`/Volumes/DMD T9/SOTR/HF/SOTR_MEDIA/04_WORKING_FILES/S7_ship/`). Nothing approved by Homie yet; nothing
+in `01_FINAL_FOR_SHOW`. Raw takes in `3_walls/states/` and `4_intro_video/` (job id in each name). LOG 2026-10-06 rows.
+
+| Path (S7_ship/…) | What | Status |
+|---|---|---|
+| `3_walls/assembled_magic_v1/` | MAGIC HOUR, 3 walls on the day geometry (C b74194cc, L a2976650, R bd967e9d); sky = Louise's Charente photos | Claude's pick, for Homie |
+| `3_walls/assembled_sunset_v2/` | SUNSET (5 Oct takes) re-aligned onto the day geometry (supersedes `_sunset_v1`, kept) | Claude's pick, for Homie |
+| `3_walls/assembled_night_v2/` | NIGHT, the full moon on CENTRE (C a9ec4c60, L 23d25153, R c053079c); `_night_v1` = unaligned, kept | Claude's pick, for Homie |
+| `3_walls/assembled_wreck_v1/` | WRECK: CENTRE = v2 take 40936720 (stump, the yard fallen across the deck, wet deck), sides = day | Claude's pick, for Homie |
+| `5_layers/<day|magic_v1|sunset_v2|night_v2|wreck_v1>/` | per wall: `_ship.png` (RGBA), `_bgmask.png` (sea/sky), `_check.jpg` | working |
+| `6_review/S7-SHIP_light_arc_preview.mp4`, `S7-SHIP_all_states_contact.jpg` | day > magic > sunset > night crossfade (2340x540, 14 s) + every state stacked | for review |
+| `4_intro_video/S7-INTRO_review_v1.mp4` (+ `_3walls_4680.mp4`) | the intro: FLIGHT v2 b37921bd (trim f346) + LANDING v2 4140a014, 22.4 s 1800x1080 + sound | **for review** |
+| `4_intro_video/S7-INTRO-FLIGHT_v2_b37921bd_flagwhite.mov` | the flight with the masthead flag painted white (`tools/s7_flag_white.py`) | working |
+| `0_refs_louise/` | Louise Howlett's 4 images (WhatsApp, 5 Oct): the Charente sky, the Méduse's port | reference |
