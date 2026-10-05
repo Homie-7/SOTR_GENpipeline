@@ -1,0 +1,7 @@
+ID        S7-SHIP-R-SUNSET  (side-wall version of prompts/S7-SHIP-SUNSET.txt v2: the sun is out of frame, beyond the left edge)
+MODEL     Nano Banana Pro · 4:3 · 2k · batch 2 · IMG   INPUT R wall 1080 (media d81781ae)
+
+----- PROMPT -----
+Target: the light, the sky and the sea in the attached photograph.
+Change: it is now the last minutes of sunset. The sun sits low on the horizon just beyond the left edge of this frame, out of view; the sky burns deep red and orange along the horizon, brightest toward the left, fading to dusky violet overhead with long dark-edged clouds lit from beneath. The sea goes dark slate, red light glancing off the swells toward the left. The low sun rakes in from the left: every rail, gun, shroud and coil of rope catches a thin hot red-orange edge on the side facing the sun, and long cool shadows stretch back toward the camera. Real air: the horizon dissolves into a warm glow.
+Protected: everything else stays exactly as it is: the framing, the camera position and lens, the ship, the shrouds and furled canvas, the bulwarks, guns, ladders, deck and every object in its place. No sails, no people. The change matches the photograph's grain, contrast and film rendition.

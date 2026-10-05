@@ -37,15 +37,18 @@ Night-shift auto-resume: blocked by the safety check; Homie restarts the session
 DONE since: haze/DOF on F1 (2_intro/S7-INTRO-F1_v1_1714a32e_haze.png). THE THREE WALLS ARE ASSEMBLED (v1, 0 cr):
 T9 04_WORKING_FILES/S7_ship/3_walls/assembled_v1/ (LEFT 260b6359 + CENTRE from master f5180ed8 + RIGHT 972c8b09, one horizon;
 tools/ship_assemble.py --hz-c 0.387). One-plate cutting + outpaint FAILED (LOG). AWAITING HOMIE'S LOOK CHECK (Claude decides if away).
-IN FLIGHT at the handover: S7-SHIP-SUNSET v1 probe on CENTRE (prompts/S7-SHIP-SUNSET.txt, NBP edit, 2 takes, 4 cr):
-jobs c45c10a0-45e8-42c0-843b-94884bf6194f, 852e96c1-9a03-45be-b4e0-91f91c467ee2 -> jobs_wait, fetch to 3_walls/states/, judge
-(framing kept? one mast? no sail?). If it holds: the same edit on LEFT + RIGHT (the 1080 walls), then magic hour + purple night
-(patch the Change line only), then the WRECK. Then layers. FIRST THING NEXT SESSION: show Homie 3_walls/assembled_v1 preview.
+IN FLIGHT at the handover: SUNSET state. v1 probe (CENTRE, 'huge' sun = too big, CG) -> v2 (sun at real size, one phrase).
+Jobs: CENTRE v2 b3696a61-6e6b-40b7-b394-be6d3f722cb7, 1a97def3-7b72-4efa-a518-8907a418d86a; LEFT 17bd1936-ad0b-4a59-bdd4-3b4dc8dd8082,
+5294584f-01df-4a78-8de0-13707407a90a; RIGHT 919a3824-87e0-4a9b-be76-a028787b5174, 68744df0-c79c-4e85-abfe-9c7cf28c1f8d
+(prompts S7-SHIP-SUNSET / -L-SUNSET / -R-SUNSET; inputs: C media f51d98e7, L f2172e8e, R d81781ae = assembled_v1 walls).
+-> jobs_wait, fetch to 3_walls/states/, pick one per wall, run tools/ship_assemble.py on the picks (--hz-c 0.387; the L/R
+inputs are already 1440x1080 walls, so pass --cut-l 0 --cut-r 0). Then magic hour + purple night (patch the Change line only),
+then the WRECK. FIRST THING NEXT SESSION: show Homie 3_walls/assembled_v1 preview (+ the sunset set).
 LOUISE'S REFERENCE IMAGES (Homie, 5 Oct night): 4 images pasted in chat were TOO BIG to read (>2000 px). Ask Homie for their
 file path; read them downscaled (ffmpeg -vf scale=1600:-1) before more look work.
 THEN VID (fresh session, house-rules VID + shotcaller-v1): intro flight from the HAZED F1 (4 s probe, then ~15 s + a landing
 Sequel), sea loops per light, the foremast falls forward, the rowboats + snap. Then 4K of what's approved.
-Credits spent this session: 48 (NBP 44, outpaint 4). Balance ~1,589. Mac kept awake by caffeinate.
+Credits spent this session: 60 (NBP 56, outpaint 4). Balance ~1,577. Mac kept awake by caffeinate.
 
 PREVIOUS (5 Oct, latest): SCENES 1+10 DONE AND IN 01_FINAL_FOR_SHOW. 01 IS THE COMPLETE CLIENT UPLOAD (S1, S4, S5, S6, S9, S10).
 Ask Homie which is next; recommend 1 (it's the next production job), and 2 when the PC is next on.
