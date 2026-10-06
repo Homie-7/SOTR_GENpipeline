@@ -49,6 +49,22 @@ gull landed, NO hard cuts. Be efficient: Homie is short of time.
   69161783-c0a7-4d33-a2df-cfffd53bc276). If it cuts hard: v4 + dissolve. Then finalize 1080p (~240). (3) IDLE LOOPS per
   state: 10 s locked camera from each canvas (start_image), sea+sky alive as ONE picture across the 3 walls, the ship laid
   back on from the approved stills via 5_layers masks, crossfade loop (720p = 70 each). (4) destruction later.
+- STATUS AT HANDOVER (7 Oct, Claude's weekly limit hit; Higgsfield balance ~663; Homie: "use all the credits… now or
+  never… precision"):
+  * DECK CANVASES DONE (8 cr): T9 S7_ship/7_canvas21/S7-SHIP-CANVAS21_{day,magic,sunset,night}.png (+ _upload.png 2480x1080,
+    _check.jpg). Band = our seamed_v2 walls exactly (registration residual ~1-1.4 px). Night: NBP added a 2nd moon in the
+    (never projected) top strip, painted out by script (a faint glow remains there, harmless).
+  * INTRO v5 DRAFT PASSES (60 cr): routeA_21x9/S7-INTRO-FLIGHT_v5draft480_69161783.mp4. No hard cut (biggest frame diff
+    f322-326 = motion blur over the rail). The gull flies off, the camera climbs alone, settles on OUR deck: last frame vs
+    day canvas ECC 0.998, affine scale 0.977 (2.3% zoomed) + (-4.9, -3.1) px at 480p. To review: yellow trim on the stern
+    windows (could be painted ochre, period-plausible; Homie to judge), a turned quarterdeck rail flashes past.
+  * NEXT, IN THIS ORDER: (a) build its 3-wall preview: tools/s7_intro_3walls.sh, BUT add an end alignment: over the last
+    ~2 s ramp the inverse of that affine so the last frame lands pixel-exact on the canvas band, then a 0.5 s dissolve into
+    the seamed_v2/day walls; show Homie. (b) FINALIZE v5 at 1080p: generate_video with draft_job_id
+    69161783-c0a7-4d33-a2df-cfffd53bc276, same params as the v5 header (preflight 240 cr). Re-measure the end affine at 1080p.
+    (c) IDLE LOOPS: prompts/S7-SHIP-IDLE.txt (written, not run), 1080p 8 s = 96 cr each x 4 = 384. Day first, check, then
+    the rest. (d) destruction later with whatever is left (~40 cr after a+b+c: script-first).
+  * Credits this session so far: v4 draft 60 + canvases 8 + v5 draft 60 = 128 (balance 791.49 -> ~663.49).
 - NIGHT CENTRE ROPES FIXED (tools/ship_ropefix.py, K=34): installed in seamed_v2/night, old in
   04_WORKING_FILES/superseded/S7_ship_ropes_zigzag_2026-10-07/. Magic and sunset had no zig-zag. Arc preview NOT yet rebuilt.
 - Bird across seams (Homie asked): OK if brief/fast; a big slow wing held across a seam breaks (25 deg fold + 830 mm gap):

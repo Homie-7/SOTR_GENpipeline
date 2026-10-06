@@ -1,0 +1,35 @@
+ID        S7-SHIP-IDLE-<STATE>  (route A, 7 Oct: the idle loop per sky state, ONE picture across the 3 walls)
+VERSION   v1  (written 2026-10-07, NOT YET RUN)
+MODEL     Seedance 2.5 (seedance_2_5) · omni_reference · start_image = the state's DECK CANVAS (upload png) · 21:9 · 1080p ·
+          8 s · bitrate high · batch 1 · sound ON · use_unlim false · 96 cr each (preflight 7 Oct) · decline preset if offered
+CANVAS    T9 S7_ship/7_canvas21/S7-SHIP-CANVAS21_<state>_upload.png (2480x1080). Uploaded: day = d4248f67-11a2-4f96-aef1-1449f2a5ce28.
+          magic / sunset / night: upload their _upload.png first (media_upload -> curl PUT -> media_confirm).
+AFTER     (1) probe + contact sheet: camera locked (phase corr 0 px), no people/birds/ships, light unchanged;
+          (2) 4K upscale (upscale_video, ByteDance aigc 4k, ~1 cr) so the band is ~1:1 on the walls;
+          (3) crop the centred band (tools/s7_intro_3walls.sh geometry: 4.33:1 of the 21:9), align to the walls (ECC);
+          (4) lay the APPROVED STILL's ship back on top with 5_layers/seamed_v2/<state> masks (only sea + sky from the clip);
+          (5) crossfade loop (tools/loop_halo.py), split 1440|1800|1440, sound carried (build_audio rule).
+PREDICT   locked frame; swell runs past both rails toward camera as ONE sea across the walls; clouds drift. RISK: camera drift
+          (fix by ECC per frame), the ship rolling (then ask for "the ship holds steady" harder), sails unfurling.
+----- PROMPT (day; for the others patch ONLY the LIGHT line) -----
+1 continuous shot, 8 seconds. A locked-off camera fixed to the ship's deck: the frame never moves, no pan, no tilt, no zoom, no drift.
+
+FIRST FRAME: the attached image exactly as composed, nothing reframed.
+
+Style: real documentary footage at sea in 1816, film grain. Natural motion, no interpolation, no morphing.
+
+NO ON-SCREEN TEXT.
+
+THE SHIP holds steady: the deck, the guns, the coiled ropes, the mast, the rigging and the rail stay exactly where they are, and the sails stay furled on their yards.
+
+WHAT MOVES: the open sea beyond both rails runs steadily past the ship toward the camera, real Atlantic swell with small breaking crests; the clouds drift slowly across the sky; loose rope ends stir slightly in the wind.
+
+LIGHT: bright day, the sun's glitter moving on the swell, exactly the light of the image.
+
+AUDIO: wind in the rigging, the sea along the hull, timber creaking. NO BGM — no music of any kind: no score, no song, no instrumental, no drone.
+
+LOCKS: no people, no birds, no other ships; nothing newer than 1816.
+----- LIGHT lines per state -----
+magic:  LIGHT: magic hour, a lavender sky with rose cirrus and a low full moon, soft light on the swell, exactly the light of the image.
+sunset: LIGHT: sunset, the red sun on the horizon and its glitter path on the swell, exactly the light of the image.
+night:  LIGHT: night, a full moon, its silver path moving on the swell, stars, exactly the light of the image. (night: drop "the clouds drift slowly across the sky;")
