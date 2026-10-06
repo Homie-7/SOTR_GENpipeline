@@ -173,7 +173,7 @@ def main():
     ap.add_argument('--skip-missing', action='store_true', help='list missing paths and carry on (D: never had some)')
     a = ap.parse_args()
     global LIST, MEDIA, BIN, TSV
-    MEDIA = a.media or MEDIA; BIN = a.bin or BIN; TSV = a.tsv or TSV
+    MEDIA = os.path.join(a.media or MEDIA, ''); BIN = os.path.join(a.bin or BIN, ''); TSV = a.tsv or TSV
     if a.pss == 2:
         LIST = LIST2 + [v for d in VIDEO_ONLY for v in videos_in(d)]
     missing = [p for p in LIST if not os.path.exists(MEDIA + p)]
