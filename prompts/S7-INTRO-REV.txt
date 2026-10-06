@@ -1,31 +1,28 @@
-# S7-INTRO-REV · v1 · 2026-10-08 (MacBook, CLI) · PROBE DRAFT 480p 8 s · UNTESTED METHOD
+# S7-INTRO-REV · v3 · 2026-10-09 (MacBook, CLI) · DRAFT 480p 8 s -> 1080p · same method as v1 (generated BACKWARDS, played reversed)
 #
-# WHY: Homie on route A v5 (8 Oct): "almost perfect but two major issues… I need you to do better." The intro boards near
-#   the stern (an invented quarterdeck with a balustrade, 13-14.5 s) and then CROSS-DISSOLVES into the end frame
-#   (14.5-17 s): the camera never travels to the plate. Same mechanism as BOARD v1 (end_image -> a hard cut at 2.75 s):
-#   an END pin on a big 3D move is reached by a cut or a morph, twice. A START pin is exact (V1; v4/v5 frame 0 held).
-# THE IDEA (invented here, UNTESTED; house-rules SEARCH FIRST found no method for it): generate the boarding BACKWARDS.
-#   Frame one = our day deck canvas (exact); the camera turns to port, backs to the starboard rail beside the shrouds and
-#   sinks down outside the ship's side. Played REVERSED it rises up the side, over the rail amidships, steps in to the
-#   centreline turning to face forward and settles on the plate: a real move, ending pixel-exact (the held first third of a
-#   second becomes the final settle). The flight is joined to the reversed clip's first frame afterwards (method decided on
-#   this probe's result: backward video_extension, or a flight whose end is the close bulwark).
-# THIS PROBE ANSWERS: (1) is frame 0 the canvas exactly; (2) does the camera physically turn, back to the rail and go over
-#   it (no cut, no dissolve); (3) reversed, does anything betray it (sea, rigging, flag, smoke)?
+# WHY v2/v3: Homie 9 Oct on intro v6: "the camera kind of goes too close to the side where we are almost face to face with
+#   the ship, but then it slowly pans up… it creates this awkward pause… the camera, as the bird flies away, is just
+#   directly going on deck, and then we end up on the end frame." v1 backed out over the starboard rail and sank down the
+#   hull, so played forward ~5 s of red planking filled the frame (9-14.5 s). Now the camera RISES (a crane move): played
+#   forward it comes down from above straight onto the deck and settles on the plate.
+#   And (the morph at 7.5-8.2 s, the gilded stern turning into another hull): from above, the whole ship is in this clip, so
+#   the lead-in (S7-INTRO-LEADIN v2) takes its ship from this clip alone, no second ship image to reconcile.
+#   The ship LIES ON THE SWELL (sails furled, as our deck plate): no wake to run backwards when the clip is reversed.
+# v2 DRAFT (job a6c2f942, 24 cr) FAILED: frame 0 was NOT the canvas (looking down at the grating, MAD 106 vs the canvas),
+#   then it pushed FORWARD and tilted up toward the canvas view: its "tilting down… the deck planks slide down the frame" was
+#   staged at frame 1 and the backing-away reversed. v3: ONE move, straight UP, eyes forward; no tilt, nothing about the
+#   deck sliding; the first-frame hold half a second.
+# DELTA vs v1 (patch, same layout): FIRST FRAME (hold), CAMERA MOVE, SHIP (+ lying on the swell), CAMERA, ACTION.
 # THE GATE
-#   SOURCE  route A v5 prompt (S7-INTRO-FLIGHT.txt v5) + its 1080p take 6e515e2d, opened frame by frame 7-20 s and
-#           24 fps 11.9-13.4 s: boards over a quarterdeck breastwork, a balustrade rail, then the dissolve.
-#   ROOM    frame 0 = S7-SHIP-CANVAS21_day_upload.png (2480x1080; band = our seamed_v2 day walls): centreline, mast centred
-#           ahead with its furled yard, grating in front, guns + coiled ropes along both bulwarks, starboard shrouds at the
-#           right edge, open sea both sides, sky above.
-#   REFS    ONE image: start_image = the day canvas (re-uploaded on the new account).
-#   ROUTE   omni_reference, start_image only, NO end_image (the end pin is the failure being avoided).
-#   DELTA   new shot, not a patch: the boarding run backwards. Nothing contradicts frame one (held, then moves).
-# PREDICT: frame 0 = canvas (ECC > 0.98); a slow turn left + drift to the starboard rail by ~4 s; over the rail 4-6 s; the
-#   outside of the bulwark fills the frame at the end. RISKS: the camera walks forward instead (the model's habit), a cut,
-#   people appear, sails set.
+#   SOURCE  v1 (job bc936046) + v2 draft (a6c2f942, opened at 2 fps) + intro v6 joined (opened at 2 fps, frames 152-196).
+#   ROOM    frame 0 = S7-SHIP-CANVAS21_day_upload.png (2480x1080): centreline aft of the mast, looking forward; the mast
+#           centred with two furled yards, grating, guns + coiled ropes along both bulwarks, shrouds both sides, open sea.
+#   REFS    ONE image: start_image = the day canvas (re-uploaded).
+#   ROUTE   omni_reference, start_image only, NO end_image.
+# PREDICT: frame 0 = canvas (ECC > 0.98); straight rise 0.5-6 s, the view widening; ends above the deck at yard height.
+#   RISKS: it flies FORWARD again (then: v1's route, rail amidships, with the flight retimed), sails set, a cut, people.
 # SETTINGS: seedance_2_5 · omni_reference · start_image = S7-SHIP-CANVAS21_day_upload.png · 21:9 · 480p DRAFT -> 1080p ·
-#   8 s · bitrate high · batch 1 · sound ON · cost: see LOG (hf generate cost first)
+#   8 s · bitrate high · batch 1 · sound ON · 24 cr draft, 96 cr final (cost checked)
 
 1 continuous shot, 8 seconds, no cuts. Real-time, no slow motion.
 
@@ -33,19 +30,18 @@ Style: real documentary footage at sea in 1816, film grain. NOT a 3D render. Nat
 
 NO ON-SCREEN TEXT.
 
-FIRST FRAME: the attached image exactly as composed, held completely still for a third of a second, nothing reframed; then motion begins.
+FIRST FRAME: the attached image exactly as composed, held completely still for half a second, nothing reframed; then motion begins.
 
-THE CAMERA MOVE — CRITICAL: one slow physical move by a camera operator, never a cut, never a dissolve. The camera turns to its left until it looks straight across the deck at the far side, while it drifts backwards to the near rail on its right, just behind the shrouds. It backs out over that rail and sinks straight down outside the ship's side: the rail cap rises through the frame and the outside of the red-ochre bulwark fills the frame, close.
+THE CAMERA MOVE — CRITICAL: one slow physical move, a camera on a crane rising straight up from the deck, never a cut, never a dissolve, never moving forward. The camera keeps looking forward along the deck toward the bow the whole time and simply climbs, straight up, higher and higher above the deck, until it is level with the lowest yard on the mast, then a little higher, and drifts slowly back toward the stern.
 
-THE SHIP: exactly the ship in the image: grey deck planks, red-ochre bulwarks, black guns, coiled ropes, the yard furled. The deck is empty.
+THE SHIP: exactly the ship in the image: grey deck planks, red-ochre bulwarks, black guns, coiled ropes, every sail furled on its yard. The deck is empty. She lies almost still on the long swell, rising and falling gently, no wake.
 
-CAMERA: 47 degrees, eye height, real weight, unhurried.
+CAMERA: 47 degrees, starting at eye height, real weight, unhurried.
 
 ACTION:
-0-1s: held still, then the turn begins.
-1-4s: turning left and drifting back to the near rail; the mast slides out of the right of the frame.
-4-6s: looking across the deck, the camera backs out over the rail; the rail cap rises through the bottom of the frame.
-6-8s: it sinks down outside the hull; the red-ochre planking fills the frame, close.
+0-0.5s: held still.
+0.5-6s: the camera rises straight up, eyes forward; the view widens: more of the deck, both bulwarks and the open sea on both sides.
+6-8s: level with the lowest yard and drifting slowly back toward the stern, high above the deck.
 
 AUDIO: wind, timber creaking, rigging. NO BGM — no music of any kind: no score, no song, no instrumental, no drone.
 

@@ -12,7 +12,10 @@ Two defects made ship pixels roll with the sea in tools/s7_idle.py v1:
                              from open water in the same row (keeps the haze, wave scale and the clip's wave motion), else
                              mirrored from above; the sky by a push-pull (normalised pyramid) fill from sky only.
 
-  python tools/s7_worldfill.py STATE      writes 5_layers/seamed_v2/<state>/S7-SHIP-<wall>_1080_bgmask_v2.png + _v2check.jpg
+  python tools/s7_worldfill.py STATE [--grow 2 --suffix _bgmask_v2]
+                                          writes 5_layers/seamed_v2/<state>/S7-SHIP-<wall>_1080<suffix>.png + check.jpg
+  (v3, 9 Oct: --grow 0 --islands --suffix _bgmask_v3 = the TRUE silhouette, no islands in the sea, for tools/s7_idle.py --world: with a ship-free sea
+   there is no clip ship to cover, so the mask no longer grows into the sea)
 """
 import sys
 
@@ -68,7 +71,7 @@ def horizon_cols(still, bg, step=240, win=360):
     return H0, np.round(a * np.arange(4680) + b).astype(int)
 
 
-def refine_mask(still, bg, near=48, near_sea=12, t_sky=14.0, t_sea=40.0, grow=2):
+def refine_mask(still, bg, near=48, near_sea=12, t_sky=14.0, t_sea=40.0, grow=2, islands=False):
     """bg: uint8 255 = sea/sky (the old mask). Returns (bg2 uint8, horizon row)."""
     H, Hc = horizon_cols(still, bg)
     lab = cv2.cvtColor(still, cv2.COLOR_BGR2LAB).astype(np.float32)
@@ -107,6 +110,19 @@ def refine_mask(still, bg, near=48, near_sea=12, t_sky=14.0, t_sea=40.0, grow=2)
     ship2 = ship | flag
     # close tiny world slivers (< 3 px wide) trapped inside the ship, then grow the ship a little
     ship2 = cv2.morphologyEx(ship2.astype(np.uint8), cv2.MORPH_CLOSE, np.ones((3, 3), np.uint8)).astype(bool)
+    if islands:                                       # v3 (9 Oct): ~20 gull-shaped "ship" islands floating in the sea of
+        # every state's old mask froze patches of the still's sea over the moving one. Any ship piece not joined to the
+        # ship that lies under the horizon, or a speck under 300 px in the sky, is sea/sky.
+        n, cc, stt, _ = cv2.connectedComponentsWithStats(ship2.astype(np.uint8), 8)
+        big = 1 + np.argmax(stt[1:, cv2.CC_STAT_AREA])
+        drop = np.zeros(n, bool)
+        for i in range(1, n):
+            x, y, w, h, ar = stt[i]
+            if i == big or y + h >= ship2.shape[0]:
+                continue
+            xc = min(ship2.shape[1] - 1, x + w // 2)
+            drop[i] = y > Hc[xc] + 4 or ar < 300
+        ship2 = ship2 & ~drop[cc]
     if grow:
         ship2 = cv2.dilate(ship2.astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * grow + 1,) * 2)).astype(bool)
     return np.where(ship2, 0, 255).astype(np.uint8), H, Hc
@@ -174,19 +190,39 @@ def fill_world(img, hole, H, margin=6, tile=96, min_run=24):
     return np.where(hole[..., None], out, img)
 
 
+def clean_edges(still, bg, band=2):
+    """the still's outermost ship pixels carry the canvas's sky/sea behind them (anti-aliasing): laid over a DIFFERENT,
+    moving sea they read as a pale rim (9 Oct). Those `band` px are replaced by the ship's own colour pushed out from
+    `band` px inside; ship parts thinner than that (ropes) are left as they are."""
+    ship = (bg < 128).astype(np.uint8)
+    k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
+    inner = cv2.erode(ship, k, iterations=band).astype(bool)
+    F = pushpull(still.astype(np.float32), inner)
+    reach = cv2.dilate(inner.astype(np.uint8), k, iterations=band + 1).astype(bool)
+    rim = ship.astype(bool) & ~inner & reach
+    out = still.astype(np.float32).copy()
+    out[rim] = F[rim]
+    return out, rim
+
+
 def main():
-    st = sys.argv[1]
+    import argparse
+    ap = argparse.ArgumentParser(); ap.add_argument('state'); ap.add_argument('--grow', type=int, default=2)
+    ap.add_argument('--suffix', default='_bgmask_v2')
+    ap.add_argument('--islands', action='store_true', help='v3: drop ship pieces floating in the sea')
+    a = ap.parse_args()
+    st = a.state
     still = np.hstack([cv2.imread(T + f'3_walls/seamed_v2/{st}/S7-SHIP-{x}_1080.png') for x, _, _ in WALLS])
     bg = np.hstack([cv2.imread(T + f'5_layers/seamed_v2/{st}/S7-SHIP-{x}_1080_bgmask.png', 0) for x, _, _ in WALLS])
-    bg2, H, Hc = refine_mask(still, bg)
+    bg2, H, Hc = refine_mask(still, bg, grow=a.grow, islands=a.islands)
     added = (bg > 127) & (bg2 <= 127)
     print(f'{st}: horizon row {H} (columns {Hc.min()}..{Hc.max()}); ship grew by {added.sum()} px ({added.mean() * 100:.2f}% of the frame)')
-    for x, a, b in WALLS:
-        cv2.imwrite(T + f'5_layers/seamed_v2/{st}/S7-SHIP-{x}_1080_bgmask_v2.png', bg2[:, a:b])
+    for x, x0, x1 in WALLS:
+        cv2.imwrite(T + f'5_layers/seamed_v2/{st}/S7-SHIP-{x}_1080{a.suffix}.png', bg2[:, x0:x1])
     o = still.copy()
     o[bg2 > 127] = (o[bg2 > 127] * 0.55 + np.array([0, 0, 255]) * 0.45).astype(np.uint8)
     o[added] = (0, 255, 255)
-    cv2.imwrite(T + f'5_layers/seamed_v2/{st}/S7-SHIP_1080_bgmask_v2check.jpg', o, [cv2.IMWRITE_JPEG_QUALITY, 92])
+    cv2.imwrite(T + f'5_layers/seamed_v2/{st}/S7-SHIP_1080{a.suffix}check.jpg', o, [cv2.IMWRITE_JPEG_QUALITY, 92])
 
 
 if __name__ == '__main__':

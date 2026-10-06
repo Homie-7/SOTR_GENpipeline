@@ -1,0 +1,19 @@
+ID        S7-SEA-PLATE-<STATE>  (9 Oct: the ship-free SEA + SKY per light state, the start frame of S7-SEA-IDLE)
+VERSION   v1  (written 2026-10-09)
+MODEL     Nano Banana Pro (nano_banana_pro) · edit · 21:9 · 2k · batch 1 · IMG step inside a VID session (one image per state,
+          start frame only; no video vocabulary in it) · 2 cr each (cost checked)
+INPUT     T9 S7_ship/7_canvas21/S7-SHIP-CANVAS21_<state>.png (4680x2038, the deck canvas the idles start from), re-uploaded
+WHY       Homie 9 Oct on the idles v2: "I can very clearly see the lines of what was erased… on a giant screen this will be
+          very much obvious." v2 painted the clip's own ship out of every frame with copied sea (tools/s7_worldfill.py): the
+          patches show as pale outlines along the rail and on the horizon. A sea that never had a ship in it has nothing to
+          erase: the still ship goes on top of it (tools/s7_idle.py --world).
+AFTER     register to the canvas on sky + horizon (ECC), match its low-frequency colour to the canvas's own sea/sky
+          (tools/s7_seaplate.py), then that image is S7-SEA-IDLE's start frame.
+
+----- PROMPT (day, night; magic + sunset add their KEEP line at the end of Protected, below) -----
+Target: the ship in the attached photograph.
+Change: the ship is gone. Remove the whole ship: the deck, the bulwarks, the guns and their carriages, the coiled ropes, the ladders, the mast, the yards and their furled canvas, and every line of rigging. What remains is the open sea and the sky, seen from the same camera at the same height above the water: the open Atlantic runs unbroken all the way to the bottom of the frame, the swell rolling toward the camera with the same wave size, the same blue-green colour and the same glitter of light; the sky runs unbroken behind where the mast and rigging were, the same clouds continuing through.
+Protected: everything else stays exactly as it is: the framing, the camera position and lens, the horizon at exactly the same height and angle, the sky and every cloud in its place, the haze along the horizon, the colour of the sea and the light. Open water only: no ship, no boat, no wreckage, no birds, no people, nothing floating. The result matches the photograph's grain, contrast and film rendition.
+----- KEEP lines (v1 magic d0869e78 dropped the moon; v1 sunset 32e1a6da dropped the sun and came back with block seams in the sky) -----
+magic:  The pale full moon low in the sky ahead, just to the right of where the mast was, stays exactly where it is, round and bright.
+sunset: The red sun sitting on the horizon ahead, just to the right of where the mast was, and its glitter path on the sea stay exactly where they are; the sky stays one continuous sky, with no bands or blocks.
