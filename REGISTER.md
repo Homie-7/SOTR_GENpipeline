@@ -519,3 +519,13 @@ CENTRE is unchanged in every state (bit-identical to the approved files). Media 
 | `6_review/S7-SHIP_light_arc_preview_SEAMED_v3.mp4` (2340x540, 14 s) + `S7-SHIP_all_states_contact_SEAMED_v3.jpg` | the new arc + all 5 states | **for review** |
 | side-wall takes used: L day d0c874d6 / R day d81714a4; MAGIC L ae66c450 / R 573c717f; SUNSET L 5b940650 / R 99de00bd (v2); NIGHT L a2aacc1b / R 42b011f5 | NBP edits, in `buildout_v1/` | Claude's picks |
 | `2_intro/S7-INTRO-F1-ASTERN_v1_34a41ccb_haze.png` (+ `_flagwhite.png`, `_gullmask.png`, `_gullmask_RECIPE.py`, raw take, 2nd take b8b5fd73) | **the intro's new first frame**: from astern-quarter, ship sailing away, gull at the top of a wingbeat; ensign painted white; haze + DOF | **Claude's pick, start frame for the VID redo** |
+
+## 2026-10-07 (day): ROUTE A, the ship intro + idles as ONE picture across the three walls (all PROVISIONAL, for Homie)
+| Asset / file (T9 `04_WORKING_FILES/S7_ship/`) | What | Status |
+|---|---|---|
+| `7_canvas21/S7-SHIP-CANVAS21_<state>.png` (+ `_upload.png`) | 21:9 deck canvas per light state; band rows 479..1559/2038 = the seamed_v2 walls exactly | working (the geometry everything else uses) |
+| `4_intro_video/routeA_21x9/S7-INTRO-FLIGHT_v5_6e515e2d.mp4` (2206x946, 20 s, sound) | the intro, one take, ends on our deck | **for review** |
+| `4_intro_video/routeA_21x9/S7-INTRO_3walls_v5.mp4` / `_v5_INTO_DAY_IDLE.mp4` (4680x1080) | the intro across the 3 walls, landing on the walls / flowing into the day idle | **for review** |
+| `8_idle/<state>/S7-SHIP-IDLE_<state>_3walls_LOOP.mp4` + `_LEFT/_CENTRE/_RIGHT.mov` (ProRes) | idle loops day/magic/sunset/night, 6.54 s, identical horizon motion | **for review** |
+| `3_walls/seamed_v2/night/S7-SHIP-CENTRE_1080.png` | ropes zig-zag fixed | replaces the approved night CENTRE's top 34 rows only |
+| `3_walls/seamed_v2/sunset/S7-SHIP-{LEFT,RIGHT}_1080.png` | sky harmonised to CENTRE | replaces seamed_v2 sunset sides |

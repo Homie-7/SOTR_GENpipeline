@@ -78,6 +78,7 @@ def main():
     ap.add_argument('--xfade', type=float, default=1.5)
     ap.add_argument('--roll', type=float, default=0.6, help='deg, the horizon'); ap.add_argument('--heave', type=float, default=8.0, help='px, the horizon')
     ap.add_argument('--shake', type=float, default=0.6, help='px, the whole frame'); ap.add_argument('--tag', default='')
+    ap.add_argument('--sky-harmony', type=int, default=0, help='horizon row: run ship_skyharmony on every frame (sunset: 448)')
     a = ap.parse_args()
     st = a.state
     w, h, n = probe(a.clip)
@@ -119,11 +120,21 @@ def main():
         return a.shake * sum(np.sin(k * u + p + 1.1) - np.sin(p + 1.1) for k, p in zip(ks, ph)) / len(ks)
 
     CH, B0 = 2038, 479
+    HK = None
+    if a.sky_harmony:
+        import sys as _s; _s.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from ship_skyharmony import harmonise
+        kk = np.load(T + f'3_walls/seamed_v2/{st}/SKYHARMONY_k.npy'); HK = {'L': kk[0], 'R': kk[1]}
     S = 1.0 + (a.roll * np.pi / 180 * 540 + 4) / 2340 if a.roll else 1.0   # covers the outer corners under the roll
     def frame_out(i):
         # the camera is fixed to the ship: the DECK stays put, the WORLD (sea + sky) rolls and heaves behind it
         # (Homie 7 Oct: "the water horizon might move… according to how the ship will move")
         full = cv2.resize(seq[i], (OW, CH), interpolation=cv2.INTER_LANCZOS4)
+        if a.sky_harmony:                            # ONE sky across the walls (tools/ship_skyharmony.py), k from the still
+            E = 64
+            reg = full[B0 - E:B0 + OH]
+            bgx = np.vstack([np.ones((E, OW), np.float32), bg[..., 0]])
+            full[B0 - E:B0 + OH] = harmonise(reg, bgx, a.sky_harmony + E, k=HK)[0]
         r, dy, dx = motion(i)
         M = cv2.getRotationMatrix2D((OW / 2, CH / 2), r, S)
         M[1, 2] += dy - B0
