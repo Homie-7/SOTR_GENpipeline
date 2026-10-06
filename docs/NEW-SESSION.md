@@ -22,6 +22,44 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
+THE TASK, RIGHT NOW (8 Oct; Homie reviewed route A: "almost perfect but two major issues… I need you to do better").
+Mode VID for issue 1, script/POST for issue 2. Read the LATEST block below for files, tools and credits.
+
+ISSUE 1: THE INTRO DOES NOT ARRIVE AT THE END FRAME (S7-INTRO_3walls_v5_INTO_DAY_IDLE.mp4, Homie's screenshots at 0:10 and 0:18).
+  What happens: the camera climbs the side near the STERN (0:10, the stern gallery beside it) and comes aboard near the
+  stern on the starboard side; then (about 0:16-0:19) the picture CROSS-MORPHS into the deck plate: a double exposure
+  (the starboard rail and gun in the foreground ghosted over the centred deck view). The camera never travels to the
+  plate's position. Seedance's end_image pin is doing a MORPH, not a camera move (as BOARD v1's hard cut: the same failure
+  in a softer form). Claude's ECC check on the last frame (0.994) passed because only the LAST frame was checked.
+  Homie: "the camera needs to go to the front and seamlessly align with the end frame. Needs to be done again."
+  FIX PLAN (rec): put the boarding WHERE THE PLATE'S CAMERA IS, so the end is a short real move, not a long trip:
+   - The plate camera stands on the centreline just aft of the mast in the canvas, looking forward to the bow. Write the
+     geography explicitly: the camera overtakes along the starboard side PAST the stern and quarterdeck to amidships,
+     rises over the rail there (beside the mast in the plate), moves IN to the centreline and turns to face the bow,
+     settling into the last frame. Give it time: board by ~11 s, centreline move + turn 11-17 s, settle 17-20 s.
+   - Or split: A = flight + climb + over the rail amidships (no end_image), B = Sequel/omni from A's last frame with
+     end_image = canvas, 6-8 s, ONLY "steps in to the centreline and turns to face forward" (a small move the model can
+     really make). Probe B at 480p first.
+   - CHECK EVERY FRAME OF THE LAST 4 s, not just the last: (a) ghosting = the frame is a blend of two views (edges doubled;
+     test: a frame f ~= a*f_prev_view + b*canvas with both a,b >0.2, or two peaks in the phase-correlation surface); (b) the
+     affine to the canvas must CONVERGE smoothly (scale/translation changing every frame), never jump while the image
+     cross-fades. Look at a contact sheet of every 6th frame of the last 4 s at full size before calling it a pass.
+  Credits: Homie's HF balance ~99 (may connect another HF account; the connector is NOT connected on Claude account 2).
+  A 480p draft 20 s = 60, 8 s = 24; finalize 1080p 20 s = 240.
+
+ISSUE 2: IN THE IDLES THE SHIP'S FRONT MOVES SEPARATELY FROM THE SHIP (6_review/S7-SHIP_idle_arc_preview_v1.mp4).
+  Cause (tools/s7_idle.py): the WORLD layer (the whole clip frame) is rolled/heaved and shown through the still's bgmask;
+  wherever the mask's sea/sky touches the ship (the far bow/forecastle near the horizon, the bowsprit, rope edges) or the
+  clip's own ship sits slightly differently from the still, SHIP PIXELS FROM THE CLIP get rolled with the sea: the bow
+  appears to move/distort separately.
+  FIX PLAN: (1) the world layer must contain NO ship: erode the bgmask ~6 px (dilate the ship) and FILL the ship holes in
+  the clip frame from the surrounding sea/sky (normalised-convolution fill, horizontal) BEFORE rolling; then lay the
+  still ship over it. (2) Open 5_layers/seamed_v2/<state>/*_check.jpg and the masks at the far bow at 4x: the forecastle,
+  bowsprit and the far rail must be SHIP (0) in the mask; fix the mask by hand/script if not. (3) Verify: difference of
+  consecutive frames INSIDE the ship mask must be ~0 (only the 0.6 px vibration) everywhere incl. the bow; make a 4x crop
+  of the bow over the loop. Also consider the roll pivot at the horizon point behind the bow (so the bow area moves least).
+  Rebuild all 4 idles + the arc preview with the SAME motion settings.
+
 LATEST (7 Oct, evening; Claude switched to a 2nd account; Higgsfield connector NOT connected on it; HF balance ~99 cr per
 Homie, who can connect another HF account with credits):
 DONE, ALL FOR HOMIE'S REVIEW (T9 04_WORKING_FILES/S7_ship/):
