@@ -22,6 +22,23 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
+LATEST (7 Oct, evening; Claude switched to a 2nd account; Higgsfield connector NOT connected on it; HF balance ~99 cr per
+Homie, who can connect another HF account with credits):
+DONE, ALL FOR HOMIE'S REVIEW (T9 04_WORKING_FILES/S7_ship/):
+- INTRO v5 (route A, one 21:9 take, no hard cut, gull flies off, lands on OUR deck): 4_intro_video/routeA_21x9/
+  S7-INTRO_3walls_v5_INTO_DAY_IDLE.mp4 (the intro across the 3 walls dissolving into the day idle) + S7-INTRO_3walls_v5.mp4.
+- IDLE LOOPS x4: 8_idle/<day|magic|sunset|night>/ (3walls_LOOP.mp4 review + LEFT/CENTRE/RIGHT ProRes). Deck still, the
+  horizon rolls/heaves behind it (identical in all 4 states, so a crossfade between skies never jumps).
+- FIXES: night CENTRE ropes (ship_ropefix.py); SUNSET one sky across the walls (ship_skyharmony.py; the "dark smoke").
+- LOG + REGISTER rows written (7 Oct route A).
+OPEN / NEXT:
+1. Homie's verdicts: intro v5 (stern windows' yellow trim; a quarterdeck rail flashes past), the 4 idles, the sunset sky.
+2. A light-arc preview built from the IDLES (day -> magic -> sunset -> night crossfades) replacing SEAMED_v3.
+3. 4K: upscale_video (ByteDance aigc 4k, ~1 cr each) on the 4 idle clips + the intro BEFORE the band crop (needs the HF
+   connector), then rerun s7_idle.py / s7_intro_3walls.py on the 4K clips.
+4. Destruction (the wreck state): script first (mast fall, list, shudder) on the wreck walls; check wreck CENTRE ropes.
+5. Watch: a thin bright horizon line on LEFT near the sunset loop point (natural glint, kept).
+
 HANDOVER, 7 OCT DAY (Homie present; MODE = VID; Claude's weekly limit at 95%, so another account may continue from here).
 THE TASK: THE SHIP INTRO, ROUTE A (Homie's pick): ONE seamless picture across all THREE walls, ending on the deck with the
 gull landed, NO hard cuts. Be efficient: Homie is short of time.
