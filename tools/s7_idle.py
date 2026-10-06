@@ -13,6 +13,10 @@ CLIP is a Seedance 21:9 take started from the state's deck canvas (prompts/S7-SH
    (--shake px) moves the whole frame; every term periodic over the loop (seamless), zero at frame 0. 0 0 0 = locked.
 4. Seamless loop: the last XFADE s are crossfaded into the first (picture and sound), so the file cycles without a join.
 5. The clip's own sound rides through, crossfaded the same way (house rule).
+6. (v2, 8 Oct, Homie: "the ship's bow moves separately from the ship") the rolled WORLD layer holds NO ship: the masks are
+   the refined 5_layers/.../_bgmask_v2 (tools/s7_worldfill.py: the forecastle gun, sail holes, blocks, rope edges are ship),
+   and before the roll the clip's own ship (dilated --fill-grow px) is filled with sea/sky (sea mirrored from above the hull,
+   sky push-pull), so no clip yard, gun or rail can roll into view beside the still ship. --check writes a no-shake test.
 Writes S7-SHIP-IDLE_<state>_3walls_LOOP.mp4 (H.264 review, 4680x1080) + per wall _LEFT/_CENTRE/_RIGHT.mov (ProRes 422 HQ,
 -qscale:v 2) and a log line (ECC, drift).
 """
@@ -23,6 +27,8 @@ import subprocess
 
 import cv2
 import numpy as np
+
+from s7_worldfill import fill_world, horizon_cols
 
 T = '/Volumes/DMD T9/SOTR/HF/SOTR_MEDIA/04_WORKING_FILES/S7_ship/'
 OW, OH = 4680, 1080
@@ -79,6 +85,9 @@ def main():
     ap.add_argument('--roll', type=float, default=0.6, help='deg, the horizon'); ap.add_argument('--heave', type=float, default=8.0, help='px, the horizon')
     ap.add_argument('--shake', type=float, default=0.6, help='px, the whole frame'); ap.add_argument('--tag', default='')
     ap.add_argument('--sky-harmony', type=int, default=0, help='horizon row: run ship_skyharmony on every frame (sunset: 448)')
+    ap.add_argument('--fill-grow', type=int, default=5, help='px at 4680: the clip ship is dilated this much before the fill')
+    ap.add_argument('--mask', default='_bgmask_v2', help='bgmask suffix in 5_layers/seamed_v2/<state>/')
+    ap.add_argument('--frames', type=int, default=0, help='render only the first N loop frames (tests)')
     a = ap.parse_args()
     st = a.state
     w, h, n = probe(a.clip)
@@ -89,15 +98,16 @@ def main():
     drift = float(np.abs(M1 - M0)[:, 2].max())
     print(f'{st}: ECC first {c0:.4f} last {c1:.4f}; drift {drift:.2f} px at {w}x{h}')
     still = np.hstack([cv2.imread(T + f'3_walls/seamed_v2/{st}/S7-SHIP-{x}_1080.png') for x, _, _ in WALLS]).astype(np.float32)
-    bg = np.hstack([cv2.imread(T + f'5_layers/seamed_v2/{st}/S7-SHIP-{x}_1080_bgmask.png', 0) for x, _, _ in WALLS])
-    bg = cv2.GaussianBlur(bg.astype(np.float32) / 255.0, (0, 0), 1.5)[..., None]
+    bgu = np.hstack([cv2.imread(T + f'5_layers/seamed_v2/{st}/S7-SHIP-{x}_1080{a.mask}.png', 0) for x, _, _ in WALLS])
+    _, Hc = horizon_cols(still.astype(np.uint8), bgu)
+    bg = cv2.GaussianBlur(bgu.astype(np.float32) / 255.0, (0, 0), 1.5)[..., None]
     # 1) every clip frame registered to the canvas (still at clip size), 2) the loop crossfade in clip space
     al = []
     for i, f in enumerate(fr):
         t = i / max(1, n - 1)
         M = (M0 * (1 - t) + M1 * t).astype(np.float32)
         al.append(cv2.warpAffine(f, M, (w, h), flags=cv2.INTER_LANCZOS4 | cv2.WARP_INVERSE_MAP,
-                                 borderMode=cv2.BORDER_REPLICATE))
+                                 borderMode=cv2.BORDER_REFLECT_101))   # v2: REPLICATE smeared the edge into streaks
     X = int(round(a.xfade * 24)); L = n - X
     seq = [cv2.addWeighted(al[L + i], 1 - (i + 1) / (X + 1), al[i], (i + 1) / (X + 1), 0) if i < X else al[i]
            for i in range(L)]
@@ -120,6 +130,14 @@ def main():
         return a.shake * sum(np.sin(k * u + p + 1.1) - np.sin(p + 1.1) for k, p in zip(ks, ph)) / len(ks)
 
     CH, B0 = 2038, 479
+    # the hole in the WORLD layer: the ship (grown), and everything under the band (the near deck); sky above the band
+    hole = np.zeros((CH, OW), bool); hole[B0 + OH:] = True
+    if a.fill_grow:
+        k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * a.fill_grow + 1,) * 2)
+        hole[B0:B0 + OH] = cv2.dilate((bgu < 128).astype(np.uint8), k).astype(bool)
+    else:
+        hole[B0:B0 + OH] = bgu < 128
+    Hfull = Hc + B0                                    # per column: sky fills sky, sea fills sea (mirrored from above)
     HK = None
     if a.sky_harmony:
         import sys as _s; _s.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -135,6 +153,7 @@ def main():
             reg = full[B0 - E:B0 + OH]
             bgx = np.vstack([np.ones((E, OW), np.float32), bg[..., 0]])
             full[B0 - E:B0 + OH] = harmonise(reg, bgx, a.sky_harmony + E, k=HK)[0]
+        full = fill_world(full, hole, Hfull)           # NO ship in the world layer: only sea + sky roll
         r, dy, dx = motion(i)
         M = cv2.getRotationMatrix2D((OW / 2, CH / 2), r, S)
         M[1, 2] += dy - B0
@@ -171,7 +190,7 @@ def main():
 
     procs = [enc(base + '_3walls_LOOP.mp4', 'h264')] + [enc(base + f'_{wl[0]}.mov', 'prores', wl) for wl in WALLS]
     first = last = None
-    for i in range(L):
+    for i in range(a.frames or L):
         f = frame_out(i)
         first = f if first is None else first; last = f
         procs[0].stdin.write(f.tobytes())

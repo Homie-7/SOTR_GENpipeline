@@ -171,6 +171,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-08 (VID + script, MacBook, Higgsfield CLI): HOMIE'S TWO ROUTE-A ISSUES FIXED. 315 cr.
+
+- Intro v6: the boarding generated BACKWARDS from the deck canvas and played reversed (`prompts/S7-INTRO-REV.txt`),
+  the flight a backward video_extension into it (`S7-INTRO-LEADIN.txt`): lands exactly on the walls, no morph. Idles v2:
+  no ship pixels roll with the sea (`tools/s7_worldfill.py`, `s7_idle.py` v2). For Homie's review: `docs/NEW-SESSION.md`.
+
 ### 2026-10-07, night (IMG -> VID, Homie asleep, delegated): SIDE WALLS BUILT OUT FROM THE MASTER; new astern start frame. 48 cr IMG.
 
 - Seams: `tools/ship_buildout.py` (guide canvas -> NBP -> registered onto the master's true pixels), states re-made,

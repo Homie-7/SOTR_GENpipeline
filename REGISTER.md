@@ -527,5 +527,10 @@ CENTRE is unchanged in every state (bit-identical to the approved files). Media 
 | `4_intro_video/routeA_21x9/S7-INTRO-FLIGHT_v5_6e515e2d.mp4` (2206x946, 20 s, sound) | the intro, one take, ends on our deck | **for review** |
 | `4_intro_video/routeA_21x9/S7-INTRO_3walls_v5.mp4` / `_v5_INTO_DAY_IDLE.mp4` (4680x1080) | the intro across the 3 walls, landing on the walls / flowing into the day idle | **for review** |
 | `8_idle/<state>/S7-SHIP-IDLE_<state>_3walls_LOOP.mp4` + `_LEFT/_CENTRE/_RIGHT.mov` (ProRes) | idle loops day/magic/sunset/night, 6.54 s, identical horizon motion | **for review** |
+| `4_intro_video/rev/S7-INTRO_3walls_v6.mp4` / `_v6_INTO_DAY_IDLE.mp4` (4680x1080, 21 s + dissolve) | **INTRO v6 (8 Oct)**: flight (S7-INTRO-LEADIN v1 final 93772e49, backward extension) -> reversed boarding (S7-INTRO-REV v1 final bc936046) -> lands exactly on the day walls; joined clip `S7-INTRO_v6_JOINED_21x9.mp4` | **for review; replaces v5** (v5 files kept in routeA_21x9/) |
+| `4_intro_video/rev/S7-INTRO-REV_v1_bc936046.mp4` (+ `_REVERSED.mp4`), `S7-INTRO-LEADIN_v1_93772e49.mp4` (2206x946, sound), 480p drafts beside them | the two generated parts of intro v6 | sources of v6 |
+| `8_idle/<state>/` (v2, 8 Oct) | idles rebuilt by `s7_idle.py` v2: no ship pixels in the rolled world (bow fixed), same motion; v1 in `superseded/S7_ship_idle_v1_2026-10-08/` | **for review; replaces v1** |
+| `5_layers/seamed_v2/<state>/S7-SHIP-*_1080_bgmask_v2.png` (+ `S7-SHIP_1080_bgmask_v2check.jpg`) | refined sea/sky masks (`tools/s7_worldfill.py`); old masks kept | working |
+| `6_review/S7-SHIP_idle_arc_preview_v2.mp4`, `S7-SHIP_idle_BOW_v1_vs_v2_day.mp4` | the light arc from the v2 idles; bow before/after | for review |
 | `3_walls/seamed_v2/night/S7-SHIP-CENTRE_1080.png` | ropes zig-zag fixed | replaces the approved night CENTRE's top 34 rows only |
 | `3_walls/seamed_v2/sunset/S7-SHIP-{LEFT,RIGHT}_1080.png` | sky harmonised to CENTRE | replaces seamed_v2 sunset sides |

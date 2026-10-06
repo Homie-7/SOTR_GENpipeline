@@ -1,0 +1,52 @@
+# S7-INTRO-REV · v1 · 2026-10-08 (MacBook, CLI) · PROBE DRAFT 480p 8 s · UNTESTED METHOD
+#
+# WHY: Homie on route A v5 (8 Oct): "almost perfect but two major issues… I need you to do better." The intro boards near
+#   the stern (an invented quarterdeck with a balustrade, 13-14.5 s) and then CROSS-DISSOLVES into the end frame
+#   (14.5-17 s): the camera never travels to the plate. Same mechanism as BOARD v1 (end_image -> a hard cut at 2.75 s):
+#   an END pin on a big 3D move is reached by a cut or a morph, twice. A START pin is exact (V1; v4/v5 frame 0 held).
+# THE IDEA (invented here, UNTESTED; house-rules SEARCH FIRST found no method for it): generate the boarding BACKWARDS.
+#   Frame one = our day deck canvas (exact); the camera turns to port, backs to the starboard rail beside the shrouds and
+#   sinks down outside the ship's side. Played REVERSED it rises up the side, over the rail amidships, steps in to the
+#   centreline turning to face forward and settles on the plate: a real move, ending pixel-exact (the held first third of a
+#   second becomes the final settle). The flight is joined to the reversed clip's first frame afterwards (method decided on
+#   this probe's result: backward video_extension, or a flight whose end is the close bulwark).
+# THIS PROBE ANSWERS: (1) is frame 0 the canvas exactly; (2) does the camera physically turn, back to the rail and go over
+#   it (no cut, no dissolve); (3) reversed, does anything betray it (sea, rigging, flag, smoke)?
+# THE GATE
+#   SOURCE  route A v5 prompt (S7-INTRO-FLIGHT.txt v5) + its 1080p take 6e515e2d, opened frame by frame 7-20 s and
+#           24 fps 11.9-13.4 s: boards over a quarterdeck breastwork, a balustrade rail, then the dissolve.
+#   ROOM    frame 0 = S7-SHIP-CANVAS21_day_upload.png (2480x1080; band = our seamed_v2 day walls): centreline, mast centred
+#           ahead with its furled yard, grating in front, guns + coiled ropes along both bulwarks, starboard shrouds at the
+#           right edge, open sea both sides, sky above.
+#   REFS    ONE image: start_image = the day canvas (re-uploaded on the new account).
+#   ROUTE   omni_reference, start_image only, NO end_image (the end pin is the failure being avoided).
+#   DELTA   new shot, not a patch: the boarding run backwards. Nothing contradicts frame one (held, then moves).
+# PREDICT: frame 0 = canvas (ECC > 0.98); a slow turn left + drift to the starboard rail by ~4 s; over the rail 4-6 s; the
+#   outside of the bulwark fills the frame at the end. RISKS: the camera walks forward instead (the model's habit), a cut,
+#   people appear, sails set.
+# SETTINGS: seedance_2_5 · omni_reference · start_image = S7-SHIP-CANVAS21_day_upload.png · 21:9 · 480p DRAFT -> 1080p ·
+#   8 s · bitrate high · batch 1 · sound ON · cost: see LOG (hf generate cost first)
+
+1 continuous shot, 8 seconds, no cuts. Real-time, no slow motion.
+
+Style: real documentary footage at sea in 1816, film grain. NOT a 3D render. Natural motion blur, no interpolation, no morphing.
+
+NO ON-SCREEN TEXT.
+
+FIRST FRAME: the attached image exactly as composed, held completely still for a third of a second, nothing reframed; then motion begins.
+
+THE CAMERA MOVE — CRITICAL: one slow physical move by a camera operator, never a cut, never a dissolve. The camera turns to its left until it looks straight across the deck at the far side, while it drifts backwards to the near rail on its right, just behind the shrouds. It backs out over that rail and sinks straight down outside the ship's side: the rail cap rises through the frame and the outside of the red-ochre bulwark fills the frame, close.
+
+THE SHIP: exactly the ship in the image: grey deck planks, red-ochre bulwarks, black guns, coiled ropes, the yard furled. The deck is empty.
+
+CAMERA: 47 degrees, eye height, real weight, unhurried.
+
+ACTION:
+0-1s: held still, then the turn begins.
+1-4s: turning left and drifting back to the near rail; the mast slides out of the right of the frame.
+4-6s: looking across the deck, the camera backs out over the rail; the rail cap rises through the bottom of the frame.
+6-8s: it sinks down outside the hull; the red-ochre planking fills the frame, close.
+
+AUDIO: wind, timber creaking, rigging. NO BGM — no music of any kind: no score, no song, no instrumental, no drone.
+
+LOCKS: one ship; no people; no birds; sails stay furled; nothing newer than 1816.

@@ -22,8 +22,17 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (8 Oct; Homie reviewed route A: "almost perfect but two major issues… I need you to do better").
-Mode VID for issue 1, script/POST for issue 2. Read the LATEST block below for files, tools and credits.
+THE TASK, RIGHT NOW (8 Oct, end of day): HOMIE'S REVIEW of the two fixes, both rebuilt today. Then 4K + destruction.
+  WATCH (T9 04_WORKING_FILES/S7_ship/):
+  1. 4_intro_video/rev/S7-INTRO_3walls_v6_INTO_DAY_IDLE.mp4 = INTRO v6: flight -> boards amidships -> lands EXACTLY on the
+     deck walls -> the day idle. (Homie OK'd the reversed draft and the finalize.)
+  2. 6_review/S7-SHIP_idle_BOW_v1_vs_v2_day.mp4 (bow before/after) + 6_review/S7-SHIP_idle_arc_preview_v2.mp4 (all 4 idles).
+  NEXT after his verdict: (a) 4K: ByteDance video upscale of the two intro parts + the 4 idle clips, then rerun
+  s7_idle.py / s7_intro_3walls.py --constant on the 4K clips; (b) the same horizon motion ramped onto the intro's held end
+  (intro -> idle currently dissolves into the moving idle over 0.5 s); (c) the destruction (wreck state), script first.
+  Known residuals: idles = a faint 1 px seam in the narrow sea strip between the forecastle rail and the horizon when the
+  sea heaves; intro = the main course is SET outside (as the F1 opening) but FURLED on our deck (as the approved plate).
+  Mode VID for any generation; script work is POST. Credits: CLI balance 935 after today (315 spent).
 
 HIGGSFIELD NOW = THE CLI (set up 8 Oct; the claude.ai connector is not connected on this Claude account):
   binary ~/.npm-global/bin/higgsfield (aliases hf, higgs; PATH added in ~/.zshrc), signed in; workspace "Private"
@@ -33,7 +42,7 @@ HIGGSFIELD NOW = THE CLI (set up 8 Oct; the claude.ai connector is not connected
   ~/.claude/skills (read higgsfield-generate before the first call). The same rules apply: one job at a time, cost first,
   transactions after. Media uploaded to the OLD account (media ids above) do NOT exist on this one: re-upload.
 
-ISSUE 1: THE INTRO DOES NOT ARRIVE AT THE END FRAME (S7-INTRO_3walls_v5_INTO_DAY_IDLE.mp4, Homie's screenshots at 0:10 and 0:18).
+(DONE 8 Oct, see PROGRESS) ISSUE 1: THE INTRO DOES NOT ARRIVE AT THE END FRAME (S7-INTRO_3walls_v5_INTO_DAY_IDLE.mp4, Homie's screenshots at 0:10 and 0:18).
   What happens: the camera climbs the side near the STERN (0:10, the stern gallery beside it) and comes aboard near the
   stern on the starboard side; then (about 0:16-0:19) the picture CROSS-MORPHS into the deck plate: a double exposure
   (the starboard rail and gun in the foreground ghosted over the centred deck view). The camera never travels to the
@@ -52,10 +61,9 @@ ISSUE 1: THE INTRO DOES NOT ARRIVE AT THE END FRAME (S7-INTRO_3walls_v5_INTO_DAY
      test: a frame f ~= a*f_prev_view + b*canvas with both a,b >0.2, or two peaks in the phase-correlation surface); (b) the
      affine to the canvas must CONVERGE smoothly (scale/translation changing every frame), never jump while the image
      cross-fades. Look at a contact sheet of every 6th frame of the last 4 s at full size before calling it a pass.
-  Credits: Homie's HF balance ~99 (may connect another HF account; the connector is NOT connected on Claude account 2).
-  A 480p draft 20 s = 60, 8 s = 24; finalize 1080p 20 s = 240.
+  Credits: the CLI account ("Private") had 1,250 on 8 Oct. A 480p draft 20 s = 60, 8 s = 24; 1080p 8 s = 96, 20 s = 240.
 
-ISSUE 2: IN THE IDLES THE SHIP'S FRONT MOVES SEPARATELY FROM THE SHIP (6_review/S7-SHIP_idle_arc_preview_v1.mp4).
+(DONE 8 Oct, see PROGRESS) ISSUE 2: IN THE IDLES THE SHIP'S FRONT MOVES SEPARATELY FROM THE SHIP (6_review/S7-SHIP_idle_arc_preview_v1.mp4).
   Cause (tools/s7_idle.py): the WORLD layer (the whole clip frame) is rolled/heaved and shown through the still's bgmask;
   wherever the mask's sea/sky touches the ship (the far bow/forecastle near the horizon, the bowsprit, rope edges) or the
   clip's own ship sits slightly differently from the still, SHIP PIXELS FROM THE CLIP get rolled with the sea: the bow
@@ -67,6 +75,32 @@ ISSUE 2: IN THE IDLES THE SHIP'S FRONT MOVES SEPARATELY FROM THE SHIP (6_review/
   consecutive frames INSIDE the ship mask must be ~0 (only the 0.6 px vibration) everywhere incl. the bow; make a 4x crop
   of the bow over the loop. Also consider the roll pivot at the horizon point behind the bow (so the bow area moves least).
   Rebuild all 4 idles + the arc preview with the SAME motion settings.
+
+PROGRESS 8 OCT (MacBook, CLI; MODE VID; Homie present):
+- ISSUE 2 FIXED BY SCRIPT (0 cr). Cause confirmed on the pixels: (a) the old bgmasks marked SHIP as sea/sky at the bow (the
+  forecastle gun's barrel, holes in the furled sail, blocks, rope edges) so those pixels showed the rolling world; (b) the
+  rolled world was the whole clip frame, so the clip's own yard + gun rolled into view (v1 day at 4 s: the forecastle gun
+  DOUBLED, the yard ghosted). Fix: NEW tools/s7_worldfill.py -> 5_layers/seamed_v2/<state>/*_bgmask_v2.png (+ _v2check.jpg;
+  old masks kept): ship found by colour vs a smooth sea/sky model near the ship, a straight fitted horizon never frozen, sea
+  specks dropped, ship grown 2 px. tools/s7_idle.py v2: the clip's ship (grown 5 px) is FILLED before the roll (sea copied
+  sideways from open water in the same row = same haze; else mirrored from above; sky push-pull from sky only), and the
+  registration border mirrors (v1 smeared LEFT's outer edge into streaks). Motion settings unchanged (roll 0.6 / heave 8 /
+  shake 0.6, same phases, 157 f). VERIFIED (day, no-shake test): ship core range max 6 levels = codec noise, 0 px moving;
+  4x bow crops clean in every 20th frame. v1 idles moved to 04_WORKING_FILES/superseded/S7_ship_idle_v1_2026-10-08/.
+  Rebuilt: 8_idle/<state>/ + 6_review/S7-SHIP_idle_arc_preview_v2.mp4 + S7-SHIP_idle_BOW_v1_vs_v2_day.mp4 (side by side).
+- ISSUE 1 DONE = INTRO v6 (315 cr): REV probe 24 + final 96; LEADIN draft 39 + final 156. The boarding generated
+  BACKWARDS from the day canvas (prompts/S7-INTRO-REV.txt) and played reversed; the flight = a BACKWARD video_extension
+  of that reversed clip (prompts/S7-INTRO-LEADIN.txt, + F1 astern as an image reference), so the join is the model's own
+  continuation inside a full-frame planking close-up (1080p: join step 2.7 px between 2.9-3.4 and 3.3 px/frame steps).
+  3-wall build: s7_intro_3walls.py --constant (one correction on every frame = Seedance's fixed 2.2% zoom). Checked:
+  every 6th frame of the last 4 s at full size = single sharp images, no double exposure; ECC to the walls 0.83 -> 0.993
+  over the last second. (A blend-regression ghost test was tried and was BLIND to v5's known morph: don't trust it; look.)
+  CLI: `--draft false` is required with `--draft_job_id`. Original plan notes:
+- ISSUE 1 PLAN (Claude's pick, invented, UNTESTED at the time): generate the boarding BACKWARDS from the day canvas (start pins are
+  exact, end pins cut/morph: BOARD v1 + v5) and play it reversed, so the intro ENDS pixel-exact with a real move.
+  prompts/S7-INTRO-REV.txt v1 (480p 8 s probe = 24 cr; canvas uploaded on the new account: media de76e4f6-025f-4f2c-
+  8b37-2950f1f01383). The flight joins its reversed first frame afterwards (backward video_extension, or a flight ending
+  close on the bulwark). v5's own rail crossing has no full-frame occluder (checked 24 fps): it can't be the join as is.
 
 LATEST (7 Oct, evening; Claude switched to a 2nd account; Higgsfield connector NOT connected on it; HF balance ~99 cr per
 Homie, who can connect another HF account with credits):

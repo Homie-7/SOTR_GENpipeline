@@ -4,7 +4,8 @@
 
 1. The clip's LAST frame is registered to the deck canvas (ECC, affine; the v5 draft ended 2.3% zoomed in).
 2. Over the last RAMP seconds that correction is eased in (smoothstep), so the camera's own settle carries it and the
-   last frame sits on the canvas pixel for pixel.
+   last frame sits on the canvas pixel for pixel. --constant: the same correction on every frame instead (8 Oct: the intro
+   now ENDS on the canvas by construction, S7-INTRO-REV reversed; only Seedance's fixed ~2.2% zoom is removed).
 3. Every frame is scaled to 4680 wide and the centred 4.33:1 band kept (LEFT 1440 | CENTRE 1800 | RIGHT 1440).
 4. The last frame dissolves over XFADE s into the walls (WALLDIR/S7-SHIP-{LEFT,CENTRE,RIGHT}_1080.png), held HOLD s,
    or with --then IDLE.mp4 into the playing idle loop (its sound mixed in under the dissolve).
@@ -50,6 +51,8 @@ def main():
     ap.add_argument('clip'); ap.add_argument('canvas'); ap.add_argument('walldir'); ap.add_argument('out')
     ap.add_argument('--ramp', type=float, default=2.5); ap.add_argument('--xfade', type=float, default=0.5)
     ap.add_argument('--hold', type=float, default=3.0)
+    ap.add_argument('--constant', action='store_true', help='apply the last-frame correction to EVERY frame (no ramp): for a clip '
+                    'whose end IS the canvas (S7-INTRO-REV played reversed), it only removes the generator\'s fixed zoom')
     ap.add_argument('--then', help='an idle loop (4680x1080) to dissolve INTO and play for --hold s, instead of the still walls')
     a = ap.parse_args()
     w, h, n = probe(a.clip)
@@ -79,9 +82,9 @@ def main():
                             '-c:a', 'aac', '-b:a', '256k', '-movflags', '+faststart', a.out], stdin=subprocess.PIPE)
     lastb = None
     for i, f in enumerate(frames(a.clip, w, h)):
-        k = i - (n - nr)
+        k = n - 1 if a.constant else i - (n - nr)
         if k >= 0:
-            t = (k + 1) / nr
+            t = 1.0 if a.constant else (k + 1) / nr
             s = t * t * (3 - 2 * t)
             Mt = I + s * (M - I)
             f = cv2.warpAffine(f, Mt, (w, h), flags=cv2.INTER_LANCZOS4 | cv2.WARP_INVERSE_MAP,
