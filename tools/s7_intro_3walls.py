@@ -38,10 +38,10 @@ def frames(p, w, h):
 
 
 def band(img):
-    h = int(round(img.shape[0] * OW / img.shape[1]))
-    big = cv2.resize(img, (OW, h), interpolation=cv2.INTER_LANCZOS4 if h > img.shape[0] else cv2.INTER_AREA)
-    y0 = (h - OH) // 2
-    return big[y0:y0 + OH]
+    """the canvas's own band (rows 479..1559 of 2038), whatever the clip's size or aspect, resized to 4680x1080"""
+    h = img.shape[0]
+    y0, y1 = int(round(h * 479 / 2038)), int(round(h * 1559 / 2038))
+    return cv2.resize(img[y0:y1], (OW, OH), interpolation=cv2.INTER_LANCZOS4)
 
 
 def main():

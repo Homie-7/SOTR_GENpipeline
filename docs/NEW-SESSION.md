@@ -70,6 +70,15 @@ gull landed, NO hard cuts. Be efficient: Homie is short of time.
     night 2a518de2-e311-4a5b-bd6d-4e449b80abf7. NEW tools/s7_intro_3walls.py (end alignment + dissolve + sound): the v5
     DRAFT preview = routeA_21x9/S7-INTRO_3walls_PREVIEW_v5draft.mp4 (lands on the walls, MAD 12.8 at the join = 480p softness).
     When the 1080p final lands: download to routeA_21x9/S7-INTRO-FLIGHT_v5_6e515e2d.mp4 and rerun s7_intro_3walls.py on it.
+  * UPDATE 2 (7 Oct, later): INTRO v5 FINAL 1080p DOWNLOADED: routeA_21x9/S7-INTRO-FLIGHT_v5_6e515e2d.mp4 (2206x946!
+    Seedance 1080p 21:9 = 2.332, the draft 992x432 = 2.296: both tools now crop the CANVAS's band rows 479..1559/2038 and
+    resize, so any size lands right). NEXT: run tools/s7_intro_3walls.py on it -> S7-INTRO_3walls_v5.mp4, show Homie.
+    DAY IDLE DONE: 8_idle/S7-SHIP-IDLE_day_v1_fcb5117d.mp4 -> tools/s7_idle.py -> 8_idle/day/ (3walls_LOOP.mp4 review +
+    LEFT/CENTRE/RIGHT ProRes; loop 6.54 s, xfade 1.5 s, ECC 0.995, drift 0.4 px). SHIP MOTION (Homie: "we are on the ship…
+    cannot be super stable… the water horizon might move"): camera fixed to the ship = DECK STILL, the SEA+SKY roll 0.6 deg
+    and heave 8 px behind it (canvas space, periodic over the loop), + 0.6 px vibration on the whole frame (--roll/--heave/
+    --shake). MAGIC idle submitted next; then sunset, night (96 each; preset IN THE DARK declined each time).
+    LATER: the same horizon motion on the intro's held end (ramp it in) so intro -> idle has no jump.
   * Credits this session so far: v4 draft 60 + canvases 8 + v5 draft 60 = 128 (balance 791.49 -> ~663.49).
 - NIGHT CENTRE ROPES FIXED (tools/ship_ropefix.py, K=34): installed in seamed_v2/night, old in
   04_WORKING_FILES/superseded/S7_ship_ropes_zigzag_2026-10-07/. Magic and sunset had no zig-zag. Arc preview NOT yet rebuilt.
