@@ -527,10 +527,28 @@ CENTRE is unchanged in every state (bit-identical to the approved files). Media 
 | `4_intro_video/routeA_21x9/S7-INTRO-FLIGHT_v5_6e515e2d.mp4` (2206x946, 20 s, sound) | the intro, one take, ends on our deck | **for review** |
 | `4_intro_video/routeA_21x9/S7-INTRO_3walls_v5.mp4` / `_v5_INTO_DAY_IDLE.mp4` (4680x1080) | the intro across the 3 walls, landing on the walls / flowing into the day idle | **for review** |
 | `8_idle/<state>/S7-SHIP-IDLE_<state>_3walls_LOOP.mp4` + `_LEFT/_CENTRE/_RIGHT.mov` (ProRes) | idle loops day/magic/sunset/night, 6.54 s, identical horizon motion | **for review** |
-| `4_intro_video/rev/S7-INTRO_3walls_v6.mp4` / `_v6_INTO_DAY_IDLE.mp4` (4680x1080, 21 s + dissolve) | **INTRO v6 (8 Oct)**: flight (S7-INTRO-LEADIN v1 final 93772e49, backward extension) -> reversed boarding (S7-INTRO-REV v1 final bc936046) -> lands exactly on the day walls; joined clip `S7-INTRO_v6_JOINED_21x9.mp4` | **for review; replaces v5** (v5 files kept in routeA_21x9/) |
-| `4_intro_video/rev/S7-INTRO-REV_v1_bc936046.mp4` (+ `_REVERSED.mp4`), `S7-INTRO-LEADIN_v1_93772e49.mp4` (2206x946, sound), 480p drafts beside them | the two generated parts of intro v6 | sources of v6 |
-| `8_idle/<state>/` (v2, 8 Oct) | idles rebuilt by `s7_idle.py` v2: no ship pixels in the rolled world (bow fixed), same motion; v1 in `superseded/S7_ship_idle_v1_2026-10-08/` | **for review; replaces v1** |
+| `4_intro_video/rev/S7-INTRO_3walls_v6_INTO_DAY_IDLE.mp4` (4680x1080, 29.2 s; rebuilt 8 Oct `--trim 2 --xfade 0.25`: the water never stops) | **INTRO v6 (8 Oct)**: flight (S7-INTRO-LEADIN v1 final 93772e49, backward extension) -> reversed boarding (S7-INTRO-REV v1 final bc936046) -> lands exactly on the day walls; joined clip `S7-INTRO_v6_JOINED_21x9.mp4` | **for review; replaces v5** (v5 binned 8 Oct) |
+| `4_intro_video/rev/S7-INTRO-REV_v1_bc936046.mp4` (+ `_REVERSED.mp4`), `S7-INTRO-LEADIN_v1_93772e49.mp4` (2206x946, sound); opening ref `routeA_21x9/S7-INTRO-F1-ASTERN_21x9_v2.png` | the two generated parts of intro v6 | sources of v6 |
+| `8_idle/<state>/` (v2, 8 Oct) | idles rebuilt by `s7_idle.py` v2: no ship pixels in the rolled world (bow fixed), same motion; v1 binned 8 Oct | **for review; replaces v1** |
 | `5_layers/seamed_v2/<state>/S7-SHIP-*_1080_bgmask_v2.png` (+ `S7-SHIP_1080_bgmask_v2check.jpg`) | refined sea/sky masks (`tools/s7_worldfill.py`); old masks kept | working |
 | `6_review/S7-SHIP_idle_arc_preview_v2.mp4`, `S7-SHIP_idle_BOW_v1_vs_v2_day.mp4` | the light arc from the v2 idles; bow before/after | for review |
 | `3_walls/seamed_v2/night/S7-SHIP-CENTRE_1080.png` | ropes zig-zag fixed | replaces the approved night CENTRE's top 34 rows only |
 | `3_walls/seamed_v2/sunset/S7-SHIP-{LEFT,RIGHT}_1080.png` | sky harmonised to CENTRE | replaces seamed_v2 sunset sides |
+
+## 2026-10-08 · FILE MANAGEMENT (Homie: "Anything that isn't going to make it to the show and/or isn't needed to make adjustments and changes can be binned")
+
+T9 `04_WORKING_FILES` 413 GB -> 4.6 GB; 412 GB in `SOTR/HF/_DELETE_ME_2026-10-08/` (same paths inside) for Homie to empty.
+Every move in `SOTR/HF/CLEANUP_2026-10-08_moves.tsv`; `tools/cleanup_2026-10-08.py` (pass 1 = the ship, pass 2 = the rest).
+**The PC must run pass 2 on D:** (the script's header), or the next T9 sync copies the files back. Rows above that name a
+binned file now describe the bin. What stays: 01, 02, 03, 05, 06, comp/; every recipe (LUTs, match JSONs, masks, scripts,
+PLAN jsons, the S6 scratch sound); every chosen generated take; the gallery's building pieces + puddle take/FLOW renders;
+`edge_kits`, `build_recipes`, `4K_records`; Homie's own `Final Animations/`, `HF/sea/`, `HF/SOTR/` (not judged).
+
+| Binned | Why |
+|---|---|
+| `superseded/` (all: S6_v5, S6 v6.0/6.1, S4_alps_grade_v1, studio_pre_canvas_edge, studio_b9_v3, t9_replaced_*, S1_gallery, the S7 ones) | replaced versions: not the show, not inputs |
+| `S5_battlefield_grade/` videos (C_matched, N_matched, N_nobirds, C2_graded, N_v5_graded, C2_test, reviews, superseded) | the show files were MOVED into 01; a regrade starts from the F: renders + the kept LUTs/JSONs |
+| `S4_alps_grade_v2/A4_matched/review` + `4K/uploads` videos | review copies + upload halves (sheets, PLAN jsons kept) |
+| `S6_v6_option/` 1080 files, `uploads*` videos, `4K/raw`; `S9_studio_canvas_edge/` videos | sha256-identical to 01's files, or upload/raw intermediates |
+| `S6-ANIMATIC_v4_approved.mp4`, `S9-ANIMATIC_v1.mp4`, `S6_flags_v6_preview/`, gallery GLIMMER tests + review clips | references/reviews |
+| `S7_ship/`: rejected intros (v1, FLIGHT v1-v3 + v5, LAND, BOARD, endframe), drafts with finals, `S7-INTRO_3walls_v6.mp4` (still-wall copy), unchosen takes, `assembled_*` (except v1) + their layers, `seamed_v1` + layers, old reviews, the v1 idles, the zig-zag CENTREs | not the show, not inputs |

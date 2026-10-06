@@ -4,7 +4,7 @@ three walls).
 Seedance's 21:9 is 992x432 = 2.2963:1. The three walls (LEFT 1440 | CENTRE 1800 | RIGHT 1440 = 4680x1080) are the CENTRED
 4.33:1 band of that frame, so a canvas is 4680 x 2038 with the walls at rows 479..1559 and 479 rows to fill above (sky,
 rigging going up) and below (deck toward the camera). The canvas is (a) the intro's END frame (day) and (b) each idle
-loop's START frame; tools/s7_intro_3walls.sh crops the same band back out, so the walls land on our pixels.
+loop's START frame; tools/s7_intro_3walls.py crops the same band back out, so the walls land on our pixels.
 
   python tools/ship_canvas21.py guide STATE OUTDIR          # canvas with a guide fill (smooth sky above, deck rows below)
   python tools/ship_canvas21.py merge STATE TAKE.png OUTDIR  # NBP take -> registered on the band -> our band pinned back

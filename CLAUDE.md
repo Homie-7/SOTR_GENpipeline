@@ -83,7 +83,9 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
   script order: S1 + S10 gallery at 1080, S4 + S5 at 1080, S6 + S9 4K with the edge), `2_BACKUP_LOOPS_for_operator/` (4K), `3_HD_1080_fallback/`
   (S6 + S9 at 1080), `4_CLIENT_OPTION_S5_cold_dusk/`, `5_FLOOR_only_if_a_floor_projector/` (added 2026-10-05). Then `02_APPROVED_BUILDING_BLOCKS/` (every generated source the show is built from,
   incl. `S6_generated/`, `studio_b9_candle/`), `03_CLEAN_MASTERS_no_edge/` (the `_CLEAN` masters),
-  `04_WORKING_FILES/` (edge kits, build recipes, 4K records, `superseded/`, and any new test folder),
+  `04_WORKING_FILES/` (edge kits, build recipes, 4K records, `superseded/`, and any new test folder; **8 Oct cleanup,
+  Homie: "anything that isn't going to make it to the show and/or isn't needed to make adjustments and changes can be
+  binned": it holds only recipes, chosen sources and live work (4.6 GB on the T9); `tools/cleanup_2026-10-08.py`**),
   `05_REFERENCE_UPLOADS/`, `06_PRESENTATIONS/`, `comp/` (Homie's After Effects area; never reorganise
   it). **No version numbers in show names**; the version lives in `REGISTER.md`. A new version takes
   the SAME show name and the old file goes to `04_WORKING_FILES/superseded/` with its version added.
@@ -171,7 +173,11 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-10-08 (VID + script, MacBook, Higgsfield CLI): HOMIE'S TWO ROUTE-A ISSUES FIXED. 315 cr.
+### 2026-10-08 (VID + script, MacBook, Higgsfield CLI): HOMIE'S TWO ROUTE-A ISSUES FIXED. 315 cr. Then a FILE CLEANUP.
+
+- Cleanup: T9 `04_WORKING_FILES` 413 -> 4.6 GB, 412 GB in `SOTR/HF/_DELETE_ME_2026-10-08/` for Homie to empty; **the PC
+  must run `tools/cleanup_2026-10-08.py --pass 2` on D:** (header) or the T9 sync copies it all back. The intro's
+  landing no longer freezes the water (`s7_intro_3walls.py --trim 2 --xfade 0.25`).
 
 - Intro v6: the boarding generated BACKWARDS from the deck canvas and played reversed (`prompts/S7-INTRO-REV.txt`),
   the flight a backward video_extension into it (`S7-INTRO-LEADIN.txt`): lands exactly on the walls, no morph. Idles v2:

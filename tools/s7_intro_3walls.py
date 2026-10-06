@@ -53,12 +53,16 @@ def main():
     ap.add_argument('--hold', type=float, default=3.0)
     ap.add_argument('--constant', action='store_true', help='apply the last-frame correction to EVERY frame (no ramp): for a clip '
                     'whose end IS the canvas (S7-INTRO-REV played reversed), it only removes the generator\'s fixed zoom')
+    ap.add_argument('--trim', type=int, default=0, help='drop the last N clip frames (8 Oct: v6\'s last 2 frames are the generator\'s '
+                    'frozen hold; the dissolve then starts while the water still moves)')
     ap.add_argument('--then', help='an idle loop (4680x1080) to dissolve INTO and play for --hold s, instead of the still walls')
     a = ap.parse_args()
     w, h, n = probe(a.clip)
+    n -= a.trim
     last = None
-    for f in frames(a.clip, w, h):
-        last = f
+    for i, f in enumerate(frames(a.clip, w, h)):
+        if i < n:
+            last = f
     can = cv2.resize(cv2.imread(a.canvas), (w, h), interpolation=cv2.INTER_AREA)
     g1 = cv2.cvtColor(last, cv2.COLOR_BGR2GRAY).astype(np.float32)
     g0 = cv2.cvtColor(can, cv2.COLOR_BGR2GRAY).astype(np.float32)
@@ -82,6 +86,8 @@ def main():
                             '-c:a', 'aac', '-b:a', '256k', '-movflags', '+faststart', a.out], stdin=subprocess.PIPE)
     lastb = None
     for i, f in enumerate(frames(a.clip, w, h)):
+        if i >= n:
+            break
         k = n - 1 if a.constant else i - (n - nr)
         if k >= 0:
             t = 1.0 if a.constant else (k + 1) / nr

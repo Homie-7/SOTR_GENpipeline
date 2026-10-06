@@ -22,17 +22,23 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (8 Oct, end of day): HOMIE'S REVIEW of the two fixes, both rebuilt today. Then 4K + destruction.
+THE TASK, RIGHT NOW (8 Oct, end of day): HOMIE'S REVIEW of the two fixes. Then 4K + destruction.
   WATCH (T9 04_WORKING_FILES/S7_ship/):
   1. 4_intro_video/rev/S7-INTRO_3walls_v6_INTO_DAY_IDLE.mp4 = INTRO v6: flight -> boards amidships -> lands EXACTLY on the
-     deck walls -> the day idle. (Homie OK'd the reversed draft and the finalize.)
+     deck walls -> the day idle; the water never stops (rebuilt --trim 2 --xfade 0.25 after Homie's question). This is
+     the only intro build: the still-walls copy was binned (it froze the sea for 3 s).
   2. 6_review/S7-SHIP_idle_BOW_v1_vs_v2_day.mp4 (bow before/after) + 6_review/S7-SHIP_idle_arc_preview_v2.mp4 (all 4 idles).
+  HOUSEKEEPING: (a) Homie empties SOTR/HF/_DELETE_ME_2026-10-08/ on the T9 (412 GB; nothing in it is the show or an
+  input: REGISTER 2026-10-08). (b) ON THE PC: `python tools/cleanup_2026-10-08.py --pass 2 --media D:/SOTR/SOTR_MEDIA/
+  --bin D:/SOTR/_DELETE_ME_2026-10-08/ --tsv D:/SOTR/CLEANUP_2026-10-08_moves.tsv --skip-missing` (dry run, then --go),
+  or the next T9 sync copies the binned files back. (c) S7_ship exists ONLY on the T9 (made on the Mac): copy it to D:
+  when the PC is next on (it is the only copy).
   NEXT after his verdict: (a) 4K: ByteDance video upscale of the two intro parts + the 4 idle clips, then rerun
-  s7_idle.py / s7_intro_3walls.py --constant on the 4K clips; (b) the same horizon motion ramped onto the intro's held end
-  (intro -> idle currently dissolves into the moving idle over 0.5 s); (c) the destruction (wreck state), script first.
+  s7_idle.py / s7_intro_3walls.py --constant --trim 2 on the 4K clips; (b) the same horizon motion ramped onto the
+  intro's held end; (c) the destruction (wreck state), script first.
   Known residuals: idles = a faint 1 px seam in the narrow sea strip between the forecastle rail and the horizon when the
   sea heaves; intro = the main course is SET outside (as the F1 opening) but FURLED on our deck (as the approved plate).
-  Mode VID for any generation; script work is POST. Credits: CLI balance 935 after today (315 spent).
+  Mode VID for any generation; script work is POST. Credits: CLI balance 935 (315 spent 8 Oct).
 
 HIGGSFIELD NOW = THE CLI (set up 8 Oct; the claude.ai connector is not connected on this Claude account):
   binary ~/.npm-global/bin/higgsfield (aliases hf, higgs; PATH added in ~/.zshrc), signed in; workspace "Private"
