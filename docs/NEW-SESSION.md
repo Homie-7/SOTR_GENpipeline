@@ -25,6 +25,14 @@ walls as walls at true scale, no people in any plate, nothing newer than the sce
 THE TASK, RIGHT NOW (8 Oct; Homie reviewed route A: "almost perfect but two major issues… I need you to do better").
 Mode VID for issue 1, script/POST for issue 2. Read the LATEST block below for files, tools and credits.
 
+HIGGSFIELD NOW = THE CLI (set up 8 Oct; the claude.ai connector is not connected on this Claude account):
+  binary ~/.npm-global/bin/higgsfield (aliases hf, higgs; PATH added in ~/.zshrc), signed in; workspace "Private"
+  (a4274571-f90b-43b3-9485-c41e2e15cc59, plus plan, 1,250 credits at setup). Models: seedance_2_5, nano_banana_pro,
+  bytedance_image_upscale, topaz_hyperion_2_5. Commands: `hf generate cost|create|wait|get|list`, `hf upload`,
+  `hf model list --video`, `hf account status|transactions`. Skills installed: higgsfield-generate (+6 others) in
+  ~/.claude/skills (read higgsfield-generate before the first call). The same rules apply: one job at a time, cost first,
+  transactions after. Media uploaded to the OLD account (media ids above) do NOT exist on this one: re-upload.
+
 ISSUE 1: THE INTRO DOES NOT ARRIVE AT THE END FRAME (S7-INTRO_3walls_v5_INTO_DAY_IDLE.mp4, Homie's screenshots at 0:10 and 0:18).
   What happens: the camera climbs the side near the STERN (0:10, the stern gallery beside it) and comes aboard near the
   stern on the starboard side; then (about 0:16-0:19) the picture CROSS-MORPHS into the deck plate: a double exposure
