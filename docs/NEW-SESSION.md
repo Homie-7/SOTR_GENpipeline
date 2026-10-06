@@ -64,6 +64,12 @@ gull landed, NO hard cuts. Be efficient: Homie is short of time.
     69161783-c0a7-4d33-a2df-cfffd53bc276, same params as the v5 header (preflight 240 cr). Re-measure the end affine at 1080p.
     (c) IDLE LOOPS: prompts/S7-SHIP-IDLE.txt (written, not run), 1080p 8 s = 96 cr each x 4 = 384. Day first, check, then
     the rest. (d) destruction later with whatever is left (~40 cr after a+b+c: script-first).
+  * RUNNING / DONE AFTER THE FIRST HANDOVER: v5 FINALIZE 1080p submitted = job 6e515e2d-7021-41a7-b733-eb8c1a490abc (240 cr,
+    one debit checked). DAY IDLE submitted = job fcb5117d-6c6b-4038-af46-3dc86430933d (96 cr; preset IN THE DARK declined).
+    Canvas uploads for the idles: magic be2d4524-8d34-4bd9-9a91-5ef11e719228 · sunset 5494e0d8-83d7-4234-9698-b3b061d56e74 ·
+    night 2a518de2-e311-4a5b-bd6d-4e449b80abf7. NEW tools/s7_intro_3walls.py (end alignment + dissolve + sound): the v5
+    DRAFT preview = routeA_21x9/S7-INTRO_3walls_PREVIEW_v5draft.mp4 (lands on the walls, MAD 12.8 at the join = 480p softness).
+    When the 1080p final lands: download to routeA_21x9/S7-INTRO-FLIGHT_v5_6e515e2d.mp4 and rerun s7_intro_3walls.py on it.
   * Credits this session so far: v4 draft 60 + canvases 8 + v5 draft 60 = 128 (balance 791.49 -> ~663.49).
 - NIGHT CENTRE ROPES FIXED (tools/ship_ropefix.py, K=34): installed in seamed_v2/night, old in
   04_WORKING_FILES/superseded/S7_ship_ropes_zigzag_2026-10-07/. Magic and sunset had no zig-zag. Arc preview NOT yet rebuilt.
