@@ -32,7 +32,10 @@ THE TASK, RIGHT NOW (8 Oct, end of day): HOMIE'S REVIEW of the two fixes. Then 4
   input: REGISTER 2026-10-08). (b) ON THE PC: `python tools/cleanup_2026-10-08.py --pass 2 --media D:/SOTR/SOTR_MEDIA/
   --bin D:/SOTR/_DELETE_ME_2026-10-08/ --tsv D:/SOTR/CLEANUP_2026-10-08_moves.tsv --skip-missing` (dry run, then --go),
   or the next T9 sync copies the binned files back. (c) S7_ship exists ONLY on the T9 (made on the Mac): copy it to D:
-  when the PC is next on (it is the only copy).
+  when the PC is next on (it is the only copy). (d) 01_FINAL_FOR_SHOW/00_READ_ME_FIRST.txt was REWRITTEN on the T9 (8 Oct:
+  Part 1 = the handover for the showrunner + Louise, Part 2 = the operator's file list): copy it T9 -> D: BEFORE any
+  D: -> T9 sync, or D:'s older copy replaces it. Same for SOTR_MEDIA/README.txt. Page version of the handover (private,
+  Homie shares it): https://claude.ai/artifact/289nroFYiG6ypzaUaW4exC
   NEXT after his verdict: (a) 4K: ByteDance video upscale of the two intro parts + the 4 idle clips, then rerun
   s7_idle.py / s7_intro_3walls.py --constant --trim 2 on the 4K clips; (b) the same horizon motion ramped onto the
   intro's held end; (c) the destruction (wreck state), script first.
