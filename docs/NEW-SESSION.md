@@ -84,6 +84,13 @@ gull landed, NO hard cuts. Be efficient: Homie is short of time.
     49c15d8f-db80-4cd5-9979-2c1950fafe86, sunset 15bb1b83-8524-41d0-8eb7-4bc450e58ebc, night 7e5a0433-7479-43f5-ae45-4bd3368be146
     (96 each, debits checked). Balance after night ~39. For each: download to 8_idle/S7-SHIP-IDLE_<state>_v1_<id>.mp4, look at
     3 frames, then: PYTHONPATH=<scratch>/py python3 tools/s7_idle.py CLIP <state> 8_idle/<state>.
+  * UPDATE 4 (account switched; the Higgsfield CONNECTOR IS NOT CONNECTED on this Claude account): the 3 idle takes were
+    fetched by URL pattern hf_<YYYYMMDD>_<HHMMSS of submission>_<jobid>.mp4 on d8j0ntlcm91z4.cloudfront.net/user_3HbkTR9l…
+    (magic 003131, sunset 003247, night 003304; probe with curl -I --resolve). All 4 idles = 2206x946, 193 frames -> every
+    loop 157 frames (6.54 s) with the SAME motion (Homie: "camera movements… consistent across all variations"): s7_idle.py
+    defaults roll 0.6 / heave 8 / shake 0.6, same phases, period = loop length. Intro -> idle in one file:
+    routeA_21x9/S7-INTRO_3walls_v5_INTO_DAY_IDLE.mp4 (s7_intro_3walls.py --then). Homie: HF balance shows 99 cr; he can
+    connect another HF account with credits if needed.
   * Credits this session so far: v4 draft 60 + canvases 8 + v5 draft 60 = 128 (balance 791.49 -> ~663.49).
 - NIGHT CENTRE ROPES FIXED (tools/ship_ropefix.py, K=34): installed in seamed_v2/night, old in
   04_WORKING_FILES/superseded/S7_ship_ropes_zigzag_2026-10-07/. Magic and sunset had no zig-zag. Arc preview NOT yet rebuilt.
