@@ -36,7 +36,8 @@ OPEN / NEXT:
 2. A light-arc preview built from the IDLES (day -> magic -> sunset -> night crossfades) replacing SEAMED_v3.
 3. 4K: upscale_video (ByteDance aigc 4k, ~1 cr each) on the 4 idle clips + the intro BEFORE the band crop (needs the HF
    connector), then rerun s7_idle.py / s7_intro_3walls.py on the 4K clips.
-4. Destruction (the wreck state): script first (mast fall, list, shudder) on the wreck walls; check wreck CENTRE ropes.
+4. Destruction (the wreck state): script first (mast fall, list, shudder) on the wreck walls. (Wreck CENTRE ropes FIXED.)
+   Review: 6_review/S7-SHIP_idle_arc_preview_v1.mp4 (day->magic->sunset->night from the idles, same-phase crossfades).
 5. Watch: a thin bright horizon line on LEFT near the sunset loop point (natural glint, kept).
 
 HANDOVER, 7 OCT DAY (Homie present; MODE = VID; Claude's weekly limit at 95%, so another account may continue from here).

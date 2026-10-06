@@ -10,7 +10,12 @@ out), painted in the state's own rope colour (median of its rope pixels below K)
 ropes inpainted away). Joined over FEATHER rows inside the true part.
 (Tried first, FAILED: carrying the state's ropes upward along their own slope smeared them and doubled the mast wrap.)
 
-  python tools/ship_ropefix.py STATE.png DAY.png OUT.png K [--check CHECK.jpg]
+  python tools/ship_ropefix.py STATE.png DAY.png OUT.png K [--check CHECK.jpg]   # night (K=34): day ropes recoloured
+  python tools/ship_ropefix.py STATE.png DAY.png OUT.png K --stretch             # wreck (K=13): see stretch()
+
+STRETCH (wreck, 7 Oct): the day ropes did NOT line up rope for rope near the wreck's top (ghost stubs), so the wreck's OWN
+true rows K..K+60 are spread up over rows 0..K+60 (quadratic map: s(0)=K, s(m)=m, s'(m)=1), fans only: the fold becomes
+a slight bend, no join.
 """
 import argparse
 
@@ -67,11 +72,28 @@ def fix(st, day, K):
     return np.clip(out, 0, 255).astype(np.uint8), (sl, sr, sx, rope)
 
 
+def stretch(st, K, R=60):
+    H, Wd = st.shape[:2]; m = K + R - 1
+    c = K / m ** 2; b = 1 - 2 * K / m
+    y = np.arange(m + 1, dtype=np.float32); s = K + b * y + c * y * y
+    mapy = np.repeat(s[:, None], Wd, 1).astype(np.float32)
+    mapx = np.repeat(np.arange(Wd, dtype=np.float32)[None, :], m + 1, 0)
+    sm = cv2.remap(st, mapx, mapy, cv2.INTER_CUBIC).astype(np.float32)
+    fan = np.zeros(Wd, np.float32)
+    for x0, x1 in FANS:
+        fan[x0:x1] = 1
+    fan = cv2.GaussianBlur(fan.reshape(1, -1), (0, 0), 20).ravel()[None, :, None]
+    out = st.astype(np.float32).copy(); out[:m + 1] = out[:m + 1] * (1 - fan) + sm * fan
+    return np.clip(out, 0, 255).astype(np.uint8)
+
+
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('state'); ap.add_argument('day'); ap.add_argument('out')
-    ap.add_argument('K', type=int); ap.add_argument('--check')
+    ap.add_argument('K', type=int); ap.add_argument('--check'); ap.add_argument('--stretch', action='store_true')
     a = ap.parse_args()
     st, day = cv2.imread(a.state), cv2.imread(a.day)
+    if a.stretch:
+        cv2.imwrite(a.out, stretch(st, a.K)); print('stretch K', a.K); return
     res, info = fix(st, day, a.K)
     cv2.imwrite(a.out, res)
     print('K', a.K, 'fan shifts L/R', info[0], info[1], 'sx %.4f' % info[2], 'rope bgr', info[3])
