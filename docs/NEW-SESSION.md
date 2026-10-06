@@ -42,6 +42,17 @@ gull landed, NO hard cuts. Be efficient: Homie is short of time.
   windows; the generated deck is a diagonal view with sails set, NOT our walls' straight-ahead deck, so the end is a 1 s
   DISSOLVE onto the walls, not a match. Homie (7 Oct): "the bird can just fly away and we land at the end frame… whatever
   makes it easy". Awaiting Homie: finalize this draft (job 615146e9 via draft_job_id, ~240 cr) or re-roll.
+- PLAN AGREED WITH HOMIE (7 Oct): "use all the credits… it is now or never… we need precision". (1) DECK CANVAS per sky
+  state (day/magic/sunset/night) = our walls in the centred band of a 21:9 frame (tools/ship_canvas21.py; T9 S7_ship/7_canvas21/,
+  prompt prompts/S7-SHIP-CANVAS21.txt, 2 cr each): DONE day/magic/sunset, night running. (2) INTRO v5: end_image = the day
+  canvas, the gull flies away at 8-10 s, the camera alone settles into our deck (prompts/S7-INTRO-FLIGHT.txt v5, draft job
+  69161783-c0a7-4d33-a2df-cfffd53bc276). If it cuts hard: v4 + dissolve. Then finalize 1080p (~240). (3) IDLE LOOPS per
+  state: 10 s locked camera from each canvas (start_image), sea+sky alive as ONE picture across the 3 walls, the ship laid
+  back on from the approved stills via 5_layers masks, crossfade loop (720p = 70 each). (4) destruction later.
+- NIGHT CENTRE ROPES FIXED (tools/ship_ropefix.py, K=34): installed in seamed_v2/night, old in
+  04_WORKING_FILES/superseded/S7_ship_ropes_zigzag_2026-10-07/. Magic and sunset had no zig-zag. Arc preview NOT yet rebuilt.
+- Bird across seams (Homie asked): OK if brief/fast; a big slow wing held across a seam breaks (25 deg fold + 830 mm gap):
+  the gull stays in the middle (CENTRE) when close.
 - STEPS: (1) 480p draft (draft: true, ~60 cr, get_cost first) -> download to routeA_21x9/ (tools/fetch.py) -> check: no cut
   (frame-diff spikes), flapping, aboard, gull on rail, band holds gull + ship; (2) if it passes, finalize 1080p via
   draft_job_id (~240 cr); (3) build the 3-wall cut by script: scale the 21:9 to 4680 wide, crop the centred 4.33:1 band,

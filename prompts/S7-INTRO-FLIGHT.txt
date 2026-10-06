@@ -1,3 +1,52 @@
+# S7-INTRO-FLIGHT · v5 · ROUTE A, ENDS ON OUR DECK · 2026-10-07 (Homie present) · DRAFT 480p 20 s · job 69161783-c0a7-4d33-a2df-cfffd53bc276
+#
+# v4 RESULT (draft 615146e9, 60 cr): ONE take, NO hard cut (largest frame diff = the rail crossing, spread over f327-335),
+#   flaps, aboard, gull lands. FAIL on Homie's review: "the ship at the end is not the same as our final images, it has to
+#   match… the bird can fly away… as it almost reaches the ship and the camera can just keep going to the final frame…
+#   historically accurate… don't turn it into something that it wasn't." Also gold trim on the stern windows.
+# DELTA vs v4 (two linked changes, both from his note): (1) end_image = the DAY DECK CANVAS (tools/ship_canvas21.py: our
+#   seamed_v2 day walls in the centred band of a 21:9 frame, NBP filled only the strips above/below, band pinned back);
+#   (2) ACTION 8-20 s: the gull climbs out of the top of frame at 8-10 s, the camera carries on alone and settles into the
+#   last frame. Plus: "whenever it is close to the lens it stays in the middle" (seam concern: CENTRE = middle 38%),
+#   "plain stern windows, no gilding"; start frame re-cropped to Seedance's exact 21:9 (2752x1198 at y=91).
+# THE GATE: SOURCE v4 prompt + its take (opened, contact sheet + 3-wall strip). ROOM end = canvas (opened: rigging up to
+#   the masthead, deck down; band = our walls, residual 1.3 px). REFS start_image f1ba0749-ffd6-4b19-9ab6-21d670549b30 (F1
+#   astern 21:9 v2) · end_image d4248f67-11a2-4f96-aef1-1449f2a5ce28 (S7-SHIP-CANVAS21_day_upload.png 2480x1080).
+#   ROUTE omni_reference start+end. DELTA as above; frame one unchanged.
+# PREDICT: last frame = canvas (ECC > 0.95); no cut. RISK (BOARD v1): end_image made a HARD CUT onto the plate; sails set
+#   outside vs furled on our deck. If it cuts: fall back to v4's take + a dissolve.
+# SETTINGS: seedance_2_5 · omni_reference · start_image + end_image as above · 21:9 · 480p DRAFT -> 1080p · 20 s ·
+#   bitrate high · batch 1 · sound ON · use_unlim false · preset 3D RENDER declined · 60 cr
+
+1 continuous shot, 20 seconds, no cuts. Real-time, no slow motion.
+
+Style: real documentary footage of the open Atlantic in 1816, film grain. NOT a 3D render. Natural motion blur, no interpolation, no morphing.
+
+NO ON-SCREEN TEXT.
+
+ONE UNBROKEN TAKE — CRITICAL: the camera never cuts; it travels continuously from the sea, up the ship's side, over the rail and onto her deck, and arrives exactly at the second attached image, which is the last frame.
+
+THE WINGBEATS — CRITICAL: the herring gull flies under its own power. It beats its wings hard in bouts of deep full strokes, about three a second, wings sweeping high above its back and down below its belly; a short glide, then the next bout. Whenever it is close to the lens it stays in the middle of the frame.
+
+FIRST FRAME: the first attached image exactly as composed, held still for a third of a second, nothing reframed; then motion begins.
+
+THE SHIP: the frigate in the first image, sailing away: plain stern windows, no gilding, a dark hull with a red-ochre band, a plain white flag. Her deck is exactly the deck in the second image.
+
+CAMERA: flies with the gull at 47 degrees, with real weight: it bobs and lags the bird's turns.
+
+ACTION:
+0-4s: the gull swings close to the lens, then pulls ahead, shrinking over the wake.
+4-8s: it banks and comes back, beating; we close on the ship's starboard quarter.
+8-10s: the gull climbs steeply and flies up out of the top of the frame, gone.
+10-14s: the camera carries on alone, rising up the ship's side and over the rail.
+14-18s: it turns to face forward along the middle of the deck and glides forward, slowing.
+18-20s: it settles into the last frame and holds completely still.
+
+AUDIO: wind, swell, wingbeats, timber, one gull call. NO BGM — no music of any kind: no score, no song, no instrumental, no drone.
+
+LOCKS: one gull, one ship; no people; nothing newer than 1816.
+
+# ==================== v4 (kept verbatim below) ====================
 # S7-INTRO-FLIGHT · v4 · ROUTE A (21:9, three walls) · 2026-10-07 (Homie present) · DRAFT 480p 20 s
 #
 # WHY: Homie liked FLIGHT v3 but "it has to be a seamless thing across all 3 screens" -> route A (his pick): generate at

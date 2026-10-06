@@ -1,0 +1,15 @@
+ID        S7-SHIP-CANVAS21  (route A, 7 Oct: the 21:9 deck canvas per light state = the intro's END frame + each idle's START)
+VERSION   v1  (2026-10-07, Homie present; "use all the credits… we need precision")
+SKILL     scenecraft-v1 Plate D (target / change / protected), text-only edit (house-rules finding 4a)
+MODEL     Nano Banana Pro (nano_banana_pro) · 21:9 · 2k · batch 1 · IMG · 2 cr each
+INPUT     S7_ship/7_canvas21/S7-SHIP-CANVAS21_<state>_guide_3168.png (tools/ship_canvas21.py guide): the approved seamed_v2
+          walls in the middle band (rows 479..1559 of 2038), a smooth sky above, the bottom row streaked down below.
+          media: day 255699ca-2f3e-4300-b3e4-4ff59fa53ca3 · magic 942bdf8b-dc0b-436c-8c77-2933b8614ef5 ·
+          sunset 412dccba-b57e-4d59-8354-6ab393f46307 · night 30d53ad4-3306-4c81-94d4-4dcdcc5a4b09
+AFTER     tools/ship_canvas21.py merge <state> TAKE: registered on the band, our walls pinned back exactly. The strips are never
+          projected (the band is cropped out); they only make the frame a real photograph for Seedance.
+PREDICT   rigging continues up to a masthead, deck continues down; middle band near-identical. Risk: a mirrored V (v1 build-out).
+----- PROMPT -----
+Target: the top strip and the bottom strip of the attached photograph. The top strip is plain smooth sky with nothing in it; the bottom strip is made of vertical streaks.
+Change: both strips become the same real photograph, continuing exactly what the middle shows. Top: the open sky continues upward, and the ship's rigging continues straight up out of the middle along its own lines: the mast rises on from the centre, and the shrouds and ratlines on the left and on the right run on upward and inward toward the masthead along the same straight lines. Bottom: the deck continues toward the camera: the same weathered grey planks running forward, the coiled ropes, the gun carriages and the red-ochre bulwarks continue down to the bottom edge. An 1816 French frigate, sails furled, no people.
+Protected: the middle band stays exactly as it is, in exactly the same place and size: every rope, plank and gun, the mast, the sea, the horizon, the light and the colour; the framing, the camera position and the lens. The new strips match the photograph's light, grain and contrast.
