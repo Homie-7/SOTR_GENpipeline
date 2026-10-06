@@ -79,6 +79,11 @@ gull landed, NO hard cuts. Be efficient: Homie is short of time.
     and heave 8 px behind it (canvas space, periodic over the loop), + 0.6 px vibration on the whole frame (--roll/--heave/
     --shake). MAGIC idle submitted next; then sunset, night (96 each; preset IN THE DARK declined each time).
     LATER: the same horizon motion on the intro's held end (ramp it in) so intro -> idle has no jump.
+  * UPDATE 3: INTRO 3-WALL v5 BUILT = routeA_21x9/S7-INTRO_3walls_v5.mp4 (from the 1080p final; last frame -> canvas ECC
+    0.994, eased in over the last 2.5 s; 0.5 s dissolve into the walls; MAD 11.6 at the join). Idles submitted: magic
+    49c15d8f-db80-4cd5-9979-2c1950fafe86, sunset 15bb1b83-8524-41d0-8eb7-4bc450e58ebc, night 7e5a0433-7479-43f5-ae45-4bd3368be146
+    (96 each, debits checked). Balance after night ~39. For each: download to 8_idle/S7-SHIP-IDLE_<state>_v1_<id>.mp4, look at
+    3 frames, then: PYTHONPATH=<scratch>/py python3 tools/s7_idle.py CLIP <state> 8_idle/<state>.
   * Credits this session so far: v4 draft 60 + canvases 8 + v5 draft 60 = 128 (balance 791.49 -> ~663.49).
 - NIGHT CENTRE ROPES FIXED (tools/ship_ropefix.py, K=34): installed in seamed_v2/night, old in
   04_WORKING_FILES/superseded/S7_ship_ropes_zigzag_2026-10-07/. Magic and sunset had no zig-zag. Arc preview NOT yet rebuilt.
