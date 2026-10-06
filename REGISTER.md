@@ -552,3 +552,5 @@ PLAN jsons, the S6 scratch sound); every chosen generated take; the gallery's bu
 | `S6_v6_option/` 1080 files, `uploads*` videos, `4K/raw`; `S9_studio_canvas_edge/` videos | sha256-identical to 01's files, or upload/raw intermediates |
 | `S6-ANIMATIC_v4_approved.mp4`, `S9-ANIMATIC_v1.mp4`, `S6_flags_v6_preview/`, gallery GLIMMER tests + review clips | references/reviews |
 | `S7_ship/`: rejected intros (v1, FLIGHT v1-v3 + v5, LAND, BOARD, endframe), drafts with finals, `S7-INTRO_3walls_v6.mp4` (still-wall copy), unchosen takes, `assembled_*` (except v1) + their layers, `seamed_v1` + layers, old reviews, the v1 idles, the zig-zag CENTREs | not the show, not inputs |
+
+| `06_PRESENTATIONS/SOTR_Projections_Handover_2026-10-08.pdf` (+ `_source.html`) | the handover for the showrunner + Louise as a 2-page A4 PDF (same text as the delivery README Part 1 and the page) | **to share** (Homie, 8 Oct) |
