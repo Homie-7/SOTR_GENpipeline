@@ -173,11 +173,14 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-10-09 (VID + script, MacBook): INTRO v8 + IDLES v3 (ship-free sea) for Homie. 930 cr; balance 5.
+### 2026-10-09 (VID + script + POST, MacBook): INTRO v8 + IDLES v3 (ship-free sea), built from 4K sources. 933 cr; balance 1.62.
 
 - Idles: the still ship over a generated ship-free sea per light (`tools/s7_seaplate.py`, `s7_idle.py --world`): nothing to
-  erase. Intro v8: a new flight with no image reference (one ship) into v6's boarding from f44 (`tools/dedup_frames.py`,
-  `s7_intro_join.py`). Homie rejected v7 (from astern) and v6.1 (speed-up). Review list: `docs/NEW-SESSION.md`.
+  erase; 5 s loops; day's sea still drifts sideways (accepted). Intro v8: a new flight with no image reference (one ship)
+  into v6's boarding from f44 (`tools/dedup_frames.py`, `s7_intro_join.py`). All six sources upscaled (ByteDance +
+  `upscale_restore.py`, now `apad`). Homie rejected v7 (from astern) and v6.1 (speed-up): "we can work with this".
+- Superseded ship media binned to T9 `SOTR/HF/_DELETE_ME_2026-10-09/`. **The PC's job: `docs/PC-HANDOVER-2026-10-09.md`**
+  (make D: match the T9; the ship's only copy is on the T9 until then). Review list: `docs/NEW-SESSION.md`.
 
 ### 2026-10-08 (VID + script, MacBook, Higgsfield CLI): HOMIE'S TWO ROUTE-A ISSUES FIXED. 315 cr. Then a FILE CLEANUP.
 

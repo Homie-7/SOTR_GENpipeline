@@ -556,7 +556,7 @@ PLAN jsons, the S6 scratch sound); every chosen generated take; the gallery's bu
 | `06_PRESENTATIONS/SOTR_Projections_Handover_2026-10-08.pdf` (+ `_source.html`) | the handover for the showrunner + Louise as a 2-page A4 PDF (same text as the delivery README Part 1 and the page) | **to share** (Homie, 8 Oct) |
 
 
-## 2026-10-09 (VID + script, MacBook) · S7 SHIP: intro v8 + all four idles v3 (ship-free sea). 930 cr this session (balance 5)
+## 2026-10-09 (VID + script + POST, MacBook) · S7 SHIP: intro v8 + all four idles v3 (ship-free sea), from 4K sources. 933 cr this session (balance 1.62)
 
 Homie's notes (9 Oct): the idles showed "the lines of what was erased"; the intro's ship "changes its shape" and the camera
 "pauses too long on the side". v7 (descend from astern) REJECTED ("geometrically makes no sense"); v6.1 (v6 sped up) REJECTED
@@ -568,6 +568,7 @@ Homie's notes (9 Oct): the idles showed "the lines of what was erased"; the intr
 | `4_intro_video/rev/S7-INTRO-LEADIN_v4_deb668f9*.mp4`, `S7-INTRO-REV_v1_bc936046*.mp4` (+ `_REVERSED`, `_REVERSED_from44`) | the parts v8 is built from | keep |
 | `8_idle/<day,magic,sunset,night>/S7-SHIP-IDLE_<light>_*` | **idles v3**: the still ship over a ship-free generated sea, 5 s loops, one motion | **for Homie** (day still drifts sideways, accepted) |
 | `9_seaplate/` | sea plates (`_v*` generated edit, `_reg`, `_upload`, `_check`) + the four sea takes used (day v1 12f1e71f, magic/sunset/night v2); `_unused/` = failed plates, the day draft, day v2 6252fc18 | keep (inputs) |
+| `9_seaplate/4k/`, `4_intro_video/rev/4k/` | the six generated sources at 4K: `_UP4K_<job>.mp4` (ByteDance aigc) and `_4K_RESTORED.mov` (upscale_restore, 4412x1892 ProRes 10-bit, the source's sound): **what the loops and intro are built from** | keep (inputs) |
 | `5_layers/seamed_v2/<light>/S7-SHIP-<WALL>_1080_bgmask_v3.png` | true silhouette, no sea islands | used by `--world` |
 | `6_review/S7-SHIP_idle_arc_preview_v3.mp4` | the four loops crossfaded (34 s) | for Homie |
-| `04_WORKING_FILES/superseded/S7_ship_idle_v2_2026-10-09/`, `S7_ship_idle_v3_day_8s_2026-10-09/`, `S7_ship_intro_2026-10-09/` (v6, v6.1, LEADIN v1, drafts, `rev2_v7_REJECTED/`) | older idles + intros | superseded: bin after Homie's verdict |
+| T9 `SOTR/HF/_DELETE_ME_2026-10-09/` (3.45 GB; moves in `SOTR/HF/CLEANUP_2026-10-09_moves.tsv`) | the superseded idles v2/v3-8s, intros v6/v6.1/v7 + LEADIN v1 + drafts, the unused sea plates/takes, the old ship-in sea takes (`8_idle/S7-SHIP-IDLE_*_v1_*`) | **binned** (Homie: "we can work with this"); Homie empties |

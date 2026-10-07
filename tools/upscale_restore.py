@@ -69,7 +69,7 @@ def main():
     enc = subprocess.Popen(['ffmpeg', '-y', '-v', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-s', f'{uw}x{uh}',
                             '-r', rate, '-i', '-', '-i', a.source, '-map', '0:v', '-map', '1:a?', '-c:v', 'prores_ks', '-qscale:v', '2',
                             '-profile:v', '3', '-pix_fmt', 'yuv422p10le', '-c:a', 'pcm_s24le', '-ar', '48000',
-                            '-shortest', a.out], stdin=subprocess.PIPE)
+                            '-af', 'apad', '-shortest', a.out], stdin=subprocess.PIPE)  # apad (9 Oct): sound a hair short of the picture cut the last frames (S7 flight -2, night -3)
     for i, (u, s) in enumerate(zip(reader(a.upscale, uw, uh), reader(a.source, uw, uh))):
         o = u - cv2.GaussianBlur(u, (0, 0), sig) + cv2.GaussianBlur(s, (0, 0), sig)
         if a.clamp > 0:

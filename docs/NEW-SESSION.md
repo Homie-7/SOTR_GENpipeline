@@ -22,7 +22,7 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (9 Oct): HOMIE'S REVIEW of intro v8 + the four idles v3. CREDITS: 5 LEFT (Homie to top up).
+THE TASK, RIGHT NOW (9 Oct, wrap): HOMIE'S REVIEW of intro v8 + the four idles v3 (rebuilt from 4K sources). CREDITS: 1.62 LEFT.
   WATCH (T9 04_WORKING_FILES/S7_ship/, the list is 00_WHATS_WHAT.txt):
   1. 4_intro_video/rev/S7-INTRO_3walls_v8_INTO_DAY_IDLE.mp4 = INTRO v8: v6's route (along the side, over the rail
      amidships, lands EXACTLY on the deck) with a NEW flight (LEADIN v4: one ship, no image reference = the morph's cause
@@ -31,8 +31,10 @@ THE TASK, RIGHT NOW (9 Oct): HOMIE'S REVIEW of intro v8 + the four idles v3. CRE
      (9_seaplate/, tools/s7_seaplate.py + s7_idle.py --world): no erased lines. All 5 s loops, one motion.
   KNOWN: day's sea drifts sideways (v1 take; the v2 retry drifted MORE, unused); magic's sea mostly comes toward camera.
   Rejected 9 Oct: v6.1 (v6 sped up: "looks extra bad"), v7 (down from astern: "geometrically makes no sense").
-  NEXT after his verdict (credits needed): a day sea retry if he wants it (~72), 4K upscales (~4), the wreck (script first).
-  ON THE WINDOWS PC: the whole job is docs/PC-HANDOVER-2026-10-08.md (reorg, clean-up and sync of D: from the T9, in
+  4K: the six generated sources are upscaled (`9_seaplate/4k/`, `4_intro_video/rev/4k/`, ByteDance + upscale_restore): the
+  walls are now ~1:1 with their source. NEXT after his verdict (credits needed): a day sea retry if he wants it (~72; try
+  the MAGIC take as a motion reference), the wreck (script first). PC: docs/PC-HANDOVER-2026-10-09.md.
+  ON THE WINDOWS PC: the whole job is docs/PC-HANDOVER-2026-10-09.md (reorg, clean-up and sync of D: from the T9, in
   that order: never backup_t9.py first). It covers (b)-(d) below.
   HOUSEKEEPING: (a) Homie empties SOTR/HF/_DELETE_ME_2026-10-08/ on the T9 (412 GB; nothing in it is the show or an
   input: REGISTER 2026-10-08). (b) ON THE PC: `python tools/cleanup_2026-10-08.py --pass 2 --media D:/SOTR/SOTR_MEDIA/
