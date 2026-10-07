@@ -1,13 +1,16 @@
 ID        S7-SEA-IDLE-<STATE>  (9 Oct: the idle's moving SEA + SKY with NO ship in it; replaces S7-SHIP-IDLE as the idles' world)
-VERSION   v1  (written 2026-10-09) · a variant of prompts/S7-SHIP-IDLE.txt v1 (same layout; the ship lines removed)
+VERSION   v2  (2026-10-09) · a variant of prompts/S7-SHIP-IDLE.txt v1 (same layout; the ship lines removed)
+          v1 (day 12f1e71f): Homie "feels like the ship is either idling or going sideways": MEASURED, the whole sea drifts
+          RIGHT (0.2 px/f at the horizon to ~1 px/f near the rail), almost nothing toward the camera. v2 = WHAT MOVES names
+          the direction; 6 s (not 8) so all four lights fit the credits: the loop becomes 5 s (xfade 1 s)
 MODEL     Seedance 2.5 (seedance_2_5) · omni_reference · start_image = 9_seaplate/S7-SEA-PLATE_<state>_upload.png · 21:9 ·
-          480p DRAFT (day) -> 1080p · 8 s · batch 1 · sound ON · day draft 24 cr, 1080p 96 cr (cost checked)
+          1080p · 6 s (v1: 8 s) · batch 1 · sound ON · 72 cr each (cost checked)
 WHY       Homie 9 Oct: the idles v2 show "the lines of what was erased" (the clip's ship painted out with copied sea). This
           clip never had a ship: tools/s7_idle.py --world lays the approved still ship on it, rolls/heaves it as before.
 AFTER     probe + sheet: frame locked (ECC to the plate), no ship/boat/bird appears, light unchanged; then
           python tools/s7_idle.py CLIP STATE OUTDIR --world  (motion identical to v1/v2: roll 0.6, heave 8, shake 0.6, 157 f).
 ----- PROMPT (day; for the others patch ONLY the LIGHT line, as S7-SHIP-IDLE) -----
-1 continuous shot, 8 seconds. A locked-off camera at the height of a ship's deck above the open sea: the frame never moves, no pan, no tilt, no zoom, no drift.
+1 continuous shot, 6 seconds. A locked-off camera at the height of a ship's deck above the open sea: the frame never moves, no pan, no tilt, no zoom, no drift.
 
 FIRST FRAME: the attached image exactly as composed, nothing reframed.
 
@@ -17,7 +20,7 @@ NO ON-SCREEN TEXT.
 
 THE HORIZON holds steady: the line where the sea meets the sky stays exactly where it is, at the same height and angle, for the whole shot.
 
-WHAT MOVES: the open sea runs steadily toward the camera, real Atlantic swell with small breaking crests passing below the frame; the clouds drift slowly across the sky.
+WHAT MOVES: the long swell rolls straight toward the camera from the horizon and passes beneath the bottom of the frame, as seen from the bow of a ship under way; the water never drifts sideways across the frame; the clouds drift very slowly.
 
 LIGHT: bright day, the sun's glitter moving on the swell, exactly the light of the image.
 
@@ -27,4 +30,4 @@ LOCKS: open sea and sky only: no ship, no boat, no sails, no people, no birds; n
 ----- LIGHT lines per state -----
 magic:  LIGHT: magic hour, a lavender sky with rose cirrus and a low full moon, soft light on the swell, exactly the light of the image.
 sunset: LIGHT: sunset, the red sun on the horizon and its glitter path on the swell, exactly the light of the image.
-night:  LIGHT: night, a full moon, its silver path moving on the swell, stars, exactly the light of the image. (night: drop "the clouds drift slowly across the sky;")
+night:  LIGHT: night, a full moon, its silver path moving on the swell, stars, exactly the light of the image. (night: drop "; the clouds drift very slowly")

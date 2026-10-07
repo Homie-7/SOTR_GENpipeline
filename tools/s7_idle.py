@@ -93,11 +93,15 @@ def main():
                     '--world: _bgmask_v3, the true silhouette)')
     ap.add_argument('--frames', type=int, default=0, help='render only the first N loop frames (tests)')
     ap.add_argument('--world', action='store_true', help='v3: CLIP is the ship-free sea plate take (no fill)')
+    ap.add_argument('--clip-frames', type=int, default=0, help='use only the first N clip frames (9 Oct: the 6 s sea takes '
+                    'make a 120-frame loop with --xfade 1; an 8 s take is cut to 144 so every light loops the same)')
     a = ap.parse_args()
     a.mask = a.mask or ('_bgmask_v3' if a.world else '_bgmask_v2')
     st = a.state
     w, h, n = probe(a.clip)
     fr = read_frames(a.clip, w, h)
+    if a.clip_frames:
+        fr = fr[:a.clip_frames]
     n = len(fr)
     ref = f'9_seaplate/S7-SEA-PLATE_{st}_reg.png' if a.world else f'7_canvas21/S7-SHIP-CANVAS21_{st}.png'
     can = cv2.resize(cv2.imread(T + ref), (w, h), interpolation=cv2.INTER_AREA)

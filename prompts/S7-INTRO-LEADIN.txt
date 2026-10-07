@@ -1,30 +1,37 @@
-# S7-INTRO-LEADIN · v2 · 2026-10-09 (MacBook, CLI) · DRAFT 480p -> 1080p · BACKWARD VIDEO EXTENSION (as v1)
+# S7-INTRO-LEADIN · v4 · 2026-10-09 (MacBook, CLI) · DRAFT 480p -> 1080p · BACKWARD VIDEO EXTENSION into intro v6's boarding
 #
-# WHY v2: Homie 9 Oct on intro v6: (1) "when the bird is going towards the ship, there is a moment where the ship literally
-#   changes its shape… a glitch… the ship changes into another ship" = v1 frames ~180-196 (7.5-8.2 s): as the gull crosses
-#   the lens the gilded stern galleries turn into a plain long hull. v1 carried TWO ships to reconcile: F1's (image
-#   reference, from astern) and REV's (the join); the model morphed one into the other. v2: NO image reference; the only
-#   ship is the one in the attached video (REV v3 reversed: from above, the whole deck, sails furled).
-#   (2) "the camera goes too close to the side… then slowly pans up… an awkward pause… as the bird flies away, the camera
-#   is just directly going on deck": the join is now HIGH above the deck (REV v3), so the flight climbs over the stern and
-#   carries straight on into the descent; no hull close-up anywhere.
-# DELTA vs v1 (patch, same layout): continuity paragraph (the new join frame), THE OPENING (no image), THE SHIP (furled,
-#   lying on the swell, plain stern), ACTION (12 s: gull, gull leaves, over the stern, forward above the deck). v1: git.
+# WHY v3: Homie 9 Oct: v6 "was nearly perfect apart from that one glitch where the ship changes its shape… and when the
+#   camera pauses too long on the side rail instead of coming up… fix both of those things in v6"; the script speed-up
+#   (v6.1) "just looks extra bad. This just needs another go." v7 (from astern, down onto the deck: LEADIN v2 + REV v3) was
+#   rejected: "geometrically makes no sense".
+# CAUSE of the glitch: v1 carried TWO ship designs: F1 astern (image reference: set sails, spanker, gilded stern galleries)
+#   and REV v1's (red-ochre bulwarks, plain side, sails furled). At f183-198 the model morphed one into the other.
+# FIX: (1) NO image reference: the only ship is the one in the attached video (REV v1 reversed), as LEADIN v2 proved (one ship
+#   throughout). (2) The join moved LATER: the input is REV v1 reversed from frame 30 (1.25 s): the rail cap already in
+#   frame, rising, the sky and the far bulwark above it; the 1.2 s of bare planking that opened v6's boarding is cut, and
+#   the flight is told to rise up the side without stopping.
+# v3 DRAFT (5bdd6cda, 30 cr): ONE ship throughout (the morph is gone), but it hugged the chain plates and then HELD on bare
+#   planking 7.6-9.7 s (phase correlation ~0 px/frame): it matched the boarding clip's slow first rise ("rising at the same
+#   speed"). v4: the join moved to frame 44 (1.83 s: the camera level with the rail cap, the deck beyond it), "moving",
+#   not "rising at the same speed", and the climb written as one quick rise, the planking for well under a second.
+# DELTA vs v1 (patch, same layout): continuity paragraph (the new join frame), THE SHIP (one design, furled, plain), the
+#   opening (no image), ACTION (10 s), no image reference. v1 + v2 text: git history.
 # THE GATE
-#   SOURCE  v1 (job 93772e49, opened at 2 fps + frames 96-215 every 4th: the morph), REV v3 1080p reversed (opened at 2 fps).
-#   ROOM    the join = REV v3 reversed frame 0: high above the deck at the height of the lowest yard, looking forward and down
-#           along the whole deck to the bow, the furled main yard across the top of the frame, shrouds both sides, open sea.
-#   REFS    video_references = S7-INTRO-REV_v3_33442085_REVERSED.mp4 (H.264 crf 10). No image.
+#   SOURCE  v1 (93772e49: morph f183-198 opened per frame), v2 (8b4d064e: one ship throughout), REV v1 reversed (opened
+#           every 4th frame 0-95: planking 0-20, rail cap 24-44, over the rail ~32-48, deck beyond from ~40).
+#   ROOM    the join = S7-INTRO-REV_v1_REVERSED_from44.mp4 frame 0 (opened): the near rail cap across the middle, close,
+#           red-ochre bulwark below it; beyond, the far side's bulwark with its scroll and shrouds, sky; the camera rising.
+#   REFS    video_references = S7-INTRO-REV_v1_REVERSED_from44.mp4 (H.264 crf 10). No image.
 #   ROUTE   video_extension backward.
-# PREDICT: ends exactly on the join frame; the ship = REV's ship throughout; the gull leaves by ~7 s; over the stern ~8-10 s.
-#   RISKS: the extension returns the input too (trim); the model reads the input as forward and flies AWAY; a cut at the
-#   stern; gilded stern windows; sails set.
-# SETTINGS: seedance_2_5 · video_extension · extension_mode backward · video_references = REV v3 reversed · aspect follows
-#   input (21:9) · 480p DRAFT -> 1080p · 12 s · bitrate high · batch 1 · sound ON · cost: LOG
+# PREDICT: ends exactly on the join frame; one ship throughout; the gull leaves by ~6 s; the climb up the side under 2 s.
+#   RISKS: the extension returns the input too (trim); a cut at the side; gilded stern windows; sails set; a long hold on
+#   the planking again.
+# SETTINGS: seedance_2_5 · video_extension · extension_mode backward · video_references = REV v1 reversed from f30 · aspect
+#   follows input (21:9) · 480p DRAFT -> 1080p · 10 s · bitrate high · batch 1 · sound ON · 30 cr draft, 120 cr final
 
-1 continuous shot, 12 seconds, no cuts. Real-time, no slow motion.
+1 continuous shot, 10 seconds, no cuts. Real-time, no slow motion.
 
-This leads straight into the start of the attached video, no break. Its first frame: the camera high above the frigate's deck, level with the lowest yard, looking forward and down along the whole deck to the bow, the furled yard across the top of the frame, open sea on both sides, descending. This clip is everything before that frame and ends on it exactly: same ship, light and operator, moving at the same speed.
+This leads straight into the start of the attached video, no break. Its first frame: the camera at the frigate's starboard side amidships, rising just past the dark rail cap, which fills the middle of the frame close to the lens; beyond it the far side's red-ochre bulwark and shrouds, and the sky. This clip is everything before that frame and ends on it exactly: same ship, light and operator, moving on into it without a pause.
 
 Style: real documentary footage of the open Atlantic in 1816, film grain. NOT a 3D render. Natural motion blur, no interpolation, no morphing.
 
@@ -32,17 +39,17 @@ NO ON-SCREEN TEXT.
 
 THE WINGBEATS — CRITICAL: the herring gull flies under its own power. It beats its wings hard in bouts of deep full strokes, about three a second, wings sweeping high above its back and down below its belly; a short glide, then the next bout. Whenever it is close to the lens it stays in the middle of the frame.
 
-THE SHIP — CRITICAL: one ship, the frigate in the attached video, the same ship in every frame: a plain dark hull with a red-ochre band and red-ochre bulwarks, a plain flat stern with small square windows and no gilding, every sail furled on its yards. She lies almost still on the long swell, rising and falling gently, no wake. Her shape, size and rig never change.
+THE SHIP — CRITICAL: one ship, the frigate in the attached video, the same ship in every frame: red-ochre bulwarks over a plain dark hull, a dark rail cap, a plain flat stern with small square windows and no gilding, every sail furled on its yards. Her shape, size and rig never change.
 
-THE OPENING: low over the swell, astern of the frigate, she lies ahead in the right half of the frame; the gull is close to the lens at the top of a wingbeat.
+THE OPENING: low over the swell off the frigate's starboard quarter, she lies ahead in the right half of the frame; the gull is close to the lens at the top of a wingbeat.
 
 CAMERA: flies with the gull at 47 degrees, with real weight: it bobs and lags the bird's turns.
 
 ACTION:
-0-4s: the gull swings close to the lens, then pulls ahead over the swell toward the ship's stern.
-4-7s: it banks away to the left, beating, and climbs steeply out of the top of the frame, gone; the camera carries on toward the stern and begins to rise.
-7-10s: the camera alone rises over the stern rail and the quarterdeck, climbing.
-10-12s: high above the deck, level with the lowest yard, it glides forward along the centreline looking down the whole deck to the bow, beginning to descend.
+0-4s: the gull swings close to the lens, then pulls ahead over the swell toward the ship.
+4-6s: it banks away and climbs steeply out of the top of the frame, gone; the camera carries on along the starboard side, low over the water, past the stern toward amidships.
+6-8.5s: it closes on the side amidships, beside the mainmast shrouds, still moving fast.
+8.5-10s: one quick continuous rise up the side, the planking flashing down the frame in well under a second, never stopping, never hovering, up to the rail cap.
 
 AUDIO: wind, swell, wingbeats, water along the hull, one gull call. NO BGM — no music of any kind: no score, no song, no instrumental, no drone.
 

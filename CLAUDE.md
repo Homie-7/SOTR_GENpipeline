@@ -173,6 +173,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-10-09 (VID + script, MacBook): INTRO v8 + IDLES v3 (ship-free sea) for Homie. 930 cr; balance 5.
+
+- Idles: the still ship over a generated ship-free sea per light (`tools/s7_seaplate.py`, `s7_idle.py --world`): nothing to
+  erase. Intro v8: a new flight with no image reference (one ship) into v6's boarding from f44 (`tools/dedup_frames.py`,
+  `s7_intro_join.py`). Homie rejected v7 (from astern) and v6.1 (speed-up). Review list: `docs/NEW-SESSION.md`.
+
 ### 2026-10-08 (VID + script, MacBook, Higgsfield CLI): HOMIE'S TWO ROUTE-A ISSUES FIXED. 315 cr. Then a FILE CLEANUP.
 
 - Cleanup: T9 `04_WORKING_FILES` 413 -> 4.6 GB, 412 GB in `SOTR/HF/_DELETE_ME_2026-10-08/` for Homie to empty; **the PC

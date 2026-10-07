@@ -22,12 +22,16 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
-THE TASK, RIGHT NOW (8 Oct, end of day): HOMIE'S REVIEW of the two fixes. Then 4K + destruction.
-  WATCH (T9 04_WORKING_FILES/S7_ship/):
-  1. 4_intro_video/rev/S7-INTRO_3walls_v6_INTO_DAY_IDLE.mp4 = INTRO v6: flight -> boards amidships -> lands EXACTLY on the
-     deck walls -> the day idle; the water never stops (rebuilt --trim 2 --xfade 0.25 after Homie's question). This is
-     the only intro build: the still-walls copy was binned (it froze the sea for 3 s).
-  2. 6_review/S7-SHIP_idle_BOW_v1_vs_v2_day.mp4 (bow before/after) + 6_review/S7-SHIP_idle_arc_preview_v2.mp4 (all 4 idles).
+THE TASK, RIGHT NOW (9 Oct): HOMIE'S REVIEW of intro v8 + the four idles v3. CREDITS: 5 LEFT (Homie to top up).
+  WATCH (T9 04_WORKING_FILES/S7_ship/, the list is 00_WHATS_WHAT.txt):
+  1. 4_intro_video/rev/S7-INTRO_3walls_v8_INTO_DAY_IDLE.mp4 = INTRO v8: v6's route (along the side, over the rail
+     amidships, lands EXACTLY on the deck) with a NEW flight (LEADIN v4: one ship, no image reference = the morph's cause
+     gone) joined later (REV v1 reversed from f44: the hull stare cut). Its repeated frames removed (tools/dedup_frames.py).
+  2. 6_review/S7-SHIP_idle_arc_preview_v3.mp4 + 8_idle/<light>/ = IDLES v3: the still ship over a SHIP-FREE generated sea
+     (9_seaplate/, tools/s7_seaplate.py + s7_idle.py --world): no erased lines. All 5 s loops, one motion.
+  KNOWN: day's sea drifts sideways (v1 take; the v2 retry drifted MORE, unused); magic's sea mostly comes toward camera.
+  Rejected 9 Oct: v6.1 (v6 sped up: "looks extra bad"), v7 (down from astern: "geometrically makes no sense").
+  NEXT after his verdict (credits needed): a day sea retry if he wants it (~72), 4K upscales (~4), the wreck (script first).
   ON THE WINDOWS PC: the whole job is docs/PC-HANDOVER-2026-10-08.md (reorg, clean-up and sync of D: from the T9, in
   that order: never backup_t9.py first). It covers (b)-(d) below.
   HOUSEKEEPING: (a) Homie empties SOTR/HF/_DELETE_ME_2026-10-08/ on the T9 (412 GB; nothing in it is the show or an

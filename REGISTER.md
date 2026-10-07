@@ -556,15 +556,18 @@ PLAN jsons, the S6 scratch sound); every chosen generated take; the gallery's bu
 | `06_PRESENTATIONS/SOTR_Projections_Handover_2026-10-08.pdf` (+ `_source.html`) | the handover for the showrunner + Louise as a 2-page A4 PDF (same text as the delivery README Part 1 and the page) | **to share** (Homie, 8 Oct) |
 
 
-## 2026-10-09 (VID + script, MacBook) · S7 SHIP: Homie's two notes on the idles v2 + intro v6. 528 cr (balance 483)
+## 2026-10-09 (VID + script, MacBook) · S7 SHIP: intro v8 + all four idles v3 (ship-free sea). 930 cr this session (balance 5)
 
-Media on the T9 (`04_WORKING_FILES/S7_ship/`). Nothing approved yet.
+Homie's notes (9 Oct): the idles showed "the lines of what was erased"; the intro's ship "changes its shape" and the camera
+"pauses too long on the side". v7 (descend from astern) REJECTED ("geometrically makes no sense"); v6.1 (v6 sped up) REJECTED
+("looks extra bad… needs another go"). Media on the T9 (`04_WORKING_FILES/S7_ship/`). Nothing approved yet.
 
 | Path (S7_ship/…) | What | Status |
 |---|---|---|
-| `4_intro_video/rev/S7-INTRO_3walls_v6.1_INTO_DAY_IDLE.mp4` (+ `S7-INTRO_v6.1_JOINED_21x9.mp4`) | **intro v6.1** = v6 retimed: the morph and the side-hull pause run fast (`tools/s7_intro_join.py`) | **for Homie** |
-| `4_intro_video/rev2/` (REV v3, LEADIN v2, drafts, v7 joined + 3-wall) | intro v7: descends onto the deck from above, astern | **REJECTED** (geometry); kept |
-| `8_idle/day/S7-SHIP-IDLE_day_*` | **day idle v3**: the still ship over a ship-free generated sea (`--world`) | Homie: works, but reads sideways |
-| `9_seaplate/` | sea plates (day v1 c72f688f + `_reg/_upload/_check`; magic, sunset, night v1) and the day sea take 12f1e71f (+ draft b98720ad) | day used; magic + sunset plates to redo |
-| `5_layers/seamed_v2/<state>/S7-SHIP-<WALL>_1080_bgmask_v3.png` | true silhouette, no sea islands (all 4 lights) | used by `--world` |
-| `04_WORKING_FILES/superseded/S7_ship_idle_v2_2026-10-09/day/` | day idle v2 | superseded (bin after Homie's verdict) |
+| `4_intro_video/rev/S7-INTRO_3walls_v8_INTO_DAY_IDLE.mp4` (+ `S7-INTRO_v8_JOINED_21x9.mp4`) | **intro v8**: new flight LEADIN v4 (one ship, `_DEDUP`) into REV v1 reversed from f44; lands on the deck, into the day loop | **for Homie** |
+| `4_intro_video/rev/S7-INTRO-LEADIN_v4_deb668f9*.mp4`, `S7-INTRO-REV_v1_bc936046*.mp4` (+ `_REVERSED`, `_REVERSED_from44`) | the parts v8 is built from | keep |
+| `8_idle/<day,magic,sunset,night>/S7-SHIP-IDLE_<light>_*` | **idles v3**: the still ship over a ship-free generated sea, 5 s loops, one motion | **for Homie** (day still drifts sideways, accepted) |
+| `9_seaplate/` | sea plates (`_v*` generated edit, `_reg`, `_upload`, `_check`) + the four sea takes used (day v1 12f1e71f, magic/sunset/night v2); `_unused/` = failed plates, the day draft, day v2 6252fc18 | keep (inputs) |
+| `5_layers/seamed_v2/<light>/S7-SHIP-<WALL>_1080_bgmask_v3.png` | true silhouette, no sea islands | used by `--world` |
+| `6_review/S7-SHIP_idle_arc_preview_v3.mp4` | the four loops crossfaded (34 s) | for Homie |
+| `04_WORKING_FILES/superseded/S7_ship_idle_v2_2026-10-09/`, `S7_ship_idle_v3_day_8s_2026-10-09/`, `S7_ship_intro_2026-10-09/` (v6, v6.1, LEADIN v1, drafts, `rev2_v7_REJECTED/`) | older idles + intros | superseded: bin after Homie's verdict |
