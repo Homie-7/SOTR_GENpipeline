@@ -80,7 +80,8 @@ apart from step 4's D:-only files (if Homie kept any). If it lists anything else
 **7. The source renders on F:.** Scenes 4 and 5 can only be regraded from the original Unreal renders now (their grade
 intermediates were binned). Confirm these exist and report their file counts:
 `F:\OrCha Drive\SOR Show Final\Renders (050422)\Alps\` (Scene 4) and the camps renders under
-`F:\OrCha Drive\SOR Show Final\New Renders\` (Scene 5). If either is missing, tell Homie before he empties any bin.
+`F:\OrCha Drive\SOR Show Final\SOR SHOW\SOR Renders\Camps\Exports\` (Scene 5; corrected 2026-10-24, there is no
+`New Renders` at the top level). If either is missing, tell Homie before he empties any bin.
 
 **8. Wrap.** One LOG row (what moved, GB, checks passed), refresh `docs/NEW-SESSION.md` "THE TASK, RIGHT NOW" (mark the
 PC matching done), commit, push, then `git pull` in the T9's copy `G:\SOTR\HF\SOTR_GENpipeline`.

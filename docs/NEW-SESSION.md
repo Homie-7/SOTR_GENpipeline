@@ -22,6 +22,11 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
+UPDATE 24 Oct (PC, POST): THE PC HANDOVER IS DONE. D: matches the T9 (861 files, sha256). New share copies, on D:\SOTR\
+  and G:\SOTR\HF\: FOR DARRIN\ (52 low-res per-wall files for the sound designer) and WHATSAPP_3_wall_previews\ (9 three-wall
+  previews with a script caption bar, incl. S7 as WORK IN PROGRESS), both made by tools/share_previews.py (--check to verify).
+  Bins for Homie to empty on D: _DELETE_ME_2026-10-08\ and _DELETE_ME_2026-10-24\. The S7 review below is still open.
+
 THE TASK, RIGHT NOW (9 Oct, wrap): HOMIE'S REVIEW of intro v8 + the four idles v3 (rebuilt from 4K sources). CREDITS: 1.62 LEFT.
   WATCH (T9 04_WORKING_FILES/S7_ship/, the list is 00_WHATS_WHAT.txt):
   1. 4_intro_video/rev/S7-INTRO_3walls_v8_INTO_DAY_IDLE.mp4 = INTRO v8: v6's route (along the side, over the rail
