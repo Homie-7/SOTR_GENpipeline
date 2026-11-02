@@ -31,6 +31,19 @@ THE TASK, RIGHT NOW (3 Nov, PC, POST/script): THE MEETING 6 CHANGES. READ docs/P
   Every task: STILLS TO HOMIE FIRST, then render to 04_WORKING_FILES/ for review. Nothing to 01_FINAL_FOR_SHOW, no
   upscale, until Homie approves. 0 generation credits planned; balance last seen 1.62 (check before any upscale).
   Sahaj's reference render: SOTR_MEDIA/05_REFERENCE_UPLOADS/S6_handoff_Sahaj/. The S7 review below is parked.
+  STATUS 3 Nov, mid-session handover (Homie: "start a new chat and just continue working"): PART 1 IS PARTLY BUILT.
+  `render_s6.py --v6 --v7` runs (class `MapJourneyV7`, consts `V7_*`; Goya p44/p45, the ship/swell and the grey
+  horizon haze are OFF under --v7; `--check` shows only the planned map x "Sénégal"/"1816" overlaps to look at).
+  Test stills (--scale 0.5) are in SOTR_MEDIA/04_WORKING_FILES/S6_v7_map_option/stills/ (150-163 s). HOMIE'S NOTE: left and
+  right beside the map must be plain BLACK (no grey horizon glow) until the sea washes in: done, verify at 152 s.
+  TO DO IN PART 1: (a) the engraved sheet ends west of LEFT, so LEFT is black: Homie said "we'll see how the map
+  stretches"; show him the stills before adding anything; (b) the course head/line is hard to see (off the top early,
+  thin at 159 s): lower V7_K0 / raise the pin or thicken the line; (c) re-check the sea front at 157-162 s after the
+  softening (no foam bolts); (d) PROVE v6.2 is bit-identical without --v7 (`cmp` a short range, e.g. --start 140 --end 142,
+  against git stash of render_s6.py); (e) Sahaj's mp4 sound: check with ffprobe, cross-fade only if present;
+  (f) fallback-B stills if the sea fronts fight the lettering; (g) render three walls at 1080 + the side-by-side review mp4
+  (2:10-2:45) to S6_v7_map_option/ (detached, affinity FFFF3FFF, _tmp_ names). Then PARTS 2 and 3, then wrap.
+  render_s6.py is uncommitted-then-committed in this handover commit; no credits spent.
 
 UPDATE 24 Oct (PC, POST): THE PC HANDOVER IS DONE. D: matches the T9 (861 files, sha256). New share copies, on D:\SOTR\
   and G:\SOTR\HF\: FOR DARRIN\ (52 low-res per-wall files for the sound designer) and WHATSAPP_3_wall_previews\ (9 three-wall

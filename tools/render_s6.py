@@ -1213,6 +1213,9 @@ class MapJourney:
     open ocean, where 1816 sits. The frame pans south at a constant speed the whole time, and the Medusa's
     course draws itself down the coast at a constant speed, a glowing point at its head."""
 
+    ZS = 1                                  # v7: map pixels per base pixel (the room-wide zoom needs a denser map)
+    REG = (-64, 70, 56, -22)                # lon0, lat0, lon1, lat1 of the pre-warped canvas
+
     def __init__(self, ctx):
         self.ctx = ctx
         x0, x1 = ctx.wall_px('C')
@@ -1221,10 +1224,10 @@ class MapJourney:
         BH, BW = im.shape[:2]
         self.BW, self.BH = BW, BH
         im = self._inpaint(im)
-        self.ppd = self.h / MAP_SPAN                                   # canvas px per degree of latitude
+        self.ppd = self.h / MAP_SPAN * self.ZS                         # canvas px per degree of latitude
         sc = self.ppd / (-BELLIN_FY[1] * BH)
-        bx0, by0 = lonlat_to_bellin(-64, 70, BW, BH)
-        bx1, by1 = lonlat_to_bellin(56, -22, BW, BH)
+        bx0, by0 = lonlat_to_bellin(self.REG[0], self.REG[1], BW, BH)
+        bx1, by1 = lonlat_to_bellin(self.REG[2], self.REG[3], BW, BH)
         self.sc, self.bx0, self.by0 = sc, bx0, by0
         CWm, CHm = int((bx1 - bx0) * sc), int((by1 - by0) * sc)
         M = np.float32([[sc, 0, -sc * bx0], [0, sc, -sc * by0]])
@@ -1238,7 +1241,7 @@ class MapJourney:
             polys = [geom['coordinates']] if geom['type'] == 'Polygon' else geom['coordinates']
             for poly in polys:
                 ring = np.array(poly[0])
-                if ring[:, 0].max() < -64 or ring[:, 0].min() > 56 or ring[:, 1].max() < -22 or ring[:, 1].min() > 70:
+                if ring[:, 0].max() < self.REG[0] or ring[:, 0].min() > self.REG[2] or ring[:, 1].max() < self.REG[3] or ring[:, 1].min() > self.REG[1]:
                     continue
                 if ring[:, 0].max() < -20 and ring[:, 1].min() > 30:           # the Azores: off the course, in 1816's sea
                     continue
@@ -1254,19 +1257,19 @@ class MapJourney:
         sea_rgb = sea_rgb * (1 - 0.35 * oth) + land_rgb * 0.35 * oth                      # Europe, the islands: ghosted
         anyland = np.maximum(land, oth[..., 0])
         dist = cv2.distanceTransform((land < 0.5).astype(np.uint8), cv2.DIST_L2, 5)
-        u = ctx.s * 2
+        u = ctx.s * 2 * self.ZS
         wl = sum(wgt * np.exp(-((dist - d0 * u) / (0.9 * u)) ** 2) for d0, wgt in ((4, 0.55), (9, 0.35), (15, 0.22), (23, 0.12)))
         coast = np.exp(-((dist - 0.5) / (1.1 * u)) ** 2)
-        halo = cv2.GaussianBlur(land, (0, 0), ctx.px(28))
+        halo = cv2.GaussianBlur(land, (0, 0), ctx.px(28) * self.ZS)
         L = land[..., None]
         img = sea_rgb * (1 - L) + land_rgb * L
         img = img + (wl * (1 - land))[..., None] * np.array([0.40, 0.36, 0.30], F32) * 0.5
         img = img * (1 - 0.55 * coast[..., None]) + (halo * (1 - land))[..., None] * AMBER * 0.28
         self.img = np.ascontiguousarray(img, F32)
         dsea = cv2.distanceTransform((anyland < 0.5).astype(np.uint8), cv2.DIST_L2, 5)
-        vn = fractal(CHm, CWm, np.random.default_rng(77), scales=(ctx.px(260), ctx.px(80)), gains=(1, 0.4))
+        vn = fractal(CHm, CWm, np.random.default_rng(77), scales=(ctx.px(260) * self.ZS, ctx.px(80) * self.ZS), gains=(1, 0.4))
         sea_a = np.clip(np.exp(-dsea / (2.5 * self.ppd)) * (0.9 + 0.25 * vn), 0, 1) * 0.8   # dark in the open ocean
-        nn = fractal(CHm, CWm, np.random.default_rng(78), scales=(ctx.px(180), ctx.px(50)), gains=(1, 0.45)) * 0.5 + 0.5
+        nn = fractal(CHm, CWm, np.random.default_rng(78), scales=(ctx.px(180) * self.ZS, ctx.px(50) * self.ZS), gains=(1, 0.45)) * 0.5 + 0.5
         sx, sy = self.to_canvas(MAP_LON, MAP_LAT0)
         yy, xx = np.mgrid[0:CHm, 0:CWm].astype(F32)
         ds = np.sqrt((xx - sx) ** 2 + (yy - sy) ** 2) / self.w
@@ -1349,6 +1352,153 @@ class MapJourney:
             g = (np.exp(-r2 / (2 * (2.2 * q) ** 2)) + 0.45 * np.exp(-r2 / (2 * (12 * q) ** 2))) * head * fl * (1 - wash)
             g = (g * self.ctx.guard[None, :])[..., None]
             canvas += g * np.array([1.0, 0.55, 0.35], F32)
+
+
+# v7 (Meeting 6, 2026-11-03, docs/PLAN-MEETING6.md): the map spans all three walls and zooms toward Senegal, the sea
+# washes in from LEFT and RIGHT and becomes Sahaj's first frame. OFF by default (--v7).
+V7 = False
+SAHAJ_DIR = r'C:\Users\Homie\Documents\SOTR_MEDIA\05_REFERENCE_UPLOADS\S6_handoff_Sahaj'
+V7_K0, V7_K1, V7_ZT = 1.4, 2.7, 157.0      # zoom (base = 48 deg tall) at MAP_T0, and at V7_ZT; log-rate, never stops
+V7_COURSE = 0.75                           # the line never arrives: it stops at this share of the course
+V7_W0, V7_W1 = 156.5, 162.5                # the sea washes in; V7_W1 = fully under
+V7_VID_T = 163.0                           # Sahaj's moving water starts here
+
+
+class MapJourneyV7(MapJourney):
+    ZS = 2
+    REG = (-64, 58, 62, -26)
+
+    def __init__(self, ctx):
+        super().__init__(ctx)
+        W, H = ctx.W, ctx.H
+        self.W, self.H = W, H
+        self.sen = np.array(self.to_canvas(*ROUTE_LONLAT[-1]), F32)
+        ch, cw = self.img.shape[:2]
+        yy, xx = np.mgrid[0:ch, 0:cw].astype(F32)
+        e = 7.0 * self.ppd                                              # the map dissolves before its own edge
+        self.emask = (ss(0, e, xx) * ss(0, e, cw - xx) * ss(0, e, yy) * ss(0, e, ch - yy)).astype(F32)
+        self.fn = fractal(H, W, np.random.default_rng(91), scales=(ctx.px(520), ctx.px(150), ctx.px(45)), gains=(1, 0.5, 0.2))
+        self.fn = cv2.GaussianBlur(self.fn, (0, 0), ctx.px(60))
+        self.fn = self.fn / max(float(np.abs(self.fn).max()), 1e-6)
+        self.fn2 = fractal(H, W, np.random.default_rng(92), scales=(ctx.px(60), ctx.px(18)), gains=(1, 0.6))
+        self.sah = self._sahaj(ctx)
+        _, self.lab_a = text_layer(ctx, 'Sénégal', 'GFSDidot-Regular.ttf', 40, np.array([1, 1, 1], F32), 0.10)
+        self.gy, self.gx = np.mgrid[0:H, 0:W].astype(F32)
+
+    @staticmethod
+    def _sahaj(ctx):
+        """Sahaj's first ~2 s of water as room-sized uint8 frames (frame 0 is the still)."""
+        cap = cv2.VideoCapture(os.path.join(SAHAJ_DIR, 'A_flyin_m07v3_unity_03oct_ROOM.mp4'))
+        out = []
+        while len(out) < int(2.2 * FPS) + 2:
+            ok, fr = cap.read()
+            if not ok:
+                break
+            fr = fr[30:473]
+            out.append(cv2.cvtColor(cv2.resize(fr, (ctx.W, ctx.H), interpolation=cv2.INTER_LANCZOS4), cv2.COLOR_BGR2RGB))
+        cap.release()
+        return out
+
+    def view(self, t):
+        u = (t - MAP_T0) / (V7_ZT - MAP_T0)
+        k = V7_K0 * (V7_K1 / V7_K0) ** u                                 # log-rate: a satellite zoom, no stop
+        z = lin(MAP_T0, V7_ZT, t)
+        pin = np.array([self.W * (0.34 + 0.16 * ssf(MAP_T0, V7_ZT, t)), self.H * (0.50 + 0.22 * z)], F32)
+        return k / self.ZS, pin                                          # screen px per canvas px, Senegal's screen spot
+
+    def to_screen(self, p, t):
+        sc, pin = self.view(t)
+        return (np.asarray(p, F32) - self.sen) * sc + pin
+
+    def sea_front(self, t):
+        w = ssf(V7_W0, V7_W1, t)
+        soft = 0.10 * self.W
+        pin_x = self.view(t)[1][0]
+        reach = pin_x + 1.2 * soft
+        return w, soft, w * reach, self.W - w * (self.W - pin_x + 1.2 * soft)
+
+    def draw(self, canvas, t, t_in, wash):
+        W, H = self.W, self.H
+        sc, pin = self.view(t)
+        M = np.float32([[sc, 0, pin[0] - sc * self.sen[0]], [0, sc, pin[1] - sc * self.sen[1]]])
+        img = cv2.warpAffine(self.img, M, (W, H), flags=cv2.INTER_LINEAR, borderValue=0)
+        fld = cv2.warpAffine(self.fld, M, (W, H), flags=cv2.INTER_LINEAR, borderValue=0)
+        em = cv2.warpAffine(self.emask, M, (W, H), flags=cv2.INTER_LINEAR, borderValue=0)
+        land, sea_a, n_land, n_sea = fld[..., 0], fld[..., 1], fld[..., 2], fld[..., 3]
+        a = ssf(t_in, t_in + 5.0, t) * 1.2
+        rl = np.clip((a - n_land) / 0.08, 0, 1)
+        rs = np.clip((a - 0.35 - n_sea) / 0.1, 0, 1)
+        alpha = (land * rl + (1 - land) * np.maximum(sea_a, 0.55) * rs) * em      # the engraved Atlantic is on LEFT too
+        img = img * (1 + 0.05 * np.sin(t * 1.3))
+        w, soft, fl, fr = self.sea_front(t)
+        reveal = np.zeros((H, W), F32)
+        foam = np.zeros((H, W), F32)
+        wet = np.zeros((H, W), F32)
+        if w > 0:
+            amp = 0.035 * W
+            dl = fl + amp * self.fn - self.gx                            # >0 inside the left front
+            dr = self.gx - (fr - amp * self.fn)
+            for d in (dl, dr):
+                reveal = np.maximum(reveal, ss(-0.15 * soft, 0.85 * soft, d))
+                wet = np.maximum(wet, ss(-1.6 * soft, 0.0, d))
+                foam = np.maximum(foam, np.exp(-((d + 0.10 * soft) / (0.10 * soft)) ** 2))
+            sk = ssf(V7_W0 + 1.5, V7_W1 - 0.5, t)                        # the sky clears in from the top
+            sky = ss(0, 1, (sk * 0.62 * H - self.gy) / (0.12 * H)) * (self.gy < 0.60 * H)
+            reveal = np.maximum(reveal, sky.astype(F32) * sk)
+            foam = foam * (0.45 + 0.55 * np.clip(self.fn2 * 0.5 + 0.6, 0, 1)) * (1 - reveal * 0.6)
+        img = img * (1 - 0.55 * wet[..., None]) + np.array([0.02, 0.04, 0.07], F32) * 0.55 * wet[..., None]
+        alpha = alpha * (1 - 0.35 * wet) * (1 - wash)
+        blit(canvas, img, alpha.astype(F32), 0, 0, tag='pic:map')
+        if w > 0:
+            fi = 0 if t < V7_VID_T else min(len(self.sah) - 1, int((t - V7_VID_T) * FPS))
+            gain = 0.30 + 0.70 * ssf(V7_W0, V7_W1 + 0.5, t)              # the exposure rises over ~6 s, not a snap
+            sea = self.sah[fi].astype(F32) / 255 * gain
+            rv = reveal[..., None]
+            canvas[:] = canvas * (1 - rv) + sea * rv
+            canvas += (foam * 0.14)[..., None] * np.array([0.85, 0.9, 0.95], F32) * (1 - ssf(V7_W1 - 1, V7_W1 + 1, t))
+        self.draw_route7(canvas, t)
+
+    def draw_route7(self, canvas, t):
+        q = self.ctx.q
+        sc, pin = self.view(t)
+        fade = 1 - ssf(V7_W1 - 1.0, V7_W1 + 0.6, t)                      # the last things under the water
+        if fade <= 0:
+            return
+        guard = self.ctx.guard[None, :]
+        px, py = pin
+        gy, gx = self.gy, self.gx
+        # Senegal: a soft glowing point at Saint-Louis, from the start of the zoom, and its name
+        ap = ssf(MAP_T0 + 0.5, MAP_T0 + 3.0, t) * fade
+        r2 = (gx - px) ** 2 + (gy - py) ** 2
+        pulse = 0.8 + 0.2 * np.sin(t * 2.4)
+        g = (np.exp(-r2 / (2 * (3.0 * q) ** 2)) + 0.5 * np.exp(-r2 / (2 * (16 * q) ** 2))) * ap * pulse
+        canvas += (g * guard)[..., None] * np.array([1.0, 0.72, 0.40], F32)
+        lh, lw = self.lab_a.shape
+        la = self.lab_a * ap
+        ink = np.ones(la.shape + (3,), F32) * np.array([0.95, 0.85, 0.66], F32)
+        blit(canvas, np.zeros_like(ink), cv2.GaussianBlur(la, (0, 0), 3 * q) * 0.7, px + 10 * q, py - lh * 0.5 - 4 * q, guard=self.ctx.guard)
+        blit(canvas, ink, la, px + 10 * q, py - lh * 0.5 - 4 * q, guard=self.ctx.guard, tag='word:Sénégal')
+        # the course: constant speed, stops short of Saint-Louis
+        k = V7_COURSE * lin(ROUTE_T0, ROUTE_T1, t)
+        if k <= 0:
+            return
+        Lk = self.cum[-1] * k
+        per = 14 * q / sc
+        layer = np.zeros((self.H, self.W), F32)
+        s0 = 0.0
+        while s0 < Lk:
+            p0, p1 = self.to_screen(self.at(s0), t), self.to_screen(self.at(min(s0 + per * 0.55, Lk)), t)
+            cv2.line(layer, (int(p0[0] * 4), int(p0[1] * 4)), (int(p1[0] * 4), int(p1[1] * 4)), 1.0,
+                     max(2, int(4 * q)), cv2.LINE_AA, shift=2)
+            s0 += per
+        layer = cv2.GaussianBlur(layer, (0, 0), 0.7) * guard
+        a = layer[..., None] * 0.95 * fade
+        canvas[:] = canvas * (1 - a) + np.array([0.62, 0.08, 0.05], F32) * a
+        hx, hy = self.to_screen(self.at(Lk), t)
+        r2 = (gx - hx) ** 2 + (gy - hy) ** 2
+        fl = 0.85 + 0.15 * np.sin(t * 11)
+        gg = (np.exp(-r2 / (2 * (2.2 * q) ** 2)) + 0.45 * np.exp(-r2 / (2 * (12 * q) ** 2))) * fl * fade
+        canvas += (gg * guard)[..., None] * np.array([1.0, 0.55, 0.35], F32)
 
 
 # --------------------------------------------------------------------------- fields
@@ -1553,9 +1703,10 @@ def build(ctx):
     # M7: they escape through the flames (CENTRE, once the flags have burnt)...
     W.append(wash('goya_p41_fleeing_EscapanLlamas', 'C', 0.50, 0.41, 940, 136.5, 143.5, 12, grey=True, grow=0.008))
     # ...then the fleeing families ghost into the dawn haze on LEFT and RIGHT, receding toward the ship
-    W.append(Wash(ctx, gy('goya_p44_fleeing_YoLoVi'), 'L', 0.46, 0.50, 860, 138.0, 157.0, seed=13, drift=(9, 1.0), grow=-0.008,
+    if not V7:                                       # v7: Meeting 6 cut p44/p45 and the swell; the sea takes the map instead
+      W.append(Wash(ctx, gy('goya_p44_fleeing_YoLoVi'), 'L', 0.46, 0.50, 860, 138.0, 157.0, seed=13, drift=(9, 1.0), grow=-0.008,
                   in_dur=4.0, out_dur=5.0, mode='multiply', name='goya_p44', exit='fade'))
-    W.append(Wash(ctx, gy('goya_p45_fleeing_YestoTambien'), 'R', 0.54, 0.50, 860, 140.0, 157.0, seed=14, drift=(-9, 1.0),
+      W.append(Wash(ctx, gy('goya_p45_fleeing_YestoTambien'), 'R', 0.54, 0.50, 860, 140.0, 157.0, seed=14, drift=(-9, 1.0),
                   grow=-0.008, in_dur=4.0, out_dur=5.0, mode='multiply', name='goya_p45', exit='fade'))
     S['washes'] = W
     S['flakes'] = Flakes(ctx)
@@ -1593,7 +1744,7 @@ def build(ctx):
     S['fore'] = Smoke(ctx, seed=16, speed=1.6)
     S['embers'] = Particles(ctx, EMBER)
     S['ashp'] = Particles(ctx, ASH, rise=(-12, 10), seed=5, blur=1.2, gain=0.9)
-    S['map'] = MapJourney(ctx)
+    S['map'] = MapJourneyV7(ctx) if V7 else MapJourney(ctx)
     ship = cv2.imread(os.path.join(SRC, 'medusa_frigate_Baugean.jpg'))
     g = cv2.cvtColor(ship, cv2.COLOR_BGR2GRAY).astype(F32) / 255
     sh_h = ctx.px(430)
@@ -1644,7 +1795,7 @@ def render_frame(ctx, S, t, dt):
     S['smoke'].draw(t, c, dens, warm, spill=spill, cold=cold)
     # M7 dawn haze (a field) and the light behind the exiles
     hz = ssf(135, 141, t)
-    if hz > 0:
+    if hz > 0 and not V7:                                  # v7 (Homie): no grey horizon glow beside the map; plain black until the sea
         c += S['haze'][..., None] * np.array([0.42, 0.44, 0.48], F32) * 0.7 * hz
         c += S['sky'][..., None] * np.array([0.07, 0.08, 0.11], F32) * hz
         c += (S['glowLR'] * (ssf(137, 142, t) * (1 - 0.7 * ssf(155, 161, t))))[..., None] * np.array([0.55, 0.55, 0.57], F32)
@@ -1680,8 +1831,8 @@ def render_frame(ctx, S, t, dt):
     ash.draw(c, dt)
     # M7: the coast, the course, 1816; it washes into the dawn; the frigate
     if t >= MAP_T0:
-        S['map'].draw(c, t, MAP_T0, ssf(157, 159.8, t))
-    if t >= 156:
+        S['map'].draw(c, t, MAP_T0, 0.0 if V7 else ssf(157, 159.8, t))
+    if t >= 156 and not V7:
         ship(ctx, c, S, t)
     for wd in S['words']:
         wd.draw(c, t)
@@ -1842,10 +1993,12 @@ def main():
     ap.add_argument('--smoke-loop', default=None, help='use this looped S6-SMOKE instead of the default')
     ap.add_argument('--final', action='store_true',
                     help='OUT is a folder: write S6_LEFT/CENTRE/RIGHT.mov (ProRes 422 HQ, one per wall, synced, no caption)')
+    ap.add_argument('--v7', action='store_true', help="Meeting 6: map over all three walls, zoom to Senegal, sea into Sahaj's frame")
     ap.add_argument('--v6', action='store_true', help='Meeting 4 flags: weathered cloth, M4 as coloured light, M6 rebuilt')
     a = ap.parse_args()
-    global GEN_FLAG, GEN_SMOKE, V6
+    global GEN_FLAG, GEN_SMOKE, V6, V7
     V6 = a.v6
+    V7 = a.v7
     GEN_FLAG = a.flag_loop or GEN_FLAG
     GEN_SMOKE = a.smoke_loop or GEN_SMOKE
     ctx = Ctx(a.scale)
