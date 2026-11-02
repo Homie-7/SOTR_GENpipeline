@@ -82,6 +82,24 @@ def model_wall(H, W, frames, room, u0, img):
     return (wall * (0.35 + 0.65 * sk)).astype(np.float32), rect
 
 
+def reslice(patch, nw, nh, c):
+    """9-slice a frame patch (frame + apron) to nw x nh: corners kept, horizontal rails mirror-tiled, vertical rails resized.
+    Painting pixels that land inside the rails are covered afterwards by gallery_wall.pin over the new canvas box."""
+    h0, w0 = patch.shape[:2]
+    r = lambda a, w, h: cv2.resize(a, (max(1, w), max(1, h)), interpolation=cv2.INTER_LANCZOS4)
+    tl, tr = patch[:c, :c], patch[:c, w0 - c:]
+    bl, br = patch[h0 - c:, :c], patch[h0 - c:, w0 - c:]
+    def hrail(a):                                    # mirror-tile the plain rail to the new width
+        mid = a[:, c:w0 - c]
+        both = np.concatenate([mid, mid[:, ::-1]], 1)
+        return r(both, nw - 2 * c, a.shape[0])
+    top, bot = hrail(patch[:c]), hrail(patch[h0 - c:])
+    left, right = r(patch[c:h0 - c, :c], c, nh - 2 * c), r(patch[c:h0 - c, w0 - c:], c, nh - 2 * c)
+    ctr = r(patch[c:h0 - c, c:w0 - c], nw - 2 * c, nh - 2 * c)
+    return np.concatenate([np.concatenate([tl, top, tr], 1), np.concatenate([left, ctr, right], 1),
+                           np.concatenate([bl, bot, br], 1)], 0)
+
+
 def grain_of(img, s):
     return np.clip(img - cv2.GaussianBlur(img, (0, 0), 2 * s), -0.008, 0.008)
 
@@ -119,6 +137,7 @@ def main():
     ap.add_argument('--hires')
     ap.add_argument('--paint', action='append', default=[])
     ap.add_argument('--no-move', action='store_true')
+    ap.add_argument('--reshape', help='PAINTING_FILE:CANVAS_H_M  re-shape the (single) frame to this painting at this canvas height')
     ap.add_argument('--frames-json')
     a = ap.parse_args()
 
@@ -144,6 +163,23 @@ def main():
     new = [dict(frame=[o['frame'][0] + round(dx * sx), o['frame'][1] + round(dy * sy)] + o['frame'][2:],
                 canvas=[o['canvas'][0] + round(dx * sx), o['canvas'][1] + round(dy * sy)] + o['canvas'][2:])
            for o, (dx, dy) in zip(old, mv)]
+    rs = None
+    if a.reshape:
+        from PIL import Image
+        rpath, chm = a.reshape.rsplit(':', 1)
+        pw, ph = Image.open(rpath).size
+        o = old[0]
+        ins = (o['canvas'][0] - o['frame'][0], o['canvas'][1] - o['frame'][1],
+               o['frame'][0] + o['frame'][2] - o['canvas'][0] - o['canvas'][2],
+               o['frame'][1] + o['frame'][3] - o['canvas'][1] - o['canvas'][3])
+        chp = round(float(chm) * H / WALL_H)
+        cwp = round(chp * pw / ph)
+        nfw, nfh = cwp + ins[0] + ins[2], chp + ins[1] + ins[3]
+        ccx, ccy = W / 2, (H - a.centre_line * H / WALL_H)
+        fx, fy = round(ccx - nfw / 2), round(ccy - nfh / 2)
+        new = [dict(frame=[fx, fy, nfw, nfh], canvas=[fx + ins[0], fy + ins[1], cwp, chp])]
+        rs = (nfw, nfh)
+        print('reshaped frame', new[0], f'canvas {cwp / (H / WALL_H):.2f} x {chp / (H / WALL_H):.2f} m', flush=True)
 
     room = json.load(open(a.room))
     wall, rect = model_wall(H, W, new, room, U0[a.wall], img)
@@ -164,6 +200,9 @@ def main():
         nx, ny = n['frame'][:2]
         pa = apron
         patch = img[y - pa:y + h + pa, x - pa:x + w + pa]
+        if rs:
+            patch = reslice(patch, rs[0] + 2 * pa, rs[1] + 2 * pa, round(200 * s))
+            w, h = rs
         ring_new = (rect(n['frame'], 0.25 * H / WALL_H) - rect(n['frame'], 0.05 * H / WALL_H)) > 0.5
         ring_old = (rect(o['frame'], 0.25 * H / WALL_H) - rect(o['frame'], 0.05 * H / WALL_H)) > 0.5
         gain = np.clip(np.median(new_wall[ring_new], 0) / (np.median(img[ring_old], 0) + 1e-4), 0.9, 1.1)

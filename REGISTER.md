@@ -579,3 +579,6 @@ Homie's notes (9 Oct): the idles showed "the lines of what was erased"; the intr
 |---|---|---|
 | `05_REFERENCE_UPLOADS/S6_handoff_Sahaj/A_flyin_m07v3_unity_03oct_ROOM.mp4` | Sahaj's rough room render (m07_v3 draft), sha256 2aaaedcc… | reference, PROVISIONAL (his final will replace it) |
 | `…/A_flyin_m07v3_f0001_full.png`, `…_f0001_WALLS_1920x443.png` | its first frame, whole and cropped to the three walls | the S6 v7 hand-off target |
+| `04_WORKING_FILES/S1_gallery/3_RIGHT_DAVID_v4/` (S1-GAL-R_LIT/DARK_v4 native/1080/4K, SEAM v4, `show_1080/`, `loops_4K/`; painting `02_APPROVED_BUILDING_BLOCKS/S1_gallery/paintings/src_SOTR_napoleon_david_alps_malmaison.jpg`) | RIGHT wall with David's Napoleon (3 Nov) | **candidate**, awaiting Homie (not in the show folder) |
+| `04_WORKING_FILES/S6_v7_map_option/` (stills, REVIEW 2m10-2m45 clip) | S6 map v7 + sea hand-off | **candidate**, awaiting Homie |
+| `04_WORKING_FILES/S9_court_behind_paper/` (stills sheet, A2 clip) | judge behind the parchment tests (A1 x3, A2, smoke B) | **candidate**, awaiting Homie's pick |

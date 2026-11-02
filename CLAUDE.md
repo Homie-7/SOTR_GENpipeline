@@ -173,6 +173,13 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-03 (POST/script, PC): MEETING 6 BUILT as candidates, for Homie's review. 0 cr.
+
+- S6 v7 (`render_s6.py --v6 --v7`): per-element map->sea morph (sky/horizon/sea each their own), v6.2 unchanged. S1/S10 RIGHT =
+  David's Napoleon (`gallery_rehang.py --reshape`), all files in `04_WORKING_FILES/S1_gallery/3_RIGHT_DAVID_v4/`. S9 judge
+  behind paper: `tools/court_behind_paper.py`, stills + A2 clip in `S9_court_behind_paper/`. Nothing in 01_FINAL_FOR_SHOW; see
+  `docs/NEW-SESSION.md`.
+
 ### 2026-11-03 (PREP, PC): MEETING 6 (31 Oct) -> three changes, planned in `docs/PLAN-MEETING6.md`. 0 cr.
 
 - Ours (Homie): S6 map v7 across all three walls, zooming toward Senegal, the sea washing in from the sides into
