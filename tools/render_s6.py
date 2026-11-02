@@ -1358,7 +1358,7 @@ class MapJourney:
 # washes in from LEFT and RIGHT and becomes Sahaj's first frame. OFF by default (--v7).
 V7 = False
 SAHAJ_DIR = r'C:\Users\Homie\Documents\SOTR_MEDIA\05_REFERENCE_UPLOADS\S6_handoff_Sahaj'
-V7_K0, V7_K1, V7_ZT = 1.4, 2.7, 157.0      # zoom (base = 48 deg tall) at MAP_T0, and at V7_ZT; log-rate, never stops
+V7_K0, V7_K1, V7_ZT = 1.2, 2.7, 157.0      # zoom (base = 48 deg tall) at MAP_T0, and at V7_ZT; log-rate, never stops
 V7_COURSE = 0.75                           # the line never arrives: it stops at this share of the course
 V7_W0, V7_W1 = 156.5, 162.5                # the sea washes in; V7_W1 = fully under
 V7_VID_T = 163.0                           # Sahaj's moving water starts here
@@ -1403,7 +1403,7 @@ class MapJourneyV7(MapJourney):
         u = (t - MAP_T0) / (V7_ZT - MAP_T0)
         k = V7_K0 * (V7_K1 / V7_K0) ** u                                 # log-rate: a satellite zoom, no stop
         z = lin(MAP_T0, V7_ZT, t)
-        pin = np.array([self.W * (0.34 + 0.16 * ssf(MAP_T0, V7_ZT, t)), self.H * (0.50 + 0.22 * z)], F32)
+        pin = np.array([self.W * (0.34 + 0.16 * ssf(MAP_T0, V7_ZT, t)), self.H * (0.54 + 0.26 * z)], F32)
         return k / self.ZS, pin                                          # screen px per canvas px, Senegal's screen spot
 
     def to_screen(self, p, t):
@@ -1489,11 +1489,11 @@ class MapJourneyV7(MapJourney):
         while s0 < Lk:
             p0, p1 = self.to_screen(self.at(s0), t), self.to_screen(self.at(min(s0 + per * 0.55, Lk)), t)
             cv2.line(layer, (int(p0[0] * 4), int(p0[1] * 4)), (int(p1[0] * 4), int(p1[1] * 4)), 1.0,
-                     max(2, int(4 * q)), cv2.LINE_AA, shift=2)
+                     max(2, int(7 * q)), cv2.LINE_AA, shift=2)
             s0 += per
         layer = cv2.GaussianBlur(layer, (0, 0), 0.7) * guard
-        a = layer[..., None] * 0.95 * fade
-        canvas[:] = canvas * (1 - a) + np.array([0.62, 0.08, 0.05], F32) * a
+        a = layer[..., None] * 0.97 * fade
+        canvas[:] = canvas * (1 - a) + np.array([0.80, 0.12, 0.07], F32) * a
         hx, hy = self.to_screen(self.at(Lk), t)
         r2 = (gx - hx) ** 2 + (gy - hy) ** 2
         fl = 0.85 + 0.15 * np.sin(t * 11)
