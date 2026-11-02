@@ -1420,8 +1420,11 @@ class MapJourneyV7(MapJourney):
             h = (h - h.mean()) / max(float(h.std()), 1e-6)
             gx = cv2.Sobel(h, cv2.CV_32F, 1, 0, ksize=3)
             gy = cv2.Sobel(h, cv2.CV_32F, 0, 1, ksize=3)
+            lap = cv2.Laplacian(h, cv2.CV_32F, ksize=3)
+            foc = np.clip(-lap / max(float(lap.std()), 1e-6), 0, 4) ** 2
+            foc = foc / max(float(foc.mean()), 1e-6)
             sd = max(float(np.hypot(gx, gy).std()), 1e-6)
-            out.append(np.dstack([h, gx / sd, gy / sd]).astype(F32))
+            out.append(np.dstack([h, gx / sd, gy / sd, foc]).astype(F32))
         return out
 
     @staticmethod
@@ -1431,18 +1434,59 @@ class MapJourneyV7(MapJourney):
         return cv2.resize(cv2.GaussianBlur(sm, (0, 0), s), (w, h), interpolation=cv2.INTER_LINEAR)
 
     def _morph_setup(self, ctx):
+        """Per-element schedules, read off Sahaj's first frame: the SKY condenses (clouds first, in order of their own
+        density, rising from the horizon haze, blue gaps last), the SEA rises as long perspective swells with caustic light
+        (the sun-glitter last), and the horizon line is drawn by the haze before either finishes."""
         H, W = self.H, self.W
         self.cf = self._caustic_fields(ctx)
+        self.cfs = []                                                      # the sea's swells, stretched along the horizon
+        for seed, sc in ((111, (ctx.px(120), ctx.px(45))), (112, (ctx.px(90), ctx.px(34)))):
+            h = fractal(H, W // 3, np.random.default_rng(seed), scales=sc, gains=(1, 0.6))
+            h = cv2.resize(cv2.GaussianBlur(h, (0, 0), ctx.px(2)), (W, H), interpolation=cv2.INTER_CUBIC)
+            h = cv2.GaussianBlur(h, (0, 0), ctx.px(5))
+            h = (h - h.mean()) / max(float(h.std()), 1e-6)
+            gx = cv2.Sobel(h, cv2.CV_32F, 1, 0, ksize=3)
+            gy = cv2.Sobel(h, cv2.CV_32F, 0, 1, ksize=3)
+            lap = cv2.Laplacian(h, cv2.CV_32F, ksize=3)
+            foc = np.clip(-lap / max(float(lap.std()), 1e-6), 0, 4) ** 2
+            foc = foc / max(float(foc.mean()), 1e-6)
+            sd = max(float(np.hypot(gx, gy).std()), 1e-6)
+            self.cfs.append(np.dstack([h, gx / sd, gy / sd, foc]).astype(F32))
+        f0 = self.sah[0].astype(F32) / 255
+        lum = f0.mean(2)
+        rowm = cv2.GaussianBlur(lum.mean(1, keepdims=True), (0, 0), 1.5)[:, 0]
+        yh = int(np.argmax(rowm[:-2] - rowm[2:]) + 1)                      # the horizon row in Sahaj's frame
+        self.yh = yh
+        w = max(2.0, ctx.px(9))
+        self.rs = ss(-w, w, self.gy - yh).astype(F32)                     # 0 = sky, 1 = sea (soft across the horizon)
         n3 = fractal(H, W, np.random.default_rng(93), scales=(ctx.px(420), ctx.px(130)), gains=(1, 0.4))
         n3 = cv2.GaussianBlur(n3, (0, 0), ctx.px(50))
         n3 = n3 / max(float(np.abs(n3).max()), 1e-6)
-        _, pin = self.view(MAP_T0)
-        off = (0.72 * np.clip(0.5 + 0.5 * self.fn, 0, 1) + 0.08 * (1 - self.gy / H)
-               + 0.20 * np.clip(1 - np.abs(self.gx - W * 0.5) / (W * 0.5), 0, 1))
-        self.off_mix = np.clip(off, 0, 1).astype(F32)                     # when each spot gives itself to the sea
-        self.off_cau = np.clip(0.5 + 0.5 * n3, 0, 1).astype(F32)          # when the caustic light reaches each spot
-        self.sea_low = self._low(self.sah[0].astype(F32) / 255)
+        nn = np.clip(0.5 + 0.5 * self.fn, 0, 1)
+        ls = cv2.GaussianBlur(lum, (0, 0), ctx.px(7))                      # sky: cloud density (bright = early), rising
+        sk = ls[:yh]
+        r = np.argsort(np.argsort(sk.ravel())).reshape(sk.shape) / max(sk.size - 1, 1)
+        rank = np.zeros_like(lum)
+        rank[:yh] = 1 - r
+        rank[yh:] = rank[yh - 1:yh]
+        up = np.clip((yh - self.gy) / max(yh, 1), 0, 1)
+        self.off_sky = np.clip(0.55 * rank + 0.25 * nn + 0.20 * up, 0, 1).astype(F32)
+        lw = cv2.GaussianBlur(lum, (0, 0), ctx.px(3))                      # sea: wide swells; the bright glints are last
+        sm = lw[yh:]
+        rk = np.argsort(np.argsort(sm.ravel())).reshape(sm.shape) / max(sm.size - 1, 1)
+        grank = np.zeros_like(lum)
+        grank[yh:] = rk
+        grank[:yh] = grank[yh:yh + 1]
+        nz = cv2.resize(fractal(H, W // 3, np.random.default_rng(94), scales=(ctx.px(130), ctx.px(40)), gains=(1, 0.5)),
+                        (W, H), interpolation=cv2.INTER_CUBIC)
+        nz = cv2.GaussianBlur(nz, (0, 0), ctx.px(8))
+        nz = np.clip(0.5 + 0.5 * nz / max(float(np.abs(nz).max()), 1e-6), 0, 1)
+        near = np.clip((self.gy - yh) / max(H - yh, 1), 0, 1)
+        self.off_sea = np.clip(0.62 * nz + 0.28 * grank + 0.10 * near, 0, 1).astype(F32)
+        self.off_cau = np.clip(0.5 + 0.5 * n3, 0, 1).astype(F32)
+        self.sea_low = self._low(f0)
         self.mx, self.my = self.gx.copy(), self.gy.copy()
+        self.haze = (np.exp(-((self.gy - yh) / ctx.px(70)) ** 2) * (1 - 0.35 * self.rs)).astype(F32)
 
     def _drift(self, i, t):
         """Field i, drifting; translation keeps it continuous (no pixel-step jitter)."""
@@ -1452,49 +1496,59 @@ class MapJourneyV7(MapJourney):
         return cv2.warpAffine(self.cf[i], M, (self.W, self.H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
 
     def morph(self, canvas, t):
-        """The map becomes the sea by REFRACTION, not by a mask edge (Homie 3 Nov: 'extremely seamless').
-        Caustic light arrives in patches; a growing water-surface normal field bends the map; the pigment sinks to the
-        sea's own low-pass colour; each spot hands over to Sahaj's frame on its own wide, noise-offset schedule
-        (the sea seen through the same ripples, settling to rest), the caustics fading out last."""
+        """The map becomes Sahaj's sea by three different things (Homie 3 Nov: the sky, the sea and the horizon each need
+        their own way in, not one caustic layer over everything).
+        SKY: the paper lifts to haze, clouds condense in order of their own density, rising; a slow vapour drift, no water
+        light up there. HORIZON: a haze band glows along it first, then yields to the line. SEA: long swells with caustic
+        light bend the map (refraction), the pigment sinks, the swells hand over to Sahaj's water, the glitter last."""
         if t <= V7_W0:
             return
-        H, W = self.H, self.W
         px = self.ctx.px
         pa = ssf(V7_W0, V7_W0 + 5.0, t)                                  # the water's light arrives
-        p = ssf(V7_M0, V7_M1, t)                                         # the hand-over
+        psea = ssf(V7_M0, V7_M1, t)                                      # sea hand-over
+        psky = ssf(V7_M0 + 0.8, V7_M1, t)                                # sky hand-over, a little behind: it condenses slowly
+        wd = max(2.0, px(9)) + px(150) * (1 - ssf(V7_M0, V7_M1 - 0.5, t)) ** 2
+        rs = ss(-wd, wd, self.gy - self.yh).astype(F32)                  # horizon: a soft haze first, the line last
         S = 0.7
-        m = np.clip((p * (1 + S) - self.off_mix * S), 0, 1)
-        m = ss(0, 1, m).astype(F32)
+        msea = ss(0, 1, np.clip(psea * (1 + S) - self.off_sea * S, 0, 1)).astype(F32)
+        msky = ss(0, 1, np.clip(psky * (1 + S) - self.off_sky * S, 0, 1)).astype(F32)
+        m = msky * (1 - rs) + msea * rs
         S2 = 0.9
-        pc = ss(0, 1, np.clip(pa * (1 + S2) - self.off_cau * S2, 0, 1)).astype(F32)   # caustic presence, in patches
+        pc = ss(0, 1, np.clip(pa * (1 + S2) - self.off_cau * S2, 0, 1)).astype(F32)
         f1, f2 = self._drift(0, t), self._drift(1, t)
-        # caustic network: bright where the two ridged height fields both focus
-        sg = 0.12
-        r1 = np.exp(-(f1[..., 0] / sg) ** 2 * 0.5)
-        r2 = np.exp(-(f2[..., 0] / (sg * 1.1)) ** 2 * 0.5)
-        cau = np.clip(0.55 * r1 + 0.55 * r2 + 1.6 * r1 * r2, 0, 1.6)
+        g1, g2 = self._drift_s(0, t), self._drift_s(1, t)
+        cau = np.clip(0.30 * g1[..., 3] + 0.30 * g2[..., 3] + 0.25 * np.sqrt(g1[..., 3] * g2[..., 3]), 0, 1.6)
         cau = cv2.GaussianBlur(cau, (0, 0), max(0.6, 0.8 * self.ctx.q))
-        # refraction: the map is bent by the surface slope, more as the water thickens, then the bend settles to 0
-        amp = px(17) * (0.15 + 0.85 * ssf(V7_W0 + 1.5, V7_M0 + 2.5, t))
-        dx = (f1[..., 1] - f2[..., 1]) * 0.5
-        dy = (f1[..., 2] + f2[..., 2]) * 0.5
-        mapr = cv2.remap(canvas, self.mx + dx * amp * pc, self.my + dy * amp * pc, cv2.INTER_LINEAR,
-                         borderMode=cv2.BORDER_REFLECT_101)
-        gain = 0.55 + 0.45 * p
+        ramp = 0.15 + 0.85 * ssf(V7_W0 + 1.5, V7_M0 + 2.5, t)
+        dxs = (g1[..., 1] - g2[..., 1]) * 0.5                            # sea: anisotropic swells
+        dys = (g1[..., 2] + g2[..., 2]) * 0.5
+        dxk = (f1[..., 1] - f2[..., 1]) * 0.5 * 0.35                     # sky: slow, wide, rising vapour
+        dyk = (f1[..., 2] + f2[..., 2]) * 0.5 * 0.35 - 0.3
+        amp_s, amp_k = px(15) * ramp, px(9) * ramp
+        dx = dxs * amp_s * rs + dxk * amp_k * (1 - rs)
+        dy = dys * amp_s * rs + dyk * amp_k * (1 - rs)
+        mapr = cv2.remap(canvas, self.mx + dx * pc, self.my + dy * pc, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
+        gain = (0.55 + 0.45 * (psea * rs + psky * (1 - rs)))[..., None]
         fi = 0 if t < V7_VID_T else min(len(self.sah) - 1, int((t - V7_VID_T) * FPS))
         sea = self.sah[fi].astype(F32) / 255 * gain
-        sd = (1 - m)
-        sear = cv2.remap(sea, self.mx + dx * amp * sd, self.my + dy * amp * sd, cv2.INTER_LINEAR,
-                         borderMode=cv2.BORDER_REFLECT_101)
-        # the pigment sinks: the map keeps its detail but its tone slides to the sea's, spot by spot
-        wk = (0.75 * ss(0.05, 0.75, pc) * (1 - m))[..., None]
+        sd = 1 - m
+        sear = cv2.remap(sea, self.mx + dx * sd, self.my + dy * sd, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
+        wk = (0.55 * ss(0.05, 0.75, pc) * (1 - m))[..., None]            # pigment sinks / paper lifts, spot by spot
         lowm = self._low(mapr)
         mapw = lowm * (1 - wk) + (self.sea_low * gain) * wk + (mapr - lowm) * (1 - 0.45 * wk)
         out = mapw * (1 - m[..., None]) + sear * m[..., None]
-        # caustic light, strongest while the hand-over is under way, gone once the spot is the open sea
-        cw = pc * (1 - ss(0.55, 1.0, m)) * (0.20 + 0.80 * 4 * m * (1 - m) + 0.35 * (1 - m))
-        out += (cau * cw * 0.27)[..., None] * np.array([0.72, 0.88, 1.0], F32)
+        hz = ssf(V7_W0 + 0.5, V7_M0 + 1.5, t) * (1 - ssf(V7_M1 - 2.0, V7_M1, t))
+        out += (self.haze * hz * 0.20)[..., None] * np.array([1.0, 0.97, 0.90], F32)
+        cw = pc * rs * (1 - ss(0.55, 1.0, m)) * (0.20 + 0.80 * 4 * m * (1 - m) + 0.35 * (1 - m))
+        out += (cau * cw * 0.17)[..., None] * np.array([0.72, 0.88, 1.0], F32)   # caustic light: the sea only
         canvas[:] = np.clip(out, 0, None)
+
+    def _drift_s(self, i, t):
+        """The sea's swell field i, drifting mostly along the horizon."""
+        v = (np.array([9.0, 1.5]) if i == 0 else np.array([-6.0, 2.5])) * self.ctx.q
+        d = v * (t - V7_W0)
+        M = np.float32([[1, 0, d[0]], [0, 1, d[1]]])
+        return cv2.warpAffine(self.cfs[i], M, (self.W, self.H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
 
     def draw(self, canvas, t, t_in, wash):
         W, H = self.W, self.H
