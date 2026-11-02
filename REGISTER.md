@@ -572,3 +572,10 @@ Homie's notes (9 Oct): the idles showed "the lines of what was erased"; the intr
 | `5_layers/seamed_v2/<light>/S7-SHIP-<WALL>_1080_bgmask_v3.png` | true silhouette, no sea islands | used by `--world` |
 | `6_review/S7-SHIP_idle_arc_preview_v3.mp4` | the four loops crossfaded (34 s) | for Homie |
 | T9 `SOTR/HF/_DELETE_ME_2026-10-09/` (3.45 GB; moves in `SOTR/HF/CLEANUP_2026-10-09_moves.tsv`) | the superseded idles v2/v3-8s, intros v6/v6.1/v7 + LEADIN v1 + drafts, the unused sea plates/takes, the old ship-in sea takes (`8_idle/S7-SHIP-IDLE_*_v1_*`) | **binned** (Homie: "we can work with this"); Homie empties |
+
+### 2026-11-03 — reference: Sahaj's Scene 7 bird-flight draft (for the S6 hand-off)
+
+| File | What | Status |
+|---|---|---|
+| `05_REFERENCE_UPLOADS/S6_handoff_Sahaj/A_flyin_m07v3_unity_03oct_ROOM.mp4` | Sahaj's rough room render (m07_v3 draft), sha256 2aaaedcc… | reference, PROVISIONAL (his final will replace it) |
+| `…/A_flyin_m07v3_f0001_full.png`, `…_f0001_WALLS_1920x443.png` | its first frame, whole and cropped to the three walls | the S6 v7 hand-off target |

@@ -961,3 +961,11 @@ the script and references (old-regime gilt, Hôtel de Soubise). Recommended gilt
 choices logged in `LOOK.md`. Found Homie's 2022 studio concept (Slide 9), the only prior
 Scene 9 visual, and noted it as the studio's starting layout. Added
 `docs/HANDOVER-WINDOWS.md` for the PC.
+
+## 2026-11-03 (PREP, PC) — Meeting 6 notes -> build plan
+
+Read the Meeting 6 minutes (31 Oct, RMIT Black Box). Homie confirmed three tasks as ours: S6 map + hand-off to Sahaj's
+sea, S1/S10 Napoleon replacement (David, *Crossing the Alps*), S9 judge behind the parchment. Decisions and order in
+`docs/PLAN-MEETING6.md`. Sahaj's rough render (`A_flyin_m07v3_unity_03oct_ROOM.mp4`, 1920x1008, 24 fps, 90 s; walls band
+rows 30-472 = our 4680x1080 aspect) copied from Homie's Desktop to `05_REFERENCE_UPLOADS/S6_handoff_Sahaj/` with its
+first frame (sha256 verified). 0 credits. Nothing generated or rendered.

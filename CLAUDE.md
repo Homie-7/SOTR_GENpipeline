@@ -173,6 +173,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-03 (PREP, PC): MEETING 6 (31 Oct) -> three changes, planned in `docs/PLAN-MEETING6.md`. 0 cr.
+
+- Ours (Homie): S6 map v7 across all three walls, zooming toward Senegal, the sea washing in from the sides into
+  Sahaj's first frame (`05_REFERENCE_UPLOADS/S6_handoff_Sahaj/`); S1/S10 RIGHT = David's *Napoleon Crossing the Alps*;
+  S9 judge behind the parchment (+ an optional smoke-figure test). Order S6, S1, S9; stills to Homie first. Not built yet.
+
 ### 2026-10-09 (VID + script + POST, MacBook): INTRO v8 + IDLES v3 (ship-free sea), built from 4K sources. 933 cr; balance 1.62.
 
 - Idles: the still ship over a generated ship-free sea per light (`tools/s7_seaplate.py`, `s7_idle.py --world`): nothing to

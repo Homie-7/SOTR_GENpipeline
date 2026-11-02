@@ -22,6 +22,16 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
+THE TASK, RIGHT NOW (3 Nov, PC, POST/script): THE MEETING 6 CHANGES. READ docs/PLAN-MEETING6.md FIRST, then build in its
+  order: 1. Scene 6 map v7 (Africa across all three walls, satellite zoom toward a marked Senegal, the line never
+  arrives, the sea washes in from the sides at ~75% and lands on Sahaj's first frame; the Goya families + the Medusa
+  engraving cut), as `render_s6.py --v7` (v6.2 must still render bit for bit). 2. Scene 1/10 RIGHT: David's Napoleon
+  Crossing the Alps (Malmaison 1801) replaces Ingres, frame re-shaped by script, every RIGHT gallery file rebuilt.
+  3. Scene 9 judge behind the parchment (a shadow through the paper; 3 softness stills) + optional smoke-figure test.
+  Every task: STILLS TO HOMIE FIRST, then render to 04_WORKING_FILES/ for review. Nothing to 01_FINAL_FOR_SHOW, no
+  upscale, until Homie approves. 0 generation credits planned; balance last seen 1.62 (check before any upscale).
+  Sahaj's reference render: SOTR_MEDIA/05_REFERENCE_UPLOADS/S6_handoff_Sahaj/. The S7 review below is parked.
+
 UPDATE 24 Oct (PC, POST): THE PC HANDOVER IS DONE. D: matches the T9 (861 files, sha256). New share copies, on D:\SOTR\
   and G:\SOTR\HF\: FOR DARRIN\ (52 low-res per-wall files for the sound designer) and WHATSAPP_3_wall_previews\ (9 three-wall
   previews with a script caption bar, incl. S7 as WORK IN PROGRESS), both made by tools/share_previews.py (--check to verify).
