@@ -1,0 +1,12 @@
+# Handoff: Meeting 6 feedback, part 3 (POST/script, PC, 0 cr)
+Read first: docs/HANDOFF-2026-11-03-MEETING6-FEEDBACK.md (Homie's verbatim notes; S6 section is the task), then docs/HANDOFF-2026-11-03-M6-PART2.md (rules, wrap list). Load only skills you need (none needed for script work).
+
+## Done this chat
+- tools/gallery_rehang.py `--reshape` bottom-rail fix (UNCOMMITTED; commit it).
+- RIGHT v5 built in `D:\SOTR\SOTR_MEDIA\04_WORKING_FILES\S1_gallery\3_RIGHT_DAVID_v5\`: LIT + DARK at 1440x1080 and 2880x2160, SEAM_4680x1080 LIT + DARK (L/C v3 + R v5; L/C part identical to v4), LIT-over-DARK sheet (sent to Homie as a still), frames jsons. Frame box for gallery_dark = native json frame scaled by W/2320, H/1768.
+- Show files RENDERING DETACHED (affinity FFFF3FFF) from `3_RIGHT_DAVID_v5/_tmp_run.sh`; log `3_RIGHT_DAVID_v5/_tmp_show.log` ends with `DONE` when finished (1080 show files -> `show_1080/`, 4K loops -> `loops_4K/`). Check it first; do not restart if python tools/gallery_show.py is still running. When DONE: move `_tmp_*` files and the v4 folder's `_tmp_*` into a dated `_DELETE_ME_2026-11-03` bin (never hard-delete).
+
+## Next
+1. S6 v7 map rework (`tools/render_s6.py --v6 --v7`, out `S6_v7_map_option/`), per the feedback file: revert to the EARLIER pre-morph pacing (slower zoom; line starts early; only zoom further), zoom across ALL THREE walls (LEFT never black), replace the caustic/per-element morph with the map LIQUEFYING (refraction warp) and dissolving into the sea as if seen through water, trajectory line animates throughout, never finishes, never freezes, paced to reach the target as the map dissolves. v7 code: `MapJourneyV7` (~line 1368; constants V7_K0/K1/ZT/COURSE/W0/M0/M1 at ~1361; draw ~1404-1600; main flags ~2095). v6.2 must still render bit-identical without --v7 (check as before). Stills to Homie first (SendUserFile), then a short clip. Note for Sahaj (start render looking at the water, then tilt up) = mention only.
+2. S9 judge: approved, no work.
+3. Wrap: REGISTER, LOG, CLAUDE.md "Current stage" block, docs/NEW-SESSION.md; commit only own files (tools/gallery_rehang.py, tools/render_s6.py, docs; end with `Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>`), push, `git pull` in `G:\SOTR\HF\SOTR_GENpipeline`, copy new media to T9 with sha256 (`C:\Users\Homie\AppData\Local\Temp\cp.py <folder under SOTR_MEDIA>`). Rules: nothing to 01_FINAL_FOR_SHOW, no unrequested upscales, 0 credits.

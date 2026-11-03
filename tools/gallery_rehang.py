@@ -82,7 +82,7 @@ def model_wall(H, W, frames, room, u0, img):
     return (wall * (0.35 + 0.65 * sk)).astype(np.float32), rect
 
 
-def reslice(patch, nw, nh, c):
+def reslice(patch, nw, nh, c, flip_bottom=False):
     """9-slice a frame patch (frame + apron) to nw x nh: corners kept, horizontal rails mirror-tiled, vertical rails resized.
     Painting pixels that land inside the rails are covered afterwards by gallery_wall.pin over the new canvas box."""
     h0, w0 = patch.shape[:2]
@@ -94,8 +94,22 @@ def reslice(patch, nw, nh, c):
         both = np.concatenate([mid, mid[:, ::-1]], 1)
         return r(both, nw - 2 * c, a.shape[0])
     top, bot = hrail(patch[:c]), hrail(patch[h0 - c:])
+    if flip_bottom:                                  # the source's bottom rail is mostly under the painting: use the top rail, flipped
+        bl, br = tl[::-1], tr[::-1]
+        bot = top[::-1]
     left, right = r(patch[c:h0 - c, :c], c, nh - 2 * c), r(patch[c:h0 - c, w0 - c:], c, nh - 2 * c)
     ctr = r(patch[c:h0 - c, c:w0 - c], nw - 2 * c, nh - 2 * c)
+    if flip_bottom:                                  # match each flipped corner's tone to the side rail it meets (per column gain, fading out)
+        def match(corner, rail):
+            g = cv2.GaussianBlur(rail[-6:].mean(0, keepdims=True) / (corner[:6].mean(0, keepdims=True) + 1e-4), (0, 0), 3)
+            g = np.clip(g, 0.6, 1.5)
+            fade = np.clip(1 - np.arange(corner.shape[0]) / (0.6 * corner.shape[0]), 0, 1)[:, None, None]
+            out = corner * (1 + (g - 1) * fade)
+            n = 70                                   # and fade the rail's own last row into the corner over n rows
+            al = (np.arange(n) / n)[:, None, None].astype(np.float32)
+            out[:n] = out[:n] * al + cv2.GaussianBlur(rail[-4:].mean(0, keepdims=True), (0, 0), 2) * (1 - al)
+            return out
+        bl, br = match(bl, left), match(br, right)
     return np.concatenate([np.concatenate([tl, top, tr], 1), np.concatenate([left, ctr, right], 1),
                            np.concatenate([bl, bot, br], 1)], 0)
 
@@ -172,6 +186,7 @@ def main():
         ins = (o['canvas'][0] - o['frame'][0], o['canvas'][1] - o['frame'][1],
                o['frame'][0] + o['frame'][2] - o['canvas'][0] - o['canvas'][2],
                o['frame'][1] + o['frame'][3] - o['canvas'][1] - o['canvas'][3])
+        ins = (ins[0], ins[1], ins[2], ins[1])   # bottom moulding = top moulding (the source's bottom was hidden under the painting)
         chp = round(float(chm) * H / WALL_H)
         cwp = round(chp * pw / ph)
         nfw, nfh = cwp + ins[0] + ins[2], chp + ins[1] + ins[3]
@@ -201,7 +216,7 @@ def main():
         pa = apron
         patch = img[y - pa:y + h + pa, x - pa:x + w + pa]
         if rs:
-            patch = reslice(patch, rs[0] + 2 * pa, rs[1] + 2 * pa, round(200 * s))
+            patch = reslice(patch, rs[0] + 2 * pa, rs[1] + 2 * pa, round(200 * s), flip_bottom=True)
             w, h = rs
         ring_new = (rect(n['frame'], 0.25 * H / WALL_H) - rect(n['frame'], 0.05 * H / WALL_H)) > 0.5
         ring_old = (rect(o['frame'], 0.25 * H / WALL_H) - rect(o['frame'], 0.05 * H / WALL_H)) > 0.5

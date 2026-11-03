@@ -173,6 +173,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-03, later (POST/script, PC): S6 v7 map FIXED for review (stills + clip sent). 0 cr.
+
+- `render_s6.py --v7`: dark engraved ocean under the whole room (LEFT never black), thicker brighter course line (running 148.5 -> 164,
+  never finishing), zoom/liquefy stretched (W0 153, M1/VID_T 164). Stills `S6_v7_map_option/stills_v9/`, clip `S6_v7_map_clip_v9_146-164.mp4`.
+  v6.2 still bit-identical without --v7 (stills 100 s, 150 s). RIGHT v5 gallery show files DONE (`_tmp_*` binned to `_DELETE_ME_2026-11-03`).
+
 ### 2026-11-03 (POST/script, PC): MEETING 6 BUILT as candidates, for Homie's review. 0 cr.
 
 - S6 v7 (`render_s6.py --v6 --v7`): per-element map->sea morph (sky/horizon/sea each their own), v6.2 unchanged. S1/S10 RIGHT =
