@@ -173,6 +173,10 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-03, CONSOLIDATED WRAP (POST, PC): MEETING 6 IS DONE. Court 144.4 cr, gallery 0, S6 0 = 144.4 cr.
+
+- **S9 court behind the parchment** (17 files, 4K) and **S1/S10 RIGHT gallery v6** (David's Napoleon) and **S6 v14 map** (ProRes 4444 alpha, 165 s, native 4K) are all in `01_FINAL_FOR_SHOW`, D: and T9 sha256-verified, old files in `superseded/`, repo pushed (T9 clone at the same HEAD). Nothing is open; don't change unless Homie asks. `docs/NEW-SESSION.md` has the status. Unneeded media sits in dated `_DELETE_ME_2026-11-03` bins (D:, T9, `04_WORKING_FILES/*`) for Homie to empty.
+
 ### 2026-11-03, latest (POST/script, PC): S6 v14 MAP IS FINAL IN THE SHOW. 0 cr.
 
 - Homie approved v14. S6 show files are now ProRes 4444 with ALPHA, 165 s: v6.2 to 130 s, then the v14 map (v7 look from ~135 s), clear at the end (Sahaj's water goes underneath in the comp). 4K play, 1080 fallback, CLEAN (1080); old in `superseded/S6_v6.2_pre_v14map/`; WhatsApp 06_S6 remade. `render_s6.py --warm`. Don't change unless Homie asks.
