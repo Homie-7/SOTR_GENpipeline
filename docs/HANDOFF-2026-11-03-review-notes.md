@@ -1,0 +1,13 @@
+# Handoff 2026-11-03: Homie's review notes on the three Meeting 6 candidates (POST, script, 0 cr)
+
+Read first: `CLAUDE.md` (Current stage, 2026-11-03 blocks), `docs/NEW-SESSION.md`, `docs/PLAN-MEETING6.md`. Load house-rules, declare POST. Nothing goes to `01_FINAL_FOR_SHOW`, no upscale, until Homie approves. Media: `C:\Users\Homie\Documents\SOTR_MEDIA\04_WORKING_FILES` (junction to D:). Stills first, one folder per item; send them with SendUserFile and open the folder in Explorer via `Start-Process explorer.exe` (reveal_path refuses paths outside the repo).
+
+## Homie's notes (3 Nov, after reviewing the files)
+
+1. **S1/S10 RIGHT gallery (David's Napoleon, `S1_gallery/3_RIGHT_DAVID_v4/`, tool `tools/gallery_rehang.py --reshape`):**
+   "The bottom of the frame is still horrible. Just look at the other frames on the other screens." His crop shows the bottom edge of the gilded frame, soft, smeared and flat, with the painting's lower-left (rocks, signature) bleeding to the frame. Fix: make RIGHT's frame bottom (moulding, lip, shadow, bottom rail) as crisp and as dimensional as the LEFT and CENTRE frames' (open those walls and compare at native res). Re-render LIT + DARK (v5), the seam views, the sheet; then the show files only on his OK.
+2. **S9 judge behind the paper (`S9_court_behind_paper/`, `tools/court_behind_paper.py`):** "the guy with the gavel, the judge, was pretty good". Optional, minor: nothing behind him (the barricades or whatever it is, the paper/burn) may overlap his silhouette; he is nearest the camera, so the silhouette must sit in front of everything. Treat as a layering fix (silhouette on top). He did not name a level; ask which of A1 level1-3 / A2 sharp-near / B smoke he means, or default to A2 level 2 (the clip he saw). If it is too much hassle, skip and say so. Beats 3/5/7 with the burn are still to wire.
+3. **S6 v7 map clip (`S6_v7_map_option/S6_v7_map_clip_v9_146-164.mp4`, tool `tools/render_s6.py --v6 --v7`, alpha path `--v7-alpha`):** "Happy with this. One little change": when the opacity map comes through (Africa and the other grey-backed elements) it has a hard cut, and as it reaches full opacity you sense a hard edge. Feather it so the edge of the map is soft and you cannot see the animation end at an exact point. Then a new clip + stills (v10); plain v7 and v6.2 must stay byte-identical without the flag. Full per-wall `--final` only on his approval.
+
+## Order
+S6 (smallest, he is happy), then S1 frame, then S9 silhouette. Stills/clip to Homie after each. On wrap: update `docs/NEW-SESSION.md`, LOG.md, commit, T9 sync (credits spent: 0).

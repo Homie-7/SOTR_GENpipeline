@@ -22,6 +22,10 @@ NOT a film. Live actors perform in front of three surfaces, named as the AUDIENC
 LEFT flat 4800x3600, CENTRE (back wall) 6000x3600, RIGHT flat 4800x3600. Locked cameras,
 walls as walls at true scale, no people in any plate, nothing newer than the scene's era.
 
+S9 COURT (judge behind the parchment, A2 level 2) IS FINAL AND IN `01_FINAL_FOR_SHOW` (3 Nov, PC; 17 files, 4K, D: and T9 sha256-verified, old in `superseded/S9_court_pre_behind_paper/`, WhatsApp 08_S9 remade; recipe `04_WORKING_FILES/build_recipes/S9_court_behind_paper_final.md`). Done; don't change unless Homie asks. 144.4 cr. Not committed.
+
+S1/S10 RIGHT GALLERY v6 IS FINAL AND IN `01_FINAL_FOR_SHOW` (3 Nov, PC; D: and T9 sha256-verified, old files in `superseded/S1_gallery/RIGHT_v3_pre_v6/`, previews remade). Done; don't change unless Homie asks. 0 cr. Not committed (shared docs): see `LOG.md`.
+
 THE TASK, RIGHT NOW (3 Nov, wrap): S6 v7 now also has `--v6 --v7-alpha` (map diffuses to transparency, eased zoom, ProRes 4444 straight alpha via `--final`): review `_tmp_stills_alpha/` + `_tmp_S6_v7_alpha_review_146-166.mp4`; full `--final` only on approval. HOMIE'S REVIEW of the Meeting 6 candidates (all 0 cr, none in 01_FINAL_FOR_SHOW). (1) S6 v7:
 `04_WORKING_FILES/S6_v7_map_option/` stills + REVIEW clip; open: caustic patches a little soft at ~158.5 s; full per-wall `--final`
 render is hours, run only on approval. (2) S1/S10 RIGHT David: `3_RIGHT_DAVID_v4/` (show_1080 + loops_4K); on approval promote like

@@ -13,6 +13,10 @@ The sanctioned white keyline round the gavel (LOOK World 3) is kept as a thin pa
 
   python tools/court_behind_paper.py stills OUTDIR            (softness levels x raised / strike, + A2 + smoke)
   python tools/court_behind_paper.py clip OUT.mp4 --level 2 [--a2] [--smoke] [--size Q2]
+  python tools/court_behind_paper.py beat OUT.mov --beat 3|5|7        (FINAL show build, A2 level 2, 1800x1080 ProRes, no sound)
+  python tools/court_behind_paper.py strike OUT.mov --size Q1|Q2|Q3|Q4  (the operator's single strike, same look)
+beat/strike are built like render_court.py --scrim --burn (same timeline, shake, burn t0 per beat); the Q5 capper
+(the gavel alone) goes through the same paper/fibre treatment at full sharpness (it is at the lens).
 Needs numpy, OpenCV, ffmpeg and render_court.py / render_court_v2.py / court_burn.py beside it.
 """
 import argparse
@@ -169,16 +173,56 @@ def clip(out, level, a2, smoke, size):
     print(len(seq), 'frames ->', out)
 
 
+def final(out, beat, strike, clean=False):
+    """The show build: render_court.py's timeline/shake/burn, with the judge behind the paper (level 2, A2)."""
+    if os.path.exists(out):
+        raise SystemExit(f'refusing: {out} exists. Clean renders are never replaced; give the new one a new version')
+    sc = Scene()
+    seq = rc.timeline(beat, strike)
+    t0 = BEAT_T0[beat] if beat else 0
+    w = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-s', f'{OW}x{OH}',
+                          '-r', str(rc.FPS), '-i', '-', '-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2',
+                          '-pix_fmt', 'yuv422p10le', out], stdin=subprocess.PIPE)
+    rng = np.random.default_rng(1817)
+    shake = 0
+    for n, (idx, sz, impact) in enumerate(seq):
+        if idx is None:
+            im = np.zeros((OH, OW, 3), np.float32)
+        else:
+            if len(sc.cache) > 8:
+                sc.cache = {k: v for k, v in sc.cache.items() if k[0] == rc.RAISED}
+            cl = 1.0 if sz == 'Q5' else closeness(idx)
+            bgi = sc.base * (sc.lamp * lamp_gain(n))[..., None] if clean else sc.bg(n, t0)
+            im = compose(bgi, sc.mask(idx, sz), sc.fib, 2, closeness=cl)
+            if impact:
+                shake = 6
+            if shake:
+                amp = 7 * shake / 6
+                dx, dy = rng.integers(-amp, amp + 1, 2)
+                im = np.roll(im, (int(dy), int(dx)), (0, 1)) * (1 + 0.05 * shake / 6)
+                shake -= 1
+        w.stdin.write((np.clip(im, 0, 1) * 65535).astype('<u2').tobytes())
+    w.stdin.close()
+    w.wait()
+    print(len(seq), 'frames ->', out)
+
+
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['stills', 'clip'])
+    ap.add_argument('cmd', choices=['stills', 'clip', 'beat', 'strike'])
     ap.add_argument('out')
     ap.add_argument('--level', type=int, default=2, choices=[1, 2, 3])
     ap.add_argument('--a2', action='store_true')
     ap.add_argument('--smoke', action='store_true')
     ap.add_argument('--size', default='Q2')
+    ap.add_argument('--beat', type=int, choices=[3, 5, 7])
+    ap.add_argument('--clean', action='store_true', help='beat/strike: no burn edge (the _CLEAN master)')
     a = ap.parse_args()
     if a.cmd == 'stills':
         stills(a.out)
+    elif a.cmd == 'beat':
+        final(a.out, a.beat, None, a.clean)
+    elif a.cmd == 'strike':
+        final(a.out, None, a.size, a.clean)
     else:
         clip(a.out, a.level, a.a2, a.smoke, a.size)

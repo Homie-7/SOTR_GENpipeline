@@ -94,12 +94,21 @@ def reslice(patch, nw, nh, c, flip_bottom=False):
         both = np.concatenate([mid, mid[:, ::-1]], 1)
         return r(both, nw - 2 * c, a.shape[0])
     top, bot = hrail(patch[:c]), hrail(patch[h0 - c:])
-    if flip_bottom:                                  # the source's bottom rail is mostly under the painting: use the top rail, flipped
+    if flip_bottom == 'lend':                        # the bottom comes from a sister frame (lend_bottom): extend the side rails plainly
+        mt = lambda a, n: np.concatenate([a[::-1], a] * (n // (2 * len(a)) + 1), 0)[:n]   # mirror-tile a clean stretch to n rows
+        clean = lambda rail: np.concatenate([rail[:-90], mt(rail[-150:-90], 90)], 0)   # the source rail's last rows carry a highlight: replace them
+        ext = lambda rail: mt(rail[-150:-90], c)
+        sl, sr = (r(patch[c:h0 - c, :c], c, nh - 2 * c), r(patch[c:h0 - c, w0 - c:], c, nh - 2 * c))
+        bl, br, patch_l, patch_r = ext(sl), ext(sr), clean(sl), clean(sr)
+        bot = top[::-1]
+    elif flip_bottom:                                # the source's bottom rail is mostly under the painting: use the top rail, flipped
         bl, br = tl[::-1], tr[::-1]
         bot = top[::-1]
     left, right = r(patch[c:h0 - c, :c], c, nh - 2 * c), r(patch[c:h0 - c, w0 - c:], c, nh - 2 * c)
+    if flip_bottom == 'lend':
+        left, right = patch_l, patch_r
     ctr = r(patch[c:h0 - c, c:w0 - c], nw - 2 * c, nh - 2 * c)
-    if flip_bottom:                                  # match each flipped corner's tone to the side rail it meets (per column gain, fading out)
+    if flip_bottom is True:                          # match each flipped corner's tone to the side rail it meets (per column gain, fading out)
         def match(corner, rail):
             g = cv2.GaussianBlur(rail[-6:].mean(0, keepdims=True) / (corner[:6].mean(0, keepdims=True) + 1e-4), (0, 0), 3)
             g = np.clip(g, 0.6, 1.5)
@@ -112,6 +121,50 @@ def reslice(patch, nw, nh, c, flip_bottom=False):
         bl, br = match(bl, left), match(br, right)
     return np.concatenate([np.concatenate([tl, top, tr], 1), np.concatenate([left, ctr, right], 1),
                            np.concatenate([bl, bot, br], 1)], 0)
+
+
+def lend_bottom(patch, src, sf, pa, k, s):
+    """Replace the bottom moulding of a reshaped frame patch with the REAL bottom of a sister frame (same gilt family):
+    corners (ornament 130 rows tall) + rail cut from `src` frame box `sf`, scaled by k (to the new frame's side-rail width),
+    the plain rail mirror-tiled with its tone made even along x. The painting pin covers whatever of the source's painting lands inside.
+    Homie 2026-11-03: the 9-slice's flipped-top bottom was soft and smeared next to the other walls' frames."""
+    x, y, w, h = sf
+    rows = round(135 * s)
+    band = src[y + h - rows:y + h + pa, x - pa:x + w + pa]
+    ch = round(170 * s)
+    bw_ = band.shape[1]
+    P, Q = patch.shape[:2]
+    r = lambda a, nw, nh: cv2.resize(a, (max(1, round(nw)), max(1, round(nh))), interpolation=cv2.INTER_LANCZOS4)
+    nh = round(band.shape[0] * k)
+    top = P - nh
+    L, R = r(band[:, :ch], ch * k, nh), r(band[:, bw_ - ch:], ch * k, nh)
+    mrows = round(72 * s) + pa
+    mid = band[-mrows:, ch:round(350 * s)]
+    mid = np.concatenate([np.repeat(mid[:1], band.shape[0] - mrows, 0), mid], 0)
+    need = Q - L.shape[1] - R.shape[1]
+    mid = r(mid, need, nh)
+    tiles, n, flip = [], 0, False
+    while n < need:
+        tiles.append(mid[:, ::-1] if flip else mid)
+        n += mid.shape[1]
+        flip = not flip
+    rail = np.concatenate(tiles, 1)[:, :need]
+    edge = (L[:, -6:].mean(1) + R[:, :6].mean(1)) / 2                 # the rail takes the tone of the corners it meets
+    rail = rail * np.clip(edge[-60:].mean(0) / (rail[-60:].reshape(-1, 3).mean(0) + 1e-4), 0.6, 1.5)   # one gain per channel
+    full = r(mid, Q, nh) * (rail[-60:].reshape(-1, 3).mean(0) / (r(mid, Q, nh)[-60:].reshape(-1, 3).mean(0) + 1e-4))
+    full[:, :need] = full[:, :need]
+    strip = full.copy()
+    rw = 90                                                       # feather each corner piece into the rail over rw px (no visible join)
+    ax = np.zeros(Q, np.float32)
+    ax[:L.shape[1] - rw] = 1
+    ax[L.shape[1] - rw:L.shape[1]] = np.linspace(1, 0, rw)
+    strip[:, :L.shape[1]] = L * ax[None, :L.shape[1], None] + strip[:, :L.shape[1]] * (1 - ax[None, :L.shape[1], None])
+    ay = ax[::-1].copy()[Q - R.shape[1]:]
+    strip[:, Q - R.shape[1]:] = R * ay[None, :, None] + strip[:, Q - R.shape[1]:] * (1 - ay[None, :, None])
+    al = np.clip(np.arange(nh) / 40.0, 0, 1)[:, None, None].astype(np.float32)
+    out = patch.copy()
+    out[top:] = strip * al + out[top:] * (1 - al)
+    return out, 0
 
 
 def grain_of(img, s):
@@ -152,6 +205,7 @@ def main():
     ap.add_argument('--paint', action='append', default=[])
     ap.add_argument('--no-move', action='store_true')
     ap.add_argument('--reshape', help='PAINTING_FILE:CANVAS_H_M  re-shape the (single) frame to this painting at this canvas height')
+    ap.add_argument('--bottom-from', help='SISTER_LIT_native.png:FRAMES.json:IDX:K  take the bottom moulding from a sister wall frame, scaled by K')
     ap.add_argument('--frames-json')
     a = ap.parse_args()
 
@@ -186,7 +240,12 @@ def main():
         ins = (o['canvas'][0] - o['frame'][0], o['canvas'][1] - o['frame'][1],
                o['frame'][0] + o['frame'][2] - o['canvas'][0] - o['canvas'][2],
                o['frame'][1] + o['frame'][3] - o['canvas'][1] - o['canvas'][3])
-        ins = (ins[0], ins[1], ins[2], ins[1])   # bottom moulding = top moulding (the source's bottom was hidden under the painting)
+        if a.bottom_from:
+            bpath, bjs, bidx, bk = a.bottom_from.split('|')
+            bk = float(bk)
+            ins = (ins[0], ins[1], ins[2], round(66 * bk * H / 1768))
+        else:
+            ins = (ins[0], ins[1], ins[2], ins[1])   # bottom moulding = top moulding (the source's bottom was hidden under the painting)
         chp = round(float(chm) * H / WALL_H)
         cwp = round(chp * pw / ph)
         nfw, nfh = cwp + ins[0] + ins[2], chp + ins[1] + ins[3]
@@ -216,7 +275,14 @@ def main():
         pa = apron
         patch = img[y - pa:y + h + pa, x - pa:x + w + pa]
         if rs:
-            patch = reslice(patch, rs[0] + 2 * pa, rs[1] + 2 * pa, round(200 * s), flip_bottom=True)
+            patch = reslice(patch, rs[0] + 2 * pa, rs[1] + 2 * pa, round(200 * s), flip_bottom='lend' if a.bottom_from else True)
+            if a.bottom_from:
+                bsrc = gw.load(bpath)
+                bsf = json.load(open(bjs))['frames'][int(bidx)]['frame']
+                bsf = [round(v * H / bsrc.shape[0]) for v in bsf] if bsrc.shape[0] != H else bsf
+                if bsrc.shape[0] != H:
+                    bsrc = cv2.resize(bsrc, (round(bsrc.shape[1] * H / bsrc.shape[0]), H), interpolation=cv2.INTER_LANCZOS4)
+                patch, _ = lend_bottom(patch, bsrc, bsf, pa, bk, s)
             w, h = rs
         ring_new = (rect(n['frame'], 0.25 * H / WALL_H) - rect(n['frame'], 0.05 * H / WALL_H)) > 0.5
         ring_old = (rect(o['frame'], 0.25 * H / WALL_H) - rect(o['frame'], 0.05 * H / WALL_H)) > 0.5
