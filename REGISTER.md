@@ -582,3 +582,5 @@ Homie's notes (9 Oct): the idles showed "the lines of what was erased"; the intr
 | `04_WORKING_FILES/S1_gallery/3_RIGHT_DAVID_v4/` (S1-GAL-R_LIT/DARK_v4 native/1080/4K, SEAM v4, `show_1080/`, `loops_4K/`; painting `02_APPROVED_BUILDING_BLOCKS/S1_gallery/paintings/src_SOTR_napoleon_david_alps_malmaison.jpg`) | RIGHT wall with David's Napoleon (3 Nov) | **candidate**, awaiting Homie (not in the show folder) |
 | `04_WORKING_FILES/S6_v7_map_option/` (stills, REVIEW 2m10-2m45 clip) | S6 map v7 + sea hand-off | **candidate**, awaiting Homie |
 | `04_WORKING_FILES/S9_court_behind_paper/` (stills sheet, A2 clip) | judge behind the parchment tests (A1 x3, A2, smoke B) | **candidate**, awaiting Homie's pick |
+
+| `04_WORKING_FILES/S6_v7_map_option/_tmp_stills_alpha/`, `_tmp_S6_v7_alpha_review_146-166.mp4` (top over Sahaj frame 0, bottom over grey) | S6 v7 `--v7-alpha`: map diffuses to transparency, eased zoom (3 Nov) | **candidate**, awaiting Homie; open: straight vs premultiplied alpha for AE (built straight); stays a candidate until Sahaj's final plate |

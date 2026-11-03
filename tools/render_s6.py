@@ -1364,6 +1364,10 @@ V7_W0, V7_M0, V7_M1 = 153.0, 157.0, 164.0  # caustic light arrives; the hand-ove
 V7_W1 = V7_M1
 V7_ROUTE_T0 = 148.5                        # the line starts almost with the map (Homie: v7 started too late)
 V7_VID_T = 164.0                           # Sahaj's moving water starts here
+# --v7-alpha (Homie 3 Nov, after the v7 review): the map keeps its watery liquefy but diffuses AWAY to transparency instead
+# of becoming Sahaj's first frame, so whatever plate lies under it comes out clean. Also eases the zoom's start and end.
+# Output = straight (un-premultiplied) alpha; the colour under a faded pixel is the map's own, so over black it is premultiplied.
+V7_ALPHA = False
 
 
 class MapJourneyV7(MapJourney):
@@ -1403,9 +1407,17 @@ class MapJourneyV7(MapJourney):
 
     def view(self, t):
         u = (t - MAP_T0) / (V7_ZT - MAP_T0)
+        if V7_ALPHA:
+            # speed profile 0.25 + 0.75 sin(pi u): eases in and out, never stops, fastest mid-flight
+            u = min(max(u, 0.0), 1.0)
+            u = (0.25 * u + 0.75 * (1 - np.cos(np.pi * u)) / np.pi) / (0.25 + 1.5 / np.pi)
         k = V7_K0 * (V7_K1 / V7_K0) ** u                                 # log-rate: a satellite zoom, no stop
         z = lin(MAP_T0, V7_ZT, t)
-        pin = np.array([self.W * (0.40 + 0.10 * ssf(MAP_T0, V7_ZT, t)), self.H * (0.52 + 0.14 * z)], F32)
+        if V7_ALPHA:
+            z = u
+            pin = np.array([self.W * (0.40 + 0.10 * u), self.H * (0.52 + 0.14 * z)], F32)
+        else:
+            pin = np.array([self.W * (0.40 + 0.10 * ssf(MAP_T0, V7_ZT, t)), self.H * (0.52 + 0.14 * z)], F32)
         return k / self.ZS, pin                                          # screen px per canvas px, Senegal's screen spot
 
     def to_screen(self, p, t):
@@ -1467,6 +1479,11 @@ class MapJourneyV7(MapJourney):
         pm = ssf(V7_M0, V7_M1, t)
         S = 0.6
         m = ss(0, 1, np.clip(pm * (1 + S) - self.dnoise * S, 0, 1)).astype(F32)[..., None]   # the water takes over, patch by patch
+        if V7_ALPHA:
+            # no Sahaj pixels: the liquefied map is the colour, the uncovered share (1 - m) is the output alpha
+            canvas[:] = np.clip(mapw, 0, None)
+            self.alpha = (1 - m[..., 0]).astype(F32)
+            return
         fi = 0 if t < V7_VID_T else min(len(self.sah) - 1, int((t - V7_VID_T) * FPS))
         sea = self.sah[fi].astype(F32) / 255
         sear = cv2.remap(sea, self.mx + dx * (1 - pm), self.my + dy * (1 - pm), cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
@@ -1973,6 +1990,23 @@ def check(ctx, S, step=0.25):
     return bad
 
 
+def frame_alpha(S, t):
+    """V7_ALPHA: the output alpha of the frame just rendered at t (1 before the map starts to dissolve)."""
+    m = S['map']
+    if t <= V7_W0 or not hasattr(m, 'alpha'):
+        return None
+    return m.alpha
+
+
+def over_plate(S, fr, t, plate):
+    """fr (uint8 rgb) straight-alpha composited over plate (uint8 rgb)."""
+    a = frame_alpha(S, t)
+    if a is None:
+        return fr
+    a = a[..., None]
+    return (fr * a + plate * (1 - a) + 0.5).astype(np.uint8)
+
+
 def render_final(ctx, S, outdir, n0, n1):
     """The show files: ONE timeline, cut into the three walls frame by frame, so they are in sync by construction.
     ProRes 422 HQ 10-bit like Scene 9. Picture only; build_audio_s6() lays the sound in afterwards."""
@@ -1980,14 +2014,22 @@ def render_final(ctx, S, outdir, n0, n1):
     pipes = {}
     for wall, name in (('L', 'LEFT'), ('C', 'CENTRE'), ('R', 'RIGHT')):
         x0, x1 = ctx.wall_px(wall)
-        cmd = ['ffmpeg', '-y', '-v', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-s', f'{x1 - x0}x{ctx.H}', '-r', str(FPS),
-               '-i', '-', '-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2', '-pix_fmt', 'yuv422p10le', '-vendor', 'apl0',
+        if V7_ALPHA:
+            fmt, prof, opix = 'rgba64le', '4', 'yuva444p10le'
+        else:
+            fmt, prof, opix = 'rgb48le', '3', 'yuv422p10le'
+        cmd = ['ffmpeg', '-y', '-v', 'error', '-f', 'rawvideo', '-pix_fmt', fmt, '-s', f'{x1 - x0}x{ctx.H}', '-r', str(FPS),
+               '-i', '-', '-c:v', 'prores_ks', '-profile:v', prof, '-qscale:v', '2', '-pix_fmt', opix, '-vendor', 'apl0',
                os.path.join(outdir, f'S6_{name}_picture.mov')]
         pipes[wall] = (x0, x1, subprocess.Popen(cmd, stdin=subprocess.PIPE))
     dt = 1 / FPS
     for i in range(n0, n1):
         t = i / FPS
         fr = (render_frame(ctx, S, t, dt) * 65535 + 0.5).astype(np.uint16)
+        if V7_ALPHA:
+            a = frame_alpha(S, t)
+            a16 = np.full(fr.shape[:2] + (1,), 65535, np.uint16) if a is None else (a[..., None] * 65535 + 0.5).astype(np.uint16)
+            fr = np.concatenate([fr, a16], axis=2)
         for x0, x1, p in pipes.values():
             p.stdin.write(np.ascontiguousarray(fr[:, x0:x1]).tobytes())
         if i % (FPS * 10) == 0:
@@ -2040,10 +2082,14 @@ def main():
                     help='OUT is a folder: write S6_LEFT/CENTRE/RIGHT.mov (ProRes 422 HQ, one per wall, synced, no caption)')
     ap.add_argument('--v7', action='store_true', help="Meeting 6: map over all three walls, zoom to Senegal, sea into Sahaj's frame")
     ap.add_argument('--v6', action='store_true', help='Meeting 4 flags: weathered cloth, M4 as coloured light, M6 rebuilt')
+    ap.add_argument('--v7-alpha', action='store_true',
+                    help='with --v7: the map diffuses away to transparency (no Sahaj pixels), eased zoom; --final writes ProRes 4444 with alpha; '
+                         'stills/clips are composited over Sahaj frame 0 and over grey')
     a = ap.parse_args()
-    global GEN_FLAG, GEN_SMOKE, V6, V7
+    global GEN_FLAG, GEN_SMOKE, V6, V7, V7_ALPHA
     V6 = a.v6
-    V7 = a.v7
+    V7 = a.v7 or a.v7_alpha
+    V7_ALPHA = a.v7_alpha
     GEN_FLAG = a.flag_loop or GEN_FLAG
     GEN_SMOKE = a.smoke_loop or GEN_SMOKE
     ctx = Ctx(a.scale)
@@ -2058,6 +2104,13 @@ def main():
             for i in range(int(3 * FPS), 0, -1):               # run 3 s up to it so particles and fragments exist
                 render_frame(ctx, S, max(0.0, ts - i * dt), dt)
             fr = (render_frame(ctx, S, ts, dt) * 255).astype(np.uint8)
+            if V7_ALPHA:
+                sah = S['map'].sah[0]
+                for nm, plate in (('overSahaj', sah), ('overGrey', np.full_like(sah, 118))):
+                    o = over_plate(S, fr, ts, plate)
+                    cv2.imwrite(os.path.join(a.stills, f's6_{ts:06.1f}_{nm}.png'), cv2.cvtColor(o, cv2.COLOR_RGB2BGR))
+                print('still', ts, flush=True)
+                continue
             cv2.imwrite(os.path.join(a.stills, f's6_{ts:06.1f}.png'), cv2.cvtColor(caption(ctx, fr, ts), cv2.COLOR_RGB2BGR))
             print('still', ts, flush=True)
         return
@@ -2066,13 +2119,21 @@ def main():
         render_final(ctx, S, a.out, n0, n1)
         return
     sh = max(40, int(ctx.H * 0.11)) // 2 * 2
-    cmd = ['ffmpeg', '-y', '-v', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{ctx.W}x{ctx.H + sh}',
+    if V7_ALPHA:
+        sh = 0
+        grey = None
+    cmd = ['ffmpeg', '-y', '-v', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{ctx.W}x{ctx.H * 2 if V7_ALPHA else ctx.H + sh}',
            '-r', str(FPS), '-i', '-', '-c:v', 'libx264', '-crf', '19', '-preset', 'medium', '-pix_fmt', 'yuv420p',
            '-movflags', '+faststart', a.out]
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     for i in range(n0, n1):
         t = i / FPS
         fr = (render_frame(ctx, S, t, dt) * 255).astype(np.uint8)
+        if V7_ALPHA:                                   # review: over Sahaj's frame (top) and over grey (bottom)
+            sah = S['map'].sah[0] if t < V7_VID_T else S['map'].sah[min(len(S['map'].sah) - 1, int((t - V7_VID_T) * FPS))]
+            top, bot = over_plate(S, fr, t, sah), over_plate(S, fr, t, np.full_like(sah, 118))
+            p.stdin.write(np.ascontiguousarray(np.vstack([top, bot])).tobytes())
+            continue
         p.stdin.write(caption(ctx, fr, t).tobytes())
         if i % (FPS * 10) == 0:
             print(f'{t:6.1f} s', flush=True)
