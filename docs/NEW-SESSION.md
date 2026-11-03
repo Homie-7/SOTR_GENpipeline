@@ -26,6 +26,7 @@ S9 COURT (judge behind the parchment, A2 level 2) IS FINAL AND IN `01_FINAL_FOR_
 
 S1/S10 RIGHT GALLERY v6 IS FINAL AND IN `01_FINAL_FOR_SHOW` (3 Nov, PC; D: and T9 sha256-verified, old files in `superseded/S1_gallery/RIGHT_v3_pre_v6/`, previews remade). Done; don't change unless Homie asks. 0 cr. Not committed (shared docs): see `LOG.md`.
 
+THE TASK, RIGHT NOW (3 Nov, latest): S6 v14 MAP IS FINAL AND IN THE SHOW (4K play + 1080 fallback + CLEAN, ProRes 4444 with alpha, 0 cr); WhatsApp 06_S6 remade. Nothing to do for S6 unless Homie asks; his comp replaces the old S6 files. The older S6 v7 review text below is superseded.
 THE TASK, RIGHT NOW (3 Nov, wrap): S6 v7 now also has `--v6 --v7-alpha` (map diffuses to transparency, eased zoom, ProRes 4444 straight alpha via `--final`): review `_tmp_stills_alpha/` + `_tmp_S6_v7_alpha_review_146-166.mp4`; full `--final` only on approval. HOMIE'S REVIEW of the Meeting 6 candidates (all 0 cr, none in 01_FINAL_FOR_SHOW). (1) S6 v7:
 `04_WORKING_FILES/S6_v7_map_option/` stills + REVIEW clip; open: caustic patches a little soft at ~158.5 s; full per-wall `--final`
 render is hours, run only on approval. (2) S1/S10 RIGHT David: `3_RIGHT_DAVID_v4/` (show_1080 + loops_4K); on approval promote like

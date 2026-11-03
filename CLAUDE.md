@@ -173,6 +173,10 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-03, latest (POST/script, PC): S6 v14 MAP IS FINAL IN THE SHOW. 0 cr.
+
+- Homie approved v14. S6 show files are now ProRes 4444 with ALPHA, 165 s: v6.2 to 130 s, then the v14 map (v7 look from ~135 s), clear at the end (Sahaj's water goes underneath in the comp). 4K play, 1080 fallback, CLEAN (1080); old in `superseded/S6_v6.2_pre_v14map/`; WhatsApp 06_S6 remade. `render_s6.py --warm`. Don't change unless Homie asks.
+
 ### 2026-11-03, later (POST/script, PC): S6 v7 map FIXED for review (stills + clip sent). 0 cr.
 
 - `render_s6.py --v7`: dark engraved ocean under the whole room (LEFT never black), thicker brighter course line (running 148.5 -> 164,

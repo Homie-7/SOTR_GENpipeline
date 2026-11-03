@@ -1368,6 +1368,11 @@ V7_VID_T = 164.0                           # Sahaj's moving water starts here
 # of becoming Sahaj's first frame, so whatever plate lies under it comes out clean. Also eases the zoom's start and end.
 # Output = straight (un-premultiplied) alpha; the colour under a faded pixel is the map's own, so over black it is premultiplied.
 V7_ALPHA = False
+# --v7-feather (Homie 3 Nov, v10): the map's reveal ramps are wide and eased, so no pixel snaps on and the end of the reveal is not seen
+V7_FEATHER = False
+V7_FEATHER_REVEAL = 13.0                   # v11: the map reveal and the line take ~13 s (Homie: 12-15 s)
+V7_FEATHER_COURSE = 0.934                   # v11: the line ends right next to the A of AFRIQUE
+V7_FEATHER_T1 = 161.5                      # v11: the line's constant speed runs 148.5 -> here, then creeps
 
 
 class MapJourneyV7(MapJourney):
@@ -1407,13 +1412,13 @@ class MapJourneyV7(MapJourney):
 
     def view(self, t):
         u = (t - MAP_T0) / (V7_ZT - MAP_T0)
-        if V7_ALPHA:
+        if V7_ALPHA and not V7_FEATHER:
             # speed profile 0.25 + 0.75 sin(pi u): eases in and out, never stops, fastest mid-flight
             u = min(max(u, 0.0), 1.0)
             u = (0.25 * u + 0.75 * (1 - np.cos(np.pi * u)) / np.pi) / (0.25 + 1.5 / np.pi)
         k = V7_K0 * (V7_K1 / V7_K0) ** u                                 # log-rate: a satellite zoom, no stop
         z = lin(MAP_T0, V7_ZT, t)
-        if V7_ALPHA:
+        if V7_ALPHA and not V7_FEATHER:             # v14 keeps its own (approved) zoom under --v7-alpha
             z = u
             pin = np.array([self.W * (0.40 + 0.10 * u), self.H * (0.52 + 0.14 * z)], F32)
         else:
@@ -1509,7 +1514,16 @@ class MapJourneyV7(MapJourney):
         a = ssf(t_in, t_in + 5.0, t) * 1.2
         rl = np.clip((a - n_land) / 0.08, 0, 1)
         rs = np.clip((a - 0.35 - n_sea) / 0.1, 0, 1)
+        if V7_FEATHER:
+            fw = 0.45                                                  # wide soft ramp; a runs to 1+fw so the last pixel is fully in as a ends
+            af = ssf(t_in, t_in + V7_FEATHER_REVEAL, t) * (1.0 + fw)
+            rl = ss(0, 1, np.clip((af - n_land) / fw, 0, 1))
+            rs = ss(0, 1, np.clip((af - 0.35 * (1 + fw) / 1.2 - n_sea) / fw, 0, 1))
         alpha = (land * rl + (1 - land) * np.maximum(sea_a, 0.55) * rs) * em      # the engraved Atlantic is on LEFT too
+        if V7_FEATHER:                                                 # v11: the sea tint ramps in across the LEFT/CENTRE seam, no step
+            xs = np.arange(W, dtype=F32) / W
+            hr = ss(0.12, 0.40, xs)[None, :]
+            alpha = (land * rl + (1 - land) * np.maximum(sea_a, 0.55) * rs * hr) * em
         img = img * (1 + 0.05 * np.sin(t * 1.3))
         alpha = alpha * (1 - wash)
         # an engraved dark ocean under the whole room, so no wall is ever black (LEFT lies beyond the map's own edge)
@@ -1517,13 +1531,20 @@ class MapJourneyV7(MapJourney):
         base = np.dstack([0.075 * tex, 0.105 * tex, 0.125 * tex]).astype(F32)
         blit(canvas, base, np.full((H, W), min(1.0, a / 1.2) * 0.95 * (1 - wash), F32), 0, 0, tag='pic:oceanbase')
         blit(canvas, img, alpha.astype(F32), 0, 0, tag='pic:map')
-        self.draw_route7(canvas, t)
-        self.morph(canvas, t)
+        if V7_FEATHER:                                                 # v12: the line is drawn clean on top of the liquefy, not warped by it
+            self.cov = None
+            self.morph(canvas, t)
+            self.draw_route7(canvas, t)
+            if V7_ALPHA and self.cov is not None and hasattr(self, 'alpha'):     # line, dot and name stay opaque while they last
+                self.alpha = np.maximum(self.alpha, np.clip(self.cov, 0, 1)).astype(F32)
+        else:
+            self.draw_route7(canvas, t)
+            self.morph(canvas, t)
 
     def draw_route7(self, canvas, t):
         q = self.ctx.q
         sc, pin = self.view(t)
-        fade = 1 - ssf(V7_M1 - 0.8, V7_M1, t)                            # the water takes line and map together
+        fade = 1 - ssf(V7_M1 - (2.0 if V7_FEATHER else 0.8), V7_M1 - (0.8 if V7_FEATHER else 0.0), t)   # the water takes line and map together
         if fade <= 0:
             return
         guard = self.ctx.guard[None, :]
@@ -1535,28 +1556,65 @@ class MapJourneyV7(MapJourney):
         pulse = 0.8 + 0.2 * np.sin(t * 2.4)
         g = (np.exp(-r2 / (2 * (3.0 * q) ** 2)) + 0.5 * np.exp(-r2 / (2 * (16 * q) ** 2))) * ap * pulse
         canvas += (g * guard)[..., None] * np.array([1.0, 0.72, 0.40], F32)
+        if V7_ALPHA:
+            self.cov = np.clip(g * guard, 0, 1)
         lh, lw = self.lab_a.shape
         la = self.lab_a * ap
+        pre = canvas.copy() if V7_ALPHA else None
         ink = np.ones(la.shape + (3,), F32) * np.array([0.95, 0.85, 0.66], F32)
         blit(canvas, np.zeros_like(ink), cv2.GaussianBlur(la, (0, 0), 3 * q) * 0.7, px + 10 * q, py - lh * 0.5 - 4 * q, guard=self.ctx.guard)
         blit(canvas, ink, la, px + 10 * q, py - lh * 0.5 - 4 * q, guard=self.ctx.guard, tag='word:Sénégal')
+        if V7_ALPHA:                                                   # the name's coverage = how much the blits changed the canvas
+            self.cov = np.maximum(self.cov, np.clip(np.abs(canvas - pre).max(axis=2) * 3, 0, 1))
         # the course: constant speed, stops short of Saint-Louis
-        k = V7_COURSE * lin(V7_ROUTE_T0, V7_M1, t)                       # constant speed, never freezes, never finishes
+        k = V7_COURSE * lin(V7_ROUTE_T0, V7_M1, t)
+        if V7_FEATHER:
+            k = V7_FEATHER_COURSE * lin(V7_ROUTE_T0, V7_FEATHER_T1, t)      # v14: never halts; reaches its end point as the fade finishes
+        _ = None                       # constant speed, never freezes, never finishes
         if k <= 0:
             return
-        Lk = self.cum[-1] * k
-        per = 14 * q / sc
-        layer = np.zeros((self.H, self.W), F32)
-        s0 = 0.0
-        while s0 < Lk:
-            p0, p1 = self.to_screen(self.at(s0), t), self.to_screen(self.at(min(s0 + per * 0.55, Lk)), t)
-            cv2.line(layer, (int(p0[0] * 4), int(p0[1] * 4)), (int(p1[0] * 4), int(p1[1] * 4)), 1.0,
-                     max(3, int(12 * q)), cv2.LINE_AA, shift=2)
-            s0 += per
+        if V7_FEATHER:                                                 # v12: one smooth spline, drawn continuously (no dashes, no kinks)
+            if not hasattr(self, '_sp'):
+                P = np.vstack([self.route[0], self.route, self.route[-1]]).astype(np.float64)
+                pts = []
+                for i in range(1, len(P) - 2):
+                    p0, p1, p2, p3 = P[i - 1], P[i], P[i + 1], P[i + 2]
+                    for u in np.linspace(0, 1, 60, endpoint=False):
+                        pts.append(0.5 * ((2 * p1) + (-p0 + p2) * u + (2 * p0 - 5 * p1 + 4 * p2 - p3) * u * u + (-p0 + 3 * p1 - 3 * p2 + p3) * u ** 3))
+                pts.append(P[-2])
+                pts = np.array(pts, np.float64)
+                for _ in range(3):                                      # light smoothing, ends pinned
+                    pts[1:-1] = 0.25 * pts[:-2] + 0.5 * pts[1:-1] + 0.25 * pts[2:]
+                self._sp = pts
+                self._spc = np.r_[0, np.cumsum(np.hypot(*np.diff(pts, axis=0).T))]
+            Lk = self._spc[-1] * k
+            n = int(np.searchsorted(self._spc, Lk))
+            ps = self._sp[:n + 1]
+            if n < len(self._sp) - 1:
+                f = (Lk - self._spc[n]) / max(self._spc[n + 1] - self._spc[n], 1e-9)
+                ps = np.vstack([ps, self._sp[n] + (self._sp[n + 1] - self._sp[n]) * f])
+            scr = ps.astype(np.float32)
+            scr = (scr - self.sen) * sc + pin
+            layer = np.zeros((self.H, self.W), F32)
+            if len(scr) > 1:
+                cv2.polylines(layer, [np.round(scr * 16).astype(np.int32)], False, 1.0, max(3, int(12 * q)), cv2.LINE_AA, shift=4)
+            hx, hy = scr[-1]
+        else:
+            Lk = self.cum[-1] * k
+            per = 14 * q / sc
+            layer = np.zeros((self.H, self.W), F32)
+            s0 = 0.0
+            while s0 < Lk:
+                p0, p1 = self.to_screen(self.at(s0), t), self.to_screen(self.at(min(s0 + per * 0.55, Lk)), t)
+                cv2.line(layer, (int(p0[0] * 4), int(p0[1] * 4)), (int(p1[0] * 4), int(p1[1] * 4)), 1.0,
+                         max(3, int(12 * q)), cv2.LINE_AA, shift=2)
+                s0 += per
+            hx, hy = self.to_screen(self.at(Lk), t)
         layer = cv2.GaussianBlur(layer, (0, 0), 0.7) * guard
         a = layer[..., None] * fade
         canvas[:] = canvas * (1 - a) + np.array([0.95, 0.20, 0.10], F32) * a
-        hx, hy = self.to_screen(self.at(Lk), t)
+        if V7_ALPHA:
+            self.cov = np.maximum(self.cov, layer * fade)
         r2 = (gx - hx) ** 2 + (gy - hy) ** 2
         fl = 0.85 + 0.15 * np.sin(t * 11)
         gg = (np.exp(-r2 / (2 * (2.2 * q) ** 2)) + 0.45 * np.exp(-r2 / (2 * (12 * q) ** 2))) * fl * fade
@@ -2078,17 +2136,23 @@ def main():
     ap.add_argument('--check', action='store_true', help='report picture/word overlaps instead of rendering')
     ap.add_argument('--flag-loop', default=None, help='use this looped S6-FLAG instead of the default')
     ap.add_argument('--smoke-loop', default=None, help='use this looped S6-SMOKE instead of the default')
+    ap.add_argument('--warm', type=float, default=3.0, help='seconds of discarded frames before --start/--at (particle and fragment state)')
     ap.add_argument('--final', action='store_true',
                     help='OUT is a folder: write S6_LEFT/CENTRE/RIGHT.mov (ProRes 422 HQ, one per wall, synced, no caption)')
     ap.add_argument('--v7', action='store_true', help="Meeting 6: map over all three walls, zoom to Senegal, sea into Sahaj's frame")
+    ap.add_argument('--v7-feather', action='store_true', help='with --v7: feather the map reveal (v10)')
     ap.add_argument('--v6', action='store_true', help='Meeting 4 flags: weathered cloth, M4 as coloured light, M6 rebuilt')
     ap.add_argument('--v7-alpha', action='store_true',
                     help='with --v7: the map diffuses away to transparency (no Sahaj pixels), eased zoom; --final writes ProRes 4444 with alpha; '
                          'stills/clips are composited over Sahaj frame 0 and over grey')
     a = ap.parse_args()
-    global GEN_FLAG, GEN_SMOKE, V6, V7, V7_ALPHA
+    global GEN_FLAG, GEN_SMOKE, V6, V7, V7_ALPHA, V7_FEATHER
+    V7_FEATHER = a.v7_feather
+    if V7_FEATHER:                                  # v11: the map lives longer, so the liquefy starts later
+        global V7_W0, V7_M0, V7_FEATHER_REVEAL, V7_FEATHER_T1
+        V7_W0, V7_M0, V7_FEATHER_REVEAL, V7_FEATHER_T1 = 157.0, 160.5, 9.0, 163.2
     V6 = a.v6
-    V7 = a.v7 or a.v7_alpha
+    V7 = a.v7 or a.v7_alpha or a.v7_feather
     V7_ALPHA = a.v7_alpha
     GEN_FLAG = a.flag_loop or GEN_FLAG
     GEN_SMOKE = a.smoke_loop or GEN_SMOKE
@@ -2101,7 +2165,7 @@ def main():
     if a.stills:
         os.makedirs(a.stills, exist_ok=True)
         for ts in [float(v) for v in a.at.split(',')]:
-            for i in range(int(3 * FPS), 0, -1):               # run 3 s up to it so particles and fragments exist
+            for i in range(int(a.warm * FPS), 0, -1):               # run --warm s (3 by default) up to it so particles and fragments exist
                 render_frame(ctx, S, max(0.0, ts - i * dt), dt)
             fr = (render_frame(ctx, S, ts, dt) * 255).astype(np.uint8)
             if V7_ALPHA:
@@ -2115,6 +2179,9 @@ def main():
             print('still', ts, flush=True)
         return
     n0, n1 = int(a.start * FPS), int(a.end * FPS)
+    if a.warm > 3.0 and not a.stills:                    # cold start: let the particle and fragment state build first
+        for i in range(int(a.warm * FPS), 0, -1):
+            render_frame(ctx, S, max(0.0, (n0 - i) / FPS), dt)
     if a.final:
         render_final(ctx, S, a.out, n0, n1)
         return
