@@ -173,6 +173,13 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-17 (POST/script, PC): MEETING 8, S6 FRENCH CUT. Flag + ink stills APPROVED; review composite waits for the new audio. 0 cr.
+
+- English out (French only). `render_s6.py --retime-fr` retimes S6 to Darrin's French track (TMAP in `docs/S6-FR-CUES.md`); v14
+  bit-identical without it. RIGHT flag = white with gold fleurs-de-lis on the generated cloth (`tools/fleur_mask.py`); map dissolves
+  to alpha as ink. Next: the client's French-only audio -> retime -> side-by-side WhatsApp review only (no finals). Brief
+  `docs/BRIEF-MEETING8.md`, handoff `docs/HANDOFF-2026-11-17-M8l.md`.
+
 ### 2026-11-03, CONSOLIDATED WRAP (POST, PC): MEETING 6 IS DONE. Court 144.4 cr, gallery 0, S6 0 = 144.4 cr.
 
 - **S9 court behind the parchment** (17 files, 4K) and **S1/S10 RIGHT gallery v6** (David's Napoleon) and **S6 v14 map** (ProRes 4444 alpha, 165 s, native 4K) are all in `01_FINAL_FOR_SHOW`, D: and T9 sha256-verified, old files in `superseded/`, repo pushed (T9 clone at the same HEAD). Nothing is open; don't change unless Homie asks. `docs/NEW-SESSION.md` has the status. Unneeded media sits in dated `_DELETE_ME_2026-11-03` bins (D:, T9, `04_WORKING_FILES/*`) for Homie to empty.

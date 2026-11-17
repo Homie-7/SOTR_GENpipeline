@@ -139,6 +139,48 @@ REC = None                       # --check: every tagged blit appends (tag, y0, 
 # v6 (Meeting 4, 2026-10-03, docs/PLAN-MEETING4.md, concept A-C approved by Homie): softer, weathered flags and the
 # history of the colours. OFF by default, so the approved v5 renders bit for bit as before; --v6 switches it on.
 V6 = False
+# --retime-fr (Meeting 8, 17 Nov 2026, docs/S6-FR-CUES.md + docs/HANDOFF-2026-11-17-M8e.md): the scene retimed to Darrin's
+# French track (121.25 s). Every scripted cue reads t_old = TMAP(t_new); the physical textures (flag and smoke loops, smoke
+# drift) read t_old + PHYS_D = t_new, so they keep real speed. RIGHT flag = white with gold fleurs-de-lis (Louise); the map
+# ends in an ink-in-water dissolve to alpha. OFF by default: PHYS_D = 0.0 and t + 0.0 == t, so v14 is bit-identical.
+RETIME_FR = False
+PHYS_D = 0.0
+T_NEW = 0.0
+FR_DUR = 121.25
+FR_KNOTS = [(0.00, 0.0), (15.94, 18.0), (19.26, 23.5), (24.84, 32.0), (29.84, 38.0), (33.04, 41.0), (34.28, 43.5),
+            (35.92, 46.0), (37.50, 50.0), (38.74, 52.5), (40.32, 57.0), (43.90, 59.5), (46.80, 63.0), (48.64, 67.0),
+            (51.42, 79.0), (52.86, 82.4), (54.20, 84.4), (55.80, 86.4), (58.10, 96.0), (62.50, 101.0), (64.68, 105.0),
+            (68.92, 110.0), (75.28, 121.0), (78.80, 124.0), (80.08, 126.0), (81.84, 128.0), (83.90, 130.5), (88.60, 137.5),
+            (90.74, 141.0), (97.50, 145.0), (99.28, 147.0), (112.78, 160.5), (120.25, 165.0), (121.25, 165.0)]
+INK0, INK1 = 112.78, 120.25                     # the ink dissolve (new s, real time); clear 120.25-121.25
+FLEUR_COLS, FLEUR_ROWS = 10, 9                   # Louise's flag: 10 across, 9 rows, alternate rows offset half a cell
+_TMAP = None
+
+
+def tmap_build(sigma_s=0.5):
+    """TMAP per frame: the knots, piecewise linear, Gaussian-smoothed (endpoints pinned by odd reflection)."""
+    global _TMAP
+    n = int(round(FR_DUR * FPS)) + 1
+    tn = np.arange(n) / FPS
+    kn, ko = zip(*FR_KNOTS)
+    to = np.interp(tn, kn, ko)
+    r = int(4 * sigma_s * FPS)
+    k = np.exp(-0.5 * (np.arange(-r, r + 1) / (sigma_s * FPS)) ** 2)
+    k /= k.sum()
+    pad = np.concatenate([2 * to[0] - to[r:0:-1], to, 2 * to[-1] - to[-2:-r - 2:-1]])
+    _TMAP = (tn, np.convolve(pad, k, mode='valid'))
+
+
+def retime(t):
+    """t_new -> t_old under --retime-fr (sets PHYS_D and T_NEW); identity otherwise."""
+    global PHYS_D, T_NEW
+    if not RETIME_FR:
+        return t
+    if _TMAP is None:
+        tmap_build()
+    to = float(np.interp(t, *_TMAP))
+    PHYS_D, T_NEW = t - to, t
+    return to
 M6_SHRED = 124.4                 # v6.1: when the wind starts tearing the CENTRE flag to shreds
 LUMW = np.array([0.299, 0.587, 0.114], F32)
 AGED = np.array([1.0, 0.91, 0.76], F32)                  # old silk yellows; the whites go to ivory
@@ -1037,8 +1079,97 @@ class GenFlag:
         a = a * (1 - ss(hth, hth + 0.02, h + 0.015 * T1[..., 3]))
         return g * 0.86, a
 
+    def _vcoord(self, a_key):
+        """Meeting 8 (Homie: "a singular piece of cloth"): the cloth's own VERTICAL coordinate per column, from the keyed
+        cloth's top and bottom edges, so a pattern rides the cloth's rise, fall and vertical folding (uc already rides it
+        sideways). Where the generated frame crops an edge, the cloth's typical height stands in. Returns top, height."""
+        bh, bw = self.bh, self.bw
+        on = a_key > 0.5
+        has = on.sum(0) > 0.15 * bh
+        top = np.argmax(on, axis=0).astype(F32)
+        bot = (bh - 1 - np.argmax(on[::-1], axis=0)).astype(F32)
+        ct, cb = top <= 1, bot >= bh - 2
+        good = has & ~ct & ~cb
+        hh = bot - top
+        H = float(np.median(hh[good])) if good.sum() >= 8 else (float(np.median(hh[has])) if has.sum() >= 2 else 0.8 * bh)
+        if getattr(self, 'fl_calib', False):
+            return H
+        bot =np.where(cb & ~ct, top + H, bot)
+        top = np.where(ct & ~cb, bot - H, top)
+        cols = np.arange(bw)
+        if has.sum() >= 2:
+            top = np.interp(cols, cols[has], top[has]).astype(F32)
+            bot = np.interp(cols, cols[has], bot[has]).astype(F32)
+        else:
+            top, bot = np.full(bw, 0.1 * bh, F32), np.full(bw, 0.1 * bh + H, F32)
+        sg = max(1.0, bw * 0.012)
+        top = cv2.GaussianBlur(top.reshape(1, -1), (0, 1), sigmaX=sg, sigmaY=0.1).ravel()
+        bot = cv2.GaussianBlur(bot.reshape(1, -1), (0, 1), sigmaX=sg, sigmaY=0.1).ravel()
+        fi = self.fl_fidx
+        if getattr(self, 'vc_prev', None) is not None and self.vc_prev[0] == fi - 1:
+            top = 0.6 * top + 0.4 * self.vc_prev[1]
+            bot = 0.6 * bot + 0.4 * self.vc_prev[2]
+        self.vc_prev = (fi, top, bot)
+        return top, np.maximum(bot - top, 4.0)
+
+    def _fleurs(self, f, uc, whitec, a_key):
+        """Meeting 8 (Louise): the Monarchistes' flag is white with gold fleurs-de-lis, a staggered grid laid in cloth
+        coordinates (uc across, the per-column vertical coordinate down) so it rides the cloth like the tricolour's
+        seams do, shaded by the cloth's own light like whitec."""
+        if not hasattr(self, 'fl_wd0'):
+            # one fixed reference (frame 0 of the clip), so the pattern's size is the same in every render and every
+            # frame: x is locked to uc exactly like the dirt (a per-frame median width made the fleurs swim sideways)
+            sv = (self.tl_prev, self.tl, self.bd, self.wd, getattr(self, 'vc_prev', None))
+            _, ak0, _ = self.frame(-PHYS_D - self.offset)
+            self.fl_wd0 = float(np.median(self.wd))
+            self.fl_calib = True
+            self.fl_H0 = self._vcoord(ak0)
+            self.fl_calib = False
+            self.tl_prev, self.tl, self.bd, self.wd, self.vc_prev = sv
+        wdm = self.fl_wd0
+        top, hgt = self._vcoord(a_key)
+        if not hasattr(self, 'fl_tile'):
+            cw = max(4.0, 3.0 / FLEUR_COLS * wdm)                       # ~3 cloth units (blue+white+red) across, 10 columns
+            ch = self.fl_H0 / FLEUR_ROWS                                 # 9 rows over the cloth's own height
+            k = 4                                                        # supersampled, then reduced (no aliasing)
+            TW, TH = int(round(cw * k)), int(round(2 * ch * k))
+            # the fleur: one heraldic fleur cut from Wikimedia Commons' Flag_of_Royalist_France.svg (public domain),
+            # rasterised by tools/fleur_mask.py (coverage mask + the drawing's own shading)
+            fd = r'C:\Users\Homie\Documents\SOTR_MEDIA\05_REFERENCE_UPLOADS\S6_fleur'
+            cov = np.asarray(Image.open(os.path.join(fd, 'fleur_mask.png')), F32) / 255
+            shd = np.asarray(Image.open(os.path.join(fd, 'fleur_shade.png')), F32) / 255
+            gh = max(4, int(round(0.75 * ch * k)))
+            gw = max(3, int(round(gh * cov.shape[1] / cov.shape[0])))
+            cs = cv2.resize(cov * shd, (gw, gh), interpolation=cv2.INTER_AREA)
+            cov = cv2.resize(cov, (gw, gh), interpolation=cv2.INTER_AREA)
+            tm = np.zeros((TH, TW), F32)
+            ts = np.zeros((TH, TW), F32)
+            for cx, cy in ((0.5 * TW, 0.25 * TH), (0.0, 0.75 * TH), (TW, 0.75 * TH)):
+                x0, y0 = int(round(cx - gw / 2)), int(round(cy - gh / 2))
+                ax0, ay0 = max(0, x0), max(0, y0)
+                ax1, ay1 = min(TW, x0 + gw), min(TH, y0 + gh)
+                if ax1 <= ax0 or ay1 <= ay0:
+                    continue
+                sl = (slice(ay0, ay1), slice(ax0, ax1))
+                gsl = (slice(ay0 - y0, ay1 - y0), slice(ax0 - x0, ax1 - x0))
+                tm[sl] = np.maximum(tm[sl], cov[gsl])
+                ts[sl] = np.maximum(ts[sl], cs[gsl])
+            sz = (max(2, TW // k), max(2, TH // k))
+            self.fl_tile = cv2.resize(tm, sz, interpolation=cv2.INTER_AREA)
+            self.fl_tile_s = cv2.resize(ts, sz, interpolation=cv2.INTER_AREA)
+            self.fl_cw, self.fl_ch = cw, ch
+        th, tw = self.fl_tile.shape
+        xs = (uc + 1.0) * wdm
+        mx = (np.mod(xs / self.fl_cw, 1.0) * tw).astype(F32)
+        yc = (self.Y - top[None, :]) / hgt[None, :] * (FLEUR_ROWS * self.fl_ch)   # cloth rows, not screen rows
+        my = (np.mod((yc + 0.5 * self.fl_ch) / (2 * self.fl_ch), 1.0) * th).astype(F32)
+        m = cv2.remap(self.fl_tile, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_WRAP)[..., None]
+        ms = cv2.remap(self.fl_tile_s, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_WRAP)[..., None]
+        gold = whitec / np.array([0.66, 0.51, 0.38], F32) * np.array([0.78, 0.52, 0.12], F32)
+        return f * (1 - m) + gold * ms
+
     def frame(self, t):
-        f = self.rd.get(int(round((t + self.offset) * FPS)))
+        f = self.rd.get(int(round((t + PHYS_D + self.offset) * FPS)))
         lum = f @ np.array([0.299, 0.587, 0.114], F32)
         a = ss(0.035, 0.10, f.max(2))                                    # keyed off the clip's black
         white = ((lum > 0.27) & (f[..., 0] < 2.3 * f[..., 2] + 0.05)).astype(F32)
@@ -1066,9 +1197,9 @@ class GenFlag:
             wd = np.full(self.bh, 0.3 * self.bw, F32)
         wd = cv2.GaussianBlur(wd.reshape(-1, 1), (1, 0), sigmaX=0.1, sigmaY=max(1.0, self.bh * 0.03)).ravel()
         tl = bd + 0.42 * wd                                                # the rip: 42% across the white, ON the cloth
-        if self.tl_prev is not None and self.tl_prev[0] == int(round((t + self.offset) * FPS)) - 1:
+        if self.tl_prev is not None and self.tl_prev[0] == int(round((t + PHYS_D + self.offset) * FPS)) - 1:
             tl = 0.6 * tl + 0.4 * self.tl_prev[1]                          # a touch of temporal smoothing, no lag to see
-        self.tl_prev = (int(round((t + self.offset) * FPS)), tl)
+        self.tl_prev = (int(round((t + PHYS_D + self.offset) * FPS)), tl)
         self.tl = tl
         self.bd, self.wd = bd, wd                                          # v6: the cloth's own coordinates
         q = self.ctx.q
@@ -1088,11 +1219,11 @@ class GenFlag:
         f, a, whitec = self.frame(t)
         a_key = a
         q, bw, bh, u, v = self.ctx.q, self.bw, self.bh, self.u, self.v
-        E = slide(self.E, bw, bh, bw / 2 + self.ctx.px(900) - 18 * self.ctx.s * t, bh / 2 + self.ctx.px(600) - 9 * self.ctx.s * t)
+        E = slide(self.E, bw, bh, bw / 2 + self.ctx.px(900) - 18 * self.ctx.s * (t + PHYS_D), bh / 2 + self.ctx.px(600) - 9 * self.ctx.s * (t + PHYS_D))
         a = a * ss(0, 0.22, u + 0.07 * E) * ss(0, 0.02, v) * ss(0, 0.02, 1 - v)   # hoist into smoke; no hard crop
         a = a * np.clip((reveal * 1.25 - self.n_in) / 0.12, 0, 1)
         tl = (self.tl + 0.02 * bw * self.tearn)[:, None]                          # the rip, riding the cloth (v5)
-        if self.kind == 'white':
+        if self.kind in ('white', 'fleur'):
             f = whitec
         pad = 0
         if V6:
@@ -1100,6 +1231,9 @@ class GenFlag:
             a = a * self._v6_fray(a_key) * self._v6_hem(uc, T2)
             if drain is not None:
                 f = self._v6_drain(f, whitec, T1, T2, *drain)
+            if self.kind == 'fleur':
+                self.fl_fidx = int(round((t + PHYS_D + self.offset) * FPS))
+                f = self._fleurs(f, uc, whitec, a_key)
             f, a = self._v6_worn(f, a, uc, T1, heavy=1.0 if tatter else 0.0)
             if tatter:
                 f, a, pad = self._v6_tears(f, a, uc, T2, t, 'tatter')
@@ -1180,8 +1314,8 @@ class GenSmoke:
         if dens <= 0.001:
             return
         W, H, cw, xb = self.ctx.W, self.ctx.H, self.cw, self.xb
-        la = self.ra.get(int(round(t * FPS)))
-        lb = self.rb.get(int(round((t + 11.0) * FPS)))
+        la = self.ra.get(int(round((t + PHYS_D) * FPS)))
+        lb = self.rb.get(int(round((t + PHYS_D + 11.0) * FPS)))
         lum = np.zeros((H, W), F32)
         lum[:, :cw] += la * self.wa[None, :cw]
         lum[:, xb:] += lb * (1 - self.wa[None, xb:])
@@ -1484,6 +1618,9 @@ class MapJourneyV7(MapJourney):
         pm = ssf(V7_M0, V7_M1, t)
         S = 0.6
         m = ss(0, 1, np.clip(pm * (1 + S) - self.dnoise * S, 0, 1)).astype(F32)[..., None]   # the water takes over, patch by patch
+        if RETIME_FR:                                                   # Meeting 8: the ink dissolve sets the alpha
+            canvas[:] = np.clip(mapw, 0, None)
+            return
         if V7_ALPHA:
             # no Sahaj pixels: the liquefied map is the colour, the uncovered share (1 - m) is the output alpha
             canvas[:] = np.clip(mapw, 0, None)
@@ -1535,11 +1672,70 @@ class MapJourneyV7(MapJourney):
             self.cov = None
             self.morph(canvas, t)
             self.draw_route7(canvas, t)
+            if RETIME_FR:
+                self.ink(canvas, t)
+                return
             if V7_ALPHA and self.cov is not None and hasattr(self, 'alpha'):     # line, dot and name stay opaque while they last
                 self.alpha = np.maximum(self.alpha, np.clip(self.cov, 0, 1)).astype(F32)
         else:
             self.draw_route7(canvas, t)
             self.morph(canvas, t)
+
+    def ink(self, canvas, t):
+        """Meeting 8 (Homie): the liquefied map, line and name dissolve like ink in water: swirled by an evolving curl
+        flow, pushed out from Senegal, spreading and thinning until the frame is clear (alpha 0). Real time: INK0-INK1 new s."""
+        p = ssf(INK0, INK1, T_NEW)
+        if p <= 0:
+            self.alpha = np.ones((self.H, self.W), F32)
+            return
+        px = self.ctx.px
+        if not hasattr(self, 'ink_v'):
+            vs = []
+            for sd in (121, 122):
+                psi = fractal(self.H, self.W, np.random.default_rng(sd), scales=(px(700), px(260)), gains=(1, 0.45))
+                psi = cv2.GaussianBlur(psi, (0, 0), px(30))
+                vx = cv2.Sobel(psi, cv2.CV_32F, 0, 1, ksize=3)
+                vy = -cv2.Sobel(psi, cv2.CV_32F, 1, 0, ksize=3)
+                n = max(float(np.percentile(np.hypot(vx, vy), 95)), 1e-6)
+                vs.append((vx / n, vy / n))
+            self.ink_v = vs
+        if not hasattr(self, 'ink_fil'):                               # fine wisps: stretched by the flow into strands
+            fl = fractal(self.H, self.W, np.random.default_rng(123), scales=(px(90), px(30)), gains=(1, 0.5))
+            fl = cv2.GaussianBlur(fl, (0, 0), px(3))
+            lo, hi = np.percentile(fl, 2), np.percentile(fl, 98)
+            self.ink_fil = np.clip((fl - lo) / max(hi - lo, 1e-6), 0, 1).astype(F32)
+        (ax, ay), (bx, by) = self.ink_v
+        c, s_ = np.cos(0.15 * T_NEW), np.sin(0.15 * T_NEW)
+        vx, vy = (c * ax + s_ * bx).astype(F32), (c * ay + s_ * by).astype(F32)
+        # v2 (Homie: "turned into ink and dissipated ... tastefully"): a long curling advection, so the pigment is drawn out
+        # into swirls and strands; the strands thin and part; a soft cloud diffuses around them; nothing is a plain blur.
+        d = px(260) * p ** 1.2
+        X, Y = self.gx.copy(), self.gy.copy()
+        for _ in range(8):
+            sx = cv2.remap(vx, X, Y, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
+            sy = cv2.remap(vy, X, Y, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
+            X, Y = X - sx * d / 8, Y - sy * d / 8
+        pin = self.view(t)[1]
+        rx, ry = self.gx - pin[0], self.gy - pin[1]
+        rn = np.maximum(np.hypot(rx, ry), 1.0)
+        push = px(70) * p ** 1.6
+        X, Y = (X - rx / rn * push).astype(F32), (Y - ry / rn * push).astype(F32)
+        col = cv2.remap(canvas, X, Y, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
+        fil = cv2.remap(self.ink_fil, X, Y, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
+        thin = np.clip((1 - p) * 1.9 - 0.9 * (1 - fil), 0, 1)             # the strands part as the pigment thins
+        al = (thin ** 1.3).astype(F32)
+        sg = px(1.0 + 6 * p)                                               # strands stay soft-edged, not out of focus
+        col = cv2.GaussianBlur(col, (0, 0), sg)
+        al = cv2.GaussianBlur(al, (0, 0), sg)
+        bs = px(25 + 70 * p)                                               # the diffusing cloud around the strands
+        cb = cv2.GaussianBlur(col * al[..., None], (0, 0), bs)
+        ab = cv2.GaussianBlur(al, (0, 0), bs)
+        k = 0.55 * ss(0.0, 0.6, p)
+        a2 = al * (1 - k) + ab * k * 1.1
+        c2 = (col * (al * (1 - k))[..., None] + cb * (k * 1.1)) / np.maximum(a2, 1e-4)[..., None]
+        a2 = a2 * (1 - ss(0.8, 1.0, p))                                    # fully clear at the end
+        canvas[:] = np.clip(c2, 0, None)
+        self.alpha = np.clip(a2, 0, 1).astype(F32)
 
     def draw_route7(self, canvas, t):
         q = self.ctx.q
@@ -1648,8 +1844,9 @@ class Smoke:
         if dens <= 0.001:
             return
         W, H = self.ctx.W, self.ctx.H
-        a = slide(self.a, W, H, (DUR - t) * self.va[0] + W / 2 + 2, t * self.va[1] + H / 2 + 2)
-        b = slide(self.b, W, H, (DUR - t) * self.vb[0] + W / 2 + 2, t * self.vb[1] + H / 2 + 2)
+        tp = t + PHYS_D
+        a = slide(self.a, W, H, (DUR - tp) * self.va[0] + W / 2 + 2, tp * self.va[1] + H / 2 + 2)
+        b = slide(self.b, W, H, (DUR - tp) * self.vb[0] + W / 2 + 2, tp * self.vb[1] + H / 2 + 2)
         d = np.clip((0.55 * a + 0.45 * b) * 0.9 + 0.25, 0, 1) ** 1.6 * dens
         dark = np.array([0.055, 0.045, 0.04], np.float32) * (1 - cold) + np.array([0.06, 0.06, 0.065], np.float32) * cold
         lit = np.array([0.42, 0.17, 0.07], np.float32) * warm * (1 - cold) + np.array([0.20, 0.20, 0.21], np.float32) * cold * warm
@@ -1853,7 +2050,7 @@ def build(ctx):
     if os.path.exists(GEN_FLAG):                     # the generated cloth (S6-FLAG); ClothFlag was the animatic's stand-in
         S['flagC'] = GenFlag(ctx, 'C', 'tri', box=(0.12, 0.04, 0.88), seed=30)
         S['flagL'] = GenFlag(ctx, 'L', 'tri', box=(0.10, 0.05, 0.90), seed=31)
-        S['flagR'] = GenFlag(ctx, 'R', 'white', box=(0.10, 0.05, 0.90), seed=32)
+        S['flagR'] = GenFlag(ctx, 'R', 'fleur' if RETIME_FR else 'white', box=(0.10, 0.05, 0.90), seed=32)
     else:
         S['flagC'] = ClothFlag(ctx, 'C', 'tri', seed=30)
         S['flagL'] = ClothFlag(ctx, 'L', 'tri', box=(0.10, 0.06, 0.90, 0.62), seed=31)
@@ -2082,7 +2279,7 @@ def render_final(ctx, S, outdir, n0, n1):
         pipes[wall] = (x0, x1, subprocess.Popen(cmd, stdin=subprocess.PIPE))
     dt = 1 / FPS
     for i in range(n0, n1):
-        t = i / FPS
+        t = retime(i / FPS)
         fr = (render_frame(ctx, S, t, dt) * 65535 + 0.5).astype(np.uint16)
         if V7_ALPHA:
             a = frame_alpha(S, t)
@@ -2095,7 +2292,11 @@ def render_final(ctx, S, outdir, n0, n1):
     for _, _, p in pipes.values():
         p.stdin.close()
         p.wait()
-    mux_audio(outdir, n0 / FPS, n1 / FPS)
+    if RETIME_FR:                                   # Meeting 8: no scratch mux; the review composite carries Darrin's wav
+        for name in ('LEFT', 'CENTRE', 'RIGHT'):
+            os.replace(os.path.join(outdir, f'S6_{name}_picture.mov'), os.path.join(outdir, f'S6_{name}.mov'))
+    else:
+        mux_audio(outdir, n0 / FPS, n1 / FPS)
     print('wrote', outdir)
 
 
@@ -2145,8 +2346,14 @@ def main():
     ap.add_argument('--v7-alpha', action='store_true',
                     help='with --v7: the map diffuses away to transparency (no Sahaj pixels), eased zoom; --final writes ProRes 4444 with alpha; '
                          'stills/clips are composited over Sahaj frame 0 and over grey')
+    ap.add_argument('--retime-fr', action='store_true',
+                    help="Meeting 8: retimed to Darrin's French track (121.25 s; --at/--start/--end in NEW s), fleur-de-lis RIGHT "
+                         'flag, ink dissolve to alpha, no scratch mux')
     a = ap.parse_args()
-    global GEN_FLAG, GEN_SMOKE, V6, V7, V7_ALPHA, V7_FEATHER
+    global GEN_FLAG, GEN_SMOKE, V6, V7, V7_ALPHA, V7_FEATHER, RETIME_FR
+    RETIME_FR = a.retime_fr
+    if RETIME_FR and a.end == DUR:
+        a.end = FR_DUR
     V7_FEATHER = a.v7_feather
     if V7_FEATHER:                                  # v11: the map lives longer, so the liquefy starts later
         global V7_W0, V7_M0, V7_FEATHER_REVEAL, V7_FEATHER_T1
@@ -2165,23 +2372,25 @@ def main():
     if a.stills:
         os.makedirs(a.stills, exist_ok=True)
         for ts in [float(v) for v in a.at.split(',')]:
+            tn = ts
             for i in range(int(a.warm * FPS), 0, -1):               # run --warm s (3 by default) up to it so particles and fragments exist
-                render_frame(ctx, S, max(0.0, ts - i * dt), dt)
+                render_frame(ctx, S, retime(max(0.0, tn - i * dt)), dt)
+            ts = retime(tn)
             fr = (render_frame(ctx, S, ts, dt) * 255).astype(np.uint8)
             if V7_ALPHA:
                 sah = S['map'].sah[0]
                 for nm, plate in (('overSahaj', sah), ('overGrey', np.full_like(sah, 118))):
                     o = over_plate(S, fr, ts, plate)
-                    cv2.imwrite(os.path.join(a.stills, f's6_{ts:06.1f}_{nm}.png'), cv2.cvtColor(o, cv2.COLOR_RGB2BGR))
+                    cv2.imwrite(os.path.join(a.stills, f's6_{tn:06.1f}_{nm}.png'), cv2.cvtColor(o, cv2.COLOR_RGB2BGR))
                 print('still', ts, flush=True)
                 continue
-            cv2.imwrite(os.path.join(a.stills, f's6_{ts:06.1f}.png'), cv2.cvtColor(caption(ctx, fr, ts), cv2.COLOR_RGB2BGR))
+            cv2.imwrite(os.path.join(a.stills, f's6_{tn:06.1f}.png'), cv2.cvtColor(caption(ctx, fr, ts), cv2.COLOR_RGB2BGR))
             print('still', ts, flush=True)
         return
     n0, n1 = int(a.start * FPS), int(a.end * FPS)
     if a.warm > 3.0 and not a.stills:                    # cold start: let the particle and fragment state build first
         for i in range(int(a.warm * FPS), 0, -1):
-            render_frame(ctx, S, max(0.0, (n0 - i) / FPS), dt)
+            render_frame(ctx, S, retime(max(0.0, (n0 - i) / FPS)), dt)
     if a.final:
         render_final(ctx, S, a.out, n0, n1)
         return
@@ -2194,7 +2403,7 @@ def main():
            '-movflags', '+faststart', a.out]
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     for i in range(n0, n1):
-        t = i / FPS
+        t = retime(i / FPS)
         fr = (render_frame(ctx, S, t, dt) * 255).astype(np.uint8)
         if V7_ALPHA:                                   # review: over Sahaj's frame (top) and over grey (bottom)
             sah = S['map'].sah[0] if t < V7_VID_T else S['map'].sah[min(len(S['map'].sah) - 1, int((t - V7_VID_T) * FPS))]
