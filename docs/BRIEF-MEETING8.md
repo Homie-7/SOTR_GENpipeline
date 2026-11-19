@@ -74,3 +74,10 @@ Rough cue map (faster-whisper, segment-level; to be refined word by word):
 > Client is sent through an updated script. Darrin (sound designer) has confirmed that the file they sent was correct with sound. They have also send an updated breakdown for the judge scene. go over this (G:\SOTR\HF\Final changes) and list out all the changes and tasks that lay ahead of us. Understand it properly and make no errors, we are in the final stages now. and once you have a plan, share it with me and then we will go ahead
 
 -> Darrin confirms `Sc 6 wars 4 Homie FASTER READ NO ENGLISH.wav` (the 17 Nov track) IS the correct French audio: no new audio is coming; the current TMAP in `S6-FR-CUES.md` stands unless the re-check shows a different file.
+
+> in the folder, Sahaj has also sent his clip for the bird flying into the ship so that will inform how we finish our africa map.
+
+-> A fifth input: Sahaj's bird-to-ship clip. The S6 map end (v14 / French cut) must hand over into it. As of 20 Nov it is NOT yet in `G:\SOTR\HF\Final changes` (only the 4 files): check again.
+
+Homie, 20 Nov (later): "in the folder, Sahaj has also sent his clip for the bird flying into the ship so that will inform how we finish our africa map." / "Its just a preview but should give you an idea on how things will end up"
+-> Sahaj's bird-into-ship clip in `G:\SOTR\HF\Final changes` is a PREVIEW: use it for direction and timing of the S6 map ending / handover, not as locked frames.
