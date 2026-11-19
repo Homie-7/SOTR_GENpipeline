@@ -81,3 +81,15 @@ Rough cue map (faster-whisper, segment-level; to be refined word by word):
 
 Homie, 20 Nov (later): "in the folder, Sahaj has also sent his clip for the bird flying into the ship so that will inform how we finish our africa map." / "Its just a preview but should give you an idea on how things will end up"
 -> Sahaj's bird-into-ship clip in `G:\SOTR\HF\Final changes` is a PREVIEW: use it for direction and timing of the S6 map ending / handover, not as locked frames.
+
+### 2026-11-20 (go-ahead on PLAN-FINAL-CHANGES.md)
+
+> S7/S8 lives with Sahaj. That is his preview that I was talking about
+> We will follow exactly what Darren has done in terms of his sound
+> Attached is the email that Darlin sent for the judge scene
+> I also feel like when the judge scene is idle, there is no movement or it just feels like a still frame. Can we do something about that?
+> That you know about the monarchist flag and every other change that we need, match everything to Darren's sound design and voiceover so that the timing sits perfectly. Yeah, I think other than that, I don't see an issue. are we good to go ahead
+
+Darren's email (screenshot, 20 Nov): "I've mocked up a version of the judge sequence - and you'll see that we can cut out a fair chunk of the animation. I've concertina'd the main section so again, you can use the audio to inform your video edit (I think that scene will lose about 35 seconds)"
+
+-> GO-AHEAD given. S7/S8 = Sahaj's (not ours); the production ref is his preview; our S6 hands into its beat A. S9: cut the picture to Darren's mix exactly (the judge .mov's audio; ~35 s lost, measured silence 250-290 s = court b5 tail; check what the 354-399 silence means against his "about 35 s"). NEW: the judge's idle holds read as a still frame -> add movement (options to Homie first, look agreed before building).
