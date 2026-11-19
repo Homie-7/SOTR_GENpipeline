@@ -93,3 +93,10 @@ Homie, 20 Nov (later): "in the folder, Sahaj has also sent his clip for the bird
 Darren's email (screenshot, 20 Nov): "I've mocked up a version of the judge sequence - and you'll see that we can cut out a fair chunk of the animation. I've concertina'd the main section so again, you can use the audio to inform your video edit (I think that scene will lose about 35 seconds)"
 
 -> GO-AHEAD given. S7/S8 = Sahaj's (not ours); the production ref is his preview; our S6 hands into its beat A. S9: cut the picture to Darren's mix exactly (the judge .mov's audio; ~35 s lost, measured silence 250-290 s = court b5 tail; check what the 354-399 silence means against his "about 35 s"). NEW: the judge's idle holds read as a still frame -> add movement (options to Homie first, look agreed before building).
+
+### 2026-11-20 (M9f live chat)
+
+> For the judge's idol scene, feel free to use the sound design as inspiration to what the idle animation can be while it's holding, so that we know or that it just makes more sense environmentally
+
+-> the idle-judge movement options are drawn FROM Darren's mix: what is audible under each hold (room tone, wind, crowd,
+   fire, rain...) decides what moves (scrim in a draught, flame flicker, dust). Analyse the mix's holds first, then propose.
