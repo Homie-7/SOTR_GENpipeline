@@ -134,6 +134,28 @@ LINES = [
 MOVES = [(0, 'M1 · smoke, the march'), (18, 'M2 · glory, the five battles'), (58, 'M3 · famine, executions, death'),
          (78, 'M4 · Liberté, Égalité, Fraternité'), (96, 'M5 · Waterloo'), (120, 'M6 · France divided'),
          (136, 'M7 · je pars… the Medusa')]
+# --retime-fr review captions: script Draft V2 (20 Nov 2026), Agnès alone in French, on Darrin's wav in NEW seconds
+# (docs/S6-FR-CUES.md word times). The three English lines Darrin kept are tagged [EN]. Review caption strip only.
+LINES_FR = [
+    (15.94, 'AGNÈS', "Après vingt-trois années de guerre,"),
+    (19.26, 'AGNÈS', "J'ai appris à être forte. À être utile. Comme les hommes."),
+    (24.84, 'AGNÈS', "Pour nos braves, nos glorieux soldats."), (29.84, 'AGNÈS', "Nous avons connu la victoire."),
+    (33.04, 'AGNÈS', "Austerlitz."), (34.28, 'AGNÈS', "Wagram."), (35.92, 'AGNÈS', "Iéna."), (37.50, 'AGNÈS', "Eylau."),
+    (38.74, 'AGNÈS', "Friedland."), (40.32, 'AGNÈS', "Nous avons cru à la victoire."),
+    (43.90, 'AGNÈS', "Et puis il y a eu la famine,"), (46.80, 'AGNÈS', "Les exécutions,"), (48.64, 'AGNÈS', "La mort."),
+    (51.42, 'AGNÈS', "Et malgré tout, nous avons parlé de liberté, d'égalité et de fraternité."),
+    (58.10, 'AGNÈS', "Il fallait continuer à se battre pour Napoléon."), (62.50, 'AGNÈS', "Jusqu'à Waterloo,"),
+    (64.68, 'AGNÈS', "Où Napoléon est vaincu."),
+    (68.92, 'AGNÈS', "Humilié ! Exilé ! Après vingt-trois ans, je ne reconnais plus mon pays."),
+    (75.28, 'AGNÈS', "La France est divisée."), (78.80, 'AGNÈS', "Monarchistes !"), (80.08, 'AGNÈS', "Napoléonistes !"),
+    (81.84, 'AGNÈS', "La France est dangereuse pour moi."), (85.98, 'AGNÈS', "Alors... je pars."),
+    (88.84, '[EN]', "You're leaving France?"),
+    (90.74, 'AGNÈS', "Oui. Je dois partir. Recommencer ailleurs. Loin de tout ça."),
+    (97.50, '[EN]', "Where are you going?"), (99.28, 'AGNÈS', "Loin."), (99.96, '[EN]', "Away from here!"),
+]
+MOVES_FR = [(0, 'M1 · smoke, the march'), (15.94, 'M2 · glory, the five battles'), (43.90, 'M3 · famine, executions, death'),
+            (51.42, 'M4 · Liberté, Égalité, Fraternité'), (58.10, 'M5 · Waterloo'), (75.28, 'M6 · France divided'),
+            (85.98, 'M7 · je pars… the map'), (112.78, 'M8 · the map dissolves to ink')]
 
 REC = None                       # --check: every tagged blit appends (tag, y0, y1, x0, x1, mask) here
 # v6 (Meeting 4, 2026-10-03, docs/PLAN-MEETING4.md, concept A-C approved by Homie): softer, weathered flags and the
@@ -2196,9 +2218,12 @@ def caption(ctx, frame, t):
     d = ImageDraw.Draw(strip)
     f = ImageFont.truetype(os.path.join(FONTS, 'GFSDidot-Regular.ttf'), max(12, int(sh * 0.36)))
     fs = ImageFont.truetype(os.path.join(FONTS, 'GFSDidot-Regular.ttf'), max(10, int(sh * 0.26)))
-    mv = [m for m in MOVES if m[0] <= t][-1][1]
+    lines, moves = (LINES_FR, MOVES_FR) if RETIME_FR else (LINES, MOVES)
+    if RETIME_FR:
+        t = T_NEW
+    mv = [m for m in moves if m[0] <= t][-1][1]
     d.text((10, sh * 0.08), f'{int(t // 60)}:{t % 60:04.1f}   {mv}', font=fs, fill=(150, 150, 150))
-    cur = [ln for ln in LINES if ln[0] <= t < ln[0] + 4.5]
+    cur = [ln for ln in lines if ln[0] <= t < ln[0] + 4.5]
     if cur:
         sp, tx = cur[-1][1], cur[-1][2]
         d.text((10, sh * 0.48), (sp + ':  ' if sp else '') + tx, font=f, fill=(230, 225, 210))
