@@ -68,3 +68,9 @@ Rough cue map (faster-whisper, segment-level; to be refined word by word):
   -> agreed: the review composite WAITS for the French-only track (no cut on audio that's about to change).
 - 2026-11-17, Homie, on the fleur flag stills (80.5-84, the x-locked fleurs) and the ink v2 stills (113-120): "Stills OK"
   -> the fleur flag and the ink dissolve LOOK are APPROVED as stills. Next = the new audio -> retime -> review composite.
+
+### 2026-11-20
+
+> Client is sent through an updated script. Darrin (sound designer) has confirmed that the file they sent was correct with sound. They have also send an updated breakdown for the judge scene. go over this (G:\SOTR\HF\Final changes) and list out all the changes and tasks that lay ahead of us. Understand it properly and make no errors, we are in the final stages now. and once you have a plan, share it with me and then we will go ahead
+
+-> Darrin confirms `Sc 6 wars 4 Homie FASTER READ NO ENGLISH.wav` (the 17 Nov track) IS the correct French audio: no new audio is coming; the current TMAP in `S6-FR-CUES.md` stands unless the re-check shows a different file.
