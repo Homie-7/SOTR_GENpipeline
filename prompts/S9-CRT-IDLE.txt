@@ -1,3 +1,247 @@
+# S9-CRT-IDLE · v6 READ (take A) and v7 STILL (take B) · the LEAN PLAN (M9q/M9r). v4/v5 and older kept verbatim below.
+# WHY (Homie 2026-11-20 M9q): "simple silhouette idle ... We don't need to make a whole movie out of this" + "500 credits is
+#   a lot of credits". Lean plan = A + B only (196 cr); C, D dropped. Plan: docs/S9-JUDGE-VO-PLAN.md (REVISED).
+# THE ONE CHANGE vs v3: the ACTION (SCENE, ACTION TIMING, FIRST FRAME) only: no nod, no lean (v3 had both), standing
+#   still; v6 = reading with straight head-lifts to the court, v7 = breathing at rest. Every other block is v3 word for word.
+
+# ---------- v6 READ (take A) ----------
+# SETTINGS: Seedance 2.5 (seedance_2_5) · omni_reference · start AND end image = S9-CRT-IDLE_v1_probe_LASTFRAME.png
+#   (upload d0876d26, as v3-v5) · 9:16 · 720p · 20 s · bitrate standard · batch 1 · sound ON · 140 cr (quoted).
+# PREDICTION: two clear head-lifts near 4-6 s and 10-12 s, body still, ends on rest; risk = the model adds a nod or a
+#   weight shift on the lifts, or the 20 s drifts and morphs back to the end pose.
+
+SCENE: One naval-officer silhouette, solid black on a bone-white field, stands still and reads a scroll aloud like a town crier, breathing, lifting his head straight up to the court now and then, the gavel resting at his side throughout.
+
+REFERENCE: The attached image is both the first and the last frame: pose, shape and the bone-white field come from it exactly.
+
+FIRST FRAME: Matches the attached image exactly: full length, frontal, centred, gavel resting at his right side, scroll in the left, head down to it, standing still.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off.
+
+ACTION TIMING:
+0:00-0:04 — he reads: slow breaths lift and settle his shoulders, his head moves along the lines, the coat stirs.
+0:04-0:06 — he lifts his head straight up to face the viewer and holds it there, body still.
+0:06-0:10 — he looks back down and reads on, the scroll shifting slightly in his hand.
+0:10-0:12 — he lifts his head straight up to the viewer again and holds, body still.
+0:12-0:16 — he looks back down and reads on, breathing.
+0:16-0:20 — he reads, breathing, ending exactly in the pose of the attached image.
+
+PHYSICS: The gavel hangs heavy at his side and barely moves. The heavy wool coat lags a beat behind the body. Feet stay planted.
+
+LIGHTING: The flat warm bone-white field of the reference, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. The head stays a bare black shape: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure. Exactly one gavel and one scroll, never swapped hands. The gavel stays down. Nothing newer than 1819.
+
+# ---------- v7 STILL (take B) ----------
+# SETTINGS: Seedance 2.5 (seedance_2_5) · omni_reference · start AND end image = S9-CRT-IDLE_v1_probe_LASTFRAME.png
+#   (upload d0876d26) · 9:16 · 720p · 8 s · bitrate standard · batch 1 · sound ON · 56 cr (to re-quote).
+# PREDICTION: a near-still hold with breathing; risk = the model invents a head move or reading motion anyway.
+
+SCENE: One naval-officer silhouette, solid black on a bone-white field, stands still at rest, head down to his scroll, only breathing, the gavel resting at his side throughout.
+
+REFERENCE: The attached image is both the first and the last frame: pose, shape and the bone-white field come from it exactly.
+
+FIRST FRAME: Matches the attached image exactly: full length, frontal, centred, gavel resting at his right side, scroll in the left, head down to it, standing still.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off.
+
+ACTION TIMING:
+0:00-0:06 — he stands still, head down to the scroll: slow breaths lift and settle his shoulders, the coat stirs faintly.
+0:06-0:08 — he holds, breathing, ending exactly in the pose of the attached image.
+
+PHYSICS: The gavel hangs heavy at his side and barely moves. The heavy wool coat lags a beat behind the body. Feet stay planted.
+
+LIGHTING: The flat warm bone-white field of the reference, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. The head stays a bare black shape: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure. Exactly one gavel and one scroll, never swapped hands. The gavel stays down. Nothing newer than 1819.
+
+# ===================== v4 / v5, verbatim =====================
+
+# S9-CRT-IDLE · v4 RETURN and v5 RAISE · the two BRIDGES around the APPROVED strike (M9o). v3 and older kept verbatim below.
+# WHY (Homie 2026-11-20 M9o): "I just don't want you to change the animation of the guy hitting the gavel" + "Yes, both
+#   (63 cr)". The hit = fig_SOTR_judge_strike_s9_v1 frames, unchanged; these bridges join it to the reading idle.
+#   Plan + measurements: SOTR_MEDIA/04_WORKING_FILES/S9_gen_judge_review/_PLAN_approved_strike.md.
+# THE ONE CHANGE vs v3: the ACTION (SCENE, ACTION TIMING, FIRST FRAME, the gavel lock) becomes the bridge move, and the
+#   start / end images change to match. Everything else is v3 word for word.
+
+# ---------- v4 RETURN ----------
+# SETTINGS: Seedance 2.5 (seedance_2_5) · omni_reference · start image = approved strike f96
+#   (fig_SOTR_judge_strike_s9_v1 frame 96, the held lunge, gavel face-on with its keyline) · end image =
+#   S9-CRT-IDLE_v1_probe_LASTFRAME.png · 9:16 · 720p · 5 s · bitrate standard · batch 1 · sound ON · 35 cr (quoted).
+# PREDICTION: he steps back and lowers the gavel; risk = a mid-take morph between the two very different poses, or the
+#   keyline dropping out in the first second.
+
+SCENE: One naval-officer silhouette, solid black on a bone-white field, steps back from the viewer after striking, lowers the gavel to his side and returns to reading his scroll.
+
+REFERENCE: The first attached image is the first frame and the second attached image is the last frame: pose, shape and the bone-white field come from them exactly.
+
+FIRST FRAME: Matches the first attached image exactly: the gavel held face-on toward the viewer at his chest, the figure leaning in close.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off.
+
+ACTION TIMING:
+0:00-0:01 — he holds the gavel toward the viewer, still.
+0:01-0:03 — he draws the gavel back and steps back to full length, the gavel swinging down to his right side.
+0:03-0:04 — he lifts the scroll in his left hand and lowers his head to it.
+0:04-0:05 — he reads, breathing, ending exactly in the pose of the last attached image.
+
+PHYSICS: The gavel is heavy; it swings down and settles at his side. The heavy wool coat lags a beat behind the body. His feet settle and stay planted.
+
+LIGHTING: The flat warm bone-white field of the reference, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. The head stays a bare black shape: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure. Exactly one gavel and one scroll, never swapped hands. Nothing newer than 1819.
+
+# ---------- v5 RAISE ----------
+# SETTINGS: Seedance 2.5 (seedance_2_5) · omni_reference · start image = S9-CRT-IDLE_v1_probe_LASTFRAME.png · end image =
+#   approved strike f40 (fig_SOTR_judge_strike_s9_v1 frame 40, gavel overhead, scroll low) · 9:16 · 720p · 4 s ·
+#   bitrate standard · batch 1 · sound ON · 28 cr (quoted).
+# PREDICTION: a clean lift overhead; risk = the scroll arm's drop from chest to low reads as a morph.
+
+SCENE: One naval-officer silhouette, solid black on a bone-white field, stops reading, lowers his scroll and lifts the gavel high overhead, ready to strike.
+
+REFERENCE: The first attached image is the first frame and the second attached image is the last frame: pose, shape and the bone-white field come from them exactly.
+
+FIRST FRAME: Matches the first attached image exactly: full length, frontal, centred, gavel resting at his right side, scroll in the left, head down to it.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off.
+
+ACTION TIMING:
+0:00-0:01 — he reads, breathing, then lifts his head toward the viewer.
+0:01-0:03 — he lowers the scroll to his left side and raises the gavel high above his head in his right hand.
+0:03-0:04 — he holds the gavel aloft, ending exactly in the pose of the last attached image.
+
+PHYSICS: The gavel is heavy; his arm drives it up and it settles high. The heavy wool coat lags a beat behind the body. Feet stay planted.
+
+LIGHTING: The flat warm bone-white field of the reference, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. The head stays a bare black shape: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure. Exactly one gavel and one scroll, never swapped hands. No blow yet: the gavel ends raised. Nothing newer than 1819.
+
+# ===================== v3 (job 07416a29), verbatim =====================
+
+# S9-CRT-IDLE · v3 · the READING IDLE (plan step 3). v2 and v1 kept verbatim below.
+# THE ONE CHANGE vs v2: the ACTION goes back to reading only (no gavel move): breaths, a nod and a lean on stressed
+#   words (Homie: "breathing and nodding on the stress words ... lean in"). Lines that only served the strike follow it
+#   out: the keyline ask (it produced the white line defect in v2), "One blow only", the gavel physics line.
+# SETTINGS: Seedance 2.5 · omni_reference · start AND end image = S9-CRT-IDLE_v1_probe_LASTFRAME.png · 9:16 · 720p ·
+#   15 s · bitrate standard · batch 1 · sound ON · ~105 cr.
+# PREDICTION: a calm, readable idle; risk = the model invents a gavel move or the nods come out too small to read.
+
+SCENE: One naval-officer silhouette, solid black on a bone-white field, reads a scroll, breathing, nodding on his words, the gavel resting at his side throughout.
+
+REFERENCE: The attached image is both the first and the last frame: pose, shape and the bone-white field come from it exactly.
+
+FIRST FRAME: Matches the attached image exactly: full length, frontal, centred, gavel resting at his right side, scroll in the left, head down to it.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off.
+
+ACTION TIMING:
+0:00-0:05 — he reads: slow breaths lift and settle his shoulders, his head moves along the lines, the coat stirs.
+0:05-0:07 — he nods once, firmly, on a word, and lifts his head a little toward the viewer.
+0:07-0:10 — he looks back down and reads on, the scroll shifting slightly in his hand.
+0:10-0:12 — he leans a little forward on another stressed word, then settles back.
+0:12-0:15 — he reads, breathing, ending exactly in the pose of the attached image.
+
+PHYSICS: The gavel hangs heavy at his side and barely moves. The heavy wool coat lags a beat behind the body. Feet stay planted.
+
+LIGHTING: The flat warm bone-white field of the reference, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. The head stays a bare black shape: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure. Exactly one gavel and one scroll, never swapped hands. The gavel stays down. Nothing newer than 1819.
+
+# ===================== v2 (job 91fd62a7), verbatim =====================
+# S9-CRT-IDLE · v2 · IDLE + STRIKE in one take (plan step 2). v1 (the probe) is kept verbatim below the v2 body.
+# WHY (Homie 2026-11-20, after the probe): "Yes, that works ... I need to see the whole scene 9 run with this new
+#   adjustment and idle animations". Preview first at 720p, upscale later.
+# THE ONE CHANGE vs v1: the ACTION (SCENE + ACTION TIMING + FIRST FRAME) goes from "lower the gavel, read" to
+#   "read -> raise -> strike toward camera (as S9-CRT-STRIKE v3) -> lower -> read", with the probe's LAST frame as
+#   both start and END image, so every take chains on the same rest pose (no snap back to the still).
+#   Carried with it, from the STRIKE v3 trap note: SILHOUETTE LOCK asks for the gavel keyline positively and
+#   conditionally (Homie kept the keyline 2026-09-23); without it the blow erases black-on-black.
+#
+# SETTINGS (Higgsfield CLI, 2026-11-20)
+#   Model:      Seedance 2.5 (seedance_2_5)
+#   Mode:       omni_reference; start image AND end image = S9-CRT-IDLE_v1_probe_LASTFRAME.png
+#               (04_WORKING_FILES/S9_judge_generated_idle/, the probe's f120, 720x1280)
+#   Aspect:     9:16
+#   Resolution: 720p (preview; ~105 cr)
+#   Duration:   15 s
+#   Quality:    bitrate standard
+#   Batch:      1
+#   Sound:      ON (scratch only)
+# PREDICTION: the strike reads (gavel grows, not crosses) but lands softer/smaller than the approved v3 strike; risk =
+#   the end-frame pull makes the last 3 s a morph back to the pose instead of a natural lower.
+
+SCENE: One naval-officer silhouette, solid black on a bone-white field, reads a scroll, strikes his gavel once at the viewer, then reads again.
+
+REFERENCE: The attached image is both the first and the last frame: pose, shape and the bone-white field come from it exactly.
+
+FIRST FRAME: Matches the attached image exactly: full length, frontal, centred, gavel resting at his right side, scroll in the left, head down to it.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off.
+
+ACTION TIMING:
+0:00-0:04 — he reads: slow breaths, his head moves along the lines, the coat stirs.
+0:04-0:06 — his head comes up to face the viewer and he raises the gavel high and clear above his head.
+0:06-0:06.5 — the blow: his weight drives forward and he punches the gavel straight at the viewer; it grows huge and close and stops dead.
+0:06.5-0:09 — he holds it; the coat swings and settles.
+0:09-0:12 — he draws the gavel back and lowers it, heavy, to his side.
+0:12-0:15 — his head turns down to the scroll and he reads, ending exactly in the pose of the attached image.
+
+PHYSICS: The gavel has real weight, a dead stop, no bounce. The heavy wool coat lags a beat behind the body. Feet stay planted.
+
+LIGHTING: The flat warm bone-white field of the reference, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. Where the gavel passes in front of his body a thin clean white line separates it from the figure; where it stands clear against the field there is none. The head stays a bare black shape: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure. Exactly one gavel and one scroll, never swapped hands. One blow only. Nothing newer than 1819.
+
+
+# ===================== v1 (the probe, 37e5648c), verbatim =====================
 # S9-CRT-IDLE · v1 · PROBE · the judge at rest, reading
 # Register tag of the seed: fig_SOTR_judge_s9_v1 (02_APPROVED_BUILDING_BLOCKS/stills/fig_SOTR_judge_s9_v1.png)
 # WHY (Homie 2026-11-20): the warp idle (court_idle.py) is rejected ("breathing looks fake", "hand up in the air").

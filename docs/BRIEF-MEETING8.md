@@ -176,3 +176,86 @@ Interpretation (M9k): the warp-based idle (`court_idle.py`) is REJECTED. Wanted:
 Then build a WHOLE Scene 9 review composite (WhatsApp-style, like the earlier 08_S9 / S9_darren_cut review) with the
 generated idle + strikes as one continuous judge, the opaque layering, and Darren's mix. Review only, nothing into
 01_FINAL_FOR_SHOW. Opaque test: no explicit verdict; "with this new adjustment" read as keep it (confirm when showing).
+
+### 2026-11-20 (M9o), Homie on the b7 gen-judge preview (before the full review was shown), verbatim
+
+"How our gavel hit is make sure it's not changing, we are just adding things around it. But that animation itself is good. These previews look like it's a new animation for the gavel he"
+
+-> KEEP the approved gavel strike (`fig_SOTR_judge_strike_s9_v1`) unchanged; the generated takes are only the idle AROUND it. The generated v2 strike must not replace his hit. The idle animation itself is good.
+
+
+"The Gavels negative highlights and everything are also to stay as they"
+
+-> The approved strike's white keyline / negative highlights on the gavel (the sanctioned LOOK.md World 3 carve-out) stay exactly as in the shipped strike: no matting, thresholding or opaque layering may remove them.
+
+
+(His reference screenshot, saved as `04_WORKING_FILES/S9_gen_judge_review/_REF_homie_gavel_keyline_2026-11-20.webp`: the approved strike's held frame, the gavel face-on toward camera with its cream/white keyline separating it from the black body, the judge solid black, the railing behind. This is the look to keep.)
+
+
+"Not the solid black, we are continuing to work off of it. This is just an old preview. I'm just giving you an example for the highlights, but what we have right now is good. I just don't want you to change the animation of the guy hitting the gavel"
+
+-> CORRECTION: the screenshot is ONLY an example of the gavel highlights. The current gen-judge preview look (its tone/layering) is good and stays. The one thing: the gavel-hit ANIMATION must be the approved strike, not a new one (its highlights come with it).
+
+
+### 2026-11-20 (M9o), Homie on the bridge plan (approved strike unchanged + RETURN 35 cr + RAISE 28 cr), verbatim
+
+"Yes, both (63 cr)"
+
+
+### 2026-11-20 (M9p), Homie on the raw bridge generations, verbatim
+
+"Just a reminder that it does not have to be a pitch black image or silhouette. I still want that nice blended, refined thing that you gave me. I'm seeing my X-Field generations, and they all look pitch black silhouettes. So, just making sure you know what to do"
+
+-> The raw Higgsfield takes are generated as solid-black silhouettes (that is only the source). The DELIVERED judge keeps the
+blended, refined gen-judge review look (the `compose_opaque` path, as in the current preview), never a flat pitch-black
+cut-out. Check this on every sheet before showing.
+
+### 2026-11-20 (M9p), Homie on S9_GENJUDGE_3wall_review_APPROVEDSTRIKE, verbatim
+
+"I'm not a fan of that nod, that very strong nod that he does in the idol animation. Perhaps it could just be looking forward, looking at the paper, looking forward, looking at the paper instead of that very sharp nod that he does, or it could be a subtle nod"
+
+"Also, him adjusting constantly only on his right leg makes it look like he's adjusting his underwear or something instead of just idle animation where he's just standing that unnecessary step or a half step makes it look weird, especially when you see it repeated a few times Like you can tell that it's a loop. Breathing, on the other hand, is fine"
+
+"Also, when the dialogue is over, he's still nodding and looking, so you can clear it out that it's not aligned with the voiceover"
+
+"Also, when he goes from gavel to idol, you can clearly tell that the quality goes down quite a lot. I'm not sure what is happening or if it's just a preview thing, but look into that and fix it, Also from the last rim of the gavel strike and the animation beginning I can kind of see where that transition is happening where we go from the very clear frame to the in-betweens so yeah it just has to look very smooth and seamless"
+
+"Yeah, make sure the animation of idle and gavel hits are stitched seamlessly so there is no cut or very obvious blend or in between because these will be viewed in ginormous projection screens, so it will be very obvious to the eye"
+
+"Also, I'm realizing that he can't be sighing if he's talking"
+
+"That sharp nod is just unacceptable"
+
+"Nothing happens when he's screaming order order so it's like yeah it makes no sense feel free to generate more stuff if you need to to align with the entire voiceover"
+
+"Things like when he's saying, get these traders out of the court, you know, he could be waving his hand with the gavel, saying that get them out because it just feels like it's too idle. I don't want a full-scale animation for every word that's being said, but it has to feel like this is what's happening. Otherwise, it's just a random idle animation that is on a loop"
+
+"Human eyes catch patterns fast"
+
+"Again, yeah, when the gavel strike finishes, you can see the frame switch to the animation going back to idle"
+
+-> (1) No sharp nod: look forward / look at the paper, at most a subtle nod. (2) No right-leg shift / half step; breathing OK.
+(3) Judge performance follows Darren's voiceover: still when the dialogue is over; no sighs while he talks; "Order, order!"
+gets action; "Get these traitors out of the court" gets a gavel-hand wave; not word-by-word, but motivated. No visible loop.
+(4) Quality drop gavel -> idle: find and fix. (5) Strike end -> idle must be seamless (no cut, no visible blend/in-between):
+giant screens. Generating more is allowed ("feel free to generate more"); cost to be stated before spending past ~350.
+
+### 2026-11-20 (M9q), Homie on the voiceover plan (4 takes, 308 cr), verbatim
+
+"I'm happy for you to run all four takes if you feel confident that this will do everything. Remember, we have to do the upscaling, the finalization of other scenes in terms of the French wars scene, etc., etc. Are you confident that this can work out?"
+
+"I can Allocate up to a thousand more credits to you from a different account if needed, but that doesn't mean we waste credits"
+
+"For the take D where the confidence is low, feel free to not make it or just do a little bit of head movement or something else. We don't need something too dramatic. Remember, this was initially asked to us as an idle, simple silhouette kind of thing. We don't need to make a whole movie out of this. Look at script and see what is demanded from us. Yeah, I mean, this is a lot of credits spent on it, but yeah, I would probably say be very careful about how you go about this. 500 credits is a lot of credits."
+
+-> Script (BIBLE.md): the judge "reads his findings like a town crier"; b3 "Order! Order!" + the gavel; b5 the
+gallery shouts, "Get the TRAITORS out!", "the judge loses control". Simple silhouette idle, not a movie.
+LEAN PLAN (docs/S9-JUDGE-VO-PLAN.md, revised): only A (READ, 20 s, 140 cr) and B (STILL, 8 s, 56 cr) = 196 cr.
+C dropped (the existing RAISE v5 already lifts the gavel under "Order! There will be order"). D dropped ("Get the
+traitors out" = A's look-up to the court placed on it). Use the current account first (balance 338.3 -> ~142);
+the other account only when the 4K upscale needs it (~145 cr, or 0 cr if the court renders natively at 4K by script).
+
+### 2026-11-20 (M9r), Homie verbatim
+"I'm going to step away so when you need my input, just send me a nudge on my Claude app on my phone and I'll come back here"
+"Same thing applies to continuing chats if you have to create more"
+-> Every live chat: Remote Control on, PushNotification to his phone when his input is needed.
