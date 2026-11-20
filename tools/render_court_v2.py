@@ -107,7 +107,8 @@ def _blur(a, s):
     return cv2.GaussianBlur(a, (0, 0), s)
 
 
-def field_static():
+def field_static(layers=False):
+    """layers=True (court_behind_paper --opaque) also returns the plain paper and the far/near shadow layers."""
     rng = np.random.default_rng(1817)
     yy, xx = np.mgrid[0:OH, 0:OW].astype(np.float32)
     xn, yn = (xx - OW / 2) / (OW / 2), (yy - OH / 2) / (OH / 2)
@@ -150,6 +151,8 @@ def field_static():
     scenery = 1 - 0.30 * far - 0.30 * near
     lamp = 0.42 + 0.58 * np.exp(-(xn ** 2 * 0.9 + (yn + 0.1) ** 2 * 1.3))
     paper_rgb = np.array([0.80, 0.72, 0.58], np.float32)
+    if layers:
+        return paper_rgb[None, None] * (paper * scenery)[..., None], lamp, paper_rgb[None, None] * paper[..., None], far, near
     return paper_rgb[None, None] * (paper * scenery)[..., None], lamp
 
 

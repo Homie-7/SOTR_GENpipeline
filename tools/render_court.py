@@ -65,6 +65,12 @@ BEATS = {
     5: dict(length=101, cues=[(0.0, 'Q2', 'appear'), (0.5, 'Q2', 'strike'), (45.0, 'Q3', 'strike'),
                               (85.0, 'Q3', 'strike')]),
     7: dict(length=20, cues=[(0.0, 'Q4', 'appear'), (0.5, 'Q4', 'strike'), (16.0, 'Q5', 'capper')]),
+    # Darren's cut (docs/S9-DARREN-CUT.md, built 2026-11-20): b5 cut from 101 s to 64.25 s (1542 frames), ending at his
+    # mix's 254.0 s after his fade; its 36.75 s tail is his digital silence. Strikes 2 and 3 moved onto the two places
+    # his mix carries our own gavel knock (matched-filter r 0.95 / 0.91 at mix 212.414 and 242.947 s), with the same
+    # 2-frame knock offset as the 0.5 s strike (his 190.731). BEATS[5] is unchanged, so the shipped b5 is untouched.
+    '5cut': dict(length=64.25, cues=[(0.0, 'Q2', 'appear'), (0.5, 'Q2', 'strike'), (22.17, 'Q3', 'strike'),
+                                     (52.71, 'Q3', 'strike')]),
 }
 
 

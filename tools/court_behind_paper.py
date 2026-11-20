@@ -15,6 +15,7 @@ The sanctioned white keyline round the gavel (LOOK World 3) is kept as a thin pa
   python tools/court_behind_paper.py clip OUT.mp4 --level 2 [--a2] [--smoke] [--size Q2]
   python tools/court_behind_paper.py beat OUT.mov --beat 3|5|7        (FINAL show build, A2 level 2, 1800x1080 ProRes, no sound)
   python tools/court_behind_paper.py strike OUT.mov --size Q1|Q2|Q3|Q4  (the operator's single strike, same look)
+  ... beat|strike ... --opaque [rail|front]   (M9k TEST: true layers, the judge opaque; compose_opaque())
 beat/strike are built like render_court.py --scrim --burn (same timeline, shake, burn t0 per beat); the Q5 capper
 (the gavel alone) goes through the same paper/fibre treatment at full sharpness (it is at the lens).
 Needs numpy, OpenCV, ffmpeg and render_court.py / render_court_v2.py / court_burn.py beside it.
@@ -97,11 +98,57 @@ def compose(bg, m, fib, level=2, closeness=None, smoke=False, t=0):
     return np.clip(out, 0, 1)
 
 
+def shadow_density(m, level=2, closeness=None):
+    """The judge's soft shadow 0..1, exactly as compose() builds it (A1/A2)."""
+    sg, keep = LEVELS[level]
+    s = 1 - m
+    if closeness is not None:
+        sh = blur(s, max(sg * 0.35, 1.5))
+        so = blur(s, sg * 1.25)
+        return so * (1 - closeness) + sh * closeness
+    return blur(s, sg)
+
+
+def compose_opaque(sc, n, t0, m, cl, clean=False, rail_front=False):
+    """--opaque (Homie M9k 2026-11-20: "the judge is kind of on top of it... wherever we see the judge silhouette... we
+    don't see the other things"). True layers instead of shadows multiplied through each other:
+      far   the two arched windows + the wall round them (back)
+      judge OPAQUE: under him the windows are not there at all (his tone replaces them, no double darkening)
+      near  the bar's balustrade + floor sill (rail at 1.0 m). Default ('front', rail_front=False): the railing is the
+            MIDDLE layer, behind the judge (Homie: "windows in the back... the railing in the middle... the judge
+            ahead"). rail_front=True ('rail', Q1-Q3 only) lays it over his legs in its own pale tone: tested
+            2026-11-20 and rejected by Claude (the pale bars read as holes through his legs).
+    The paper's burn, lamp bloom and fibre are applied over the combined result as compose() does."""
+    sg, keep = LEVELS[2]
+    sb = shadow_density(m, 2, cl)
+    lit = sc.plain * (sc.lamp * lamp_gain(n))[..., None]
+    burn = (lambda im: im) if clean else (lambda im: sc.burn.frame(im, t0 + n))
+    tone = keep * WARM / WARM.max()
+    hole = 1 - sb                                                    # where the judge is, nothing behind him shows
+    if rail_front:
+        bg = burn(lit * (1 - 0.30 * sc.far * hole)[..., None])       # windows behind the judge, no railing yet
+    else:
+        bg = burn(lit * (1 - (0.30 * sc.far + 0.30 * sc.near) * hole)[..., None])
+    out = bg * (1 - sb[..., None] * (1 - tone[None, None, :]))
+    lampb = cv2.GaussianBlur(bg.mean(2), (0, 0), 60)
+    out = out + (sb * lampb * 0.035)[..., None] * WARM
+    if rail_front:                                                   # the railing over him, solid, its own tone
+        rail = burn(lit * (1 - 0.30 * sc.far - 0.30 * sc.near)[..., None])
+        a = sc.near[..., None]
+        out = out * (1 - a) + rail * a
+    out = out * (1 + 0.035 * sc.fib[..., None])
+    out = out + (sb * 0.018)[..., None] * sc.fib[..., None] * WARM
+    return np.clip(out, 0, 1)
+
+
 class Scene:
-    def __init__(self):
+    def __init__(self, opaque=False):
         for q in ('Q1', 'Q2', 'Q3'):
             rc.SIZES[q] = V2[q]
-        self.base, self.lamp = field_static()
+        if opaque:
+            self.base, self.lamp, self.plain, self.far, self.near = field_static(layers=True)
+        else:
+            self.base, self.lamp = field_static()
         self.src = rc.load_source()
         self.gbox = rc.gavel_box(self.src[rc.HELD])
         self.burn = BurnEdges(OW, OH)
@@ -173,27 +220,38 @@ def clip(out, level, a2, smoke, size):
     print(len(seq), 'frames ->', out)
 
 
-def final(out, beat, strike, clean=False):
-    """The show build: render_court.py's timeline/shake/burn, with the judge behind the paper (level 2, A2)."""
-    if os.path.exists(out):
-        raise SystemExit(f'refusing: {out} exists. Clean renders are never replaced; give the new one a new version')
-    sc = Scene()
+def frames(beat, strike, clean=False, opaque=None, skip=0):
+    """The show build's frames: render_court.py's timeline/shake/burn, with the judge behind the paper (level 2, A2).
+    opaque = None (the approved look, bit-identical), 'front' (true layers, judge opaque) or 'rail' (see compose_opaque).
+    skip = frames before it are not drawn (yields None; the shake's random draws still run, so later frames match)."""
+    sc = Scene(opaque=bool(opaque))
     seq = rc.timeline(beat, strike)
-    t0 = BEAT_T0[beat] if beat else 0
-    w = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-s', f'{OW}x{OH}',
-                          '-r', str(rc.FPS), '-i', '-', '-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2',
-                          '-pix_fmt', 'yuv422p10le', out], stdin=subprocess.PIPE)
+    t0 = BEAT_T0[5 if beat == '5cut' else beat] if beat else 0
     rng = np.random.default_rng(1817)
     shake = 0
     for n, (idx, sz, impact) in enumerate(seq):
+        if n < skip:
+            if idx is not None:
+                if impact:
+                    shake = 6
+                if shake:
+                    amp = 7 * shake / 6
+                    rng.integers(-amp, amp + 1, 2)
+                    shake -= 1
+            yield None
+            continue
         if idx is None:
             im = np.zeros((OH, OW, 3), np.float32)
         else:
             if len(sc.cache) > 8:
                 sc.cache = {k: v for k, v in sc.cache.items() if k[0] == rc.RAISED}
             cl = 1.0 if sz == 'Q5' else closeness(idx)
-            bgi = sc.base * (sc.lamp * lamp_gain(n))[..., None] if clean else sc.bg(n, t0)
-            im = compose(bgi, sc.mask(idx, sz), sc.fib, 2, closeness=cl)
+            if opaque:
+                im = compose_opaque(sc, n, t0, sc.mask(idx, sz), cl, clean,
+                                    rail_front=(opaque == 'rail' and sz in ('Q1', 'Q2', 'Q3')))
+            else:
+                bgi = sc.base * (sc.lamp * lamp_gain(n))[..., None] if clean else sc.bg(n, t0)
+                im = compose(bgi, sc.mask(idx, sz), sc.fib, 2, closeness=cl)
             if impact:
                 shake = 6
             if shake:
@@ -201,10 +259,27 @@ def final(out, beat, strike, clean=False):
                 dx, dy = rng.integers(-amp, amp + 1, 2)
                 im = np.roll(im, (int(dy), int(dx)), (0, 1)) * (1 + 0.05 * shake / 6)
                 shake -= 1
+        yield im
+
+
+def n_frames(beat, strike):
+    return len(rc.timeline(beat, strike))
+
+
+def final(out, beat, strike, clean=False, opaque=None):
+    """The show build (ProRes 422 HQ, no sound)."""
+    if os.path.exists(out):
+        raise SystemExit(f'refusing: {out} exists. Clean renders are never replaced; give the new one a new version')
+    w = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb48le', '-s', f'{OW}x{OH}',
+                          '-r', str(rc.FPS), '-i', '-', '-c:v', 'prores_ks', '-profile:v', '3', '-qscale:v', '2',
+                          '-pix_fmt', 'yuv422p10le', out], stdin=subprocess.PIPE)
+    k = 0
+    for im in frames(beat, strike, clean, opaque):
         w.stdin.write((np.clip(im, 0, 1) * 65535).astype('<u2').tobytes())
+        k += 1
     w.stdin.close()
     w.wait()
-    print(len(seq), 'frames ->', out)
+    print(k, 'frames ->', out)
 
 
 if __name__ == '__main__':
@@ -215,14 +290,24 @@ if __name__ == '__main__':
     ap.add_argument('--a2', action='store_true')
     ap.add_argument('--smoke', action='store_true')
     ap.add_argument('--size', default='Q2')
-    ap.add_argument('--beat', type=int, choices=[3, 5, 7])
+    ap.add_argument('--beat', type=lambda s: int(s) if s.isdigit() else s, choices=[3, 5, 7, '5cut'],
+                    help="5cut = Darren's cut of b5 (64.25 s, strikes moved; docs/S9-DARREN-CUT.md)")
     ap.add_argument('--clean', action='store_true', help='beat/strike: no burn edge (the _CLEAN master)')
+    ap.add_argument('--opaque', nargs='?', const='front', choices=['front', 'rail'],
+                    help="beat/strike: TRUE LAYERS (M9k): windows (back) < railing (middle) < the judge, OPAQUE "
+                         "(default 'front'). 'rail' = the balustrade solid over his legs (tested 2026-11-20: its pale "
+                         "tone reads as see-through legs; not used). Without it: the approved look, bit-identical")
+    ap.add_argument('--idle', action='store_true',
+                    help='beat: the LIVING judge (tools/court_idle.py: breath, nods, lean + coat, no snap after strikes)')
     a = ap.parse_args()
     if a.cmd == 'stills':
         stills(a.out)
+    elif a.cmd == 'beat' and a.idle:
+        import court_idle
+        court_idle.final(a.out, a.beat, a.clean)
     elif a.cmd == 'beat':
-        final(a.out, a.beat, None, a.clean)
+        final(a.out, a.beat, None, a.clean, a.opaque)
     elif a.cmd == 'strike':
-        final(a.out, None, a.size, a.clean)
+        final(a.out, None, a.size, a.clean, a.opaque)
     else:
         clip(a.out, a.level, a.a2, a.smoke, a.size)

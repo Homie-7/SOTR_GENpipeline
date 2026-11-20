@@ -315,12 +315,15 @@ class PaperBurn:
     line eats into it rather than wobbling. (ux, uy) is the direction the front travels at each point:
     the ash leaves that way."""
 
-    def __init__(self, ctx, h, w, p0, seed, valid=None, lobe=0.11):
+    def __init__(self, ctx, h, w, p0, seed, valid=None, lobe=0.11, field=None):
         self.ctx, q = ctx, ctx.q
         rng = np.random.default_rng(seed)
         yy, xx = np.mgrid[0:h, 0:w].astype(F32)
-        dx, dy = xx - p0[0], yy - p0[1]
-        dist = np.sqrt(dx * dx + dy * dy) + 1e-3
+        if field is None:
+            dx, dy = xx - p0[0], yy - p0[1]
+            dist = np.sqrt(dx * dx + dy * dy) + 1e-3
+        else:                                       # M9i: a caller-made distance field (dx, dy, dist), e.g. outside-in
+            dx, dy, dist = field(xx, yy)
         L = float(max(h, w))
         big = fractal(h, w, rng, scales=(max(3, int(L / 3)), max(2, int(L / 9)), max(2, int(L / 22))), gains=(1, 0.5, 0.3))
         mid = fractal(h, w, rng, scales=(max(2, int(40 * q)), max(2, int(16 * q)), max(2, int(6 * q))), gains=(1, 0.55, 0.3))
@@ -386,6 +389,53 @@ class RoomBurn(PaperBurn):
 
     def region(self, x0, x1):
         return {k: v[:, x0:x1] for k, v in self.F.items()}
+
+
+class RoomBurnIn(RoomBurn):
+    """M9i (Homie, 20 Nov: "alternate the burning... outside to in sometimes"): ONE front across the room that is lit
+    just beyond BOTH outer edges (LEFT's left, RIGHT's right) and travels inward, so the side walls burn first, mirror
+    for mirror, and CENTRE's middle last. Only built under --retime-fr."""
+
+    def __init__(self, ctx, seed):
+        W, H = ctx.W, ctx.H
+        pl, pr = (-0.08 * W, 0.5 * H), (1.08 * W, 0.5 * H)
+
+        def field(xx, yy):
+            dl = np.sqrt((xx - pl[0]) ** 2 + (yy - pl[1]) ** 2)
+            dr = np.sqrt((xx - pr[0]) ** 2 + (yy - pr[1]) ** 2)
+            left = dl <= dr
+            dx = np.where(left, xx - pl[0], xx - pr[0])
+            dy = np.where(left, yy - pl[1], yy - pr[1])
+            return dx, dy, np.minimum(dl, dr) + 1e-3
+        PaperBurn.__init__(self, ctx, H, W, (W / 2, H * 0.5), seed, lobe=0.045, field=field)
+
+
+class BurnGroup:
+    """M9i: several pictures leave by ONE room front (a RoomBurn sampled at each picture's own canvas pixels), on one
+    k window [t0, t1] in NEW seconds, so no wall burns ahead of the others (Homie: "Friedland is basically full")."""
+
+    def __init__(self, rb, t0, t1):
+        self.rb, self.t0, self.t1, self.members = rb, t0, t1, []
+
+    def fit(self):
+        """k 0..1 spans only the front's distances over the members' paper (at t0 and t1), not the whole room's,
+        so the window [t0, t1] is all burning, none of it spent crossing empty dark."""
+        lo, hi = [], []
+        for w in self.members:
+            yy, xx = np.nonzero(w.base > 0.05)
+            for t in (self.t0, self.t1):
+                tt = t - w.t_in
+                sc = 1 + w.grow * tt
+                ox = w.cx + w.drift[0] * tt * w.ctx.s
+                oy = w.cy + w.drift[1] * tt * w.ctx.s
+                D = self.rb.F['D']
+                mx = np.clip(np.round(ox + (xx - w.w / 2) * sc).astype(int), 0, D.shape[1] - 1)
+                my = np.clip(np.round(oy + (yy - w.h / 2) * sc).astype(int), 0, D.shape[0] - 1)
+                d = D[my, mx]
+                lo.append(float(d.min()))
+                hi.append(float(d.max()))
+        q = self.rb.ctx.q
+        self.rb.R0, self.rb.R1 = min(lo) - 8 * q, max(hi) + 30 * q
 
 
 class Ash:
@@ -515,7 +565,13 @@ class Wash:
     ghosts in the haze, by dissolving)."""
 
     def __init__(self, ctx, rgb, wall, cx, cy, h_full, t_in, t_out, in_dur=3.0, out_dur=3.5, drift=(0.0, -2.5),
-                 grow=0.010, seed=0, flake_rate=7.0, mode='over', name='', exit='burn'):
+                 grow=0.010, seed=0, flake_rate=7.0, mode='over', name='', exit='burn', clock='old', group=None):
+        # M9i (--retime-fr only): clock 'new' = every time here is in NEW (Darrin's track) seconds, read from T_NEW;
+        # group = a BurnGroup, the picture leaves by the group's one room front over [group.t0, group.t1]
+        self.clock, self.group = clock, group
+        if group is not None:
+            t_out, out_dur, exit = group.t0, group.t1 - group.t0, 'group'
+            group.members.append(self)
         self.ctx, self.wall, self.t_in, self.t_out, self.in_dur, self.out_dur = ctx, wall, t_in, t_out, in_dur, out_dur
         self.drift, self.grow, self.flake_rate, self.mode, self.name, self.exit = drift, grow, flake_rate, mode, name, exit
         x0, x1 = WALLS[wall]
@@ -546,9 +602,13 @@ class Wash:
         self.burn = PaperBurn(ctx, hh, ww, ignition(wall, ww, hh), seed + 50, valid=self.base) if exit == 'burn' else None
 
     def active(self, t):
+        if self.clock == 'new':
+            t = T_NEW
         return self.t_in <= t <= self.t_out + self.out_dur
 
     def draw(self, t, canvas, flakes, ash, dt):
+        if self.clock == 'new':
+            t = T_NEW
         tt = t - self.t_in
         life = max(1e-3, self.t_out - self.t_in)
         br = slide(self.big, self.w, self.h, self.w / 2 + 80 + 9 * self.ctx.s * np.sin(t * 0.21 + self.cx),
@@ -562,23 +622,33 @@ class Wash:
         rgb = self.rgb * (1 - 0.6 * front)[..., None] if self.mode == 'over' else self.rgb
         alpha = (shape * rev).astype(F32)
         emit = rim = None
-        burning = t > self.t_out
-        if burning:
-            k = lin(self.t_out, self.t_out + self.out_dur, t)
-            if self.burn is not None:
-                rgb, alpha, emit, rim = self.burn.apply(rgb, alpha, k, t)
-            else:                                                      # a ghost dissolves back into the haze
-                alpha = alpha * np.clip(((1 - ss(0, 1, k)) * 1.25 - self.n_in) / 0.07, 0, 1)
         sc = 1 + self.grow * tt                                         # constant, linear: nice clean motion
         ow, oh = int(np.ceil(self.w * sc)) + 4, int(np.ceil(self.h * sc)) + 4
         ox = self.cx + self.drift[0] * tt * self.ctx.s
         oy = self.cy + self.drift[1] * tt * self.ctx.s
+        burning = t > self.t_out
+        if burning:
+            k = lin(self.t_out, self.t_out + self.out_dur, t)
+            if self.group is not None:                                 # M9i: the room's one front, sampled where this picture is
+                rb = self.group.rb
+                if not hasattr(self, 'gyy'):
+                    self.gyy, self.gxx = np.mgrid[0:self.h, 0:self.w].astype(F32)
+                gmx = (ox + (self.gxx - self.w / 2) * sc).astype(F32)
+                gmy = (oy + (self.gyy - self.h / 2) * sc).astype(F32)
+                gF = rb.sample(gmx, gmy)
+                rgb, alpha, emit, rim = rb.apply(rgb, alpha, k, t, gF)
+            elif self.burn is not None:
+                rgb, alpha, emit, rim = self.burn.apply(rgb, alpha, k, t)
+            else:                                                      # a ghost dissolves back into the haze
+                alpha = alpha * np.clip(((1 - ss(0, 1, k)) * 1.25 - self.n_in) / 0.07, 0, 1)
         blit(canvas, scaled(rgb, sc, ow, oh), scaled(alpha, sc, ow, oh), ox - ow / 2, oy - oh / 2,
              None if emit is None else scaled(emit, sc, ow, oh), guard=self.ctx.guard, mode=self.mode, tag='pic:' + self.name)
 
         def to_canvas(x, y):
             return ox + (x - self.w / 2) * sc, oy + (y - self.h / 2) * sc
-        if rim is not None:
+        if rim is not None and self.group is not None:
+            self.group.rb.spawn(ash, rim, gF, to_canvas, 30 * self.ctx.s * 2, dt)
+        elif rim is not None:
             self.burn.spawn(ash, rim, self.burn.F, to_canvas, 30 * self.ctx.s * 2, dt)
         if self.mode != 'over' or burning:
             return
@@ -863,11 +933,17 @@ class GenFlag:
                                   short=float(r2.choice([2.4, 2.4, r2.uniform(1.55, 2.0)])))     # some streamers shot away short
                              for _ in range(nt2 + 1)]
 
-    def _v6_maps(self, a):
-        """uc for every pixel of the box, and the cloth textures sampled there."""
+    def _v6_maps(self, a, vc=None):
+        """uc for every pixel of the box, and the cloth textures sampled there. vc (M9i, the fleur flag only): the
+        cloth's per-column (top, height), so the soot, stains and holes ride the cloth's rise and fall vertically too
+        (Homie: the holes slid over the fleurs)."""
         uc = (self.X - self.bd[:, None]) / np.maximum(self.wd, 1.0)[:, None]
         mx = ((uc - self.UC0) / (self.UC1 - self.UC0) * self.NU - 0.5).astype(F32)
-        my = self.Y.astype(F32)
+        if vc is None:
+            my = self.Y.astype(F32)
+        else:
+            top, hgt = vc
+            my = ((self.Y - top[None, :]) / hgt[None, :] * self.fl_H0 + 0.5 * (self.bh - self.fl_H0)).astype(F32)
         T1 = cv2.remap(self.T1, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
         T2 = cv2.remap(self.T2, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
         return uc.astype(F32), T1, T2
@@ -1134,10 +1210,7 @@ class GenFlag:
         self.vc_prev = (fi, top, bot)
         return top, np.maximum(bot - top, 4.0)
 
-    def _fleurs(self, f, uc, whitec, a_key):
-        """Meeting 8 (Louise): the Monarchistes' flag is white with gold fleurs-de-lis, a staggered grid laid in cloth
-        coordinates (uc across, the per-column vertical coordinate down) so it rides the cloth like the tricolour's
-        seams do, shaded by the cloth's own light like whitec."""
+    def _fl_calibrate(self):
         if not hasattr(self, 'fl_wd0'):
             # one fixed reference (frame 0 of the clip), so the pattern's size is the same in every render and every
             # frame: x is locked to uc exactly like the dirt (a per-frame median width made the fleurs swim sideways)
@@ -1148,8 +1221,18 @@ class GenFlag:
             self.fl_H0 = self._vcoord(ak0)
             self.fl_calib = False
             self.tl_prev, self.tl, self.bd, self.wd, self.vc_prev = sv
+
+    def _fleurs(self, f, uc, whitec, a_key):
+        """Meeting 8 (Louise): the Monarchistes' flag is white with gold fleurs-de-lis, a staggered grid laid in cloth
+        coordinates (uc across, the per-column vertical coordinate down) so it rides the cloth like the tricolour's
+        seams do, shaded by the cloth's own light like whitec."""
+        self._fl_calibrate()
         wdm = self.fl_wd0
-        top, hgt = self._vcoord(a_key)
+        vc = getattr(self, 'fl_vc', None)
+        if vc is not None and vc[0] == self.fl_fidx:                    # M9i: this frame's, already made in draw()
+            top, hgt = vc[1]
+        else:
+            top, hgt = self._vcoord(a_key)
         if not hasattr(self, 'fl_tile'):
             cw = max(4.0, 3.0 / FLEUR_COLS * wdm)                       # ~3 cloth units (blue+white+red) across, 10 columns
             ch = self.fl_H0 / FLEUR_ROWS                                 # 9 rows over the cloth's own height
@@ -1233,8 +1316,25 @@ class GenFlag:
         base = np.where(white > 0, 0.50, np.where(red > 0, 0.12, 0.13)).astype(F32)
         base = cv2.GaussianBlur(base, (0, 0), max(1.0, 2.5 * self.ctx.q))  # v5: no bright line along the old stripe seams
         wref = np.array([0.66, 0.51, 0.38], F32)
-        whitec = wref * np.clip(lum / base, 0, 1.4)[..., None]
+        if self.kind == 'fleur' and RETIME_FR:
+            whitec = wref * self._fl_even(lum / base)[..., None]
+        else:
+            whitec = wref * np.clip(lum / base, 0, 1.4)[..., None]
         return f, a, whitec
+
+    def _fl_even(self, s):
+        """M9k (Homie: "bad pixelation ... top middle" on the fleur flag): the generated cloth is a WORN tricolour, and
+        its white band carries baked-in rust stains and grey mottle, while the hard 1.4 clip flattened its highlights and
+        lit blue/red patches into flat pale plateaus. Both showed as blotches on the new all-white cloth. Here the cloth's
+        broad light (folds, the fire's falloff) is kept, the mid-scale mottle around it is pressed down to 40%, and the
+        highlights roll off softly instead of clipping. FR fleur flag only; v14's white flag is untouched."""
+        s = np.clip(s, 0, 3.0).astype(F32)
+        L = cv2.GaussianBlur(s, (0, 0), max(1.5, 0.035 * self.bw))
+        Ls = np.maximum(L, 0.05)
+        d = np.clip(s / Ls, 0.2, 3.0)
+        s2 = Ls * d ** 0.4
+        k = 1.0
+        return np.where(s2 > k, k + 0.35 * np.tanh((s2 - k) / 0.35), s2).astype(F32)
 
     def draw(self, canvas, t, ash=None, dt=0.0, strength=1.0, reveal=1.0, burn=0.0, tear=0.0, bleach=0.0, grey=0.0,
              drain=None, shred=None, tatter=False):
@@ -1249,7 +1349,13 @@ class GenFlag:
             f = whitec
         pad = 0
         if V6:
-            uc, T1, T2 = self._v6_maps(a)
+            vc = None
+            if self.kind == 'fleur' and RETIME_FR:                    # M9i: the cloth rows, once per frame, cached
+                self.fl_fidx = int(round((t + PHYS_D + self.offset) * FPS))
+                self._fl_calibrate()
+                vc = self._vcoord(a_key)
+                self.fl_vc = (self.fl_fidx, vc)
+            uc, T1, T2 = self._v6_maps(a, vc)
             a = a * self._v6_fray(a_key) * self._v6_hem(uc, T2)
             if drain is not None:
                 f = self._v6_drain(f, whitec, T1, T2, *drain)
@@ -1937,7 +2043,10 @@ class Word:
     constant rate for as long as it is up (note 3: nothing is ever static)."""
 
     def __init__(self, ctx, text, wall, fx, fy, size_full, t_in, t_out, font='GFSDidot-Regular.ttf',
-                 colour=np.array([0.90, 0.86, 0.76], np.float32), tracking=0.14, fade=1.2, shadow=0.75, grow=0.005):
+                 colour=np.array([0.90, 0.86, 0.76], np.float32), tracking=0.14, fade=1.2, shadow=0.75, grow=0.005,
+                 clock='old', fade_out=None):
+        self.clock = clock                                             # M9i: 'new' = NEW seconds, read from T_NEW
+        self.fade_out = fade if fade_out is None else fade_out
         self.rgb, self.a = text_layer(ctx, text, font, size_full, colour, tracking)
         self.sh = cv2.GaussianBlur(self.a, (0, 0), max(1.5, ctx.px(size_full) * 0.18)) * shadow
         self.x, self.y = ctx.wall_xy(wall, fx, fy)
@@ -1945,9 +2054,11 @@ class Word:
         self.blur_max = max(1.0, 6 * ctx.s)
 
     def draw(self, canvas, t):
-        if not (self.t_in <= t <= self.t_out + self.fade):
+        if self.clock == 'new':
+            t = T_NEW
+        if not (self.t_in <= t <= self.t_out + self.fade_out):
             return
-        k = ssf(self.t_in, self.t_in + self.fade, t) * (1 - ssf(self.t_out, self.t_out + self.fade, t))
+        k = ssf(self.t_in, self.t_in + self.fade, t) * (1 - ssf(self.t_out, self.t_out + self.fade_out, t))
         a = self.a
         if k < 0.999:
             a = cv2.GaussianBlur(a, (0, 0), self.blur_max * (1 - k) + 0.01)
@@ -2011,6 +2122,79 @@ def draw_colour_wall(ctx, canvas, cw, t, t_in, t_out, ash, dt, rb, dim=1.0, burn
     reg[:] = reg * (1 - a[..., None]) + img * a[..., None] + (0 if emit is None else emit)
 
 
+def t_new_of(t_old):
+    """Inverse TMAP: an old (v14) cue time -> NEW seconds."""
+    if _TMAP is None:
+        tmap_build()
+    return float(np.interp(t_old, _TMAP[1], _TMAP[0]))
+
+
+def t_old_of(t_new):
+    if _TMAP is None:
+        tmap_build()
+    return float(np.interp(t_new, *_TMAP))
+
+
+CW_OUT_FR = 61.1                 # M9i: the colour walls start burning (new s), so CENTRE is opening as Waterloo comes in
+
+
+def cues_fr(ctx, wash, gy):
+    """M9i (--retime-fr only): the pictures and words in NEW seconds (Darrin's French track, docs/words.txt). A picture
+    starts 0.35 s before its word and blooms in 1.4 s, its word fades in ON the spoken word (0.6 s). The pictures of a
+    group leave by ONE room front (BurnGroup): the battles inside-out, the Goya trio outside-in (Homie: "alternate"),
+    the Waterloo trio inside-out. Returns washes, words, groups."""
+    P, IN = 0.35, 1.4
+    gB = BurnGroup(RoomBurn(ctx, 7131), 40.6, 43.9)          # Iéna + Eylau + Friedland: one front, LEFT clear before famine
+    gG = BurnGroup(RoomBurnIn(ctx, 7132), 50.0, 52.6)        # the Goya trio, from the outer edges in
+    gW = BurnGroup(RoomBurn(ctx, 7143), 70.5, 74.0)          # Waterloo + the field + the ravages
+    N = dict(clock='new')
+    W = [
+        wash('battle_austerlitz_DuplessiBertaux', 'L', 0.50, 0.37, 700, 33.04 - P, 35.6, 1, in_dur=IN, out_dur=1.5, **N),
+        wash('battle_wagram_estampe', 'R', 0.50, 0.37, 700, 34.28 - P, 36.9, 2, in_dur=IN, out_dur=1.5, **N),
+        wash('battle_iena_DuplessiBertaux', 'C', 0.50, 0.37, 740, 35.92 - P, 0, 3, in_dur=IN, group=gB, **N),
+        wash('battle_eylau_estampe', 'L', 0.50, 0.37, 700, 37.50 - P, 0, 4, in_dur=IN, group=gB, **N),
+        wash('battle_friedland_1808', 'R', 0.50, 0.37, 700, 38.74 - P, 0, 5, in_dur=IN, group=gB, **N),
+        wash('goya_p50_famine_MadreInfeliz', 'L', 0.50, 0.41, 920, 45.38 - P, 0, 6, grey=True, grow=0.008, in_dur=IN,
+             group=gG, **N),
+        wash('goya_p15_execution_YnoHaiRemedio', 'R', 0.50, 0.41, 920, 47.12 - P, 0, 7, grey=True, grow=0.008, in_dur=IN,
+             group=gG, **N),
+        wash('goya_p18_death_EnterraryCallar', 'C', 0.50, 0.41, 940, 48.88 - P, 0, 8, grey=True, grow=0.008, in_dur=IN,
+             group=gG, **N),
+        wash('battle_waterloo_MontStJean_1815', 'C', 0.50, 0.37, 760, 63.00 - P, 0, 9, in_dur=IN, group=gW, **N),
+        wash('battle_waterloo_field_Jazet_1816', 'L', 0.50, 0.40, 880, t_new_of(107.5), 0, 10, grey=True, grow=0.008,
+             in_dur=2.0, group=gW, **N),
+        wash('goya_p30_ravages_Estragos', 'R', 0.50, 0.40, 900, t_new_of(110.0), 0, 11, grey=True, grow=0.008,
+             in_dur=2.0, group=gW, **N),
+        wash('goya_p41_fleeing_EscapanLlamas', 'C', 0.50, 0.41, 940, t_new_of(136.5), t_new_of(143.5), 12, grey=True,
+             grow=0.008, **N),
+    ]
+    if not V7:
+        W.append(Wash(ctx, gy('goya_p44_fleeing_YoLoVi'), 'L', 0.46, 0.50, 860, 138.0, 157.0, seed=13, drift=(9, 1.0),
+                      grow=-0.008, in_dur=4.0, out_dur=5.0, mode='multiply', name='goya_p44', exit='fade'))
+        W.append(Wash(ctx, gy('goya_p45_fleeing_YestoTambien'), 'R', 0.54, 0.50, 860, 140.0, 157.0, seed=14,
+                      drift=(-9, 1.0), grow=-0.008, in_dur=4.0, out_dur=5.0, mode='multiply', name='goya_p45', exit='fade'))
+    for g in (gB, gG, gW):
+        g.fit()
+    F = dict(clock='new', fade=0.6)
+    words = [
+        Word(ctx, 'AUSTERLITZ', 'L', 0.50, 0.80, 46, 33.04, 35.3, **F),
+        Word(ctx, 'WAGRAM', 'R', 0.50, 0.80, 46, 34.28, 36.6, **F),
+        Word(ctx, 'IÉNA', 'C', 0.50, 0.82, 52, 35.92, 40.4, **F),
+        Word(ctx, 'EYLAU', 'L', 0.50, 0.80, 46, 37.50, 42.4, **F),
+        Word(ctx, 'FRIEDLAND', 'R', 0.50, 0.80, 46, 38.74, 42.4, **F),
+        Word(ctx, 'LIBERTÉ', 'L', 0.50, 0.40, 110, 52.86, 60.2, fade_out=0.9, **F),
+        Word(ctx, 'ÉGALITÉ', 'C', 0.50, 0.40, 110, 54.20, 60.2, colour=np.array([0.10, 0.10, 0.16], F32), shadow=0,
+             fade_out=0.9, **F),
+        Word(ctx, 'FRATERNITÉ', 'R', 0.50, 0.40, 96, 55.80, 60.2, fade_out=0.9, **F),
+        Word(ctx, 'WATERLOO', 'C', 0.50, 0.83, 60, 63.00, 70.0, **F),
+        Word(ctx, 'MONARCHISTES', 'R', 0.50, 0.82, 58, 78.80, 83.9, fade_out=1.2, **F),
+        Word(ctx, 'NAPOLÉONISTES', 'L', 0.50, 0.82, 58, 80.08, 83.9, fade_out=1.2, **F),
+        Word(ctx, '1816', 'C', 0.235, 0.26, 180, 150.0, 154.0, font='PinyonScript-Regular.ttf',
+             colour=np.array([0.95, 0.92, 0.86], F32), tracking=0.02, fade=2.0),
+    ]
+    return W, words, [gB, gG, gW]
+
+
 # --------------------------------------------------------------------------- the scene
 def build(ctx):
     S = {}
@@ -2066,6 +2250,9 @@ def build(ctx):
         Word(ctx, '1816', 'C', 0.235, 0.26, 180, 150.0, 154.0, font='PinyonScript-Regular.ttf',
              colour=np.array([0.95, 0.92, 0.86], F32), tracking=0.02, fade=2.0),
     ]
+    if RETIME_FR:                                    # M9i: the French cue table, in NEW seconds (the table above stays v14's)
+        S['washes'], S['words'], S['groups'] = cues_fr(ctx, wash, gy)
+        S['cw_out'] = t_old_of(CW_OUT_FR)
     S['cwalls'] = [colour_wall(ctx, 'L', BLUE, 21), colour_wall(ctx, 'C', WHITE, 22), colour_wall(ctx, 'R', RED, 23)]
     S['burn_M5'] = RoomBurn(ctx, 501)                  # Liberté/Égalité/Fraternité burn into Waterloo, as one
     S['burn_M6'] = RoomBurn(ctx, 602)                  # the three flags burn, as one
@@ -2146,7 +2333,7 @@ def render_frame(ctx, S, t, dt):
     if 79 <= t <= 111:
         dim = 1 - 0.25 * ssf(96, 101, t)
         for cw, ti in zip(S['cwalls'], (81.0, 83.0, 85.0)):
-            draw_colour_wall(ctx, c, cw, t, ti, 101.5, S['ash_bg'], dt, S['burn_M5'], dim)
+            draw_colour_wall(ctx, c, cw, t, ti, S.get('cw_out', 101.5), S['ash_bg'], dt, S['burn_M5'], dim)
     # M6: France divided: the CENTRE tricolour tears, its right half bleaches white; LEFT tricolour, RIGHT white; all burn
     # the rip runs from the middle up and down (121.5-124), then the halves keep opening (to 127);
     # all three flags burn as ONE front from the middle of CENTRE outward (130.5-137.5)

@@ -133,6 +133,7 @@ RECIPES = {
     'court_b3': lambda: court(beat=3),
     'court_b5': lambda: court(beat=5),
     'court_b7': lambda: court(beat=7),
+    'court_b5cut': lambda: court(beat='5cut'),   # Darren's cut of b5 (docs/S9-DARREN-CUT.md)
     'court_Q1': lambda: court(strike='Q1'),
     'court_Q2': lambda: court(strike='Q2'),
     'court_Q3': lambda: court(strike='Q3'),
