@@ -15,15 +15,16 @@ f.RAISE_V5 = '--raise-v5' in sys.argv
 pr = json.loads(subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width,height',
                                 '-of', 'json', video], capture_output=True, text=True).stdout)['streams'][0]
 W, H = pr['width'], pr['height']
-raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', video, '-f', 'rawvideo', '-pix_fmt', 'gray', '-'],
-                     capture_output=True, check=True).stdout
-V = np.frombuffer(raw, np.uint8).reshape(-1, H, W).astype(np.float32) / 255.0
+proc = subprocess.Popen(['ffmpeg', '-v', 'error', '-i', video, '-f', 'rawvideo', '-pix_fmt', 'gray', '-'],
+                        stdout=subprocess.PIPE)
 seq, rep = f.build_seq(beat)
-N = len(V)
 area, mid, iou, pieces = [], [], [], []
 prev = None
-for i in range(N):
-    g = V[i]
+while True:
+    buf = proc.stdout.read(W * H)
+    if len(buf) < W * H:
+        break
+    g = np.frombuffer(buf, np.uint8).reshape(H, W).astype(np.float32) / 255.0
     blk = g < 0.5
     a = blk.mean()
     m = ((g > 0.15) & (g < 0.85)).mean()
@@ -32,6 +33,8 @@ for i in range(N):
     pc = int((big > 30).sum())
     io = 1.0 if prev is None else (np.logical_and(blk, prev).sum() / max(1, np.logical_or(blk, prev).sum()))
     area.append(a); mid.append(m); iou.append(io); pieces.append(pc); prev = blk
+proc.wait()
+N = len(area)
 area, mid, iou, pieces = map(np.array, (area, mid, iou, pieces))
 print(f'{video}: {N} frames {W}x{H}; seq {len(seq)}')
 # ratio of mid-grey to area: a fade shows a big mid/area rise
