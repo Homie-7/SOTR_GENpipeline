@@ -1,3 +1,82 @@
+# S9-CRT-IDLE · v8 READ SILENT and v9 RAISE WIDE · 16:9, sound OFF (M9x/M9y). v6/v7 and older kept verbatim below.
+# WHY (Homie 2026-11-20 M9x, on the FLOW review): "Can we get rid of the lip movement entirely? Just have his head moving?"
+#   + "generate it in horizontal or something" + "Make an exception and turn off the sound in this one so that the mouth
+#   does not move. Make sure you also figure it out with prompting so that there is no mouth movement." (133 cr approved.)
+# THE ONE CHANGE vs v6/v5: the mouth (sealed, silent, "aloud like a town crier" removed), the frame (16:9, the whole gavel
+#   arc inside it with clear paper on both sides) and the start/end images (the same figure widened to 16:9). Every
+#   other block is v6/v5 word for word. Sound OFF is Homie's exception for these two takes only.
+
+# ---------- v8 READ SILENT ----------
+# SETTINGS: Seedance 2.5 (seedance_2_5) · omni_reference · start AND end image = S9-CRT-IDLE_REST_16x9.png
+#   (04_WORKING_FILES/S9_judge_generated_idle/, the probe last frame widened to 1280x720, figure untouched) · 16:9 · 720p ·
+#   15 s · bitrate standard · batch 1 · sound OFF · 105 cr (quoted).
+# PREDICTION: two straight head-lifts near 3-5 s and 9-11 s, profile still below the nose; risk = the model still
+#   moves the jaw on the reading beats, or zooms in to fill the wide frame.
+
+SCENE: One naval-officer silhouette, solid black on a bone-white field, stands still and reads a scroll in silence, lips pressed together, jaw fixed, breathing, lifting his head straight up to the court now and then, the gavel resting at his side throughout.
+
+REFERENCE: The attached image is both the first and the last frame: pose, shape, size and the field come from it exactly.
+
+FIRST FRAME: Matches the attached image exactly: full length, frontal, small and centred in a wide frame, open paper on both sides, gavel resting at his right side, scroll in the left, head down to it.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off, wide: figure, gavel and scroll stay inside the frame at one size.
+
+ACTION TIMING:
+0:00-0:03 — he reads: slow breaths lift and settle his shoulders, his head moves along the lines, mouth shut, the coat stirs.
+0:03-0:05 — he lifts his head straight up to the viewer and holds, mouth shut, body still.
+0:05-0:09 — he looks back down and reads on, mouth shut.
+0:09-0:11 — he lifts his head straight up to the viewer again and holds, mouth shut, body still.
+0:11-0:15 — he looks back down and reads, breathing, ending exactly in the pose of the attached image.
+
+PHYSICS: The gavel hangs heavy at his side and barely moves. The heavy wool coat lags a beat behind the body. Feet stay planted. His chin and jaw outline holds one fixed shape.
+
+LIGHTING: The flat warm bone-white field of the reference, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. The head stays a bare black shape with a closed, unmoving mouth line: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure, one gavel, one scroll, never swapped hands. The gavel stays down. The mouth stays closed. Nothing newer than 1819.
+
+# ---------- v9 RAISE WIDE ----------
+# SETTINGS: Seedance 2.5 (seedance_2_5) · omni_reference · start image = S9-CRT-IDLE_REST_16x9.png · end image =
+#   fig_SOTR_judge_strike_s9_v1_f40_16x9.png (approved strike frame 40 widened to 1280x720, figure untouched) · 16:9 ·
+#   720p · 4 s · bitrate standard · batch 1 · sound OFF · 28 cr (quoted).
+# PREDICTION: a clean lift overhead with the whole gavel inside the frame; risk = the scroll arm's drop reads as a morph.
+
+SCENE: One naval-officer silhouette, solid black on a bone-white field, stops reading in silence, lowers his scroll and lifts the gavel high overhead, ready to strike, his mouth shut.
+
+REFERENCE: The first attached image is the first frame and the second attached image is the last frame: pose, shape, size in frame and the bone-white field come from them exactly.
+
+FIRST FRAME: Matches the first attached image exactly: full length, frontal, small and centred in a wide frame with open bone-white paper on both sides, gavel resting at his right side, scroll in the left, head down to it.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off, wide: the whole figure and the gavel's full arc stay well inside the frame at the same size throughout.
+
+ACTION TIMING:
+0:00-0:01 — he reads, breathing, mouth shut, then lifts his head toward the viewer.
+0:01-0:03 — he lowers the scroll to his left side and raises the gavel high above his head in his right hand.
+0:03-0:04 — he holds the gavel aloft, ending exactly in the pose of the last attached image.
+
+PHYSICS: The gavel is heavy; his arm drives it up and it settles high. The heavy wool coat lags a beat behind the body. Feet stay planted.
+
+LIGHTING: The flat warm bone-white field of the reference, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. The head stays a bare black shape with a closed, unmoving mouth line: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure. Exactly one gavel and one scroll, never swapped hands. No blow yet: the gavel ends raised. The mouth stays closed. Nothing newer than 1819.
+
+# ===================== v6 / v7, verbatim =====================
+
 # S9-CRT-IDLE · v6 READ (take A) and v7 STILL (take B) · the LEAN PLAN (M9q/M9r). v4/v5 and older kept verbatim below.
 # WHY (Homie 2026-11-20 M9q): "simple silhouette idle ... We don't need to make a whole movie out of this" + "500 credits is
 #   a lot of credits". Lean plan = A + B only (196 cr); C, D dropped. Plan: docs/S9-JUDGE-VO-PLAN.md (REVISED).
