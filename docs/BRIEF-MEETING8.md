@@ -124,3 +124,55 @@ Darren's email (screenshot, 20 Nov): "I've mocked up a version of the judge sequ
       still as an overlay.
    4. Burn direction: mostly inside-out, with an occasional outside-in where it helps. Don't swap often.
    5. The final render: the map fades to transparent (alpha), as already planned.
+
+### 2026-11-20 (M9k live chat): Homie's idle-judge choice (verbatim)
+
+> For this, I absolutely want him breathing and nodding on the stress words. He definitely should lean in on each order and his court swinging. I think his resting position is a bit of a still. At this point, we can probably make it a bit more naturalized, and every time he brings down the gavel, he then snaps back to the image, which is not natural. We want it to look like it's just like a constant video or something. So, do all of that use XPL if you need to, and yeah, just work on it like that. I'm happy with the S6 review stills. I'd like to see it animated so I can give you a final response
+
+-> A (breath + nods on stressed words) AND B (lean + coat swing on every "Order") everywhere; the resting pose must live
+(not a still); NO snap back to the still after each strike: one continuous-looking video. S6 review stills approved;
+he wants the animated review next. ("XPL" unclear in the transcript; read as "use whatever you need"; credits still
+ask-first over ~100.)
+
+### 2026-11-20 (M9k live chat): Homie on the animated S6 French review (`06_S6_wars_FRENCH_review.mp4`)
+
+> I'm thinking I'm big of artifacts on the monarchist flag on top, which kind of breaks the white and cream kind of thing. Is this something that will be fixed in the final render, or do we need to fix it
+> Because it looks like bad pixelation or just something is off. See the top middle part?
+> When the water fade happens, I know that we are fading into still of Sahaja's sample. Can you make it so that the fade happens? And just for the sake of preview, obviously, the final render will be in alpha, but for the sake of this preview, the video that comes underneath is not a still, but it just basically starts as a video as the fadeaway has happened. So it's like a clean merge, just or clean transition so that the showrunners know what the vision is like
+> Other than that, I think it's perfect
+
+(His screenshot: dark mottled patches on the white fleur-de-lis flag, top middle, beside the first seam.)
+-> fix/diagnose the flag blotches; in the REVIEW composite only, Sahaj's sea plays as video once the map has faded
+(not a still). Otherwise S6 French = "perfect".
+> Yeah, make sure the video is just already playing as we are starting to watercolor fade away in the background so it has to look like a seamless singular video, Again, I know the final render will have alpha and it's up to the showrowner to align the clips perfectly, but for the sake of the viewer, I need to convey what this is going to look like
+
+-> correction: Sahaj's sea is already PLAYING under the whole fade (no hold), one seamless video. Review only.
+
+### 2026-11-20 (M9k), Homie on S6 review v2 and the living-judge TEST, verbatim
+
+On the S6 flag (screenshots of the top-middle of the fleur-de-lis flag): "I'm definitely still seeing the white artifacts, so I'm just not sure if that's just a preview thing or if file render will fix it"
+
+On S6 review v2 overall: "It's perfect"
+
+On the judge test: "I can see the judge silhouette and the other element silhouettes kind of overlapping. Can we make it so that the layering-wise, the judge is kind of on top of it, and wherever we see the judge silhouette, but we don't see the other things so that it feels more like everything isn't translucent, that there's layers to it. So, see how the windows are in the back, and then you have the railing-like thing in the middle, and then the judge ahead of it or behind it, depends on how the placement is set. But yeah, I kind of feel odd that it's like this. What do you think"
+
+"The breathing just looks fake and is barely readable. I also don't like how his hand is just kind of up in the air holding the gavel. I think his face should be turning and reading the paper or something as an idle animation"
+
+"You can clearly see the transition from his idle post to the animated portions that we already have as his clothes kind of separate out the scale up, the zoom up / everything looks fake. It needs to feel cohesive and all as a single piece of animation, so I'm not sure how we do it, but that is what we are after."
+
+"The squash and stretch animation, the morphing between the frames that we had and the frames we are animating, they just look incredibly fake. It won't do"
+
+Interpretation (M9k): the warp-based idle (`court_idle.py`) is REJECTED. Wanted: (1) the judge OPAQUE, occluding the windows and the railing (true layer order, no see-through); (2) a real idle: gavel arm down/resting, head turning and reading the paper; (3) idle and strikes as ONE continuous animation, no visible seam or scale jump. Warping can't do this: it needs generated motion (Seedance i2v from the approved still / strike, idle and strikes generated as one take or chained Sequels). That spends credits: estimate first and get Homie's OK before any run over ~100 cr. S6 flag: check the full-res render (not the 0.5-scale review encode) to say whether the white specks are encode or source; fix if source.
+
+### 2026-11-20 (M9l), Homie on the generated-judge cost (~245 cr, up to ~350 with a retake), verbatim
+
+"Yes, start probe"
+
+### 2026-11-20 (M9m), Homie after the 5 s judge idle probe (720p, 35 cr), verbatim
+
+"Yes, that works. Can you generate an entire scene preview, like the WhatsApp composite sort of thing, for me first to see it, and then we can upscale or whatever. I need to see the whole scene 9 run with this new adjustment and idle animations and everything done properly"
+
+-> Probe approved. Generate steps 2-3 at 720p (preview first; upscale later), ~210 cr within the approved ~245-350.
+Then build a WHOLE Scene 9 review composite (WhatsApp-style, like the earlier 08_S9 / S9_darren_cut review) with the
+generated idle + strikes as one continuous judge, the opaque layering, and Darren's mix. Review only, nothing into
+01_FINAL_FOR_SHOW. Opaque test: no explicit verdict; "with this new adjustment" read as keep it (confirm when showing).
