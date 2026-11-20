@@ -14,6 +14,12 @@ PICTURE: the 1080 show files (3_HD_1080_fallback, as share_previews.wa_s9), with
   python tools/s9_darren_review.py OUT.mp4 [--b5 PATH] [--b3 PATH] [--b7 PATH] [--title T] [--test SECONDS] [--dry]
   (--b3/--b7/--title added 2026-11-20 for the generated-judge review, tools/court_gen.py; defaults unchanged)
   python tools/s9_darren_review.py OUT.mp4 --verify      (his mix vs the review's sound, lag + correlation per window)
+
+--mix21 (M10b, 2026-11-21, Homie: "The sound Darrin has made is finalised so we will follow it"): his new mix
+'G:/SOTR/HF/the judge TO BE CUT DOWN 21112026.mov' plays UNCUT (399.17 s, no splice: he filled the old b5 silence with
+new sound at 269-285 s), so b5 runs its full 2424 frames; give --b5 the full-length file. Plus Homie's 1:49-1:57 note:
+the salon (RIGHT) and court b3 (CENTRE) end at PAINT_AT = 109.0 s and the LEFT painting comes up there, holding b4's
+first frame until its own start (117.38 s), so b4's picture keeps its timing against his sound.
 Heavy: run with CPU affinity FFFF3FFF (off Core 7). Writes to a _tmp_ name, renamed when ffmpeg finishes.
 """
 import argparse
@@ -37,10 +43,22 @@ B5_N = 1542                              # render_court.BEATS['5cut'] length 64.
 CUT = 2424 - B5_N                        # 882 frames = 36.75 s
 SPLICE = (253.50, 253.50 + CUT / s9.FPS)  # in his mix, seconds: inside his silence 253.41-290.31
 TITLE = "Scene 9  The Aftermath  (DARREN'S CUT: court b5 101 s -> 64.25 s, review only)"
+MIX21 = r'G:\SOTR\HF\the judge TO BE CUT DOWN 21112026.mov'
+PAINT_AT = 2616                          # frames = 109.0 s: the LEFT painting comes up here (--mix21)
+B4_NAME = 'S9_b4_LEFT_studio.mov'
+ENDS_AT_PAINT = ('S9_b2-3_RIGHT_salon.mov', 'S9_b3_CENTRE_court.mov')
+PAINT = False
+
+
+def use_mix21():
+    global MIX, B5_N, CUT, SPLICE, PAINT
+    MIX, B5_N, CUT, PAINT = MIX21, 2424, 0, True
+    SPLICE = (None, None)
 
 
 def clips(b5, b3=None, b7=None):
-    """[(path, wall index, first frame, frames)] on the cut timeline. b3/b7 = optional replacement court files
+    """[(path, wall index, first frame, hold, end)] on the cut timeline (hold = frames of the first frame shown
+    before the file plays, end = last frame cap; --mix21 painting note only). b3/b7 = optional replacement court files
     (the generated-judge review, tools/court_gen.py); None = the show's own file."""
     b5_start = s9.S[B5_NAME] * s9.FPS
     wall = {'L': 0, 'C': 1, 'R': 2}
@@ -54,7 +72,12 @@ def clips(b5, b3=None, b7=None):
         start = int(round(start))
         if start > b5_start:
             start -= CUT
-        out.append((path, wall[w], start))
+        hold, end = 0, None
+        if PAINT and name == B4_NAME:
+            hold, start = start - PAINT_AT, PAINT_AT
+        if PAINT and name in ENDS_AT_PAINT:
+            end = PAINT_AT
+        out.append((path, wall[w], start, hold, end))
     return out
 
 
@@ -65,6 +88,8 @@ def lines():
     xs, ys = zip(*knots)
 
     def remap(t):
+        if not CUT:
+            return t
         if t >= b6 - 1e-6:
             return t - CUT / s9.FPS
         if t >= b5:
@@ -81,6 +106,10 @@ def lines():
 
 
 def mix_audio(wav, dur):
+    if not CUT:
+        subprocess.check_call(['ffmpeg', '-v', 'error', '-y', '-i', MIX, '-map', '0:a:0', '-af', f'atrim=0:{dur:.4f}',
+                               '-c:a', 'pcm_s24le', wav])
+        return
     a, b = SPLICE
     subprocess.check_call(['ffmpeg', '-v', 'error', '-y', '-i', MIX, '-filter_complex',
                            f'[0:a]atrim=0:{a:.4f},asetpts=PTS-STARTPTS[x];[0:a]atrim=start={b:.4f},asetpts=PTS-STARTPTS[y];'
@@ -92,9 +121,9 @@ def build(out, b5, test, dry, b3=None, b7=None, title=TITLE):
     total = s9.TOTAL - CUT
     n1 = min(total, int(round(test * s9.FPS))) if test else total
     dur = n1 / s9.FPS
-    info = [sp.ffprobe(p) for p, _, _ in cl]
+    info = [sp.ffprobe(p) for p, *_ in cl]
     size = {}
-    for (_, w, _), i in zip(cl, info):
+    for (_, w, *_), i in zip(cl, info):
         size.setdefault(w, (i['w'], i['h']))
     cw, ch, boxes = sp.layout([size[0], size[1], size[2]])
     beats, ln = lines()
@@ -104,16 +133,20 @@ def build(out, b5, test, dry, b3=None, b7=None, title=TITLE):
         _, _, w, h = boxes[li]
         pix = 'setsar=1,format=yuv420p'
         segs, pos = [], 0
-        mine = sorted((start, k) for k, (_, wl, start) in enumerate(cl) if wl == li)
+        mine = sorted((c[2], k) for k, c in enumerate(cl) if c[1] == li)
         for j, (start, k) in enumerate(mine):
-            n = int(round(info[k]['dur'] * s9.FPS))
+            hold, end = cl[k][3], cl[k][4]
+            n = int(round(info[k]['dur'] * s9.FPS)) + hold
             if j + 1 < len(mine):
                 n = min(n, mine[j + 1][0] - start)
+            if end is not None:
+                n = min(n, end - start)
             if start > pos:
                 parts.append(f'color=c=black:s={w}x{h}:r={s9.FPS},trim=end_frame={start - pos},{pix}[g{li}_{j}]')
                 segs.append(f'[g{li}_{j}]')
             f = s9.FADE
-            parts.append(f'[{k}:v]fps={s9.FPS},trim=end_frame={n},scale={w}:{h}:flags=bicubic,{pix},'
+            tp = f'tpad=start={hold}:start_mode=clone,' if hold else ''
+            parts.append(f'[{k}:v]fps={s9.FPS},{tp}trim=end_frame={n},scale={w}:{h}:flags=bicubic,{pix},'
                          f'fade=t=in:s=0:n={f},fade=t=out:s={n - f}:n={f}[c{li}_{j}]')
             segs.append(f'[c{li}_{j}]')
             pos = start + n
@@ -124,13 +157,14 @@ def build(out, b5, test, dry, b3=None, b7=None, title=TITLE):
     fg = ';'.join(parts) + ';' + sp.wa_filter(cw, ch, boxes, title, {0: 'lane0', 1: 'lane1', 2: 'lane2'}, 0.0, dur, ass)
     wav = os.path.join(os.path.dirname(out), '_tmp_captions', 'S9_darren_cut_sound.wav')
     cmd = ['ffmpeg', '-v', 'error', '-y']
-    for p, _, _ in cl:
+    for p, *_ in cl:
         cmd += ['-i', p]
     cmd += ['-i', wav, '-filter_complex', fg, '-map', '[v]', '-map', f'{len(cl)}:a:0', '-t', f'{dur:.3f}',
             *sp.wa_encode(str(s9.FPS), dur, dur), out]
-    for p, w, st in cl:
-        print(f'  {["L", "C", "R"][w]}  {st:5d}  {st / s9.FPS:7.2f} s  {os.path.basename(p)}')
-    print(f'total {total} frames ({total / s9.FPS:.2f} s); his audio spliced {SPLICE[0]:.2f}-{SPLICE[1]:.2f} s')
+    for p, w, st, hold, end in cl:
+        print(f'  {["L", "C", "R"][w]}  {st:5d}  {st / s9.FPS:7.2f} s  hold {hold:4d}  end {end}  {os.path.basename(p)}')
+    print(f'total {total} frames ({total / s9.FPS:.2f} s); his audio ' +
+          (f'spliced {SPLICE[0]:.2f}-{SPLICE[1]:.2f} s' if CUT else f'uncut ({os.path.basename(MIX)})'))
     if not dry:
         mix_audio(wav, dur)
     sp.run(cmd, out, dry, False)
@@ -149,8 +183,9 @@ def verify(out):
     sh = CUT / s9.FPS
     print(f'his mix {len(d) / sr:.2f} s, review {len(o) / sr:.2f} s (want {len(d) / sr - sh:.2f})')
     win, maxlag = int(4 * sr), int(0.25 * sr)
-    for t in (10, 100, 190, 212, 240, 250, 258, 300, 330, 350, 356):
-        src = t if t < SPLICE[0] else t + sh
+    for t in ((10, 100, 108, 112, 190, 212, 240, 250, 272, 300, 330, 350, 370, 390) if not CUT else
+              (10, 100, 190, 212, 240, 250, 258, 300, 330, 350, 356)):
+        src = t if (not CUT or t < SPLICE[0]) else t + sh
         a = o[int(t * sr):int(t * sr) + win]
         b = d[int(src * sr) - maxlag:int(src * sr) + win + maxlag]
         if len(a) < win or np.std(a) == 0:
@@ -173,7 +208,10 @@ def main():
     ap.add_argument('--b3', help='replacement court b3 file (e.g. the generated judge); default the show file')
     ap.add_argument('--b7', help='replacement court b7 file; default the show file')
     ap.add_argument('--title', default=TITLE)
+    ap.add_argument('--mix21', action='store_true', help="M10b: Darren's 21112026 mix uncut + the 1:49 painting")
     a = ap.parse_args()
+    if a.mix21:
+        use_mix21()
     if a.verify:
         verify(a.out)
     else:

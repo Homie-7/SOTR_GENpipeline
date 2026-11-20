@@ -595,7 +595,12 @@ if __name__ == '__main__':
     ap.add_argument('--prefix')
     ap.add_argument('--raise-v5', action='store_true', help='M10a: v8 READ + the v5 RAISE (pose-matched to approved f40)')
     ap.add_argument('--legacy', action='store_true', help='M9x FLOW: v6 READ + v5 RAISE (9:16), no blob drop')
+    ap.add_argument('--full', action='store_true',
+                    help="M10b: b5 at its full 2424 f (101 s): Darren's 21112026 mix is final and plays uncut; the "
+                         "extra 882 f after the last strike are the same still idle, rest-to-rest")
     a = ap.parse_args()
+    if a.full:
+        ga.LENGTH['5cut'] = 2424
     WIDE = not a.legacy
     RAISE_V5 = a.raise_v5
     if a.cmd == 'fit16':
