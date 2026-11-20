@@ -50,6 +50,7 @@ DAMP = 0.5
 NECK = (470, 570)    # gen source rows (1080x1920): damping weight 0 above NECK[0], DAMP below NECK[1]
 PAD = 360            # source px of canvas added on each side for the mirrored edges
 CLEAN_SIGMA = 1.8
+CAP_K = 0.5          # round-cap depth / run width at a clipped edge (M9w)
 
 
 def smooth(x):
@@ -62,40 +63,57 @@ def _touch(b, side):
     return {'T': b[0], 'L': b[:, 0], 'R': b[:, -1]}[side]
 
 
+def _runs(e, gap=12):
+    """Split sorted edge indices into runs (separate shapes touching the same edge)."""
+    cut = np.nonzero(np.diff(e) > gap)[0]
+    return np.split(e, cut + 1)
+
+
 def extend(g):
-    """Pad grey g (1 = field) by PAD on every side; where black touches the top / left / right edge, mirror the strip
-    just inside the edge outward to close the shape. Depth = until the black run is under 35 % of its edge width."""
+    """Pad grey g (1 = field) by PAD on every side; where black touches the top / left / right edge, close the shape
+    OUTSIDE the frame with the visible strip mirrored outward, trimmed by a ROUND CAP (a half-ellipse across the run,
+    depth about half the run width). M9w: the plain mirror (M9v) made a straight-ended bar of the paper (A f42-48), so
+    every run now ends rounded, like the paper's rolled end. Depth = until the black run is under 35 % of its edge
+    width, never more than CAP_K x the run width."""
     H, W = g.shape
     out = np.ones((H + 2 * PAD, W + 2 * PAD), np.float32)
     out[PAD:PAD + H, PAD:PAD + W] = g
     b = g < 0.5
     for side in ('T', 'L', 'R'):
-        e = np.nonzero(_touch(b, side))[0]
-        if len(e) < 3:
-            continue
-        c0, c1 = max(int(e[0]) - 24, 0), int(e[-1]) + 25
-        # work in a "top" frame: rows = depth from the edge, cols = along the edge
-        if side == 'T':
-            strip = g[:PAD, c0:c1]
-        elif side == 'L':
-            strip = g[c0:c1, :PAD].T
-        else:
-            strip = g[c0:c1, ::-1][:, :PAD].T
-        w0 = (strip[0] < 0.5).sum()
-        wd = (strip < 0.5).sum(1)
-        under = np.nonzero(wd < 0.35 * w0)[0]
-        D = int(under[0]) if len(under) else PAD
-        D = min(D, PAD, 260)
-        refl = strip[:D][::-1]                     # row 0 = deepest, row D-1 = the edge row
-        if side == 'T':
-            reg = out[PAD - D:PAD, PAD + c0:PAD + c1]
-            out[PAD - D:PAD, PAD + c0:PAD + c1] = np.minimum(reg, refl)
-        elif side == 'L':
-            reg = out[PAD + c0:PAD + c1, PAD - D:PAD]
-            out[PAD + c0:PAD + c1, PAD - D:PAD] = np.minimum(reg, refl.T)
-        else:
-            reg = out[PAD + c0:PAD + c1, PAD + W:PAD + W + D]
-            out[PAD + c0:PAD + c1, PAD + W:PAD + W + D] = np.minimum(reg, strip[:D].T)
+        e_all = np.nonzero(_touch(b, side))[0]
+        for e in _runs(e_all):
+            if len(e) < 3:
+                continue
+            c0, c1 = max(int(e[0]) - 24, 0), int(e[-1]) + 25
+            # work in a "top" frame: rows = depth from the edge (row 0 = the edge row), cols = along the edge
+            if side == 'T':
+                strip = g[:PAD, c0:c1]
+            elif side == 'L':
+                strip = g[c0:c1, :PAD].T
+            else:
+                strip = g[c0:c1, ::-1][:, :PAD].T
+            run = int(e[-1]) - int(e[0]) + 1
+            w0 = (strip[0] < 0.5).sum()
+            wd = (strip < 0.5).sum(1)
+            under = np.nonzero(wd < 0.35 * w0)[0]
+            D = int(under[0]) if len(under) else PAD
+            dcap = max(6.0, CAP_K * run)
+            D = int(min(D, PAD, 260, np.ceil(dcap)))
+            u = np.arange(c0, c0 + strip.shape[1], dtype=np.float32)[None, :]
+            r = np.arange(D, dtype=np.float32)[:, None] + 0.5
+            m, a = (e[0] + e[-1]) / 2.0, run / 2.0 + 2.0
+            q = ((u - m) / a) ** 2 + (r / dcap) ** 2
+            cap = np.clip((1.0 - q) * min(a, dcap) / 1.5, 0, 1)      # ~1.5 px soft rim
+            ef = 1.0 - (1.0 - strip[:D]) * cap                       # edge-first, capped mirror
+            if side == 'T':
+                reg = out[PAD - D:PAD, PAD + c0:PAD + c1]
+                out[PAD - D:PAD, PAD + c0:PAD + c1] = np.minimum(reg, ef[::-1][:, :reg.shape[1]])
+            elif side == 'L':
+                reg = out[PAD + c0:PAD + c1, PAD - D:PAD]
+                out[PAD + c0:PAD + c1, PAD - D:PAD] = np.minimum(reg, ef[::-1].T[:reg.shape[0]])
+            else:
+                reg = out[PAD + c0:PAD + c1, PAD + W:PAD + W + D]
+                out[PAD + c0:PAD + c1, PAD + W:PAD + W + D] = np.minimum(reg, ef.T[:reg.shape[0]])
     return out
 
 
