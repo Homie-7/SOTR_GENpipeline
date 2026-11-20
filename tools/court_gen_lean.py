@@ -42,8 +42,9 @@ IMPACT_A = ga.IMPACT_A
 CL_MID = 0.48
 EASE_CL = 24
 EASE = 14
+REST_PX = 3500
 LIFT_ONSET = {'L1': 104, 'L2': 248}
-STILL = {3: [(706, 10 ** 9)], '5cut': [(1010, 1168), (1358, 10 ** 9)], 7: []}
+STILL = {3: [(706, 10 ** 9)], '5cut': [(1030, 1168), (1358, 10 ** 9)], 7: []}
 CUES = {3: [], '5cut': [(867, 'L1'), (957, 'L2')], 7: []}
 
 
@@ -66,13 +67,17 @@ class Pieces:
 
     def __init__(self, R6):
         self.j = cg.Joins(R6)
-        cuts = self.j.cuts
+        # v6 breathes and reads: its frames are 2-7k px off f0 at rest (frame-to-frame max 3.6k), so the shipped
+        # 1100 px rest test finds only f0-2. Rest here = under REST_PX, a jump the size of one frame's own motion.
+        xr = np.array([np.logical_xor(f, self.j.m[0]).sum() for f in self.j.m])
+        self.j.cuts = cuts = [i for i in range(len(R6)) if xr[i] < REST_PX]
         self.n = len(R6)
         self.lift = {}
-        for k, on in LIFT_ONSET.items():
-            a = max(c for c in cuts if c <= on - 4)
-            b = min(c for c in cuts if c >= on + 60)
+        for k, on in LIFT_ONSET.items():        # the calmest frame just before / after each lift
+            a = on - 40 + int(np.argmin(xr[on - 40:on - 3]))
+            b = on + 56 + int(np.argmin(xr[on + 56:on + 80]))
             self.lift[k] = (a, b, on - a)
+        self.xr = xr
 
 
 class Line(ga.Line):
@@ -91,6 +96,7 @@ class Line(ga.Line):
                 continue
             a, b, d = self.p.lift[L]
             s = max(pos, t - d)
+            b = min(b, a + o1 - s)
             self.quiet(s - pos, size)
             self.add('R6', range(a, b), size)
             pos = s + (b - a)
@@ -109,18 +115,9 @@ class Line(ga.Line):
             self.add('R7', range(k), size)
             gap -= k
 
-    def idle(self, gap, size, to_end=False):
-        o0, o1 = len(self.seq), len(self.seq) + gap
-        cuts = sorted([o0, o1] + [x for s in STILL[self.beat] for x in s if o0 < x < o1])
-        for a, b in zip(cuts, cuts[1:]):
-            is_still = any(s0 <= a and b <= s1 for s0, s1 in STILL[self.beat])
-            (self.still if is_still else self.speak)(a, b, size) if is_still else self.speak(a, b, size)
-            if is_still:
-                pass
-        assert len(self.seq) == o1, (self.beat, len(self.seq), o1)
-
 
 def _idle(self, gap, size, to_end=False):
+    """Fill `gap` frames: R7 inside the beat's STILL windows, R6 (with cued lifts) elsewhere."""
     o0, o1 = len(self.seq), len(self.seq) + gap
     pts = sorted(set([o0, o1] + [x for s in STILL[self.beat] for x in s if o0 < x < o1]))
     for a, b in zip(pts, pts[1:]):
@@ -256,7 +253,12 @@ def flow_warp(cur, target, w):
 def build_seq(beat, sc=None):
     fitd = ga.load_fit()
     R6 = sc.takes['R6'] if sc else cg.load_take(take_path('R6'))
-    n7 = len(sc.takes['R7']) if sc else len(cg.load_take(take_path('R7')))
+    if sc:
+        n7 = len(sc.takes['R7'])
+    elif glob.glob(os.path.join(GEN, 'S9-CRT-IDLE_v7_still_*.mp4')):
+        n7 = len(cg.load_take(take_path('R7')))
+    else:
+        n7 = 193                     # plan only, before v7 is downloaded (8 s at 24 fps)
     return timeline(beat, fitd['frames']['T'], fitd['frames']['U'], Pieces(R6), n7)
 
 
