@@ -56,3 +56,8 @@ causes: `docs/S9-JUDGE-M9u-DIAGNOSIS.md`.
   (DECISIONS: new mix = the 21112026 .mov; review 1:49-1:57 shows the LEFT painting instead of studio + judge, sound
   timing unchanged; Claude decides the fix; credits allowed on the new account if that is better; talk to him in plain
   words, no take codes.)
+- 2026-11-21 (M10c): "Ping me when the review is ready and open in explorer" (PushNotification when the FLOW3 review is
+  checked and Explorer is open.) Asked what 4K of the updated show files will cost (answered ~130 cr for the three court
+  beats, ~150-180 with the court backup loops; not approved). Then: "Because I need to keep at least 1500 hf credits after
+  this project is finished" (DECISION: hard floor 1,500 cr on the new account; 3,000 now, so at most ~1,500 more for
+  everything left, 4K included.)
