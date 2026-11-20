@@ -25,6 +25,7 @@ WHAT CHANGES AGAINST LEAN (the approved strike's FRAMES stay untouched, never wa
   python tools/court_gen_flow.py sheets VIDEO.mp4 --beat B --prefix OUTPREFIX
 """
 import argparse
+import json
 import os
 import subprocess
 import sys
@@ -47,11 +48,162 @@ SIZE = {3: 'Q1', '5cut': 'Q2', 7: 'Q4'}   # M9x (Homie): b7 keeps the torso fram
 CL_GEN = 0.9
 EASE_A = 20          # joins with an approved frame
 EASE_I = 30          # joins inside the idle
+EASE_UA = 30         # WIDE: v9 RAISE end -> approved f40 (static v9 tail, so nothing freezes)
 DAMP = 0.5
 NECK = (470, 570)    # gen source rows (1080x1920): damping weight 0 above NECK[0], DAMP below NECK[1]
 PAD = 360            # source px of canvas added on each side for the mirrored edges
 CLEAN_SIGMA = 1.8
 CAP_K = 0.5          # round-cap depth / run width at a clipped edge (M9w)
+
+# ------------------------------------------------------------------------------------------------ M9y: 16:9 takes
+# v8 READ SILENT (replaces R6 v6) and v9 RAISE WIDE (replaces U v5) are 1280x720. They are NOT forced through the
+# 9:16 source frame: each frame is upscaled x1.5 (1920x1080) and mapped straight onto the wall by one matrix,
+# wall = place . corr . MAP, where MAP (fit16) puts the 16:9 rest pose on the v6 rest pose in the old 1080x1920 source
+# grid, so FEET_Y / K / the Q sizes / NECK all keep working. Nothing is clipped: the wide frame covers the wall.
+# `--legacy` renders the M9x FLOW (v6 + v5) as before.
+WIDE = True
+W16, H16 = 1280, 720
+FIT16_JSON = os.path.join(cg.GEN, '_fit_16x9_v8v9.json')
+LIFT16 = {'L1': 68, 'L2': 214}   # v8 head turns to the front (court) start f68 / f214, back by f136 / f281
+BLOB_FRAC = 0.004                # black pieces smaller than this x the largest are dropped (scroll blobs, M9x)
+
+
+def take16_path(tag):
+    import glob
+    pat = {'R6': 'S9-CRT-IDLE_v8_read_*.mp4', 'U': 'S9-CRT-IDLE_v9_raise_*.mp4'}[tag]
+    p = sorted(glob.glob(os.path.join(cg.GEN, pat)))
+    assert len(p) == 1, (tag, p)
+    return p[0]
+
+
+def load16(path):
+    raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', path, '-f', 'rawvideo', '-pix_fmt', 'gray', '-'],
+                         capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.uint8).reshape(-1, H16, W16)
+
+
+def prep16(g720, blur=True):
+    """1280x720 grey uint8 -> 1920x1080 float 0..1, white specks inside the black filled (as court_gen.prep)."""
+    g = cv2.resize(g720.astype(np.float32), (1920, 1080), interpolation=cv2.INTER_CUBIC) / 255.0
+    black = (g < 0.5).astype(np.uint8)
+    n, lab, st, _ = cv2.connectedComponentsWithStats(1 - black, 8)
+    for i in range(1, n):
+        x, y, w, h, area = st[i]
+        if area < 600 and not (x == 0 or y == 0 or x + w >= 1920 or y + h >= 1080):
+            g[lab == i] = 0.0
+    return cv2.GaussianBlur(g, (0, 0), CLEAN_SIGMA) if blur else g
+
+
+def m3(M):
+    return np.vstack([np.asarray(M, np.float64), [0, 0, 1]])
+
+
+def map16(fit16):
+    s, tx, ty = fit16['map']
+    return np.float64([[s, 0, tx], [0, s, ty], [0, 0, 1]])
+
+
+def to_src(g16, fit16):
+    """A prepped 16:9 frame in the old 1080x1920 source grid (for fitting / measuring only)."""
+    return cv2.warpAffine(g16, map16(fit16)[:2].astype(np.float32), (SW, SH), flags=cv2.INTER_CUBIC, borderValue=1.0)
+
+
+def place16(g16, sz, corr, fit16):
+    s = sz['s']
+    if sz['floor']:
+        P = [[s, 0, OW / 2 - s * SW / 2], [0, s, OH - s * cg.FEET_Y]]
+    else:
+        P = [[s, 0, OW / 2 - s * sz['cx']], [0, s, OH / 2 - s * sz['cy']]]
+    M = m3(P) @ m3(ga.corr_matrix(corr)) @ map16(fit16)
+    grey = cv2.warpAffine(g16, M[:2].astype(np.float32), (OW, OH), flags=cv2.INTER_CUBIC, borderValue=1.0)
+    return np.clip((grey - 0.44) / 0.12, 0, 1)
+
+
+def drop_blobs(m):
+    """Drop loose black pieces (under BLOB_FRAC x the largest piece) from a wall mask (1 = field), with their soft rim,
+    never touching pixels within 2 px of a kept piece."""
+    black = (m < 0.5).astype(np.uint8)
+    n, lab, st, _ = cv2.connectedComponentsWithStats(black, 8)
+    if n <= 2:
+        return m
+    areas = st[1:, 4]
+    small = [i + 1 for i, a in enumerate(areas) if a < BLOB_FRAC * areas.max()]
+    if not small:
+        return m
+    rem = np.isin(lab, small).astype(np.uint8)
+    keep = black & (1 - rem)
+    near_r = cv2.dilate(rem, np.ones((7, 7), np.uint8)) > 0
+    near_k = cv2.dilate(keep, np.ones((5, 5), np.uint8)) > 0
+    m = m.copy()
+    m[near_r & ~near_k] = 1.0
+    return m
+
+
+def _fit_map(mov, tgt):
+    """(s, tx, ty) putting 16:9 prepped `mov` (1080x1920 hxw) on source-grid `tgt` (1920x1080 hxw), IoU of black."""
+    def box(b):
+        ys, xs = np.nonzero(b)
+        return xs.mean(), ys.min(), ys.max()
+    mx, my0, my1 = box(mov < 0.5)
+    tx_, ty0, ty1 = box(tgt < 0.5)
+    s0 = (ty1 - ty0) / (my1 - my0)
+    best = (-1, None)
+    t = tgt < 0.5
+    q = 0.25
+    tq = cv2.resize(tgt, None, fx=q, fy=q, interpolation=cv2.INTER_AREA) < 0.5
+    mq = cv2.resize(mov, None, fx=q, fy=q, interpolation=cv2.INTER_AREA)
+    for s in np.arange(s0 * 0.97, s0 * 1.0301, 0.002):
+        bx, by = tx_ - s * mx, ty1 - s * my1
+        for dx in range(-24, 25, 3):
+            for dy in range(-24, 25, 3):
+                M = np.float32([[s, 0, (bx + dx) * q], [0, s, (by + dy) * q]])
+                w = cv2.warpAffine(mq, M, (tq.shape[1], tq.shape[0]), flags=cv2.INTER_LINEAR, borderValue=1.0) < 0.5
+                v = ga.iou(w, tq)
+                if v > best[0]:
+                    best = (v, (float(s), float(bx + dx), float(by + dy)))
+    s1, x1, y1 = best[1]
+    best = (-1, None)
+    for s in np.arange(s1 - 0.003, s1 + 0.00301, 0.0005):
+        for dx in range(-3, 4):
+            for dy in range(-3, 4):
+                c = (round(float(s), 5), x1 + dx, y1 + dy)
+                M = np.float32([[c[0], 0, c[1]], [0, c[0], c[2]]])
+                v = ga.iou(cv2.warpAffine(mov, M, (SW, SH), flags=cv2.INTER_CUBIC, borderValue=1.0) < 0.5, t)
+                if v > best[0]:
+                    best = (v, c)
+    return best
+
+
+def fit16():
+    """MAP: v8 f0 onto v6 f0 (the rest every old fit used). U corrections for v9 as court_gen_approved.measure."""
+    R6 = cg.load_take(gl.take_path('R6'))
+    r0 = cg.prep(R6[0])
+    v8, v9 = load16(take16_path('R6')), load16(take16_path('U'))
+    v, c = _fit_map(prep16(v8[0], False), r0)
+    print(f'MAP v8 f0 -> v6 f0: s {c[0]:.5f} tx {c[1]:.1f} ty {c[2]:.1f}  IoU {v:.4f}', flush=True)
+    out = {'files': {'R6': os.path.basename(take16_path('R6')), 'U': os.path.basename(take16_path('U'))},
+           'map': list(c), 'map_iou': round(v, 4), 'frames': {'U': len(v9), 'R6': len(v8)}}
+    v9f0 = prep16(v9[0], False)
+    v_, c_ = _fit_map(v9f0, r0)
+    print(f'(check) v9 f0 own map: s {c_[0]:.5f} tx {c_[1]:.1f} ty {c_[2]:.1f} IoU {v_:.4f}', flush=True)
+    src = rc.load_source()
+    ends = {'U_start': (to_src(v9f0, out), {'rest': r0}),
+            'U_end': (to_src(prep16(v9[-1], False), out), {k: ga.a_to_gen(src[40], k) for k in ('floor', 'Q4')})}
+    for name, (mov, tg) in ends.items():
+        for k, t in tg.items():
+            raw = ga.iou(mov < 0.5, t < 0.5)
+            v, c = ga.fit(mov, t)
+            out[f'{name}_{k}'] = dict(corr=c, iou_raw=round(raw, 4), iou=round(v, 4))
+            print(f'{name:8s} {k:5s}  raw IoU {raw:.4f} -> {v:.4f} after s {c[0]:.4f} dx {c[1]:+.0f} dy {c[2]:+.0f}',
+                  flush=True)
+    with open(FIT16_JSON, 'w') as f:
+        json.dump(out, f, indent=1)
+    print('->', FIT16_JSON)
+
+
+def load_fit16():
+    with open(FIT16_JSON) as f:
+        return json.load(f)
 
 
 def smooth(x):
@@ -218,6 +370,8 @@ def add_warps(seq):
         if p['src'] == 'A' and q['src'] == 'A':
             continue
         E = EASE_A if 'A' in (p['src'], q['src']) else EASE_I
+        if WIDE and (p['src'], q['src']) == ('U', 'A'):
+            E = EASE_UA                             # the v9 -> f40 distance-field morph needs room (join_warp)
         if q['src'] != 'A':
             for i in range(E):
                 k = j + i
@@ -250,11 +404,27 @@ def flow_warp_w(cur, target, wmap):
                      borderMode=cv2.BORDER_CONSTANT, borderValue=1.0)
 
 
+def merged_fit():
+    """The approved-strike fit; in WIDE mode its U entries come from the 16:9 fit (v9)."""
+    fitd = ga.load_fit()
+    if WIDE:
+        f16 = load_fit16()
+        fitd = dict(fitd, frames=dict(fitd['frames'], U=f16['frames']['U']))
+        for k in ('U_start_rest', 'U_end_floor', 'U_end_Q4'):
+            fitd[k] = f16[k]
+        fitd['_16'] = f16
+    return fitd
+
+
 class Scene(gl.Scene):
     def __init__(self, fitd):
         super().__init__(fitd)
         self.rest = {}
         self.wmaps = {}
+        if WIDE:
+            self.f16 = fitd['_16']
+            for k in ('R6', 'U'):
+                self.takes[k] = load16(take16_path(k))
 
     def wmap(self, size):
         if size not in self.wmaps:
@@ -267,10 +437,17 @@ class Scene(gl.Scene):
         return self.wmaps[size]
 
     def raw(self, src, f, size):
+        m = self._raw(src, f, size)
+        return drop_blobs(m) if WIDE else m
+
+    def _raw(self, src, f, size):
         if src == 'A':
             g = self.src[f]
             pad = touches(g)
             return place_floor(extend(g) if pad else g, rc.SIZES[size], rc.FEET_Y, pad)
+        if WIDE and src in ('R6', 'U'):
+            corr = ga.Scene.corr(self, src, f, size) if src == 'U' else (1.0, 0.0, 0.0)
+            return place16(prep16(self.takes[src][f]), cg.SIZES[size], corr, self.f16)
         g = prep_clean(self.takes[src][f])
         if src in 'TU':
             g = ga.apply_corr(g, ga.Scene.corr(self, src, f, size))
@@ -298,14 +475,40 @@ class Scene(gl.Scene):
 
 
 def build_seq(beat, sc=None):
-    fitd = ga.load_fit()
-    R6 = sc.takes['R6'] if sc else cg.load_take(gl.take_path('R6'))
+    fitd = merged_fit()
+    if WIDE:
+        gl.LIFT_ONSET = LIFT16            # v8's head turns (gl.Pieces reads this module global)
+        R6 = sc.takes['R6'] if sc else load16(take16_path('R6'))
+    else:
+        R6 = sc.takes['R6'] if sc else cg.load_take(gl.take_path('R6'))
     n7 = len(sc.takes['R7']) if sc else len(cg.load_take(gl.take_path('R7')))
     return timeline(beat, fitd['frames']['T'], fitd['frames']['U'], gl.Pieces(R6), n7)
 
 
+def sdf_morph(cur, target, w):
+    """Blend two masks (grey, 1 = field) through their signed distance fields: the figure stays one solid shape
+    (no flow tearing) while it changes pose. Edge softness ~1.5 px, like the source masks."""
+    if w <= 0.001:
+        return cur
+    def sdf(m):
+        fig = (m < 0.5).astype(np.uint8)
+        return (cv2.distanceTransform(1 - fig, cv2.DIST_L2, 5) - cv2.distanceTransform(fig, cv2.DIST_L2, 5))
+    d = (1 - w) * sdf(cur) + w * sdf(target)        # > 0 = field
+    return np.clip(0.5 + d / 3.0, 0, 1).astype(cur.dtype)
+
+
+def join_warp(src, cur, ws, target, w):
+    """WIDE: v9 RAISE ends off approved f40's pose (IoU ~0.67), too far for Farneback (it tears into blotches), and its
+    scroll is drawn unlike v8's (Farneback holes the scroll top and leaves specks at READ -> RAISE). So every join that
+    touches v9 morphs by distance field; the others keep the flow warp Homie praised. Specks from any warp are dropped."""
+    if WIDE and 'U' in (src, ws):
+        return sdf_morph(cur, target, w)
+    m = gl.flow_warp(cur, target, w)
+    return drop_blobs(m) if WIDE else m
+
+
 def frames(beat, clean=False):
-    sc = Scene(ga.load_fit())
+    sc = Scene(merged_fit())
     seq, _ = build_seq(beat, sc)
     t0 = BEAT_T0[5 if beat == '5cut' else beat]
     rng = np.random.default_rng(1817)
@@ -318,7 +521,7 @@ def frames(beat, clean=False):
         cl = sc.cl(s['src'], s['f'], s['size'])
         if s['warp']:
             ws, wf, w = s['warp']
-            m = gl.flow_warp(m, sc.mask(ws, wf, s['size']), w)
+            m = join_warp(s['src'], m, ws, sc.mask(ws, wf, s['size']), w)
             cl = cl * (1 - w) + sc.cl(ws, wf, s['size']) * w
         im = compose_opaque(sc, n, t0, m, cl, clean)
         if s['impact']:
@@ -379,13 +582,17 @@ def sheets(video, beat, prefix):
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['plan', 'render', 'sheets'])
+    ap.add_argument('cmd', choices=['plan', 'render', 'sheets', 'fit16'])
     ap.add_argument('out', nargs='?')
     ap.add_argument('--beat', type=lambda s: int(s) if s.isdigit() else s, choices=[3, '5cut', 7])
     ap.add_argument('--clean', action='store_true')
     ap.add_argument('--prefix')
+    ap.add_argument('--legacy', action='store_true', help='M9x FLOW: v6 READ + v5 RAISE (9:16), no blob drop')
     a = ap.parse_args()
-    if a.cmd == 'plan':
+    WIDE = not a.legacy
+    if a.cmd == 'fit16':
+        fit16()
+    elif a.cmd == 'plan':
         plan(a.beat)
     elif a.cmd == 'render':
         render(a.out, a.beat, a.clean)
