@@ -1,0 +1,46 @@
+# S9-CRT-IDLE · v1 · PROBE · the judge at rest, reading
+# Register tag of the seed: fig_SOTR_judge_s9_v1 (02_APPROVED_BUILDING_BLOCKS/stills/fig_SOTR_judge_s9_v1.png)
+# WHY (Homie 2026-11-20): the warp idle (court_idle.py) is rejected ("breathing looks fake", "hand up in the air").
+#   Wanted: gavel arm down and resting, head turning to read the paper; later idle + strike as ONE take.
+#   Approved plan step 1 ("Yes, start probe"): a 5 s probe. Question it answers: does Seedance keep the flat
+#   two-tone silhouette while the pose changes, and does the head turn read?
+# NEW PROMPT (not a variant of S9-CRT-STRIKE): written in the labelled-block layout of the approved strike,
+#   so steps 2-3 can patch it line by line. Plain words for the reference (CLI run, token syntax unverified).
+#
+# SETTINGS (run via Higgsfield CLI, 2026-11-20)
+#   Model:      Seedance 2.5 (seedance_2_5)
+#   Mode:       omni_reference, start image = fig_SOTR_judge_s9_v1.png (1536x2752)
+#   Aspect:     9:16
+#   Resolution: 720p (35 cr). 1080p = 80 cr for 5 s (16 cr/s): the ~245 cr plan was quoted at 720p.
+#   Duration:   5 s
+#   Quality:    bitrate standard
+#   Batch:      1
+#   Sound:      ON (generate_audio true; scratch only)
+# PREDICTION: the arm lowers within the first ~1.5 s and the head tilts down toward the scroll; risk = the
+#   silhouette picks up grey/shading or a face profile when the head turns.
+
+SCENE: One naval-officer silhouette, solid black on a bone-white field, lowers his raised gavel to rest at his side and turns his head down to read the scroll in his other hand.
+
+REFERENCE: The attached image is the first frame: pose, silhouette shape, gavel, scroll and the bone-white backlit field come from it exactly.
+
+FIRST FRAME: Matches the attached image exactly: full length, frontal, centred, feet planted apart, gavel raised in the right hand, scroll held out in the left.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off. The camera never moves.
+
+ACTION TIMING:
+0:00-0:01.5 — he brings the gavel arm down, unhurried and heavy, until the gavel hangs at his right side, head down.
+0:01.5-0:05 — he raises the scroll a little and his head turns and tips down toward it: he is reading. His shoulders rise and fall with slow breaths, the long coat stirs and settles.
+
+PHYSICS: The gavel has real weight; the arm settles with it, no bounce. The coat is heavy wool and lags a beat behind the body. Feet stay planted.
+
+LIGHTING: The flat warm bone-white field of the reference, softly brighter at its centre, unchanged across the take.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay one solid flat black mass with crisp clean edges in every frame, including while the head turns: the head stays a bare black shape, no face, no eyes, no hair, no hat.
+
+STYLE: Flat graphic image: one solid pure black silhouette on a bone-white field, like a shadow cast on a lit paper screen. Two tones only.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure. Exactly one gavel and one scroll, never swapped hands. Nothing newer than 1819.
