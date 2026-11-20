@@ -100,3 +100,27 @@ Darren's email (screenshot, 20 Nov): "I've mocked up a version of the judge sequ
 
 -> the idle-judge movement options are drawn FROM Darren's mix: what is audible under each hold (room tone, wind, crowd,
    fire, rain...) decides what moves (scrim in a draught, flame flicker, dust). Analyse the mix's holds first, then propose.
+
+### 2026-11-20 (M9g live chat): Homie's notes on the S6 French review composite (`06_S6_wars_FRENCH_review.mp4`)
+
+> Recording some minor feedback here. I feel like the voiceover and the appearance of the video assets are not fully aligned, so I need you to adjust their pop-up timings. So when the VO says Eylau Friedland etc, make sure That the things are aligning as they pop up, and also the other things should animate away and appear accordingly so that it all feels nicely based and cohesive. The Iena burnaway affects Eylau much faster than it affects Friedland, so I don't think it's properly done. You need to make sure that all the animation and burnaways and everything kind of align seamlessly across all screens, friedland is basically full there while the rest of the scenes have burned away.
+>
+> The holes on the monarchist flag don't feel like they're aligning as the flag is flickering and moving. Can you fix that?
+>
+> Yeah, the overall timing of images doesn't feel like it's aligning that well
+>
+> Feel free to alternate the burning instead of burning from inside to out to outside to in sometimes as well, wherever you think it might be necessary, but don't swap too much, maybe once in a while
+>
+> and again, the final render will have the map fadeaway to transparent
+
+(With a screenshot of the RIGHT fleur-de-lis Monarchistes flag, its dark holes sitting still while the cloth moves:
+`D:\SOTR\SOTR_MEDIA\04_WORKING_FILES\S6_french_review\notes_2026-11-20\homie_fleur_flag_holes.png`.)
+
+-> 1. Every picture's pop-up lands ON its word in Darrin's VO, read word by word (Austerlitz, Iéna, Eylau, Friedland... and
+      every other named image). Exits and entrances are re-timed with them, so the scene is paced and cohesive.
+   2. The burn-aways are ONE front across all three walls. Iéna's burn must not eat Eylau faster than Friedland. Friedland
+      is "basically full" while the rest have burned away. Check it by measurement, per wall.
+   3. The fleur flag's holes and wear must ride the generated cloth (the same cloth coordinates as the fleurs), not sit
+      still as an overlay.
+   4. Burn direction: mostly inside-out, with an occasional outside-in where it helps. Don't swap often.
+   5. The final render: the map fades to transparent (alpha), as already planned.
