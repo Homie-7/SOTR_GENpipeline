@@ -34,3 +34,12 @@ causes: `docs/S9-JUDGE-M9u-DIAGNOSIS.md`.
   movement. If it stays within budget then you can go ahead and generate."
   (DECISION: sound OFF for the v8 READ and v9 RAISE takes only, an exception to the sound rule; the prompt must also hold
   the mouth closed. GO, within 142.3 cr.)
+- 2026-11-21 (M9z, on the FLOW2 review, with a still of the b7 torso at ~4:57: the scroll a soft lumpy mitten-shaped blob):
+  "the 3:29 morph is absolutely disgraceful you can literally see him almost like water color fade away and then come back
+  there is no continuity, same around 4:01. Around 4:57 i see off morphing aND ARTIFACTS. After two days of working and
+  spending nearly 500 or more Higgsfield credits, this is an unacceptable result. We are almost there, but I need you to
+  fix these errors. You can clearly see it frame by frame. How did you miss this? Are you able to fix this or not? Because
+  these issues looks horrific"
+  (FIX: no morph/dissolve that fades the figure (3:29, 4:01: the sdf_morph raise->strike joins in b5cut); no off-morphing
+  or artifacts in b7 (4:57, scroll shape). CHECK FRAME BY FRAME across every join, every frame, not every 2nd frame at +-6.
+  Still saved: `04_WORKING_FILES/S9_gen_judge_review/_HOMIE_NOTE_FLOW2_457_still.webp`.)
