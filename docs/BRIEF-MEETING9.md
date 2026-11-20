@@ -43,3 +43,16 @@ causes: `docs/S9-JUDGE-M9u-DIAGNOSIS.md`.
   (FIX: no morph/dissolve that fades the figure (3:29, 4:01: the sdf_morph raise->strike joins in b5cut); no off-morphing
   or artifacts in b7 (4:57, scroll shape). CHECK FRAME BY FRAME across every join, every frame, not every 2nd frame at +-6.
   Still saved: `04_WORKING_FILES/S9_gen_judge_review/_HOMIE_NOTE_FLOW2_457_still.webp`.)
+- 2026-11-21 (M10a, after the diagnosis): "An update from Darren, he has done some sound design changes and has added some
+  more changes to the thing. So you will be referring to this file here "G:\SOTR\HF\the judge TO BE CUT DOWN 21112026.mov"
+  The voiceover finishes saying sufficient number of lifeboats, Quite a bit of pause before the left screen with the
+  painting comes up, Get rid of the part between one minute and 49 seconds to one minute and 57 seconds, Those frames are
+  pointless with the studio and the judge. We can just bring in the painting rather than having the studio and the judge.
+  But everything stays aligned with the sound design. I simply mean that having those few seconds as the painting is better
+  than to have the judge and the studio. In terms of your diagnosis and how to fix things, you will have to make that
+  decision because I lose track when you say V5, B1, or things like that. I have connected to a new Higgsfield account. If
+  you must use it, check if the connected account is running, Whatever makes it cheaper and better, but those issues
+  absolutely have to be sorted"
+  (DECISIONS: new mix = the 21112026 .mov; review 1:49-1:57 shows the LEFT painting instead of studio + judge, sound
+  timing unchanged; Claude decides the fix; credits allowed on the new account if that is better; talk to him in plain
+  words, no take codes.)
