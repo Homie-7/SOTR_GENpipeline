@@ -5,8 +5,9 @@ approved-strike review and the shipped beats stay bit-identical. Notes: docs/HAN
 causes: docs/S9-JUDGE-M9u-DIAGNOSIS.md, plan + measurements: docs/HANDOFF-2026-11-20-M9v.md.
 
 WHAT CHANGES AGAINST LEAN (the approved strike's FRAMES stay untouched, never warped):
-  1 ONE SIZE PER FILE: b3 Q1, b5cut Q2, b7 Q3. No Q3 jump at slam 3, no Q4 push-in, no Q5 capper cut: the capper plays
-    approved f40-95 at Q3 and goes black on the same frame as before.
+  1 ONE SIZE PER FILE: b3 Q1, b5cut Q2, b7 Q4 (M9x, Homie: keep the torso framing at the end; was Q3 in M9v/w).
+    No Q3 jump at slam 3, no Q5 capper cut: the capper plays
+    approved f40-95 at Q4 and goes black on the same frame as before.
   2 ONE SHARPNESS: every generated frame at CL_GEN; approved frames at max(their own closeness, CL_GEN), so there is
     no blur dip at the raise -> strike join. Generated masks get a contour clean-up (blur at 1080 before the
     threshold) so the x1.5 upscale doesn't stair-step.
@@ -42,7 +43,7 @@ from court_behind_paper import compose_opaque, closeness as a_closeness  # noqa:
 OW, OH, FPS = rc.OW, rc.OH, rc.FPS
 SW, SH = 1080, 1920
 IMPACT_A = ga.IMPACT_A
-SIZE = {3: 'Q1', '5cut': 'Q2', 7: 'Q3'}
+SIZE = {3: 'Q1', '5cut': 'Q2', 7: 'Q4'}   # M9x (Homie): b7 keeps the torso framing (Q4), whole file
 CL_GEN = 0.9
 EASE_A = 20          # joins with an approved frame
 EASE_I = 30          # joins inside the idle
@@ -122,9 +123,13 @@ def touches(g):
     return any(_touch(b, s).sum() >= 3 for s in 'TLR')
 
 
-def place_floor(g, s, feet, padded):
-    """Floor placement (rc.place / cg.place maths) of a source frame, optionally PAD-padded."""
-    M = np.float32([[s, 0, OW / 2 - s * SW / 2], [0, s, OH - s * feet]])
+def place_floor(g, sz, feet, padded):
+    """rc.place / cg.place maths for a size dict (floor sizes, or Q4 by its cx/cy), optionally PAD-padded."""
+    s = sz['s']
+    if sz['floor']:
+        M = np.float32([[s, 0, OW / 2 - s * SW / 2], [0, s, OH - s * feet]])
+    else:
+        M = np.float32([[s, 0, OW / 2 - s * sz['cx']], [0, s, OH / 2 - s * sz['cy']]])
     if padded:
         M[:, 2] -= s * PAD
     grey = cv2.warpAffine(g, M, (OW, OH), flags=cv2.INTER_CUBIC, borderValue=1.0)
@@ -253,8 +258,10 @@ class Scene(gl.Scene):
 
     def wmap(self, size):
         if size not in self.wmaps:
-            s = cg.SIZES[size]['s']
-            y_src = (np.arange(OH, dtype=np.float32) - (OH - s * cg.FEET_Y)) / s
+            sz = cg.SIZES[size]
+            s = sz['s']
+            top = OH - s * cg.FEET_Y if sz['floor'] else OH / 2 - s * sz['cy']
+            y_src = (np.arange(OH, dtype=np.float32) - top) / s
             w = np.array([DAMP * smooth((y - NECK[0]) / (NECK[1] - NECK[0])) for y in y_src], np.float32)
             self.wmaps[size] = np.repeat(w[:, None], OW, 1)
         return self.wmaps[size]
@@ -263,12 +270,12 @@ class Scene(gl.Scene):
         if src == 'A':
             g = self.src[f]
             pad = touches(g)
-            return place_floor(extend(g) if pad else g, rc.SIZES[size]['s'], rc.FEET_Y, pad)
+            return place_floor(extend(g) if pad else g, rc.SIZES[size], rc.FEET_Y, pad)
         g = prep_clean(self.takes[src][f])
         if src in 'TU':
             g = ga.apply_corr(g, ga.Scene.corr(self, src, f, size))
         pad = touches(g)
-        return place_floor(extend(g) if pad else g, cg.SIZES[size]['s'], cg.FEET_Y, pad)
+        return place_floor(extend(g) if pad else g, cg.SIZES[size], cg.FEET_Y, pad)
 
     def mask(self, src, f, size):
         key = (src, f, size)

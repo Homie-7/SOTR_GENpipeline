@@ -173,6 +173,10 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-20, later (POST/script, PC): M9x, S9 JUDGE FLOW REVIEW BUILT. 0 cr (balance 142.3).
+
+- `tools/court_gen_flow.py` b3 Q1 / b5cut Q2 / b7 Q4 torso (closer each appearance, Homie M9x), one size per file, no hard cuts -> `S9_GENJUDGE_3wall_review_FLOW.mp4` (720p, `04_WORKING_FILES/S9_gen_judge_review/`). Waiting for Homie's notes + his yes/no on a 105 cr READ take. Brief `docs/BRIEF-MEETING9.md`.
+
 ### 2026-11-20, late (POST/script, PC): MEETING 9, S9 JUDGE LEAN REVIEW BUILT. 0 cr (balance 142.3).
 
 - `tools/court_gen_lean.py` built b3/b5cut/b7 + `S9_GENJUDGE_3wall_review_LEAN.mp4` (720p review, in `04_WORKING_FILES/S9_gen_judge_review/`):
