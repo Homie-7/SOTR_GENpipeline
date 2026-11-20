@@ -259,3 +259,6 @@ the other account only when the 4K upscale needs it (~145 cr, or 0 cr if the cou
 "I'm going to step away so when you need my input, just send me a nudge on my Claude app on my phone and I'll come back here"
 "Same thing applies to continuing chats if you have to create more"
 -> Every live chat: Remote Control on, PushNotification to his phone when his input is needed.
+
+## Homie feedback 2026-11-20 on S9 judge LEAN review (verbatim)
+See docs/HANDOFF-2026-11-20-M9t.md "HOMIE'S NOTES". Summary: quality mismatch generated vs approved strike (strike crisp, rest faded); hard cuts (before b3 slam #3); slam #3 cuts to a more zoomed-in image (never allowed: one cohesive flow); vertical 9:16 slice crops the gavel at frame edges (cheap); mouth/lip movement must be either always in sync with audible dialogue or absent (head moves only); breathing/sighs too strong; needs a READING-the-paper idle, not breathing and waiting.
