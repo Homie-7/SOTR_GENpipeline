@@ -96,3 +96,13 @@ I'll leave that decision making to you. I'm gonna step away now, so I need you t
 
 ### 2026-11-21, M10g (result)
 - EXT review built: the approved strike on screen unchanged; reading before it = backward extensions (v15back/back2/back3, v12back), return after it = forward extensions (v12fwd, v13fwd3 reading loop). Joins are frame-exact by the extension itself, plus hold-frame removal, seam dedupe and an eased reframe of the SAME drawing (no morph, no flow-warp). Audited: b3 960 f, b5cut 2424 f, b7 480 f; 0 repeated frames; silhouette changes below 0.95 only inside the strikes and b7's own raise. The "Order! Order!" look-ups are not in this build. Waiting for Homie's notes.
+
+### 2026-11-21, M10g (Homie, verbatim, on the EXT review)
+"When he finishes hitting the gavel and goes back into his reading the script, you can see that the loop when it finishes, it does a very minor snap to its position. So there's that. Is that something we can fix
+At about 3 minutes, 25 seconds, he swaps from holding the script from the side to the top, and the script just floats in the air while he moves his hand around
+Same at 352, he goes from top to side and the script just floats in the air
+At about 4:12, there's quite a long pause. I remember there was some feedback from Darren in the previous sessions. We discussed this: that the painting has to come early or something. Was it this point, or what's happening, or is this precisely timed according to Baron's sound design? Because I feel like there's so much pause, Until 4:30 when the crowd noise comes back
+confirm that part and tell me if that needs to be fixed
+Same at 5:32 Hand going from side to top, and the paper is just floating
+I think other than that, it's almost done. We are 95% there. If you can fix these very minor problems, then I think we are pretty close. Tell me what is the next"
+-> 95% there. Fix: (1) the small snap at the reading-loop wrap after the strike return; (2) the script floating while his hand moves side->top / top->side at ~3:25, ~3:52 (he wrote "352"; check 3:52 vs 5:52), ~5:32; (3) CONFIRM the 4:12-4:30 pause against Darren's mix and the earlier painting-timing feedback, and say whether it needs fixing. Then tell him what's next.
