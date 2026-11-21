@@ -78,3 +78,7 @@ causes: `docs/S9-JUDGE-M9u-DIAGNOSIS.md`.
 ### 2026-11-21, M10f (Homie, verbatim, mid-audit)
 "You are supposed to audit and find these flaws, fix them and give me a proper result, instead you have been giving me outcomes that are poor and mediocre and then I have to go frame by frame to point all this out. What is the point of having you do this if I have to go through all this effort"
 -> M10f audit: `docs/S9-JUDGE-M10f-AUDIT.md`. Options A/B/C put to him; waiting for his pick. Standard from now on: every frame at 24 fps checked as "one person doing one thing" before anything reaches him.
+
+### 2026-11-21, M10f (Homie, verbatim, reply to the options)
+"Absolutely not. The previous renditions of the gavel hit have been approved, and those are the ones we will use. Don't be lazy. I need you to find a solution rather than going, oh, let's just not make it. If you must redo or reanimate entire sequences with being smart where things are being said, and he's just reading, there's an idle animation playing, and then we use the gavel hit as is. If you want to use seed dance to create previous frames or later frames, do that. But the solution that lets just that and sound carry it is absolutely absurd"
+-> DECIDED: the approved strike is used AS IS on screen. Options A/C rejected. The fix is the joins INTO and OUT OF the strike.
