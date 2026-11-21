@@ -1,7 +1,7 @@
 """M10c: every-frame check of the judge's cut-out (the mask court_gen_flow.frames() composites), no video decode.
 Per frame: soft = half-tone pixels / figure area (a dissolve/fade raises it), IoU with the previous frame,
 pieces = separate figure islands > 30 px. Prints every join's +-20 window and every out-of-range frame.
-usage: python tools/_maskcheck_m10c.py BEAT [--raise-v5] [--full]"""
+usage: python tools/_maskcheck_m10c.py BEAT [--raise-v5|--raise-v10] [--full]"""
 import sys, numpy as np, cv2
 sys.path.insert(0, r'C:\Users\Homie\Documents\SOTR_GENpipeline\tools')
 import court_gen_flow as f
@@ -11,6 +11,9 @@ if '--full' in sys.argv:
     ga.LENGTH['5cut'] = 2424
 f.WIDE = True
 f.RAISE_V5 = '--raise-v5' in sys.argv
+f.RAISE_V10 = '--raise-v10' in sys.argv  # M10d
+if f.RAISE_V10:
+    import os; f.FIT16_JSON = os.path.join(f.cg.GEN, '_fit_16x9_v8v10.json')
 sc = f.Scene(f.merged_fit())
 seq, rep = f.build_seq(beat, sc)
 soft, iou, pcs, area = [], [], [], []
@@ -32,7 +35,7 @@ for s in seq:
 soft, iou, pcs = map(np.array, (soft, iou, pcs))
 live = np.array([s['src'] is not None for s in seq])
 ms, mi = np.median(soft[live]), np.median(iou[live])
-print(f'beat {beat} raise_v5={f.RAISE_V5}: {len(seq)} f, median soft {ms:.4f}, median IoU {mi:.4f}, pieces max {pcs.max()}')
+print(f'beat {beat} raise_v5={f.RAISE_V5} v10={f.RAISE_V10}: {len(seq)} f, median soft {ms:.4f}, median IoU {mi:.4f}, pieces max {pcs.max()}')
 bad = [i for i in range(1, len(seq)) if live[i] and live[i-1] and (iou[i] < 0.95 or soft[i] > 2 * ms + 0.01 or pcs[i] > 1)]
 print(f'{len(bad)} out-of-range frames:', ' '.join(f'{i}({seq[i]["src"]}{seq[i]["f"]} IoU{iou[i]:.3f} s{soft[i]:.3f} p{pcs[i]})' for i in bad[:60]))
 for j, k, _ in rep:

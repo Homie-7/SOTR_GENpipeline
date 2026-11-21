@@ -64,6 +64,7 @@ CAP_K = 0.5          # round-cap depth / run width at a clipped edge (M9w)
 WIDE = True
 W16, H16 = 1280, 720
 FIT16_JSON = os.path.join(cg.GEN, '_fit_16x9_v8v9.json')
+RAISE_V10 = False                # M10d: --raise-v10 = v8 READ + v10 RAISE WIDE (ends on f40 pose), flow-warp joins
 LIFT16 = {'L1': 68, 'L2': 214}   # v8 head turns to the front (court) start f68 / f214, back by f136 / f281
 RAISE_V5 = False                 # M10a: v9 never reaches approved f40 (best IoU 0.71); --raise-v5 = v5 RAISE (0.98 both ends)
 DAMP16 = False                   # M10a: the damping flow-warp lumps v8's scroll at Q4 (Homie 4:57); v8 frames play raw
@@ -72,7 +73,8 @@ BLOB_FRAC = 0.004                # black pieces smaller than this x the largest 
 
 def take16_path(tag):
     import glob
-    pat = {'R6': 'S9-CRT-IDLE_v8_read_*.mp4', 'U': 'S9-CRT-IDLE_v9_raise_*.mp4'}[tag]
+    pat = {'R6': 'S9-CRT-IDLE_v8_read_*.mp4',
+           'U': 'S9-CRT-IDLE_v10_raise_*.mp4' if RAISE_V10 else 'S9-CRT-IDLE_v9_raise_*.mp4'}[tag]
     p = sorted(glob.glob(os.path.join(cg.GEN, pat)))
     assert len(p) == 1, (tag, p)
     return p[0]
@@ -372,7 +374,7 @@ def add_warps(seq):
         if p['src'] == 'A' and q['src'] == 'A':
             continue
         E = EASE_A if 'A' in (p['src'], q['src']) else EASE_I
-        if WIDE and not RAISE_V5 and (p['src'], q['src']) == ('U', 'A'):
+        if WIDE and not RAISE_V5 and not RAISE_V10 and (p['src'], q['src']) == ('U', 'A'):
             E = EASE_UA                             # the v9 -> f40 distance-field morph needs room (join_warp)
         if q['src'] != 'A':
             for i in range(E):
@@ -507,8 +509,10 @@ def join_warp(src, cur, ws, target, w):
     """WIDE: v9 RAISE ends off approved f40's pose (IoU ~0.67), too far for Farneback (it tears into blotches), and its
     scroll is drawn unlike v8's (Farneback holes the scroll top and leaves specks at READ -> RAISE). So every join that
     touches v9 morphs by distance field; the others keep the flow warp Homie praised. Specks from any warp are dropped."""
-    if WIDE and not RAISE_V5 and 'U' in (src, ws):
+    if WIDE and not RAISE_V5 and not RAISE_V10 and 'U' in (src, ws):
         return sdf_morph(cur, target, w)
+    if WIDE and RAISE_V10 and 'U' in (src, ws) and 'A' not in (src, ws):
+        return sdf_morph(cur, target, w)            # M10d: Farneback tore READ -> v10 RAISE (blob, notch, head holes, b7 278-292)
     m = gl.flow_warp(cur, target, w)
     return drop_blobs(m) if WIDE else m
 
@@ -594,6 +598,7 @@ if __name__ == '__main__':
     ap.add_argument('--clean', action='store_true')
     ap.add_argument('--prefix')
     ap.add_argument('--raise-v5', action='store_true', help='M10a: v8 READ + the v5 RAISE (pose-matched to approved f40)')
+    ap.add_argument('--raise-v10', action='store_true', help='M10d: v8 READ + v10 RAISE WIDE (generated to end on f40), flow-warp joins')
     ap.add_argument('--legacy', action='store_true', help='M9x FLOW: v6 READ + v5 RAISE (9:16), no blob drop')
     ap.add_argument('--full', action='store_true',
                     help="M10b: b5 at its full 2424 f (101 s): Darren's 21112026 mix is final and plays uncut; the "
@@ -603,6 +608,9 @@ if __name__ == '__main__':
         ga.LENGTH['5cut'] = 2424
     WIDE = not a.legacy
     RAISE_V5 = a.raise_v5
+    RAISE_V10 = a.raise_v10
+    if RAISE_V10:
+        FIT16_JSON = os.path.join(cg.GEN, '_fit_16x9_v8v10.json')
     if a.cmd == 'fit16':
         fit16()
     elif a.cmd == 'plan':
