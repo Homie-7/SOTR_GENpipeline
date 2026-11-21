@@ -43,3 +43,6 @@ matches our 9580 frames.
 Not analysed yet. The holds are the b5 RAISED stretches between strikes (190.3-233.5 and 234.8-245.5 on the new cut),
 plus b3 and b7. Use the CSV and listen: is it a crowd hubbub, room tone or breath? Then propose 2-3 options to Homie
 BEFORE building anything (stills or short clips, script only).
+
+## M10e note (2026-11-21)
+Review FLOW5 uses the uncut mix (`--mix21`); verify must also use `--verify --mix21`: lag 0.000 s, corr 0.99+.

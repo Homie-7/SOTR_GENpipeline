@@ -173,6 +173,11 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-21, later (POST/script, PC): M10e, S9 JUDGE FLOW5 REVIEW BUILT. 0 cr (balance 2,972).
+
+- b5 FLOW5 FULL + `S9_GENJUDGE_3wall_review_FLOW5.mp4` (399 s, Darren's uncut mix, verify lag 0) built and eyed in `04_WORKING_FILES/S9_gen_judge_review/`.
+  WAITING for Homie's notes; nothing upscaled or promoted. Handoff `docs/HANDOFF-2026-11-21-M10e.md`.
+
 ### 2026-11-21 (POST/script, PC): M9z, S9 JUDGE FLOW2 REVIEW BUILT. 0 cr (balance 9.3).
 
 - `tools/court_gen_flow.py` (WIDE: v8 silent READ, v9 wide RAISE, sdf_morph joins, drop_blobs) -> `S9_GENJUDGE_3wall_review_FLOW2.mp4` (720p, `04_WORKING_FILES/S9_gen_judge_review/`). Sheets checked. Waiting for Homie's notes on the ~0.5 s raise->strike morph. Brief `docs/BRIEF-MEETING9.md`, handoff `docs/HANDOFF-2026-11-21-M9z.md`.

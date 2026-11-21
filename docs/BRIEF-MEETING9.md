@@ -61,3 +61,5 @@ causes: `docs/S9-JUDGE-M9u-DIAGNOSIS.md`.
   beats, ~150-180 with the court backup loops; not approved). Then: "Because I need to keep at least 1500 hf credits after
   this project is finished" (DECISION: hard floor 1,500 cr on the new account; 3,000 now, so at most ~1,500 more for
   everything left, 4K included.)
+
+- 2026-11-21 (M10e): FLOW5 review built (b5 FLOW5 FULL, b3 FLOW3, b7 FLOW5, Darren uncut mix), checked; waiting for Homie notes. No upscale or promotion without his yes.
