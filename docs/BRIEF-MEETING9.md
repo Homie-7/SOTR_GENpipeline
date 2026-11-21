@@ -82,3 +82,17 @@ causes: `docs/S9-JUDGE-M9u-DIAGNOSIS.md`.
 ### 2026-11-21, M10f (Homie, verbatim, reply to the options)
 "Absolutely not. The previous renditions of the gavel hit have been approved, and those are the ones we will use. Don't be lazy. I need you to find a solution rather than going, oh, let's just not make it. If you must redo or reanimate entire sequences with being smart where things are being said, and he's just reading, there's an idle animation playing, and then we use the gavel hit as is. If you want to use seed dance to create previous frames or later frames, do that. But the solution that lets just that and sound carry it is absolutely absurd"
 -> DECIDED: the approved strike is used AS IS on screen. Options A/C rejected. The fix is the joins INTO and OUT OF the strike.
+
+### 2026-11-21, M10g (Homie, verbatim, on the bridge plan + option B)
+"Happy for you to go into this direction as well. However, use the image or frame or something to guide Seedance 2.5 to keep it as accurate and close to what we already have approved as possible
+A generated strike. One uncut take, front view, where he reads, strikes and returns to reading, joined to the reading take at the rest pose.
+I'll leave that decision making to you. I'm gonna step away now, so I need you to continue working and probe it properly. It has to be done, and I want at least 1500 to 2000 credits left after all of this is finished. Make no mistake"
+-> DECIDED: Claude picks between (1) bridges onto/off the approved strike and (2) a generated front-view strike take guided by the approved strike's frames; probe properly while he is away. Credits: finish with 1,500-2,000 left (balance 2,972), 4K included.
+
+### 2026-11-21, M10g later (Homie, verbatim)
+"Remember that I like how the current current strike video we have which is him stepping a little bit forward and the impact of the gavel is right in your face that's what I want"
+"Make sure that you investigate Seed Dance's feature to extend clip or create previous frames or something because I know there's a feature like that. So, investigate that before you start generating"
+-> FOUND: Seedance 2.5 `mode video_extension` + `extension_mode backward|forward` (CLI `higgsfield model get seedance_2_5`). Route: approved strike untouched; read+raise generated BACKWARD from its first frame, step-back+read FORWARD from its last frame (v12, 35 cr each at 720p 5 s).
+
+### 2026-11-21, M10g (result)
+- EXT review built: the approved strike on screen unchanged; reading before it = backward extensions (v15back/back2/back3, v12back), return after it = forward extensions (v12fwd, v13fwd3 reading loop). Joins are frame-exact by the extension itself, plus hold-frame removal, seam dedupe and an eased reframe of the SAME drawing (no morph, no flow-warp). Audited: b3 960 f, b5cut 2424 f, b7 480 f; 0 repeated frames; silhouette changes below 0.95 only inside the strikes and b7's own raise. The "Order! Order!" look-ups are not in this build. Waiting for Homie's notes.

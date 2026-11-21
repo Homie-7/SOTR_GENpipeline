@@ -173,6 +173,13 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-21, evening (VID/POST, PC): M10g, S9 JUDGE EXT REVIEW BUILT. 434 cr this meeting (balance 2,538).
+
+- The APPROVED strike is untouched; the read before it and the return after it are Seedance 2.5 `video_extension` takes (backward/forward,
+  `prompts/S9-CRT-IDLE.txt` v12-v15), joined by `tools/court_ext.py` (hold-frame drop, seam dedupe, eased ECC reframe; no morph).
+  b3/b5cut/b7 + `S9_GENJUDGE_3wall_review_EXT.mp4` in `04_WORKING_FILES/S9_gen_judge_review/`, every join checked at 24 fps.
+  WAITING for Homie's notes; nothing upscaled or promoted. Handoff `docs/HANDOFF-2026-11-21-M10g.md`.
+
 ### 2026-11-21, later (POST/script, PC): M10e, S9 JUDGE FLOW5 REVIEW BUILT. 0 cr (balance 2,972).
 
 - b5 FLOW5 FULL + `S9_GENJUDGE_3wall_review_FLOW5.mp4` (399 s, Darren's uncut mix, verify lag 0) built and eyed in `04_WORKING_FILES/S9_gen_judge_review/`.

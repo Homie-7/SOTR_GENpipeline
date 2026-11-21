@@ -1,3 +1,344 @@
+# ---------- v13-FWD3, v14-JOIN (rejected), v15-BACK / BACK2 / BACK3: the leads into the approved strike (M10g, 2026-11-21) ----------
+# The EXT build (tools/court_ext.py) uses: A = approved strike, F = v12-FWD, R = v13-FWD3 (loop R109-183),
+#   B = v15-BACK + v12-BACK, C = v15-BACK2 + B[60:], D = v15-BACK3 + B[60:] (b7's F-lead). Hold frames (a repeated frame
+#   mid-motion) are dropped at load: BACK2 [42], BACK3 [31, 43, 54, 63, 75].
+# v13-FWD3 (93d726b3, 56 cr): Seedance 2.5 (seedance_2_5) · video_extension forward · video reference S9-CRT-IDLE_v12fwd_974a3434.mp4 · image references
+#   _M10g_B0_read_pose.png + _M10g_B30_read_pose.png · 9:16 · 720p · 8 s · bitrate standard · batch 1 · sound OFF. USED (R).
+# v14-JOIN draft (591cf771, ~12 cr, REJECTED): Seedance 2.5 (seedance_2_5) · video_extension forward · video references _M10g_R120-197_clip1.mp4 +
+#   _M10g_B0-58_clip2.mp4 · 9:16 · 480p draft · 4 s · bitrate standard · batch 1 · sound OFF. Two-clip join did not hold
+#   either end frame-exact.
+# v15-BACK (2e472e24, 35 cr): Seedance 2.5 (seedance_2_5) · video_extension backward · video reference S9-CRT-IDLE_v12back_fd7462ab.mp4 · image reference
+#   _M10g_R150_read_pose.png · 9:16 · 720p · 5 s · bitrate standard · batch 1 · sound OFF. USED (B lead).
+# v15-BACK2 (cc468e49, 28 cr): Seedance 2.5 (seedance_2_5) · video_extension backward · video reference _M10g_B59-end_raise_for_extension.mp4 · image reference
+#   _M10g_R150_read_pose.png · 9:16 · 720p · 4 s · bitrate standard · batch 1 · sound OFF. USED (C lead).
+# v15-BACK3 (810949bd, 28 cr): THE ONE CHANGE vs BACK2: image reference = _M10g_F111_read_pose.png (v12-FWD f111) and the
+#   FIRST FRAME / 0:00-0:04 lines describe that pose; otherwise identical settings. USED (D, b7's F-lead: F110 -> D0 0.9954).
+
+# --- v13-FWD3 ---
+SCENE: One naval-officer silhouette, solid black on a bone-white field, has just stepped back from his gavel blow and now settles into reading his scroll in silence, continuing the attached clip.
+
+REFERENCE: The attached clip is the shot this continues; its first frame is the attached clip's last frame exactly: the same figure, drawing, size in frame and bone-white field. @Image 1 and @Image 2 show the exact reading pose he settles into and holds: same figure, same size and place in frame.
+
+FIRST FRAME: The attached clip's last frame exactly.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off: the figure stays the same size and place in frame throughout.
+
+ACTION TIMING:
+0:00-0:02 — he brings the scroll up in his left hand to the middle of his chest, held a little out from his body and tilted, its top edge level with his armpit, never higher than his shoulder; his right hand lifts slightly so the gavel hangs at hip height beside his coat, its head tilted out to his right, exactly as in @Image 1.
+0:02-0:08 — he reads, almost still, holding exactly the pose of @Image 1 and @Image 2: head bowed to the scroll, breathing, the gavel hanging at his hip.
+
+PHYSICS: Small, slow, weighted movements. The heavy wool coat settles. Feet stay planted.
+
+LIGHTING: The flat warm bone-white field of the attached clip, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. The head stays a bare black shape with a closed mouth line: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only, exactly as the attached clip.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure, front view. Exactly one gavel and one scroll, never swapped hands. No gavel raise, no blow. Nothing newer than 1819.
+
+# --- v14-JOIN (rejected draft) ---
+SCENE: One naval-officer silhouette, solid black on a bone-white field, keeps reading his scroll in silence, connecting the first attached clip to the second attached clip as one continuous shot.
+
+REFERENCE: The first attached clip comes before this shot; this shot's first frame is its last frame exactly. The second attached clip comes after this shot; this shot's last frame is its first frame exactly. Same figure, drawing, size in frame and bone-white field throughout.
+
+FORMAT: Single continuous take, real time, one shot, no cuts: first clip, this shot, second clip play as one unbroken take.
+
+CAMERA: Dead-on, frontal, locked off: the frame never moves, the figure stays the same size and place in frame.
+
+ACTION TIMING:
+0:00-0:04 — reading, he lowers the scroll slightly to his chest and eases his gavel hand a little higher at his side, arriving exactly in the pose of the second clip's first frame.
+
+PHYSICS: Small, slow, weighted movements. Feet stay planted.
+
+LIGHTING: The flat warm bone-white field of the attached clips, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. The head stays a bare black shape with a closed mouth line: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only, exactly as the attached clips.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure, front view. Exactly one gavel and one scroll. No gavel raise, no blow. Nothing newer than 1819.
+
+# --- v15-BACK ---
+SCENE: One naval-officer silhouette, solid black on a bone-white field, reads his scroll in silence and then begins to lift his gavel, ending exactly where the attached clip begins.
+
+REFERENCE: The attached clip is the shot this leads into; this clip's last frame is the attached clip's first frame exactly: the same figure, drawing, size in frame and bone-white field. @Image 1 shows the exact pose he is in at the very start of this clip: same figure, same size and place in frame.
+
+FIRST FRAME: Exactly @Image 1: he holds the scroll high and upright in his left hand against his chest, and the gavel hangs low in his right hand beside his knee.
+
+LAST FRAME: The attached clip's first frame exactly.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off: the figure stays the same size and place in frame throughout.
+
+ACTION TIMING:
+0:00-0:02 — he reads, almost still, in exactly the pose of @Image 1: head bowed to the scroll, scroll high and upright at his chest, gavel hanging low by his knee.
+0:02-0:05 — still reading, he slowly lowers the scroll to the middle of his chest, held a little out and tilted, and his right hand rises so the gavel hangs at hip height, arriving in the attached clip's first frame.
+
+MOTION: Slow, small, weighty; the silhouette stays one solid black shape with clean edges; the feet stay planted.
+
+LIGHTING: Flat even bone-white field, no shadows, no gradient.
+
+AUDIO: None.
+
+QUALITY: Clean hard-edged silhouette, no specks, no texture, stable drawing every frame.
+
+LOCKS: Same figure, same scale, same position, same field; camera never moves.
+
+# --- v15-BACK2 ---
+SCENE: One naval-officer silhouette, solid black on a bone-white field, reads his scroll in silence and then begins to raise his gavel, ending exactly where the attached clip begins.
+
+REFERENCE: The attached clip is the shot this leads into; this clip's last frame is the attached clip's first frame exactly: the same figure, drawing, size in frame and bone-white field. @Image 1 shows the exact pose he is in at the very start of this clip: same figure, same size and place in frame.
+
+FIRST FRAME: Exactly @Image 1: he holds the scroll high and upright in his left hand against his chest, and the gavel hangs low in his right hand beside his knee.
+
+LAST FRAME: The attached clip's first frame exactly.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off: the figure stays the same size and place in frame throughout.
+
+ACTION TIMING:
+0:00-0:01 — he reads, almost still, in exactly the pose of @Image 1: head bowed to the scroll, scroll high and upright at his chest, gavel hanging low by his knee.
+0:01-0:04 — still reading, he lowers the scroll to the middle of his chest, held a little out and tilted, and his right hand rises so the gavel hangs at hip height, arriving in the attached clip's first frame.
+
+MOTION: Slow, small, weighty; the silhouette stays one solid black shape with clean edges; the feet stay planted.
+
+LIGHTING: Flat even bone-white field, no shadows, no gradient.
+
+AUDIO: None.
+
+QUALITY: Clean hard-edged silhouette, no specks, no texture, stable drawing every frame.
+
+LOCKS: Same figure, same scale, same position, same field; camera never moves.
+
+# --- v15-BACK3 ---
+SCENE: One naval-officer silhouette, solid black on a bone-white field, reads his scroll in silence and then begins to raise his gavel, ending exactly where the attached clip begins.
+
+REFERENCE: The attached clip is the shot this leads into; this clip's last frame is the attached clip's first frame exactly: the same figure, drawing, size in frame and bone-white field. @Image 1 shows the exact pose he is in at the very start of this clip: same figure, same size and place in frame.
+
+FIRST FRAME: Exactly @Image 1: head bowed to the scroll, which he holds out in his left hand at the side of his chest, tilted toward him; the gavel hangs low in his right hand beside his knee.
+
+LAST FRAME: The attached clip's first frame exactly.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off: the figure stays the same size and place in frame throughout.
+
+ACTION TIMING:
+0:00-0:01 — he reads, almost still, in exactly the pose of @Image 1: head bowed, scroll held out at the side of his chest, gavel hanging low by his knee.
+0:01-0:04 — still reading, he draws the scroll in to the middle of his chest, held a little out and tilted, and his right hand rises so the gavel hangs at hip height, arriving in the attached clip's first frame.
+
+MOTION: Slow, small, weighty; the silhouette stays one solid black shape with clean edges; the feet stay planted.
+
+LIGHTING: Flat even bone-white field, no shadows, no gradient.
+
+AUDIO: None.
+
+QUALITY: Clean hard-edged silhouette, no specks, no texture, stable drawing every frame.
+
+LOCKS: Same figure, same scale, same position, same field; camera never moves.
+
+# ---------- v13 BRIDGE (rejected) and FWD2: F's tail into B's reading pose (M10g, 2026-11-21) ----------
+# WHY: v12-BACK reads then raises INTO approved f0; v12-FWD runs ON from approved f96 but ends in a different reading pose
+#   from B's (best F->B IoU 0.837). The read->raise needs ONE join that is the same drawing on both sides.
+# v13-BRIDGE (c3e15842, 35 cr): omni_reference, start image = F f119, end image = B f58, 5 s. REJECTED: start/end images
+#   are not frame-exact in omni mode; it reframed the figure (size and place in frame moved), so neither end joins.
+#   Settings: Seedance 2.5 · omni_reference · start _M10g_F119_bridge_start.png · end _M10g_B58_read_pose.png · 9:16 ·
+#   720p · 5 s · bitrate standard · batch 1 · sound OFF.
+# v13-FWD2 (23fe53fe, 70 cr): a FORWARD video_extension of v12-FWD (frame-exact continuity by construction), steered by
+#   B f0 as @Image 1 so it settles into B's reading pose, and 10 s so its reading is long enough to loop.
+# THE ONE CHANGE vs v12-FWD: source clip = v12-FWD itself, + image reference, 10 s.
+# SETTINGS: Seedance 2.5 (seedance_2_5) · video_extension · extension_mode forward · video reference =
+#   S9-CRT-IDLE_v12fwd_974a3434.mp4 · image reference = _M10g_B0_read_pose.png (B f0, 720x1280) · 9:16 · 720p · 10 s ·
+#   bitrate standard · batch 1 · sound OFF (generate_audio false) · 70 cr.
+# PREDICTION: continuous from F f119; reaches a pose within ~0.95 IoU of B's reading; risk = a second figure or the gavel
+#   rising again in the long tail.
+
+# --- v13-FWD2 ---
+SCENE: One naval-officer silhouette, solid black on a bone-white field, has just stepped back from his gavel blow and now settles into reading his scroll in silence, continuing the attached clip.
+
+REFERENCE: The attached clip is the shot this continues; its first frame is the attached clip's last frame exactly: the same figure, drawing, size in frame and bone-white field. @Image 1 is the reading pose he settles into: same figure, same framing.
+
+FIRST FRAME: The attached clip's last frame exactly: he stands square to the viewer, the gavel hanging in his right hand at his side, the scroll held at his chest.
+
+FORMAT: Single continuous take, real time, one shot, no cuts, flowing on from the attached clip without a break.
+
+CAMERA: Dead-on, frontal, locked off: the frame stays exactly as in the attached clip.
+
+ACTION TIMING:
+0:00-0:02 — he lifts the scroll out to his left side at shoulder height and opens it toward himself, his right arm hanging straight with the gavel head down by his knee, arriving in exactly the pose of @Image 1.
+0:02-0:10 — he stands in the pose of @Image 1 and reads the scroll: almost still, slow breathing, the scroll edge stirring slightly, feet planted, mouth shut.
+
+PHYSICS: The gavel hangs under its own weight and sways a little, then settles. The heavy wool coat settles. Feet stay planted.
+
+LIGHTING: The flat warm bone-white field of the attached clip, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. The head stays a bare black shape with a closed, unmoving mouth line: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only, exactly as the attached clip.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure, front view. Exactly one gavel and one scroll, never swapped hands. No blow, the gavel stays down. The mouth stays closed. Nothing newer than 1819.
+
+
+# ---------- v12 EXTEND the approved strike, BACK and FWD (M10g, 2026-11-21) ----------
+# WHY (Homie 2026-11-21 M10g): "I like how the current strike video ... him stepping a little bit forward and the impact of
+#   the gavel is right in your face that's what I want" + "investigate Seed Dance's feature to extend clip or create previous
+#   frames". Seedance 2.5 has mode video_extension, extension_mode backward|forward. The approved strike stays untouched;
+#   the read+raise is generated BACKWARD out of its first frame, the step-back+read FORWARD out of its last frame.
+# THE ONE CHANGE vs v11: route = video_extension of fig_SOTR_judge_strike_s9_v1 (re-encoded h264, pixels unchanged:
+#   _M10g_strike_h264_for_extension.mp4) instead of a new one-take strike.
+# SETTINGS (each): Seedance 2.5 (seedance_2_5) · video_extension · extension_mode backward (v12-BACK) / forward (v12-FWD) ·
+#   video reference = _M10g_strike_h264_for_extension.mp4 · 9:16 · 720p · 5 s · bitrate standard · batch 1 · sound OFF · 35 cr.
+# PREDICTION: both joins continuous; risk = the drawing drifts from the approved figure, or BACK ends off f0's pose.
+
+# --- v12-BACK ---
+SCENE: One naval-officer silhouette, solid black on a bone-white field, reads a scroll in silence, then lifts his head to the court and raises his gavel, leading straight into the attached clip.
+
+REFERENCE: The attached clip is the approved strike. This shot comes before it and its last frame is the attached clip's first frame exactly: the same figure, drawing, size in frame and bone-white field.
+
+FIRST FRAME: Full length, frontal, the same figure at the same size, gavel resting at his right side, scroll held open in his left hand at his waist, head bowed to it.
+
+FORMAT: Single continuous take, real time, one shot, no cuts, flowing into the attached clip without a break.
+
+CAMERA: Dead-on, frontal, locked off: the figure stays the same size and place in frame throughout.
+
+ACTION TIMING:
+0:00-0:02 — he reads, breathing, mouth shut, gavel resting at his side.
+0:02-0:03 — he lifts his head toward the viewer.
+0:03-0:05 — he raises the gavel up beside his head, elbow bent, scroll kept at his waist, arriving exactly in the pose of the attached clip's first frame.
+
+PHYSICS: The gavel is heavy; his arm drives it up and it settles high. The heavy wool coat lags a beat behind the body. Feet stay planted.
+
+LIGHTING: The flat warm bone-white field of the attached clip, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. The head stays a bare black shape with a closed, unmoving mouth line: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only, exactly as the attached clip.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure, front view. Exactly one gavel and one scroll, never swapped hands. No blow in this shot. The mouth stays closed. Nothing newer than 1819.
+
+# --- v12-FWD ---
+SCENE: One naval-officer silhouette, solid black on a bone-white field, recovers from his gavel blow at the viewer, steps back, lowers the gavel to his side and returns to reading his scroll in silence, continuing the attached clip.
+
+REFERENCE: The attached clip is the approved strike. This shot continues it and its first frame is the attached clip's last frame exactly: the same figure, drawing, size in frame and bone-white field.
+
+FIRST FRAME: The attached clip's last frame exactly: he leans toward the viewer, the gavel head held face-on at the viewer in front of his chest, outlined by its thin white keyline.
+
+FORMAT: Single continuous take, real time, one shot, no cuts, flowing on from the attached clip without a break.
+
+CAMERA: Dead-on, frontal, locked off: the frame stays exactly as in the attached clip.
+
+ACTION TIMING:
+0:00-0:01 — he holds the blow, still, gavel at the viewer.
+0:01-0:03 — he straightens and steps back to where he stood before the blow, bringing the gavel down to his right side, gavel head and handle visible in his hand the whole way.
+0:03-0:05 — he bows his head to the open scroll at his waist and reads, still, breathing, mouth shut.
+
+PHYSICS: The gavel is heavy and swings down under its own weight. The heavy wool coat lags a beat behind the body and settles. Feet replant firmly.
+
+LIGHTING: The flat warm bone-white field of the attached clip, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame; where the gavel passes in front of the body a thin white keyline separates it. The head stays a bare black shape with a closed, unmoving mouth line: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only, exactly as the attached clip.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure, front view. Exactly one gavel and one scroll, never swapped hands. No second blow. The mouth stays closed. Nothing newer than 1819.
+
+# ---------- v11b = v11 at 720p, the gavel kept visible on the way down (M10g, 2026-11-21) ----------
+# WHY: v11 480p draft 21b22e05 PASSED the frame check (front view throughout, one blow at f92-94 landing face-on over the
+#   right shoulder with the keyline, never across the head, back to rest) except f150-156 where the gavel vanishes into the
+#   fist on the way down. Finalizing that draft quotes 160 cr (over the ~100 cr ask line, Homie away), a fresh 720p run 70.
+# THE ONE CHANGE vs v11: the 0:06-0:08 line keeps the gavel visible in his hand while lowering.
+# SETTINGS: Seedance 2.5 (seedance_2_5) · omni_reference · start AND end image = S9-CRT-IDLE_REST_16x9.png · image
+#   reference = fig_SOTR_judge_strike_s9_v1_f40_16x9.png · 16:9 · 720p · 10 s · bitrate standard · batch 1 · sound OFF · 70 cr.
+# PREDICTION: same beats as the draft; risk = a different blow (across the face) since the motion is not carried over.
+
+SCENE: One naval-officer silhouette, solid black on a bone-white field, reads a scroll in silence, raises his gavel beside his head, strikes once toward the viewer, lowers it and reads again, always facing the viewer, his mouth shut.
+
+REFERENCE: The first attached image is both the first and the last frame. The second attached image is the raised pose at the top of the strike: the bent arm, the gavel up beside his head and the scroll at his waist come from it exactly.
+
+FIRST FRAME: Matches the first attached image exactly: full length, frontal, small and centred in a wide frame with open bone-white paper on both sides, gavel resting at his right side, scroll in the left, head down to it.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off, wide: the whole figure and the gavel's full arc stay well inside the frame at the same size throughout.
+
+ACTION TIMING:
+0:00-0:02 — he reads, breathing, mouth shut, then lifts his head toward the viewer.
+0:02-0:04 — he keeps the scroll at his waist and raises the gavel up beside his head, elbow bent, into the pose of the second attached image, and holds it there.
+0:04-0:05 — one hard blow: the gavel drops forward and down past his right shoulder to chest height, its head toward the viewer, beside his body, never across his face.
+0:05-0:06 — he holds the gavel there, still, facing the viewer.
+0:06-0:08 — he lowers the gavel back to his right side, its head and handle visible in his hand the whole way down, and bows his head to the scroll.
+0:08-0:10 — he reads, still, ending exactly in the pose of the first attached image.
+
+PHYSICS: The gavel is heavy; his arm drives it up, it stops dead on the blow, and the shoulder takes the jolt. The heavy wool coat lags a beat behind the body. Feet stay planted. He stays square to the viewer the whole time.
+
+LIGHTING: The flat warm bone-white field of the reference, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame; where the gavel passes in front of the body a thin white keyline separates it. The head stays a bare black shape with a closed, unmoving mouth line: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure, always front view. Exactly one gavel and one scroll, never swapped hands. One blow only. The mouth stays closed. Nothing newer than 1819.
+
+# ---------- v11 ONE-TAKE STRIKE, front view (M10g, 2026-11-21) ----------
+# WHY (Homie 2026-11-21 M10g): "A generated strike. One uncut take, front view, where he reads, strikes and returns to
+#   reading, joined to the reading take at the rest pose ... use the image or frame or something to guide Seedance 2.5 to
+#   keep it as accurate and close to what we already have approved as possible." The approved strike's own blow crosses
+#   the head (f50-53) and turns into a back-view drawing (f54+), so it is guided by its raised pose only (f40 still).
+# THE ONE CHANGE vs v10: read -> raise -> one blow -> lower -> read in one 10 s take; start AND end = the rest pose; the
+#   approved f40 raised pose rides as an image reference. Silhouette/physics/lock wording is v10's.
+# SETTINGS: Seedance 2.5 (seedance_2_5) · omni_reference · start image AND end image = S9-CRT-IDLE_REST_16x9.png ·
+#   image reference = fig_SOTR_judge_strike_s9_v1_f40_16x9.png · 16:9 · 480p DRAFT (finalize to 720p via draft_job_id,
+#   70 cr, only if it passes) · 10 s · bitrate standard · batch 1 · sound OFF · 30 cr.
+# PREDICTION: the raise matches f40 (IoU > 0.8), one blow toward the viewer beside the head, back to rest by 9 s; risks =
+#   the gavel crosses the face, the figure turns away, or two blows.
+
+SCENE: One naval-officer silhouette, solid black on a bone-white field, reads a scroll in silence, raises his gavel beside his head, strikes once toward the viewer, lowers it and reads again, always facing the viewer, his mouth shut.
+
+REFERENCE: The first attached image is both the first and the last frame. The second attached image is the raised pose at the top of the strike: the bent arm, the gavel up beside his head and the scroll at his waist come from it exactly.
+
+FIRST FRAME: Matches the first attached image exactly: full length, frontal, small and centred in a wide frame with open bone-white paper on both sides, gavel resting at his right side, scroll in the left, head down to it.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off, wide: the whole figure and the gavel's full arc stay well inside the frame at the same size throughout.
+
+ACTION TIMING:
+0:00-0:02 — he reads, breathing, mouth shut, then lifts his head toward the viewer.
+0:02-0:04 — he keeps the scroll at his waist and raises the gavel up beside his head, elbow bent, into the pose of the second attached image, and holds it there.
+0:04-0:05 — one hard blow: the gavel drops forward and down past his right shoulder to chest height, its head toward the viewer, beside his body, never across his face.
+0:05-0:06 — he holds the gavel there, still, facing the viewer.
+0:06-0:08 — he lowers the gavel back to his right side and bows his head to the scroll.
+0:08-0:10 — he reads, still, ending exactly in the pose of the first attached image.
+
+PHYSICS: The gavel is heavy; his arm drives it up, it stops dead on the blow, and the shoulder takes the jolt. The heavy wool coat lags a beat behind the body. Feet stay planted. He stays square to the viewer the whole time.
+
+LIGHTING: The flat warm bone-white field of the reference, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame; where the gavel passes in front of the body a thin white keyline separates it. The head stays a bare black shape with a closed, unmoving mouth line: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure, always front view. Exactly one gavel and one scroll, never swapped hands. One blow only. The mouth stays closed. Nothing newer than 1819.
+
 # ---------- v10 RAISE WIDE, the end pose in the words (M10d, 2026-11-21) ----------
 # WHY: v9 ended with the arm straight up and the scroll dropped low (IoU 0.65 to approved f40) because its words said
 #   "lowers his scroll ... high above his head"; f40 keeps the scroll at his waist and the gavel bent beside his head. The
