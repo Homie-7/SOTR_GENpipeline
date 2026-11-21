@@ -173,6 +173,11 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-21, night (POST/script, PC): M10k, S9 JUDGE EXT2 REVIEW BUILT. 0 cr (balance 2,538).
+
+- Grip-change ramp (motion-matched) + loop-wrap ease rendered: b3/b5cut FULL/b7 `*_EXT2*` + `S9_GENJUDGE_3wall_review_EXT2.mp4` in `04_WORKING_FILES/S9_gen_judge_review/`,
+  audited at 24 fps, sync vs Darren's .mov lag 0. WAITING for Homie's notes; nothing upscaled or promoted. Handoff `docs/HANDOFF-2026-11-21-M10l.md`.
+
 ### 2026-11-21, evening (VID/POST, PC): M10g, S9 JUDGE EXT REVIEW BUILT. 434 cr this meeting (balance 2,538).
 
 - The APPROVED strike is untouched; the read before it and the return after it are Seedance 2.5 `video_extension` takes (backward/forward,

@@ -116,3 +116,6 @@ I think other than that, it's almost done. We are 95% there. If you can fix thes
 ### 2026-11-21, M10h (Homie, verbatim, approving the fix plan; relayed by M10h)
 "Yeah, so don't adjust his sound design at all. That will be on him. We'll just match our visuals accordingly. I'm happy with those suggestions. Just rebuild and let's wrap this up"
 -> DECIDED: Darren's audio untouched (the 4:12-4:30 pause stays; visuals follow his mix). GO on the grip-change compression + loop-wrap ease, 0 cr; rebuild EXT2, audit at 24 fps, review, Explorer, wrap.
+
+### 2026-11-21, M10k (Claude, no new Homie words)
+EXT2 rebuilt and audited at 24 fps, 0 cr: b3 (wrap IoU 0.996-0.997, 0 repeats), b5cut FULL (grip spans C ~373-417 and B ~1043-1084 eyed frame by frame, continuous; joins 0.979-0.997; low IoUs only at the 3 strike impacts), b7 (grip ~198-238 and D->strike join continuous; 431-479 black = the planned capper, same as EXT). Review `S9_GENJUDGE_3wall_review_EXT2.mp4` 399.17 s; sync vs Darren's .mov: lag 0 ms in every 20 s window, 1 s RMS corr 1.0000. WAITING for Homie's notes. Not upscaled, not promoted.
