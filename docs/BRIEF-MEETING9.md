@@ -74,3 +74,7 @@ causes: `docs/S9-JUDGE-M9u-DIAGNOSIS.md`.
   (FLOW5 REJECTED. He wants a critical audit, a new plan, a proposal, then the fix. He floats: judge does nothing / just
   keeps reading or holding the paper. The gavel-crosses-the-head moment, which M10d/M10e called "part of the approved
   strike", reads to him as the judge hitting himself: that is a flaw in the stitched result.)
+
+### 2026-11-21, M10f (Homie, verbatim, mid-audit)
+"You are supposed to audit and find these flaws, fix them and give me a proper result, instead you have been giving me outcomes that are poor and mediocre and then I have to go frame by frame to point all this out. What is the point of having you do this if I have to go through all this effort"
+-> M10f audit: `docs/S9-JUDGE-M10f-AUDIT.md`. Options A/B/C put to him; waiting for his pick. Standard from now on: every frame at 24 fps checked as "one person doing one thing" before anything reaches him.
