@@ -106,3 +106,13 @@ confirm that part and tell me if that needs to be fixed
 Same at 5:32 Hand going from side to top, and the paper is just floating
 I think other than that, it's almost done. We are 95% there. If you can fix these very minor problems, then I think we are pretty close. Tell me what is the next"
 -> 95% there. Fix: (1) the small snap at the reading-loop wrap after the strike return; (2) the script floating while his hand moves side->top / top->side at ~3:25, ~3:52 (he wrote "352"; check 3:52 vs 5:52), ~5:32; (3) CONFIRM the 4:12-4:30 pause against Darren's mix and the earlier painting-timing feedback, and say whether it needs fixing. Then tell him what's next.
+
+### 2026-11-21, M10i (Homie, verbatim, mid-turn)
+"Just make sure that the speed ramp that you create for the hand position switch doesn't look fake at all, it has to read nice and clean"
+"I noticed that we don't really have anything for when he says order, order, get the traders out of here. Was there a plan there, or is that how it is going to be?"
+"I also want you to do a bit of a cleanup from our generations and edits and everything put together a folder called delete me where everything that is no longer needed and deleting it will not cause any harm is there so that we can just get rid of it's space management"
+-> M10i: grip-span speed ramp + loop-wrap ease coded in court_ext.py (not rendered). Look-ups: dropped in EXT (other drawing); clean route is ~35-70 cr of extension takes, his call. Cleanup: a dated _DELETE_ME_ bin, nothing hard-deleted. Handoff docs/HANDOFF-2026-11-21-M10j.md.
+
+### 2026-11-21, M10h (Homie, verbatim, approving the fix plan; relayed by M10h)
+"Yeah, so don't adjust his sound design at all. That will be on him. We'll just match our visuals accordingly. I'm happy with those suggestions. Just rebuild and let's wrap this up"
+-> DECIDED: Darren's audio untouched (the 4:12-4:30 pause stays; visuals follow his mix). GO on the grip-change compression + loop-wrap ease, 0 cr; rebuild EXT2, audit at 24 fps, review, Explorer, wrap.

@@ -63,6 +63,15 @@ HOLD_IOU, HOLD_MOVE = 0.9985, 0.996            # a generated frame this close to
 SNAP_IOU = 0.985                            # below: not one natural 24 fps step apart -> ease (one step is ~0.99)
 RATE_MAX = 0.12                             # idle retime limit (+-12 %)
 RATE_MAX_B7 = 0.16                          # b7: barely room to read between its two knocks
+# M10i (Homie M10g: "the script just floats in the air while he moves his hand around"): in each read lead the grip
+# change (paper from the top grip to the side grip) is drawn slowly, the paper drifting while the hand barely moves.
+# The span is played FASTER inside its own take: whole frames only, a smooth speed ramp 1x -> RAMP_K x -> 1x (ease in,
+# ease out, like a real hand move), no interpolation, no morph. The frames saved go back to the reading before it.
+# Spans in the lead's own indices after the hold-frame drop (measured M10i on the paper/hand crop, every frame eyed).
+GRIP = {'C': (16, 79), 'B': (31, 99), 'D': (21, 79)}
+RAMP_K = float(os.environ.get('EXT_RAMP_K', 3.0))
+RAMP_MODE = os.environ.get('EXT_RAMP_MODE', 'motion')   # M10j: 'motion' (matched) | 'bump' (M10i sin^2)
+WRAP_E = 24                                 # loop wrap: the last WRAP_E frames before R[q] ease onto R[p-WRAP_E..p-1]
 CL_GEN = cf.CL_GEN
 GEN_SIGMA = 1.0                             # contour clean-up of the x1.5 upscale (approved frames are native 1080)
 
@@ -72,6 +81,41 @@ def take(tag):
     if not p:
         raise SystemExit(f'missing take {tag}: {PAT[tag]}')
     return p[-1]
+
+
+def grip_motion(fr):
+    """Per-step motion of the paper/hand crop (mean abs diff, 0-255), cadence-smoothed over 4 frames."""
+    c = fr[:, 250:680, 280:660].astype(np.float32)
+    m = np.abs(np.diff(c, axis=0)).mean(axis=(1, 2))
+    return np.convolve(np.pad(m, 2, mode='edge'), np.ones(4) / 4, mode='same')[2:-2]
+
+
+def ramp_play(n, s, e, k, motion=None, edge=8):
+    """Indices 0..n-1 with span s..e played faster, whole frames, strictly increasing, s and e kept.
+    M10j (Homie: "nice and clean, not fake"): with `motion` the speed is MOTION-MATCHED, not a fixed bump: frames where
+    the paper only drifts (little motion) play up to k x, frames where the hand already moves fast stay at 1x, so the
+    played span moves evenly like one real hand move instead of whipping the fast part. Speed eases to 1x over `edge`
+    frames at both ends and is smoothed, so it never jumps. Without `motion`: the M10i sin^2 bump 1 -> k -> 1."""
+    span = np.arange(s, e + 1)
+    if motion is None:
+        u = (span - s) / (e - s)
+        step = 1 + (k - 1) * np.sin(np.pi * u) ** 2
+    else:
+        m = np.maximum(motion[s:e + 1], 0.05)
+        target = np.percentile(m, 90)                     # the take's own fast-move speed
+        step = np.clip(target / m, 1, k)
+        step = np.convolve(np.pad(step, 4, mode='edge'), np.ones(9) / 9, mode='same')[4:-4]
+        ramp = np.clip(np.minimum(span - s, e - span) / edge, 0, 1)
+        step = 1 + (step - 1) * (3 * ramp ** 2 - 2 * ramp ** 3)
+    idx, t = [], float(s)
+    while t < e:
+        i = int(round(t))
+        if not idx or i > idx[-1]:
+            idx.append(i)
+        t += float(np.interp(t, span, step))
+    if idx[-1] != e:
+        idx.append(e)
+    return list(range(s)) + idx + list(range(e + 1, n))
 
 
 def load_gen(path):
@@ -137,6 +181,18 @@ class Scene(gl.Scene):
             self.gen['D'], nd, self.bp_join['D'] = lead('BP3', b[B_READ + 1:])
             self.read_max['D'] = nd - 1
             self.f_leads = ['D']
+        self.slow_end = {}                                # F-leads: last frame of the slow reading before the grip
+        self.grip = {}
+        for L, (s, e) in GRIP.items():                    # compress the grip change inside each lead's own take
+            if L not in self.gen or RAMP_K <= 1:
+                continue
+            play = ramp_play(len(self.gen[L]), s, e, RAMP_K, None if RAMP_MODE == 'bump' else grip_motion(self.gen[L]))
+            self.gen[L] = self.gen[L][play]
+            self.read_max[L] = play.index(self.read_max[L])
+            self.slow_end[L] = s - 1
+            self.grip[L] = (s, play.index(e))
+            print(f'{L}: grip change f{s}-{e} ({e - s + 1} f) plays on {play.index(e) - s + 1} f '
+                  f'({[i for i in play if s <= i <= e]})')
         self.W = {}
         self.cache = {}
 
@@ -256,7 +312,8 @@ class Joins:
             Ls = [small(g(L, k)) for k in range(sc.read_max[L] + 1)]
             exits = sorted(((iou_b(Fa[x + 1], Ls[y]), x, y) for x in range(nF // 2, nF - 1)
                             for y in range(sc.read_max[L] + 1)), reverse=True)
-            self.flead[L] = dict(b_end=b_end, exits=exits, W=sc.W[L], W_iou=w_iou, W_x=w_x, rm=sc.read_max[L],
+            self.flead[L] = dict(b_end=b_end, exits=exits, W=sc.W[L], W_iou=w_iou, W_x=w_x,
+                                 rm=sc.slow_end.get(L, sc.read_max[L]), slow=L in sc.slow_end,
                                  A0=iou_grey(g(L, b_end - 1), g('A', 0)), into=sc.bp_join.get(L))
         self.nF, self.nR = nF, nR
         self.seam = dict(A96_F=iou_grey(g('A', 96), g('F', self.f_start)),
@@ -313,10 +370,14 @@ class Line:
             t = o * tx / max(n - 1, 1)
             i = int(np.floor(t + 1e-6))
             self.seq.append(dict(src='R', f=J.stream(i) + (t - i), snap=None, impact=False))
-        if J.loop_iou < SNAP_IOU:                            # ease the frames before each wrap onto R[p]
-            for o in range(start + 1, len(self.seq)):
-                if self.seq[o]['f'] + 1 < self.seq[o - 1]['f']:
-                    self.snap_into('R', J.p, J.loop_iou, end=o, floor=start)
+        # M10i: R[q] differs from R[p] in the drawing (not the position: an affine fit gains nothing), a small snap
+        # at 24 fps. Over the last WRAP_E frames before every wrap, R[q-E+j] eases onto R[p-E+j], the frames of the SAME
+        # reading take that lead into R[p] (pairs IoU 0.988-0.994), so the loop reaches R[p] through its own frames.
+        for o in range(start, len(self.seq)):
+            f = self.seq[o]['f']
+            j = f - (J.q - WRAP_E)
+            if 0 <= j < WRAP_E and f >= J.p:
+                self.seq[o]['snap'] = ('R', int(J.p - WRAP_E + np.floor(j + 1e-6)), cf.smooth((j + 1) / WRAP_E))
 
     def read_to_raise(self, n, rate_max):
         """Fill n frames: R's stream out at an exit R[x] -> L[y] for a lead L (B, or the short lead C), then L to its end
@@ -366,7 +427,8 @@ class Line:
                     continue
                 nread = m - (x + 1 - J.f_start) - (d['b_end'] - d['rm'] - 1)   # output frames for L[y..rm]
                 rate = (d['rm'] - y) / max(nread - 1, 1)
-                if nread >= 2 and abs(rate - 1) <= stretch_max and (best is None or (v, -abs(rate - 1)) > (best[0], -abs(best[5] - 1))):
+                smax = 0.75 if d['slow'] else stretch_max     # M10i: the grip frames saved go to the still reading
+                if nread >= 2 and abs(rate - 1) <= smax and (best is None or (v, -abs(rate - 1)) > (best[0], -abs(best[5] - 1))):
                     best = (v, L, x, y, nread, rate)
         if best is None:
             return None
