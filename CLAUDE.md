@@ -173,6 +173,13 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-21, late night (VID/POST, PC): M10m, S9 JUDGE EXT3 LOOK-UP REVIEW BUILT. 56 cr (balance 2,482).
+
+- Seedance 2.5 `video_extension` forward take v16fwd (job 8d958884, `prompts/S9-CRT-IDLE.txt` v16-FWD) gives the "Order! Order!" look-up; `tools/court_ext.py` env `EXT_LOOKUP`
+  splices it (U1..U185 at out 859-1043, snap exit into R149); the strike at 1278 is unchanged. EXT2 accepted by Homie as fallback, kept aside.
+- b5 `*_EXT3_FULL.mp4` + `S9_GENJUDGE_3wall_review_EXT3.mp4` built in `04_WORKING_FILES/S9_gen_judge_review/`, sync lag 0. WAITING for Homie's notes;
+  nothing upscaled or promoted. Handoff `docs/HANDOFF-2026-11-21-M10n.md`.
+
 ### 2026-11-21, night (POST/script, PC): M10k, S9 JUDGE EXT2 REVIEW BUILT. 0 cr (balance 2,538).
 
 - Grip-change ramp (motion-matched) + loop-wrap ease rendered: b3/b5cut FULL/b7 `*_EXT2*` + `S9_GENJUDGE_3wall_review_EXT2.mp4` in `04_WORKING_FILES/S9_gen_judge_review/`,

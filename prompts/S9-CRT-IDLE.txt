@@ -1,3 +1,38 @@
+# ---------- v16-FWD: the look-up on "Order! Order!" and the gavel-hand point (M10m, 2026-11-21) ----------
+# v16-FWD: Seedance 2.5 (seedance_2_5) · video_extension forward · video reference _M10m_R0-147_for_lookup.mp4 (v13-FWD3 R0-147;
+#   0 s = R147 = b5 out 858) · image reference _M10g_R150_read_pose.png (@Image 1) · 9:16 · 720p · 8 s · bitrate standard · batch 1 · sound OFF.
+# Derived from v13-FWD3. Changed lines: SCENE, REFERENCE (one image), FIRST FRAME unchanged, ACTION TIMING (look-up, point, return),
+#   LOCKS (the point replaces "no gavel raise"). Other blocks are v13-FWD3 verbatim.
+
+# --- v16-FWD ---
+SCENE: One naval-officer silhouette, solid black on a bone-white field, looks up from his scroll, points his gavel at the dock and returns to reading, continuing the attached clip.
+
+REFERENCE: The attached clip is the shot this continues; its first frame is the attached clip's last frame exactly: the same figure, drawing, size in frame and bone-white field. @Image 1 shows the exact reading pose he returns to and holds at the end: same figure, same size and place in frame.
+
+FIRST FRAME: The attached clip's last frame exactly.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Dead-on, frontal, locked off: the figure stays the same size and place in frame throughout.
+
+ACTION TIMING:
+0:00-0:01 — he lifts his head from the scroll toward the court; the scroll stays at his chest.
+0:01-0:04 — he holds his head up, facing front, one small forward nod of emphasis at 0:02; the gavel hangs at his hip.
+0:04-0:06 — he points his gavel hand sharply forward toward the dock, the arm at chest height, below his shoulder.
+0:06-0:08 — he lowers the gavel back to his hip and bows his head to the scroll, arriving in exactly the reading pose of @Image 1 and holding it.
+
+PHYSICS: Small, slow, weighted movements. The heavy wool coat settles. Feet stay planted.
+
+LIGHTING: The flat warm bone-white field of the attached clip, unchanged.
+
+SILHOUETTE LOCK: Figure, coat, scroll and gavel stay solid flat black with crisp clean edges in every frame. The head stays a bare black shape with a closed mouth line: no face, no eyes, no hair, no hat.
+
+STYLE: A shadow cast on a lit paper screen. Two tones only, exactly as the attached clip.
+
+QUALITY: Sharp clean edges, stable picture, no grain, no flicker.
+
+LOCKS: No on-screen text. Exactly one figure, front view. Exactly one gavel in the right hand and one scroll in the left hand throughout. The gavel only points; it stays below the shoulder and never strikes. Nothing newer than 1819.
+
 # ---------- v13-FWD3, v14-JOIN (rejected), v15-BACK / BACK2 / BACK3: the leads into the approved strike (M10g, 2026-11-21) ----------
 # The EXT build (tools/court_ext.py) uses: A = approved strike, F = v12-FWD, R = v13-FWD3 (loop R109-183),
 #   B = v15-BACK + v12-BACK, C = v15-BACK2 + B[60:], D = v15-BACK3 + B[60:] (b7's F-lead). Hold frames (a repeated frame

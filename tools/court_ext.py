@@ -54,6 +54,14 @@ if BP2:
 BP3 = os.environ.get('EXT_BP3')             # optional F-lead: backward extension of B from f59 whose first frame is F's
 if BP3:                                     # settled end -> lead 'D', entered straight from F (no R; b7's tight window)
     PAT['BP3'] = BP3
+# M10m (Homie M10l: "Do the order-order lookups"): U = v16-FWD, a forward extension of R from R[LOOK_AT] (head lifts
+# on "Order! Order!", a gavel thrust, back into the reading pose). b5 only, behind EXT_LOOKUP (path/glob of U): R's
+# stream lands exactly on R[LOOK_AT] at out LOOK_OUT (xw 0, no ease), U plays at rate 1, then exits into R or a lead.
+LOOKUP = os.environ.get('EXT_LOOKUP')
+if LOOKUP:
+    PAT['U'] = LOOKUP
+LOOK_AT, LOOK_OUT = 147, 858
+LOOK_Z0 = 144                               # U from here on is the held reading pose (exit search window)
 READ_FROM = int(os.environ.get('EXT_READ_FROM', 60))   # R frames from here on are settled reading (from the take's sheet)
 REFRAME = int(os.environ.get('EXT_REFRAME', 96))   # frames over which R's framing eases onto B's before a raise
 LOOP_MIN = 72                               # shortest loop inside R's reading (3 s)
@@ -203,10 +211,10 @@ class Scene(gl.Scene):
         if src == 'A':
             return self.src[f]
         g = prep_gen(self.gen[src][f])
-        return reframe(g, self.W[xl], xw) if (src in ('R', 'F') and xw > 0) else g
+        return reframe(g, self.W[xl], xw) if (src in ('R', 'F', 'U') and xw > 0) else g
 
     def raw(self, src, f, size, xw=0.0, xl='B'):
-        xw = round(float(xw), 3) if src in ('R', 'F') else 0.0
+        xw = round(float(xw), 3) if src in ('R', 'F', 'U') else 0.0
         key = (src, f, size, xw, xl if xw else '')
         if key not in self.cache:
             if len(self.cache) > 48:
@@ -316,6 +324,19 @@ class Joins:
                                  rm=sc.slow_end.get(L, sc.read_max[L]), slow=L in sc.slow_end,
                                  A0=iou_grey(g(L, b_end - 1), g('A', 0)), into=sc.bp_join.get(L))
         self.nF, self.nR = nF, nR
+        self.look = None
+        if 'U' in sc.gen:                         # look-up take: seam on R[LOOK_AT], exits U[z] -> R[w] / lead L[y]
+            nU = sc.n('U')
+            u_start = 1 if iou_grey(g('U', 0), g('R', LOOK_AT)) >= DUP_IOU else 0
+            Us = [small(g('U', k)) for k in range(nU)]
+            exits = [(iou_b(Us[z + 1], Rs[w]), z, 'R', w) for z in range(LOOK_Z0, nU - 1) for w in range(self.r_start, nR)]
+            for L in sc.leads:
+                Ua = [small(reframe(g('U', k), sc.W[L], 1.0)) for k in range(LOOK_Z0, nU)]
+                Ls = [small(g(L, k)) for k in range(sc.read_max[L] + 1)]
+                exits += [(iou_b(Ua[z + 1 - LOOK_Z0], Ls[y]), z, L, y) for z in range(LOOK_Z0, nU - 1)
+                          for y in range(sc.read_max[L] + 1)]
+            self.look = dict(u_start=u_start, seam=iou_grey(g('R', LOOK_AT), g('U', u_start)),
+                             dup=iou_grey(g('U', 0), g('R', LOOK_AT)), exits=sorted(exits, key=lambda t: -t[0]))
         self.seam = dict(A96_F=iou_grey(g('A', 96), g('F', self.f_start)),
                          F_R=iou_grey(g('F', nF - 1), g('R', self.r_start)))
 
@@ -331,6 +352,11 @@ class Joins:
             print(f'F-lead {L}: b_end {d["b_end"]}, into-B seam {d["into"]}, ->A0 {d["A0"]:.4f}; reframe at F[{d["W_x"]}] '
                   f'(IoU {d["W_iou"]:.4f}) {np.round(d["W"], 4).tolist()}')
             print('   best exits (IoU, x, F->y):', [(round(v, 4), x, y) for v, x, y in d['exits'][:6]])
+
+        if self.look:
+            d = self.look
+            print(f'look-up U: U0 vs R[{LOOK_AT}] {d["dup"]:.4f} -> u_start {d["u_start"]}, seam R[{LOOK_AT}]->U[{d["u_start"]}] '
+                  f'{d["seam"]:.4f}; best exits (IoU, z, ->, w/y):', [(round(v, 4), z, t, w) for v, z, t, w in d['exits'][:8]])
 
     def stream(self, t):
         """R index at whole stream position t: R[r_start..q-1], then R[p..q-1] again and again."""
@@ -360,14 +386,14 @@ class Line:
     def strike(self, a0, a1=97):
         self.add('A', range(a0, a1))
 
-    def read(self, n, tx=None):
+    def read(self, n, tx=None, t0=0):
         """n frames of R's stream; stream position tx lands on the last frame (uniform retime when tx + 1 != n).
         Fractional frames interpolate R[i] -> R[i+1] (at a wrap R[q-1] -> R[q], and R[q] ~ R[p])."""
         J = self.J
         start = len(self.seq)
         tx = n - 1 if tx is None else tx
         for o in range(n):
-            t = o * tx / max(n - 1, 1)
+            t = t0 + o * (tx - t0) / max(n - 1, 1) if t0 else o * tx / max(n - 1, 1)
             i = int(np.floor(t + 1e-6))
             self.seq.append(dict(src='R', f=J.stream(i) + (t - i), snap=None, impact=False))
         # M10i: R[q] differs from R[p] in the drawing (not the position: an affine fit gains nothing), a small snap
@@ -379,7 +405,7 @@ class Line:
             if 0 <= j < WRAP_E and f >= J.p:
                 self.seq[o]['snap'] = ('R', int(J.p - WRAP_E + np.floor(j + 1e-6)), cf.smooth((j + 1) / WRAP_E))
 
-    def read_to_raise(self, n, rate_max):
+    def read_to_raise(self, n, rate_max, t0=0):
         """Fill n frames: R's stream out at an exit R[x] -> L[y] for a lead L (B, or the short lead C), then L to its end
         (the raise, exact into A0). Best-matching exit over all leads that fits with whole loops and the smallest retime.
         Over the last REFRAME reading frames R's framing eases onto the lead's. Returns (lead, iou, x, y, rate)."""
@@ -399,14 +425,16 @@ class Line:
                 else:
                     continue
                 for tx in cands:
-                    rate = (tx + 1) / nr
+                    if tx < t0:
+                        continue
+                    rate = (tx - t0 + 1) / nr
                     if abs(rate - 1) <= rate_max and (best is None or (v, -abs(rate - 1)) > (best[0], -abs(best[6] - 1))):
                         best = (v, L, x, y, tx, nr, rate)
         assert best, f'no exit fits {n} frames'
         v, L, x, y, tx, nr, rate = best
         d = J.lead[L]
         r0 = len(self.seq)
-        self.read(nr, tx)
+        self.read(nr, tx, t0)
         k = min(REFRAME, nr)                              # ease R's framing onto the lead's over the last k reading frames
         for j in range(k):
             self.seq[r0 + nr - k + j].update(xw=cf.smooth((j + 1) / k), xl=L)
@@ -446,6 +474,43 @@ class Line:
         self.snap_into('A', 0, d['A0'])
         return 'F->' + L, round(v, 4), x, y, round(rate, 3)
 
+    def lookup_to_raise(self, n):
+        """Fill n frames (the gap after F) with the look-up: R's stream exactly onto R[LOOK_AT] at out LOOK_OUT, U at
+        rate 1, then the best-IoU exit that still fits: into R[w] (then read_to_raise from there) or straight into a
+        lead L[y] (y forced by the length; U's framing eases onto the lead's). snap_into where IoU < SNAP_IOU."""
+        J, d = self.J, self.J.look
+        o0 = len(self.seq)
+        end = o0 + n                                      # out frame of A0
+        self.read(LOOK_OUT - o0 + 1, LOOK_AT - J.r_start)
+        assert self.seq[LOOK_OUT]['f'] == LOOK_AT and not self.seq[LOOK_OUT]['snap'], self.seq[LOOK_OUT]
+        for v, z, tgt, w in d['exits']:
+            rem = end - (LOOK_OUT + 1) - (z - d['u_start'] + 1)
+            trial = Line(J)
+            trial.seq = [dict(e) for e in self.seq]
+            trial.add('U', range(d['u_start'], z + 1))
+            u0 = LOOK_OUT + 1
+            if tgt == 'R':
+                trial.snap_into('R', w, v)
+                try:
+                    nxt = trial.read_to_raise(rem, RATE_MAX, t0=w - J.r_start)
+                except AssertionError:
+                    continue
+            else:
+                y = J.lead[tgt]['b_end'] - rem
+                if y != w:
+                    continue
+                k = min(REFRAME, z - d['u_start'] + 1)
+                for j in range(k):
+                    trial.seq[u0 + (z - d['u_start'] + 1) - k + j].update(xw=cf.smooth((j + 1) / k), xl=tgt)
+                trial.snap_into(tgt, y, v)
+                trial.add(tgt, range(y, J.lead[tgt]['b_end']))
+                trial.snap_into('A', 0, J.lead[tgt]['A0'])
+                nxt = None
+            assert len(trial.seq) == end
+            self.seq = trial.seq
+            return ('U', round(v, 4), z, tgt, w, nxt)
+        raise AssertionError('no look-up exit fits')
+
     def recover(self):
         J = self.J
         self.add('F', range(J.f_start, J.nF))
@@ -457,9 +522,12 @@ def timeline(beat, J, n):
     L = Line(J)
     L.strike(IMPACT_A - knocks[0][0])
     info = []
-    for imp, q in knocks[1:]:
+    for kn, (imp, q) in enumerate(knocks[1:]):
         fl = L.f_to_raise(imp - IMPACT_A - len(L.seq)) if (beat == 7 and J.flead) else None
-        if fl:
+        if beat == '5cut' and J.look and kn == 1:            # M10m: the look-up sits in b5's second gap
+            L.recover()
+            info.append(L.lookup_to_raise(imp - IMPACT_A - len(L.seq)))
+        elif fl:
             info.append(fl)
         else:
             L.recover()
