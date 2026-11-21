@@ -63,3 +63,14 @@ causes: `docs/S9-JUDGE-M9u-DIAGNOSIS.md`.
   everything left, 4K included.)
 
 - 2026-11-21 (M10e): FLOW5 review built (b5 FLOW5 FULL, b3 FLOW3, b7 FLOW5, Darren uncut mix), checked; waiting for Homie notes. No upscale or promotion without his yes.
+- 2026-11-21 (Homie, on the FLOW5 review, verbatim): "at 3:27 you can see the paper in hand morphe and change direction,
+  very obvious flaw. then he proceeds to hit himself in the head with the gavel. May be having him do nothing or just
+  continuing the reading/holding paper is the way? What do you propose because this wont do. 3:38 there is a sharp
+  transition where you see the silhouette change shape. 4:00 hits himself in the head again! the framerate at 5:23 area
+  feels off, is everything right here? 5:30, I can see a sharp cut to another silhouette, because we are so close, we can
+  see it more clearly. 5:35, sharp cut and hits himself in the head again. We have gone through so many iterations,
+  credit spending and yet something so simple and relatively easy to do is turning out to be such a tedious and low
+  quality output. I need to you rethink, replan and critically audit this and fix all this."
+  (FLOW5 REJECTED. He wants a critical audit, a new plan, a proposal, then the fix. He floats: judge does nothing / just
+  keeps reading or holding the paper. The gavel-crosses-the-head moment, which M10d/M10e called "part of the approved
+  strike", reads to him as the judge hitting himself: that is a flaw in the stitched result.)
