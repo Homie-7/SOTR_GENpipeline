@@ -11,7 +11,7 @@ Star chat RAFT6 started 22 Nov. Remote Control on. The old chat "(old) SOTR S9 r
 - Three 4K ProRes loop tests rendering to `SOTR_MEDIA/04_WORKING_FILES/S9_raft/water_motion_test/` (logs `_LOG_<tag>.txt`):
   B24blur = 24 fps, shutter 2 (mean of src 2k, 2k+1), 252 f / C48 = 48 fps, every source frame, 504 f /
   D5994flow = 59.94 fps, speed 0.8, DIS optical-flow in-betweens, 629 f. A = the approved v2 master (no re-render).
-- NEXT: when DONE: (1) measure each wrap (gray 960x540 mean abs step, inner range vs last->first, as LOG.md 1014);
+- DONE 22:12: wraps clean (A 1.03, B 1.00, C 1.13, D 1.13 x median step); review_1080 + grid built, folder opened for Homie. WAITING for his pick + the floor projector rate.
   (2) look at them yourself (contact sheet + flow artefacts on D, foam ghosting); (3) make 1080 review files, each at its own
   rate, 2 loops, same names + a 2x2 grid (A/B/C/D) at 59.94; (4) open the folder in Explorer for Homie and ask him to pick.
   Note to Homie: ask what rate the floor projector / media server runs (60 Hz -> D is the smooth one; 48 judders on 60 Hz).
