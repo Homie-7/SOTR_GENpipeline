@@ -20,3 +20,8 @@ Homie said "Yes, run Plan A" (~60 cr). Balance 2,475, floor 1,500. Ask before an
 - T9 git shows `._pack` errors (macOS junk); the pull still works.
 - Open questions still with Homie: rest of the cut-off message, sea hold length, floor projector.
 - S9 judge EXT3 review is parked, waiting for his notes.
+
+## STATUS 22 Nov, later: PLAN A DONE (32 cr, balance 2,443)
+- Masters in `04_WORKING_FILES/S2_painting_melt_plan/planA/reproj/`: <W>_CLEAN_4K.mov + _CLEAN_1080.mov for LEFT, CENTRE, RIGHT, FLOOR (500 f, 24 fps, sound in). Built by `tools/melt_planA.py build DIR W`.
+- Checked by contact sheet: Raft hold, melt, pour onto FLOOR, sea on all walls. CENTRE ~f150 is black in the source render.
+- Next: only on Homie's notes. Open: cut-off message, sea hold length, floor projector, Raft sky warmth, edge versions and promotion.

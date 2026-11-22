@@ -605,3 +605,4 @@ Homie's notes (9 Oct): the idles showed "the lines of what was erased"; the intr
 
 - Source: `F:\OrCha Drive\SOR DESK BACK UP\RMIT Black Box first show\Final Animations\Painting melt + Ocean loop\paintingMelt_1109.mp4` (2019 Houdini 360 equirect, read-only).
 - Working: `SOTR_MEDIA/04_WORKING_FILES/S2_painting_melt_plan/` (BRIEF, PLAN, reproject stills, upscale tests). Tool: `tools/melt_reproject.py`. Not a reference until Homie approves.
+- Plan A masters (22 Nov, working files, NOT approved, NOT in 01_FINAL_FOR_SHOW): `SOTR_MEDIA/04_WORKING_FILES/S2_painting_melt_plan/planA/reproj/` LEFT/CENTRE/RIGHT/FLOOR `_CLEAN_4K.mov` (2880/3600/2880/3840 x 2160) + `_CLEAN_1080.mov`, 24 fps, 20.83 s, sound in. Built by `tools/melt_planA.py`.

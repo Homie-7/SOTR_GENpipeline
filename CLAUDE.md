@@ -173,6 +173,11 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-22, later (POST/script, PC): M10m side task, S2 MELT PLAN A MASTERS BUILT. 32 cr (balance 2,443).
+
+- Homie: "Yes, run Plan A". 4 Topaz jobs + `tools/melt_planA.py` -> LEFT/CENTRE/RIGHT/FLOOR `_CLEAN_4K/_1080.mov` in `04_WORKING_FILES/S2_painting_melt_plan/planA/reproj/`
+  (24 fps, 20.83 s, sound in, true Raft on CENTRE). Checked. WAITING for Homie; nothing promoted. Handoff `docs/HANDOFF-2026-11-22-S2melt.md`.
+
 ### 2026-11-22 (POST/script, PC): M10m side task, S2 PAINTING MELT PLAN WRITTEN. 7 cr (balance 2,475).
 
 - `tools/melt_reproject.py` maps the 2019 Houdini 360 melt onto LEFT/CENTRE/RIGHT + FLOOR. Topaz 2160p removes the baked h264 blocks; ByteDance does not.
