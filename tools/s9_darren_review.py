@@ -25,6 +25,14 @@ first frame until its own start (117.38 s), so b4's picture keeps its timing aga
 picture AND his sound as straight splices (Homie: "we will not make changes to Darren's sound itself at all"). All his
 timecodes are on the uncut EXT3 clock. b5's "Bangs the gavel" caption is re-pinned to the moved strike (245-248 s uncut).
 Total 9580 -> 8428 frames (351.17 s).
+--e5 (M10p, 2026-11-22, Homie on EXT4): --d22, plus (1) an EASE at his two splices, nothing else done to his sound:
+a half-sine fade-out of the OUTGOING sound only, FADES[i] s long, ending on the splice (3:03.0: 0.30 s, his sound
+already falling -15 -> -26 dB into -46 dB; 4:02.0: 0.50 s, -8 dB into his digital silence); no fade-in (his sound
+after each splice is his own entrance); (2) captions re-timed to the speech: every spoken line starts on the first
+word faster-whisper (medium, en, word timings, no VAD) hears of it in the cut mix (WORDS json, review clock). Only
+the JUDGE is a recorded voice in his mix (the salon/studio lines are the live actors): their lines and the stage
+directions keep their estimate / picture events; a judge line not heard keeps its estimate; b5's
+"Bangs the gavel" is re-pinned to the strike ON his gavel (243.0 s uncut, court_ext EXT_E5).
 Heavy: run with CPU affinity FFFF3FFF (off Core 7). Writes to a _tmp_ name, renamed when ffmpeg finishes.
 """
 import argparse
@@ -56,6 +64,8 @@ PAINT = False
 MIX22 = r'G:\SOTR\HF\Final changes\221126\the judge CUT DOWN 22112026_2.mov'
 CUTS = []                                # [(start s, end s)] on the uncut clock, removed from picture + sound (--d22)
 B5_KNOTS = None                          # b5-relative caption re-pin (--d22)
+FADES = []                               # --e5: fade-out (s) of the outgoing sound into each splice, one per CUTS
+WORDS = None                             # --e5: faster-whisper words [(start, end, word)] on the review clock
 
 
 def use_mix21():
@@ -71,6 +81,47 @@ def use_d22():
     CUTS = [(183.0, 189.0), (248.0, 290.0)]
     # b5 seg 1 (0.5-45) unchanged; seg 2 ends at the moved strike's lead-in; seg 3 "Bangs the gavel" -> 245.0-248.0 s
     B5_KNOTS = [(0.0, 0.0), (45.0, 45.0), (85.0, 245.0 - 189.75), (100.5, 248.0 - 189.75), (101.0, 101.0)]
+
+
+def use_e5(words):
+    global FADES, WORDS, B5_KNOTS
+    import json
+    use_d22()
+    FADES = [0.30, 0.50]
+    B5_KNOTS = [(0.0, 0.0), (45.0, 45.0), (85.0, 243.0 - 189.75), (100.5, 248.0 - 189.75), (101.0, 101.0)]
+    WORDS = json.load(open(words, encoding='utf-8'))
+
+
+def _toks(text):
+    import re
+    import unicodedata
+    t = re.sub(r'\([^)]*\)', ' ', text)
+    t = unicodedata.normalize('NFKD', t).encode('ascii', 'ignore').decode().lower()
+    return re.findall(r"[a-z0-9]+", t)
+
+
+def speech_times(ln):
+    """M10p: each spoken line -> the start of its first word heard in the cut mix (difflib alignment of all spoken
+    lines against all heard words, in order). Returns {line index: t}."""
+    import difflib
+    ref, own = [], []
+    for i, (t, sp, tx) in enumerate(ln):
+        if sp == s9.JU and 'gavel' not in tx:   # the judge is the only recorded voice; the others are live actors
+            for w in _toks(tx):
+                ref.append(w)
+                own.append(i)
+    heard = [(w0, tk) for w0, w1, wd in WORDS for tk in _toks(wd)]
+    sm = difflib.SequenceMatcher(None, ref, [tk for _, tk in heard], autojunk=False)
+    hits = {}
+    for a, b, n in sm.get_matching_blocks():
+        for k in range(n):
+            hits.setdefault(own[a + k], []).append(heard[b + k][0])
+    out = {}
+    for i, ts in hits.items():
+        n_words = sum(1 for o in own if o == i)
+        if len(ts) >= min(2, n_words):
+            out[i] = min(ts)
+    return out
 
 
 def cut_frames():
@@ -148,6 +199,12 @@ def lines():
     finally:
         s9.SEGMENTS = keep
     beats = [(remap(t), txt) for t, txt in s9.BEATS]
+    if WORDS:
+        st = speech_times(ln)
+        new = [st.get(i, t) for i, (t, _, _) in enumerate(ln)]
+        for i, (t, sp, tx) in enumerate(ln):
+            print(f'  caption {t:7.2f} -> {new[i]:7.2f}  {"heard" if i in st else "est. "}  {sp[:10]:10s} {tx[:60]}')
+        ln = sorted(((new[i], sp, tx) for i, (t, sp, tx) in enumerate(ln)), key=lambda r: r[0])
     return beats, ln
 
 
@@ -157,7 +214,9 @@ def mix_audio(wav, dur):
         for a, b in sorted(CUTS):
             keep.append((t, a))
             t = b
-        fc = ''.join(f'[0:a]atrim=start={x:.4f}' + (f':end={y:.4f}' if y else '') + f',asetpts=PTS-STARTPTS[k{i}];'
+        fd = FADES or [0] * len(keep)            # --e5: ease the outgoing sound into each splice
+        fc = ''.join(f'[0:a]atrim=start={x:.4f}' + (f':end={y:.4f}' if y else '') + ',asetpts=PTS-STARTPTS' +
+                     (f',afade=t=out:st={y - x - fd[i]:.4f}:d={fd[i]:.4f}:curve=hsin' if y and fd[i] else '') + f'[k{i}];'
                      for i, (x, y) in enumerate(keep + [(t, None)]))
         n = len(keep) + 1
         fc += ''.join(f'[k{i}]' for i in range(n)) + f'concat=n={n}:v=0:a=1,atrim=0:{dur:.4f}[o]'
@@ -230,7 +289,7 @@ def build(out, b5, test, dry, b3=None, b7=None, title=TITLE):
     for p, w, st, hold, end in cl:
         print(f'  {["L", "C", "R"][w]}  {st:5d}  {st / s9.FPS:7.2f} s  hold {hold:4d}  end {end}  {os.path.basename(p)}')
     print(f'total {total} frames ({total / s9.FPS:.2f} s); his audio ' +
-          (f'cut {CUTS} (straight splices) {os.path.basename(MIX)}' if CUTS else f'spliced {SPLICE[0]:.2f}-{SPLICE[1]:.2f} s' if CUT else f'uncut ({os.path.basename(MIX)})'))
+          (f'cut {CUTS} ' + (f'(fade-out {FADES} s hsin into each splice)' if FADES else '(straight splices)') + f' {os.path.basename(MIX)}' if CUTS else f'spliced {SPLICE[0]:.2f}-{SPLICE[1]:.2f} s' if CUT else f'uncut ({os.path.basename(MIX)})'))
     if not dry:
         mix_audio(wav, dur)
     sp.run(cmd, out, dry, False)
@@ -277,8 +336,11 @@ def main():
     ap.add_argument('--title', default=TITLE)
     ap.add_argument('--mix21', action='store_true', help="M10b: Darren's 21112026 mix uncut + the 1:49 painting")
     ap.add_argument('--d22', action='store_true', help="M10o: Darren's 22112026_2 mix, uncut placement + his two cuts")
+    ap.add_argument('--e5', metavar='WORDS_JSON', help="M10p: --d22 + eased splices + captions on the heard speech")
     a = ap.parse_args()
-    if a.d22:
+    if a.e5:
+        use_e5(a.e5)
+    elif a.d22:
         use_d22()
     elif a.mix21:
         use_mix21()

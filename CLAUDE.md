@@ -173,7 +173,13 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-22, latest (POST/script, PC): M10o, S9 JUDGE EXT4 REVIEW BUILT (Darren's 22 Nov cuts). 0 cr (balance 2,443).
+### 2026-11-22, latest (POST/script, PC): M10p, S9 JUDGE EXT5 REVIEW BUILT (Homie's notes on EXT4). 0 cr (balance 2,443).
+
+- `tools/court_ext.py` env `EXT_E5=1` (b5 strike on his gavel sound, b7 hit then fade to black over the echo, knocks +1 frame) + `tools/s9_darren_review.py --e5`
+  (eased hsin fades 0.30 s / 0.50 s into his splices, JUDGE captions on faster-whisper) -> `S9_GENJUDGE_3wall_review_EXT5.mp4` (351.17 s, lag 0), audited at 24 fps.
+  WAITING for Homie/Darren; nothing upscaled or promoted.
+
+### 2026-11-22, earlier (POST/script, PC): M10o, S9 JUDGE EXT4 REVIEW BUILT (Darren's 22 Nov cuts). 0 cr (balance 2,443).
 
 - `tools/court_ext.py` env `EXT_D22=1` (strike at 247.0 s uncut, played through the snip; b7 snap to black at the impact) + `tools/s9_darren_review.py --d22`
   (cuts 183-189 s, 248-290 s, straight splices, Darren's sound unchanged) -> `S9_GENJUDGE_3wall_review_EXT4.mp4` (351.17 s, lag 0) in `04_WORKING_FILES/S9_gen_judge_review/`.

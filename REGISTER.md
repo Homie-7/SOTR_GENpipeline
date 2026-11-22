@@ -612,3 +612,7 @@ Homie's notes (9 Oct): the idles showed "the lines of what was erased"; the intr
 
 - `SOTR_MEDIA/04_WORKING_FILES/S9_gen_judge_review/`: `S9_b5_CENTRE_court_GENJUDGE_EXT4_FULL.mp4`, `S9_b7_CENTRE_court_GENJUDGE_EXT4.mp4`, `S9_GENJUDGE_3wall_review_EXT4.mp4` (Darren's 22 Nov cuts, 351.17 s, sync lag 0). EXT3 and `_KEEP_EXT2_GOOD_fallback_2026-11-21/` kept. Not approved, not upscaled, not promoted.
 - `SOTR_MEDIA/04_WORKING_FILES/S6_map_to_ship_review/S6_map_to_ship_preview_v1.mp4` (45 s review). Not approved.
+
+### 2026-11-22 — S9 judge EXT5 review (working files only, nothing approved)
+
+- `SOTR_MEDIA/04_WORKING_FILES/S9_gen_judge_review/`: `S9_b5_CENTRE_court_GENJUDGE_EXT5_FULL.mp4`, `S9_b7_CENTRE_court_GENJUDGE_EXT5.mp4`, `S9_GENJUDGE_3wall_review_EXT5.mp4` (351.17 s, sync lag 0), `_EXT5_whisper_words_cutmix.json`. Try 1 kept as `_tmp_try1_*`. EXT3, EXT4 and `_KEEP_EXT2_GOOD_fallback_2026-11-21/` kept. Not approved, not upscaled, not promoted.

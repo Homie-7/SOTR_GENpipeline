@@ -87,6 +87,17 @@ WRAP_E = 24                                 # loop wrap: the last WRAP_E frames 
 D22 = os.environ.get('EXT_D22') == '1'
 D22_STRIKE = 1374
 SNIP = (1398, 2406)                         # b5 out frames of mix 248.0 s and 290.0 s (b5 starts 189.75 s)
+# M10p (Homie on EXT4, 22 Nov: "match the Gavel hit with the sound because we are following the sound here"; b7: "make
+# that fade a little bit after the gavel has been hit so that the impact stays ... quite a bit of echo"), behind
+# EXT_E5=1 (EXT3 and EXT4 rebuild unchanged without it; never with EXT_D22). b5: the last strike stays ON his gavel
+# sound (KNOCKS 1278 -> 1279 with the +1 below = 243.04 s; his transient 243.03 s, ncc 0.60; b7 knock -> 389), and the line is
+# built as if the snip were not there (the EXT3 path at 2424 - 1008 frames), so the judge plays straight through the
+# splice; black is put back over SNIP (cut in the review). b7: the Q5 capper plays A f0-95 (hit + follow-through),
+# then F/R carry on, and the picture fades to black over his echo: gain 1 at out E5_FADE[0] (339.58 s) to 0 at
+# E5_FADE[1] (342.0 s, his echo at -39 dB just before his next sound at 342.1 s), smoothstep; black after.
+E5 = os.environ.get('EXT_E5') == '1'
+assert not (E5 and D22), 'EXT_E5 and EXT_D22 are separate builds'
+E5_FADE = (400, 458)
 CL_GEN = cf.CL_GEN
 GEN_SIGMA = 1.0                             # contour clean-up of the x1.5 upscale (approved frames are native 1080)
 
@@ -525,9 +536,31 @@ class Line:
 
 
 def timeline(beat, J, n):
+    if E5 and beat == '5cut':                                 # M10p: straight through the snip, black put back over it
+        k = SNIP[1] - SNIP[0]
+        seq, info = timeline_core(beat, J, n - k)
+        blk = [dict(src=None, f=None, snap=None, impact=False) for _ in range(k)]
+        return seq[:SNIP[0]] + blk + seq[SNIP[0]:], info
+    seq, info = timeline_core(beat, J, n)
+    if E5 and beat == 7:                                      # M10p: fade to black over his gavel echo
+        f0, f1 = E5_FADE
+        for o, s in enumerate(seq):
+            if o > f1:
+                seq[o] = dict(src=None, f=None, snap=None, impact=False)
+            elif o > f0:
+                u = (o - f0) / (f1 - f0)
+                s['gain'] = 1 - u * u * (3 - 2 * u)
+    return seq, info
+
+
+def timeline_core(beat, J, n):
     knocks = list(ga.KNOCKS[beat])
     if D22 and beat == '5cut':
         knocks[2] = (D22_STRIKE, knocks[2][1])
+    if E5:                                                  # M10p audit: A's gavel touches at IMPACT_A - 1, so the knock frame
+        k = 2 if beat == '5cut' else (1 if beat == 7 else None)  # goes 1 later: contact lands on his hit (b5 243.0 s vs
+        if k is not None:                                   # his 243.03 s; b7 339.083 s vs 339.10 s), sound never before it
+            knocks[k] = (knocks[k][0] + 1, knocks[k][1])
     L = Line(J)
     L.strike(IMPACT_A - knocks[0][0])
     info = []
@@ -552,6 +585,12 @@ def timeline(beat, J, n):
                     f = next(tail, None)
                     L.seq.append(dict(src=None, f=None, snap=None, impact=False) if f is None else
                                  dict(src='A', f=f, snap=None, impact=False))
+            break
+        if q == 'Q5' and E5:                                  # M10p: hit + follow-through, then carry on (faded later)
+            L.strike(0)
+            L.recover()
+            if n > len(L.seq):
+                L.read(n - len(L.seq))
             break
         if q == 'Q5':                                         # the capper: approved f0-95, black on the old frame
             L.strike(0, IMPACT_A + 1 if D22 else 96)        # M10o: snap to black after the impact frame
@@ -592,6 +631,8 @@ def frames(sc, seq, beat, clean=False):
             dx, dy = rng.integers(-amp, amp + 1, 2)
             im = np.roll(im, (int(dy), int(dx)), (0, 1)) * (1 + 0.05 * shake / 6)
             shake -= 1
+        if 'gain' in s:                                       # M10p: b7 fade to black (EXT_E5)
+            im = im * s['gain']
         yield im
 
 
