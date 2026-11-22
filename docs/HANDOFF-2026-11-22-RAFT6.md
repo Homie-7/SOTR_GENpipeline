@@ -46,3 +46,9 @@ Star chat RAFT6 started 22 Nov. Remote Control on. The old chat "(old) SOTR S9 r
 - Wrap still owed: REGISTER, NEW-SESSION, CLAUDE.md current stage, push, T9 (git pull in G: clone + sha256 copy of
   `S9_raft/water_motion_test/` and anything new).
 - Old chats to archive: this one (RAFT6) and "(old) SOTR S9 raft blades anim" (local_ad693359, had a Remote Control client).
+
+## RAFT7 note (22 Nov, late)
+- RAFT7 star chat started, Remote Control on, read in. Homie: "We will stop for now ... We will work on this tomorrow."
+- Nothing built, 0 cr. Water pick still open. Blades v2 style frames not started (Blender 5.2 at
+  `C:\Program Files\Blender Foundation\Blender 5.2\blender.exe`; v1 code in `tools/blade_anim.py`, profiles in `tools/blade_frames.py`).
+- Not archived yet: RAFT6 (was still running) and local_ad693359 (app: still has live work). Retry tomorrow.
