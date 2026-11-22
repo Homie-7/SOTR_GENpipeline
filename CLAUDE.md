@@ -173,7 +173,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-22, latest (POST/script, PC): M10p, S9 JUDGE EXT5 REVIEW BUILT (Homie's notes on EXT4). 0 cr (balance 2,443).
+### 2026-11-22, latest (POST/script, PC): RAFT5, S9 RAFT WATER v2 PROMOTED + BLADES v1 BUILT. 0 cr (balance 2,443).
+
+- `tools/raft_water.py` v2 (integer source step) = a perfect loop; promoted with Homie's yes: `5_FLOOR_only_if_a_floor_projector/S9_b1-and-b10_FLOOR_raft-water.mov`
+  (4K, 63 s) + HOLD loop in folder 2 + CLEAN in 03. `tools/blade_anim.py` b10 blades test v1 in `04_WORKING_FILES/S9_raft/blades_anim_v1/`: WAITING for his notes (cap 60 cr).
+
+### 2026-11-22, earlier (POST/script, PC): M10p, S9 JUDGE EXT5 REVIEW BUILT (Homie's notes on EXT4). 0 cr (balance 2,443).
 
 - `tools/court_ext.py` env `EXT_E5=1` (b5 strike on his gavel sound, b7 hit then fade to black over the echo, knocks +1 frame) + `tools/s9_darren_review.py --e5`
   (eased hsin fades 0.30 s / 0.50 s into his splices, JUDGE captions on faster-whisper) -> `S9_GENJUDGE_3wall_review_EXT5.mp4` (351.17 s, lag 0), audited at 24 fps.

@@ -88,7 +88,10 @@ def main():
     sfps = cap.get(cv2.CAP_PROP_FPS); sn = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     total = int((sn - 1) / sfps * a.speed * FPS)                 # output frames available
     N = total - XF                                               # loop length
-    want = {k: int(round(k * sfps * a.speed / FPS)) for k in range(N + XF)}
+    step = sfps * a.speed / FPS                                  # v2: 59.94*0.8/24 = 1.998 rounded to a 1-frame
+    if abs(step - round(step)) < 0.01:                           # hitch at k~250 (v1, frame 250->251); lock an
+        step = float(round(step))                                # integer step so every frame moves the same
+    want = {k: int(round(k * step)) for k in range(N + XF)}
     print(f"src {sn} f @ {sfps:.3f}; out {N} f loop ({N / FPS:.2f} s) + {XF} f crossfade", flush=True)
 
     fade = envelope_fade()

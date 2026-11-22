@@ -616,3 +616,10 @@ Homie's notes (9 Oct): the idles showed "the lines of what was erased"; the intr
 ### 2026-11-22 — S9 judge EXT5 review (working files only, nothing approved)
 
 - `SOTR_MEDIA/04_WORKING_FILES/S9_gen_judge_review/`: `S9_b5_CENTRE_court_GENJUDGE_EXT5_FULL.mp4`, `S9_b7_CENTRE_court_GENJUDGE_EXT5.mp4`, `S9_GENJUDGE_3wall_review_EXT5.mp4` (351.17 s, sync lag 0), `_EXT5_whisper_words_cutmix.json`. Try 1 kept as `_tmp_try1_*`. EXT3, EXT4 and `_KEEP_EXT2_GOOD_fallback_2026-11-21/` kept. Not approved, not upscaled, not promoted.
+
+### 2026-11-22 — S9 raft floor water v2: APPROVED (Homie: "put it in the final ... show files") + PROMOTED
+
+- Clean master (never overwritten): `03_CLEAN_MASTERS_no_edge/S9_b1-and-b10_FLOOR_raft-water_loop_CLEAN_4K.mov` (3840x2160, ProRes 422 HQ, 24 fps, 252 f = 10.5 s, no sound), sha256 `220a881b...6b47c`, = `04_WORKING_FILES/S9_raft/v2/S9_RAFT_FLOOR_water_loop_CLEAN_4K.mov`.
+- Show: `01_FINAL_FOR_SHOW/5_FLOOR_only_if_a_floor_projector/S9_b1-and-b10_FLOOR_raft-water.mov` (63 s = 6 loops, stream copy + silent 48 kHz 24-bit), sha256 `bed6b272...6450c`.
+- Backup loop: `01_FINAL_FOR_SHOW/2_BACKUP_LOOPS_for_operator/S9_b1-and-b10_FLOOR_raft-water_HOLD_loop.mov` (10.5 s + silent track), sha256 `9394be40...340ac`. Video stream md5 identical to the master in both.
+- v1 (`S9_raft/v1/`) had a 1-frame hitch at 250->251 (step 1.998 rounded); not used. Read-me updated (folders 2, 5, FORMAT).
