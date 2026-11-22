@@ -34,3 +34,15 @@ Star chat RAFT6 started 22 Nov. Remote Control on. The old chat "(old) SOTR S9 r
 - Order (Homie: "think about all of this, don't just blindly make something"): (1) reference board with links + a grip/aim
   diagram per wall; (2) 2-3 style frames (e.g. A hard lamp shadow, B moon-rim lit arm out of black, C motion-smear glimpse);
   (3) Homie picks; (4) build v2 on the v1 schedule.
+
+## UPDATE 22 Nov late (RAFT6 -> RAFT7 handoff)
+- Water tests DONE and shown (review_1080 + 2x2 grid at 59.94). Homie asked "are they all perfect loops?" -> answered YES
+  (wrap / median step: A 1.03, B 1.00, C 1.13, D 1.13). He does not seem to know the projector rate (his words:
+  "Know the frame rate of the projector"). Claude recommended D (59.94 flow). WAITING for his pick. On his yes:
+  re-render the show file (63 s = 6 loops) + HOLD loop + CLEAN at the chosen rate with raft_water_motion.py logic,
+  same show names, old v2 files to `04_WORKING_FILES/superseded/` with `_v2` added, sha256, read-me + REGISTER update.
+- Blades v2: refs note committed (`docs/BLADES-V2-REFS.md`). NEXT = 3 style frames (A lamp shadow, B rim-lit arm,
+  C smear glimpse) via Blender 5.2 (0 cr), all three walls, correct grips, tips on Agnes. Then his pick.
+- Wrap still owed: REGISTER, NEW-SESSION, CLAUDE.md current stage, push, T9 (git pull in G: clone + sha256 copy of
+  `S9_raft/water_motion_test/` and anything new).
+- Old chats to archive: this one (RAFT6) and "(old) SOTR S9 raft blades anim" (local_ad693359, had a Remote Control client).
