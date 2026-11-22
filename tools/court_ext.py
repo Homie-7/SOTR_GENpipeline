@@ -80,6 +80,13 @@ GRIP = {'C': (16, 79), 'B': (31, 99), 'D': (21, 79)}
 RAMP_K = float(os.environ.get('EXT_RAMP_K', 3.0))
 RAMP_MODE = os.environ.get('EXT_RAMP_MODE', 'motion')   # M10j: 'motion' (matched) | 'bump' (M10i sin^2)
 WRAP_E = 24                                 # loop wrap: the last WRAP_E frames before R[q] ease onto R[p-WRAP_E..p-1]
+# M10o (Darren 22 Nov, docs/HANDOFF-2026-11-22-S9darren.md), behind EXT_D22=1 (EXT3 rebuilds unchanged without it):
+# b5's last strike 1278 -> 1374 (= 247.0 s, after his last "Order!" which ends 246.22 s); his snip 248.0-290.0 s
+# (= b5 out SNIP) is black here and cut in the review; the strike plays through across it (A54.. in the kept frames,
+# no jump to a reading frame); b7's Q5 capper ends ON the impact frame (A f0-53), black from the next frame.
+D22 = os.environ.get('EXT_D22') == '1'
+D22_STRIKE = 1374
+SNIP = (1398, 2406)                         # b5 out frames of mix 248.0 s and 290.0 s (b5 starts 189.75 s)
 CL_GEN = cf.CL_GEN
 GEN_SIGMA = 1.0                             # contour clean-up of the x1.5 upscale (approved frames are native 1080)
 
@@ -518,7 +525,9 @@ class Line:
 
 
 def timeline(beat, J, n):
-    knocks = ga.KNOCKS[beat]
+    knocks = list(ga.KNOCKS[beat])
+    if D22 and beat == '5cut':
+        knocks[2] = (D22_STRIKE, knocks[2][1])
     L = Line(J)
     L.strike(IMPACT_A - knocks[0][0])
     info = []
@@ -532,8 +541,20 @@ def timeline(beat, J, n):
         else:
             L.recover()
             info.append(L.read_to_raise(imp - IMPACT_A - len(L.seq), RATE_MAX_B7 if beat == 7 else RATE_MAX))
+        if D22 and beat == '5cut' and kn == len(knocks) - 2:  # M10o: strike through, black over the snip
+            L.strike(0, IMPACT_A + 1)
+            tail = iter(range(IMPACT_A + 1, 96))
+            while len(L.seq) < n:
+                o = len(L.seq)
+                if SNIP[0] <= o < SNIP[1]:
+                    L.seq.append(dict(src=None, f=None, snap=None, impact=False))
+                else:
+                    f = next(tail, None)
+                    L.seq.append(dict(src=None, f=None, snap=None, impact=False) if f is None else
+                                 dict(src='A', f=f, snap=None, impact=False))
+            break
         if q == 'Q5':                                         # the capper: approved f0-95, black on the old frame
-            L.strike(0, 96)
+            L.strike(0, IMPACT_A + 1 if D22 else 96)        # M10o: snap to black after the impact frame
             L.seq += [dict(src=None, f=None, snap=None, impact=False) for _ in range(n - len(L.seq))]
             break
         L.strike(0)

@@ -20,6 +20,11 @@ PICTURE: the 1080 show files (3_HD_1080_fallback, as share_previews.wa_s9), with
 new sound at 269-285 s), so b5 runs its full 2424 frames; give --b5 the full-length file. Plus Homie's 1:49-1:57 note:
 the salon (RIGHT) and court b3 (CENTRE) end at PAINT_AT = 109.0 s and the LEFT painting comes up there, holding b4's
 first frame until its own start (117.38 s), so b4's picture keeps its timing against his sound.
+--d22 (M10o, 2026-11-22, Darren's notes "cut 3:03-3:09 ... snip 4:08-4:50"): his 22 Nov mix
+'G:/SOTR/HF/Final changes/221126/the judge CUT DOWN 22112026_2.mov' on the --mix21 placement, then CUTS removed from
+picture AND his sound as straight splices (Homie: "we will not make changes to Darren's sound itself at all"). All his
+timecodes are on the uncut EXT3 clock. b5's "Bangs the gavel" caption is re-pinned to the moved strike (245-248 s uncut).
+Total 9580 -> 8428 frames (351.17 s).
 Heavy: run with CPU affinity FFFF3FFF (off Core 7). Writes to a _tmp_ name, renamed when ffmpeg finishes.
 """
 import argparse
@@ -48,12 +53,47 @@ PAINT_AT = 2616                          # frames = 109.0 s: the LEFT painting c
 B4_NAME = 'S9_b4_LEFT_studio.mov'
 ENDS_AT_PAINT = ('S9_b2-3_RIGHT_salon.mov', 'S9_b3_CENTRE_court.mov')
 PAINT = False
+MIX22 = r'G:\SOTR\HF\Final changes\221126\the judge CUT DOWN 22112026_2.mov'
+CUTS = []                                # [(start s, end s)] on the uncut clock, removed from picture + sound (--d22)
+B5_KNOTS = None                          # b5-relative caption re-pin (--d22)
 
 
 def use_mix21():
     global MIX, B5_N, CUT, SPLICE, PAINT
     MIX, B5_N, CUT, PAINT = MIX21, 2424, 0, True
     SPLICE = (None, None)
+
+
+def use_d22():
+    global MIX, CUTS, B5_KNOTS
+    use_mix21()
+    MIX = MIX22
+    CUTS = [(183.0, 189.0), (248.0, 290.0)]
+    # b5 seg 1 (0.5-45) unchanged; seg 2 ends at the moved strike's lead-in; seg 3 "Bangs the gavel" -> 245.0-248.0 s
+    B5_KNOTS = [(0.0, 0.0), (45.0, 45.0), (85.0, 245.0 - 189.75), (100.5, 248.0 - 189.75), (101.0, 101.0)]
+
+
+def cut_frames():
+    return [(int(round(a * s9.FPS)), int(round(b * s9.FPS))) for a, b in CUTS]
+
+
+def cutmap(t):
+    """uncut seconds -> cut seconds (a time inside a cut lands on the splice)"""
+    s = t
+    for a, b in CUTS:
+        if t >= b:
+            s -= b - a
+        elif t > a:
+            s -= t - a
+    return s
+
+
+def uncut(t):
+    """cut seconds -> uncut seconds (his mix clock)"""
+    for a, b in sorted(CUTS):
+        if t >= a - 1e-9:
+            t += b - a
+    return t
 
 
 def clips(b5, b3=None, b7=None):
@@ -88,6 +128,11 @@ def lines():
     xs, ys = zip(*knots)
 
     def remap(t):
+        if CUTS:
+            if B5_KNOTS and b5 <= t < b6 - 1e-6:
+                kx, ky = zip(*B5_KNOTS)
+                t = b5 + float(np.interp(t - b5, kx, ky))
+            return cutmap(t)
         if not CUT:
             return t
         if t >= b6 - 1e-6:
@@ -97,7 +142,8 @@ def lines():
         return t
     keep = s9.SEGMENTS
     try:
-        s9.SEGMENTS = [(remap(t0), remap(t1), items) for t0, t1, items in keep]
+        s9.SEGMENTS = [(a, b, items) for a, b, items in ((remap(t0), remap(t1), items) for t0, t1, items in keep)
+                       if b - a > 0.05]
         ln = s9.timed_lines()
     finally:
         s9.SEGMENTS = keep
@@ -106,6 +152,18 @@ def lines():
 
 
 def mix_audio(wav, dur):
+    if CUTS:                                 # straight splices, nothing else done to his sound
+        keep, t = [], 0.0
+        for a, b in sorted(CUTS):
+            keep.append((t, a))
+            t = b
+        fc = ''.join(f'[0:a]atrim=start={x:.4f}' + (f':end={y:.4f}' if y else '') + f',asetpts=PTS-STARTPTS[k{i}];'
+                     for i, (x, y) in enumerate(keep + [(t, None)]))
+        n = len(keep) + 1
+        fc += ''.join(f'[k{i}]' for i in range(n)) + f'concat=n={n}:v=0:a=1,atrim=0:{dur:.4f}[o]'
+        subprocess.check_call(['ffmpeg', '-v', 'error', '-y', '-i', MIX, '-filter_complex', fc, '-map', '[o]',
+                               '-c:a', 'pcm_s24le', wav])
+        return
     if not CUT:
         subprocess.check_call(['ffmpeg', '-v', 'error', '-y', '-i', MIX, '-map', '0:a:0', '-af', f'atrim=0:{dur:.4f}',
                                '-c:a', 'pcm_s24le', wav])
@@ -119,6 +177,9 @@ def mix_audio(wav, dur):
 def build(out, b5, test, dry, b3=None, b7=None, title=TITLE):
     cl = clips(b5, b3, b7)
     total = s9.TOTAL - CUT
+    cf = cut_frames()
+    lane_total = total
+    total -= sum(b - a for a, b in cf)
     n1 = min(total, int(round(test * s9.FPS))) if test else total
     dur = n1 / s9.FPS
     info = [sp.ffprobe(p) for p, *_ in cl]
@@ -150,10 +211,15 @@ def build(out, b5, test, dry, b3=None, b7=None, title=TITLE):
                          f'fade=t=in:s=0:n={f},fade=t=out:s={n - f}:n={f}[c{li}_{j}]')
             segs.append(f'[c{li}_{j}]')
             pos = start + n
-        if total > pos:
-            parts.append(f'color=c=black:s={w}x{h}:r={s9.FPS},trim=end_frame={total - pos},{pix}[g{li}_end]')
+        if lane_total > pos:
+            parts.append(f'color=c=black:s={w}x{h}:r={s9.FPS},trim=end_frame={lane_total - pos},{pix}[g{li}_end]')
             segs.append(f'[g{li}_end]')
-        parts.append(''.join(segs) + f'concat=n={len(segs)}:v=1:a=0[lane{li}]')
+        if cf:                               # --d22: drop the cut frame spans (uncut clock), then re-time
+            sel = '+'.join(f'between(n\\,{a}\\,{b - 1})' for a, b in cf)
+            parts.append(''.join(segs) + f'concat=n={len(segs)}:v=1:a=0[raw{li}]')
+            parts.append(f"[raw{li}]select='not({sel})',setpts=N/({s9.FPS}*TB)[lane{li}]")
+        else:
+            parts.append(''.join(segs) + f'concat=n={len(segs)}:v=1:a=0[lane{li}]')
     fg = ';'.join(parts) + ';' + sp.wa_filter(cw, ch, boxes, title, {0: 'lane0', 1: 'lane1', 2: 'lane2'}, 0.0, dur, ass)
     wav = os.path.join(os.path.dirname(out), '_tmp_captions', 'S9_darren_cut_sound.wav')
     cmd = ['ffmpeg', '-v', 'error', '-y']
@@ -164,7 +230,7 @@ def build(out, b5, test, dry, b3=None, b7=None, title=TITLE):
     for p, w, st, hold, end in cl:
         print(f'  {["L", "C", "R"][w]}  {st:5d}  {st / s9.FPS:7.2f} s  hold {hold:4d}  end {end}  {os.path.basename(p)}')
     print(f'total {total} frames ({total / s9.FPS:.2f} s); his audio ' +
-          (f'spliced {SPLICE[0]:.2f}-{SPLICE[1]:.2f} s' if CUT else f'uncut ({os.path.basename(MIX)})'))
+          (f'cut {CUTS} (straight splices) {os.path.basename(MIX)}' if CUTS else f'spliced {SPLICE[0]:.2f}-{SPLICE[1]:.2f} s' if CUT else f'uncut ({os.path.basename(MIX)})'))
     if not dry:
         mix_audio(wav, dur)
     sp.run(cmd, out, dry, False)
@@ -180,12 +246,13 @@ def verify(out):
     """His mix vs the review's sound: the review at t must be his mix at t (before the splice) or t + CUT (after)."""
     sr = 8000
     d, o = pcm(MIX, sr), pcm(out, sr)
-    sh = CUT / s9.FPS
+    sh = CUT / s9.FPS + sum(b - a for a, b in CUTS)
     print(f'his mix {len(d) / sr:.2f} s, review {len(o) / sr:.2f} s (want {len(d) / sr - sh:.2f})')
     win, maxlag = int(4 * sr), int(0.25 * sr)
-    for t in ((10, 100, 108, 112, 190, 212, 240, 250, 272, 300, 330, 350, 370, 390) if not CUT else
+    pts = (10, 100, 150, 178, 186, 200, 225, 236, 240, 246, 260, 290, 320, 340, 347) if CUTS else None
+    for t in pts or ((10, 100, 108, 112, 190, 212, 240, 250, 272, 300, 330, 350, 370, 390) if not CUT else
               (10, 100, 190, 212, 240, 250, 258, 300, 330, 350, 356)):
-        src = t if (not CUT or t < SPLICE[0]) else t + sh
+        src = uncut(t) if CUTS else (t if (not CUT or t < SPLICE[0]) else t + sh)
         a = o[int(t * sr):int(t * sr) + win]
         b = d[int(src * sr) - maxlag:int(src * sr) + win + maxlag]
         if len(a) < win or np.std(a) == 0:
@@ -209,8 +276,11 @@ def main():
     ap.add_argument('--b7', help='replacement court b7 file; default the show file')
     ap.add_argument('--title', default=TITLE)
     ap.add_argument('--mix21', action='store_true', help="M10b: Darren's 21112026 mix uncut + the 1:49 painting")
+    ap.add_argument('--d22', action='store_true', help="M10o: Darren's 22112026_2 mix, uncut placement + his two cuts")
     a = ap.parse_args()
-    if a.mix21:
+    if a.d22:
+        use_d22()
+    elif a.mix21:
         use_mix21()
     if a.verify:
         verify(a.out)

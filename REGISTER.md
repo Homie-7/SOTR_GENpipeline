@@ -607,3 +607,8 @@ Homie's notes (9 Oct): the idles showed "the lines of what was erased"; the intr
 - Working: `SOTR_MEDIA/04_WORKING_FILES/S2_painting_melt_plan/` (BRIEF, PLAN, reproject stills, upscale tests). Tool: `tools/melt_reproject.py`. Not a reference until Homie approves.
 - Plan A masters (22 Nov, working files, NOT approved, NOT in 01_FINAL_FOR_SHOW): `SOTR_MEDIA/04_WORKING_FILES/S2_painting_melt_plan/planA/reproj/` LEFT/CENTRE/RIGHT/FLOOR `_CLEAN_4K.mov` (2880/3600/2880/3840 x 2160) + `_CLEAN_1080.mov`, 24 fps, 20.83 s, sound in. Built by `tools/melt_planA.py`.
 - **APPROVED + PROMOTED 22 Nov (Homie):** `01_FINAL_FOR_SHOW/6_NEW_S2_PAINTING_MELT_play_in_show/` (show 4K, 1080 fallback, FLOOR) and `03_CLEAN_MASTERS_no_edge/S2_<W>_painting-melt_CLEAN.mov`. Show names carry no version; this is v1 (Plan A). No edge version yet.
+
+### 2026-11-22 — S9 judge EXT4 review + S6 map-to-ship preview (working files only, nothing approved)
+
+- `SOTR_MEDIA/04_WORKING_FILES/S9_gen_judge_review/`: `S9_b5_CENTRE_court_GENJUDGE_EXT4_FULL.mp4`, `S9_b7_CENTRE_court_GENJUDGE_EXT4.mp4`, `S9_GENJUDGE_3wall_review_EXT4.mp4` (Darren's 22 Nov cuts, 351.17 s, sync lag 0). EXT3 and `_KEEP_EXT2_GOOD_fallback_2026-11-21/` kept. Not approved, not upscaled, not promoted.
+- `SOTR_MEDIA/04_WORKING_FILES/S6_map_to_ship_review/S6_map_to_ship_preview_v1.mp4` (45 s review). Not approved.
