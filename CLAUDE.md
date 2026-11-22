@@ -173,6 +173,8 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-22, latest (POST, PC): S2 PAINTING MELT APPROVED + PROMOTED to `01_FINAL_FOR_SHOW/6_NEW_S2_PAINTING_MELT_play_in_show/` (own read-me) + CLEAN copies in 03. No edge version.
+
 ### 2026-11-22, later (POST/script, PC): M10m side task, S2 MELT PLAN A MASTERS BUILT. 32 cr (balance 2,443).
 
 - Homie: "Yes, run Plan A". 4 Topaz jobs + `tools/melt_planA.py` -> LEFT/CENTRE/RIGHT/FLOOR `_CLEAN_4K/_1080.mov` in `04_WORKING_FILES/S2_painting_melt_plan/planA/reproj/`
