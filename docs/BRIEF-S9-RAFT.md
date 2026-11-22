@@ -68,3 +68,46 @@ Needs: Kate's raft footprint + position on the floor; Sahaj's S8 shadow file (al
 1. Floor projector confirmed? (Water on the floor round the raft is the strongest read; else walls only.)
 2. Sahaj's S8 shadow file (alpha if possible) and which surface the shadows fall on.
 3. Darren's raft audio / cue lengths for b1 and b10.
+
+## Homie, 2026-11-22 (night, his pick)
+> It is late, at night, darkish blue open ocean, waves around  her but not tubulent. I chose this, can you work with it?
+> "G:\SOTR\HF\Final changes\221126\aerial-view-of-turquoise-ocean-waters-2026-10-02-17-18-47-utc.mov"
+
+=> Route C with HIS clip (not from the shortlist). Look: late night, darkish blue, open ocean, waves round her, NOT turbulent.
+
+## Homie, 2026-11-22 (night, scope change)
+> Dont worry about the raft and audio, they will follow our video and projection expert will handle it.
+>
+> I do want your help with daggers as that still hasnt been done by sahaj, we can have a crack at that. You know the silhouette's of shadowy daggers etc (accurate to history and setting) suggesting across all screens (center, left, right) that creates a sense of horror and dread, you can refer to the script and even look up the historical documentation of how things went so we can capture the vision and the mood.
+
+=> Water: clean loop only (no raft mask, no sound in the deliverable; the projection expert does the raft fit).
+=> DAGGERS: we build them (not Sahaj). Shadow silhouettes of period blades across LEFT, CENTRE, RIGHT. Horror and dread.
+   History-accurate (Medusa raft, July 1816). Look agreed first: references, then 2-3 style frames, Homie picks.
+
+## Homie, 2026-11-22 (night)
+> Dont draw any holes, we will give them full video of the ocean and they will decide how to get the raft in there
+
+=> Water deliverable = the FULL 16:9 ocean frame at 4K: no raft hole, no black bars, no edge fade, no sound
+   (`tools/raft_water.py` default; `--envelope` / `--raft` keep the old FLOOR-PLAN framing for reference only).
+
+## Homie, 2026-11-22 (night)
+> Just know  that it is night only lit by moon light so it has to match the setting. What about the daggers now?
+
+=> Water: moonlight is the ONLY light (no warm light, no sky glow). Blades: one cold moon source, shadows match it.
+
+## Homie, 2026-11-22 (night, blade look)
+> Old style sharp little dagger and sabers that the naval soldiers had back then. Nothing too literal, sugggestive only, may be in alpha so that it can be superimposed
+
+=> BLADES = small sharp period daggers (naval dirk / poignard, sailor's knife) and sabres (infantry briquet An XI, boarding
+   sabre An IX). Suggestive, not literal: soft, partial shadows, no detailed hands or bodies. Delivered as ALPHA (shadow
+   matte with transparency) so the team can lay it over any picture. Style frames show each direction over a dim moon wall
+   for the look, plus the alpha PNGs.
+
+## Homie, 2026-11-22 (night, on style frames A/B/C)
+> WE can be stylistic with it, an arm holding it coming out of dark or something, randomise, from a screen or two, its contained, the light will be on agnes, the water around her, rest of the stage is dark, you only see these stabbings in glimpses, stabbing. almost horror like. the can close in from all directions, but not at the same time. and then sudden attacks and stabbing, ganging, up, back to back, Do you catch my drift?, Also open the water file again for me so I can see is it in 4K or full HD
+
+=> BLADES direction: stylised horror GLIMPSES. An arm holding a period blade comes out of the dark (arms ARE back,
+   stylised, emerging from black, not literal anatomy). Randomised: one screen or two at a time, never all at once.
+   Light is on Agnes + the water; the walls stay dark except the glimpse. Build: they close in from different walls in
+   turn (one at a time) -> then sudden attacks, stabs ganging up, back to back, fast. Alpha deliverable stays.
+=> Water: the 4K master is 3840x2160 (ProRes, 10.5 s loop); the 40 s preview is 1080 (review only).
