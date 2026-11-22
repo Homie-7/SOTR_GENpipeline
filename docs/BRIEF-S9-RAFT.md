@@ -125,3 +125,8 @@ Needs: Kate's raft footprint + position on the floor; Sahaj's S8 shadow file (al
 => "Think about all of this, don't just blindly make something": references first, then style frames, then build.
 => Water: 24 fps. Cadence measured even (no dropped frames), so the stutter is 24 fps judder of sharp, fast-shutter
    drone frames with no motion blur. To test: blend source frames (shutter blur) at 24 fps, or a higher frame rate.
+
+## RAFT6 working decisions (Claude, 2026-11-22; not Homie's words)
+- Water: test B 24 fps shutter blur, C 48 fps, D 59.94 fps optical-flow, against A (approved v2). Homie picks.
+- Blades v2: aim at Agnes (bottom centre); entries top / top-outer / outer side only; reverse grip for daggers, thrust
+  grip for sabres; route = Blender 3D cast shadow (0 cr) before any generated route.
