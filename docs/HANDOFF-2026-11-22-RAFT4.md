@@ -1,6 +1,16 @@
 # HANDOFF 2026-11-22 RAFT4 (S9 raft: blades animated test v1 built, waiting for Homie's notes)
 
-QUESTION FOR HOMIE (at the top): his notes on the blade animated test v1 (timing, size, how much light, how many stabs).
+NEXT TASKS (Homie's notes 22 Nov late night, verbatim in `docs/BRIEF-S9-RAFT.md` last section):
+1. WATER STUTTER: Homie: "what is the frame rate of the water? Because it feels a bit stuttery". It is 24 fps; source
+   59.94 fps, every 2nd frame at speed 0.8; cadence measured even. Cause = 24 fps judder of sharp fast-shutter frames.
+   Test fixes on a short clip first: (a) shutter blur = blend source frames 2k and 2k+1 (or more) per output frame at
+   24 fps; (b) a higher rate (the show already mixes 24/25/29.97). Show him a side-by-side before re-promoting. The
+   promoted file is approved: a new version takes the same show name, the old one goes to `04_WORKING_FILES/superseded/`.
+2. BLADES v2: keep the "wipe" (the glimpse timing). Redo the arms: they read as cheap 2D animation. The blade sits in
+   the fist, aligned with the wrist, and POINTS AT AGNES (bottom centre, on the floor). Arms come only from the top,
+   top-left, top-right or the sides; never the bottom. He said: think, don't build blindly. So: references first
+   (period grips, stab poses, horror shadow-arm stills), then 2-3 style frames for his pick, then build. Better-looking
+   arms may need a 3D/rigged or generated route: cap 60 cr for the stabbing work, 0 spent; full settings block first.
 
 Read first: `CLAUDE.md`, `docs/BRIEF-S9-RAFT.md` (his words verbatim; last section = blade direction),
 `docs/RESEARCH-S9-RAFT-BLADES.md`, then `docs/HANDOFF-2026-11-22-RAFT3.md` for the water state.

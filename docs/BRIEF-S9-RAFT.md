@@ -111,3 +111,17 @@ Needs: Kate's raft footprint + position on the floor; Sahaj's S8 shadow file (al
    Light is on Agnes + the water; the walls stay dark except the glimpse. Build: they close in from different walls in
    turn (one at a time) -> then sudden attacks, stabs ganging up, back to back, fast. Alpha deliverable stays.
 => Water: the 4K master is 3840x2160 (ProRes, 10.5 s loop); the 40 s preview is 1080 (review only).
+
+## Homie, 2026-11-22 (late night, on blades animated test v1)
+> I think the wipe that you're going after is pretty good but the hands just look really cheap They're all holding blades the wrong way you can see that the blade is not even pointing towards the actor so imagine the actor is standing on the bottom screen which is the bottom projector the blades only have to come from either the top left top right angles so nothing from bottom obviously so side or top because that's just how the sense of dread and the impact registers as the person is standing in the middle in the bottom and everything else is surrounding them the arms have to look a bit better it just looks cheap 2D animation the blades are not even aligned to the wrists and holding properly the blade should be pointing towards the actor agonist rather than being in line with the hand it just looks stupid like why is the blade pointing towards the person holding it just think about all of this don't just blindly make something
+
+> Also, what is the frame rate of the water? Because it feels a bit stuttery
+
+=> KEEP: the "wipe" (the glimpse timing / reveal idea of v1 is good).
+=> FIX: arms look like cheap 2D animation. The blade must sit IN the fist, aligned with the wrist, and POINT AT AGNES
+   (she stands at the bottom centre, on the floor projector). Never point back at the holder.
+=> Directions: arms come only from the TOP, TOP-LEFT, TOP-RIGHT or the SIDES. Nothing from the bottom. She is in the
+   middle at the bottom and everything surrounds her: that is where the dread and the impact register.
+=> "Think about all of this, don't just blindly make something": references first, then style frames, then build.
+=> Water: 24 fps. Cadence measured even (no dropped frames), so the stutter is 24 fps judder of sharp, fast-shutter
+   drone frames with no motion blur. To test: blend source frames (shutter blur) at 24 fps, or a higher frame rate.
