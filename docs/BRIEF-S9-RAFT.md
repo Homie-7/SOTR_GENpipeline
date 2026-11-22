@@ -25,6 +25,25 @@ sabre, four still images = four stabs, tossed off, blackness).
 envelope 10,057 x 4,350 mm, top of picture = upstage, mostly dark, brightness cap, no pre-warp). The S7 horizon sea below
 does NOT fit a top-down view; it stays only as the look/colour reference (moonlit, dark teal, glints).
 
+## Homie, 2026-11-22 (on plan v2)
+> Happy to do route a probe, but I am wondering if any stock footage or something else can be used to stylised or
+> something? I have envato, whatever is easy and cheap
+
+=> Route C offered: an Envato Elements top-down drone ocean clip (on his subscription, 0 cr), graded to moonlit night,
+looped in the file. Route A probe stays the fallback. Waiting for his pick.
+
+## Homie, 2026-11-22
+> Sure, stock first, my envato is logged in on brave
+
+=> Shortlist (Claude, from Envato thumbnails only; Homie downloads in Brave into
+`SOTR_MEDIA/04_WORKING_FILES/S9_raft/stock/`; Claude then checks camera move, length, fps, grades + loops, 0 cr):
+1. Baltic Sea Waves Top View — https://elements.envato.com/baltic-sea-waves-top-view-DHJHEAG (dark, straight down, foam veins)
+2. Aerial Top View on Big Wave of Atlantic Ocean — https://elements.envato.com/aerial-top-view-on-big-wave-of-atlantic-ocean-U6VGS3Z (dark water, big white crest)
+3. Turbulent Blue Ocean Water with Foamy Waves — https://elements.envato.com/a-slow-motion-view-of-the-wake-from-the-cruise-shi-WUJJV9V (rough, deep blue; it may be a ship wake from a moving camera)
+4. Aerial View of Dark Ocean Water with Waves — https://elements.envato.com/waves-crashing-by-the-seashore-on-stormy-day-aeria-434JESP (very dark; may be near a shore)
+5. Ocean Waves Aerial Birds Eye View Monochrome — https://elements.envato.com/aerial-top-down-view-of-large-waves-in-the-ocean-i-4UDFP2K (already B/W, stylised; waves roll one way like surf)
+Rejected: turquoise/tropical, beaches, rocks, tilted views, flat calm (`top-view-of-sea-surface-5Q9URPU` too calm for "extreme danger").
+
 ## Plan v2 (top-down, 2026-11-22) — recommended
 1. Water: ONE Seedance 2.5 top-down probe of a moonlit night sea (4 s, ~48 cr, unconfirmed), then on Homie's yes one
    ~15 s take looped (~180 cr, unconfirmed) for b1 (~40 s) and b10 (~30 s). Total ~230 cr. Script fallback (0 cr): a dark
