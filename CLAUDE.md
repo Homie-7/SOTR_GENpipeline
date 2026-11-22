@@ -173,6 +173,11 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-22 (POST/script, PC): M10m side task, S2 PAINTING MELT PLAN WRITTEN. 7 cr (balance 2,475).
+
+- `tools/melt_reproject.py` maps the 2019 Houdini 360 melt onto LEFT/CENTRE/RIGHT + FLOOR. Topaz 2160p removes the baked h264 blocks; ByteDance does not.
+  Plan + brief in `04_WORKING_FILES/S2_painting_melt_plan/`: Plan A reproject + Topaz (~60 cr) recommended; Plan B regen 4 x 20 s = 1,280 cr/set. WAITING for Homie.
+
 ### 2026-11-21, late night (VID/POST, PC): M10m, S9 JUDGE EXT3 LOOK-UP REVIEW BUILT. 56 cr (balance 2,482).
 
 - Seedance 2.5 `video_extension` forward take v16fwd (job 8d958884, `prompts/S9-CRT-IDLE.txt` v16-FWD) gives the "Order! Order!" look-up; `tools/court_ext.py` env `EXT_LOOKUP`
