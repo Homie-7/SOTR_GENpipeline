@@ -623,3 +623,11 @@ Homie's notes (9 Oct): the idles showed "the lines of what was erased"; the intr
 - Show: `01_FINAL_FOR_SHOW/5_FLOOR_only_if_a_floor_projector/S9_b1-and-b10_FLOOR_raft-water.mov` (63 s = 6 loops, stream copy + silent 48 kHz 24-bit), sha256 `bed6b272...6450c`.
 - Backup loop: `01_FINAL_FOR_SHOW/2_BACKUP_LOOPS_for_operator/S9_b1-and-b10_FLOOR_raft-water_HOLD_loop.mov` (10.5 s + silent track), sha256 `9394be40...340ac`. Video stream md5 identical to the master in both.
 - v1 (`S9_raft/v1/`) had a 1-frame hitch at 250->251 (step 1.998 rounded); not used. Read-me updated (folders 2, 5, FORMAT).
+
+### S9 raft floor water: frame-rate OPTIONS in the show (2026-11-23, RAFT7, 0 cr)
+Homie: "we will use all four as options for the show, and we'll let the showrunner decide which frame rate he wants. Alternatively, I prefer the 60 frames as it's water so it looks clean."
+- A stays the default show file (unchanged). Options in `01_FINAL_FOR_SHOW/5_FLOOR_only_if_a_floor_projector/S9_raft-water_OPTIONS_frame-rate/` (own read-me + `_SHA256.txt`), each 6 loops by stream copy + silent 48 kHz 24-bit, 4K ProRes 422 HQ:
+  - `..._OPTION-B_24fps-motion-blur.mov` 1512 f, 63.0 s, sha256 `22c42e25...61523`
+  - `..._OPTION-C_48fps.mov` 3024 f, 63.0 s, sha256 `e5864945...6f73a`
+  - `..._OPTION-D_59.94fps-smooth.mov` 3774 f, 62.96 s, sha256 `b80a0087...caf4` (Homie's preference)
+- CLEAN loops in `03_CLEAN_MASTERS_no_edge/S9_b1-and-b10_FLOOR_raft-water_loop_OPTION-{B_24fps-motion-blur,C_48fps,D_59.94fps-smooth}_CLEAN_4K.mov` = the `water_motion_test/` loops (sha256 verified on copy: `ce5c1644...0218`, `006e77bb...f8f7`, `6d31bb55...29d3`). Read-me folder 5 updated.

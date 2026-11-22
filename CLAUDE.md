@@ -173,7 +173,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-22, latest (POST/script, PC): RAFT5, S9 RAFT WATER v2 PROMOTED + BLADES v1 BUILT. 0 cr (balance 2,443).
+### 2026-11-23, latest (POST/script, PC): RAFT7, S9 RAFT WATER OPTIONS IN THE SHOW. 0 cr (balance 2,443).
+
+- Homie: all four frame rates as options, the showrunner decides; he prefers 60. B/C/D 63 s 4K files in
+  `5_FLOOR_only_if_a_floor_projector/S9_raft-water_OPTIONS_frame-rate/` (A stays default) + CLEAN loops in 03. Blades v2 style frames NEXT (0 of 60 cr).
+
+### 2026-11-22, earlier (POST/script, PC): RAFT5, S9 RAFT WATER v2 PROMOTED + BLADES v1 BUILT. 0 cr (balance 2,443).
 
 - `tools/raft_water.py` v2 (integer source step) = a perfect loop; promoted with Homie's yes: `5_FLOOR_only_if_a_floor_projector/S9_b1-and-b10_FLOOR_raft-water.mov`
   (4K, 63 s) + HOLD loop in folder 2 + CLEAN in 03. `tools/blade_anim.py` b10 blades test v1 in `04_WORKING_FILES/S9_raft/blades_anim_v1/`: WAITING for his notes (cap 60 cr).

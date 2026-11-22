@@ -52,3 +52,4 @@ Star chat RAFT6 started 22 Nov. Remote Control on. The old chat "(old) SOTR S9 r
 - Nothing built, 0 cr. Water pick still open. Blades v2 style frames not started (Blender 5.2 at
   `C:\Program Files\Blender Foundation\Blender 5.2\blender.exe`; v1 code in `tools/blade_anim.py`, profiles in `tools/blade_frames.py`).
 - Not archived yet: RAFT6 (was still running) and local_ad693359 (app: still has live work). Retry tomorrow.
+- 23 Nov 00:xx: water DONE as options (see REGISTER "frame-rate OPTIONS"). Homie went to sleep and asked for a PC shutdown after push + T9. Next: blades v2 style frames.
