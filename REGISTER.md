@@ -600,3 +600,8 @@ Homie's notes (9 Oct): the idles showed "the lines of what was erased"; the intr
 | 2026-11-21 | S9 judge v16fwd look-up take (PC, VID, M10m) | 56 cr (balance 2,482) | Candidate, NOT approved, in `04_WORKING_FILES/S9_judge_generated_idle/`: `S9-CRT-IDLE_v16fwd_8d958884.mp4` (+ `_SHEET.png`), Seedance 2.5 video_extension forward, 9:16 720p 8 s standard, sound OFF, job 8d958884; input `_M10m_R0-147_for_lookup.mp4`. Used only by the EXT3 review. Prompt `prompts/S9-CRT-IDLE.txt` v16-FWD. |
 | 2026-11-21 | S9 judge EXT3 b5 + review (PC, POST/script, M10m) | 0 cr (balance 2,482) | Review candidates, NOT approved: `04_WORKING_FILES/S9_gen_judge_review/S9_b5_CENTRE_court_GENJUDGE_EXT3_FULL.mp4` (2424 f) and `S9_GENJUDGE_3wall_review_EXT3.mp4` (399.17 s, mix21, b3/b7 = EXT2, sync lag 0, corr 1.0000). Look-up take U1..U185 at out 859-1043 via `tools/court_ext.py` env EXT_LOOKUP. Waiting for Homie's notes. |
 | 2026-11-21 | S9 judge EXT2 fallback folder (PC, M10l) | 0 cr | ACCEPTED AS FALLBACK by Homie 2026-11-21: `04_WORKING_FILES/S9_gen_judge_review/_KEEP_EXT2_GOOD_fallback_2026-11-21/` (EXT2 b3/b5/b7 + review). Never overwrite. Not promoted to 01_FINAL_FOR_SHOW. |
+
+### 2026-11-22 — S2 painting melt plan (working files only, nothing approved)
+
+- Source: `F:\OrCha Drive\SOR DESK BACK UP\RMIT Black Box first show\Final Animations\Painting melt + Ocean loop\paintingMelt_1109.mp4` (2019 Houdini 360 equirect, read-only).
+- Working: `SOTR_MEDIA/04_WORKING_FILES/S2_painting_melt_plan/` (BRIEF, PLAN, reproject stills, upscale tests). Tool: `tools/melt_reproject.py`. Not a reference until Homie approves.
