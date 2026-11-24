@@ -79,9 +79,11 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 - **Folders (Homie, 2026-09-24; restructured 2026-09-26; RECOMPARTMENTALISED 2026-10-02 at the cleanup).
   `SOTR_MEDIA/01_FINAL_FOR_SHOW/` IS THE CLIENT DELIVERY: upload the whole folder.** It holds
-  `00_READ_ME_FIRST.txt` (client-facing, keep it current), `1_PLAY_THESE_IN_ORDER/` (the show files in
-  script order: S1 + S10 gallery at 1080, S4 + S5 at 1080, S6 + S9 4K with the edge), `2_BACKUP_LOOPS_for_operator/` (4K), `3_HD_1080_fallback/`
-  (S6 + S9 at 1080), `4_CLIENT_OPTION_S5_cold_dusk/`, FLOOR files live with their scene's files in the play folders (Homie 2026-11-24: "No need to have separate folders for the floor projection, keep them with the final for show files where they apply."). Then `02_APPROVED_BUILDING_BLOCKS/` (every generated source the show is built from,
+  `00_READ_ME_FIRST.txt` (client-facing, keep it current) and `_SHA256.txt`, `1_PLAY_THESE_IN_ORDER/` with ONE SUBFOLDER PER
+  SCENE in script order (`S01_Au-Louvre`, `S02_painting-melt`, `S04_the-Alps`, `S05_the-camps`, `S06_Napoleonic-wars`,
+  `S09_the-Aftermath`, `S10_back-at-the-Louvre`; hand-over reorg 2026-11-25, Homie: "so that I can just take one folder, hand
+  it to the show people"), `2_BACKUP_LOOPS_for_operator/` (4K; no court loops), `3_HD_1080_fallback/` (S2 + S6 + S9 at 1080, same
+  scene folders), `4_CLIENT_OPTION_S5_cold_dusk/`. FLOOR files live with their scene's files (Homie 2026-11-24: "No need to have separate folders for the floor projection, keep them with the final for show files where they apply."). Then `02_APPROVED_BUILDING_BLOCKS/` (every generated source the show is built from,
   incl. `S6_generated/`, `studio_b9_candle/`), `03_CLEAN_MASTERS_no_edge/` (the `_CLEAN` masters),
   `04_WORKING_FILES/` (edge kits, build recipes, 4K records, `superseded/`, and any new test folder; **8 Oct cleanup,
   Homie: "anything that isn't going to make it to the show and/or isn't needed to make adjustments and changes can be
@@ -173,7 +175,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-25, latest (POST/script, PC): F25, S9 JUDGE SNAPS FIXED + S6 FRENCH SOUND MUXED + T9 SYNCED. 0 cr (balance 2,443).
+### 2026-11-25, latest (POST/script, PC): F28, HAND-OVER REORG DONE + S9 JUDGE F25 4K + S6 FRENCH PROMOTED. 95.2 cr (balance ~2,341.85).
+
+- `01_FINAL_FOR_SHOW/` = the hand-over folder (one subfolder per scene, `00_READ_ME_FIRST.txt`, `_SHA256.txt`); moves in `D:\SOTR\HANDOVER_2026-11-25_moves.tsv`
+  (`tools/handover_2026-11-25.py`, `--t9` on G:). Old versions in `04_WORKING_FILES/superseded/`, tests in `_DELETE_ME_2026-11-25/`. Open: b4 trim for Darren's 183-189 s cut, CLEANs for S6 FR + court.
+
+### 2026-11-25, earlier (POST/script, PC): F25, S9 JUDGE SNAPS FIXED + S6 FRENCH SOUND MUXED + T9 SYNCED. 0 cr (balance 2,443).
 
 - `tools/court_ext.py` env `EXT_F25=1` fixes Homie's F24 notes (judge snap 3:49, paper snap 4:01) -> `S9_GENJUDGE_3wall_review_F25.mp4` (lag 0). S6 `*_FRsound.mov`
   in `S6_4K_final/` + `S6_1080_final/`. T9 synced (sha256). Q3 (S9 upscale ~130 cr) waits for Homie's number; nothing promoted.

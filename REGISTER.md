@@ -641,3 +641,9 @@ Homie: "we will use all four as options for the show, and we'll let the showrunn
 - `SOTR_MEDIA/04_WORKING_FILES/S9_gen_judge_review/S9_b5_CENTRE_court_GENJUDGE_F25_FULL.mp4` (2424 f) and `S9_GENJUDGE_3wall_review_F25.mp4` (351.17 s): Homie's two F24 snaps fixed (judge at 3:49, paper at 4:01). Review only (720p); not upscaled. Homie (F24 notes): "Fix those two and we are good to go." F25a = first pass, kept aside.
 - `SOTR_MEDIA/04_WORKING_FILES/S6_4K_final/` + `S6_1080_final/S6_{LEFT,CENTRE,RIGHT}_FRsound.mov`: the FINALS4 picture (stream copy) + Darrin's French wav (pcm_s24le). Wav copy in `04_WORKING_FILES/S6_FR_audio/`.
 - T9 synced with sha256 (`D:/SOTR/T9_SYNC_2026-11-25/sync.tsv`); old T9 versions in `G:/SOTR/HF/_DELETE_ME_2026-11-25/` for Homie to delete.
+
+### 2026-11-25 F26-F28: HAND-OVER REORG, S9 Judge F25 4K + S6 French PROMOTED (Homie: "Yes, upscale S9 ... so that I can just take one folder, hand it to the show people")
+- `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S09_the-Aftermath/S9_b3/b5/b7_CENTRE_court.mov`: the generated Judge F25, 4K, sound in (b5 = the 59 s show cut). 1080 copies in `3_HD_1080_fallback/1_PLAY_THESE_IN_ORDER/S09_the-Aftermath/`. Built by `tools/s9_4k_finish.py`.
+- `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S06_Napoleonic-wars/S6_{LEFT,CENTRE,RIGHT}_wars.mov`: the French cut (FINALS4 picture + Darrin's French wav), 4K ProRes 4444 alpha. 1080 in `3_HD_1080_fallback/.../S06_Napoleonic-wars/`.
+- Superseded (in `04_WORKING_FILES/superseded/`): S6 English v14 show files; S9 pre-F25 court files and the behind-paper court CLEANs. Binned (`_DELETE_ME_2026-11-25/`): the court strike loops, S9/S6 review tests, no-sound renders.
+- No CLEAN masters exist yet for the French S6 or the generated court. `01_FINAL_FOR_SHOW/_SHA256.txt` checks every file in 01.
