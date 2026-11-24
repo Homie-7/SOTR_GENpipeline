@@ -173,7 +173,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-25, latest (POST/script, PC): FINALS4, S6 FRENCH 4K + 1080 FINALS RENDERED; S9 F24 REVIEW BUILT. 0 cr (balance 2,443).
+### 2026-11-25, latest (POST/script, PC): F25, S9 JUDGE SNAPS FIXED + S6 FRENCH SOUND MUXED + T9 SYNCED. 0 cr (balance 2,443).
+
+- `tools/court_ext.py` env `EXT_F25=1` fixes Homie's F24 notes (judge snap 3:49, paper snap 4:01) -> `S9_GENJUDGE_3wall_review_F25.mp4` (lag 0). S6 `*_FRsound.mov`
+  in `S6_4K_final/` + `S6_1080_final/`. T9 synced (sha256). Q3 (S9 upscale ~130 cr) waits for Homie's number; nothing promoted.
+
+### 2026-11-25, earlier (POST/script, PC): FINALS4, S6 FRENCH 4K + 1080 FINALS RENDERED; S9 F24 REVIEW BUILT. 0 cr (balance 2,443).
 
 - `04_WORKING_FILES/S6_4K_final/` + `S6_1080_final/` (`render_s6.py --final --v6 --v7 --v7-feather --v7-alpha --warm 10 --retime-fr`,
   ProRes 4444 alpha, 2910 f each, NO sound yet). The French wav mux waits: it is only on the T9, and the T9 resets (UASP). Not promoted.

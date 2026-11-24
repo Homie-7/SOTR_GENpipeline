@@ -123,3 +123,7 @@ EXT2 rebuilt and audited at 24 fps, 0 cr: b3 (wrap IoU 0.996-0.997, 0 repeats), 
 ### 2026-11-21, M10l (Homie, verbatim, on the EXT2 review)
 "I've watched it. The grip changes are still obvious in terms of the paper scroll floating away a bit, but I can live with this. And the transition that was a bit snappy is now clean, Do the order-order lookups, but save this version as it's pretty good, in my opinion. So, if the order order doesn't come across properly, we can use this one to work off. So, just rename it or keep it aside so that we know it's good, and then yeah, just do the order-order lookups, If you can probably do something about get the traitors out of here or something, that will also be nice"
 -> EXT2 ACCEPTED as the fallback (copied to `04_WORKING_FILES/S9_gen_judge_review/_KEEP_EXT2_GOOD_fallback_2026-11-21/`, sha256 checked). Grip float: he can live with it. GO on the "Order! Order!" look-up (~35-70 cr, Seedance 2.5 forward extensions from the reading frames, same drawing); "Get the traitors out" reaction is a nice-to-have.
+
+### 2026-11-25 (Homie, verbatim, on the F24 review `S9_GENJUDGE_3wall_review_F24.mp4`, typed in the old chat)
+"At about 3:49, there is a a slight snap to position on the judge. At about 4:01. the background paper also snaps to a different state. Fix those two and we are good to go. Not sure what happened to T9 but it should be fine now"
+-> Fix the judge snap at ~229 s and the paper snap at ~241 s (review timeline), then he approves. Q3 (upscale credits) still needs his explicit number.

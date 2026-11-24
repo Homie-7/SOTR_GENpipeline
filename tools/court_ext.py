@@ -108,6 +108,17 @@ F24_LOOK = int(os.environ.get('EXT_F24_LOOK', 48))
 F24_STRIKE = 5
 if F24:
     LOOK_OUT += F24_LOOK
+# FINALS 25 Nov (Homie on the F24 review: "At about 3:49, there is a slight snap to position on the judge. At about 4:01.
+# the background paper also snaps to a different state."), behind EXT_F25=1 on top of EXT_F24=1:
+# (1) 3:49 = b5 out ~1092: the look-up exits U185 -> R149 and only 3 R frames are left before the lead C, so R's
+#     framing (~3 % wide) eased onto C's over 3 frames. Now the reframe eases over the last REFRAME frames before the
+#     lead, back through U, and the U -> R snap (IoU 0.9745) eases over F25_EASE frames instead of EASE; the R -> lead
+#     join (judge up ~8 px in 2 f) eases out over the lead's first F25_EASE frames.
+# (2) 4:01 = the review splice (b5 out 1398 -> 2406): the paper's burn + lamp ran on through the cut 1008 f, so the
+#     paper jumped 42 s. The background clock now skips SNIP: after it, the paper carries on from where it was.
+F25 = os.environ.get('EXT_F25') == '1'
+assert not F25 or F24, 'EXT_F25 needs EXT_F24=1'
+F25_EASE = int(os.environ.get('EXT_F25_EASE', 16))
 CL_GEN = cf.CL_GEN
 GEN_SIGMA = 1.0                             # contour clean-up of the x1.5 upscale (approved frames are native 1080)
 
@@ -402,12 +413,12 @@ class Line:
         for f in frames:
             self.seq.append(dict(src=src, f=f, snap=None, impact=False))
 
-    def snap_into(self, src, f, iou, end=None, floor=0):
+    def snap_into(self, src, f, iou, end=None, floor=0, ease=None):
         """Warp the EASE frames before position `end` (default: the end so far) onto (src, f), when not one step apart."""
         if iou >= SNAP_IOU:
             return
         end = len(self.seq) if end is None else end
-        k = min(EASE, end - floor)
+        k = min(ease or EASE, end - floor)
         for j in range(k):
             self.seq[end - k + j]['snap'] = (src, f, cf.smooth((j + 1) / (k + 1)))
 
@@ -518,11 +529,25 @@ class Line:
             trial.add('U', range(d['u_start'], z + 1))
             u0 = LOOK_OUT + 1
             if tgt == 'R':
-                trial.snap_into('R', w, v)
+                trial.snap_into('R', w, v, ease=F25_EASE if F25 else None)
                 try:
                     nxt = trial.read_to_raise(rem, RATE_MAX, t0=w - J.r_start)
                 except AssertionError:
                     continue
+                if F25:                                   # reframe onto the lead over REFRAME frames, back through U
+                    ls = next(o for o in range(u0, end) if trial.seq[o]['src'] == nxt[0])
+                    k = min(REFRAME, ls - u0)
+                    for j in range(k):
+                        trial.seq[ls - k + j].update(xw=cf.smooth((j + 1) / k), xl=nxt[0])
+                    # R -> lead (IoU 0.9923, above SNAP_IOU, so never eased): the judge rose ~8 px in 2 f (b5 out
+                    # 1095-1096). Ease out of it: the lead's first F25_EASE frames start on the last R frame (reframed
+                    # onto the lead) and settle onto the lead. Only the snap target takes xw/xl (the lead is not reframed).
+                    rf = int(np.floor(trial.seq[ls - 1]['f'] + 1e-6))
+                    for j in range(F25_EASE):
+                        e = trial.seq[ls + j]
+                        if e['src'] != nxt[0] or e['snap']:
+                            break
+                        e.update(snap=('R', rf, 1 - cf.smooth((j + 1) / (F25_EASE + 1))), xw=1.0, xl=nxt[0])
             else:
                 y = J.lead[tgt]['b_end'] - rem
                 if y != w:
@@ -635,7 +660,8 @@ def frames(sc, seq, beat, clean=False):
             yield np.zeros((OH, OW, 3), np.float32)
             continue
         m = sc.mask(s, size)
-        im = compose_opaque(sc, n, t0, m, sc.cl(s['src'], s['f']), clean)
+        nb = n - (SNIP[1] - SNIP[0]) if (F25 and beat == '5cut' and n >= SNIP[1]) else n   # paper clock skips SNIP
+        im = compose_opaque(sc, nb, t0, m, sc.cl(s['src'], s['f']), clean)
         if s['impact']:
             shake = 6
         if shake:
@@ -696,6 +722,8 @@ def plan(beat, full):
         print(f"  out {r['o0']:5d}-{r['o1']:5d} ({r['o0'] / FPS:6.2f} s)  {r['src']} {f0}")
     sn = [i for i, s in enumerate(seq) if s['snap']]
     print('  eased frames:', sn)
+    xs = [(i, round(s.get('xw', 0), 3)) for i, s in enumerate(seq) if s.get('xw')]
+    print('  reframe frames:', (xs[0], xs[-1], len(xs)) if xs else None)
     print('  impacts at out', [i for i, s in enumerate(seq) if s['impact']])
 
 

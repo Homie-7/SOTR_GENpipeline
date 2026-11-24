@@ -636,3 +636,8 @@ Homie: "we will use all four as options for the show, and we'll let the showrunn
 - `SOTR_MEDIA/04_WORKING_FILES/S6_4K_final/S6_{LEFT,CENTRE,RIGHT}.mov`: 2880/3600/2880x2160, ProRes 4444 alpha, 24 fps, 2910 f (121.25 s).
 - `SOTR_MEDIA/04_WORKING_FILES/S6_1080_final/S6_{LEFT,CENTRE,RIGHT}.mov`: 1440/1800/1440x1080, same format and length.
 - Sound: Darrin's French track (`G:/SOTR/HF/Final changes/Sc 6 wars 4 Homie FASTER READ NO ENGLISH.wav`) still to mux (T9 fault). Not on the T9.
+
+### 2026-11-25 F25: S9 judge review + S6 French sound (NOT approved, NOT promoted)
+- `SOTR_MEDIA/04_WORKING_FILES/S9_gen_judge_review/S9_b5_CENTRE_court_GENJUDGE_F25_FULL.mp4` (2424 f) and `S9_GENJUDGE_3wall_review_F25.mp4` (351.17 s): Homie's two F24 snaps fixed (judge at 3:49, paper at 4:01). Review only (720p); not upscaled. Homie (F24 notes): "Fix those two and we are good to go." F25a = first pass, kept aside.
+- `SOTR_MEDIA/04_WORKING_FILES/S6_4K_final/` + `S6_1080_final/S6_{LEFT,CENTRE,RIGHT}_FRsound.mov`: the FINALS4 picture (stream copy) + Darrin's French wav (pcm_s24le). Wav copy in `04_WORKING_FILES/S6_FR_audio/`.
+- T9 synced with sha256 (`D:/SOTR/T9_SYNC_2026-11-25/sync.tsv`); old T9 versions in `G:/SOTR/HF/_DELETE_ME_2026-11-25/` for Homie to delete.
