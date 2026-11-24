@@ -98,6 +98,16 @@ SNIP = (1398, 2406)                         # b5 out frames of mix 248.0 s and 2
 E5 = os.environ.get('EXT_E5') == '1'
 assert not (E5 and D22), 'EXT_E5 and EXT_D22 are separate builds'
 E5_FADE = (400, 458)
+# FINALS (Homie 24 Nov: "Fix the look-up and the strike"), behind EXT_F24=1 on top of EXT_E5=1 (EXT5 rebuilds unchanged
+# without it). Darren's final mix (the judge CUT DOWN 23112026.mov): "Order! Order!" +1.98 s (+48 f), so the look-up
+# lands 48 f later; b5's gavel sound 5 f after the EXT5 picture impact, so the last b5 strike goes +5 f (1279 -> 1284).
+# b7 unchanged (sound 3 f early, Homie kept it).
+F24 = os.environ.get('EXT_F24') == '1'
+assert not F24 or E5, 'EXT_F24 needs EXT_E5=1'
+F24_LOOK = int(os.environ.get('EXT_F24_LOOK', 48))
+F24_STRIKE = 5
+if F24:
+    LOOK_OUT += F24_LOOK
 CL_GEN = cf.CL_GEN
 GEN_SIGMA = 1.0                             # contour clean-up of the x1.5 upscale (approved frames are native 1080)
 
@@ -561,6 +571,8 @@ def timeline_core(beat, J, n):
         k = 2 if beat == '5cut' else (1 if beat == 7 else None)  # goes 1 later: contact lands on his hit (b5 243.0 s vs
         if k is not None:                                   # his 243.03 s; b7 339.083 s vs 339.10 s), sound never before it
             knocks[k] = (knocks[k][0] + 1, knocks[k][1])
+    if F24 and beat == '5cut':                              # FINALS: b5 strike onto Darren's final gavel sound
+        knocks[2] = (knocks[2][0] + F24_STRIKE, knocks[2][1])
     L = Line(J)
     L.strike(IMPACT_A - knocks[0][0])
     info = []

@@ -81,7 +81,7 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
   `SOTR_MEDIA/01_FINAL_FOR_SHOW/` IS THE CLIENT DELIVERY: upload the whole folder.** It holds
   `00_READ_ME_FIRST.txt` (client-facing, keep it current), `1_PLAY_THESE_IN_ORDER/` (the show files in
   script order: S1 + S10 gallery at 1080, S4 + S5 at 1080, S6 + S9 4K with the edge), `2_BACKUP_LOOPS_for_operator/` (4K), `3_HD_1080_fallback/`
-  (S6 + S9 at 1080), `4_CLIENT_OPTION_S5_cold_dusk/`, `5_FLOOR_only_if_a_floor_projector/` (added 2026-10-05). Then `02_APPROVED_BUILDING_BLOCKS/` (every generated source the show is built from,
+  (S6 + S9 at 1080), `4_CLIENT_OPTION_S5_cold_dusk/`, FLOOR files live with their scene's files in the play folders (Homie 2026-11-24: "No need to have separate folders for the floor projection, keep them with the final for show files where they apply."). Then `02_APPROVED_BUILDING_BLOCKS/` (every generated source the show is built from,
   incl. `S6_generated/`, `studio_b9_candle/`), `03_CLEAN_MASTERS_no_edge/` (the `_CLEAN` masters),
   `04_WORKING_FILES/` (edge kits, build recipes, 4K records, `superseded/`, and any new test folder; **8 Oct cleanup,
   Homie: "anything that isn't going to make it to the show and/or isn't needed to make adjustments and changes can be
@@ -172,6 +172,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
   every run, measure after every run, Homie approves.
 
 ## Current stage
+
+### 2026-11-25, latest (POST/script, PC): FINALS4, S6 FRENCH 4K + 1080 FINALS RENDERED; S9 F24 REVIEW BUILT. 0 cr (balance 2,443).
+
+- `04_WORKING_FILES/S6_4K_final/` + `S6_1080_final/` (`render_s6.py --final --v6 --v7 --v7-feather --v7-alpha --warm 10 --retime-fr`,
+  ProRes 4444 alpha, 2910 f each, NO sound yet). The French wav mux waits: it is only on the T9, and the T9 resets (UASP). Not promoted.
+  Floor files folded into the play folders (D: only; T9 not mirrored). Q3 (S9 upscale ~130 cr) waits for Homie. Handoff `docs/HANDOFF-2026-11-24-FINALS4.md`.
 
 ### 2026-11-23, latest (POST/script, PC): RAFT7, S9 RAFT WATER OPTIONS IN THE SHOW. 0 cr (balance 2,443).
 

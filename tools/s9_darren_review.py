@@ -92,6 +92,19 @@ def use_e5(words):
     WORDS = json.load(open(words, encoding='utf-8'))
 
 
+MIXF = r'D:\SOTR\SOTR_MEDIA\04_WORKING_FILES\S9_gen_judge_review\darren_final_23112026\the judge CUT DOWN 23112026.mov'
+SOUND_UNCUT = False                      # --f24: his file is already cut (351.17 s = the review clock); take it straight
+
+
+def use_f24(words):
+    """FINALS 24 Nov: Darren's final (already cut) mix, uncut sound, no fades; picture CUTS still applied; b5 strike
+    caption on the +5 f strike (court_ext EXT_F24)."""
+    global MIX, FADES, B5_KNOTS, SOUND_UNCUT
+    use_e5(words)
+    MIX, FADES, SOUND_UNCUT = MIXF, [], True
+    B5_KNOTS = [(0.0, 0.0), (45.0, 45.0), (85.0, 243.21 - 189.75), (100.5, 248.0 - 189.75), (101.0, 101.0)]
+
+
 def _toks(text):
     import re
     import unicodedata
@@ -209,6 +222,10 @@ def lines():
 
 
 def mix_audio(wav, dur):
+    if SOUND_UNCUT:                          # --f24: his final file straight, nothing done to it
+        subprocess.check_call(['ffmpeg', '-v', 'error', '-y', '-i', MIX, '-map', '0:a:0', '-af', f'atrim=0:{dur:.4f}',
+                               '-c:a', 'pcm_s24le', wav])
+        return
     if CUTS:                                 # straight splices, nothing else done to his sound
         keep, t = [], 0.0
         for a, b in sorted(CUTS):
@@ -289,7 +306,7 @@ def build(out, b5, test, dry, b3=None, b7=None, title=TITLE):
     for p, w, st, hold, end in cl:
         print(f'  {["L", "C", "R"][w]}  {st:5d}  {st / s9.FPS:7.2f} s  hold {hold:4d}  end {end}  {os.path.basename(p)}')
     print(f'total {total} frames ({total / s9.FPS:.2f} s); his audio ' +
-          (f'cut {CUTS} ' + (f'(fade-out {FADES} s hsin into each splice)' if FADES else '(straight splices)') + f' {os.path.basename(MIX)}' if CUTS else f'spliced {SPLICE[0]:.2f}-{SPLICE[1]:.2f} s' if CUT else f'uncut ({os.path.basename(MIX)})'))
+          ('his final file uncut; picture ' if SOUND_UNCUT else '') + (f'cut {CUTS} ' + (f'(fade-out {FADES} s hsin into each splice)' if FADES else '(straight splices)') + f' {os.path.basename(MIX)}' if CUTS else f'spliced {SPLICE[0]:.2f}-{SPLICE[1]:.2f} s' if CUT else f'uncut ({os.path.basename(MIX)})'))
     if not dry:
         mix_audio(wav, dur)
     sp.run(cmd, out, dry, False)
@@ -305,13 +322,13 @@ def verify(out):
     """His mix vs the review's sound: the review at t must be his mix at t (before the splice) or t + CUT (after)."""
     sr = 8000
     d, o = pcm(MIX, sr), pcm(out, sr)
-    sh = CUT / s9.FPS + sum(b - a for a, b in CUTS)
+    sh = 0.0 if SOUND_UNCUT else CUT / s9.FPS + sum(b - a for a, b in CUTS)
     print(f'his mix {len(d) / sr:.2f} s, review {len(o) / sr:.2f} s (want {len(d) / sr - sh:.2f})')
     win, maxlag = int(4 * sr), int(0.25 * sr)
     pts = (10, 100, 150, 178, 186, 200, 225, 236, 240, 246, 260, 290, 320, 340, 347) if CUTS else None
     for t in pts or ((10, 100, 108, 112, 190, 212, 240, 250, 272, 300, 330, 350, 370, 390) if not CUT else
               (10, 100, 190, 212, 240, 250, 258, 300, 330, 350, 356)):
-        src = uncut(t) if CUTS else (t if (not CUT or t < SPLICE[0]) else t + sh)
+        src = t if SOUND_UNCUT else uncut(t) if CUTS else (t if (not CUT or t < SPLICE[0]) else t + sh)
         a = o[int(t * sr):int(t * sr) + win]
         b = d[int(src * sr) - maxlag:int(src * sr) + win + maxlag]
         if len(a) < win or np.std(a) == 0:
@@ -337,8 +354,11 @@ def main():
     ap.add_argument('--mix21', action='store_true', help="M10b: Darren's 21112026 mix uncut + the 1:49 painting")
     ap.add_argument('--d22', action='store_true', help="M10o: Darren's 22112026_2 mix, uncut placement + his two cuts")
     ap.add_argument('--e5', metavar='WORDS_JSON', help="M10p: --d22 + eased splices + captions on the heard speech")
+    ap.add_argument('--f24', metavar='WORDS_JSON', help="FINALS: Darren's final 23112026 mix uncut + picture cuts")
     a = ap.parse_args()
-    if a.e5:
+    if a.f24:
+        use_f24(a.f24)
+    elif a.e5:
         use_e5(a.e5)
     elif a.d22:
         use_d22()

@@ -631,3 +631,8 @@ Homie: "we will use all four as options for the show, and we'll let the showrunn
   - `..._OPTION-C_48fps.mov` 3024 f, 63.0 s, sha256 `e5864945...6f73a`
   - `..._OPTION-D_59.94fps-smooth.mov` 3774 f, 62.96 s, sha256 `b80a0087...caf4` (Homie's preference)
 - CLEAN loops in `03_CLEAN_MASTERS_no_edge/S9_b1-and-b10_FLOOR_raft-water_loop_OPTION-{B_24fps-motion-blur,C_48fps,D_59.94fps-smooth}_CLEAN_4K.mov` = the `water_motion_test/` loops (sha256 verified on copy: `ce5c1644...0218`, `006e77bb...f8f7`, `6d31bb55...29d3`). Read-me folder 5 updated.
+
+### 2026-11-25 FINALS4: S6 French finals (NOT approved, NOT promoted, no sound yet)
+- `SOTR_MEDIA/04_WORKING_FILES/S6_4K_final/S6_{LEFT,CENTRE,RIGHT}.mov`: 2880/3600/2880x2160, ProRes 4444 alpha, 24 fps, 2910 f (121.25 s).
+- `SOTR_MEDIA/04_WORKING_FILES/S6_1080_final/S6_{LEFT,CENTRE,RIGHT}.mov`: 1440/1800/1440x1080, same format and length.
+- Sound: Darrin's French track (`G:/SOTR/HF/Final changes/Sc 6 wars 4 Homie FASTER READ NO ENGLISH.wav`) still to mux (T9 fault). Not on the T9.
