@@ -157,3 +157,17 @@ Fix all that. We are in the right direction"
 (Screenshot attached by Homie: the F3 flash, both arms; holes show in the sleeves and the sabre blade is not joined to the hand guard.)
 
 Notes: knife v2 = solid silhouettes (no holes, blade joined to the hand), darker (less inner detail), the glow/smoke fades out before the frame edges (no wall touches its neighbour), a subtle arm motion over the flash. Explosion v2 = fast and violent: fills all four walls within 1-1.5 s of impact, then the smoke thins, embers fly, and it settles on Scene 6's first frame exactly. Duration is Claude's call; not slow.
+
+## Homie F39 notes (2026-11-25, verbatim; screenshot of knife F3 v2 in `docs/img/F39_homie_knife_F3.png`)
+
+"With the explosion, I see that the ball is now coming from slightly another angle. Can we make it so that it comes from somewhere? I'm not sure where it should come from, to be honest, because I don't like overlapping screens. Ideally, if it just came from somewhere towards the tents are, so you kind of don't see it coming, and then suddenly it starts appearing in your vision because it was far, and now it's coming through the sky or something. I'm happy for you to think about what is more realistic and do that
+
+The explosion is good, but it's still not big enough, It's almost like it's going in slow motion, so yeah, I just while it looks realistic and nice, it just doesn't speak the same amount of impact
+
+And once the ball hits the smoke and everything is settling too slow. Is that an artistic choice because you want to match the flares or the rocks with the flares? Also, how does it sync up with the next scene? Because I see a harsh cut to the moving smoke.
+
+That transition, if the whole rocks and everything, and the debris kind of slowing down and turning into the particles and the smoke for the next one, but it has to be seamless.
+
+The knives are almost perfect. I really like most of them except for the ones where there's two hands at the same time. I feel like the hand is kind of cutting off at the wrong point. Can you create a separation between them? So we see two separate hands very clearly. Maybe offset their position a little bit so they're not like fist bumping, Make sure the cut is very clean and in the middle instead of because right now I feel like the cut is towards the arm with the longer knife and it kind of cuts between his hands yeah just keep them separate and clean, That I think mags are perfect
+
+What's next? How are you going to do this, I need this finished before midnight"
