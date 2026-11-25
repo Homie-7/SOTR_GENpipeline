@@ -34,3 +34,53 @@ A flat graphic image: VARIANT. Each figure is a shape cut from black paper: one 
 # F1 (flash 1, man 1, far LEFT): one small lone figure standing full length in the left third of the frame, about a quarter of the frame height, feet in the lower third, facing right toward the centre, a short sailor's clasp knife held low in his right hand, the blade pointing forward
 # F2 (flash 2, man 2, far RIGHT): one small lone figure standing full length in the right third of the frame, about a quarter of the frame height, feet in the lower third, a taller broader man facing left toward the centre, a long straight dirk held raised at shoulder height in a reverse grip, the blade pointing down
 # F3 (flash 3, both, nearer, centre): two figures close together in the centre of the frame, seen from mid-thigh up and cut off by the bottom edge, their heads at about one fifth from the top, shoulder to shoulder, leaning forward toward the viewer: the gaunt man on the left with a short knife held low and forward, the taller broader man on the right with a long dirk raised in a reverse grip
+
+# =====================================================================================================================
+# S9-RAFT-KNIFE-SF · v2 · 2026-11-25 (IMG) · knife scene, ARMS AND BLADES ONLY, four flash stills (F1-F4)
+#
+# WHY: Homie F34 (verbatim): "you only want to see the arms and blades and nothing else, not the whole person as it's
+#   supposed to be suggestive. Also, make sure that the arms are not like the character looks a bit zombie-like. We want to
+#   make sure that they are still people of the ship. So, I think soldiers or whatever the script calls for."
+#   Spec: docs/BRIEF-F31-CANNONBALL-BLADES.md "F35 star chat decisions". The v1 full-body cut-outs are retired.
+# SOURCE: blades still A (sailor, reverse grip; blades_v2/S9-RAFT-BLADES-SF_v1_A_4200ecb2.png) and still D full sabre
+#   (soldier, briquet; blades_v2/S9-RAFT-BLADES-SF_v3_D_fullsabre_7ec27fce.png), both praised by Homie. Wording from the
+#   blades v3 D reference edit that passed. No word "lightning" (bolt lesson). No starving / gaunt / sinewy / veiny words.
+# ROUTE: reference edit (keeps the approved look; regenerate-not-comp). Distance per flash is done by script, not prompt.
+# PREDICTION: strong healthy arms, period sleeves, whole blades on pure black, tips toward lower centre. Risks: D's top
+#   light flare comes back (mask by script), A's second hand comes back in F2/F4, F3 merges the two arms into one body.
+#
+# SETTINGS
+#   Model:      Nano Banana Pro (nano_banana_pro; record the model the job reports)
+#   Mode:       image edit with reference (connector generate_image, medias = uploaded stills)
+#   Reference:  F1 = still D · F2 = still A · F3 = still A (first) + still D (second) · F4 = still A
+#   Aspect:     16:9
+#   Resolution: 2k
+#   Batch:      1 per frame, 4 frames, one job at a time
+#   Cost:       2 cr each, ~8 cr (hard cap 20 cr incl. one re-run per frame)
+#
+# --- v2 F1 (ref D) ---
+The attached image is the look reference, kept exactly: the same soldier's sleeve of dark blue wool coat with the brass button and the white linen shirt cuff, the same briquet short sword with its brass D-shaped knuckle bow, the same hard cold blue-white light from high above on total black. The new frame: this one arm alone enters from the upper-LEFT corner of the frame and reaches down toward the centre. It is the strong, healthy working arm of a soldier of 1816: a solid muscular forearm, smooth weathered tanned skin, a firm closed fist wrapped around the grip in a hammer grip, short clean nails. The whole sword is in frame, from the knuckle bow to the very tip; the blade points down toward the lower centre of the frame and its tip ends well inside the frame, with black around it. A single hard top light: crisp highlights on knuckles, brass and the blade edge, deep shadow underneath, a thin cold rim along the sleeve. Everything outside the lit arm and sword is pure black: no light source, no flare, no glow, no background, no sky, no ground, no deck, no body, no face, no other hand. Photoreal, like a still from a period film, sharp focus. No on-screen text. Nothing newer than 1819.
+
+# --- v2 F2 (ref A) ---
+The attached image is the look reference, kept exactly: the same sailor's knife with the pale bone handle held in a reverse grip, the blade leaving the little-finger side of the fist, the same hard cold blue-white light from high above on total black. The new frame: one arm alone enters from the upper-RIGHT corner of the frame and reaches down toward the centre; the second hand at the top of the reference is gone. It is the strong, healthy working arm of a sailor of 1816: a solid muscular forearm, smooth weathered tanned skin, a firm closed fist gripping the handle, short clean nails. The sleeve is a plain off-white linen shirt sleeve rolled to below the elbow, its cuff dark with tar and sea stains. The whole knife is in frame; the blade points down toward the lower centre of the frame and its tip ends well inside the frame, with black around it. A single hard top light: crisp highlights on knuckles, wrist and the blade edge, deep shadow underneath, a thin cold rim along the sleeve. Everything outside the lit arm and knife is pure black, edge to edge with no border: no light source, no flare, no background, no sky, no ground, no deck, no body, no face, no other hand. Photoreal, like a still from a period film, sharp focus. No on-screen text. Nothing newer than 1819.
+
+# --- v2 F3 (refs A first, D second) ---
+The two attached images are the look reference, kept exactly: from the first, the sailor's arm in a rolled off-white linen shirt sleeve with a tar-stained cuff, holding a sailor's knife with a pale bone handle in a reverse grip; from the second, the soldier's arm in a dark blue wool coat sleeve with a brass button and a white linen cuff, holding a briquet short sword with a brass D-shaped knuckle bow in a hammer grip; the same hard cold blue-white light from high above on total black. The new frame holds both arms and nothing else: the soldier's arm enters from the upper-LEFT corner, the sailor's arm from the upper-RIGHT corner, and both reach down so the two fists are close together just above the centre of the frame, a hand's width apart. Both are strong, healthy working arms of men of 1816: solid muscular forearms, smooth weathered tanned skin, firm closed fists, short clean nails. Both blades are whole and in frame, pointing down toward the lower centre, their tips well inside the frame with black around them. A single hard top light: crisp highlights on knuckles, brass and blade edges, deep shadow underneath. Everything outside the two lit arms is pure black, edge to edge: no light source, no flare, no background, no sky, no ground, no deck, no body, no face. Photoreal, like a still from a period film, sharp focus. No on-screen text. Nothing newer than 1819.
+
+# --- v2 F4 (ref A) ---
+The attached image is the look reference, kept exactly: the same sailor's knife with the pale bone handle held in a reverse grip, the blade leaving the little-finger side of the fist, the same hard cold blue-white light from high above on total black. The new frame: one arm alone, very close and large, comes down from the top edge of the frame and fills about half of it, the fist raised high and about to strike downward; the second hand of the reference is gone. It is the strong, healthy working arm of a sailor of 1816: a solid muscular forearm, smooth weathered tanned skin, a firm closed fist gripping the handle, short clean nails. The sleeve is a plain off-white linen shirt sleeve rolled to below the elbow, its cuff dark with tar and sea stains. The whole knife is in frame; the blade points straight down toward the lower centre of the frame and its tip ends well inside the frame, with black around it. A single hard top light: crisp highlights on knuckles, wrist and the blade edge, deep shadow underneath, a thin cold rim along the sleeve. Everything outside the lit arm and knife is pure black, edge to edge with no border: no light source, no flare, no background, no sky, no ground, no deck, no body, no face, no other hand. Photoreal, like a still from a period film, sharp focus. No on-screen text. Nothing newer than 1819.
+
+# v2 RESULTS (2026-11-25, 12 cr, 6 jobs x 2 cr; every job submitted as nano_banana_pro reports nano_banana_2)
+#   Refs uploaded: A = media 54f99574, D = media 32d06078. Folder: 04_WORKING_FILES/S9_raft/knife_sf_v2/ (+ _sheet_v2.jpg).
+#   F1 e4c28176: PASS. Whole sabre, no flare, no bolt, no body. Note: almost a copy of D; the hand is still veiny.
+#   F2 9a60dd1c: PASS. Healthy arm, rolled sleeve with tarred cuff, whole knife, no second hand, no border.
+#   F3 bc2fbe19: KEPT (soft fail). Both arms + both whole blades, no body; D's blue flare is back at top centre (mask by script).
+#   F4 57b54f2d: FAIL -> rejected/. Arm from the right side, fist not raised, A's letterbox border back.
+#   v2b F4 fd1a7c13: PARTIAL PASS (best F4). One sentence changed, the "The new frame:" sentence became:
+#     "The new frame, seen from below: one arm alone, very close and large, hangs straight down from the top centre edge of
+#     the frame with the elbow above the frame, the fist raised high just below the top edge and the knife beneath it, about
+#     to strike downward; the second hand of the reference is gone."
+#     Fist high, knife straight down; but the arm still enters from the upper-right and A's border is still there (crop by script).
+#   v2b F3 3062fa88: FAIL -> rejected/. First sentence ended with "the same hard cold blue-white light from high above, its
+#     source far outside the frame, so the top of the frame is as black as the rest." The flare is gone, but the soldier's
+#     sleeve grows a SECOND bare fist (three hands in frame). bc2fbe19 stays the F3.
