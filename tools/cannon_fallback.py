@@ -379,7 +379,7 @@ def main():
     ap.add_argument('--name', default='S5-CANNON-FALLBACK')
     ap.add_argument('--take0', type=int, default=38, help='v7: CENTRE takeover starts this many frames after the cut')
     ap.add_argument('--take-len', type=int, default=50, help='v7: the wind front crosses CENTRE from the left in this many frames')
-    ap.add_argument('--take-mode', choices=('wipe', 'dissolve'), default='wipe', help='F63: dissolve = CENTRE takeover with no moving line (Homie: the wipe is too obvious)')
+    ap.add_argument('--take-mode', choices=('wipe', 'dissolve', 'none'), default='wipe', help='F63: dissolve = CENTRE takeover with no moving line (Homie: the wipe is too obvious)')
     ap.add_argument('--join', action='store_true', help='v7: also build one camps + cannon + S6 file per wall, no black')
     ap.add_argument('--join-len', type=int, default=60, help='v7: noise dissolve into S6 no-fade f0..JN-1 over the last JN frames')
     ap.add_argument('--ramp-lo', type=float, default=0.35, help='v8: wind speed (fraction of S6) before the CENTRE takeover')
@@ -458,6 +458,8 @@ def main():
     # front brings S6 speed. So every wall stays at the v4 speed until take0 and eases to full S6 speed over the takeover.
     tt = np.arange(nt, dtype=np.float32)
     sr = smoothstep(a.take0, a.take0 + a.take_len + a.ramp_extra, tt).astype(np.float32)
+    if a.take_mode == 'none':                                           # F64: no takeover, so no wind ramp: every wall keeps the v4 speed
+        sr = np.zeros_like(sr)
     ramp = (a.ramp_lo + (1 - a.ramp_lo) * sr).astype(np.float32)
     T = np.concatenate([[0], np.cumsum(ramp)[:-1]]).astype(np.float32)
     # v8b (F61): before the takeover EVERY wall drifts at the same ABSOLUTE speed (ramp_lo x CENTRE's S6 speed, ~the v4
@@ -536,6 +538,8 @@ def main():
                 if a.take_mode == 'dissolve':                                  # F63: no line; the fast smoke grows in through the slow smoke's own shapes
                     pp = -0.4 + 1.8 * float(smoothstep(a.take0, a.take0 + a.take_len, t))
                     tk = smoothstep(0.0, 1.0, pp + 0.8 * (nz - 0.5))[..., None]
+                elif a.take_mode == 'none':                                    # F64 (Homie: the 7 s change is too obvious): the real v4 smoke stays to the end
+                    tk = np.zeros_like(tk)
                 c = np.maximum(np.maximum(cover_c * fm, cover_top), tk)
                 img = vf * (1 - c) + (img / np.maximum(fm, 1e-3) * np.maximum(np.maximum(fm, cover_top), tk)) * c
                 eg = emb[w].draw(gain=0.8) * np.maximum(cover_c * fm, tk)
