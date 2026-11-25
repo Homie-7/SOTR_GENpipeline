@@ -133,3 +133,9 @@ Notes: knife scene = ARMS AND BLADES ONLY (no whole figures; the F1-F3 full-body
 - Route to test: image-to-video per wall from each S5 wall's real last frame (Seedance 2.5, locked camera), the same event
   timed on all four, so each wall's debris is its own and the smoke reaches full frame on all of them. Style frames first:
   2-3 stills (impact peak on CENTRE, dust wave on LEFT/RIGHT, the clean smoke end) as image edits of the S5 last frames.
+
+## Homie feedback, 2026-11-25 (F36, verbatim)
+
+"All four and probe at 480p. However, get rid of that light spot from E3. We want this to be just silhouettes coming along with lightning. So, the desk stat you did where there was a bunch of silhouettes tabbing randomly, it appeared very nicely with a bit of lightning effect around it. I'm not sure how you'll do it, but yeah, think of it as silhouettes hidden in lightning and they start from far and then come close. So, yeah, go ahead and do that. I'm gonna step away for a few hours, so continue working and building. Do not spend a stupid amount of credits. I still want 2000 credits left by the end of all of this"
+
+Notes: knife = all four v2 frames (F1-F4), the F3 top light spot removed ("E3" = F3). Look = SILHOUETTES HIDDEN IN LIGHTNING, like the earlier test with many silhouettes stabbing at random with a lightning effect around them (the blades animation test); far (F1/F2) -> close (F4). Explosion = CENTRE probe at 480p draft. Credit floor: balance must stay >= 2,000 cr at the end.
