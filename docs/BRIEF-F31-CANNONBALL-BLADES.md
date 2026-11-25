@@ -222,3 +222,12 @@ F48 answer: FLOOR joins CENTRE's bottom edge exactly (same picture, ground neare
 LEFT/RIGHT bottom edges exactly; the side corners only match in colour and timing. The take's near ground is a thin strip
 (~30% of height) stretched ~3.4x, so FLOOR is the softest wall. Fix if the probe shows it: an inverse-perspective
 (homography) unwarp of the take's ground plane to a top-down floor, plus a corner blend into the L/R bottoms (0 cr, script).
+
+### F49 review of glow_v1 (Homie, 2026-11-26, verbatim)
+"I think the idea is pretty good, but obviously there's concerns that once the flash is finished, it is a completely different scene in terms of placement objects. Like you can tell, it just swapped to a completely different scene, and it's not far apart that we will not register it, so we can immediately tell that the scene has changed. Second, the embers and the smoke and everything all acts as a single video because it is a single video, and hence it simply does not feel aligned, and the embers are huge, the debris is huge, it just doesn't we can touch a different video that we replaced
+
+I'm starting to wonder if this is just a rabbit hole where we keep spending credits and nothing really works.
+
+Would it be possible to take the scene as is and feed that as a composite Higgsfield and then based on that just generate an explosion and not really about three different scenes, but I suppose that is what you did this time I don't know if it's worth pursuing anymore because I'm not seeing results or anything that's getting us closer"
+
+Notes (F49): glow_v1 REJECTED. Root cause, same in all 3 tries: every generation re-draws the scene, so after any cut the landscape is a different place, and one take spread over 4 walls reads as one scaled video (huge embers/debris). Feeding the camps frame as the start image is what glow_v1 already did. F49 recommendation: STOP generating for the takeover. No landscape after the flash at all.
