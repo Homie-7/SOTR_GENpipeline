@@ -175,7 +175,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-26, latest (POST/script, Mac on T9): F65, S5 CANNON FALLBACK v10 CHECKED + 4K BUILT. 0 cr (balance 1,961.85).
+### 2026-11-26, latest (POST, Mac on T9): F66, S5 CANNON v10 PROMOTED. 0 cr (balance 1,961.85).
+
+- Homie: "Promote v10 now". `1_PLAY_THESE_IN_ORDER/S05_the-camps/S5_<WALL>_cannon.mov` (4K, 25 fps, ends in black) + `03_CLEAN_MASTERS_no_edge/S5_<WALL>_cannon_CLEAN.mov`, sha256 verified; read-me + `_SHA256.txt` updated.
+  Open: copy to D: on the PC with sha256.
+
+### 2026-11-26, earlier (POST/script, Mac on T9): F65, S5 CANNON FALLBACK v10 CHECKED + 4K BUILT. 0 cr (balance 1,961.85).
 
 - v10 (`--take-mode none`) in `04_WORKING_FILES/S5_cannonball/fallback_v10/`: no change at 7 s (CENTRE frame diff max 3.46, median 0.88 f140-265); seams L|C 6.03, C|R 4.88, C|F 6.88.
   Weak: the CENTRE smoke is the real v4 take (brighter, sharper shapes, big embers) next to soft script smoke on L/R. 4K (Lanczos, ProRes 422 HQ, 0 cr) in `fallback_v10_4K/`. WAITING for Homie; nothing promoted.
