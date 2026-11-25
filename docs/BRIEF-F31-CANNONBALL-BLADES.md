@@ -300,3 +300,5 @@ Also, one more thing: the left, right, and center, the saturation is already ful
 So, yeah, to summarize, match the speed and saturation of left bottom and right with the center"
 
 Notes (F58): v7 is "nearly there". CENTRE is the master curve. LEFT/RIGHT/FLOOR must follow the CENTRE in time: slow after the burst, then ease to full S6 speed; grey after the burst, then ease to the full rich red. End points stay each wall's S6 speed/colour (the JOIN still matches). v8 does this in `tools/cannon_fallback.py`.
+
+Done (F62, 26 Nov): v8 built in `04_WORKING_FILES/S5_cannonball/fallback_v8/` with `--join`. L/R/FLOOR follow the CENTRE curve in speed and saturation, and end at each wall's S6 speed and colour. The embers were not the cause of the old LEFT over-read; the speed measure was (one patch on low-contrast smoke). It is now a 12-patch median (`flow_robust`). Waiting for Homie's notes.

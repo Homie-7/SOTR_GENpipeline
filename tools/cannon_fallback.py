@@ -28,6 +28,7 @@ usage: python tools/cannon_fallback.py OUTDIR [--tail 3.0] [--name S5-CANNON-FAL
 """
 import argparse, os, subprocess, sys
 import numpy as np, cv2
+NO_EMBERS = os.environ.get('SOTR_NO_EMBERS') == '1'                   # F62 test switch: draw no embers
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from cannon_glow import read, luma, MEDIA, CAMPS, S6, W, H, FPS, NCAMPS, WALLS, GLOW, ORIGIN  # noqa: E402
@@ -220,6 +221,36 @@ def flow_stats(frames, a, b):
         dxp, dyp = best[1] * 2 / 3, best[2] * 2 / 3
         acc.append((dxp, dyp, float(np.hypot(dxp, dyp))))
     return np.array(acc).mean(0) if acc else np.zeros(3)
+
+
+def flow_robust(frames, a, b):
+    """F62: the v8 CURVES speed. 12 patches (3 rows x 4 columns, 160x100 at 960x540) per 3-frame gap, sampled every 4 f,
+    patches with std <= 3 skipped; median dx and median dy over all patches -> |speed| (1080 px/f). The one mid-band patch
+    of flow_stats read LEFT at ~6-7 px/f in f133-173 on low-contrast smoke (a weak match); this median reads ~2.7, the same
+    as CENTRE, and agrees with phase correlation and with the eye. flow_stats stays for the S6 comparison lines."""
+    dxs, dys = [], []
+    for i in range(a, b - 3, 4):
+        g0 = cv2.cvtColor(cv2.resize(frames[i], (960, 540), interpolation=cv2.INTER_AREA), cv2.COLOR_BGR2GRAY).astype(np.float32)
+        g1 = cv2.cvtColor(cv2.resize(frames[i + 3], (960, 540), interpolation=cv2.INTER_AREA), cv2.COLOR_BGR2GRAY).astype(np.float32)
+        for y0 in (150, 250, 350):
+            for x0 in (60, 300, 540, 760):
+                ref = g0[y0:y0 + 100, x0:x0 + 160]
+                if ref.std() <= 3:
+                    continue
+                best = None
+                for dx in range(-45, 46):
+                    if x0 + dx < 0 or x0 + dx + 160 > 960:
+                        continue
+                    for dy in range(-8, 5):
+                        m = float(np.abs(ref - g1[y0 + dy:y0 + dy + 100, x0 + dx:x0 + dx + 160]).mean())
+                        if best is None or m < best[0]:
+                            best = (m, dx, dy)
+                dxs.append(best[1] * 2 / 3)
+                dys.append(best[2] * 2 / 3)
+    if not dxs:
+        return np.zeros(3)
+    mx, my = float(np.median(dxs)), float(np.median(dys))
+    return np.array([mx, my, float(np.hypot(mx, my))])
 
 
 def build_join(a, walls, tailJ, s6v, snd_nofade, n, npre, JN, stage):
@@ -516,6 +547,8 @@ def main():
                 img = Lm + ksat[w] * (img - Lm)
                 sat_log[w].append(sat(img))
                 eg = emb[w].draw(gain=min(1, 0.4 + t / 30) * (0.9 if w != 'FLOOR' else 0.8)) * fm
+            if NO_EMBERS:                                                   # F62 test: the smoke alone, no embers
+                eg = eg * 0
             if o >= n - JN:
                 tailJ[w].append(np.clip(img + eg, 0, 255).astype(np.uint8))
             img = img * fs + eg * fe
@@ -584,14 +617,14 @@ def main():
                    f'dy {b0[1]:+.2f} speed {b0[2]:.2f} | v7 before fade f{n - F - 60}-{n - F} dx {b1[0]:+.2f} dy {b1[1]:+.2f} speed {b1[2]:.2f}')
     # v8: speed and saturation curves over time, per wall (CENTRE is the master)
     log.append('')
-    log.append(f'v8 CURVES (window = 20 f from the cut; speed = block-match px/f; sat = smoke chroma before fade/embers; '
+    log.append(f'v8 CURVES (window = 20 f from the cut; speed = median of 12 block-match patches px/f (F62); sat = smoke chroma before fade/embers; '
                f'S6 sat L/C/R {s6sat["LEFT"]:.3f}/{s6sat["CENTRE"]:.3f}/{s6sat["RIGHT"]:.3f})')
     log.append('  window      ' + '  '.join(f'{w:>17s}' for w in WALLS))
     for t0 in range(2, nt - F + 10, 20):
         a0, a1 = cut + t0, min(cut + t0 + 20, n - F + 10)
         row = []
         for w in WALLS:
-            sp = flow_stats(walls[w], a0, a1)[2] if a1 - a0 > 4 else 0
+            sp = flow_robust(walls[w], a0, a1)[2] if a1 - a0 > 4 else 0
             sv = float(np.mean(sat_log[w][t0:t0 + 20]))
             row.append(f'spd {sp:5.2f} sat {sv:.3f}')
         log.append(f'  f{a0:3d}-{a1:3d}   ' + '  '.join(row))

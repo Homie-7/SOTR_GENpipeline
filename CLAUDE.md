@@ -175,7 +175,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-26, latest (POST/script, PC): F55, S5 CANNON FALLBACK v6 BUILT. 0 cr (balance 1,961.85).
+### 2026-11-26, latest (POST/script, Mac on T9): F62, S5 CANNON FALLBACK v8 + JOIN BUILT. 0 cr (balance 1,961.85).
+
+- `04_WORKING_FILES/S5_cannonball/fallback_v8/`: L/R/FLOOR follow CENTRE speed + saturation (Homie F58); speed now measured by `flow_robust` (12-patch median; embers ruled out).
+  JOIN = camps + cannon + S6 per wall (13825 f). Copy back to D: with sha256. WAITING for Homie; nothing promoted.
+
+### 2026-11-26, later (POST/script, PC): F55, S5 CANNON FALLBACK v6 BUILT. 0 cr (balance 1,961.85).
 
 - `04_WORKING_FILES/S5_cannonball/fallback_v6/`: S6-speed smoke (burst, plume fades, S6 wind block-matched 10.4/9.0/8.7 px/f), no crossfade, fade to black, S6 unchanged.
   L/R ~20% darker than S6. WAITING for Homie; nothing promoted.
