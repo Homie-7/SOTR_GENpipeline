@@ -1,12 +1,12 @@
-# S5-CANNON-PROBE · v3 · 2026-11-25 (VID, F40 star chat) · Scene 5 end -> Scene 6 start, CENTRE wall, 1816 round-shot impact
+# S5-CANNON-PROBE · v4 · 2026-11-25 (VID, F46 star chat) · Scene 5 end -> Scene 6 start, CENTRE wall, 1816 round-shot impact
 #
-# WHY v3: Homie F39 on v2: the ball should come "towards the tents are, so you kind of don't see it coming... far, and now it's coming
-#   through the sky"; "still not big enough, It's almost like it's going in slow motion"; settling "too slow"; "I see a harsh cut to the
-#   moving smoke"; "debris kind of slowing down and turning into the particles and the smoke for the next one, but it has to be seamless".
-# WHY v2: Homie F38 on v1: "quite like the drop and explosion and the quality of fidelity ... not selling the impact ... fast, violent".
+# WHY v4: probe_v3 measure (F41): the top is covered at 2.2 s, but the debris falls and the SKY AND HORIZON SHOW AGAIN ~3.0-6.0 s
+#   above a low smoke bank (top-band corr back to 0.9). Homie wants option B (F45): explosion baked into a second camps file, even over
+#   all four walls. The smoke must stay over the whole frame from ~2 s and darken in place into the S6 end frame.
+# WHY v3: Homie F39 on v2: ball from far over the tents, bigger, real speed, faster settling, no harsh cut, seamless into S6.
 # Register tags (headers only): start = S5 CENTRE show file last frame; end = S6 CENTRE show file first frame (16:9 bottom-anchored crop).
 #
-# SETTINGS (same as v2)
+# SETTINGS (same as v3)
 #   Model:      Seedance 2.5 (seedance_2_5)
 #   Mode:       omni_reference (image-to-video), start_image + end_image
 #   Start:      04_WORKING_FILES/S5_cannonball/rethink_v1/frames/S5_CENTRE_last.png  (1920x1080)
@@ -17,22 +17,45 @@
 #   Bitrate:    standard
 #   Batch:      1
 #   Sound:      ON (generate_audio = true)
-#   Cost cap:   45 cr; balance after must stay >= 2,000 (Homie floor)
+#   Cost cap:   30 cr (approved by Homie F45); balance after must stay >= 1,500 (Homie floor, F45)
 #
 # THE GATE
-#   SOURCE  v2 below (job a75ca3b9; fast hit, fireball, embers liked). Layout kept; patch = SCENE line, MOTION timings, CAMERA unchanged,
-#           LOCKS + one clause. LIGHTING, QUALITY, REFERENCE, FIRST FRAME, FORMAT, AUDIO unchanged.
-#   ROOM    probe_v2 measure: impact 1.08 s, smoke over only the lower 55-60 %, sky visible to ~7 s, end frame held from 8.67 s (MAD 3.50),
-#           ball first seen 85 px inside the right edge. The S6 head moves from frame 0: smoke drifts right ~0.4-0.6 px/f at 480 wide.
-#   REFS    the same two frames as v1/v2.
-#   ROUTE   Regeneration (Homie: regenerate over comp). The join into S6 is ALSO built by script into the review file (final-product rule):
-#           probe tail -> crossfade into a flow-extrapolated S6 pre-roll -> S6 frame 0. The prompt asks for drift to the last frame, no hold.
-#   DELTA   (1) the ball is a dark dot high in the sky over the far tents, grows as it falls toward camera, lands centre; never through an edge;
-#           (2) a much bigger blast at real speed that covers the WHOLE frame, top edge and sky included, by ~2 s; (3) debris falls fast,
-#           then slows to drifting embers and smoke; (4) the smoke drifts slowly to the right in every frame to the last frame, no hold.
-#           Risk: "huge" may give cartoon volume; here volume is wanted. Risk: the end_image may still pull a hold in the last 1-1.5 s.
-# PREDICTION: ball visible as a dot ~0.2-1.0 s; impact ~1.0-1.4 s; frame top covered by ~2-3 s (Seedance may still under-fill the sky);
-#   end frame reached ~9 s with less hold than v2.
+#   SOURCE  v3 below (job db794c9c; ball from far over the tents, fast hit at 0.92 s, top covered 2.17 s, end MAD 3.56). One line patched:
+#           MOTION 0:04-0:07. Every other line of v3 unchanged.
+#   ROOM    probe_v3 measure: top-band corr back to 0.9 from f82 to f150 (3.4-6.3 s) = sky and horizon visible again; black from ~6.3 s.
+#   REFS    the same two frames as v1-v3 (S5 CENTRE last frame = calm dusk plain; S6 CENTRE first frame = dark sky, low rust smoke, embers).
+#   ROUTE   Regeneration (Homie: regenerate over comp). The join into S6 is built by script into the review (tools/probe_join.py).
+#   DELTA   the settle line says the smoke never clears, stays over the whole frame, darkens in place top-down; the sky/horizon never seen
+#           again. Contradiction check: SCENE still says "settles into a low bank ... under a dark sky" = the END state, consistent.
+# PREDICTION: impact ~0.9-1.1 s; top >90% covered by ~2.2 s and stays >80% changed vs f0 to the end (no corr rebound to 0.9 in 3-6 s);
+#   end MAD vs S6 ~3-5. Risk: Seedance still thins the smoke to meet the end frame early.
+
+# --- v4 ---
+SCENE: A solid iron cannonball of 1816 drops out of the sky beyond the far tents and slams into the open plain at dusk; a huge blast of earth and black-powder smoke swallows the whole view, sky and all, within two seconds, then the debris falls and slows into drifting embers and a low bank of rust-brown smoke under a dark sky.
+
+REFERENCE: The start frame is the first frame exactly: the same plain, horizon, sun, clouds, camp and fires. The end frame is the last frame exactly: the dark sky and the low rust smoke with orange embers.
+
+FIRST FRAME: The start frame exactly.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Locked off on a tripod. The horizon stays at the same height in every frame; the picture jolts once, hard and short, when the ball hits.
+
+MOTION:
+0:00-0:01 — the calm dusk plain; high in the sky above the far tents a tiny dark dot appears and falls toward us on a steep arc, growing fast into a dark iron ball.
+0:01 — it hits the ground at the centre: a hard bright orange-white flash of black powder at the base, four frames, and the ground bursts open.
+0:01-0:02 — a huge violent fountain of dark brown earth, turf, stones and splintered wood blasts up past the top of the frame and out to both sides; a dense wall of grey-brown smoke and dust rushes outward and upward and swallows the whole picture, the sky and the top edge included.
+0:02-0:04 — the whole frame is thick churning smoke; clods and splinters rain down fast, orange embers fly out through it on arcs.
+0:04-0:07 — the falling debris slows and thins into floating orange embers and drifting particles; the smoke never clears and stays over the whole frame, top edge included, darkening in place from the top down to near-black, the dusk sky and horizon never seen again, a low rust-brown glow left at the bottom.
+0:07-0:10 — the low rust smoke and embers keep drifting slowly to the right in every frame, arriving at the end frame on the last frame, still moving.
+
+LIGHTING: The warm rose-orange dusk of the start frame, lighting the smoke from the sun side, fading to darkness and the ember glow of the end frame.
+
+AUDIO: The rush of round shot, an instant deep thud and crack, earth raining down, a low rolling rumble, then wind and the soft crackle of embers.
+
+QUALITY: Photographic realism, historical battlefield, stable picture.
+
+LOCKS: Locked camera. One ball, one impact. The empty plain stays empty. The smoke keeps moving to the last frame. Nothing newer than 1819.
 
 # --- v3 ---
 SCENE: A solid iron cannonball of 1816 drops out of the sky beyond the far tents and slams into the open plain at dusk; a huge blast of earth and black-powder smoke swallows the whole view, sky and all, within two seconds, then the debris falls and slows into drifting embers and a low bank of rust-brown smoke under a dark sky.
