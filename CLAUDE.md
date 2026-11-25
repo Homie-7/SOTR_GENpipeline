@@ -175,7 +175,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-25, latest (VID review, PC): F41, KNIFE F3 v3 + S5 PROBE v3 REVIEWED. 30 cr (balance 2,143.85).
+### 2026-11-25, latest (VID/POST, PC): F43, S5 GREEN PROBE v1 + KEY + S6 FADE-IN BUILT. 30 cr (balance ~2,113.85).
+
+- `04_WORKING_FILES/S6_fadein_v1/` (`tools/s6_fadein.py`, 0 cr, 6 files verified) and `S5_cannonball/alpha_v1/` (job ba3c61fc, `tools/cannon_alpha.py` key + 3 camps reviews):
+  smoke covers only the lower 60%, backdrop turns black ~5.5 s. WAITING for Homie on both; nothing promoted.
+
+### 2026-11-25, earlier (VID review, PC): F41, KNIFE F3 v3 + S5 PROBE v3 REVIEWED. 30 cr (balance 2,143.85).
 
 - `04_WORKING_FILES/S9_raft/knife_flash_v2/..._F3_flash_v3_ALPHA_*.mov` (two separate arms) and `S5_cannonball/probe_v3/` (hit 0.92 s, top covered 2.2 s, sky shows again 3-6 s).
   CORRECTED (Homie F41): the cannonball = a FREE alpha overlay the operator fires at ANY moment over the camps file (no timecode, nothing generated inside the camps picture).

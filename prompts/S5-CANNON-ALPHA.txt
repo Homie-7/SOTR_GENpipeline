@@ -1,0 +1,55 @@
+# S5-CANNON-ALPHA · v1 · 2026-11-25 (VID, F43 star chat) · the Scene 5 cannonball as a FREE alpha overlay element on chroma green
+#
+# WHY: Homie F41: "the explosion has to be an alpha file so that we can overlay it with the camp scene"; "I can't give you an exact
+#   duration on when the explosion needs to happen". He likes probe v3: "I like the speed, I like the impact, the debris". F42: "Yes, run the probe".
+# Register tags (headers only): motion reference = S5-CANNON-PROBE v3 (job db794c9c, 04_WORKING_FILES/S5_cannonball/probe_v3/).
+#
+# SETTINGS
+#   Model:      Seedance 2.5 (seedance_2_5)
+#   Mode:       omni_reference
+#   Start:      04_WORKING_FILES/S5_cannonball/alpha_v1/green_1920x1080.png (flat #00B140) as start_image
+#   Video ref:  probe v3 mp4 as video_references (motion: speed, impact, debris)
+#   Aspect:     16:9
+#   Resolution: 480p draft (draft = true)
+#   Duration:   10 s
+#   Bitrate:    standard
+#   Batch:      1
+#   Sound:      ON (generate_audio = true)
+#   Cost cap:   45 cr; balance after must stay >= 2,000 (Homie floor)
+#
+# THE GATE
+#   SOURCE  probe v3 (liked: speed, impact, debris). v3 labelled-block layout kept. New element prompt: the landscape goes, flat green comes in.
+#   ROOM    v3 measure: dot from f1 at the top, lands centre 0.92 s, column past the top 1.5 s, top >90% covered 2.17 s; then the sky came back 3-6 s.
+#   REFS    flat green start frame (locks the key colour) + the v3 clip (motion only).
+#   ROUTE   Regeneration on green; key + the ending (full cover -> darken -> embers -> black) by script (tools/cannon_alpha.py).
+#   DELTA   (1) no landscape, no ground plane: a flat green backdrop in every frame where no smoke is; (2) the smoke never thins back to green
+#           after full cover; (3) dark smoke, embers glowing; (4) locked camera, no jolt (a jolt shifts the key edge).
+#           Risk: the model may paint a ground or a sky from the reference clip. Risk: green spill on the smoke (despill in the key).
+# PREDICTION: ball a dot at the top ~0.2-0.9 s; impact ~0.9-1.2 s low centre; frame ~fully covered by ~2-2.5 s; some green may show
+#   again at the corners after ~5 s (the script then holds and darkens the cover).
+
+# --- v1 ---
+SCENE: A visual-effects element on a flat chroma-green screen: a solid iron cannonball of 1816 drops from the top of the frame and bursts into a huge blast of dark earth, debris and black-powder smoke that fills the whole frame, with glowing orange embers, all on the even green backdrop.
+
+REFERENCE: The start frame is the flat green backdrop. The attached clip sets the motion only: the speed of the fall, the hard impact, the earth column, the flying debris and the embers. Take nothing from its landscape, sky or ground.
+
+FIRST FRAME: The start frame exactly: flat even chroma green, nothing else.
+
+FORMAT: Single continuous take, real time, one shot, no cuts. Every part of the frame that holds no ball, earth, smoke or ember is the same flat even chroma green, with no ground, horizon, sky, shadow or gradient.
+
+CAMERA: Locked off on a tripod. The frame never moves, shakes or zooms.
+
+MOTION:
+0:00-0:01 — flat green; at the top centre a tiny dark dot appears and falls fast on a steep arc, growing into a dark iron ball.
+0:01 — it strikes low at the centre: a hard bright orange-white flash, four frames.
+0:01-0:02 — a huge violent fountain of dark brown earth, stones and splinters blasts up past the top of the frame and out to both sides; a dense wall of dark grey-brown smoke rushes out and fills the whole frame, edge to edge.
+0:02-0:05 — the whole frame is thick dark churning smoke; debris rains down fast, orange embers fly through it on arcs.
+0:05-0:10 — the smoke stays thick and dark over the whole frame and slowly rolls and darkens; glowing orange embers drift and fade inside it. No green shows again.
+
+LIGHTING: The flash lights the smoke orange from within, then only the ember glow lights the dark smoke. The green backdrop stays flat and evenly lit.
+
+AUDIO: The rush of round shot, an instant deep thud and crack, earth raining down, a low rolling rumble, then the soft crackle of embers.
+
+QUALITY: Photographic realism, clean visual-effects element for keying, stable picture.
+
+LOCKS: Locked camera. One ball, one impact. Flat green backdrop, no landscape. The smoke covers the whole frame from two seconds to the end. Nothing newer than 1819.
