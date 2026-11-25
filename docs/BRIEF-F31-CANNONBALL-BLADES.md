@@ -270,3 +270,10 @@ I am simply wondering if we can have this smoke from the moment of explosion to 
 The center scene does it really well. It explodes, but the smoke going sideways appears immediately, and then the one going up slowly fades away. Why can't we just do that with all of them"
 
 Notes (F53): v5 REJECTED. KEEP the S6 show files as they are (they start from black, F42 fade-in stays; no S6 trim). NO crossfade into S6 frames. The cannon file may fade to black at the end (embers may stay in the black, optional). The script smoke must MOVE LIKE S6's smoke (fast, sideways billows, not a slow rise) from the explosion on, so cannon-to-black-to-S6 reads as one continuous smoke. Model: the CENTRE probe's behaviour (sideways smoke at once, upward plume fades) on ALL walls.
+
+### F55 finding (2026-11-26)
+- v6 first render crashed (float64 remap maps); fixed. The finished v6a then measured the L/R smoke almost STILL sideways.
+- Cause: F54's S6 drift numbers came from Farneback at 480x270, which under-read the fast S6 smoke ~4x. A full-res block-match
+  of S6 no-fade f20-140 gives drift RIGHT LEFT +10.4, CENTRE +9.0, RIGHT +8.7 px/f (1080), dy ~ -0.3. v6 now uses these
+  (and the measure is a block-match). v6a outputs replaced; its log/measure kept as `_*_v6a_slowwind.*` in fallback_v6/.
+- Note: the generated CENTRE v4 drifts only ~3.7 px/f; it cannot be changed (generated), only covered at the top/edges.

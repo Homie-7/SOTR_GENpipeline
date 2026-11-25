@@ -175,7 +175,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-26, latest (POST/script, PC): F53, S5 CANNON FALLBACK v5 BUILT. 0 cr (balance 1,961.85).
+### 2026-11-26, latest (POST/script, PC): F55, S5 CANNON FALLBACK v6 BUILT. 0 cr (balance 1,961.85).
+
+- `04_WORKING_FILES/S5_cannonball/fallback_v6/`: S6-speed smoke (burst, plume fades, S6 wind block-matched 10.4/9.0/8.7 px/f), no crossfade, fade to black, S6 unchanged.
+  L/R ~20% darker than S6. WAITING for Homie; nothing promoted.
+
+### 2026-11-26, later (POST/script, PC): F53, S5 CANNON FALLBACK v5 BUILT. 0 cr (balance 1,961.85).
 
 - `04_WORKING_FILES/S5_cannonball/fallback_v5/`: smoke rises, no fade, dissolves into real S6 no-fade f0-49 (S6 REVIEW copies from f50), FLOOR dark.
   WAITING for Homie's yes to the S6 join (drops the F42 fade-in); nothing promoted.
