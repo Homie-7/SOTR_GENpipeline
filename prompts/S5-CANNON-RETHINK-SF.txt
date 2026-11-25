@@ -1,0 +1,36 @@
+# S5-CANNON-RETHINK-SF · v1 · 2026-11-25 (IMG) · Scene 5 end, realistic 1816 round-shot impact (STYLE FRAMES)
+#
+# WHY: Homie (F34) rejected review v1 (generated fireball, luma-key, matte reveal): "looks a bit generic... a cheap fade".
+#   He wants a realistic cannonball impact, debris and ground thrown, a dust wave over all four screens, then a
+#   dissolve into clean smoke that becomes Scene 6. These stills set the look before any video spend.
+# RULES: era law 1819 (solid iron round shot, black powder = brief dull flash, then grey-brown smoke and thrown earth;
+#   no high-explosive fireball). Locked camera. Edits of the REAL S5 last frames so light and ground match.
+# SOURCE: new prompt. Layout = LIRA / NBP reference-led prose (v3 per-production exception for IMG). Plan: docs/PLAN-S5-EXPLOSION-v2.md
+# PREDICTION: framing holds (image edit); risk = a modern orange fireball, or the model repaints the landscape.
+#
+# SETTINGS
+#   Model:      Nano Banana Pro (nano_banana_pro; jobs report nano_banana_2, known quirk)
+#   Mode:       image edit (reference-led)
+#   Reference:  (a) S5_CENTRE_last.png  (b) S5_LEFT_last.png  (c) S5_CENTRE_last.png + S6_CENTRE_first_16x9.png
+#               all in 04_WORKING_FILES/S5_cannonball/rethink_v1/frames/ (last frame of the show S5 files, first frame of S6)
+#   Aspect:     16:9
+#   Resolution: 2k (2752x1536 out)
+#   Batch:      1 each
+#   Cost:       2 cr each, 6 cr total (cap 12)
+#
+# RESULTS (2026-11-25, 6 cr) in 04_WORKING_FILES/S5_cannonball/rethink_v1/:
+#   (a) 581c7d63 PASS. Framing, sun, fires and camp kept. Dark earth column, small low powder flash, turf clods, stones,
+#       splinters on arcs, grey-brown smoke rolling right. The ball reads at the base (keep for the video: Homie wants it seen).
+#   (b) 3f31dee5 PASS. Hill kept on the left, a brown dust wall from the right edge, clods and stones falling, broken
+#       planks on the ground. Sky stays pink.
+#   (c) 68c7a9c5 PASS as direction. Dark sky with embers, rust smoke low, close to S6's first frame. Not even: smoke
+#       heavier at right, horizon and tents still faint. The video end_image will be the real S6 frame, not this still.
+
+## (a) CENTRE, impact peak  -> S5-CANNON-RETHINK-SF_v1_a_CENTRE_impact_581c7d63.png
+Edit @Image 1 and keep its exact framing, horizon, sun, cloud bands, distant tents and warm rose-orange dusk light. A solid iron cannonball of 1816 has just struck the open ground in the middle distance at the centre of the frame. At the point of impact a short, dull orange flash of burning black powder glows low at the base, small and brief. Above it a tall ragged column of dark brown earth erupts upward: clods of turf with grass roots, wet mud, stones and pale wooden splinters fly outward on arcing paths, frozen in mid-air. Thick grey-brown powder smoke rolls out around the base, lit warm on its sun side and dark umber in shadow. Dust spreads low across the plain. The camera is locked; a realistic historical artillery impact, documentary painting realism, photographic detail.
+
+## (b) LEFT, dust wave  -> S5-CANNON-RETHINK-SF_v1_b_LEFT_dust-wave_3f31dee5.png
+Edit @Image 1 and keep its exact framing, the rolling grassy hill, the horizon line and the warm rose-orange dusk light. A huge rolling wall of brown dust and grey-brown powder smoke surges in from the right edge of the frame and has swallowed the right two thirds of the view; it boils low and heavy along the ground and towers up into the pink sky, warm on its lit edges and dark umber inside. On the left the hill is still visible but darkening under the drifting haze. Clods of earth, turf, small stones and wooden splinters fall out of the cloud on downward arcs and scatter onto the grass in the foreground, frozen in mid-fall. No fire, only dust, smoke and falling earth after an 1816 cannonball strike nearby. The camera is locked; documentary painting realism, photographic detail.
+
+## (c) CENTRE, smoke end = S6 first frame  -> S5-CANNON-RETHINK-SF_v1_c_CENTRE_smoke-end_68c7a9c5.png
+Edit @Image 1 so that it becomes the moment after the dust has settled, matching the look of @Image 2. The battlefield of @Image 1 is now buried: darkness covers the whole upper half of the frame, a near-black sky with no sun. In the lower half lies an even, slow bank of rust and red-brown smoke, soft billows evenly spread from left to right, with tiny orange embers drifting in it, exactly the colour, density and layout of @Image 2. Only the faintest ghost of the horizon shows through the smoke. Quiet, calm, smoke and darkness cover the camp. The camera is locked; photographic detail.
