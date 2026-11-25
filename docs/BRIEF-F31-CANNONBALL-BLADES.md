@@ -184,3 +184,13 @@ What's next? How are you going to do this, I need this finished before midnight"
 - 2026-11-25 (F42, Homie, verbatim): "Yes, run the probe" -> GO for the green-screen explosion probe at 480p (~30 cr), plan in `docs/HANDOFF-2026-11-25-F42.md`.
 - 2026-11-25 (F42, Homie, verbatim): "Is it possible to add a fade in the beginning of the S6 files that we already have in our final for show folders? Instead of starting from scratch or something like that"
   -> YES (F42 answer): a script adds an eased fade from black to the head of the EXISTING S6 show files (4K + 1080, sound kept), 0 cr, same show names, old files to `04_WORKING_FILES/superseded/`, CLEANs untouched. Review first; promote on his yes.
+
+## Homie, 2026-11-25 (F45, verbatim)
+"If the two seconds were added extra seconds, then keep the sound design aligned from the point it's supposed to be aligned, but if you just faded without changing the duration, then the sound can stay as is. Do not edit the sound because it will be a separate file running in QLab anyway, it just has to match properly. So, if the two seconds of fade add duration, then I just need to let them know. But if not, then it's all good"
+"For the explosion, go ahead with option B plan"
+"If you feel confident that you can make a perfectly aligned scene where the explosion evenly spreads across all four scenes because that is what we want, then you can make them by script. But if you think it's not looking good, then I'm happy for you to generate it. Ideally, I still want 1500 credits left"
+"Continue working. I'll be back"
+
+Notes (F45): S6 fade adds no duration (121.25 s, 2910 f) -> sound stays as is, nothing to tell the sound team. OPTION B APPROVED: explosion baked
+into a SECOND camps file per wall (LEFT/CENTRE/RIGHT/FLOOR), even spread over all four walls, ending on each wall's S6 first frame
+(S6 has no FLOOR: FLOOR ends in dark smoke). Credit floor now 1,500 (balance 2,113.85 -> ~613 cr usable).
