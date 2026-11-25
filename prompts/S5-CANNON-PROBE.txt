@@ -1,0 +1,59 @@
+# S5-CANNON-PROBE · v1 · 2026-11-25 (VID, F36 helper) · Scene 5 end -> Scene 6 start, CENTRE wall, 1816 round-shot impact
+#
+# WHY: Homie F34 rejected review v1 ("a cheap fade"); F36 said "probe at 480p". Plan docs/PLAN-S5-EXPLOSION-v2.md section 3 step 1.
+# Register tags (headers only): start = S5 CENTRE show file last frame; end = S6 CENTRE show file first frame (16:9 bottom-anchored crop).
+#
+# SETTINGS
+#   Model:      Seedance 2.5 (seedance_2_5)
+#   Mode:       omni_reference (image-to-video), start_image + end_image
+#   Start:      04_WORKING_FILES/S5_cannonball/rethink_v1/frames/S5_CENTRE_last.png  (1920x1080)
+#   End:        04_WORKING_FILES/S5_cannonball/rethink_v1/frames/S6_CENTRE_first_16x9.png  (1920x1080)
+#   Aspect:     16:9
+#   Resolution: 480p draft (draft = true)
+#   Duration:   12 s
+#   Bitrate:    standard
+#   Batch:      1
+#   Sound:      ON (generate_audio = true)
+#   Cost cap:   45 cr; balance after must stay >= 2,050 (Homie floor 2,000)
+#
+# THE GATE
+#   SOURCE  New video prompt. Beat table = PLAN-S5-EXPLOSION-v2.md section 2 (CENTRE column, 0-12 s). Look = style frames (a) 581c7d63
+#           and (c) 68c7a9c5, both PASS (prompts/S5-CANNON-RETHINK-SF.txt). Layout = labelled blocks of prompts/S9-CRT-IDLE.txt v16-FWD.
+#   ROOM    Opened rethink_v1/_contact_sheet_frames.jpg: S5 CENTRE = rose-orange dusk, low sun upper-left behind thin cloud, smoke plumes
+#           left and right, camp on the right horizon, yellow fire glow lower left, dark brown plain. S6 CENTRE first = black upper half,
+#           low band of rust/red-brown smoke with orange embers.
+#   REFS    start_image S5_CENTRE_last.png (carries framing, light, ground); end_image S6_CENTRE_first_16x9.png (carries the end state).
+#           Both opened (1920x1080 RGB). No image_references.
+#   ROUTE   Regeneration, omni_reference start+end (plan section 3; compositing a fireball was rejected in F34). Probe short and cheap first
+#           (AUTONOMOUS-GEN section 2). Known risk from S9-CRT-IDLE v13-BRIDGE: start/end are NOT frame-exact in omni mode (it reframed).
+#   DELTA   First version, no earlier video prompt for this cue. Nothing contradicts the frames: the start has no ball or smoke at centre,
+#           the end has no horizon; the prompt carries the change between them.
+# PREDICTION: the ball and the earth column read; the flash runs longer than 5 frames (Seedance likes a bright burst); some camera shake on
+#   impact; the last ~3 s cross-dissolve toward the end frame rather than settle into it.
+
+# --- v1 ---
+SCENE: A solid iron cannonball of 1816 falls onto the open plain at dusk and throws up earth; dust and black-powder smoke roll out until they fill the whole view, then settle into a low bank of rust-brown smoke under a dark sky.
+
+REFERENCE: The start frame is the first frame exactly: the same plain, horizon, sun, clouds, camp and fires. The end frame is the last frame exactly: the dark sky and the low rust smoke with orange embers.
+
+FIRST FRAME: The start frame exactly.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Locked off on a tripod. The horizon stays at the same height in every frame; the picture stays still when the ball lands.
+
+MOTION:
+0:00-0:02 — the calm dusk plain, smoke drifting from the far fires.
+0:02-0:03 — a dark iron ball streaks in from the right edge, dropping low, and hits the ground at the centre of the plain.
+0:03 — a quick dull orange spark of black powder at the base, gone at once.
+0:03-0:05 — a tall ragged column of dark brown earth bursts up: clods of turf, stones and pale wooden splinters fly out on arcs and rain down; grey-brown smoke rolls out from the base.
+0:05-0:08 — the dust and smoke swell and roll outward and upward until they fill the frame edge to edge.
+0:08-0:12 — the light dims from the top to near-black; the smoke sinks into a low even rust-brown bank with small orange embers drifting, arriving at the end frame and holding.
+
+LIGHTING: The warm rose-orange dusk of the start frame, lighting the smoke from the sun side, fading to darkness and the ember glow of the end frame.
+
+AUDIO: The rising whistle of round shot, a deep thud and crack, earth raining down, a low rolling rumble, then wind and the soft crackle of embers.
+
+QUALITY: Photographic realism, historical battlefield, stable picture.
+
+LOCKS: Locked camera. One ball, one impact. The empty plain stays empty. Nothing newer than 1819.

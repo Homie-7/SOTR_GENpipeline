@@ -175,7 +175,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-25, latest (IMG/script, PC): F34, KNIFE STILLS + FULL SABRE + CANNONBALL CUE REVIEW BUILT. 12 cr (balance ~2,257.85).
+### 2026-11-25, latest (VID/script, PC): F37, KNIFE FLASH v1 + S5 EXPLOSION CENTRE PROBE BUILT. 36 cr (balance ~2,203.85).
+
+- `04_WORKING_FILES/S9_raft/knife_flash_v1/` (4 alpha ProRes files, `tools/knife_flash.py`, 0 cr) and `S5_cannonball/probe_v1/` (Seedance 480p, 12 s, `prompts/S5-CANNON-PROBE.txt`).
+  WAITING for Homie's notes on both; if he passes the probe, RIGHT/LEFT/FLOOR at 480p (~108 cr); 1080p only on his yes. Nothing promoted.
+
+### 2026-11-25, earlier (IMG/script, PC): F34, KNIFE STILLS + FULL SABRE + CANNONBALL CUE REVIEW BUILT. 12 cr (balance ~2,257.85).
 
 - `04_WORKING_FILES/S9_raft/knife_sf_v1/` (Proposal 5 stills), `S9_raft/blades_v2/..._v3_D_fullsabre_7ec27fce.png`, `S5_cannonball/review_v1/` (`tools/cannon_review.py`).
   WAITING for Homie; 1080p fireball (128 cr) needs his yes. Nothing promoted.
