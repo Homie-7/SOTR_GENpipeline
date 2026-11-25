@@ -41,8 +41,30 @@ QUALITY: Photographic realism, historical battlefield, stable picture.
 LOCKS: Locked camera. No ball and no crater in this view. The empty plain stays empty. The smoke keeps moving to the last frame. Nothing newer than 1819.
 
 === RIGHT v1 ===
-(LEFT v1 with left/right swapped: impact just off the LEFT edge; the flash lights the scene from the left edge; the wall of earth
-and smoke bursts in from the left edge and sweeps right; the end smoke drifts slowly to the right; AUDIO thud "from the left".)
+SCENE: A cannonball of 1816 slams into the plain just off the left edge of this view at dusk; its blast wave of earth and black-powder smoke rushes in from the left and swallows the whole view, sky and all, then settles into drifting embers and a low bank of rust-brown smoke under a dark sky.
+
+REFERENCE: The start frame is the first frame exactly: the same plain, horizon, sky and camp. The end frame is the last frame exactly.
+
+FIRST FRAME: The start frame exactly.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Locked off on a tripod. The horizon stays at the same height in every frame; the picture jolts once, hard and short, at 0:01.3.
+
+MOTION:
+0:00-0:01 — the calm dusk plain, smoke of the camp drifting slowly.
+0:01.3 — a hard orange-white flash lights the whole scene from the left edge, four frames, the ground shakes.
+0:01.3-0:03 — a huge rolling wall of dark brown earth, turf, stones and grey-brown smoke bursts in from the left edge and sweeps right across the whole picture, rising past the top of the frame; clods and splinters fly through it.
+0:03-0:07 — the whole frame is thick churning smoke; the debris slows and thins into floating orange embers; the smoke never clears and stays over the whole frame, top edge included, darkening in place from the top down to near-black, the dusk sky and horizon never seen again, a low rust-brown glow left at the bottom.
+0:07-0:10 — the low rust smoke and embers keep drifting slowly to the right in every frame, arriving at the end frame on the last frame, still moving.
+
+LIGHTING: The warm rose-orange dusk of the start frame, the flash from the left, fading to darkness and the ember glow of the end frame.
+
+AUDIO: An instant deep thud and crack from the left, earth raining down, a low rolling rumble, then wind and the soft crackle of embers.
+
+QUALITY: Photographic realism, historical battlefield, stable picture.
+
+LOCKS: Locked camera. No ball and no crater in this view. The empty plain stays empty. The smoke keeps moving to the last frame. Nothing newer than 1819.
 
 === FLOOR v1 ===
 SCENE: The trampled ground of a camp at dusk seen from above; a cannonball of 1816 slams into the plain just beyond the top edge of this view; the ground shakes, earth and debris rain down across it, and a rolling bank of black-powder smoke sweeps over the whole ground and settles into near-darkness with drifting embers and a low rust-brown glow.
