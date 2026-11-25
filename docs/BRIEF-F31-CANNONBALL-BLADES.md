@@ -203,3 +203,14 @@ into a SECOND camps file per wall (LEFT/CENTRE/RIGHT/FLOOR), even spread over al
 "Yeah, think smarter, think carefully. What is the best way to do this? Because if we cannot achieve that kind of outcome, then it becomes pointless.  If you notice the way we did it in the 2022 version, we just let the explosion take over everything instantly, and that's how we hide the fact that it's not seamless. But obviously, this one is a bit more elaborate since we're using generation. So, yeah, think about it, continue working"
 
 Notes (F46): walls_v1 REJECTED as a set (timing not aligned across walls: RIGHT debris arrives before the CENTRE blast reaches its edges; no seam continuity; RIGHT boulders heavy; colour must match). CENTRE v4 is "pretty good" but the blast is too contained: destroy the whole CENTRE at once. Requirement: ONE seamless event across all four walls, aligned in time, colour-matched. 2022 trick: the explosion takes over everything instantly, which hides the seams. Homie wants a smarter method; F47 designs it (think first, then a probe within the 1,500 floor).
+
+### F47 review of mirror_v2 (Homie, 2026-11-25, verbatim)
+Screenshot: `04_WORKING_FILES/S5_cannonball/mirror_v2/HOMIE_F47_screenshot_flash.webp` (flash frame: CENTRE fireball on the plain, sky visible; L/R/FLOOR washed beige smoke).
+
+"For the center frame, I can also see just when the cannonball is coming, the scene shifts to a different frame, so yeah, that's very clearly a jump cut kind of thing
+
+You can clearly see that the impact frames are completely different and not aligned
+
+Wonder if the trick is the impact point where the yellow glow of explosion is, maybe that glow is what takes over all of the screens at the same time, and then we have aligning smokes or something. I do like how in the previous version the explosion kind of starts in the center and the ground breaks and everything. This almost hides all the details, I understand the need for it and everything, but yeah, the kaleidoscope thing is very true, and we cannot have that. There has to be a way to do this where everything works seamlessly. Think about it
+
+Maybe start a new session with Fable 5.2 and have it assess this. That might help?"
