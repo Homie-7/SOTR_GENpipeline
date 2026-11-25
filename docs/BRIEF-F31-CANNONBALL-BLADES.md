@@ -107,3 +107,29 @@ I'm happy to go with it not sure how you will incorporate this with lightning fl
 With the explosion, I feel like it looks a bit generic and not really matching the atmosphere. So think about what the camp scene looks like, the colors and everything, the explosion needs to look realistic how it would be from an actual cannonball. We also need to see some kind of debris and ground stuff lying around and everything. I want the explosion to take over the entire screen rather than just center and a bit of left and right and bottom. The explosion should take over all four projector screens and then dissolve into a nice clean smoke, which can then transition us to the next scene. This kind of just looks like a cheap fade that we did using the explosion. Take a time with it if you need to, but that's what I'm after. Have a rethink about how this needs to be done"
 
 Notes: knife scene = ARMS AND BLADES ONLY (no whole figures; the F1-F3 full-body cut-outs are retired), arms not zombie-like (ship's people / soldiers per BIBLE.md). Deliverable = FOUR separate ALPHA video files (ProRes 4444), one per flash, which Homie triggers by hand in QLab with sounds: HIS explicit exception to the final-product rule for this cue. Explosion = rethink: realistic 1816 cannonball impact matched to the S5 camps look/colours, debris + earth thrown up, fills ALL FOUR walls, then clears into clean smoke that carries into S6. Not the luma-keyed generic fireball + fade of review v1.
+
+## F35 star chat decisions (2026-11-25)
+
+### Knife scene, arms + blades (style frames, v2 of S9-RAFT-KNIFE-SF)
+- Why the arms read zombie-like: the v1 knife prompt said "starving castaway, gaunt, hunched, thin bare arms", and still A's
+  arm is veiny and gaunt. v2 drops every starving/gaunt word. The arms are STRONG, healthy working arms of the ship's people
+  (BIBLE: soldiers and sailors of the Medusa, 1816): one SOLDIER (dark blue wool coat sleeve, red or white cuff/turnback, brass
+  button, the briquet of still D) and one SAILOR (rolled striped or plain linen shirt sleeve, tarred cuff, a sailor's knife, the
+  grip of still A). A fist that grips, not a claw; no long nails, no grey skin, no bulging veins, no reaching spread fingers.
+- Same light as A/D: one hard cold blue-white flash from high above, pure black field (luma key). No word "lightning" (bolt lesson).
+  Every blade points down toward lower centre (Agnes). Entries from top / top corners / side edges only.
+- Four frames = four alpha files: F1 the SOLDIER arm alone from the upper-LEFT, F2 the SAILOR arm alone from the upper-RIGHT,
+  F3 BOTH arms from the two top corners, closer together, F4 ONE arm close and large from the top (the murder). Distance is
+  done by script (scale + a slight softness for F1/F2, full size F4), not by the prompt.
+- Route: reference edits on still D (soldier) and still A (sailor) to keep the approved look; 2 cr each, ~8-10 cr.
+- Flash files: ProRes 4444 alpha, CENTRE 1920x1080 (and 4K), each ~1.5 s: a 2-3 flicker in (lightning shape, 60-120 ms
+  peaks), a hold of ~0.4 s, fall to transparent. Starts and ends fully transparent so QLab can trigger it at any time.
+
+### Explosion rethink (plan before any video spend)
+- Look first: sample the S5 show files (all four walls) for colour, light and ground: the impact must sit in that world.
+- Shape: ball in from RIGHT, impact on the ground CENTRE/FLOOR, a black-powder burst (short orange flash, then grey-brown
+  smoke and a column of EARTH, turf, stones and splinters thrown up and falling), the dust wave rolls out over all FOUR walls
+  until each is full; then it settles to an even clean smoke that IS Scene 6's opening smoke.
+- Route to test: image-to-video per wall from each S5 wall's real last frame (Seedance 2.5, locked camera), the same event
+  timed on all four, so each wall's debris is its own and the smoke reaches full frame on all of them. Style frames first:
+  2-3 stills (impact peak on CENTRE, dust wave on LEFT/RIGHT, the clean smoke end) as image edits of the S5 last frames.
