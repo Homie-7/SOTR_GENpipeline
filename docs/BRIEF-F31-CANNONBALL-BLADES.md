@@ -97,3 +97,13 @@ at the murder. Black (transparent) between flashes. Style frames: 3 new stills (
 - On blades stills A + D: "These two are good, but I want to see the full saber."
   -> D redone as a reference edit with the whole sabre in frame: `04_WORKING_FILES/S9_raft/blades_v2/S9-RAFT-BLADES-SF_v3_D_fullsabre_7ec27fce.png` (2 cr). Waiting for his look.
 - Knife-scene style frames (Proposal 5) built: `04_WORKING_FILES/S9_raft/knife_sf_v1/` (F1 man 1 left, v1b F2 man 2 right, F3 both nearer; black cut-outs on white, inverse-luma alpha). Waiting for his pick.
+
+## Homie feedback, 2026-11-25 (F34, verbatim)
+
+"I agree with the flash scene settings. Obviously, else you only want to see the arms and blades and nothing else, not the whole person as it's supposed to be suggestive. Also, make sure that the arms are not like the character looks a bit zombie-like. We want to make sure that they are still people of the ship. So, I think soldiers or whatever the script calls for.
+
+I'm happy to go with it not sure how you will incorporate this with lightning flash but I want transparent video so we can just trigger them manually in QLab. So it'll most likely have to be four different video files, all alpha, that we can trigger by locking sounds with them. I think?
+
+With the explosion, I feel like it looks a bit generic and not really matching the atmosphere. So think about what the camp scene looks like, the colors and everything, the explosion needs to look realistic how it would be from an actual cannonball. We also need to see some kind of debris and ground stuff lying around and everything. I want the explosion to take over the entire screen rather than just center and a bit of left and right and bottom. The explosion should take over all four projector screens and then dissolve into a nice clean smoke, which can then transition us to the next scene. This kind of just looks like a cheap fade that we did using the explosion. Take a time with it if you need to, but that's what I'm after. Have a rethink about how this needs to be done"
+
+Notes: knife scene = ARMS AND BLADES ONLY (no whole figures; the F1-F3 full-body cut-outs are retired), arms not zombie-like (ship's people / soldiers per BIBLE.md). Deliverable = FOUR separate ALPHA video files (ProRes 4444), one per flash, which Homie triggers by hand in QLab with sounds: HIS explicit exception to the final-product rule for this cue. Explosion = rethink: realistic 1816 cannonball impact matched to the S5 camps look/colours, debris + earth thrown up, fills ALL FOUR walls, then clears into clean smoke that carries into S6. Not the luma-keyed generic fireball + fade of review v1.
