@@ -261,3 +261,12 @@ I think you can just start bringing the smoke from scene 6 in to match from when
 Notes (F52): fallback_v4 ACCEPTED as the base ("we can work with this"). Fix 1: the side-wall smoke must not travel downwards (rise / drift up like real smoke). Note 2 (OK as is): a split second where only CENTRE explodes and the other walls are empty. Fix 3: no fade to black; the file must END on each wall's S6 first frame (S6 smoke), blending into it after the explosion dies down, so the cut to S6 is seamless.
 "even ifThere is a fade in the middle"
 (F52 note: a crossfade from the explosion smoke into the S6 first frames inside this file is OK.)
+
+### F53 review of fallback_v5 (Homie, 2026-11-26, verbatim)
+"The S6 starts with a fate of black, so there is some wiggle room here. The motion is simply still not matching. The smoke is just going up all in the air, and it's not even moving that fast. S6 smokes moves quite fast compared to this, so yeah, it just kind of looks fake. Plus, you're cross-fading to S6 mock. We don't need to do that. Remember, the S6 starts from pitch black thing, so this can still fade away into black. Maybe just leave some embers or running or something like that, but it doesn't have to. Like, we do start from black for S6
+
+I am simply wondering if we can have this smoke from the moment of explosion to start working towards the S6 smoke so the frames perfectly match. I don't need you to crossfade, I need you to create the smoke in a way that it matches S6's smoke so that it becomes a seamless transition because right now I can see the smoke is still going up and then you see it hard cutting even though it's fading it's still basically snapping into a different position it's not seamless at all
+
+The center scene does it really well. It explodes, but the smoke going sideways appears immediately, and then the one going up slowly fades away. Why can't we just do that with all of them"
+
+Notes (F53): v5 REJECTED. KEEP the S6 show files as they are (they start from black, F42 fade-in stays; no S6 trim). NO crossfade into S6 frames. The cannon file may fade to black at the end (embers may stay in the black, optional). The script smoke must MOVE LIKE S6's smoke (fast, sideways billows, not a slow rise) from the explosion on, so cannon-to-black-to-S6 reads as one continuous smoke. Model: the CENTRE probe's behaviour (sideways smoke at once, upward plume fades) on ALL walls.
