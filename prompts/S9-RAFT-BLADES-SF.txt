@@ -1,0 +1,33 @@
+# S9-RAFT-BLADES-SF · v1 · 2026-11-25 (IMG) · Scene 9 raft, hands with period blades in a lightning flash (STILLS)
+#
+# WHY: Homie (25 Nov): "Every time the lightning happens, you just see a hand or two, and slowly, slowly them getting
+#   closer." A flash lasts 0.1-0.3 s, so a still is physically right inside it. Script does the flicker, the dark
+#   between, the approach (closer each flash) and the last flash at the murder. Mirrored by script for the other side.
+# RULES: docs/BLADES-V2-REFS.md (grips, tip aims down toward bottom centre = Agnes, entries top/sides only, torn 1816 sleeves).
+# SOURCE: new prompt. Layout = LIRA / NBP reference-led prose (v3 per-production exception for IMG).
+# PREDICTION: hard cold top light, arm and blade crisp on near-black; risk = a face or body creeps in, or a modern knife.
+#
+# SETTINGS
+#   Model:      Nano Banana Pro (nano_banana_pro)
+#   Mode:       text to image (no reference)
+#   Reference:  none
+#   Aspect:     16:9
+#   Resolution: unconfirmed (the connector default; 2K if offered)
+#   Batch:      1 per variant, 5 variants (A-E below share the body, one line changes)
+#   Cost:       2 cr each, ~10 cr total (cap 60)
+#
+# v1 RESULT (2026-11-25, 10 cr, jobs 4200ecb2 A / ef006862 B / 6e9bbb1f C / c860df6a D / 8de8de23 E): A PASS (clean on black).
+#   B, C, D: a lightning BOLT drawn in the frame (breaks the black key). E: raft logs in frame, arm from the side: dropped.
+# v2 THE ONE CHANGE: one sentence after the light sentence: "The lightning bolt itself stays out of frame, high above;
+#   only its light falls on the arms." Re-run B, C, D only (2 cr each, 6 cr). Prediction: no bolt, clean black.
+#   v2 jobs (2026-11-25): B 415acb41 / C b8cbb676 / D 94c3927b.
+#
+# --- v2 body (VARIANT line swapped per still; v1 = the same without the bolt sentence) ---
+A single instant frozen by a flash of lightning at night on a ruined raft at sea, 1816. Out of total black, a hard cold blue-white lightning flash from high above lights only VARIANT. The arms are lean, sunburnt and sinewy, a starving sailor's, with real anatomy: shoulder, elbow, tendons, a clenched fist with knuckles and veins. The sleeves are torn, sea-stained linen shirt cuffs, ragged at the edge. Each blade sits firmly in the fist in line with the forearm, and every blade tip points down and toward the lower centre of the frame, at someone unseen below. The light is a single hard top light: bright crisp highlights on knuckles, wrist and the blade edge, deep shadow underneath, a thin cold rim along the sleeve. The lightning bolt itself stays out of frame, high above; only its light falls on the arms. Everything outside the lit arms is pure black: no background, no sky, no deck, no body, no face. The arms enter only from the top edge or the side edges of the frame. Photoreal, like a still from a period film, sharp focus, fine skin and cloth detail, a slight motion blur on the cloth only. No on-screen text. Nothing newer than 1819.
+
+# VARIANTS
+# A: one arm reaching down from the top edge, holding a sailor's clasp knife in a reverse ice-pick grip, the blade leaving the little-finger side of the fist
+# B: one arm coming in from the left side edge, holding a short curved boarding sabre with an iron shell guard in a hammer grip, the blade leaving the thumb side
+# C: two arms from the top edge, one with a long straight dirk in a reverse grip, one with a socket bayonet held as a spike
+# D: one arm from the upper-left corner, a soldier's dark blue wool coat cuff with a brass button, holding a briquet short sword with a D-shaped knuckle bow in a hammer grip
+# E: one arm very close and large from the top edge, filling half the frame, a reverse-grip sailor's knife raised high, about to strike downward

@@ -1,0 +1,44 @@
+# S5-CANNON-FIRE · v1 · 2026-11-25 (VID) · Scene 5 cannonball, the fireball on pure black (TEST)
+#
+# WHY: Homie (25 Nov, "Yes, start both"): a triggered alpha cue per surface over S5 that ends in Scene 6's smoke.
+#   The ball flight is scripted; this clip is ONLY the burst. Keyed by luminance (black = transparent).
+#   The black smoke at the end is S6's own opening smoke through a growing matte (script), not this clip.
+# SOURCE: new prompt (no earlier version). Layout = SOTR labelled blocks (v3 per-production exception).
+# PREDICTION: a frame-filling orange fireball by ~3 s on a locked frame; the black stays near 0 (clean key);
+#   risk = the model adds ground/horizon or a camera shake.
+#
+# SETTINGS
+#   Model:      Seedance 2.5 (seedance_2_5)
+#   Mode:       text to video (no reference)
+#   Reference:  none
+#   Aspect:     16:9
+#   Resolution: 720p (TEST; 1080p = 128 cr needs Homie's separate yes)
+#   Duration:   8 s
+#   Quality:    standard
+#   Batch:      1
+#   Sound:      ON
+#   Cost:       56 cr (quoted)
+#
+# --- v1 ---
+SCENE: A black-powder artillery shell bursts in mid-air in the dark, 1819: a single explosion seen alone on a pure black void.
+
+FORMAT: Single continuous take, real time, one shot, no cuts. Pure black background in every frame, with nothing else in it.
+
+CAMERA: Locked off, dead-on, static tripod. The frame never moves, shakes or zooms.
+
+ACTION TIMING:
+0:00-0:01 — pure black, empty.
+0:01-0:02 — a blinding white-orange flash bursts at the exact centre of the frame.
+0:02-0:03 — a rolling ball of orange flame swells outward from the centre until it fills the whole frame; bright sparks and burning fragments streak outward.
+0:03-0:06 — the flame darkens and turns into thick churning black smoke, lit from inside by dying orange glow.
+0:06-0:08 — the glow fades; only a few red embers drift slowly through the dark smoke.
+
+PHYSICS: Heavy black-powder fire: dense, rolling, turbulent flame with real volume, curling smoke, embers that arc and slow down. One burst only.
+
+LIGHTING: All light comes from the fire itself. Everything outside the fire and smoke stays pure black.
+
+AUDIO: One deep cannon-shell boom with a sharp crack, then a long low rumble and the crackle of embers.
+
+QUALITY: Photoreal, sharp, high detail, stable picture, clean deep blacks.
+
+LOCKS: Exactly one explosion. Only fire, smoke, sparks and embers in frame: the void stays empty of ground, sky, horizon, buildings and people. No on-screen text. Nothing newer than 1819.
