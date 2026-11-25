@@ -175,6 +175,11 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-26 (VID review, PC): F49, S5 GLOW BRIDGE + ONE WIDE TAKE DRAFT BUILT. 32 cr (balance 1,961.85).
+
+- `04_WORKING_FILES/S5_cannonball/glow_v1/` (`tools/cannon_glow.py`, take 1fedbc15): one glow cut on all 4 walls, seams continuous. Weak: ball ghost trail + halo,
+  calm plain 0.8 s after the glow, L/R sky to ~f190. WAITING for Homie; nothing promoted.
+
 ### 2026-11-25, latest (POST/script, PC): F47, S5 MIRROR TAKEOVER DRAFT BUILT. 0 cr (balance 1,993.85).
 
 - `tools/cannon_mirror.py` -> `04_WORKING_FILES/S5_cannonball/mirror_v2/`: one take on all 4 walls, one flash cut, seams MAD 0.00. Kaleidoscope + sky at top still show;

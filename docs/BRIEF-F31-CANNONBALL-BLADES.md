@@ -214,3 +214,11 @@ You can clearly see that the impact frames are completely different and not alig
 Wonder if the trick is the impact point where the yellow glow of explosion is, maybe that glow is what takes over all of the screens at the same time, and then we have aligning smokes or something. I do like how in the previous version the explosion kind of starts in the center and the ground breaks and everything. This almost hides all the details, I understand the need for it and everything, but yeah, the kaleidoscope thing is very true, and we cannot have that. There has to be a way to do this where everything works seamlessly. Think about it
 
 Maybe start a new session with Fable 5.2 and have it assess this. That might help?"
+
+### F48 (Homie, 2026-11-25, verbatim, on the F48 glow-bridge + one-wide-take method)
+"That sounds like an idea that could work. How will the floor align though?"
+
+F48 answer: FLOOR joins CENTRE's bottom edge exactly (same picture, ground nearer the camera). It does NOT join the
+LEFT/RIGHT bottom edges exactly; the side corners only match in colour and timing. The take's near ground is a thin strip
+(~30% of height) stretched ~3.4x, so FLOOR is the softest wall. Fix if the probe shows it: an inverse-perspective
+(homography) unwarp of the take's ground plane to a top-down floor, plus a corner blend into the L/R bottoms (0 cr, script).
