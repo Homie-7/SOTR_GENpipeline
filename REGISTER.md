@@ -647,3 +647,4 @@ Homie: "we will use all four as options for the show, and we'll let the showrunn
 - `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S06_Napoleonic-wars/S6_{LEFT,CENTRE,RIGHT}_wars.mov`: the French cut (FINALS4 picture + Darrin's French wav), 4K ProRes 4444 alpha. 1080 in `3_HD_1080_fallback/.../S06_Napoleonic-wars/`.
 - Superseded (in `04_WORKING_FILES/superseded/`): S6 English v14 show files; S9 pre-F25 court files and the behind-paper court CLEANs. Binned (`_DELETE_ME_2026-11-25/`): the court strike loops, S9/S6 review tests, no-sound renders.
 - No CLEAN masters exist yet for the French S6 or the generated court. `01_FINAL_FOR_SHOW/_SHA256.txt` checks every file in 01.
+- 25 Nov F34 (NOT approved, review only): knife-scene stills `04_WORKING_FILES/S9_raft/knife_sf_v1/` (F1, v1b F2, F3); blades full-sabre D `S9_raft/blades_v2/S9-RAFT-BLADES-SF_v3_D_fullsabre_7ec27fce.png`; cannonball cue review `S5_cannonball/review_v1/`.

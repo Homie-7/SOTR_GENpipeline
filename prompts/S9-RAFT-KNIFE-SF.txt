@@ -1,0 +1,36 @@
+# S9-RAFT-KNIFE-SF · v1 · 2026-11-25 (IMG) · Scene 9 raft knife scene, CENTRE only, lightning reveals (STILLS)
+#
+# WHY: Homie + client (25 Nov), Proposal 5 in docs/BRIEF-F31-CANNONBALL-BLADES.md: CENTRE only, an ALPHA file over the raft
+#   scene. Flash 1 = man 1 alone, far, one side. Flash 2 = man 2 alone, far, the other side. Flash 3 = both together, nearer.
+#   Flash 4 = the close looming dagger hand (blades still A, 04_WORKING_FILES/S9_raft/blades_v2/S9-RAFT-BLADES-SF_v1_A_4200ecb2.png),
+#   at the murder. Black (transparent) between flashes. Script does the flicker, the dark between, the scale and position.
+# LOOK: "silhouette like the Judge" (Homie): LOOK.md World 3 = one solid pure black cut-out on a bone-white field, every feature
+#   carried by the outline, no face ("ask for a cut-out, not a man"). A lightning flash BEHIND the men makes exactly that:
+#   black figures against a bright sky. So the field is flat white, not black: the alpha is the INVERSE luma (black = opaque).
+#   A black figure on a black field cannot be keyed. In the comp, the flash itself brightens the raft scene; the figure stays black.
+# SOURCE: new prompt; language from S9-CRT judge prompts (cut-out noun, unbroken black mass) + blades v1 (period blades, 1816).
+# PREDICTION: clean black cut-outs on white, period knives readable in the outline; risk = grey inner detail, a face, a horizon
+#   or deck line, or a lightning bolt drawn in the white (no word "lightning" in the body, the v2 bolt lesson).
+# v1 RESULT (2026-11-25): F1 37546061 PASS (small lone man left, knife low). F3 c724a5d7 PASS (two men, mid-thigh up).
+#   F2 465f24fc FAIL (a giant foreground figure on the left + a small one with no blade) -> rejected/.
+#   v1b F2 76b19561: ONE CHANGE, after the VARIANT: "He is the only figure in the image: the left two thirds of the frame
+#   are empty bone-white." PASS (lone man right third, dirk held forward point-down, about 80% frame height, not a quarter:
+#   the script scales him down). All jobs report model nano_banana_2 although nano_banana_pro was submitted (connector issue).
+#   Files: SOTR_MEDIA/04_WORKING_FILES/S9_raft/knife_sf_v1/ + _sheet_v1.jpg. 8 cr. WAITING for Homie.
+#
+# SETTINGS
+#   Model:      Nano Banana Pro (nano_banana_pro; check the job reports nano_banana_pro, not nano_banana_2)
+#   Mode:       text to image (no reference)
+#   Reference:  none
+#   Aspect:     16:9
+#   Resolution: 2k
+#   Batch:      1 per variant, 3 variants (F1, F2, F3)
+#   Cost:       2 cr each, 6 cr total (cap 60)
+#
+# --- v1 body (VARIANT line swapped per still) ---
+A flat graphic image: VARIANT. Each figure is a shape cut from black paper: one unbroken mass of solid pure black, with no white, no grey and no line anywhere inside the outline. No eyes, no nose, no mouth, no hair detail, no hat: a bare featureless head. Everything about the figure is carried by the edge alone: a starving castaway sailor of 1816, gaunt and hunched, thin bare arms, a loose torn shirt with ragged hanging hems, rolled ragged trousers, bare feet, matted hair breaking the outline of the head. The blade is clearly readable in the outline, held away from the body so white shows between blade and figure. The field is one flat even bone-white, edge to edge, like a sky lit from behind by a single flash: no horizon, no sea, no deck, no clouds, no light source, no texture, no gradient. Sharp crisp edges, high contrast, like a shadow-puppet cut-out. No on-screen text. Nothing newer than 1819.
+
+# VARIANTS
+# F1 (flash 1, man 1, far LEFT): one small lone figure standing full length in the left third of the frame, about a quarter of the frame height, feet in the lower third, facing right toward the centre, a short sailor's clasp knife held low in his right hand, the blade pointing forward
+# F2 (flash 2, man 2, far RIGHT): one small lone figure standing full length in the right third of the frame, about a quarter of the frame height, feet in the lower third, a taller broader man facing left toward the centre, a long straight dirk held raised at shoulder height in a reverse grip, the blade pointing down
+# F3 (flash 3, both, nearer, centre): two figures close together in the centre of the frame, seen from mid-thigh up and cut off by the bottom edge, their heads at about one fifth from the top, shoulder to shoulder, leaning forward toward the viewer: the gaunt man on the left with a short knife held low and forward, the taller broader man on the right with a long dirk raised in a reverse grip

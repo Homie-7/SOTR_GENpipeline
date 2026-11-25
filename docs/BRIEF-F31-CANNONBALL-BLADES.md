@@ -91,3 +91,9 @@ What do you think can work with this? I don't think we need to go left and right
 ### Proposal 5 (agreed shape): CENTRE only, ALPHA file (ProRes 4444) over the raft scene. Flash 1 = man 1 alone, far, one side.
 Flash 2 = man 2 alone, far, the other side. Flash 3 = both together, nearer, centre. Flash 4 = the close looming dagger (still A),
 at the murder. Black (transparent) between flashes. Style frames: 3 new stills (man 1 far, man 2 far, both mid), silhouettes.
+
+## Homie feedback, 2026-11-25 (F33 star chat)
+
+- On blades stills A + D: "These two are good, but I want to see the full saber."
+  -> D redone as a reference edit with the whole sabre in frame: `04_WORKING_FILES/S9_raft/blades_v2/S9-RAFT-BLADES-SF_v3_D_fullsabre_7ec27fce.png` (2 cr). Waiting for his look.
+- Knife-scene style frames (Proposal 5) built: `04_WORKING_FILES/S9_raft/knife_sf_v1/` (F1 man 1 left, v1b F2 man 2 right, F3 both nearer; black cut-outs on white, inverse-luma alpha). Waiting for his pick.

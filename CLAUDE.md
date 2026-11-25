@@ -175,7 +175,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-25, latest (POST/script, PC): F28, HAND-OVER REORG DONE + S9 JUDGE F25 4K + S6 FRENCH PROMOTED. 95.2 cr (balance ~2,341.85).
+### 2026-11-25, latest (IMG/script, PC): F34, KNIFE STILLS + FULL SABRE + CANNONBALL CUE REVIEW BUILT. 12 cr (balance ~2,257.85).
+
+- `04_WORKING_FILES/S9_raft/knife_sf_v1/` (Proposal 5 stills), `S9_raft/blades_v2/..._v3_D_fullsabre_7ec27fce.png`, `S5_cannonball/review_v1/` (`tools/cannon_review.py`).
+  WAITING for Homie; 1080p fireball (128 cr) needs his yes. Nothing promoted.
+
+### 2026-11-25, earlier (POST/script, PC): F28, HAND-OVER REORG DONE + S9 JUDGE F25 4K + S6 FRENCH PROMOTED. 95.2 cr (balance ~2,341.85).
 
 - `01_FINAL_FOR_SHOW/` = the hand-over folder (one subfolder per scene, `00_READ_ME_FIRST.txt`, `_SHA256.txt`); moves in `D:\SOTR\HANDOVER_2026-11-25_moves.tsv`
   (`tools/handover_2026-11-25.py`, `--t9` on G:). Old versions in `04_WORKING_FILES/superseded/`, tests in `_DELETE_ME_2026-11-25/`. Open: b4 trim for Darren's 183-189 s cut, CLEANs for S6 FR + court.
