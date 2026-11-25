@@ -14,7 +14,7 @@ silhouette blocks. Envelope ~1.5 s: 2-3 flicker peaks in (60-120 ms), a hold ~0.
 First and last frames are fully transparent (alpha 0), so QLab can fire it at any time. Small push-in inside each file.
 
 Outputs (OUT_DIR):
-  S9_b10_KNIFE_F<n>_flash_v1_ALPHA_3600x2160.mov / _1800x1080.mov   ProRes 4444 + straight alpha, 24 fps, no sound
+  S9_b10_KNIFE_F<n>_flash_{VER}_ALPHA_3600x2160.mov / _1800x1080.mov   ProRes 4444 + straight alpha, 24 fps, no sound
   S9_b10_KNIFE_flashes_review_v1.mp4   the four in order over 18% grey (left) and over the raft water (right), 1920x1080
   _sheet_v1.jpg  peak frame of each flash, over grey;  _masks_v1.jpg  the four masks
 Usage: python tools/knife_flash.py OUT_DIR [--masks]     (--masks writes the mask sheet only)
@@ -44,6 +44,14 @@ FLASHES = [
 ]
 DUR = 1.5
 N = int(round(DUR * FPS))               # 36 frames
+V2 = "--v2" in sys.argv                 # Homie F38: solid (no holes), darker, edges dissolve before the frame, subtle arm motion
+VER = "v2" if V2 else "v1"
+# v2 per flash: limbs = (x split in canvas 0..1 or None, pivot in canvas 0..1, rotate deg, drop as a fraction of H)
+# the rotation turns each arm about its entry point so the blade comes DOWN (a slow stab between the flashes)
+LIMBS = {1: [(None, (0.0, 0.0), -2.2, 0.025)],
+         2: [(None, (1.0, 0.0), 2.2, 0.025)],
+         3: [((0.0, 0.47), (0.0, 0.05), -1.6, 0.020), ((0.47, 1.0), (1.0, 0.0), 1.8, 0.028)],
+         4: [(None, (0.65, 0.0), 1.5, 0.035)]}
 PUSH = 0.04                             # push-in over the file
 
 
@@ -91,15 +99,30 @@ def arm_mask(img, excl, close=15):
     for i in range(1, n2):
         if st2[i][4] < 0.02 * h * w:
             keep[lab2 == i] = 1
+    if V2:
+        # v2 (Homie F38 "holes in the silhouette"): a wider close joins blade to guard and sleeve to sleeve, then EVERY
+        # enclosed hole is filled (no size limit), then the outline is smoothed (blur + threshold) so no lace of holes stays
+        k2 = max(close, 31)
+        keep = cv2.morphologyEx(keep, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k2, k2)))
+        inv = np.pad(1 - keep, 1, constant_values=1).astype(np.uint8)
+        cv2.floodFill(inv, np.zeros((h + 4, w + 4), np.uint8), (0, 0), 2)
+        keep[inv[1:-1, 1:-1] == 1] = 1
+        keep = (cv2.GaussianBlur(keep.astype(np.float32), (0, 0), 4.0) > 0.5).astype(np.uint8)
+        inv = np.pad(1 - keep, 1, constant_values=1).astype(np.uint8)
+        cv2.floodFill(inv, np.zeros((h + 4, w + 4), np.uint8), (0, 0), 2)
+        keep[inv[1:-1, 1:-1] == 1] = 1
     sm = cv2.GaussianBlur(keep.astype(np.float32), (0, 0), 1.2)
     # glint: the still's own steel highlights (bright, low saturation) inside the mask
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV).astype(np.float32) / 255
     glint = np.clip((hsv[..., 2] - 0.45) / 0.4, 0, 1) * np.clip(1 - hsv[..., 1] / 0.35, 0, 1) * sm
+    if V2:   # darker (Homie F38 "we still see a lot of clarity"): only the brightest steel keeps a faint glint, no cloth
+        glint = np.clip((hsv[..., 2] - 0.80) / 0.2, 0, 1) * np.clip(1 - hsv[..., 1] / 0.12, 0, 1) * sm
     return sm, glint
 
 
-def place(layer, fl, k):
-    """Source layer -> 4K canvas: cover-fit, then the flash scale (times push-in k) about its anchor."""
+def place(layer, fl, k, extra=None):
+    """Source layer -> 4K canvas: cover-fit, then the flash scale (times push-in k) about its anchor; extra = a 2x3
+    canvas-space affine applied after (v2 limb motion)."""
     h, w = layer.shape[:2]
     cover = max(W4 / w, H4 / h)
     s = cover * fl["s"] * k
@@ -108,6 +131,8 @@ def place(layer, fl, k):
     sx, sy = ax * w, ay * h
     cx, cy = ax * W4, ay * H4
     M = np.float32([[s, 0, cx - s * sx], [0, s, cy - s * sy]])
+    if extra is not None:
+        M = (np.vstack([extra, [0, 0, 1]]) @ np.vstack([M, [0, 0, 1]]))[:2].astype(np.float32)
     return cv2.warpAffine(layer, M, (W4, H4), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
 
 
@@ -119,13 +144,51 @@ class Flash:
         self.smoke = bf.smoke(W4 // 4 + 200, H4 // 4, fl["seed"], 40)
         yy, xx = np.mgrid[0:H4, 0:W4].astype(np.float32)
         self.yy, self.xx = yy, xx
+        if V2:
+            # edge dissolve (Homie F38): nothing touches any frame edge; a smoke-broken soft falloff on all four sides,
+            # so no wall's flash runs into its neighbour. Margins: sides 14% of W, top 9% of H, bottom 12% of H.
+            nz = cv2.resize(bf.smoke(W4 // 8, H4 // 8, fl["seed"] + 100, 20), (W4, H4))
+            nz = (nz - nz.mean()) / (nz.std() + 1e-6)
+            def ramp(d, m):
+                u = np.clip(d / m + 0.18 * nz, 0, 1)
+                return u * u * (3 - 2 * u)
+            self.vig = (ramp(xx, 0.14 * W4) * ramp(W4 - 1 - xx, 0.14 * W4) * ramp(yy, 0.09 * H4)
+                        * ramp(H4 - 1 - yy, 0.12 * H4)).astype(np.float32)
+
+    def motion(self, f):
+        """v2: per-limb affines at frame f. Eased slow stab (rotate about the entry point + drop) plus a small tremor."""
+        u = f / (N - 1)
+        e = u * u * (3 - 2 * u)
+        out = []
+        for i, (split, piv, rot, drop) in enumerate(LIMBS[self.fl["n"]]):
+            trem = 0.08 * np.sin(2 * np.pi * (2.3 + 0.7 * i) * u + i)
+            a = np.deg2rad(rot * (e + trem))
+            px, py = piv[0] * W4, piv[1] * H4
+            c, sn = np.cos(a), np.sin(a)
+            R = np.float32([[c, -sn, px - c * px + sn * py], [sn, c, py - sn * px - c * py]])
+            R[1, 2] += drop * H4 * (e - 0.5)
+            out.append((split, R))
+        return out
 
     def frame(self, f):
         t = f / FPS
         L = envelope(t)
         k = 1 + PUSH * (f / (N - 1))
-        sil = place(self.mask, self.fl, k)
-        gl = place(self.glint, self.fl, k)
+        if V2:
+            sil = np.zeros((H4, W4), np.float32); gl = np.zeros((H4, W4), np.float32)
+            for split, R in self.motion(f):
+                ms, gs = self.mask, self.glint
+                if split is not None:     # cut the source at the canvas x split (before motion) so each arm moves alone
+                    cut = place(np.ones_like(self.mask), self.fl, k)
+                    xs = (self.xx[0] >= split[0] * W4) & (self.xx[0] < split[1] * W4)
+                    part = (cut * xs[None, :]).astype(np.float32)
+                    sil = np.maximum(sil, cv2.warpAffine(place(self.mask, self.fl, k) * part, R, (W4, H4)))
+                    gl = np.maximum(gl, cv2.warpAffine(place(self.glint, self.fl, k) * part, R, (W4, H4)))
+                else:
+                    sil = np.maximum(sil, place(ms, self.fl, k, R)); gl = np.maximum(gl, place(gs, self.fl, k, R))
+        else:
+            sil = place(self.mask, self.fl, k)
+            gl = place(self.glint, self.fl, k)
         if self.fl["soft"] > 0:
             sil = cv2.GaussianBlur(sil, (0, 0), self.fl["soft"])
             gl = cv2.GaussianBlur(gl, (0, 0), self.fl["soft"])
@@ -146,11 +209,15 @@ class Flash:
         dd = 5
         rim = np.clip(sil - np.roll(sil, dd, axis=0), 0, 1)
         rim = cv2.GaussianBlur(rim, (0, 0), 1.5) * (0.5 + 0.5 * np.clip(pool * 1.6, 0, 1))
+        if V2:
+            rim *= 0.45                                        # darker silhouette: a thinner, dimmer rim
         Lp = 0.55 * L                                          # pool brightness at peak (soft, not a white-out)
-        P = (Lp * pool * (1 - 0.97 * sil))[..., None] * MOON
+        P = (Lp * pool * (1 - (1.0 if V2 else 0.97) * sil))[..., None] * MOON
         P += (np.clip(0.65 * rim * L + 0.35 * gl * L ** 1.5, 0, 1))[..., None] * ICE
         A = np.maximum(np.clip(pool * min(1, 1.6 * L), 0, 1), sil * min(1, 1.8 * L))
         A = np.maximum(A, np.clip(rim * 1.5 * L, 0, 1))
+        if V2:
+            P *= self.vig[..., None]; A *= self.vig
         if f == 0 or f == N - 1:
             A[:] = 0; P[:] = 0
         return np.clip(P, 0, 1), np.clip(A, 0, 1)
@@ -184,7 +251,7 @@ def review_frame(P, A, raft, label, t):
     img[270:810, 980:1880] = p + raft * (1 - a)
     for x, s in ((40, "over 18% grey"), (980, "over the raft water (context only)")):
         cv2.putText(img, s, (x, 255), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0.6, 0.6, 0.6), 1, cv2.LINE_AA)
-    cv2.putText(img, "S9 b10 RAFT  KNIFE FLASHES v1  (script, 0 cr; 4 alpha files for QLab; CENTRE 5:3)", (40, 80),
+    cv2.putText(img, "S9 b10 RAFT  KNIFE FLASHES " + VER + "  (script, 0 cr; 4 alpha files for QLab; CENTRE 5:3)", (40, 80),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0.75, 0.75, 0.75), 1, cv2.LINE_AA)
     cv2.putText(img, label, (40, 880), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0.8, 0.8, 0.8), 1, cv2.LINE_AA)
     cv2.putText(img, f"{t:4.2f} s", (1760, 880), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0.6, 0.6, 0.6), 1, cv2.LINE_AA)
@@ -204,10 +271,10 @@ def main():
             m, g = arm_mask(img, fl["excl"], fl["close"])
             v = (np.dstack([m, m, m]) * 0.6 + np.dstack([g, g, g]) * 0.4)
             tiles.append(cv2.resize((v * 255).astype(np.uint8), (960, 536)))
-        cv2.imwrite(os.path.join(out, "_masks_v1.jpg"), np.vstack([np.hstack(tiles[:2]), np.hstack(tiles[2:])]))
+        cv2.imwrite(os.path.join(out, f"_masks_{VER}.jpg"), np.vstack([np.hstack(tiles[:2]), np.hstack(tiles[2:])]))
         print("DONE masks"); return
     raft = raft_bg()
-    rv_path = os.path.join(out, "S9_b10_KNIFE_flashes_review_v1.mp4")
+    rv_path = os.path.join(out, f"S9_b10_KNIFE_flashes_review_{VER}.mp4")
     rv = subprocess.Popen(["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", "1920x1080",
                            "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-crf", "16", "-preset", "medium", "-pix_fmt",
                            "yuv420p", "-movflags", "+faststart", os.path.join(out, "_tmp_" + os.path.basename(rv_path))],
@@ -215,7 +282,7 @@ def main():
     sheet, stats = [], []
     for fl in FLASHES:
         fx = Flash(fl)
-        names = {r: os.path.join(out, f"S9_b10_KNIFE_F{fl['n']}_flash_v1_ALPHA_{r}.mov") for r in ("3600x2160", "1800x1080")}
+        names = {r: os.path.join(out, f"S9_b10_KNIFE_F{fl['n']}_flash_{VER}_ALPHA_{r}.mov") for r in ("3600x2160", "1800x1080")}
         p4 = enc(os.path.join(out, "_tmp_" + os.path.basename(names["3600x2160"])), W4, H4)
         p1 = enc(os.path.join(out, "_tmp_" + os.path.basename(names["1800x1080"])), 1800, 1080)
         best, bestL = None, -1
@@ -241,8 +308,8 @@ def main():
         print(f"F{fl['n']} done", flush=True)
     rv.stdin.close(); rv.wait()
     os.replace(os.path.join(out, "_tmp_" + os.path.basename(rv_path)), rv_path)
-    cv2.imwrite(os.path.join(out, "_sheet_v1.jpg"), np.vstack([np.hstack(sheet[:2]), np.hstack(sheet[2:])]))
-    with open(os.path.join(out, "_envelope_v1.txt"), "w") as fh:
+    cv2.imwrite(os.path.join(out, f"_sheet_{VER}.jpg"), np.vstack([np.hstack(sheet[:2]), np.hstack(sheet[2:])]))
+    with open(os.path.join(out, f"_envelope_{VER}.txt"), "w") as fh:
         fh.write("\n".join(stats) + "\n")
     print("DONE", 4 * N, "frames")
 

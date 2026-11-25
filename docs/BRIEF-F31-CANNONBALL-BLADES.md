@@ -139,3 +139,21 @@ Notes: knife scene = ARMS AND BLADES ONLY (no whole figures; the F1-F3 full-body
 "All four and probe at 480p. However, get rid of that light spot from E3. We want this to be just silhouettes coming along with lightning. So, the desk stat you did where there was a bunch of silhouettes tabbing randomly, it appeared very nicely with a bit of lightning effect around it. I'm not sure how you'll do it, but yeah, think of it as silhouettes hidden in lightning and they start from far and then come close. So, yeah, go ahead and do that. I'm gonna step away for a few hours, so continue working and building. Do not spend a stupid amount of credits. I still want 2000 credits left by the end of all of this"
 
 Notes: knife = all four v2 frames (F1-F4), the F3 top light spot removed ("E3" = F3). Look = SILHOUETTES HIDDEN IN LIGHTNING, like the earlier test with many silhouettes stabbing at random with a lightning effect around them (the blades animation test); far (F1/F2) -> close (F4). Explosion = CENTRE probe at 480p draft. Credit floor: balance must stay >= 2,000 cr at the end.
+
+## Homie feedback, 2026-11-25 (F38, verbatim)
+
+"With the knife files alpha, I like the overall feel and the effect. There's two things that I'd like to do. First of all, there are holes in the silhouette. So you can see the dagger or the sword not fully connecting. There's holes in the arm or the clothing
+
+I need you to fix that so it looks like a perfect proper image. Darken the silhouette a bit more because I think we still see a lot of clarity
+
+One more thing that I would like is for the smoke or the lighting effect and everything to be clean enough that It should not touch the edges of the screen. So, for instance, if there is a central image with two hands holding their weapons, the edges should not touch the left and right. Same way, if it's over the right screen, it should not touch the left edge and things like that. They should be nice and dissolved in the middle, or not necessarily middle, but not really interloping with any other screens
+
+I would also like the arms and the arms to have a bit of movement. So maybe like a very subtle animation that they are moving or just coming down or going up or something just so that it doesn't look like a static image in the lightning
+
+For the cannonball, I quite like the drop and explosion and the quality of fidelity is pretty good. However, it's not selling the impact the way we want it. It needs to be fast, it needs to be violent. It, like I said, the explosion has to take over the entire four screens pretty much within a second or second and a half. So it just comes and boom, and then you see it going off. Yeah, so I'm happy for you to adjust the duration the way you think it looks more realistic, but it cannot be slow. And the ending would be the smoke dissipating, and then the embers and everything flying off and coming around, and then the smoke kind of settles into the first frame of The next scene so that we can match all of that Perfectly.
+
+Fix all that. We are in the right direction"
+
+(Screenshot attached by Homie: the F3 flash, both arms; holes show in the sleeves and the sabre blade is not joined to the hand guard.)
+
+Notes: knife v2 = solid silhouettes (no holes, blade joined to the hand), darker (less inner detail), the glow/smoke fades out before the frame edges (no wall touches its neighbour), a subtle arm motion over the flash. Explosion v2 = fast and violent: fills all four walls within 1-1.5 s of impact, then the smoke thins, embers fly, and it settles on Scene 6's first frame exactly. Duration is Claude's call; not slow.
