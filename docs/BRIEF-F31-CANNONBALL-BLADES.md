@@ -236,3 +236,14 @@ Notes (F49): glow_v1 REJECTED. Root cause, same in all 3 tries: every generation
 "I'm happy to give that a go, Build it. Also, make sure there is a bit of camera shake so the entire environment shakes, I think that can also serve as a bit of a distraction to get away with some artifacts that may appear"
 
 Notes (F50): Homie chose the 0-cr SCRIPT FALLBACK (no generation): real camps on all 4 walls to impact; ball + praised v3/v4 explosion on CENTRE only, keyed on the real camps; cannon_glow glow over all 4 walls; under the glow every wall goes to smoke + dark with per-wall-scale small embers (no landscape after the flash); then black (S6 fades in from black). ADD: a camera shake on the whole picture at impact (all walls shake together). This is a post shake on the finished file, by Homie's explicit request; the generated plates stay locked-camera.
+
+### F51 notes during the fallback build (Homie, 2026-11-26, verbatim)
+"I need you to also copy some of the good takes that we had into the T9 so that I can show them the progress we made even though they didn't really get anywhere and if this thing works out we'll obviously add it to the final files it's getting quite late and I need to go to sleep are you okay to continue working and then shut down the computer once you feel like you've achieved a good point?"
+
+"But yeah, I do want you to finish building this final wrap thing that you've given the idea for. I want to see how it comes out. So iterate over it. Try your best, make sure you fix any errors that you think are not good. And once you think you are satisfied with the outcome, and you'd like me to have a look at it, then I want you to stop and shut down. But work on it until you're feeling like you've gotten as far as it could have"
+
+"No need to open the final folder in Explorer as you'll be shutting down so yeah just do your best and then shut everything down also I think you can get rid of the older chats I think it's been piling over"
+
+"Just remember sequence, timing, everything has to match. This explosion starts in the center and then spreads across. So, yeah, you know what you need to do, have dust and smoke and debris appearing on left right and bottom if the center hasn't fully exploded yet"
+
+Notes (F51): the side walls' smoke, dust and embers arrive by a FRONT that spreads in stage space from the CENTRE impact point (fast first, then slower), never all at once. The glow is light and may cross every wall at once (light may cross seams).

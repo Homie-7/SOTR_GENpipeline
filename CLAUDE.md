@@ -175,6 +175,11 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-26, later (POST/script, PC): F51, S5 CANNON SCRIPT FALLBACK v4 BUILT. 0 cr (balance 1,961.85).
+
+- `04_WORKING_FILES/S5_cannonball/fallback_v4/` (`tools/cannon_fallback.py`): real camps to impact, probe v4 CENTRE under one glow, script smoke spreads from the centre, shared shake.
+  Progress reel in `06_PRESENTATIONS/S5_cannonball_progress_2026-11-26/`. WAITING for Homie; nothing promoted.
+
 ### 2026-11-26 (VID review, PC): F49, S5 GLOW BRIDGE + ONE WIDE TAKE DRAFT BUILT. 32 cr (balance 1,961.85).
 
 - `04_WORKING_FILES/S5_cannonball/glow_v1/` (`tools/cannon_glow.py`, take 1fedbc15): one glow cut on all 4 walls, seams continuous. Weak: ball ghost trail + halo,
