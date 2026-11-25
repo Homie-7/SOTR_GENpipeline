@@ -66,3 +66,20 @@
 - Blades = lightning reveals: a flash lasts 0.1-0.3 s, so a still is physically right inside it. 4-6 generated stills
   (Nano Banana Pro, 2 cr each) of 1-2 hands with period blades in hard top flash on black; script does the flash shape,
   the dark between, and the approach (closer each flash), last flash at the murder.
+
+## Homie, 2026-11-25 (after a call with the client), verbatim
+
+"I just spoke with the client and the way they described the knife scene was that they imagine it to be a small thing kind of in a distance and then it slowly gradually comes up and then becomes this big looming presence that is extremely threatening
+
+I don't think they are thinking of more than two people, so maybe two to three at most. Historically speaking, there were knife fights every day on that ship, so we can take some inspiration from that, but they're not expecting much. It just has to be this. I do like my idea of lightning, and every time there's lightning, you see this looming dagger-holding hand or something. Or we can even go with some level of silhouette, just like the Judge, but nothing too crazy.
+
+What do you think can work with this? I don't think we need to go left and right in this, we can probably just have it in the center screen."
+
+### Proposal 4 (F33 star chat, waits for Homie's yes)
+- CENTRE only. Two figures (three at most). Lightning reveals; black between flashes.
+- The approach is the distance changing per flash: (1) FAR: two small silhouettes with knives at the far end of the raft, lit
+  from behind by the flash (a sky and bolt are fine here); (2) MID: the same two, waist-up silhouettes, bigger, nearer;
+  (3) CLOSE: one arm and dagger from the top, looming over the frame, the hand lit (still A is this already).
+  Last flash = the murder. Silhouettes = the same language as the Judge.
+- Make: 2 new style frames (FAR, MID), about 4-8 cr, then a script review (flicker, scale per flash). Blades v2 B/C/D are
+  not needed for this (one hand only at the close stage); the bolt problem stops mattering in FAR/MID (sky in frame).
