@@ -175,7 +175,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-25, latest (VID, PC): F46, S5 OPTION B FOUR-WALL DRAFT BUILT. 120 cr (balance 1,993.85).
+### 2026-11-25, latest (POST/script, PC): F47, S5 MIRROR TAKEOVER DRAFT BUILT. 0 cr (balance 1,993.85).
+
+- `tools/cannon_mirror.py` -> `04_WORKING_FILES/S5_cannonball/mirror_v2/`: one take on all 4 walls, one flash cut, seams MAD 0.00. Kaleidoscope + sky at top still show;
+  CENTRE v5 probe (30 cr) proposed. WAITING for Homie; nothing promoted.
+
+### 2026-11-25, earlier (VID, PC): F46, S5 OPTION B FOUR-WALL DRAFT BUILT. 120 cr (balance 1,993.85).
 
 - CENTRE probe v4 passed (top covered 3.2 s, no rebound, end MAD 3.2); LEFT/RIGHT/FLOOR v1 generated (`prompts/S5-CANNON-WALLS.txt`). 2x2 review in
   `04_WORKING_FILES/S5_cannonball/walls_v1/`. WAITING for Homie; nothing promoted.
