@@ -178,7 +178,8 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 ### 2026-11-25, latest (VID review, PC): F41, KNIFE F3 v3 + S5 PROBE v3 REVIEWED. 30 cr (balance 2,143.85).
 
 - `04_WORKING_FILES/S9_raft/knife_flash_v2/..._F3_flash_v3_ALPHA_*.mov` (two separate arms) and `S5_cannonball/probe_v3/` (hit 0.92 s, top covered 2.2 s, sky shows again 3-6 s).
-  Homie NEW RULE (F40): the cannonball = ALPHA overlay frame-aligned on `S5_CENTRE_camps.mov`. WAITING for Homie: the landing timecode in the camps file. Nothing promoted.
+  CORRECTED (Homie F41): the cannonball = a FREE alpha overlay the operator fires at ANY moment over the camps file (no timecode, nothing generated inside the camps picture).
+  KNIVES APPROVED + PROMOTED (F41): `1_PLAY_THESE_IN_ORDER/S09_the-Aftermath/S9_b10_KNIFE_flashes_ALPHA_overlays/` (4 x 4K alpha).
 
 ### 2026-11-25, earlier (POST+VID, PC): F39, KNIFE FLASH v2 + S5 EXPLOSION PROBE v2 BUILT. 30 cr (balance 2,173.85).
 
