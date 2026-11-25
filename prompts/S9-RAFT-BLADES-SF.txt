@@ -21,6 +21,10 @@
 # v2 THE ONE CHANGE: one sentence after the light sentence: "The lightning bolt itself stays out of frame, high above;
 #   only its light falls on the arms." Re-run B, C, D only (2 cr each, 6 cr). Prediction: no bolt, clean black.
 #   v2 jobs (2026-11-25): B 415acb41 / C b8cbb676 / D 94c3927b.
+# v2 RESULT: FAIL, all three still draw a bolt top-centre (arms, grips, sleeves good). The jobs report model nano_banana_2,
+#   not nano_banana_pro: check the connector's model id before any v3. The word "lightning" itself likely pulls the bolt in;
+#   v3 idea = describe only "a hard cold blue-white flash from high above" with no "lightning" word. Or mask the bolt by script
+#   (it sits in empty black, clear of the arms).
 #
 # --- v2 body (VARIANT line swapped per still; v1 = the same without the bolt sentence) ---
 A single instant frozen by a flash of lightning at night on a ruined raft at sea, 1816. Out of total black, a hard cold blue-white lightning flash from high above lights only VARIANT. The arms are lean, sunburnt and sinewy, a starving sailor's, with real anatomy: shoulder, elbow, tendons, a clenched fist with knuckles and veins. The sleeves are torn, sea-stained linen shirt cuffs, ragged at the edge. Each blade sits firmly in the fist in line with the forearm, and every blade tip points down and toward the lower centre of the frame, at someone unseen below. The light is a single hard top light: bright crisp highlights on knuckles, wrist and the blade edge, deep shadow underneath, a thin cold rim along the sleeve. The lightning bolt itself stays out of frame, high above; only its light falls on the arms. Everything outside the lit arms is pure black: no background, no sky, no deck, no body, no face. The arms enter only from the top edge or the side edges of the frame. Photoreal, like a still from a period film, sharp focus, fine skin and cloth detail, a slight motion blur on the cloth only. No on-screen text. Nothing newer than 1819.
