@@ -83,3 +83,11 @@ What do you think can work with this? I don't think we need to go left and right
   Last flash = the murder. Silhouettes = the same language as the Judge.
 - Make: 2 new style frames (FAR, MID), about 4-8 cr, then a script review (flicker, scale per flash). Blades v2 B/C/D are
   not needed for this (one hand only at the close stage); the bolt problem stops mattering in FAR/MID (sky in frame).
+
+## Homie, 2026-11-25 (reply to Proposal 4), verbatim
+"Yes, can we do this in alpha and may be both at the same time is much, How about we start with one lightning shows one guy on one side, the other on another side at another lightning, and then they kind of coalesce together at another lightning, and then finishes with the closed version, something like that, rather than just having them both at the same time, it just looks a bit silly and you don't give any suspense by showing them both at the same time?"
+"Also, where's the explosion at? What happened to that"
+
+### Proposal 5 (agreed shape): CENTRE only, ALPHA file (ProRes 4444) over the raft scene. Flash 1 = man 1 alone, far, one side.
+Flash 2 = man 2 alone, far, the other side. Flash 3 = both together, nearer, centre. Flash 4 = the close looming dagger (still A),
+at the murder. Black (transparent) between flashes. Style frames: 3 new stills (man 1 far, man 2 far, both mid), silhouettes.
