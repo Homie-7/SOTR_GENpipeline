@@ -21,7 +21,7 @@ The T9 (`SOTR/HF/` on the drive) holds a git clone of this repo (`SOTR_GENpipeli
 
 ## Where the work stands
 
-Read `docs/HANDOFF-2026-11-26-F58.md` (the task) and `docs/HANDOFF-2026-11-26-F59.md` (the v8 approach), and the
+Read `docs/HANDOFF-2026-11-26-F60-T9.md` FIRST (latest state, next steps). Then `docs/HANDOFF-2026-11-26-F58.md` (the task) and `docs/HANDOFF-2026-11-26-F59.md` (the v8 approach), and the
 latest F58 notes in `docs/BRIEF-F31-CANNONBALL-BLADES.md`. Homie's F58 ask: L/R/FLOOR smoke follow the CENTRE's
 speed and saturation curve over time (v8 in `tools/cannon_fallback.py`). The render log prints a "v8 CURVES" table;
 L/R/FLOOR must track CENTRE within ~10%. Promote nothing.
