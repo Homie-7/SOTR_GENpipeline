@@ -1,0 +1,71 @@
+# S5-CANNON-WALLS — option B side walls + floor, v1 (F46, 2026-11-25)
+# Partner of prompts/S5-CANNON-PROBE.txt v4 (CENTRE, job a2ab023e: impact f32 = 1.33 s, top covered from 3.2 s, end MAD 3.2).
+# WHY: Homie F45 approved option B (explosion baked into a SECOND camps file per wall, even spread over all four walls).
+#   A script spread from the CENTRE take would paste one smoke cloud onto three different landscapes -> not perfect ->
+#   generate per wall (Homie: "if you think it's not looking good, then I'm happy for you to generate it").
+# Each wall = v4's layout; only the impact geometry changes: the ball lands on CENTRE, so LEFT/RIGHT get the flash light and
+#   the blast wave arriving from their inner edge at 0:01.3; FLOOR gets the shock, debris rain and smoke rolling over it.
+# SETTINGS (each run): Seedance 2.5 · omni_reference · 16:9 · 480p draft · 10 s · standard bitrate · batch 1 · sound ON · 30 cr.
+#   LEFT : start S5_LEFT_last.png  · end S6_LEFT_first_16x9.png
+#   RIGHT: start S5_RIGHT_last.png · end S6_RIGHT_first_16x9.png
+#   FLOOR: start S5_FLOOR_last.png · no end frame (S6 has no FLOOR; ends in dark rust smoke)
+#   (frames in 04_WORKING_FILES/S5_cannonball/rethink_v1/frames/). Floor: balance >= 1,500. One job at a time.
+# GATE: SOURCE = approved S5 last frames + S6 first frames · ROOM = camps plain at dusk, 1816 · REFS = start/end only ·
+#   ROUTE = connector, omni_reference · DELTA vs v4 = impact off-wall (LEFT/RIGHT), seen from above (FLOOR).
+# PREDICTION: blast reaches the wall at ~1.3-1.6 s; top >90% covered by ~3.5 s and stays covered; end MAD vs S6 ~3-5 (LEFT/RIGHT).
+
+=== LEFT v1 ===
+SCENE: A cannonball of 1816 slams into the plain just off the right edge of this view at dusk; its blast wave of earth and black-powder smoke rushes in from the right and swallows the whole view, sky and all, then settles into drifting embers and a low bank of rust-brown smoke under a dark sky.
+
+REFERENCE: The start frame is the first frame exactly: the same plain, horizon, sky and camp. The end frame is the last frame exactly.
+
+FIRST FRAME: The start frame exactly.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Locked off on a tripod. The horizon stays at the same height in every frame; the picture jolts once, hard and short, at 0:01.3.
+
+MOTION:
+0:00-0:01 — the calm dusk plain, smoke of the camp drifting slowly.
+0:01.3 — a hard orange-white flash lights the whole scene from the right edge, four frames, the ground shakes.
+0:01.3-0:03 — a huge rolling wall of dark brown earth, turf, stones and grey-brown smoke bursts in from the right edge and sweeps left across the whole picture, rising past the top of the frame; clods and splinters fly through it.
+0:03-0:07 — the whole frame is thick churning smoke; the debris slows and thins into floating orange embers; the smoke never clears and stays over the whole frame, top edge included, darkening in place from the top down to near-black, the dusk sky and horizon never seen again, a low rust-brown glow left at the bottom.
+0:07-0:10 — the low rust smoke and embers keep drifting slowly to the left in every frame, arriving at the end frame on the last frame, still moving.
+
+LIGHTING: The warm rose-orange dusk of the start frame, the flash from the right, fading to darkness and the ember glow of the end frame.
+
+AUDIO: An instant deep thud and crack from the right, earth raining down, a low rolling rumble, then wind and the soft crackle of embers.
+
+QUALITY: Photographic realism, historical battlefield, stable picture.
+
+LOCKS: Locked camera. No ball and no crater in this view. The empty plain stays empty. The smoke keeps moving to the last frame. Nothing newer than 1819.
+
+=== RIGHT v1 ===
+(LEFT v1 with left/right swapped: impact just off the LEFT edge; the flash lights the scene from the left edge; the wall of earth
+and smoke bursts in from the left edge and sweeps right; the end smoke drifts slowly to the right; AUDIO thud "from the left".)
+
+=== FLOOR v1 ===
+SCENE: The trampled ground of a camp at dusk seen from above; a cannonball of 1816 slams into the plain just beyond the top edge of this view; the ground shakes, earth and debris rain down across it, and a rolling bank of black-powder smoke sweeps over the whole ground and settles into near-darkness with drifting embers and a low rust-brown glow.
+
+REFERENCE: The start frame is the first frame exactly: the same ground, texture and light.
+
+FIRST FRAME: The start frame exactly.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Locked off, looking straight down. The picture jolts once, hard and short, at 0:01.3.
+
+MOTION:
+0:00-0:01 — the still ground in the warm dusk light.
+0:01.3 — a hard orange-white flash lights the ground from the top edge, four frames; the dust on the ground jumps.
+0:01.3-0:03 — clods of dark earth, turf, stones and splinters rain down and bounce across the whole ground; a dense wall of grey-brown smoke rolls in from the top edge and covers the ground to the bottom edge.
+0:03-0:07 — thick churning smoke over the whole ground; glowing orange embers fall and settle on it; the smoke darkens in place to near-black, the ground never seen clearly again.
+0:07-0:10 — near-black, with a low rust-brown glow and orange embers drifting slowly downward in every frame, still moving on the last frame.
+
+LIGHTING: The warm dusk light of the start frame, the flash from the top edge, fading to darkness and ember glow.
+
+AUDIO: An instant deep thud and crack, earth raining down on the ground, a low rolling rumble, then wind and the soft crackle of embers.
+
+QUALITY: Photographic realism, historical battlefield, stable picture.
+
+LOCKS: Locked camera. No ball and no crater in this view. No people. The smoke keeps moving to the last frame. Nothing newer than 1819.
