@@ -247,3 +247,17 @@ Notes (F50): Homie chose the 0-cr SCRIPT FALLBACK (no generation): real camps on
 "Just remember sequence, timing, everything has to match. This explosion starts in the center and then spreads across. So, yeah, you know what you need to do, have dust and smoke and debris appearing on left right and bottom if the center hasn't fully exploded yet"
 
 Notes (F51): the side walls' smoke, dust and embers arrive by a FRONT that spreads in stage space from the CENTRE impact point (fast first, then slower), never all at once. The glow is light and may cross every wall at once (light may cross seams).
+
+### F52 review of fallback_v4 (Homie, 2026-11-26, verbatim)
+Screenshot: smoke + embers on L/C/R/FLOOR after the flash (shared in chat).
+
+"It's pretty decent. I think we can work with this. There's only two concerns that I'm seeing so far
+
+The smoke on every other screen is traveling downwards
+Just for one split second you can see that there is nothing else on other screens while the center is exploding. I think that's okay. I'm just pointing it out
+
+I think you can just start bringing the smoke from scene 6 in to match from when the explosion has gone away Or something, but yeah, it starts, it needs to start matching because then we see a very hard cut to scene six smoke, we should be able to match the First frame of scene 6 or something by the end of this file so that they play seamlesly"
+
+Notes (F52): fallback_v4 ACCEPTED as the base ("we can work with this"). Fix 1: the side-wall smoke must not travel downwards (rise / drift up like real smoke). Note 2 (OK as is): a split second where only CENTRE explodes and the other walls are empty. Fix 3: no fade to black; the file must END on each wall's S6 first frame (S6 smoke), blending into it after the explosion dies down, so the cut to S6 is seamless.
+"even ifThere is a fade in the middle"
+(F52 note: a crossfade from the explosion smoke into the S6 first frames inside this file is OK.)
