@@ -21,7 +21,7 @@ usage: python tools/cannon_glow.py TAKE OUTDIR [--tail 3.0] [--fade 25] [--impac
 import argparse, os, subprocess
 import numpy as np, cv2
 
-MEDIA = 'C:/Users/Homie/Documents/SOTR_MEDIA'
+MEDIA = os.environ.get('SOTR_MEDIA', 'C:/Users/Homie/Documents/SOTR_MEDIA').replace('\\', '/')  # set SOTR_MEDIA to work off the T9 on another computer
 CAMPS = f'{MEDIA}/01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S05_the-camps'
 S6 = f'{MEDIA}/01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S06_Napoleonic-wars'
 W, H, FPS = 1920, 1080, 25

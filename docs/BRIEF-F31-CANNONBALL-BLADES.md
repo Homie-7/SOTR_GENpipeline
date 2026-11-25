@@ -289,3 +289,14 @@ Also, want to see if instead of fading to black, can you just interpolate that s
 I would say we are almost there, it's looking good"
 
 Notes (F56): v6 is close ("almost there"). Fix 1: lift L/R smoke to the S6 start level. Fix 2: make the CENTRE smoke drift at S6 speed (by script). Keep the fade-to-black file as the stand-alone version. NEW experiment: a second, combined file, camps + cannon + S6 in one, where the cannon smoke flows into the S6 start with no black and no visible change of scene.
+
+### F58 review of fallback_v7 (Homie, 2026-11-26, verbatim)
+"I think it's nearly there. The setter speed side effect is slightly slower than the left, right, and bottom. I feel like we need to match the left, right, and bottom to the center
+
+The left, right, and center kind of start full speed versus the center being the explosion, the smoke comes up and then slowly adjusts into its full speed. If you match everything properly, I think the rest is all good. To leave in 20 minutes, can you get it all done?
+
+Also, one more thing: the left, right, and center, the saturation is already full versus you can see the center is kind of starting a bit grayed out and then slowly gets into the full rich reds. Can we match the rest of the colors according to center and just keep everything aligned
+
+So, yeah, to summarize, match the speed and saturation of left bottom and right with the center"
+
+Notes (F58): v7 is "nearly there". CENTRE is the master curve. LEFT/RIGHT/FLOOR must follow the CENTRE in time: slow after the burst, then ease to full S6 speed; grey after the burst, then ease to the full rich red. End points stay each wall's S6 speed/colour (the JOIN still matches). v8 does this in `tools/cannon_fallback.py`.

@@ -176,6 +176,14 @@ def shake_signal(n, a_x, a_y, decay, length, seed=7):
     return np.stack([a_x * sx * env, a_y * sy * env], 1)
 
 
+def sat(f):
+    """v8: mean chroma (max-min)/max of the smoke pixels (luma > 6), on a 240x135 copy. Embers excluded by the caller."""
+    s = cv2.resize(np.clip(f, 0, 255).astype(np.float32), (240, 135), interpolation=cv2.INTER_AREA)
+    mx, mn = s.max(2), s.min(2)
+    m = mx > 6
+    return float(((mx - mn) / np.maximum(mx, 1e-3))[m].mean()) if m.any() else 0.0
+
+
 def smoothstep(e0, e1, x):
     u = np.clip((x - e0) / (e1 - e0), 0, 1)
     return u * u * (3 - 2 * u)
@@ -185,7 +193,10 @@ def smoothstep(e0, e1, x):
 # every wall drifts to the RIGHT (wind), a slow rise, dark top. v4 CENTRE settles to the same (+1.1, -0.4) by its f120.
 # F55 CORRECTION: Farneback at 480x270 under-read the drift ~4x. Block-match at full res (S6 no-fade f20-140, 3-frame gaps):
 # LEFT +10.4, CENTRE +9.0, RIGHT +8.7 px/f, dy ~ -0.3. These are the values used from v6b on.
-S6_DX = {'LEFT': 10.4, 'CENTRE': 9.0, 'RIGHT': 8.7}
+# F57: those F55 numbers were in S6's NATIVE pixels (LEFT/RIGHT 1440 wide, CENTRE 1800). Our walls are 1920 wide, so S6 at
+# our size (block-match on the no-fade files resized to 1920x1080, f0-40 = f20-140 = f40-100) reads LEFT 14.8, CENTRE 10.7,
+# RIGHT 12.0 px/f. That is why v6 matched 10.4 but still looked slow next to S6. v7 uses these.
+S6_DX = {'LEFT': 14.8, 'CENTRE': 10.7, 'RIGHT': 12.0}
 S6_DY = -0.3
 S6V = f'{MEDIA}/04_WORKING_FILES/superseded/S6_wars_FR_nofade/1080'
 
@@ -211,13 +222,115 @@ def flow_stats(frames, a, b):
     return np.array(acc).mean(0) if acc else np.zeros(3)
 
 
+def build_join(a, walls, tailJ, s6v, snd_nofade, n, npre, JN, stage):
+    """v7 --join: ONE file per wall = camps f0..K-1 + the cannon (no fade; its last JN frames dissolve into S6 no-fade
+    f0..JN-1, S6's bright billows first) + the S6 SHOW file from f JN (show == no-fade from ~f50, F57 check).
+    25 fps: S6 frames play 1:1, S6 sound atempo 25/24. S6 has no FLOOR: the FLOOR fades to black and stays black (silent)."""
+    K = NCAMPS - npre
+    ns6 = 2910
+    rng = np.random.default_rng(57)
+    jdir = f'{a.out}/JOIN'
+    os.makedirs(jdir, exist_ok=True)
+    jlog = [f'JOIN: camps f0..f{K - 1} ({K} f) + cannon {n} f (dissolve into S6 no-fade f0..f{JN - 1} over its last {JN} f) '
+            f'+ S6 show f{JN}..f{ns6 - 1} ({ns6 - JN} f) = {K + n + ns6 - JN} f at {FPS} fps ({(K + n + ns6 - JN) / FPS:.2f} s)']
+    joinC = {}
+    for w in WALLS:
+        nzs = cv2.GaussianBlur(rng.random((H // 4, W // 4)).astype(np.float32), (0, 0), 9)
+        nzs = cv2.resize((nzs - nzs.min()) / (np.ptp(nzs) + 1e-6), (W, H))
+        out = []
+        for i in range(n):
+            f = walls[w][i] if i < n - JN else tailJ[w][i - (n - JN)]
+            if i >= n - JN:
+                j = i - (n - JN)
+                p = float(smoothstep(0, JN - 1, j))
+                if w == 'FLOOR':
+                    f = (f.astype(np.float32) * (1 - p)).astype(np.uint8)
+                else:
+                    s6f = s6v[w][j].astype(np.float32)
+                    L = cv2.GaussianBlur(cv2.cvtColor(s6v[w][j], cv2.COLOR_BGR2GRAY).astype(np.float32), (0, 0), 12)
+                    lo_, hi_ = np.percentile(L, (5, 95))
+                    L = np.clip((L - lo_) / (hi_ - lo_ + 1e-3), 0, 1)
+                    key = 0.6 * (1 - L) + 0.4 * nzs
+                    al = smoothstep(key - 0.15, key + 0.15, p * 1.3 - 0.15)[..., None]
+                    f = (f.astype(np.float32) * (1 - al) + s6f * al).astype(np.uint8)
+            out.append(f)
+        joinC[w] = out
+        seg = f'{jdir}/_seg_{w}.mkv'
+        p_ = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{W}x{H}', '-r', str(FPS),
+                               '-i', '-', '-c:v', 'ffv1', '-pix_fmt', 'bgr0', seg], stdin=subprocess.PIPE)
+        for f in out:
+            p_.stdin.write(np.ascontiguousarray(f).tobytes())
+        p_.stdin.close()
+        p_.wait()
+        s6src = f'{a.s6show}/S6_{w if w != "FLOOR" else "CENTRE"}_wars.mov'
+        if w != 'FLOOR':
+            shJ = read(s6src, ss=JN / 24, n=1, size=(W, H))[0]
+            d = [float(np.abs(out[-1].astype(int) - s6v[w][JN - 1].astype(int)).mean()),
+                 float(np.abs(s6v[w][JN].astype(int) - shJ.astype(int)).mean())]
+            jlog.append(f'{w}: last cannon frame vs S6 no-fade f{JN - 1} MAD {d[0]:.2f}; S6 no-fade f{JN} vs show f{JN} MAD {d[1]:.2f}')
+        # sound: camps 0..K, then the cannon (no fade) faded out over the dissolve, mixed with S6 (atempo 25/24) faded in
+        jw = f'{jdir}/_join_{w}.wav'
+        t0, tj = K / FPS, (n - JN) / FPS
+        s6gain = 1.0 if w != 'FLOOR' else 0.0
+        filt = (f'[0:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:{t0:.6f}[a0];'
+                f'[1:a]aresample=48000,aformat=channel_layouts=stereo,afade=t=out:st={tj:.6f}:d={JN / FPS:.6f}:curve=qsin,apad[c];'
+                f'[2:a]aresample=48000,aformat=channel_layouts=stereo,atempo={25 / 24:.6f},volume={s6gain},'
+                f'afade=t=in:d={JN / FPS:.6f}:curve=qsin,adelay={int(round(tj * 1000))}:all=1[s];'
+                f'[c][s]amix=inputs=2:normalize=0:duration=longest,atrim=0:{(n + ns6 - JN) / FPS:.6f}[m];[a0][m]concat=n=2:v=0:a=1[a]')
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', f'{CAMPS}/S5_{w}_camps.mov', '-i', snd_nofade, '-i', s6src,
+                        '-filter_complex', filt, '-map', '[a]', '-c:a', 'pcm_s24le', jw], check=True)
+        if w != 'FLOOR':
+            v3 = f'[2:v]trim=start_frame={JN},setpts=N/{FPS}/TB,scale={W}:{H}:flags=lanczos,setsar=1,format=yuv420p[c];'
+        else:
+            v3 = f'color=black:s={W}x{H}:r={FPS}:d={(ns6 - JN) / FPS:.6f},setsar=1,format=yuv420p[c];'
+        vf = (f'[0:v]trim=end_frame={K},setpts=N/{FPS}/TB,scale={W}:{H},setsar=1,format=yuv420p[a];'
+              f'[1:v]setpts=N/{FPS}/TB,setsar=1,format=yuv420p[b];' + v3 + '[a][b][c]concat=n=3:v=1:a=0[v]')
+        dst = f'{jdir}/{a.name}_JOIN_{w}.mp4'
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', f'{CAMPS}/S5_{w}_camps.mov', '-i', seg, '-i', s6src, '-i', jw,
+                        '-filter_complex', vf, '-map', '[v]', '-map', '3:a', '-r', str(FPS), '-c:v', 'libx264', '-crf', '16',
+                        '-preset', 'medium', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', dst], check=True)
+        nfr = subprocess.run(['ffprobe', '-v', 'error', '-count_packets', '-select_streams', 'v:0', '-show_entries',
+                              'stream=nb_read_packets', '-of', 'csv=p=0', dst], capture_output=True, text=True).stdout.strip()
+        jlog.append(f'{w}: {os.path.basename(dst)} frames {nfr} (expect {K + n + ns6 - JN})')
+        os.remove(seg)
+        print(jlog[-1], flush=True)
+    # review: the join region only (the cannon, then 100 S6 show frames from JN), with the join sound
+    s6r = {w: read(f'{a.s6show}/S6_{w}_wars.mov', ss=JN / 24, n=100, size=(W, H)) for w in ('LEFT', 'CENTRE', 'RIGHT')}
+    rev = [stage(joinC['LEFT'][i], joinC['CENTRE'][i], joinC['RIGHT'][i], joinC['FLOOR'][i]) for i in range(n)]
+    rev += [stage(s6r['LEFT'][i], s6r['CENTRE'][i], s6r['RIGHT'][i], None) for i in range(100)]
+    rs = f'{jdir}/_rev.wav'
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', f'{K / FPS:.6f}', '-i', f'{jdir}/_join_CENTRE.wav', '-t', f'{len(rev) / FPS:.6f}',
+                    rs], check=True)
+    tmp = f'{jdir}/_rev_nosound.mp4'
+    p_ = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{W * 3 // 2}x{H}', '-r', str(FPS),
+                           '-i', '-', '-c:v', 'libx264', '-crf', '16', '-preset', 'medium', '-pix_fmt', 'yuv420p', tmp], stdin=subprocess.PIPE)
+    for f in rev:
+        p_.stdin.write(np.ascontiguousarray(f).tobytes())
+    p_.stdin.close()
+    p_.wait()
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', tmp, '-i', rs, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac',
+                    '-shortest', f'{jdir}/{a.name}_JOIN_review_stage.mp4'], check=True)
+    os.remove(tmp)
+    os.remove(rs)
+    os.makedirs(f'{jdir}/frames', exist_ok=True)
+    for i in (n - JN - 1, n - JN + 15, n - JN + 30, n - JN + 45, n - 1, n, n + 50):
+        cv2.imwrite(f'{jdir}/frames/join_stage_f{i}.jpg', rev[i], [cv2.IMWRITE_JPEG_QUALITY, 90])
+    for w in ('LEFT', 'CENTRE', 'RIGHT'):
+        seq = joinC[w][n - JN - 5:] + list(s6r[w][:10])
+        dd = [float(np.abs(seq[i + 1].astype(int) - seq[i].astype(int)).mean()) for i in range(len(seq) - 1)]
+        jlog.append(f'{w}: frame-to-frame MAD across the join (cannon f{n - JN - 5}.. then S6 show f{JN}..f{JN + 9}): max {max(dd):.2f} '
+                    f'mean {np.mean(dd):.2f}; at the cannon/S6 boundary {dd[JN + 4]:.2f}')
+    open(f'{jdir}/join_measure.txt', 'w').write('\n'.join(jlog) + '\n')
+    print('\n'.join(jlog), flush=True)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('out')
     ap.add_argument('--tail', type=float, default=3.0)
     ap.add_argument('--fade', type=int, default=50, help='eased fade to black over the last FADE frames')
     ap.add_argument('--ember-lag', type=int, default=18, help='embers fade this many frames after the smoke starts to fade')
-    ap.add_argument('--burst', type=float, default=16, help='outward burst speed at the cut, 1080 px/f')
+    ap.add_argument('--burst', type=float, default=8, help='outward burst speed at the cut, 1080 px/f')
     ap.add_argument('--burst-tau', type=float, default=22)
     ap.add_argument('--plume', type=float, default=9, help='upward plume speed at the cut, 1080 px/f (it fades out)')
     ap.add_argument('--plume-tau', type=float, default=28)
@@ -233,6 +346,12 @@ def main():
     ap.add_argument('--front', type=float, default=3600, help='smoke front final radius, stage px')
     ap.add_argument('--front-tau', type=float, default=28, help='smoke front ease-out time constant, frames')
     ap.add_argument('--name', default='S5-CANNON-FALLBACK')
+    ap.add_argument('--take0', type=int, default=38, help='v7: CENTRE takeover starts this many frames after the cut')
+    ap.add_argument('--take-len', type=int, default=50, help='v7: the wind front crosses CENTRE from the left in this many frames')
+    ap.add_argument('--join', action='store_true', help='v7: also build one camps + cannon + S6 file per wall, no black')
+    ap.add_argument('--join-len', type=int, default=60, help='v7: noise dissolve into S6 no-fade f0..JN-1 over the last JN frames')
+    ap.add_argument('--ramp-lo', type=float, default=0.35, help='v8: wind speed (fraction of S6) before the CENTRE takeover')
+    ap.add_argument('--ramp-extra', type=int, default=20, help='v8: the wind reaches full S6 speed this many f after the takeover')
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
 
@@ -301,9 +420,23 @@ def main():
     # stage drift profile u(x): S6's measured speed at each wall's centre, linear between (FLOOR rides with CENTRE)
     u = np.interp(smoke.X, [-W / 2, W / 2, 3 * W / 2], [S6_DX['LEFT'], S6_DX['CENTRE'], S6_DX['RIGHT']]).astype(np.float32)
     side = np.tanh((smoke.X - ix) / 600).astype(np.float32)
-    ramp = np.clip(np.arange(nt, dtype=np.float32) / 40, 0.3, 1.0)        # the wind takes over as the burst dies
+    # v8 (Homie F58: "match the speed and saturation of left bottom and right with the center"): ONE wind ramp for the whole
+    # stage, on the CENTRE's own time curve. CENTRE = slow v4 smoke (~0.35 of S6 speed) until the takeover, then the wind
+    # front brings S6 speed. So every wall stays at the v4 speed until take0 and eases to full S6 speed over the takeover.
+    tt = np.arange(nt, dtype=np.float32)
+    ramp = (a.ramp_lo + (1 - a.ramp_lo) * smoothstep(a.take0, a.take0 + a.take_len + a.ramp_extra, tt)).astype(np.float32)
     T = np.concatenate([[0], np.cumsum(ramp)[:-1]]).astype(np.float32)
+    # v8 saturation: S6's own chroma per wall (the end point); the side walls follow the CENTRE's chroma ratio per frame
+    s6sat = {w: float(np.mean([sat(f) for f in s6v[w][:48]])) for w in s6v}
+    s6sat['FLOOR'] = s6sat['CENTRE']
+    ksat = {w: 1.0 for w in WALLS}
+    sat_log = {w: [] for w in WALLS}
     front_log = []
+    gain = {w: np.ones(3, np.float32) for w in WALLS}                     # v7: closed-loop gain toward S6's colour
+    tgt = {w: s6col[w] for w in WALLS}
+    gain_log = []
+    JN = a.join_len
+    tailJ = {w: [] for w in WALLS}                                          # v7: the last JN frames WITHOUT the fade
     for o in range(cut, n):
         t = o - cut
         k = o - g0 + V4FLASH
@@ -322,7 +455,8 @@ def main():
         rf = a.front * (1 - np.exp(-(t + 1) / a.front_tau))
         dens_c = 0.55 + 1.1 * (0.15 + 0.85 * min(1, t / 60))
         lo = 0.3 - 0.22 * e                                                # S6 has dark gaps between billows
-        for w in WALLS:
+        rC = 1.0
+        for w in ('CENTRE', 'LEFT', 'RIGHT', 'FLOOR'):                      # v8: CENTRE first (it is the master curve)
             nz = smoke.wall(fld, w)
             npl = smoke.wall(fpl, w)
             m = np.clip(1.0 + (nz - 0.5) * dens_c * 1.8, lo, 2.0)[..., None]
@@ -339,6 +473,12 @@ def main():
                 img = cb * m
             else:
                 img = cb * m * bm + et[k] * mp * (1 - bm) * wp
+            cur = box(img, 0.33, 1.0, 0, 1)
+            r_ = np.clip((tgt[w] + 1) / (cur + 1), 0.6, 1.8)
+            gain[w] = 0.85 * gain[w] + 0.15 * (1 + (r_ - 1) * e)
+            img = img * gain[w]
+            if t % 25 == 0:
+                gain_log.append((w, o, np.round(gain[w], 2).tolist()))
             fm = smoothstep(-1.0, 1.0, (rf - dist[w] + 900 * (nz - 0.5)) / 400)[..., None]
             if w == 'LEFT' and t % 5 == 0:
                 front_log.append((o, int(rf), float(fm.mean())))
@@ -346,11 +486,27 @@ def main():
             emb[w].step(t, nt, burst=40 if w != 'CENTRE' else 0)
             if w == 'CENTRE':
                 vf = v4[k].astype(np.float32) * (1 + (gain_c - 1) * e)
-                c = np.maximum(cover_c * fm, cover_top)
-                img = vf * (1 - c) + (img / np.maximum(fm, 1e-3) * np.maximum(fm, cover_top)) * c
-                img = img * fs + emb[w].draw(gain=0.8) * cover_c * fm * fe
+                # v7: after the burst, a wind front rolls in FROM THE LEFT (noisy edge) and the S6-speed smoke takes the wall
+                xp = -0.35 + 1.75 * float(smoothstep(a.take0, a.take0 + a.take_len, t))
+                tk = smoothstep(-1.0, 1.0, (xp - XX + 0.45 * (nz - 0.5)) / 0.09)[..., None]
+                c = np.maximum(np.maximum(cover_c * fm, cover_top), tk)
+                img = vf * (1 - c) + (img / np.maximum(fm, 1e-3) * np.maximum(np.maximum(fm, cover_top), tk)) * c
+                eg = emb[w].draw(gain=0.8) * np.maximum(cover_c * fm, tk)
+                sC = sat(img)
+                rC = float(np.clip(sC / max(s6sat['CENTRE'], 1e-3), 0, 1.0))
+                sat_log[w].append(sC)
             else:
-                img = img * fs + emb[w].draw(gain=min(1, 0.4 + t / 30) * (0.9 if w != 'FLOOR' else 0.8)) * fm * fe
+                # v8: the same chroma ratio as the CENTRE (grey after the burst, full S6 red at the end), EMA-smoothed
+                sW = sat(img)
+                kt = float(np.clip(rC * s6sat[w] / max(sW, 1e-3), 0, 1))
+                ksat[w] = 0.7 * ksat[w] + 0.3 * kt if t else kt
+                Lm = (img * np.float32([0.114, 0.587, 0.299])).sum(2, keepdims=True)
+                img = Lm + ksat[w] * (img - Lm)
+                sat_log[w].append(sat(img))
+                eg = emb[w].draw(gain=min(1, 0.4 + t / 30) * (0.9 if w != 'FLOOR' else 0.8)) * fm
+            if o >= n - JN:
+                tailJ[w].append(np.clip(img + eg, 0, 255).astype(np.uint8))
+            img = img * fs + eg * fe
             walls[w].append(np.clip(img, 0, 255).astype(np.uint8))
 
     # B: ONE glow in stage space (cannon_glow.py section B)
@@ -391,23 +547,42 @@ def main():
         m = np.float32([[s, 0, (1 - s) * W / 2 + dxs], [0, s, (1 - s) * H / 2 + dys]])
         for w in WALLS:
             walls[w][o] = cv2.warpAffine(walls[w][o], m, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT101)
+            if o >= n - JN:
+                tailJ[w][o - (n - JN)] = cv2.warpAffine(tailJ[w][o - (n - JN)], m, (W, H), flags=cv2.INTER_LINEAR,
+                                                        borderMode=cv2.BORDER_REFLECT101)
 
     # measure
-    log = [f'v6 (F54): source CENTRE explosion {V4}', f'v4 {nv} f played 1:1 at {FPS} fps; v4 f0 vs camps CENTRE last MAD {v4_vs_camps:.2f}',
+    assert gend <= n - JN, 'glow reaches the join tail'
+    log = [f'v8 (F58): source CENTRE explosion {V4}', f'v4 {nv} f played 1:1 at {FPS} fps; v4 f0 vs camps CENTRE last MAD {v4_vs_camps:.2f}',
            f'out {n} f ({n / FPS:.2f} s); camps f{NCAMPS - npre}..f{NCAMPS - 1}; tail {tail}',
            f'ball out f{tail}..f{g0 - 1}, contact out f{g0} at CENTRE ({ix:.0f},{iy:.0f}); CUT out f{cut} on ALL walls',
            f'glow out f{g0}..f{gend - 1}; shake {a.shake} s from f{g0}; scale {a.scale}',
            f'smoke motion: burst {a.burst} px/f out from the impact (tau {a.burst_tau} f), plume up {a.plume} px/f fading (tau {a.plume_tau} f), '
            f'then S6 drift dx {S6_DX} dy {S6_DY} (ramped in over 40 f)',
+           f'v7 CENTRE takeover: wind front from the LEFT, cut+{a.take0}..cut+{a.take0 + a.take_len} (out f{cut + a.take0}..f{cut + a.take0 + a.take_len})',
+           'v7 gain (closed loop toward S6 colour, every 25 f): ' + '; '.join(f'{w} f{o} {g}' for w, o, g in gain_log),
            f'fade to black out f{n - F}..f{n - 1} (eased; last frame 0), embers {a.ember_lag} f behind; NO S6 frames, NO crossfade',
            'S6 show files are NOT changed (they start from black).', '',
-           'FLOW (block-match, mid band; 1080 px per frame), S6 no-fade vs v6 output:']
+           'FLOW (block-match, mid band; 1920x1080 px per frame), S6 no-fade vs v7 output:']
     for w in ('LEFT', 'CENTRE', 'RIGHT'):
         s6s = flow_stats(s6v[w], 0, 120)
         b0 = flow_stats(walls[w], cut + 2, cut + 27)
         b1 = flow_stats(walls[w], n - F - 60, n - F)
-        log.append(f'{w}: S6 f0-120 dx {s6s[0]:+.2f} dy {s6s[1]:+.2f} speed {s6s[2]:.2f} | v6 burst f{cut + 2}-{cut + 27} dx {b0[0]:+.2f} '
-                   f'dy {b0[1]:+.2f} speed {b0[2]:.2f} | v6 before fade f{n - F - 60}-{n - F} dx {b1[0]:+.2f} dy {b1[1]:+.2f} speed {b1[2]:.2f}')
+        log.append(f'{w}: S6 f0-120 dx {s6s[0]:+.2f} dy {s6s[1]:+.2f} speed {s6s[2]:.2f} | v7 burst f{cut + 2}-{cut + 27} dx {b0[0]:+.2f} '
+                   f'dy {b0[1]:+.2f} speed {b0[2]:.2f} | v7 before fade f{n - F - 60}-{n - F} dx {b1[0]:+.2f} dy {b1[1]:+.2f} speed {b1[2]:.2f}')
+    # v8: speed and saturation curves over time, per wall (CENTRE is the master)
+    log.append('')
+    log.append(f'v8 CURVES (window = 20 f from the cut; speed = block-match px/f; sat = smoke chroma before fade/embers; '
+               f'S6 sat L/C/R {s6sat["LEFT"]:.3f}/{s6sat["CENTRE"]:.3f}/{s6sat["RIGHT"]:.3f})')
+    log.append('  window      ' + '  '.join(f'{w:>17s}' for w in WALLS))
+    for t0 in range(2, nt - F + 10, 20):
+        a0, a1 = cut + t0, min(cut + t0 + 20, n - F + 10)
+        row = []
+        for w in WALLS:
+            sp = flow_stats(walls[w], a0, a1)[2] if a1 - a0 > 4 else 0
+            sv = float(np.mean(sat_log[w][t0:t0 + 20]))
+            row.append(f'spd {sp:5.2f} sat {sv:.3f}')
+        log.append(f'  f{a0:3d}-{a1:3d}   ' + '  '.join(row))
     for w in ('LEFT', 'CENTRE', 'RIGHT'):
         cur = np.mean([box(walls[w][i], 0.33, 1.0, 0, 1) for i in range(n - F - 30, n - F)], 0)
         top = np.mean([luma(walls[w][i][:int(0.2 * H)]) for i in range(n - F - 30, n - F)])
@@ -434,6 +609,9 @@ def main():
     filt = (f'[0:a]atempo={25 / 24:.6f}[q];anullsrc=r=48000:cl=stereo,atrim=0:{lead:.6f}[s];[s][q]concat=n=2:v=0:a=1,'
             f'apad,atrim=0:{n / FPS:.6f},afade=t=out:st={(n - F) / FPS:.6f}:d={F / FPS:.6f}:curve=qsin[a]')
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', aud, '-filter_complex', filt, '-map', '[a]', snd], check=True)
+    snd_nofade = f'{a.out}/_wall_sound_nofade.wav'                       # v7 join: the same sound without the fade-out
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', aud, '-filter_complex', filt.split(',afade=')[0] + '[a]', '-map', '[a]',
+                    snd_nofade], check=True)
 
     def enc(frames, path, w_, h_, sound=True):
         p = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{w_}x{h_}',
@@ -482,6 +660,8 @@ def main():
     os.makedirs(f'{a.out}/frames', exist_ok=True)
     for i in (g0 - 1, cut + 6, cut + 20, cut + 50, cut + 100, cut + 150, n - F - 1, n - F // 2, n - 1, n + 24, n + 48, n + 74):
         cv2.imwrite(f'{a.out}/frames/stage_f{i}.jpg', rev[i], [cv2.IMWRITE_JPEG_QUALITY, 90])
+    if a.join:
+        build_join(a, walls, tailJ, s6v, snd_nofade, n, npre, JN, stage)
     print('DONE cannon_fallback', a.out, flush=True)
 
 
