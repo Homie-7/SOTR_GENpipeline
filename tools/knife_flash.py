@@ -45,13 +45,23 @@ FLASHES = [
 DUR = 1.5
 N = int(round(DUR * FPS))               # 36 frames
 V2 = "--v2" in sys.argv                 # Homie F38: solid (no holes), darker, edges dissolve before the frame, subtle arm motion
-VER = "v2" if V2 else "v1"
+F3V3 = "--f3v3" in sys.argv             # Homie F39: F3 only, two clearly separate arms (split at the neck between the fists, arms apart)
+if F3V3:
+    V2 = True
+VER = "v3" if F3V3 else ("v2" if V2 else "v1")
 # v2 per flash: limbs = (x split in canvas 0..1 or None, pivot in canvas 0..1, rotate deg, drop as a fraction of H)
 # the rotation turns each arm about its entry point so the blade comes DOWN (a slow stab between the flashes)
 LIMBS = {1: [(None, (0.0, 0.0), -2.2, 0.025)],
          2: [(None, (1.0, 0.0), 2.2, 0.025)],
          3: [((0.0, 0.47), (0.0, 0.05), -1.6, 0.020), ((0.47, 1.0), (1.0, 0.0), 1.8, 0.028)],
          4: [(None, (0.65, 0.0), 1.5, 0.035)]}
+# F3 v3 (Homie F39 "two separate hands very clearly ... not fist bumping ... the cut very clean and in the middle"):
+# the narrowest column between the two fists on the placed mask is x 0.511 (measured; v2 cut at 0.47, inside the long-knife fist).
+# Each part is shifted apart (OFF3 = canvas dx, dy fractions) and its cut face rounded, so a dark-sky gap shows between the fists.
+SPLIT3 = 0.511
+OFF3 = {0: (-0.030, -0.012), 1: (0.030, 0.010)}
+if F3V3:
+    LIMBS[3] = [((0.0, SPLIT3), (0.0, 0.05), -1.6, 0.020), ((SPLIT3, 1.0), (1.0, 0.0), 1.8, 0.028)]
 PUSH = 0.04                             # push-in over the file
 
 
@@ -182,6 +192,8 @@ class Flash:
             c, sn = np.cos(a), np.sin(a)
             R = np.float32([[c, -sn, px - c * px + sn * py], [sn, c, py - sn * px - c * py]])
             R[1, 2] += drop * H4 * (e - 0.5)
+            if F3V3 and self.fl["n"] == 3:
+                R[0, 2] += OFF3[i][0] * W4; R[1, 2] += OFF3[i][1] * H4
             out.append((split, R))
         return out
 
@@ -197,7 +209,22 @@ class Flash:
                     cut = place(np.ones_like(self.mask), self.fl, k)
                     xs = (self.xx[0] >= split[0] * W4) & (self.xx[0] < split[1] * W4)
                     part = (cut * xs[None, :]).astype(np.float32)
-                    sil = np.maximum(sil, cv2.warpAffine(place(self.mask, self.fl, k) * part, R, (W4, H4)))
+                    if F3V3:   # convex cut face: the boundary bows back from the split above and below the fist centre
+                        yc, hh = 0.301 * H4 * k, 0.055 * H4 * k
+                        back = np.minimum(150.0, 80.0 * ((self.yy[:, 0] - yc) / hh) ** 2)[:, None]
+                        sx = SPLIT3 * W4
+                        keep = (self.xx < sx - back) if split[0] == 0.0 else (self.xx >= sx + back)
+                        part = part * keep
+                    if F3V3:   # round the cut face: an opening in a band at the split, so the fist ends in a knuckle, not a slice
+                        pm = place(self.mask, self.fl, k) * part
+                        x0 = int((split[1] if split[0] == 0.0 else split[0]) * W4)
+                        b0, b1 = max(0, x0 - 120), min(W4, x0 + 120)   # stays clear of the short blade (x >= 0.555)
+                        band = pm[:, b0:b1]
+                        band = cv2.morphologyEx(band, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (61, 61)))
+                        pm = pm.copy(); pm[:, b0:b1] = cv2.GaussianBlur(band, (0, 0), 2.0)
+                        sil = np.maximum(sil, cv2.warpAffine(pm, R, (W4, H4)))
+                    else:
+                        sil = np.maximum(sil, cv2.warpAffine(place(self.mask, self.fl, k) * part, R, (W4, H4)))
                     gl = np.maximum(gl, cv2.warpAffine(place(self.glint, self.fl, k) * part, R, (W4, H4)))
                 else:
                     sil = np.maximum(sil, place(ms, self.fl, k, R)); gl = np.maximum(gl, place(gs, self.fl, k, R))
@@ -296,6 +323,8 @@ def main():
                           stdin=subprocess.PIPE)
     sheet, stats = [], []
     for fl in FLASHES:
+        if F3V3 and fl["n"] != 3:
+            continue
         fx = Flash(fl)
         names = {r: os.path.join(out, f"S9_b10_KNIFE_F{fl['n']}_flash_{VER}_ALPHA_{r}.mov") for r in ("3600x2160", "1800x1080")}
         p4 = enc(os.path.join(out, "_tmp_" + os.path.basename(names["3600x2160"])), W4, H4)
@@ -323,7 +352,7 @@ def main():
         print(f"F{fl['n']} done", flush=True)
     rv.stdin.close(); rv.wait()
     os.replace(os.path.join(out, "_tmp_" + os.path.basename(rv_path)), rv_path)
-    cv2.imwrite(os.path.join(out, f"_sheet_{VER}.jpg"), np.vstack([np.hstack(sheet[:2]), np.hstack(sheet[2:])]))
+    cv2.imwrite(os.path.join(out, f"_sheet_{VER}.jpg"), sheet[0] if len(sheet) == 1 else np.vstack([np.hstack(sheet[:2]), np.hstack(sheet[2:])]))
     with open(os.path.join(out, f"_envelope_{VER}.txt"), "w") as fh:
         fh.write("\n".join(stats) + "\n")
     print("DONE", 4 * N, "frames")

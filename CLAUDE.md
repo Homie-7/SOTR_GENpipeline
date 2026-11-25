@@ -175,7 +175,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-25, latest (POST+VID, PC): F39, KNIFE FLASH v2 + S5 EXPLOSION PROBE v2 BUILT. 30 cr (balance 2,173.85).
+### 2026-11-25, latest (VID review, PC): F41, KNIFE F3 v3 + S5 PROBE v3 REVIEWED. 30 cr (balance 2,143.85).
+
+- `04_WORKING_FILES/S9_raft/knife_flash_v2/..._F3_flash_v3_ALPHA_*.mov` (two separate arms) and `S5_cannonball/probe_v3/` (hit 0.92 s, top covered 2.2 s, sky shows again 3-6 s).
+  Homie NEW RULE (F40): the cannonball = ALPHA overlay frame-aligned on `S5_CENTRE_camps.mov`. WAITING for Homie: the landing timecode in the camps file. Nothing promoted.
+
+### 2026-11-25, earlier (POST+VID, PC): F39, KNIFE FLASH v2 + S5 EXPLOSION PROBE v2 BUILT. 30 cr (balance 2,173.85).
 
 - `04_WORKING_FILES/S9_raft/knife_flash_v2/` (`tools/knife_flash.py --v2`, 0 cr; solid, darker, edges to 0, arm motion) and `S5_cannonball/probe_v2/` (fast hit, but smoke covers
   only the lower half; sky shows to ~7 s). WAITING for Homie; probe v3 (~30 cr) on his yes. Nothing promoted. T9 sha256.

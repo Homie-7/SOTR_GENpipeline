@@ -171,3 +171,9 @@ That transition, if the whole rocks and everything, and the debris kind of slowi
 The knives are almost perfect. I really like most of them except for the ones where there's two hands at the same time. I feel like the hand is kind of cutting off at the wrong point. Can you create a separation between them? So we see two separate hands very clearly. Maybe offset their position a little bit so they're not like fist bumping, Make sure the cut is very clean and in the middle instead of because right now I feel like the cut is towards the arm with the longer knife and it kind of cuts between his hands yeah just keep them separate and clean, That I think mags are perfect
 
 What's next? How are you going to do this, I need this finished before midnight"
+
+- 2026-11-25 (F40, Homie, verbatim): "For your context, these arms with knives will be on the center screen and the left and right screens, depending on what the showrunner wants. They will not be on the water because that's where the actor is. The idea is that the actor is facing these arms looming over her, so that's just how it is"
+  -> Knife flashes are WALL files only (CENTRE / LEFT / RIGHT, showrunner's choice). No FLOOR version.
+
+- 2026-11-25 (F40, Homie, verbatim, NEW RULE): "Remember, the cannonball has to be a transparent file that overlays with the existing CAMS file so that I can just give it to them and it just perfectly aligns. Yeah, so keep that in mind"
+  -> The cannonball deliverable is an ALPHA overlay (ProRes 4444) on top of `S5_CENTRE_camps.mov`, frame-aligned, handed over as is. Open (F41): at which timecode in the camps file does the ball land?
