@@ -277,3 +277,15 @@ Notes (F53): v5 REJECTED. KEEP the S6 show files as they are (they start from bl
   of S6 no-fade f20-140 gives drift RIGHT LEFT +10.4, CENTRE +9.0, RIGHT +8.7 px/f (1080), dy ~ -0.3. v6 now uses these
   (and the measure is a block-match). v6a outputs replaced; its log/measure kept as `_*_v6a_slowwind.*` in fallback_v6/.
 - Note: the generated CENTRE v4 drifts only ~3.7 px/f; it cannot be changed (generated), only covered at the top/edges.
+
+### F56 review of fallback_v6 (Homie, 2026-11-26, verbatim)
+"Fix both of these issues. I agree that that is the case
+
+The LEFT and RIGHT smoke is approximately 20% darker than the start of S6. I can make it brighter by script for 0 credits.
+The CENTRE smoke drifts slowly (approximately 2 to 4 px per frame). This motion comes from the generated probe v4, so a script cannot change it.
+
+Also, want to see if instead of fading to black, can you just interpolate that smoothly without visually making it look like we now are in scene six, just create a best possible, absolutely smooth transition to scene six is start because the idea is that I want to give them a camps scene plus scene six single file, Just as an experiment, so we will obviously have this particular file on its own, but then we will also have a seamless transition to the next seam kind of file. Does that make sense? Can you make that happen
+
+I would say we are almost there, it's looking good"
+
+Notes (F56): v6 is close ("almost there"). Fix 1: lift L/R smoke to the S6 start level. Fix 2: make the CENTRE smoke drift at S6 speed (by script). Keep the fade-to-black file as the stand-alone version. NEW experiment: a second, combined file, camps + cannon + S6 in one, where the cannon smoke flows into the S6 start with no black and no visible change of scene.
