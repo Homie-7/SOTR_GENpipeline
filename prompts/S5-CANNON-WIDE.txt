@@ -5,14 +5,18 @@
 #   The take's pre-impact frames are never shown (only the keyed ball); every wall cuts to the take under one glow.
 # Register tags (headers only): start = S5 CENTRE show file last frame, squeezed 1/1.5 into the centre third, outpainted to 21:9.
 #
-# STATUS v1: NOT RUN. The start image does not exist yet: outpaint_image failed 4 times on 2026-11-25 (jobs 238f86c2, 2f65ded8,
-#   df3f4613, 72622c35; "Something went wrong", 0 cr charged; PNG and JPG input, 21:9 and 16:9 targets). Route for the start image
-#   is open (live chat decides).
+# STATUS v1: RUN 2026-11-25, job 1fedbc15-6e7b-400d-bf4b-f9c61c30a831 (30 cr). Take: glow_v1/S5-CANNON-WIDE_v1_1fedbc15.mp4.
+#   Start-image route 2 (live chat): outpaint_image failed 4 times (jobs 238f86c2, 2f65ded8, df3f4613, 72622c35; 0 cr).
+#   Route 1 (Nano Banana 2 with the grey-sided 2520x1080 canvas, job 25fb405d, 2 cr) REJECTED: centre MAD 8.14 (blurred 3.36) but the
+#   side horizon sits ~150 px below the centre horizon (hard seams). Route 2 used: the centre column exact (MAD 0.0), the sides a
+#   local mirrored + growing-blur extension with the fire highlights damped (0 cr); the take repaints the sides.
+#   v1 body patch: one line (REFERENCE) says the blurred sides resolve into sharp plain and sky in the first second.
+#   NOTE: the connector sent the start image as omni_reference reference_images (role start_image was coerced).
 #
 # SETTINGS
 #   Model:      Seedance 2.5 (seedance_2_5)
 #   Mode:       omni_reference (image-to-video), start_image only (no end frame)
-#   Start:      04_WORKING_FILES/S5_cannonball/glow_v1/frames/glow_start_21x9.png  (to be made; input canvas glow_canvas_840x1080.png)
+#   Start:      04_WORKING_FILES/S5_cannonball/glow_v1/frames/glow_start_21x9.jpg (media afaf34cb; route 2, centre = glow_canvas_840x1080.png)
 #   Aspect:     21:9
 #   Resolution: 480p draft (draft = true)
 #   Duration:   10 s
@@ -37,7 +41,7 @@
 # --- v1 ---
 SCENE: A wide view of the open plain at dusk. A solid iron cannonball of 1816 drops out of the sky and slams into the ground at the exact centre of the picture; a huge blast of earth and black-powder smoke spreads out to both sides and up, swallows the whole wide view, sky and all, then darkens to near-black with a few drifting embers.
 
-REFERENCE: The start frame is the first frame exactly: the same plain, horizon, sun, clouds, camp and fires, across the whole width.
+REFERENCE: The start frame is the first frame: the same plain, horizon, sun, clouds, camp and fires; its soft blurred side areas resolve into the same sharp plain and sky within the first second.
 
 FIRST FRAME: The start frame exactly.
 
