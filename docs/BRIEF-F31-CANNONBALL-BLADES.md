@@ -43,3 +43,26 @@
 - Cannonball, 0 cr, script: ball enters on RIGHT, lands CENTRE; the 2022 fireball spreads over LEFT/CENTRE/RIGHT/FLOOR;
   fire falls into black smoke + embers and does NOT clear, so the last frame = Scene 6's first frame. Graded to the
   rich-dusk look. Built into the S5 files with the 2022 sound. 30 s review first, then the 4K files on his yes.
+
+## Homie, 2026-11-25 (verbatim, third)
+> Do you think that is an even better way to do the cannonball or you think your way is the best. Given we have new
+> abilities such Higgsfield and whatnot, do you think we can make a cannonball animation from scratch, but just like
+> this, so that it can be triggered as an alpha on top and then the smoke and everything kind of transitions to new scene?
+> What do you think is the best approach
+>
+> The blades had a review that it doesn't have to be so much aggressive stabbing all over the place, it's just a
+> threatening situation where it's kind of almost looming here and there, so it's almost like imagine if it was just
+> lightning or something. Every time the lightning happens, you just see a hand or two, and slowly, slowly them getting
+> closer. It's just like the threat of this is going to happen, which then eventually leads to the murder.
+
+## Proposal 3 (Claude, 25 Nov, waiting for Homie)
+- Cannonball = a triggered cue file per surface (ProRes 4444 alpha over S5), ending FULLY OPAQUE on Scene 6's first
+  frame, so the change to S6 is in the file (a cut from an identical frame), not a playback crossfade. Needs Homie's OK
+  to use alpha-over-S5 layering in playback (the 24 Sep "no QLab" rule).
+  Ball flight by script (0 cr). Fireball generated on pure black (Seedance 2.5, locked; 1819 round shot, black powder),
+  keyed by luminance: 720p 8 s probe = 56 cr, 1080p 8 s = 128 cr. Black smoke = Scene 6's own opening smoke through a
+  growing matte (0 cr). LEFT/RIGHT/FLOOR = the same fire offset + flash light (0 cr). Fallback: the 2022 fireball (0 cr,
+  licence unknown).
+- Blades = lightning reveals: a flash lasts 0.1-0.3 s, so a still is physically right inside it. 4-6 generated stills
+  (Nano Banana Pro, 2 cr each) of 1-2 hands with period blades in hard top flash on black; script does the flash shape,
+  the dark between, and the approach (closer each flash), last flash at the murder.
