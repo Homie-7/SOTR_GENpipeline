@@ -175,6 +175,11 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
+### 2026-11-26, latest (POST/script, PC): F53, S5 CANNON FALLBACK v5 BUILT. 0 cr (balance 1,961.85).
+
+- `04_WORKING_FILES/S5_cannonball/fallback_v5/`: smoke rises, no fade, dissolves into real S6 no-fade f0-49 (S6 REVIEW copies from f50), FLOOR dark.
+  WAITING for Homie's yes to the S6 join (drops the F42 fade-in); nothing promoted.
+
 ### 2026-11-26, later (POST/script, PC): F51, S5 CANNON SCRIPT FALLBACK v4 BUILT. 0 cr (balance 1,961.85).
 
 - `04_WORKING_FILES/S5_cannonball/fallback_v4/` (`tools/cannon_fallback.py`): real camps to impact, probe v4 CENTRE under one glow, script smoke spreads from the centre, shared shake.
