@@ -351,6 +351,7 @@ def main():
     ap.add_argument('--join', action='store_true', help='v7: also build one camps + cannon + S6 file per wall, no black')
     ap.add_argument('--join-len', type=int, default=60, help='v7: noise dissolve into S6 no-fade f0..JN-1 over the last JN frames')
     ap.add_argument('--ramp-lo', type=float, default=0.35, help='v8: wind speed (fraction of S6) before the CENTRE takeover')
+    ap.add_argument('--abs-lo', action='store_true', help='v8b: before the takeover all walls drift at ramp_lo x CENTRE S6 speed')
     ap.add_argument('--ramp-extra', type=int, default=20, help='v8: the wind reaches full S6 speed this many f after the takeover')
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
@@ -424,8 +425,15 @@ def main():
     # stage, on the CENTRE's own time curve. CENTRE = slow v4 smoke (~0.35 of S6 speed) until the takeover, then the wind
     # front brings S6 speed. So every wall stays at the v4 speed until take0 and eases to full S6 speed over the takeover.
     tt = np.arange(nt, dtype=np.float32)
-    ramp = (a.ramp_lo + (1 - a.ramp_lo) * smoothstep(a.take0, a.take0 + a.take_len + a.ramp_extra, tt)).astype(np.float32)
+    sr = smoothstep(a.take0, a.take0 + a.take_len + a.ramp_extra, tt).astype(np.float32)
+    ramp = (a.ramp_lo + (1 - a.ramp_lo) * sr).astype(np.float32)
     T = np.concatenate([[0], np.cumsum(ramp)[:-1]]).astype(np.float32)
+    # v8b (F61): before the takeover EVERY wall drifts at the same ABSOLUTE speed (ramp_lo x CENTRE's S6 speed, ~the v4
+    # smoke), then each wall eases to its OWN S6 speed. v8 scaled each wall by its own S6 speed, so LEFT (14.8) ran ~1.4x
+    # the CENTRE early. Tlo/Thi = time integrals of the two parts.
+    Tlo = np.concatenate([[0], np.cumsum(1 - sr)[:-1]]).astype(np.float32)
+    Thi = np.concatenate([[0], np.cumsum(sr)[:-1]]).astype(np.float32)
+    v_lo = np.float32(a.ramp_lo * S6_DX['CENTRE'])
     # v8 saturation: S6's own chroma per wall (the end point); the side walls follow the CENTRE's chroma ratio per frame
     s6sat = {w: float(np.mean([sat(f) for f in s6v[w][:48]])) for w in s6v}
     s6sat['FLOOR'] = s6sat['CENTRE']
@@ -442,8 +450,12 @@ def main():
         k = o - g0 + V4FLASH
         B = a.burst * a.burst_tau * (1 - np.exp(-t / a.burst_tau))          # burst displacement, sideways out
         P = a.plume * a.plume_tau * (1 - np.exp(-t / a.plume_tau))          # plume displacement, up
-        dx = B * side + u * T[t]
-        dy = np.float32(-0.12 * B + S6_DY * T[t])
+        if a.abs_lo:
+            dx = B * side + v_lo * Tlo[t] + u * Thi[t]
+            dy = np.float32(-0.12 * B + S6_DY * (a.ramp_lo * Tlo[t] + Thi[t]))
+        else:
+            dx = B * side + u * T[t]
+            dy = np.float32(-0.12 * B + S6_DY * T[t])
         fld = smoke.field(float(t), dx, dy)
         fpl = smoke.field(float(t) + 500, dx * 0.6, dy - P)
         wp = float(np.exp(-t / a.plume_tau))                               # the upward part fades away
