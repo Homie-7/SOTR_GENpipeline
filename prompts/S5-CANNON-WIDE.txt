@@ -1,0 +1,62 @@
+# S5-CANNON-WIDE · v1 · 2026-11-25 (VID, F48 worker) · Scene 5 end -> Scene 6 start, ONE wide take for all four walls (glow bridge method)
+#
+# WHY: docs/S5-CANNON-F48-METHOD.md. ONE 21:9 take shows the whole event; tools/cannon_glow.py cuts it into contiguous windows
+#   (LEFT | CENTRE | RIGHT = three thirds of the top band, 1.5x anamorphic; FLOOR = the ground below the band under CENTRE, not flipped).
+#   The take's pre-impact frames are never shown (only the keyed ball); every wall cuts to the take under one glow.
+# Register tags (headers only): start = S5 CENTRE show file last frame, squeezed 1/1.5 into the centre third, outpainted to 21:9.
+#
+# STATUS v1: NOT RUN. The start image does not exist yet: outpaint_image failed 4 times on 2026-11-25 (jobs 238f86c2, 2f65ded8,
+#   df3f4613, 72622c35; "Something went wrong", 0 cr charged; PNG and JPG input, 21:9 and 16:9 targets). Route for the start image
+#   is open (live chat decides).
+#
+# SETTINGS
+#   Model:      Seedance 2.5 (seedance_2_5)
+#   Mode:       omni_reference (image-to-video), start_image only (no end frame)
+#   Start:      04_WORKING_FILES/S5_cannonball/glow_v1/frames/glow_start_21x9.png  (to be made; input canvas glow_canvas_840x1080.png)
+#   Aspect:     21:9
+#   Resolution: 480p draft (draft = true)
+#   Duration:   10 s
+#   Quality:    standard
+#   Batch:      1
+#   Sound:      ON (generate_audio = true)
+#   Cost:       30 cr (estimate_video_cost 2026-11-25, quote with the canvas as start_image); balance after must stay >= 1,500
+#
+# THE GATE
+#   SOURCE  prompts/S5-CANNON-PROBE.txt v4 (job a2ab023e: impact f32, top covered 3.2 s, no rebound; Homie F47 likes its start:
+#           the blast begins in the centre and the ground breaks). Layout kept, lines patched for the wide view.
+#   ROOM    S5_CENTRE_camps.mov last frame (f10769, opened): rose-orange dusk, sun upper left, far tents and fires on the horizon,
+#           a lit fire spot lower left, dark grass plain in front. The outpainted sides must continue this plain and sky.
+#   REFS    one start image only (the outpainted 21:9 canvas). No end frame: S6 now fades in from black, so the take ends in near-black.
+#   ROUTE   Generation (a new wide event; a regeneration of v4 at 21:9). Glow, cut, windows, fade and sound by script (tools/cannon_glow.py).
+#   DELTA   vs v4: 21:9 wide view; no end frame (REFERENCE/LOCKS lines rewritten for it); the ball lands at the exact centre;
+#           the blast and smoke reach both side edges and the top; ends in near-black embers. Contradiction check: SCENE, MOTION and
+#           LIGHTING all end dark; nothing asks for the sky to return.
+# PREDICTION: ball in sky 0-1.2 s, impact flash ~1.3 s at the horizontal centre; top band >90% covered by ~3 s on all three thirds;
+#   end mean luma < 25. Risk: Seedance keeps the blast in the middle third (sides stay intact dusk plain to ~4 s).
+
+# --- v1 ---
+SCENE: A wide view of the open plain at dusk. A solid iron cannonball of 1816 drops out of the sky and slams into the ground at the exact centre of the picture; a huge blast of earth and black-powder smoke spreads out to both sides and up, swallows the whole wide view, sky and all, then darkens to near-black with a few drifting embers.
+
+REFERENCE: The start frame is the first frame exactly: the same plain, horizon, sun, clouds, camp and fires, across the whole width.
+
+FIRST FRAME: The start frame exactly.
+
+FORMAT: Single continuous take, real time, one shot, no cuts, wide 21:9 frame.
+
+CAMERA: Locked off on a tripod. The horizon stays at the same height in every frame; the picture jolts once, hard and short, when the ball hits.
+
+MOTION:
+0:00-0:01 — the calm dusk plain; high in the sky above the centre a tiny dark dot appears and falls toward us on a steep arc, growing fast into a dark iron ball.
+0:01.3 — it hits the ground at the exact horizontal centre of the frame: a hard bright orange-white flash of black powder at the base, four frames, and the ground breaks open.
+0:01.3-0:03 — a huge violent fountain of dark brown earth, turf, stones and splintered wood blasts up past the top of the frame; a dense wall of grey-brown smoke and dust rushes outward to the left and right edges and upward, and covers the whole frame, both side edges and the top edge included.
+0:03-0:05 — the whole wide frame is thick churning smoke from edge to edge; clods and splinters rain down fast, orange embers fly out through it on arcs.
+0:05-0:08 — the debris slows and thins into floating orange embers; the smoke stays over the whole frame and darkens in place from the top down to near-black, the dusk sky and horizon never seen again.
+0:08-0:10 — near-black smoke with a few slow orange embers drifting, a faint rust glow at the bottom, still moving on the last frame.
+
+LIGHTING: The warm rose-orange dusk of the start frame, lighting the smoke from the sun side, fading to darkness and a faint ember glow.
+
+AUDIO: The rush of round shot, an instant deep thud and crack, earth raining down, a low rolling rumble, then wind and the soft crackle of embers.
+
+QUALITY: Photographic realism, historical battlefield, stable picture.
+
+LOCKS: Locked camera. One ball, one impact at the centre. The empty plain stays empty. The smoke keeps moving to the last frame. Nothing newer than 1819.
