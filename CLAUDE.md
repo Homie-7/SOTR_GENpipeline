@@ -175,7 +175,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-25, latest (VID/script, PC): F37, KNIFE FLASH v1 + S5 EXPLOSION CENTRE PROBE BUILT. 36 cr (balance ~2,203.85).
+### 2026-11-25, latest (POST+VID, PC): F39, KNIFE FLASH v2 + S5 EXPLOSION PROBE v2 BUILT. 30 cr (balance 2,173.85).
+
+- `04_WORKING_FILES/S9_raft/knife_flash_v2/` (`tools/knife_flash.py --v2`, 0 cr; solid, darker, edges to 0, arm motion) and `S5_cannonball/probe_v2/` (fast hit, but smoke covers
+  only the lower half; sky shows to ~7 s). WAITING for Homie; probe v3 (~30 cr) on his yes. Nothing promoted. T9 sha256.
+
+### 2026-11-25, earlier (VID/script, PC): F37, KNIFE FLASH v1 + S5 EXPLOSION CENTRE PROBE BUILT. 36 cr (balance ~2,203.85).
 
 - `04_WORKING_FILES/S9_raft/knife_flash_v1/` (4 alpha ProRes files, `tools/knife_flash.py`, 0 cr) and `S5_cannonball/probe_v1/` (Seedance 480p, 12 s, `prompts/S5-CANNON-PROBE.txt`).
   WAITING for Homie's notes on both; if he passes the probe, RIGHT/LEFT/FLOOR at 480p (~108 cr); 1080p only on his yes. Nothing promoted.

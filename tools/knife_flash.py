@@ -40,7 +40,7 @@ FLASHES = [
     dict(n=2, f="S9-RAFT-KNIFE-SF_v2_F2_9a60dd1c.png", s=0.55, a=(1.0, 0.0), soft=3.0, excl=[], close=15, seed=12),
     dict(n=3, f="S9-RAFT-KNIFE-SF_v2_F3_bc2fbe19.png", s=0.80, a=(0.5, 0.0), soft=1.6,
          excl=[(0.505, 0.0, 0.215, 0.205, 9.0), (0.50, 0.0, 0.29, 0.32, 0.35)], close=15, seed=13),          # the F3 top light spot ("E3"): ellipse cx, cy, rx, ry
-    dict(n=4, f="S9-RAFT-KNIFE-SF_v2b_F4_fd1a7c13.png", s=1.00, a=(0.5, 0.0), soft=0.0, excl=[], close=101, seed=14),
+    dict(n=4, f="S9-RAFT-KNIFE-SF_v2b_F4_fd1a7c13.png", s=1.00, a=(0.5, 0.0), soft=0.0, excl=[], close=101, close2=31, fill_at=[(0.717, 0.389), (0.643, 0.389)], seed=14),   # F4 holes = shadow under the forearm (F39 look), filled
 ]
 DUR = 1.5
 N = int(round(DUR * FPS))               # 36 frames
@@ -72,7 +72,11 @@ def envelope(t):
     return float(np.mean([raw(t + o / FPS) for o in (-0.375, -0.125, 0.125, 0.375)]))
 
 
-def arm_mask(img, excl, close=15):
+KEEP_HOLE = 0.003                       # v2: an enclosed hole of >= 0.3% of the frame is a REAL gap (the sabre knuckle-bow); lace holes are < 0.05%
+HOLES = []                              # v2 report: (frac, cx, cy, kept) per enclosed hole, filled by arm_mask
+
+
+def arm_mask(img, excl, close=15, close2=None, fill_at=()):
     h, w = img.shape[:2]
     f = img.astype(np.float32) / 255
     luma = cv2.GaussianBlur(f.max(axis=2), (0, 0), 2.0)
@@ -97,20 +101,31 @@ def arm_mask(img, excl, close=15):
     holes = (inv[1:-1, 1:-1] == 1).astype(np.uint8)
     n2, lab2, st2, _ = cv2.connectedComponentsWithStats(holes, 8)
     for i in range(1, n2):
-        if st2[i][4] < 0.02 * h * w:
+        if st2[i][4] < (0.0005 if V2 else 0.02) * h * w:     # v2: only lace holes here; the v2 block below decides the rest
             keep[lab2 == i] = 1
     if V2:
         # v2 (Homie F38 "holes in the silhouette"): a wider close joins blade to guard and sleeve to sleeve, then EVERY
         # enclosed hole is filled (no size limit), then the outline is smoothed (blur + threshold) so no lace of holes stays
-        k2 = max(close, 31)
+        # F39 fix: holes >= KEEP_HOLE stay open (the F1/F3 sabre knuckle-bow), unless listed in fill_at (a shadow, not a gap)
+        k2 = close2 if close2 else max(close, 31)
         keep = cv2.morphologyEx(keep, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k2, k2)))
-        inv = np.pad(1 - keep, 1, constant_values=1).astype(np.uint8)
-        cv2.floodFill(inv, np.zeros((h + 4, w + 4), np.uint8), (0, 0), 2)
-        keep[inv[1:-1, 1:-1] == 1] = 1
+
+        def fill_small(keep, log):
+            inv = np.pad(1 - keep, 1, constant_values=1).astype(np.uint8)
+            cv2.floodFill(inv, np.zeros((h + 4, w + 4), np.uint8), (0, 0), 2)
+            n3, lab3, st3, cen3 = cv2.connectedComponentsWithStats((inv[1:-1, 1:-1] == 1).astype(np.uint8), 8)
+            for i in range(1, n3):
+                fr = st3[i][4] / (h * w); cx, cy = cen3[i][0] / w, cen3[i][1] / h
+                forced = any(abs(cx - fx) < 0.04 and abs(cy - fy) < 0.04 for fx, fy in fill_at)
+                kept = fr >= KEEP_HOLE and not forced
+                if not kept:
+                    keep[lab3 == i] = 1
+                if log and fr > 0.0005:
+                    HOLES.append((round(fr * 100, 3), round(cx, 3), round(cy, 3), kept))
+            return keep
+        keep = fill_small(keep, False)
         keep = (cv2.GaussianBlur(keep.astype(np.float32), (0, 0), 4.0) > 0.5).astype(np.uint8)
-        inv = np.pad(1 - keep, 1, constant_values=1).astype(np.uint8)
-        cv2.floodFill(inv, np.zeros((h + 4, w + 4), np.uint8), (0, 0), 2)
-        keep[inv[1:-1, 1:-1] == 1] = 1
+        keep = fill_small(keep, True)
     sm = cv2.GaussianBlur(keep.astype(np.float32), (0, 0), 1.2)
     # glint: the still's own steel highlights (bright, low saturation) inside the mask
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV).astype(np.float32) / 255
@@ -140,7 +155,7 @@ class Flash:
     def __init__(self, fl):
         self.fl = fl
         img = cv2.imread(os.path.join(SRC, fl["f"]))
-        self.mask, self.glint = arm_mask(img, fl["excl"], fl["close"])
+        self.mask, self.glint = arm_mask(img, fl["excl"], fl["close"], fl.get("close2"), fl.get("fill_at", ()))
         self.smoke = bf.smoke(W4 // 4 + 200, H4 // 4, fl["seed"], 40)
         yy, xx = np.mgrid[0:H4, 0:W4].astype(np.float32)
         self.yy, self.xx = yy, xx
@@ -150,7 +165,7 @@ class Flash:
             nz = cv2.resize(bf.smoke(W4 // 8, H4 // 8, fl["seed"] + 100, 20), (W4, H4))
             nz = (nz - nz.mean()) / (nz.std() + 1e-6)
             def ramp(d, m):
-                u = np.clip(d / m + 0.18 * nz, 0, 1)
+                u = np.clip(d / m + 0.18 * nz, 0, 1) * np.clip(d / (0.3 * m), 0, 1)   # F39: the noise may not lift the very edge off 0
                 return u * u * (3 - 2 * u)
             self.vig = (ramp(xx, 0.14 * W4) * ramp(W4 - 1 - xx, 0.14 * W4) * ramp(yy, 0.09 * H4)
                         * ramp(H4 - 1 - yy, 0.12 * H4)).astype(np.float32)
@@ -268,7 +283,7 @@ def main():
         tiles = []
         for fl in FLASHES:
             img = cv2.imread(os.path.join(SRC, fl["f"]))
-            m, g = arm_mask(img, fl["excl"], fl["close"])
+            m, g = arm_mask(img, fl["excl"], fl["close"], fl.get("close2"), fl.get("fill_at", ()))
             v = (np.dstack([m, m, m]) * 0.6 + np.dstack([g, g, g]) * 0.4)
             tiles.append(cv2.resize((v * 255).astype(np.uint8), (960, 536)))
         cv2.imwrite(os.path.join(out, f"_masks_{VER}.jpg"), np.vstack([np.hstack(tiles[:2]), np.hstack(tiles[2:])]))

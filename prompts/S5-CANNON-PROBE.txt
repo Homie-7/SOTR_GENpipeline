@@ -1,35 +1,62 @@
-# S5-CANNON-PROBE · v1 · 2026-11-25 (VID, F36 helper) · Scene 5 end -> Scene 6 start, CENTRE wall, 1816 round-shot impact
+# S5-CANNON-PROBE · v2 · 2026-11-25 (VID, F39 star chat) · Scene 5 end -> Scene 6 start, CENTRE wall, 1816 round-shot impact
 #
-# WHY: Homie F34 rejected review v1 ("a cheap fade"); F36 said "probe at 480p". Plan docs/PLAN-S5-EXPLOSION-v2.md section 3 step 1.
+# WHY v2: Homie F38 on v1: "quite like the drop and explosion and the quality of fidelity ... not selling the impact ... It needs to be
+#   fast, it needs to be violent ... take over the entire four screens pretty much within a second or second and a half ... cannot be
+#   slow ... the smoke dissipating, and then the embers and everything flying off ... settles into the first frame of the next scene".
 # Register tags (headers only): start = S5 CENTRE show file last frame; end = S6 CENTRE show file first frame (16:9 bottom-anchored crop).
 #
-# SETTINGS
+# SETTINGS (same as v1 except duration)
 #   Model:      Seedance 2.5 (seedance_2_5)
 #   Mode:       omni_reference (image-to-video), start_image + end_image
 #   Start:      04_WORKING_FILES/S5_cannonball/rethink_v1/frames/S5_CENTRE_last.png  (1920x1080)
 #   End:        04_WORKING_FILES/S5_cannonball/rethink_v1/frames/S6_CENTRE_first_16x9.png  (1920x1080)
 #   Aspect:     16:9
 #   Resolution: 480p draft (draft = true)
-#   Duration:   12 s
+#   Duration:   10 s (v1 12 s; the slow build is cut, Homie gave duration to Claude)
 #   Bitrate:    standard
 #   Batch:      1
 #   Sound:      ON (generate_audio = true)
-#   Cost cap:   45 cr; balance after must stay >= 2,050 (Homie floor 2,000)
+#   Cost cap:   45 cr; balance after must stay >= 2,000 (Homie floor)
 #
 # THE GATE
-#   SOURCE  New video prompt. Beat table = PLAN-S5-EXPLOSION-v2.md section 2 (CENTRE column, 0-12 s). Look = style frames (a) 581c7d63
-#           and (c) 68c7a9c5, both PASS (prompts/S5-CANNON-RETHINK-SF.txt). Layout = labelled blocks of prompts/S9-CRT-IDLE.txt v16-FWD.
-#   ROOM    Opened rethink_v1/_contact_sheet_frames.jpg: S5 CENTRE = rose-orange dusk, low sun upper-left behind thin cloud, smoke plumes
-#           left and right, camp on the right horizon, yellow fire glow lower left, dark brown plain. S6 CENTRE first = black upper half,
-#           low band of rust/red-brown smoke with orange embers.
-#   REFS    start_image S5_CENTRE_last.png (carries framing, light, ground); end_image S6_CENTRE_first_16x9.png (carries the end state).
-#           Both opened (1920x1080 RGB). No image_references.
-#   ROUTE   Regeneration, omni_reference start+end (plan section 3; compositing a fireball was rejected in F34). Probe short and cheap first
-#           (AUTONOMOUS-GEN section 2). Known risk from S9-CRT-IDLE v13-BRIDGE: start/end are NOT frame-exact in omni mode (it reframed).
-#   DELTA   First version, no earlier video prompt for this cue. Nothing contradicts the frames: the start has no ball or smoke at centre,
-#           the end has no horizon; the prompt carries the change between them.
-# PREDICTION: the ball and the earth column read; the flash runs longer than 5 frames (Seedance likes a bright burst); some camera shake on
-#   impact; the last ~3 s cross-dissolve toward the end frame rather than settle into it.
+#   SOURCE  v1 below (job a50011db; Homie liked drop, impact, fidelity). Layout kept; patch = SCENE line, CAMERA last clause, MOTION timings,
+#           AUDIO order. LIGHTING, QUALITY, LOCKS, REFERENCE, FIRST FRAME, FORMAT unchanged.
+#   ROOM    probe_v1 measure + contact sheet: ball from TOP-RIGHT f57-67, impact 2.96 s, spark 3 f, column pale/soft, frame full only at ~7.6 s,
+#           sky dissolve 7.3-9 s, end MAD 3.4 vs S6 frame from ~10 s.
+#   REFS    the same two frames as v1 (start S5_CENTRE_last.png, end S6_CENTRE_first_16x9.png).
+#   ROUTE   Regeneration (Homie: regenerate over comp), the same omni start+end route that landed the end frame in v1.
+#   DELTA   (1) impact at 1.0 s, not 3 s; (2) a violent instant burst, a dark earth+smoke wall that covers the frame edge to edge by 2.5 s;
+#           (3) then the smoke thins with embers flying and settles on the end frame from ~8.5 s; (4) ball through the right edge, low, near flat.
+#           Nothing contradicts the frames. Risk: "violent" may give cartoon volume (lesson: exaggeration words) - here volume is wanted.
+# PREDICTION: impact ~1.0-1.3 s; frame covered by ~2.5-3 s (Seedance may still be slower than asked); a bigger orange flash (4-8 f);
+#   more impact shake than v1; the end frame holds from ~8.5-9 s with MAD <= 4.
+
+# --- v2 ---
+SCENE: A solid iron cannonball of 1816 slams into the open plain at dusk; a wall of earth and black-powder smoke blasts out over the whole view within a second, then thins with flying embers and settles into a low bank of rust-brown smoke under a dark sky.
+
+REFERENCE: The start frame is the first frame exactly: the same plain, horizon, sun, clouds, camp and fires. The end frame is the last frame exactly: the dark sky and the low rust smoke with orange embers.
+
+FIRST FRAME: The start frame exactly.
+
+FORMAT: Single continuous take, real time, one shot, no cuts.
+
+CAMERA: Locked off on a tripod. The horizon stays at the same height in every frame; the picture jolts once, hard and short, when the ball hits.
+
+MOTION:
+0:00-0:01 — the calm dusk plain; a dark iron ball shoots in through the right edge of the frame, low and almost flat, at horizon height.
+0:01 — it hits the ground at the centre: a hard bright orange-white flash of black powder at the base, four frames, and the ground bursts open.
+0:01-0:02.5 — a violent fountain of dark brown earth, turf, stones and splintered wood blasts up and out in every direction, and a dense wall of grey-brown smoke and dust rushes outward and upward, covering the whole frame edge to edge.
+0:02.5-0:06 — the smoke churns and starts to thin; orange embers fly out through it on arcs, clods and splinters rain down, the light drops.
+0:06-0:08.5 — the smoke sinks and thins into a low even rust-brown bank, embers fading, the sky near-black.
+0:08.5-0:10 — the end frame, holding.
+
+LIGHTING: The warm rose-orange dusk of the start frame, lighting the smoke from the sun side, fading to darkness and the ember glow of the end frame.
+
+AUDIO: The rush of round shot, an instant deep thud and crack, earth raining down, a low rolling rumble, then wind and the soft crackle of embers.
+
+QUALITY: Photographic realism, historical battlefield, stable picture.
+
+LOCKS: Locked camera. One ball, one impact. The empty plain stays empty. Nothing newer than 1819.
 
 # --- v1 ---
 SCENE: A solid iron cannonball of 1816 falls onto the open plain at dusk and throws up earth; dust and black-powder smoke roll out until they fill the whole view, then settle into a low bank of rust-brown smoke under a dark sky.
