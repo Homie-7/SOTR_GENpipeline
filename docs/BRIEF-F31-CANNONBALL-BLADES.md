@@ -231,3 +231,8 @@ I'm starting to wonder if this is just a rabbit hole where we keep spending cred
 Would it be possible to take the scene as is and feed that as a composite Higgsfield and then based on that just generate an explosion and not really about three different scenes, but I suppose that is what you did this time I don't know if it's worth pursuing anymore because I'm not seeing results or anything that's getting us closer"
 
 Notes (F49): glow_v1 REJECTED. Root cause, same in all 3 tries: every generation re-draws the scene, so after any cut the landscape is a different place, and one take spread over 4 walls reads as one scaled video (huge embers/debris). Feeding the camps frame as the start image is what glow_v1 already did. F49 recommendation: STOP generating for the takeover. No landscape after the flash at all.
+
+### F50 decision (Homie, 2026-11-26, verbatim)
+"I'm happy to give that a go, Build it. Also, make sure there is a bit of camera shake so the entire environment shakes, I think that can also serve as a bit of a distraction to get away with some artifacts that may appear"
+
+Notes (F50): Homie chose the 0-cr SCRIPT FALLBACK (no generation): real camps on all 4 walls to impact; ball + praised v3/v4 explosion on CENTRE only, keyed on the real camps; cannon_glow glow over all 4 walls; under the glow every wall goes to smoke + dark with per-wall-scale small embers (no landscape after the flash); then black (S6 fades in from black). ADD: a camera shake on the whole picture at impact (all walls shake together). This is a post shake on the finished file, by Homie's explicit request; the generated plates stay locked-camera.
