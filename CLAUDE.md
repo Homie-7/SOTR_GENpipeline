@@ -175,7 +175,12 @@ v3) is finishing an approved picture: upscales, the restore, grades, encodes, de
 
 ## Current stage
 
-### 2026-11-26, latest (POST, Mac on T9): F66, S5 CANNON v10 PROMOTED. 0 cr (balance 1,961.85).
+### 2026-11-26, latest (POST, Mac on T9): F68, S5 CAMPS-WITH-CANNON ALTERNATIVE PROMOTED. 0 cr (balance 1,961.85).
+
+- Homie F68: "I need you to keep it as an alterntive alongside the original". `01_FINAL_FOR_SHOW/1_PLAY_THESE_IN_ORDER/S05_the-camps/ALTERNATIVE_camps-ending-with-cannon_one-file/` (4 x 1080, 7:18.92, ends in black), sha256 verified; read-me + `_SHA256.txt` updated; originals unchanged.
+  Open: copy the new S5 files to D: on the PC with sha256.
+
+### 2026-11-26, earlier (POST, Mac on T9): F66, S5 CANNON v10 PROMOTED. 0 cr (balance 1,961.85).
 
 - Homie: "Promote v10 now". `1_PLAY_THESE_IN_ORDER/S05_the-camps/S5_<WALL>_cannon.mov` (4K, 25 fps, ends in black) + `03_CLEAN_MASTERS_no_edge/S5_<WALL>_cannon_CLEAN.mov`, sha256 verified; read-me + `_SHA256.txt` updated.
   Open: copy to D: on the PC with sha256.
